@@ -27,9 +27,10 @@ Code deterministic chuyển span này thành số.
   Đây là `dual encoder` value-span-v7: path v1 đóng băng cho type và target,
   path thứ hai đã fine-tune, kèm CRF, cho value span.
   Bản này là 58.1 MB INT8 ONNX, khoảng 3.5 ms p50 trên một CPU thread.
-  Release 2.0.1 đã public trên Hugging Face:
+  Release 2.0.3 đã public trên Hugging Face:
   [x8bu/gidi-finance](https://huggingface.co/x8bu/gidi-finance) (INT8).
-  GitHub release (archive INT8 và FP32) vẫn là bản nháp.
+  GitHub release 2.0.3 có archive INT8 và FP32.
+  Demo chạy trong trình duyệt: <https://gidi.8bu.dev>.
 - **`gidi-finance-v1`** vẫn đóng băng và không đổi: chỉ có type và target,
   28.66 MB INT8 ONNX.
 - Research model đã dừng. Hiện không có experiment, compression hoặc distillation mới.

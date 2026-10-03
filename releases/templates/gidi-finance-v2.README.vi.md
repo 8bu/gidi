@@ -17,6 +17,8 @@ tags:
 
 Đây là thử nghiệm của mình để xây dựng một classifier nhỏ.
 
+Demo: <https://gidi.8bu.dev>. Model chạy hoàn toàn trong trình duyệt (onnxruntime-web, INT8).
+
 Model: `{model_version}`, release `{release_version}`.
 
 Đây là model on-device nhỏ cho ghi chú tài chính cá nhân tiếng Việt ngắn như

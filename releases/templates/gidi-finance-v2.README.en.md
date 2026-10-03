@@ -4,6 +4,8 @@
 
 This is my experiment to build a tiny classifier.
 
+Demo: <https://gidi.8bu.dev>. The model runs entirely in your browser (onnxruntime-web, INT8).
+
 Model: `{model_version}`, release `{release_version}`.
 
 A tiny on-device model for short Vietnamese personal-finance notes such as `mượn chú hai 5 xị`.

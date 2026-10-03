@@ -21,9 +21,10 @@ converting it to a number stays deterministic code.
 
 - **`gidi-finance-v2`** is the current testable candidate. It is the value-span-v7 dual
   encoder: the frozen v1 path gives type and target, a second fine-tuned path with a CRF gives
-  the value span. 58.1 MB INT8 ONNX, about 3.5 ms p50 on one CPU thread. Release 2.0.1 is
+  the value span. 58.1 MB INT8 ONNX, about 3.5 ms p50 on one CPU thread. Release 2.0.3 is
   public on Hugging Face: [x8bu/gidi-finance](https://huggingface.co/x8bu/gidi-finance)
-  (INT8). The GitHub release (INT8 and FP32 archives) is still a draft.
+  (INT8). The GitHub release 2.0.3 has the INT8 and FP32 archives. In-browser demo:
+  <https://gidi.8bu.dev>.
 - **`gidi-finance-v1`** stays frozen and unchanged: type and target only, 28.66 MB INT8 ONNX.
 - Model research is stopped: no new experiments, compression or distillation are in progress.
 
