@@ -263,12 +263,25 @@ def test_production_regression_words_decode_to_exact_characters(predictor, case)
     """Production-found span bugs: rule out tokenizer-offset and char-mapping causes.
 
     For every word, each B/I run over its sub-word tokens must decode to the exact prefix of the
-    word ending at a token boundary, and the full run to the whole word (prod-0001: `vinamilk`
-    came back as `v`; the cause was the target model, not this mapping).
+    word ending at a token boundary, and the full run to the whole word. The recorded gold spans
+    must slice the original string exactly and be reachable by a perfect tagger (prod-0001: gold
+    `vinamilk` came back as `v`/`vin`; the cause is the target model, not this mapping).
     """
     text = case["text"]
     tokens = BundleTokenizer(BUNDLE / "tokenizer.json", max_length=32).encode(text)
     offsets = list(tokens.offsets)
+    for field in ("target", "value"):
+        gold = case["gold"][field]
+        if gold is None:
+            continue
+        assert text[gold["start"] : gold["end"]] == gold["text"]
+        members = [i for i, (s, e) in enumerate(offsets) if s < gold["end"] and e > gold["start"]]
+        tags = [0] * len(offsets)
+        tags[members[0]] = 1
+        for i in members[1:]:
+            tags[i] = 2
+        span = decode_first_span(offsets, tags, text)
+        assert (span.start, span.end) == (gold["start"], gold["end"])
     pos = 0
     for word in text.split():
         start = text.index(word, pos)

@@ -257,6 +257,54 @@ must-review errors are expected and only reported. It exits 2 while the human la
 and merges its entry into `experiments/value-span-v1/review-score.json` (and writes an
 `escalation-queue.jsonl` with proposals when escalation is needed).
 
+### Independent human validation set (human-value-01)
+
+`datasets/annotation-v2/human-value-01/` is a held-out, human-labelled value-span set for the final
+V7-vs-V8 comparison. It uses the value pass above unchanged (same Quet schema, same span
+convention), so it lives under annotation-v2; nothing in the taxonomy changes. Quet fields map
+to the requested ones as: value span = `target` `{text, start, end}` (code-point offsets into the
+note), value present = type `amount` vs `no_amount`, uncertain = status `uncertain`, annotation
+note = `note`. No model, value parser, rule proposer or LLM is involved in sampling or labelling:
+there are no proposals, no prefill, and the queue holds no value field (never pass `--proposals`).
+
+`scripts/build_human_value_queue.py` (stdlib only, fixed seed `human-value-01:v1`, `--check`
+reproduces byte for byte) builds it in three steps:
+
+1. **Pool**: Quet-approved notes of `corpus/reviewed/baseline-01.jsonl`. Unreviewed raw batches
+   (`corpus/raw/targeted-*`, no Quet approval, synthetic) are not used, and no note is synthesised.
+2. **Exclusion** against V8's rule-design input (`training-v1/train.jsonl`), validation, frozen
+   test, `probe-v1` and `targeted-value-01`, then against the other encoder-training sets, then
+   inside the pool. A note is dropped when its text is the same after NFC + lowercase
+   (`exact`), the same after accent stripping, digit masking and whitespace collapsing
+   (`folded`), has a `difflib` ratio >= 0.90 on the folded text (`sequence`, the repo near-dup
+   threshold), a content-word Jaccard >= 0.80 with >= 4 words (`token`), or a character-3-gram
+   Jaccard >= 0.80 (`char3`). The script re-checks the selected queue against every excluded set
+   and against itself and fails on any hit.
+3. **Stratification by surface features only** (regex and word lists, overlap allowed): bare
+   number, multi-number, date/month/year + amount, quantity + amount, installment/index +
+   amount, slang/compact money, unaccented, unusual whitespace/punctuation, long/noisy,
+   null/no-number/ambiguous. Context-sensitive notes are preferred and a lone plain `500k` is
+   down-weighted; remaining slots are filled by the same score (stratum `general`). A stratum the
+   natural pool cannot fill is reported as a shortfall in `manifest.json`.
+
+Files: `review-queue.jsonl` (`{id, text, strata, review_group: "primary"}`, shuffled by seed),
+`annotation-guide.md` (hand-written, hashed into the manifest), `candidate-provenance.jsonl`
+(source and prior usage per note, **not** given to Quet), `manifest.json` (inputs and sha256, seed,
+exclusion/strata/prior-usage counts, queue sha256, phase and the planned phases). `labels.jsonl`
+is written only by Quet.
+
+```sh
+uv run python scripts/build_human_value_queue.py          # once; --check verifies
+quet annotate datasets/annotation-v2/human-value-01/review-queue.jsonl \
+  --schema configs/annotation-v2-value.quet.yaml \
+  --out datasets/annotation-v2/human-value-01/labels.jsonl
+```
+
+Phases: (1) this build and the human pass (`phase-1-awaiting-annotation`); (2) a second human pass
+over every `uncertain`, multi-number and `no_amount` note plus a random sample of the rest;
+(3) freeze the labels with hashes and stats, then run V7 and V8 once each. The set is never
+merged into training.
+
 ## Data audit
 
 `scripts/audit_value_spans.py` writes `experiments/value-span-v1/data-audit.{json,md}`: counts,

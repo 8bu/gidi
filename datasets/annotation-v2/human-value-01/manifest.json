@@ -1,0 +1,231 @@
+{
+  "name": "human-value-01",
+  "annotation_version": "annotation-v2",
+  "role": "independent human-labelled value-span validation set (V7 vs V8 comparison)",
+  "phase": "phase-1-awaiting-annotation",
+  "seed": "human-value-01:v1",
+  "selection": {
+    "pool": "corpus/reviewed/baseline-01.jsonl",
+    "pool_rule": "Quet-approved reviewed notes only; no synthetic notes",
+    "near_duplicate_rules": {
+      "exact": "NFC + strip + lowercase",
+      "folded": "NFC, lowercase, accents stripped, digits masked, whitespace collapsed",
+      "sequence": "difflib ratio of folded texts >= 0.9",
+      "token": "folded token Jaccard >= 0.8 (>= 4 tokens)",
+      "char3": "folded char-3-gram Jaccard >= 0.8"
+    },
+    "hard_exclusion_sources": [
+      "datasets/annotation-v2/training-v1/train.jsonl",
+      "datasets/annotation-v2/training-v1/validation.jsonl",
+      "datasets/annotation-v2/training-v1/test.jsonl",
+      "datasets/annotation-v2/training-v1/probe-v1-eval-only.jsonl",
+      "datasets/probe-v1/notes.jsonl",
+      "corpus/raw/targeted-value-01.jsonl",
+      "datasets/annotation-v2/targeted-value-01/auto-labels.jsonl",
+      "datasets/annotation-v2/targeted-value-01/generation-notes.jsonl",
+      "datasets/annotation-v2/targeted-value-01/labels.jsonl",
+      "datasets/annotation-v2/targeted-value-01/review-provenance.jsonl",
+      "datasets/annotation-v2/targeted-value-01/review-queue.jsonl",
+      "datasets/annotation-v2/targeted-value-01/review-type-proposals.jsonl",
+      "datasets/annotation-v2/targeted-value-01/review-value-proposals.jsonl",
+      "datasets/annotation-v2/targeted-value-01/type-proposals.jsonl",
+      "datasets/annotation-v2/targeted-value-01/value-auto-labels.jsonl",
+      "datasets/annotation-v2/targeted-value-01/value-labels.jsonl"
+    ],
+    "encoder_seen_sources": [
+      "datasets/annotation-v1/distillation-v1/train.jsonl",
+      "datasets/annotation-v1/distillation-v1/validation.jsonl",
+      "datasets/annotation-v1/training-v2/train.jsonl",
+      "datasets/annotation-v1/training-v3/train.jsonl",
+      "datasets/annotation-v2/training-v2-direction-repair/train.jsonl",
+      "datasets/annotation-v1/targeted-02/notes.jsonl",
+      "datasets/annotation-v1/targeted-03/notes.jsonl"
+    ],
+    "target_total": 150,
+    "allowed_range": [
+      120,
+      180
+    ]
+  },
+  "counts": {
+    "queue": 150,
+    "pool_rows": 1000,
+    "not_approved": 0,
+    "dropped_hard_exclusion": {
+      "exact": 580,
+      "folded": 74,
+      "sequence": 45,
+      "token": 39,
+      "char3": 4
+    },
+    "dropped_encoder_seen": {
+      "exact": 0,
+      "folded": 0,
+      "sequence": 0,
+      "token": 0,
+      "char3": 0
+    },
+    "dropped_pool_duplicate": {
+      "exact": 0,
+      "folded": 11,
+      "sequence": 12,
+      "token": 2,
+      "char3": 0
+    },
+    "after_exclusion": 258,
+    "pool_exact_in_v1_encoder_train": 500,
+    "unapproved_raw_not_used": {
+      "corpus/raw/targeted-annotation-v1-01.jsonl": {
+        "rows": 163,
+        "quet_approved_records": 0,
+        "not_excluded_by_hard_rules": 24
+      },
+      "corpus/raw/targeted-value-01.jsonl": {
+        "rows": 253,
+        "quet_approved_records": 0,
+        "not_excluded_by_hard_rules": 0
+      }
+    },
+    "after_dedup": 233,
+    "dropped_hard_exclusion_total": 742,
+    "dropped_encoder_seen_total": 0,
+    "dropped_pool_duplicate_total": 25
+  },
+  "verification": {
+    "overlap_with_hard_exclusions": 0,
+    "near_duplicate_pairs_inside_queue": 0
+  },
+  "strata": {
+    "bare_number": {
+      "target": 25,
+      "achieved": 2,
+      "available_after_dedup": 2,
+      "shortfall": 23
+    },
+    "multi_number": {
+      "target": 30,
+      "achieved": 19,
+      "available_after_dedup": 19,
+      "shortfall": 11
+    },
+    "date_month_year_amount": {
+      "target": 15,
+      "achieved": 10,
+      "available_after_dedup": 10,
+      "shortfall": 5
+    },
+    "quantity_amount": {
+      "target": 15,
+      "achieved": 4,
+      "available_after_dedup": 4,
+      "shortfall": 11
+    },
+    "installment_index_amount": {
+      "target": 10,
+      "achieved": 3,
+      "available_after_dedup": 3,
+      "shortfall": 7
+    },
+    "slang_compact_money": {
+      "target": 15,
+      "achieved": 39,
+      "available_after_dedup": 39,
+      "shortfall": 0
+    },
+    "unaccented": {
+      "target": 10,
+      "achieved": 54,
+      "available_after_dedup": 76,
+      "shortfall": 0
+    },
+    "unusual_whitespace_punct": {
+      "target": 10,
+      "achieved": 2,
+      "available_after_dedup": 2,
+      "shortfall": 8
+    },
+    "long_noisy": {
+      "target": 10,
+      "achieved": 15,
+      "available_after_dedup": 15,
+      "shortfall": 0
+    },
+    "null_no_number_ambiguous": {
+      "target": 10,
+      "achieved": 4,
+      "available_after_dedup": 4,
+      "shortfall": 6
+    }
+  },
+  "strata_fill_notes": 51,
+  "strata_shortfalls": {
+    "bare_number": 23,
+    "multi_number": 11,
+    "date_month_year_amount": 5,
+    "quantity_amount": 11,
+    "installment_index_amount": 7,
+    "unusual_whitespace_punct": 8,
+    "null_no_number_ambiguous": 6
+  },
+  "prior_usage": {
+    "annotation_v1_queued": 9,
+    "annotation_v1_status_never_annotated": 141,
+    "annotation_v1_status_skipped": 9,
+    "seen_by_v1_encoder_type_target_training": 0
+  },
+  "inputs": {
+    "corpus/raw/targeted-annotation-v1-01.jsonl": "f528809e4c73c45c24f3e337efb390debfe41205140e220c6df91025bbf95145",
+    "corpus/raw/targeted-value-01.jsonl": "d6097537520c70e3ef8ae6bc5b0d1c70193d74d98f8d74203850dbc9114bb0bb",
+    "corpus/reviewed/baseline-01.jsonl": "cbcb3f43e831a6a8db92564cd04d116168b5f5e5aa07f3275551baf811012b55",
+    "datasets/annotation-v1/distillation-v1/train.jsonl": "fc18d15e4ff83e7406754001498c5416711f7bc2d4c5681e47157f407115593a",
+    "datasets/annotation-v1/distillation-v1/validation.jsonl": "5c8039978a84943db4ffa44524a65200ff5022ce06092e128ffbbe8fbff8df87",
+    "datasets/annotation-v1/labels.jsonl": "7b11840a2dc1456af2081d10eb4bbb1cd453fd2077f959bf523ff43ba38247ae",
+    "datasets/annotation-v1/queue.jsonl": "51d43de7f6116698515e53e11554e978742f6d5008cb9259354475f37b1c38e8",
+    "datasets/annotation-v1/targeted-02/notes.jsonl": "43d9f948e2d7afe8f206e6910aee70a6db7cf3ea9412f2880128c1a37e27d5f0",
+    "datasets/annotation-v1/targeted-03/notes.jsonl": "c4d4096fe2bc73a5fbe462010704b0d81a9d73a25595849c5ac75cd1fa86c548",
+    "datasets/annotation-v1/training-v2/train.jsonl": "d9d0b6d5eb01b2fa426beb1f60b4b3708d43242146046de5430a3daa856dc866",
+    "datasets/annotation-v1/training-v3/train.jsonl": "bccb4b38502b492d172edfe2e8b7b05aa122b3abd5d76c4cd7b53cc40c46aed2",
+    "datasets/annotation-v2/targeted-value-01/auto-labels.jsonl": "176924fc93d3c4482e2909c445a586e6256cf004b9cc44f93a2deaba77e8af12",
+    "datasets/annotation-v2/targeted-value-01/generation-notes.jsonl": "30d99ce06fe7e3300b84d8402bfdccc2ca2865c1920a5a4d4b1c6f6af561ac16",
+    "datasets/annotation-v2/targeted-value-01/labels.jsonl": "c30b509a772b6d4ac8ffe12501face3877c3371b296e5adb340d78a502a6d603",
+    "datasets/annotation-v2/targeted-value-01/review-provenance.jsonl": "1c3daf7e5a8ad48cf860c97ad24ddd23f41aec097911dda822b85c56b7d50196",
+    "datasets/annotation-v2/targeted-value-01/review-queue.jsonl": "18634381b3117a088d195f84eb0f2e10cbbd53a6851f3882b968af2a47cc2751",
+    "datasets/annotation-v2/targeted-value-01/review-type-proposals.jsonl": "a6338ff18a1466a3d007381ea905d81cede296f256cdc0790fcdb21ac203b906",
+    "datasets/annotation-v2/targeted-value-01/review-value-proposals.jsonl": "d638ee693c43f683eb3b3096fd2603d174b8cfbf3a600d3bd48bd0fefcb81762",
+    "datasets/annotation-v2/targeted-value-01/type-proposals.jsonl": "838977fd39d692392b31e8ea38c014f2f8556b9576ff6127d7e332a38d9947cf",
+    "datasets/annotation-v2/targeted-value-01/value-auto-labels.jsonl": "4c42b6d0e1b85e8259f8406d05c489ca8517cfc851eff3e39163980093860a5b",
+    "datasets/annotation-v2/targeted-value-01/value-labels.jsonl": "4803dfb72fbc7479d41a138c5ce88f807ef9e8313486f3f12db8263b1f97a5f6",
+    "datasets/annotation-v2/training-v1/probe-v1-eval-only.jsonl": "638aeff00243f20af2dbeb2b340da0142631566057aef57d75005b75aedece87",
+    "datasets/annotation-v2/training-v1/test.jsonl": "acaca8d767828e48954e91871886ac191a45110af695af7df7573a9c0be6f91d",
+    "datasets/annotation-v2/training-v1/train.jsonl": "0a03db64238e6f202918a30e3727178c437045ce4703d38f14a7dda9883589e5",
+    "datasets/annotation-v2/training-v1/validation.jsonl": "eef077c97a519dc532112683f3ab35daeaa6e55187c3c2fb01f53a0ee37f629c",
+    "datasets/annotation-v2/training-v2-direction-repair/train.jsonl": "2e2d02e453e4d89a52b8ebf48b4b9761c868dea38d71ba2b80c96e390c178d7b",
+    "datasets/probe-v1/notes.jsonl": "6ffc9017bf8a153fe42741f20788b47e35ddd6213afb5479ac25e32d26c31797"
+  },
+  "outputs": {
+    "review-queue.jsonl": "362cf8ca58c265d51e3ac12706de66fd6c4fb5111a82c5390d4aef92f13b6a28",
+    "annotation-guide.md": "e472ab11a72f26611d7af85177eacffc1ed60a690986afaace88767b4a17503a"
+  },
+  "queue_sha256": "362cf8ca58c265d51e3ac12706de66fd6c4fb5111a82c5390d4aef92f13b6a28",
+  "planned_phases": [
+    {
+      "phase": "phase-1-awaiting-annotation",
+      "what": "this build: candidate pool, dedup, stratification, queue, guide. A human labels the queue in Quet (labels.jsonl is created by Quet only)."
+    },
+    {
+      "phase": "phase-2-second-pass",
+      "what": "second human pass over every note that is uncertain, multi_number or null (no_amount) plus a random sample of the remaining notes; disagreements are resolved and the resolution recorded."
+    },
+    {
+      "phase": "phase-3-freeze-and-run",
+      "what": "freeze the labels with sha256 and stats, then run V7 and V8 each exactly once on the frozen set; no labelling or rule changes after the first model run."
+    }
+  ],
+  "quet_command": "quet annotate datasets/annotation-v2/human-value-01/review-queue.jsonl --schema configs/annotation-v2-value.quet.yaml --out datasets/annotation-v2/human-value-01/labels.jsonl",
+  "field_mapping": {
+    "value_span": "Quet `target` {text, start, end} (code-point offsets)",
+    "value_present": "type `amount` vs `no_amount`",
+    "uncertain": "status `uncertain` (a `note` is required)",
+    "annotation_note": "Quet `note`"
+  }
+}
