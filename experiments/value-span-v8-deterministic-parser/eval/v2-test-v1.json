@@ -1,0 +1,199 @@
+{
+ "n": 105,
+ "type_accuracy": 0.9428571428571428,
+ "type_macro_f1": 0.9563291899357473,
+ "target_f1": 0.8076923076923077,
+ "target_exact": 0.8857142857142857,
+ "type_target_joint": 0.8476190476190476,
+ "counts": {
+  "n": 105,
+  "type_correct": 99,
+  "target_correct": 93,
+  "joint_correct": 89
+ },
+ "value": {
+  "n": 105,
+  "exact": 0.9809523809523809,
+  "present_accuracy": 1.0,
+  "span_precision": 0.9809523809523809,
+  "span_recall": 0.9809523809523809,
+  "span_f1": 0.9809523809523809,
+  "full_joint": 0.8285714285714286,
+  "n_errors": 2,
+  "token_f1": 0.99581589958159,
+  "human": {
+   "n": 7,
+   "exact": 0.8571428571428571,
+   "present_accuracy": 1.0,
+   "span_precision": 0.8571428571428571,
+   "span_recall": 0.8571428571428571,
+   "span_f1": 0.8571428571428571,
+   "full_joint": 0.5714285714285714,
+   "n_errors": 1
+  }
+ },
+ "value_slices": {
+  "explicit_unit": {
+   "n": 99,
+   "exact": 0.9797979797979798,
+   "present_accuracy": 1.0,
+   "span_precision": 0.9797979797979798,
+   "span_recall": 0.9797979797979798,
+   "span_f1": 0.9797979797979798,
+   "full_joint": 0.8282828282828283,
+   "n_errors": 2
+  },
+  "bare_number": {
+   "n": 0,
+   "exact": null,
+   "present_accuracy": null,
+   "span_precision": null,
+   "span_recall": null,
+   "span_f1": null,
+   "full_joint": null,
+   "n_errors": 0
+  },
+  "multi_number": {
+   "n": 11,
+   "exact": 0.9090909090909091,
+   "present_accuracy": 1.0,
+   "span_precision": 0.9090909090909091,
+   "span_recall": 0.9090909090909091,
+   "span_f1": 0.9090909090909091,
+   "full_joint": 0.7272727272727273,
+   "n_errors": 1
+  },
+  "slang": {
+   "n": 3,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 1.0,
+   "n_errors": 0
+  },
+  "unaccented": {
+   "n": 42,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 0.8333333333333334,
+   "n_errors": 0
+  },
+  "unseen_span": {
+   "n": 21,
+   "exact": 0.9523809523809523,
+   "present_accuracy": 1.0,
+   "span_precision": 0.9523809523809523,
+   "span_recall": 0.9523809523809523,
+   "span_f1": 0.9523809523809523,
+   "full_joint": 0.6190476190476191,
+   "n_errors": 1
+  },
+  "long_multi_token": {
+   "n": 38,
+   "exact": 0.9473684210526315,
+   "present_accuracy": 1.0,
+   "span_precision": 0.9473684210526315,
+   "span_recall": 0.9473684210526315,
+   "span_f1": 0.9473684210526315,
+   "full_joint": 0.7105263157894737,
+   "n_errors": 2
+  },
+  "no_amount": {
+   "n": 0,
+   "exact": null,
+   "present_accuracy": null,
+   "span_precision": null,
+   "span_recall": null,
+   "span_f1": null,
+   "full_joint": null,
+   "n_errors": 0
+  }
+ },
+ "value_slices_human": {
+  "explicit_unit": {
+   "n": 5,
+   "exact": 0.8,
+   "present_accuracy": 1.0,
+   "span_precision": 0.8,
+   "span_recall": 0.8,
+   "span_f1": 0.8000000000000002,
+   "full_joint": 0.4,
+   "n_errors": 1
+  },
+  "bare_number": {
+   "n": 0,
+   "exact": null,
+   "present_accuracy": null,
+   "span_precision": null,
+   "span_recall": null,
+   "span_f1": null,
+   "full_joint": null,
+   "n_errors": 0
+  },
+  "multi_number": {
+   "n": 3,
+   "exact": 0.6666666666666666,
+   "present_accuracy": 1.0,
+   "span_precision": 0.6666666666666666,
+   "span_recall": 0.6666666666666666,
+   "span_f1": 0.6666666666666666,
+   "full_joint": 0.3333333333333333,
+   "n_errors": 1
+  },
+  "slang": {
+   "n": 1,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 1.0,
+   "n_errors": 0
+  },
+  "unaccented": {
+   "n": 4,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 0.5,
+   "n_errors": 0
+  },
+  "unseen_span": {
+   "n": 1,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 1.0,
+   "n_errors": 0
+  },
+  "long_multi_token": {
+   "n": 6,
+   "exact": 0.8333333333333334,
+   "present_accuracy": 1.0,
+   "span_precision": 0.8333333333333334,
+   "span_recall": 0.8333333333333334,
+   "span_f1": 0.8333333333333334,
+   "full_joint": 0.5,
+   "n_errors": 1
+  },
+  "no_amount": {
+   "n": 0,
+   "exact": null,
+   "present_accuracy": null,
+   "span_precision": null,
+   "span_recall": null,
+   "span_f1": null,
+   "full_joint": null,
+   "n_errors": 0
+  }
+ }
+}

@@ -1052,11 +1052,11 @@ function defaultSessionSection(report: Report): string[] {
       `| ${source} | ${r.n} | ${r.differing} | ${r.type} | ${r.target_span} | ${r.value_span} |`
     )
   }
-  const listed = ["golden", "test", "probe", "preset"]
+  const listed = ["golden", "test", "probe", "preset", "regression"]
   const cases = d.cases as Report[]
   lines.push(
     "",
-    "Every differing golden / test / probe / preset case (all sources are in the JSON):",
+    "Every differing golden / test / probe / preset / regression case (all sources are in the JSON):",
     ""
   )
   const shown = cases.filter((c) => listed.includes(c.source))

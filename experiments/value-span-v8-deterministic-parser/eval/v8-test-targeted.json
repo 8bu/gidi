@@ -1,0 +1,199 @@
+{
+ "n": 38,
+ "type_accuracy": 0.9210526315789473,
+ "type_macro_f1": 0.9349206349206349,
+ "target_f1": 0.8333333333333334,
+ "target_exact": 0.9210526315789473,
+ "type_target_joint": 0.868421052631579,
+ "counts": {
+  "n": 38,
+  "type_correct": 35,
+  "target_correct": 35,
+  "joint_correct": 33
+ },
+ "value": {
+  "n": 34,
+  "exact": 0.9705882352941176,
+  "present_accuracy": 0.9705882352941176,
+  "span_precision": 1.0,
+  "span_recall": 0.9705882352941176,
+  "span_f1": 0.9850746268656716,
+  "full_joint": 0.8235294117647058,
+  "n_errors": 1,
+  "token_f1": 0.9943502824858756,
+  "human": {
+   "n": 5,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 1.0,
+   "n_errors": 0
+  }
+ },
+ "value_slices": {
+  "explicit_unit": {
+   "n": 14,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 0.9285714285714286,
+   "n_errors": 0
+  },
+  "bare_number": {
+   "n": 6,
+   "exact": 0.8333333333333334,
+   "present_accuracy": 0.8333333333333334,
+   "span_precision": 1.0,
+   "span_recall": 0.8333333333333334,
+   "span_f1": 0.9090909090909091,
+   "full_joint": 0.6666666666666666,
+   "n_errors": 1
+  },
+  "multi_number": {
+   "n": 11,
+   "exact": 0.9090909090909091,
+   "present_accuracy": 0.9090909090909091,
+   "span_precision": 1.0,
+   "span_recall": 0.9090909090909091,
+   "span_f1": 0.9523809523809523,
+   "full_joint": 0.7272727272727273,
+   "n_errors": 1
+  },
+  "slang": {
+   "n": 7,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 0.7142857142857143,
+   "n_errors": 0
+  },
+  "unaccented": {
+   "n": 8,
+   "exact": 0.875,
+   "present_accuracy": 0.875,
+   "span_precision": 1.0,
+   "span_recall": 0.875,
+   "span_f1": 0.9333333333333333,
+   "full_joint": 0.75,
+   "n_errors": 1
+  },
+  "unseen_span": {
+   "n": 16,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 0.875,
+   "n_errors": 0
+  },
+  "long_multi_token": {
+   "n": 25,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 0.88,
+   "n_errors": 0
+  },
+  "no_amount": {
+   "n": 0,
+   "exact": null,
+   "present_accuracy": null,
+   "span_precision": null,
+   "span_recall": null,
+   "span_f1": null,
+   "full_joint": null,
+   "n_errors": 0
+  }
+ },
+ "value_slices_human": {
+  "explicit_unit": {
+   "n": 2,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 1.0,
+   "n_errors": 0
+  },
+  "bare_number": {
+   "n": 1,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 1.0,
+   "n_errors": 0
+  },
+  "multi_number": {
+   "n": 0,
+   "exact": null,
+   "present_accuracy": null,
+   "span_precision": null,
+   "span_recall": null,
+   "span_f1": null,
+   "full_joint": null,
+   "n_errors": 0
+  },
+  "slang": {
+   "n": 1,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 1.0,
+   "n_errors": 0
+  },
+  "unaccented": {
+   "n": 1,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 1.0,
+   "n_errors": 0
+  },
+  "unseen_span": {
+   "n": 2,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 1.0,
+   "n_errors": 0
+  },
+  "long_multi_token": {
+   "n": 4,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 1.0,
+   "n_errors": 0
+  },
+  "no_amount": {
+   "n": 0,
+   "exact": null,
+   "present_accuracy": null,
+   "span_precision": null,
+   "span_recall": null,
+   "span_f1": null,
+   "full_joint": null,
+   "n_errors": 0
+  }
+ }
+}

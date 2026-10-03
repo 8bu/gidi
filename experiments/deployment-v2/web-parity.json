@@ -41,12 +41,12 @@
   "logits": "reported only, not gated"
  },
  "totals": {
-  "cases": 2422,
-  "predictions": 2388,
+  "cases": 2423,
+  "predictions": 2389,
   "expected_empty_errors": 34,
   "by_status": {
    "exact": 2073,
-   "float_tolerance": 349,
+   "float_tolerance": 350,
    "semantic": 0
   },
   "confidence_only_float_cases": 348,
@@ -54,76 +54,76 @@
  },
  "stage_exact_counts": {
   "nfc_text": {
-   "exact": 2388,
-   "total": 2388
+   "exact": 2389,
+   "total": 2389
   },
   "nfc_offset_map": {
-   "exact": 2388,
-   "total": 2388
+   "exact": 2389,
+   "total": 2389
   },
   "input_ids": {
-   "exact": 2388,
-   "total": 2388
+   "exact": 2389,
+   "total": 2389
   },
   "attention_mask": {
-   "exact": 2388,
-   "total": 2388
+   "exact": 2389,
+   "total": 2389
   },
   "token_offsets": {
-   "exact": 2388,
-   "total": 2388
+   "exact": 2389,
+   "total": 2389
   },
   "special_tokens_mask": {
-   "exact": 2388,
-   "total": 2388
+   "exact": 2389,
+   "total": 2389
   },
   "truncated": {
-   "exact": 2388,
-   "total": 2388
+   "exact": 2389,
+   "total": 2389
   },
   "target_bio_tags": {
    "exact": 2387,
-   "total": 2388
+   "total": 2389
   },
   "value_viterbi_tags": {
-   "exact": 2388,
-   "total": 2388
+   "exact": 2389,
+   "total": 2389
   },
   "type": {
-   "exact": 2388,
-   "total": 2388
+   "exact": 2389,
+   "total": 2389
   },
   "target": {
    "exact": 2387,
-   "total": 2388
+   "total": 2389
   },
   "target_span": {
    "exact": 2387,
-   "total": 2388
+   "total": 2389
   },
   "value_text": {
-   "exact": 2388,
-   "total": 2388
+   "exact": 2389,
+   "total": 2389
   },
   "value_span": {
-   "exact": 2388,
-   "total": 2388
+   "exact": 2389,
+   "total": 2389
   },
   "original_offsets": {
-   "exact": 2388,
-   "total": 2388
+   "exact": 2389,
+   "total": 2389
   },
   "model_version": {
-   "exact": 2388,
-   "total": 2388
+   "exact": 2389,
+   "total": 2389
   },
   "confidences_within_1e-4": {
    "exact": 2039,
-   "total": 2388
+   "total": 2389
   },
   "decode_on_reference_logits": {
-   "exact": 2388,
-   "total": 2388
+   "exact": 2389,
+   "total": 2389
   },
   "expected_error": {
    "exact": 34,
@@ -135,12 +135,12 @@
   "tag_logits": 0.4468345642089844,
   "value_logits": 0.7926974296569824,
   "type_confidence": 0.0665791436604205,
-  "target_confidence": 0.14070854507117114,
+  "target_confidence": 0.41049054355171755,
   "value_confidence": 0.23721365579205844
  },
  "ts_decode_on_python_logits": {
-  "exact_cases": 2388,
-  "of": 2388,
+  "exact_cases": 2389,
+  "of": 2389,
   "max_confidence_delta": {
    "type_confidence": 6.661338147750939e-16,
    "target_confidence": 2.220446049250313e-16,
@@ -196,6 +196,12 @@
    "float_tolerance": 0,
    "semantic": 0
   },
+  "regression": {
+   "n": 1,
+   "exact": 0,
+   "float_tolerance": 1,
+   "semantic": 0
+  },
   "stress": {
    "n": 914,
    "exact": 615,
@@ -236,6 +242,10 @@
    "logits": 0.025773048400878906,
    "confidence": 3.5580713708682765e-8
   },
+  "regression": {
+   "logits": 0.07904326915740967,
+   "confidence": 0.41049054355171755
+  },
   "stress": {
    "logits": 0.7926974296569824,
    "confidence": 0.23721365579205844
@@ -257,7 +267,7 @@
   "counts": {
    "accented": {
     "golden": 42,
-    "total": 1581,
+    "total": 1582,
     "robustness": 32,
     "hardening": 71,
     "test": 90,
@@ -265,6 +275,7 @@
     "train": 506,
     "probe": 49,
     "preset": 10,
+    "regression": 1,
     "stress": 695
    },
    "punctuation": {
@@ -301,7 +312,7 @@
    },
    "slang": {
     "golden": 57,
-    "total": 1289,
+    "total": 1290,
     "robustness": 32,
     "hardening": 24,
     "test": 108,
@@ -309,6 +320,7 @@
     "train": 699,
     "probe": 75,
     "preset": 5,
+    "regression": 1,
     "stress": 175
    },
    "unaccented": {
@@ -399,10 +411,10 @@
  },
  "vs_python_default_session": {
   "note": "Informational. ORT's default level fuses DynamicQuantizeMatMul/MatMulIntegerToFloat; its arm64 native kernel (KleidiAI) quantizes activations differently from the ONNX graph semantics that onnxruntime-web executes.",
-  "inputsDiffering": 55,
+  "inputsDiffering": 56,
   "fieldFlips": {
    "type": 22,
-   "target_span": 19,
+   "target_span": 20,
    "value_span": 14
   },
   "maxDelta": {
@@ -465,6 +477,13 @@
     "differing": 0,
     "type": 0,
     "target_span": 0,
+    "value_span": 0
+   },
+   "regression": {
+    "n": 1,
+    "differing": 1,
+    "type": 0,
+    "target_span": 1,
     "value_span": 0
    },
    "stress": {
@@ -1048,6 +1067,62 @@
       37
      ],
      "value_confidence": 0.9999998777510873
+    }
+   },
+   {
+    "source": "regression",
+    "id": "prod-0001",
+    "text": "mua sữa vinamilk hết 500k",
+    "fields": [
+     "target_span"
+    ],
+    "python_default": {
+     "type": "expense",
+     "type_confidence": 0.9998630732225492,
+     "target": "vin",
+     "target_span": [
+      8,
+      11
+     ],
+     "target_confidence": 0.7208129305120946,
+     "value_text": "500k",
+     "value_span": [
+      21,
+      25
+     ],
+     "value_confidence": 0.9999999510444154
+    },
+    "python_basic": {
+     "type": "expense",
+     "type_confidence": 0.9999004258993762,
+     "target": "vin",
+     "target_span": [
+      8,
+      11
+     ],
+     "target_confidence": 0.5894949888042149,
+     "value_text": "500k",
+     "value_span": [
+      21,
+      25
+     ],
+     "value_confidence": 0.9999999514534845
+    },
+    "web": {
+     "type": "expense",
+     "type_confidence": 0.9999015381739265,
+     "target": "v",
+     "target_span": [
+      8,
+      9
+     ],
+     "target_confidence": 0.9999855323559325,
+     "value_text": "500k",
+     "value_span": [
+      21,
+      25
+     ],
+     "value_confidence": 0.9999999514534073
     }
    },
    {
@@ -4672,6 +4747,288 @@
   ]
  },
  "incidents": [
+  {
+   "source": "regression",
+   "id": "prod-0001",
+   "text": "mua sữa vinamilk hết 500k",
+   "status": "float_tolerance",
+   "first_divergent_stage": "target_bio_tags",
+   "python": [
+    0,
+    0,
+    0,
+    1,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "ts": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "classification": "float-tolerance: TS decode of the Python reference logits is exact; ORT logits differ (max |logit delta| type 1.53e-2, tag 7.90e-2, value 1.91e-6)",
+   "expected": {
+    "type": "expense",
+    "type_confidence": 0.9999004258993762,
+    "target": "vin",
+    "target_span": [
+     8,
+     11
+    ],
+    "target_confidence": 0.5894949888042149,
+    "value_text": "500k",
+    "value_span": [
+     21,
+     25
+    ],
+    "value_confidence": 0.9999999514534845,
+    "truncated": false,
+    "model_version": "gidi-finance-v2"
+   },
+   "actual": {
+    "type": "expense",
+    "type_confidence": 0.9999015381739265,
+    "target": "v",
+    "target_span": [
+     8,
+     9
+    ],
+    "target_confidence": 0.9999855323559325,
+    "value_text": "500k",
+    "value_span": [
+     21,
+     25
+    ],
+    "value_confidence": 0.9999999514534073,
+    "truncated": false,
+    "model_version": "gidi-finance-v2"
+   },
+   "logits": {
+    "type": {
+     "python": [
+      10.481890678405762,
+      -3.4861061573028564,
+      -4.531251430511475,
+      -2.954988718032837,
+      -3.59523868560791,
+      -0.6254286170005798,
+      1.038540244102478,
+      -2.6521544456481934
+     ],
+     "ts": [
+      10.4884614944458,
+      -3.481487274169922,
+      -4.542550563812256,
+      -2.943310499191284,
+      -3.5799267292022705,
+      -0.6279610395431519,
+      1.033129096031189,
+      -2.666170120239258
+     ]
+    },
+    "tag": {
+     "python": [
+      [
+       7.474969863891602,
+       -5.263331890106201,
+       -6.29024600982666
+      ],
+      [
+       9.24917221069336,
+       -7.090546607971191,
+       -7.0299859046936035
+      ],
+      [
+       8.871626853942871,
+       -6.544015407562256,
+       -7.308522701263428
+      ],
+      [
+       -1.1507675647735596,
+       10.059988975524902,
+       -6.836999893188477
+      ],
+      [
+       -0.1797117292881012,
+       -0.16675065457820892,
+       -0.11006953567266464
+      ],
+      [
+       4.783225059509277,
+       -8.847467422485352,
+       0.5819851756095886
+      ],
+      [
+       8.733230590820312,
+       -7.827223300933838,
+       -5.783622741699219
+      ],
+      [
+       8.291851997375488,
+       -6.139908790588379,
+       -6.434173583984375
+      ],
+      [
+       9.405739784240723,
+       -7.726711750030518,
+       -6.79599666595459
+      ],
+      [
+       9.52357006072998,
+       -7.601253509521484,
+       -6.967284202575684
+      ],
+      [
+       8.090828895568848,
+       -5.868387699127197,
+       -6.661740303039551
+      ]
+     ],
+     "ts": [
+      7.5040202140808105,
+      -5.27345609664917,
+      -6.3200602531433105,
+      9.242486953735352,
+      -7.095607757568359,
+      -7.042974948883057,
+      8.880334854125977,
+      -6.556514739990234,
+      -7.323983669281006,
+      -1.1225082874298096,
+      10.024354934692383,
+      -6.840216636657715,
+      -0.10066846013069153,
+      -0.2427670955657959,
+      -0.15174126625061035,
+      4.770885467529297,
+      -8.868535041809082,
+      0.60261070728302,
+      8.741230010986328,
+      -7.819412708282471,
+      -5.806803226470947,
+      8.312214851379395,
+      -6.1837158203125,
+      -6.43985652923584,
+      9.414642333984375,
+      -7.712617874145508,
+      -6.8236541748046875,
+      9.512701988220215,
+      -7.617043972015381,
+      -6.953132152557373,
+      8.111979484558105,
+      -5.897402763366699,
+      -6.6729207038879395
+     ]
+    },
+    "value": {
+     "python": [
+      [
+       3.0821402072906494,
+       -12.691024780273438,
+       -11.718643188476562
+      ],
+      [
+       3.174046039581299,
+       -12.854532241821289,
+       -11.847159385681152
+      ],
+      [
+       3.2279624938964844,
+       -12.957090377807617,
+       -11.900765419006348
+      ],
+      [
+       3.176769495010376,
+       -12.745595932006836,
+       -11.84953784942627
+      ],
+      [
+       3.2557480335235596,
+       -12.793618202209473,
+       -11.837851524353027
+      ],
+      [
+       2.9537270069122314,
+       -10.30622673034668,
+       -11.290311813354492
+      ],
+      [
+       3.209381341934204,
+       -12.787274360656738,
+       -11.416932106018066
+      ],
+      [
+       3.2457852363586426,
+       -12.622284889221191,
+       -11.849055290222168
+      ],
+      [
+       -6.272791862487793,
+       12.162854194641113,
+       -7.370035171508789
+      ],
+      [
+       -5.840254783630371,
+       -8.22407054901123,
+       10.540943145751953
+      ],
+      [
+       3.0525619983673096,
+       -12.749732971191406,
+       -11.582611083984375
+      ]
+     ],
+     "ts": [
+      3.082139730453491,
+      -12.691023826599121,
+      -11.71864128112793,
+      3.1740458011627197,
+      -12.854531288146973,
+      -11.847158432006836,
+      3.2279622554779053,
+      -12.9570894241333,
+      -11.900764465332031,
+      3.176769256591797,
+      -12.74559497833252,
+      -11.849536895751953,
+      3.2557475566864014,
+      -12.79361629486084,
+      -11.837850570678711,
+      2.9537265300750732,
+      -10.306225776672363,
+      -11.29030990600586,
+      3.209381103515625,
+      -12.787273406982422,
+      -11.41693115234375,
+      3.2457847595214844,
+      -12.622283935546875,
+      -11.849054336547852,
+      -6.272791385650635,
+      12.16285228729248,
+      -7.370034694671631,
+      -5.840254306793213,
+      -8.224069595336914,
+      10.540942192077637,
+      3.0525617599487305,
+      -12.74973201751709,
+      -11.582610130310059
+     ]
+    }
+   }
+  },
   {
    "source": "stress",
    "id": "stress-0050",
@@ -29017,6 +29374,21 @@
     "value_logits": 0
    },
    "max_confidence_delta": 0
+  },
+  {
+   "source": "regression",
+   "id": "prod-0001",
+   "status": "float_tolerance",
+   "tags": [
+    "accented",
+    "slang"
+   ],
+   "max_logit_delta": {
+    "type_logits": 0.015311956405639648,
+    "tag_logits": 0.07904326915740967,
+    "value_logits": 0.0000019073486328125
+   },
+   "max_confidence_delta": 0.41049054355171755
   },
   {
    "source": "stress",

@@ -1,0 +1,28 @@
+{
+ "verdict": "ACCEPT_AS_V3_CANDIDATE",
+ "gates": {
+  "G1_test_value_exact": true,
+  "G2_test_value_exact_human": true,
+  "G3_test_present_null": true,
+  "G4_test_multi_number": true,
+  "G5_slice_floor": true,
+  "G6_non_inferior_test_exact": true,
+  "G7_non_inferior_present_null": true,
+  "G8_non_inferior_human_exact": true,
+  "G9_non_inferior_multi_number": true,
+  "G10_type_target_unchanged": true,
+  "G11_cost_lower": true
+ },
+ "secondary": {
+  "S1_probe_value_exact": true,
+  "S2_pooled_human_heldout_exact": true,
+  "S3_no_crash_and_deterministic": true
+ },
+ "cost_gate": {
+  "v8_system_bytes": 29308842,
+  "v2_bundle_bytes": 58135539,
+  "p50_ms_v8": 1.371292,
+  "p50_ms_v2": 2.78125
+ },
+ "note": "ACCEPT_AS_V3_CANDIDATE means a follow-up validation is justified; it does not confirm or ship gidi-finance-v3."
+}

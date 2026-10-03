@@ -249,6 +249,47 @@ def test_spans_always_slice_back_to_target(predictor):
             assert text[start:end] == pred.target == pred.target.strip()
 
 
+PRODUCTION_REGRESSIONS = ROOT / "tests" / "data" / "production-regressions.jsonl"
+
+
+def _production_regressions() -> list[dict]:
+    lines = PRODUCTION_REGRESSIONS.read_text(encoding="utf-8").splitlines()
+    return [json.loads(line) for line in lines if line]
+
+
+@needs_bundle
+@pytest.mark.parametrize("case", _production_regressions(), ids=lambda c: c["id"])
+def test_production_regression_words_decode_to_exact_characters(predictor, case):
+    """Production-found span bugs: rule out tokenizer-offset and char-mapping causes.
+
+    For every word, each B/I run over its sub-word tokens must decode to the exact prefix of the
+    word ending at a token boundary, and the full run to the whole word (prod-0001: `vinamilk`
+    came back as `v`; the cause was the target model, not this mapping).
+    """
+    text = case["text"]
+    tokens = BundleTokenizer(BUNDLE / "tokenizer.json", max_length=32).encode(text)
+    offsets = list(tokens.offsets)
+    pos = 0
+    for word in text.split():
+        start = text.index(word, pos)
+        end = pos = start + len(word)
+        members = [i for i, (s, e) in enumerate(offsets) if s < end and e > start and s < e]
+        assert members and members == list(range(members[0], members[-1] + 1))
+        for k in range(1, len(members) + 1):
+            tags = [0] * len(offsets)
+            tags[members[0]] = 1
+            for i in members[1:k]:
+                tags[i] = 2
+            span = decode_first_span(offsets, tags, text)
+            assert span is not None and span.start == start
+            assert text[span.start : span.end] == word[: span.end - start]
+            last = members[k - 1]
+            assert span.end == (end if k == len(members) else offsets[last][1])
+    pred = predictor.predict(text)
+    if pred.target is not None:
+        assert text[pred.target_span[0] : pred.target_span[1]] == pred.target
+
+
 @needs_bundle
 @pytest.mark.parametrize("text", ["", "  \n", "\t", "\u00a0\u2003"])
 def test_empty_input_raises(predictor, text):

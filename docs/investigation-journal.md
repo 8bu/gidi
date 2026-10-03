@@ -4,7 +4,7 @@ _Last updated: 2026-10-03_
 
 This is a compact investigation journal for the Gidi finance-note model work. It records the decisions, experiments, and what each experiment taught us. It is intentionally not a full lab report.
 
-**Current status:** `gidi-finance-v2` (`models/gidi-finance-v2/`, §25) is the new **testable candidate**, ready for manual testing in the playground (`uv run python scripts/demo_ui.py`, http://127.0.0.1:8765). It packages the accepted value-span-v7 dual encoder: path A is gidi-finance-v1, unchanged, for type/target; path B is a fine-tuned encoder clone + MLP + CRF for the value span. 58.1 MB INT8 bundle, 3.5 ms p50 CPU. Known limitation: `cho a Nam vay 1 triệu 20/10` → `1 triệu 20/10`. `gidi-finance-v1` stays frozen and intact. Model research is stopped: no v8, compression or distillation.
+**Current status:** `gidi-finance-v2` (`models/gidi-finance-v2/`, §25) remains the **current release**. It packages the accepted value-span-v7 dual encoder: path A is gidi-finance-v1, unchanged, for type/target; path B is a fine-tuned encoder clone + MLP + CRF for the value span. 58.1 MB INT8 bundle, 3.5 ms p50 CPU. Known limitation: `cho a Nam vay 1 triệu 20/10` → `1 triệu 20/10`. `gidi-finance-v1` stays frozen and intact. Internal experiment **V8** (a deterministic value parser replacing path B, §26) is **under evaluation**: its first held-out run passed the pre-declared gates, but the labels are not independent of the rule proposer, so it needs a follow-up before anything is decided. V8 is an internal name, not a release; `gidi-finance-v3` would only be a candidate name if V8 is validated. No compression or distillation.
 
 Detailed metrics live in each `experiments/*/report.md`; this journal keeps only the reasoning trail (question → experiment → result → decision → next direction). History is append-only: later findings are added chronologically, earlier conclusions are not rewritten. Update policy: see `AGENTS.md`.
 
@@ -744,6 +744,33 @@ Result:
 Decision: by user decision, the deployed v1 INT8 is the production baseline for the type/target path. The failing items stay recorded as failing against FP32. v2 is marked the testable candidate, and v1 stays intact.
 
 Next: manual testing of v2. No compression, distillation, v8 or new data without a user decision.
+
+---
+
+## 26. Value-span-v8-deterministic-parser: rule parser instead of the second encoder (internal, under evaluation)
+
+Details: `experiments/value-span-v8-deterministic-parser/report.md`, `protocol.json` (frozen before the parser was written), `parser-freeze.json` (parser sha256 `f2991ca5…af3`, frozen before held-out scoring), parser `src/gidi/value_parser/`.
+
+Question: can the V7 second encoder (28.5M parameters, half of the v2 bundle) be replaced by a deterministic value parser on the unchanged v1 type/target path, with value quality non-inferior to gidi-finance-v2 and lower cost?
+
+Setup:
+
+- A pure-Python character-level parser over the NFC text: Vietnamese money forms, competing-number rules (dates, quantities, periods, phones), tier and position rules for the choice, spans mapped back to the caller's string.
+- Developed on `train.jsonl` only. Validation, test and probe were scored once, with the frozen parser, by the frozen V7 scoring code. The protocol declared 11 gates and 3 secondary conditions before any held-out scoring.
+- Type and target come from gidi-finance-v1 INT8, unchanged.
+
+Result:
+
+- Test value exact 0.9928 (138/139) vs v2 0.9856 (137/139); human 12/12 vs 11/12; probe 81/81 vs 81/81; validation rows not in train 36/36 vs 36/36. All 11 gates and 3 secondary conditions pass. Type and target are identical to v2 on all 373 scored notes.
+- Cost, measured: 29.3 MB vs 58.1 MB, p50 1.37 vs 2.78 ms (one thread), RSS 127 vs 172 MB; the parser itself is 21 KB and about 0.01 ms.
+- The parser's one test error is `tra no chi Mai 300 hom 5/10` → null: the lexicon entry `hom` (a word that follows a quantity) was a guess with no train support. It was found after the held-out run and is reported, not fixed.
+- **Circularity caveat:** most value labels came from a rule proposer, and the proposer reproduces every complete label on every set (including the human ones; [INFERENCE] the human review used its proposals as a starting point, §17). These sets cannot tell a correct parser from one that imitates the proposer. The human subsets are tiny (12 on test).
+
+Decision: by the pre-declared rule the verdict is accept as a **candidate** for follow-up validation. It is not a decision to ship, and nothing here confirms `gidi-finance-v3`. Not costed: a TypeScript port for the playground.
+
+V8 does not address target extraction quality. The production target error `mua sữa vinamilk hết 500k` → `v` was investigated separately: it is an existing gidi-finance-v1 target-model error (recorded in `tests/data/production-regressions.jsonl`, prod-0001, and in the known limitations of `docs/deployment.md`).
+
+Next: needs a user decision. The useful follow-up is a small, freshly written and independently labelled set (amount + date, quantities, classifier words, `m`/`1k5` forms) that the proposer never saw.
 
 ---
 

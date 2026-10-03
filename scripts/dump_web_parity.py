@@ -53,6 +53,7 @@ RELEASE = ROOT / "dist" / "releases" / "gidi-finance-v2" / "2.0.2"
 DEPLOY_V2 = ROOT / "experiments" / "deployment-v2"
 EVAL_DIR = ROOT / "datasets" / "annotation-v2" / "training-v1"
 PRESETS_TS = ROOT / "playground" / "src" / "lib" / "presets.ts"
+PRODUCTION_REGRESSIONS = ROOT / "tests" / "data" / "production-regressions.jsonl"
 DEFAULT_OUT = ROOT / "playground" / ".parity"
 STRESS_SEED = 20261003
 STRESS_CASES = 900
@@ -178,6 +179,8 @@ def collect_inputs() -> list[tuple[str, str, str, dict[str, bool] | None]]:
     for r in read_jsonl(EVAL_DIR / "probe-v1-eval-only.jsonl"):
         rows.append(("probe", r["id"], r["text"], gold_flags(r["target"], r.get("value"))))
     rows += [("preset", f"preset-{i}", t, None) for i, t in enumerate(playground_presets())]
+    for r in read_jsonl(PRODUCTION_REGRESSIONS):
+        rows.append(("regression", r["id"], r["text"], None))
     rows += [("stress", f"stress-{i:04d}", t, None) for i, t in enumerate(stress_inputs())]
     return rows
 

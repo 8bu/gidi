@@ -223,6 +223,12 @@ bundle is `models/gidi-finance-v2`; `--bundle models/gidi-finance-v1` still work
 - INT8 predictions can differ from FP32 on unusual input. On 59 robustness inputs, 1 type
   differed and 4 spans differed (Arabic, Thai/Korean, quote-heavy, 300-word notes). On the
   golden suite there were 0 differences.
+- **Multi-piece brand names can be cut to a sub-word.** Production case `mua sữa vinamilk hết
+  500k` (prod-0001, `tests/data/production-regressions.jsonl`) returns target `v` in the
+  browser and in Python FP32, and `vin` in Python INT8. This is a target-head error, not a
+  runtime bug: tokens and offsets are identical in Python and TypeScript, and the character
+  mapping is exact. The head tags ` v` B-TARGET, tags `amil` O, and is near-tied on `in`. The
+  gold target (`null` as a product brand, or `vinamilk`) still needs a human label.
 - There is no skipped class; see Purpose.
 
 ## Performance

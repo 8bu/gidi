@@ -1,0 +1,214 @@
+{
+ "experiment": "value-span-v8-deterministic-parser",
+ "frozen_at_utc": "2026-10-03T16:41:11Z",
+ "protocol_sha256": "78dcb4baaacd7e1508158318624b4275b5390050d73f8ce60ec7f81b952e8d31",
+ "parser_source_sha256": "f2991ca5f4cebd4b43dab5f9bbb035c9567620b11ab05f3cef4f27df367afaf3",
+ "parser_files": {
+  "__init__.py": "c61976c491aa1ca4fcf828c6491f7611b877535686f26fa9576089b561a82fc0",
+  "lexicon.py": "4b03d144b9d9b7f43b3918187ccb93e417df303d36c1ce24e4c6d1f745c5d289",
+  "parser.py": "986bc1347043f5f00f41293d43d14aa613f32ae07d61f1c146bb77c6188817e9"
+ },
+ "run_script_sha256": "67feb8b4d35cb3ead775282a16a49a477d4cbe51ba5903f88e1a441624371a4a",
+ "python": "3.12.13",
+ "train_sha256": "0a03db64238e6f202918a30e3727178c437045ce4703d38f14a7dda9883589e5",
+ "train_dev_summary": {
+  "n": 895,
+  "type_accuracy": 1.0,
+  "type_macro_f1": 1.0,
+  "target_f1": 1.0,
+  "target_exact": 1.0,
+  "type_target_joint": 1.0,
+  "counts": {
+   "n": 895,
+   "type_correct": 895,
+   "target_correct": 895,
+   "joint_correct": 895
+  },
+  "value": {
+   "n": 889,
+   "exact": 1.0,
+   "present_accuracy": 1.0,
+   "span_precision": 1.0,
+   "span_recall": 1.0,
+   "span_f1": 1.0,
+   "full_joint": 1.0,
+   "n_errors": 0,
+   "token_f1": 1.0,
+   "human": {
+    "n": 82,
+    "exact": 1.0,
+    "present_accuracy": 1.0,
+    "span_precision": 1.0,
+    "span_recall": 1.0,
+    "span_f1": 1.0,
+    "full_joint": 1.0,
+    "n_errors": 0
+   }
+  },
+  "value_slices": {
+   "explicit_unit": {
+    "n": 725,
+    "exact": 1.0,
+    "present_accuracy": 1.0,
+    "span_precision": 1.0,
+    "span_recall": 1.0,
+    "span_f1": 1.0,
+    "full_joint": 1.0,
+    "n_errors": 0
+   },
+   "bare_number": {
+    "n": 26,
+    "exact": 1.0,
+    "present_accuracy": 1.0,
+    "span_precision": 1.0,
+    "span_recall": 1.0,
+    "span_f1": 1.0,
+    "full_joint": 1.0,
+    "n_errors": 0
+   },
+   "multi_number": {
+    "n": 113,
+    "exact": 1.0,
+    "present_accuracy": 1.0,
+    "span_precision": 1.0,
+    "span_recall": 1.0,
+    "span_f1": 1.0,
+    "full_joint": 1.0,
+    "n_errors": 0
+   },
+   "slang": {
+    "n": 60,
+    "exact": 1.0,
+    "present_accuracy": 1.0,
+    "span_precision": 1.0,
+    "span_recall": 1.0,
+    "span_f1": 1.0,
+    "full_joint": 1.0,
+    "n_errors": 0
+   },
+   "unaccented": {
+    "n": 387,
+    "exact": 1.0,
+    "present_accuracy": 1.0,
+    "span_precision": 1.0,
+    "span_recall": 1.0,
+    "span_f1": 1.0,
+    "full_joint": 1.0,
+    "n_errors": 0
+   },
+   "unseen_span": {
+    "n": 0,
+    "exact": null,
+    "present_accuracy": null,
+    "span_precision": null,
+    "span_recall": null,
+    "span_f1": null,
+    "full_joint": null,
+    "n_errors": 0
+   },
+   "long_multi_token": {
+    "n": 370,
+    "exact": 1.0,
+    "present_accuracy": 1.0,
+    "span_precision": 1.0,
+    "span_recall": 1.0,
+    "span_f1": 1.0,
+    "full_joint": 1.0,
+    "n_errors": 0
+   },
+   "no_amount": {
+    "n": 10,
+    "exact": 1.0,
+    "present_accuracy": 1.0,
+    "span_precision": 0.0,
+    "span_recall": 0.0,
+    "span_f1": 0.0,
+    "full_joint": 1.0,
+    "n_errors": 0
+   }
+  },
+  "value_slices_human": {
+   "explicit_unit": {
+    "n": 42,
+    "exact": 1.0,
+    "present_accuracy": 1.0,
+    "span_precision": 1.0,
+    "span_recall": 1.0,
+    "span_f1": 1.0,
+    "full_joint": 1.0,
+    "n_errors": 0
+   },
+   "bare_number": {
+    "n": 4,
+    "exact": 1.0,
+    "present_accuracy": 1.0,
+    "span_precision": 1.0,
+    "span_recall": 1.0,
+    "span_f1": 1.0,
+    "full_joint": 1.0,
+    "n_errors": 0
+   },
+   "multi_number": {
+    "n": 18,
+    "exact": 1.0,
+    "present_accuracy": 1.0,
+    "span_precision": 1.0,
+    "span_recall": 1.0,
+    "span_f1": 1.0,
+    "full_joint": 1.0,
+    "n_errors": 0
+   },
+   "slang": {
+    "n": 20,
+    "exact": 1.0,
+    "present_accuracy": 1.0,
+    "span_precision": 1.0,
+    "span_recall": 1.0,
+    "span_f1": 1.0,
+    "full_joint": 1.0,
+    "n_errors": 0
+   },
+   "unaccented": {
+    "n": 39,
+    "exact": 1.0,
+    "present_accuracy": 1.0,
+    "span_precision": 1.0,
+    "span_recall": 1.0,
+    "span_f1": 1.0,
+    "full_joint": 1.0,
+    "n_errors": 0
+   },
+   "unseen_span": {
+    "n": 0,
+    "exact": null,
+    "present_accuracy": null,
+    "span_precision": null,
+    "span_recall": null,
+    "span_f1": null,
+    "full_joint": null,
+    "n_errors": 0
+   },
+   "long_multi_token": {
+    "n": 52,
+    "exact": 1.0,
+    "present_accuracy": 1.0,
+    "span_precision": 1.0,
+    "span_recall": 1.0,
+    "span_f1": 1.0,
+    "full_joint": 1.0,
+    "n_errors": 0
+   },
+   "no_amount": {
+    "n": 10,
+    "exact": 1.0,
+    "present_accuracy": 1.0,
+    "span_precision": 0.0,
+    "span_recall": 0.0,
+    "span_f1": 0.0,
+    "full_joint": 1.0,
+    "n_errors": 0
+   }
+  }
+ },
+ "statement": "Parser frozen after development on train.jsonl only. Held-out scoring (validation, test, probe) runs once after this file exists and is refused when the parser source differs."
+}

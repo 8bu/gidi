@@ -1,0 +1,142 @@
+{
+  "experiment": "value-span-v8-deterministic-parser",
+  "internal_name": "V8 (internal experiment name only; not a release version)",
+  "declared_before_parser_development": true,
+  "frozen_at_utc": "2026-10-03T16:27:59Z",
+  "status": "frozen before the parser was written and before any validation/test/probe record was scored by the parser",
+  "release_naming": "V7/V8 are internal experiment names. The public release is gidi-finance-v2. If this experiment is validated, gidi-finance-v3 / 3.0.0 is only a CANDIDATE release name; nothing in this experiment confirms or ships v3.",
+  "question": "Can the second neural value encoder (path B of gidi-finance-v2, V7) be replaced by a deterministic, rule-based value parser that runs on the unchanged gidi-finance-v1 type/target path, so that value quality is non-inferior to gidi-finance-v2 while model size, memory and latency drop?",
+  "scope": {
+    "in_scope": [
+      "a pure-Python, deterministic, character-level value-span parser over the NFC text (src/gidi/value_parser/)",
+      "selecting one monetary amount among several numeric candidates by rules",
+      "returning the value as a substring span {text,start,end} in code points of the caller's original string, or null",
+      "measuring quality against gidi-finance-v2 INT8 with the frozen V7 scoring code, and cost (size, CPU latency, RSS)"
+    ],
+    "out_of_scope": [
+      "retraining, new/augmented/synthetic data, label changes, threshold or CRF changes on the v2 model",
+      "numeric normalisation (no number is derived from the span)",
+      "target extraction and anything under src/gidi/inference decoding: type and target come from the unchanged gidi-finance-v1 INT8 path",
+      "the production target error `mua sữa vinamilk hết 500k` -> `v` (resolved separately as an existing gidi-finance-v1 target-model error; recorded in tests/data/production-regressions.jsonl, prod-0001, and docs/deployment.md known limitations). No target code and no parser rule is changed for it",
+      "export, playground / web runtime port, release, publishing",
+      "a second parser attempt after held-out results"
+    ],
+    "not_modified": [
+      "models/**", "datasets/**", "corpus/**", "configs/**", "*.quet.db",
+      "every existing experiments/* directory", "dist/**", "releases/**", "playground/**",
+      "the deployed site, Cloudflare, Hugging Face, GitHub releases"
+    ]
+  },
+  "parser_design": {
+    "module": "src/gidi/value_parser/",
+    "approach": "scan the NFC text character by character with an accent-folded, lowercased, length-preserving shadow string; build money candidates (number + unit + continuation + currency suffix); drop numbers explained by context as something other than money; choose one candidate by tier and position rules; map the span back to the caller's string with the inference NFC offset maps (gidi.inference.text.normalize_nfc)",
+    "money_forms": [
+      "k; tr / triệu / trieu; củ / cu; xị / xi; chai; lít / lit (slang); ngàn / ngan / nghìn / nghin; tỷ / ty",
+      "currency suffixes đ / d / ₫ / vnd / đồng / dong",
+      "thousand-grouped numbers with . or , (80.000, 12,500,000), decimals (1,5tr, 2.3tr), plain digits (1500000), bare numbers (70, 100)",
+      "compound forms: 1tr5, 1tr150, 1 triệu 2, 3 củ 5, 1 ty 2, 2 củ rưỡi, 1 chai rưỡi, nửa củ",
+      "number words followed by a money unit: bốn triệu, hai trăm nghìn"
+    ],
+    "competing_numbers_rejected_by_context": [
+      "dates and fractions (20/10, 9/12), times (10h, 10:30), percentages (20%, 5.5%/năm)",
+      "month / period / instalment / week / day / year numbers (tháng 10, t10, kỳ 3, đợt 2, lần 2, quý 4, năm 2023, mùng 3, thứ 6)",
+      "quantities followed by a classifier or measure (2 tô, 3 vé, 2 ly, 4 người, 10kg, 5 lít xăng, 2 chỉ vàng)",
+      "phone-like and account-like digit strings"
+    ],
+    "selection": "tiers: explicit money unit or money-shaped number (T1) > slang unit (T2) > bare number (T3); position rule within a tier is chosen on train only",
+    "determinism": "no randomness, no regular expressions on user text, linear scan, bounded look-ahead; the same text always gives the same span"
+  },
+  "development_rules": [
+    "The parser is developed and optimised on datasets/annotation-v2/training-v1/train.jsonl ONLY (complete value labels; value_status == complete).",
+    "Reasonable optimisation = iterate on train errors with GENERAL rules (word lists, shape rules, tier/position rules). No per-string special cases, no memorised train texts, no note ids.",
+    "validation.jsonl, test.jsonl and probe-v1-eval-only.jsonl are evaluation-only. Their value labels and note texts are not read during development. Only aggregate facts were read before the freeze: row counts, value_status / value_provenance counts, and that test and probe share no id or text with train while 110 of the 149 validation rows are also in train (so full-validation numbers are optimistic; the 39 validation rows not in train are reported separately).",
+    "The rule-based proposer src/gidi/annotation/value_span.py that produced the rule-provenance labels is NOT imported by the parser and its source was not read for the design. It is used only as a labelled diagnostic baseline at evaluation time and for the category slices of the frozen scoring code (value_span_categories).",
+    "Development stops when the remaining train errors are ambiguous / label-noise cases or would need per-string rules. Parser source sha256 and the train dev numbers are then recorded in parser-freeze.json (written before any held-out scoring).",
+    "Held-out scoring runs ONCE with the frozen parser (scripts/run_value_parser_v8.py --stage heldout). The script refuses to run if parser-freeze.json does not match the parser source sha256 or if results already exist. No second attempt: if a bug is found afterwards it is reported, not tuned or fixed into the results."
+  ],
+  "data": {
+    "dir": "datasets/annotation-v2/training-v1",
+    "train": {"file": "train.jsonl", "n": 895, "sha256": "0a03db64238e6f202918a30e3727178c437045ce4703d38f14a7dda9883589e5", "role": "parser development (dev numbers)"},
+    "validation": {"file": "validation.jsonl", "n": 149, "sha256": "eef077c97a519dc532112683f3ab35daeaa6e55187c3c2fb01f53a0ee37f629c", "role": "evaluation only; 110 rows are also in train, report the 39 not in train separately"},
+    "test": {"file": "test.jsonl", "n": 143, "sha256": "acaca8d767828e48954e91871886ac191a45110af695af7df7573a9c0be6f91d", "role": "evaluation only; the gated set (105 test-v1 + 38 test-targeted)"},
+    "probe": {"file": "probe-v1-eval-only.jsonl", "n": 81, "sha256": "638aeff00243f20af2dbeb2b340da0142631566057aef57d75005b75aedece87", "role": "evaluation only"},
+    "value_masking": "metrics use value_status == complete only (uncertain value labels are masked), exactly as V7",
+    "provenance_counts_read_before_freeze": {
+      "train": {"complete_rule": 807, "complete_human": 82, "uncertain": 6},
+      "validation": {"complete_rule": 128, "complete_human": 18, "uncertain": 3},
+      "test": {"complete_rule": 127, "complete_human": 12, "uncertain": 4},
+      "probe": {"complete_rule": 76, "complete_human": 5, "uncertain": 0}
+    },
+    "circularity_risk": "Most value labels (rule provenance, 807/889 complete train, 127/139 complete test, 76/81 probe) were produced by a deterministic rule proposer and accepted by stratum audit. A deterministic parser tuned on train labels can therefore agree with those labels because it imitates the proposer's conventions, not because it extracts amounts correctly. Mitigations: (a) human-provenance subsets are always reported separately and are the primary evidence; (b) the proposer itself is scored on the same sets as a diagnostic ceiling; (c) the parser was written without reading the proposer source; (d) pooled human held-out accuracy is a secondary acceptance condition. The human subsets are small (test n=12, probe n=5), so they cannot establish non-inferiority with statistical power; this is stated in the report."
+  },
+  "baseline": {
+    "name": "gidi-finance-v2 INT8 (= V7 value-head seed 1 as shipped)",
+    "path": "models/gidi-finance-v2",
+    "model_int8_onnx_sha256": "bc7945c3a7ff1d43648b65fe4fcae1ca3ca3c21dc23dccd61aa750f19881994e",
+    "config_sha256": "77747c09b21692863a1776545433a6950a8ebe8cff311b95a834db51e23cc338",
+    "runtime": "gidi.inference.GidiPredictor.from_bundle, intra_op_threads=1, predict(text)",
+    "type_target_path": "models/gidi-finance-v1 INT8 (sha256 a31caa5764c5ba99c44d4575da4695ce44232b836edb6d99b775558869dfc411), unchanged. gidi-finance-v2 path A is documented bit-identical to it; this experiment verifies type and target predictions of the two bundles are identical on every scored note"
+  },
+  "candidate_system": "gidi-finance-v1 INT8 bundle (type + target, GidiPredictor, one thread) + value_parser.parse_value on the same caller string. No model file is changed.",
+  "scoring": {
+    "code": "frozen V7 scoring path reused, no new metric code: gidi.evaluation.value_metrics.evaluate_value, gidi.evaluation.value_eval.value_span_categories, gidi.evaluation.value_predict.prediction_rows, gidi.evaluation.value_gate.{summarize_set, seen_value_texts, value_quality_criteria, value_error_table, multi_number_errors}, scripts/compare_value_v1.load_sets, token offsets from the models/value-span-v7-dual-encoder/seed1 tokenizer (as scripts/score_web_parity_quality.py). Predictions come from GidiPredictor (caller-string offsets) and from the parser instead of from logits.",
+    "frozen_scoring_code_sha256": {
+      "src/gidi/evaluation/value_eval.py": "f947ce0054e4ae3a78e35afc0d82d59476b8af01c30807965fdd114d44cb7296",
+      "src/gidi/evaluation/value_metrics.py": "e7a341118c612aeb11f67cd551da86a6608e4c8a31a226638bae217b7b76d484",
+      "src/gidi/evaluation/value_gate.py": "5982c5c02d53e69439d5c90d79ac3f7bce0bb4a1e0f975c8664372ab2e09cf06",
+      "src/gidi/evaluation/value_predict.py": "769cb974341b05d82d0fbc385e76e34c8f8b3bed0fcd053aa5a1bc41c62c5a99",
+      "scripts/score_web_parity_quality.py": "4dcefacf151585b4c88e78d63e55cb4e1b8b15a088737abfe9c7f915e9d803ee",
+      "scripts/compare_value_v1.py": "6d2d28e657710d273b63ca22ee3b5e0d5092e06540ec6d972fd85886724ff714"
+    },
+    "sets": ["train (dev)", "validation (and its 39 rows not in train)", "test", "test-v1", "test-targeted", "probe"],
+    "reported": "value exact, span P/R/F1, token F1, present/null, human-provenance exact and rule-provenance exact, slices explicit_unit / bare_number / multi_number / slang / unaccented / unseen_span / long_multi_token / no_amount, error categories (value_error_category), every multi-number error, v8 vs v2 side by side, v8 vs proposer diagnostic",
+    "type_target": "type accuracy / macro F1 / target F1 / exact from the v1 INT8 path and from v2 INT8; required identical"
+  },
+  "acceptance_criteria": {
+    "gating": {
+      "G1_test_value_exact": "test value exact (complete labels) >= 0.95  [frozen V7 criterion]",
+      "G2_test_value_exact_human": "test value exact on human-provenance labels >= 0.90  [frozen V7 criterion]",
+      "G3_test_present_null": "test value present/null accuracy >= 0.97  [frozen V7 criterion]",
+      "G4_test_multi_number": "multi_number test slice value exact >= 0.90  [frozen V7 criterion]",
+      "G5_slice_floor": "no value slice with n >= 5 on test below 0.80 exact  [frozen V7 criterion]",
+      "G6_non_inferior_test_exact": "v8 test value exact >= v2 test value exact - 0.02",
+      "G7_non_inferior_present_null": "v8 test present/null >= v2 test present/null - 0.01",
+      "G8_non_inferior_human_exact": "v8 test human value exact >= v2 test human value exact - 1 note (and G2)",
+      "G9_non_inferior_multi_number": "v8 test multi_number exact >= v2 test multi_number exact - 1 note (and G4)",
+      "G10_type_target_unchanged": "type and target predictions of the v1 INT8 path equal v2 INT8 on every note of validation, test and probe (0 differences)",
+      "G11_cost_lower": "candidate system (v1 INT8 bundle + parser source) is smaller than the v2 bundle, and its p50 CPU latency (one thread, same notes, same machine) is lower than v2 INT8's. Measured, not estimated."
+    },
+    "secondary": {
+      "S1_probe_value_exact": "probe value exact >= 0.95",
+      "S2_pooled_human_heldout_exact": "value exact >= 0.90 on the pooled human-provenance complete rows of test, probe and the validation rows not in train",
+      "S3_no_crash_and_deterministic": "parse_value never raises on any scored note or on the adversarial inputs of tests/test_value_parser.py and gives identical output on a repeat run"
+    },
+    "verdict_rule": {
+      "REJECT": "any gating criterion G1-G11 fails",
+      "ACCEPT_AS_V3_CANDIDATE": "all gating criteria pass and S1-S3 pass. This means 'worth a follow-up validation as candidate gidi-finance-v3' only; it does not ship or confirm v3",
+      "INCONCLUSIVE": "all gating criteria pass but S1, S2 or S3 fails"
+    },
+    "statistical_note": "test has 139 complete values, 12 human, 22 multi_number, 0 no_amount; each note is 0.7% of test exact, 8.3% of human exact and 4.5% of multi_number exact. Non-inferiority margins are therefore declared in notes, not as significance tests."
+  },
+  "cost_measurement": {
+    "size": "bytes on disk of models/gidi-finance-v1 and models/gidi-finance-v2 (model.int8.onnx and whole bundle directory) plus the parser source bytes; measured, not assumed",
+    "latency": "CPU, one onnxruntime intra-op thread, batch 1, GidiPredictor.predict on the 143 test + 81 probe notes, warm-up pass, 5 timed passes; p50/p95 per call for v2 INT8, v1 INT8 alone, parser alone, v1 INT8 + parser. Same process, same machine, interleaved order not required (each system timed in its own block)",
+    "memory": "peak and current resident set size (psutil / resource) in a fresh subprocess after loading the bundle and running the notes once, per system; the python+numpy+onnxruntime baseline is reported",
+    "not_measured": "browser / WebAssembly runtime: the parser is Python; a TypeScript port for the playground would be a separate piece of work and a parity risk, not costed here"
+  },
+  "known_limitations_declared_up_front": [
+    "rule-provenance labels come from a rule proposer: circularity risk, see data.circularity_risk",
+    "human subsets are tiny",
+    "no 'm' (2m = 2 million) money form unless train needs it; the deterministic parser cannot learn unseen spellings",
+    "multiple genuinely plausible amounts in one note are ambiguous by label (value_status uncertain) and are masked from the metrics",
+    "V8 does not address target extraction quality"
+  ],
+  "artifacts": [
+    "protocol.json (this file, 0444)",
+    "parser-freeze.json (parser source sha256, train dev numbers, written before held-out scoring)",
+    "dev-log.md (train iterations)",
+    "results.json, cost.json, eval/*.json, eval/*-predictions.jsonl",
+    "value-errors.jsonl, multi-number-errors.jsonl, train-errors.jsonl",
+    "report.md"
+  ]
+}
