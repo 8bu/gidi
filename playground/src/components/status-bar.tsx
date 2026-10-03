@@ -1,6 +1,7 @@
 import type { ReactNode } from "react"
 
 import type { InfoState, RunState } from "@/hooks/use-playground"
+import { BROWSER_MODE } from "@/lib/backend"
 import { ms } from "@/lib/format"
 import { Separator } from "@/components/ui/separator"
 
@@ -18,8 +19,12 @@ export function StatusBar({ run, infoState }: { run: RunState; infoState: InfoSt
   const runtime = info
     ? [info.backend, info.precision].filter(Boolean).join(" · ") || "n/a"
     : infoState.status === "offline"
-      ? "offline"
-      : "connecting"
+      ? BROWSER_MODE
+        ? "model not loaded"
+        : "offline"
+      : BROWSER_MODE
+        ? "loading model"
+        : "connecting"
   const response = run.status === "success" ? run.response : null
   return (
     <footer className="border-t">
@@ -30,9 +35,7 @@ export function StatusBar({ run, infoState }: { run: RunState; infoState: InfoSt
           {run.status === "running" ? "running" : response ? ms(response.latencyMs) : "—"}
         </Item>
         <Separator orientation="vertical" className="hidden h-3 sm:block" />
-        <Item label="Truncated">
-          {response ? (response.result.truncated ? "yes" : "no") : "—"}
-        </Item>
+        <Item label="Truncated">{response ? (response.result.truncated ? "yes" : "no") : "—"}</Item>
         <Separator orientation="vertical" className="hidden h-3 sm:block" />
         <Item label="Model">{response?.result.model_version ?? info?.model_version ?? "—"}</Item>
       </dl>

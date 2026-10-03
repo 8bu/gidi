@@ -1,0 +1,469 @@
+{
+  "deployment": {
+    "url": "https://gidi.8bu.dev",
+    "worker": "gidi",
+    "version_id": "a0ca4f18-59f3-49d6-afa7-f93cdd8fb058",
+    "earlier_versions": [
+      "03952912-7dfb-47e0-b106-5b87fbc9fefb",
+      "8b808673-b77b-43bb-b90e-bc598016dbbb"
+    ],
+    "compatibility_date": "2026-10-03",
+    "custom_domain": "gidi.8bu.dev",
+    "workers_dev": false,
+    "r2_bucket": "gidi-models",
+    "binding": "MODELS",
+    "r2_key": "gidi-finance-v2/2.0.2/model.int8.onnx",
+    "model_public_path": "/models/gidi-finance-v2/2.0.2/model.int8.onnx",
+    "model_bytes": 57503558,
+    "model_sha256": "bc7945c3a7ff1d43648b65fe4fcae1ca3ca3c21dc23dccd61aa750f19881994e",
+    "static_assets": "playground/dist (15 files + _headers)",
+    "run_worker_first": [
+      "/models/*"
+    ],
+    "wrangler": "4.147.0"
+  },
+  "browser": "HeadlessChrome 150.0.7871.24 (macOS, Apple Silicon, 12 cores), fresh incognito browser context per run, no HTTP cache",
+  "desktop": {
+    "viewport": "1280x900",
+    "mobile_emulation": false,
+    "first_load_total_bytes_over_wire": 61138754,
+    "first_load_breakdown_bytes": {
+      "document": 1126,
+      "/assets/index-DuWeCBaW.css": 13428,
+      "/assets/index-DelKQhlh.js": 123733,
+      "/assets/browser-backend-vQIluB1r.js": 2240,
+      "/assets/geist-latin-wght-normal-BgDaEnEv.woff2": 29700,
+      "/assets/geist-latin-ext-wght-normal-DC-KSUi6.woff2": 16812,
+      "/assets/geist-vietnamese-wght-normal-6IgcOCM7.woff2": 8304,
+      "/release/gidi-finance-v2/2.0.2/web-release.json": 501,
+      "/assets/worker-DcOziVQC.js": 31527,
+      "worker:/release/gidi-finance-v2/2.0.2/web-release.json": 0,
+      "worker:/release/gidi-finance-v2/2.0.2/config.json": 1415,
+      "worker:/release/gidi-finance-v2/2.0.2/tokenizer.json": 101611,
+      "worker:/models/gidi-finance-v2/2.0.2/model.int8.onnx": 57510174,
+      "worker:/assets/ort-wasm-simd-threaded-DcHrbrbl.wasm": 3267370,
+      "/assets/load-local-Q10m_a5Y.js (worker import; size via curl, not observed)": 30813
+    },
+    "cloudflare_analytics_bytes_not_counted": 300,
+    "timeline_ms_from_navigation_start": {
+      "html_load_event": 920,
+      "first_model_progress_visible": 2285,
+      "ready_ui": 4376
+    },
+    "model_download": {
+      "ttfb_ms": 269,
+      "ms_request_to_last_byte": 1898,
+      "throughput_MBps": 35.3,
+      "encoded_bytes_incl_headers": 57510174
+    },
+    "ort_wasm_fetch_ms": 474,
+    "ort_wasm_encoded_bytes": 3267370,
+    "model_end_to_ready_ms (sha256 + wasm fetch/compile + ORT session create)": 476,
+    "wasm_end_to_ready_ms (session create + ready UI poll)": 2,
+    "sha256_webcrypto_ms_on_57.5MB (separate in-page measurement)": 31,
+    "ui_banner": "SHA-256 bc7945c3a7ff… verified · loaded in 3065.1 ms",
+    "first_inference_ms": 39.1,
+    "warm_latency_ms": {
+      "n": 34,
+      "median": 19.3,
+      "p95": 21.2,
+      "min": 13.8,
+      "max": 23.3
+    },
+    "heap_bytes": {
+      "mainReady": {
+        "used": 13902357,
+        "total": 25945921
+      },
+      "mainEnd": {
+        "used": 9879129,
+        "total": 38773741
+      },
+      "workerReady": {
+        "usedSize": 3539436,
+        "totalSize": 10321920,
+        "embedderHeapUsedSize": 134592,
+        "backingStorageSize": 57592731
+      },
+      "workerEnd": {
+        "usedSize": 4251376,
+        "totalSize": 11370496,
+        "embedderHeapUsedSize": 451064,
+        "backingStorageSize": 57604955
+      }
+    },
+    "renderer_process_rss_MB": [
+      {
+        "pid": "62776",
+        "afterReadyMB": 616.841216,
+        "endMB": 634.814464
+      }
+    ],
+    "crossOriginIsolated": false,
+    "cores": 12,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/150.0.0.0 Safari/537.36",
+    "ui_checks": {
+      "clipboard_equals_raw_json": true,
+      "copy_button_label": "Copied",
+      "clear_resets": {
+        "textarea": "",
+        "empty": true
+      },
+      "empty_submit_shows_error": true,
+      "horizontal_overflow": false,
+      "dark_class_after_toggle": "dark",
+      "console_messages": [],
+      "api_requests_made": []
+    }
+  },
+  "mobile_390": {
+    "viewport": "390x844",
+    "mobile_emulation": true,
+    "first_load_total_bytes_over_wire": 61139209,
+    "first_load_breakdown_bytes": {
+      "document": 1126,
+      "/assets/index-DelKQhlh.js": 123741,
+      "/assets/index-DuWeCBaW.css": 13413,
+      "/assets/browser-backend-vQIluB1r.js": 2240,
+      "/assets/geist-latin-wght-normal-BgDaEnEv.woff2": 29700,
+      "/assets/geist-vietnamese-wght-normal-6IgcOCM7.woff2": 8304,
+      "/assets/geist-latin-ext-wght-normal-DC-KSUi6.woff2": 16812,
+      "/release/gidi-finance-v2/2.0.2/web-release.json": 501,
+      "/assets/worker-DcOziVQC.js": 31529,
+      "worker:/release/gidi-finance-v2/2.0.2/web-release.json": 0,
+      "worker:/release/gidi-finance-v2/2.0.2/config.json": 1412,
+      "worker:/release/gidi-finance-v2/2.0.2/tokenizer.json": 101226,
+      "worker:/models/gidi-finance-v2/2.0.2/model.int8.onnx": 57510218,
+      "worker:/assets/ort-wasm-simd-threaded-DcHrbrbl.wasm": 3268174,
+      "/assets/load-local-Q10m_a5Y.js (worker import; size via curl, not observed)": 30813
+    },
+    "cloudflare_analytics_bytes_not_counted": 300,
+    "timeline_ms_from_navigation_start": {
+      "html_load_event": 384,
+      "first_model_progress_visible": 1147,
+      "ready_ui": 3413
+    },
+    "model_download": {
+      "ttfb_ms": 393,
+      "ms_request_to_last_byte": 2078,
+      "throughput_MBps": 34.1,
+      "encoded_bytes_incl_headers": 57510218
+    },
+    "ort_wasm_fetch_ms": 565,
+    "ort_wasm_encoded_bytes": 3268174,
+    "model_end_to_ready_ms (sha256 + wasm fetch/compile + ORT session create)": 584,
+    "wasm_end_to_ready_ms (session create + ready UI poll)": 19,
+    "sha256_webcrypto_ms_on_57.5MB (separate in-page measurement)": 31,
+    "ui_banner": "SHA-256 bc7945c3a7ff… verified · loaded in 3045.6 ms",
+    "first_inference_ms": 38.3,
+    "warm_latency_ms": {
+      "n": 34,
+      "median": 19.3,
+      "p95": 22.3,
+      "min": 13.8,
+      "max": 27.9
+    },
+    "heap_bytes": {
+      "mainReady": {
+        "used": 10674764,
+        "total": 26693732
+      },
+      "mainEnd": {
+        "used": 10101944,
+        "total": 41915376
+      },
+      "workerReady": {
+        "usedSize": 3668928,
+        "totalSize": 9011200,
+        "embedderHeapUsedSize": 112744,
+        "backingStorageSize": 57592731
+      },
+      "workerEnd": {
+        "usedSize": 3945276,
+        "totalSize": 9584640,
+        "embedderHeapUsedSize": 472040,
+        "backingStorageSize": 115716
+      }
+    },
+    "renderer_process_rss_MB": [
+      {
+        "pid": "62871",
+        "afterReadyMB": 638.500864,
+        "endMB": 595.279872
+      }
+    ],
+    "crossOriginIsolated": false,
+    "cores": 12,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/150.0.0.0 Safari/537.36",
+    "ui_checks": {
+      "clipboard_equals_raw_json": true,
+      "copy_button_label": "Copied",
+      "clear_resets": {
+        "textarea": "",
+        "empty": true
+      },
+      "empty_submit_shows_error": true,
+      "horizontal_overflow": false,
+      "dark_class_after_toggle": "dark",
+      "console_messages": [],
+      "api_requests_made": []
+    }
+  },
+  "presets": [
+    {
+      "preset": "cơm tấm 100",
+      "type": "expense",
+      "target": null,
+      "value_text": "100",
+      "highlight_marks": [
+        {
+          "text": "100",
+          "label": "value"
+        }
+      ],
+      "known_limitation_badge": false,
+      "discrete_fields_exact_vs_python": true,
+      "max_confidence_abs_delta_vs_python": 5.350704365136849e-07
+    },
+    {
+      "preset": "bún bò 50k",
+      "type": "expense",
+      "target": null,
+      "value_text": "50k",
+      "highlight_marks": [
+        {
+          "text": "50k",
+          "label": "value"
+        }
+      ],
+      "known_limitation_badge": false,
+      "discrete_fields_exact_vs_python": true,
+      "max_confidence_abs_delta_vs_python": 2.211096111759403e-07
+    },
+    {
+      "preset": "mượn chú hai 5 xị",
+      "type": "borrow",
+      "target": "chú hai",
+      "value_text": "5 xị",
+      "highlight_marks": [
+        {
+          "text": "chú hai",
+          "label": "target"
+        },
+        {
+          "text": "5 xị",
+          "label": "value"
+        }
+      ],
+      "known_limitation_badge": false,
+      "discrete_fields_exact_vs_python": true,
+      "max_confidence_abs_delta_vs_python": 5.876496034895595e-06
+    },
+    {
+      "preset": "ăn 2 tô phở 70",
+      "type": "expense",
+      "target": null,
+      "value_text": "70",
+      "highlight_marks": [
+        {
+          "text": "70",
+          "label": "value"
+        }
+      ],
+      "known_limitation_badge": false,
+      "discrete_fields_exact_vs_python": true,
+      "max_confidence_abs_delta_vs_python": 8.212927032902329e-07
+    },
+    {
+      "preset": "tiền điện tháng 10 hết 612",
+      "type": "expense",
+      "target": null,
+      "value_text": "612",
+      "highlight_marks": [
+        {
+          "text": "612",
+          "label": "value"
+        }
+      ],
+      "known_limitation_badge": false,
+      "discrete_fields_exact_vs_python": true,
+      "max_confidence_abs_delta_vs_python": 2.9507628951375153e-07
+    },
+    {
+      "preset": "trả góp kỳ 3 1tr5",
+      "type": "repayment_out",
+      "target": null,
+      "value_text": "1tr5",
+      "highlight_marks": [
+        {
+          "text": "1tr5",
+          "label": "value"
+        }
+      ],
+      "known_limitation_badge": false,
+      "discrete_fields_exact_vs_python": true,
+      "max_confidence_abs_delta_vs_python": 2.4558542197627986e-06
+    },
+    {
+      "preset": "20/10 mua quà mẹ 500",
+      "type": "expense",
+      "target": null,
+      "value_text": "500",
+      "highlight_marks": [
+        {
+          "text": "500",
+          "label": "value"
+        }
+      ],
+      "known_limitation_badge": false,
+      "discrete_fields_exact_vs_python": true,
+      "max_confidence_abs_delta_vs_python": 0.00028219681191110624
+    },
+    {
+      "preset": "mua 3 vé 150k",
+      "type": "expense",
+      "target": null,
+      "value_text": "150k",
+      "highlight_marks": [
+        {
+          "text": "150k",
+          "label": "value"
+        }
+      ],
+      "known_limitation_badge": false,
+      "discrete_fields_exact_vs_python": true,
+      "max_confidence_abs_delta_vs_python": 0.02184712291585178
+    },
+    {
+      "preset": "đổ 5 lít xăng 120k",
+      "type": "expense",
+      "target": null,
+      "value_text": "120k",
+      "highlight_marks": [
+        {
+          "text": "120k",
+          "label": "value"
+        }
+      ],
+      "known_limitation_badge": false,
+      "discrete_fields_exact_vs_python": true,
+      "max_confidence_abs_delta_vs_python": 2.1960641638507639e-07
+    },
+    {
+      "preset": "cho a Nam vay 1 triệu 20/10",
+      "type": "lend",
+      "target": "Nam",
+      "value_text": "1 triệu 20/10",
+      "highlight_marks": [
+        {
+          "text": "Nam",
+          "label": "target"
+        },
+        {
+          "text": "1 triệu 20/10",
+          "label": "value"
+        }
+      ],
+      "known_limitation_badge": true,
+      "discrete_fields_exact_vs_python": true,
+      "max_confidence_abs_delta_vs_python": 2.1624752033488903e-07
+    }
+  ],
+  "api_not_served": {
+    "probes": {
+      "GET /api/info": {
+        "status": 200,
+        "contentType": "text/html",
+        "bodyStart": "<!doctype html> <html lang=\"en\"> <head> <meta charset="
+      },
+      "POST /api/predict": {
+        "status": 405,
+        "contentType": null,
+        "bodyStart": ""
+      },
+      "GET /api/predict": {
+        "status": 200,
+        "contentType": "text/html",
+        "bodyStart": "<!doctype html> <html lang=\"en\"> <head> <meta charset="
+      }
+    },
+    "inference_with_api_blocked": {
+      "result": {
+        "type": "borrow",
+        "target": "chú hai",
+        "value_text": "5 xị"
+      },
+      "blockedReasons": [
+        "inspector"
+      ],
+      "pageProbeIntoBlockedApi": "network error: Failed to fetch",
+      "workerProbeIntoBlockedApi": "network error: Failed to fetch",
+      "workerSawBlockList": true,
+      "requestPathsSeen": [
+        "/",
+        "/api/info",
+        "/api/predict",
+        "/assets/browser-backend-vQIluB1r.js",
+        "/assets/geist-latin-ext-wght-normal-DC-KSUi6.woff2",
+        "/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+        "/assets/geist-vietnamese-wght-normal-6IgcOCM7.woff2",
+        "/assets/index-DelKQhlh.js",
+        "/assets/index-DuWeCBaW.css",
+        "/assets/ort-wasm-simd-threaded-DcHrbrbl.wasm",
+        "/assets/worker-DcOziVQC.js",
+        "/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+        "/cdn-cgi/rum",
+        "/models/gidi-finance-v2/2.0.2/model.int8.onnx",
+        "/release/gidi-finance-v2/2.0.2/config.json",
+        "/release/gidi-finance-v2/2.0.2/tokenizer.json",
+        "/release/gidi-finance-v2/2.0.2/web-release.json",
+        "worker:/api/info",
+        "worker:/assets/ort-wasm-simd-threaded-DcHrbrbl.wasm",
+        "worker:/models/gidi-finance-v2/2.0.2/model.int8.onnx",
+        "worker:/release/gidi-finance-v2/2.0.2/config.json",
+        "worker:/release/gidi-finance-v2/2.0.2/tokenizer.json",
+        "worker:/release/gidi-finance-v2/2.0.2/web-release.json"
+      ]
+    }
+  },
+  "error_states": {
+    "sha_mismatch": {
+      "state": {
+        "text": [
+          "Gidi Finance",
+          "Extract transaction semantics from Vietnamese notes",
+          "Model not loaded",
+          "Model integrity check failed",
+          "The downloaded file does not match the published SHA-256, so it was not loaded.",
+          "model sha256 mismatch: expected 0000000000000000000000000000000000000000000000000000000000000000, downloaded bc7945c3a7ff1d43648b65fe4fcae1ca3ca3c21dc23dccd61aa750f19881994e",
+          "Retry",
+          "Input"
+        ],
+        "runDisabled": true,
+        "presetsDisabled": true,
+        "badge": []
+      },
+      "retryRecoveredAfterMs": 2301,
+      "typeAfterRetry": "expense"
+    },
+    "model_404": {
+      "state": {
+        "text": [
+          "Gidi Finance",
+          "Extract transaction semantics from Vietnamese notes",
+          "Model not loaded",
+          "Could not load the model",
+          "The model download or start-up failed. Check your connection, then retry.",
+          "GET https://gidi.8bu.dev/models/gidi-finance-v2/2.0.2/does-not-exist.onnx failed: HTTP 404",
+          "Retry",
+          "Input"
+        ],
+        "runDisabled": true,
+        "presetsDisabled": true,
+        "badge": []
+      },
+      "retryRecoveredAfterMs": 2751,
+      "typeAfterRetry": "expense"
+    }
+  }
+}

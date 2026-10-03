@@ -17,6 +17,8 @@ models/*
 # Playground frontend
 playground/node_modules/
 playground/dist/
+# Synced from dist/releases by playground/scripts/sync-release.mjs
+playground/public/release/
 
 # Release pipeline output (scripts/release.py, scripts/publish.py)
 dist/
@@ -24,3 +26,8 @@ dist/
 # Local agent/tool state
 .remember/
 .gidi-v2-overnight-done
+.wrangler/
+.dev.vars
+
+# Browser-runtime parity dumps (scripts/dump_web_parity.py)
+playground/.parity/

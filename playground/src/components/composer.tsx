@@ -18,6 +18,8 @@ type ComposerProps = {
   onSubmit: () => void
   onClear: () => void
   running: boolean
+  /** Run is unavailable (e.g. the browser model is still loading); typing still works. */
+  disabled?: boolean
   canClear: boolean
   invalid: boolean
   textareaRef: Ref<HTMLTextAreaElement>
@@ -29,6 +31,7 @@ export function Composer({
   onSubmit,
   onClear,
   running,
+  disabled = false,
   canClear,
   invalid,
   textareaRef,
@@ -38,14 +41,14 @@ export function Composer({
     // Enter confirms a Telex/VNI composition; it must not run the note.
     if (event.nativeEvent.isComposing || event.keyCode === 229) return
     event.preventDefault()
-    if (!running) onSubmit()
+    if (!running && !disabled) onSubmit()
   }
 
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault()
-        if (!running) onSubmit()
+        if (!running && !disabled) onSubmit()
       }}
     >
       <Field data-invalid={invalid || undefined}>
@@ -98,7 +101,11 @@ export function Composer({
                 <EraserIcon data-icon="inline-start" />
                 Clear
               </InputGroupButton>
-              <Button type="submit" disabled={running} className="max-sm:h-10 max-sm:px-4">
+              <Button
+                type="submit"
+                disabled={running || disabled}
+                className="max-sm:h-10 max-sm:px-4"
+              >
                 {running ? (
                   <Spinner data-icon="inline-start" />
                 ) : (

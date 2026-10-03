@@ -265,3 +265,27 @@ place.
 4. A change of taxonomy or semantics also needs a new annotation version
    (`configs/annotation-vN.yaml`).
 5. Record the change in `experiments/deployment-vN/report.md` and the investigation journal.
+
+## Web playground (gidi.8bu.dev)
+
+The same React playground (`playground/`) also ships as a static site that runs
+`gidi-finance-v2` **in the browser** (onnxruntime-web, WASM, INT8). No server does inference and no
+note leaves the device. It is one Cloudflare Worker (`gidi`) with static assets; the 57.5 MB model
+is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Worker at
+`/models/<key>`.
+
+- Source of truth is the immutable release `dist/releases/gidi-finance-v2/2.0.2/`.
+  `playground/scripts/sync-release.mjs` checks `config.json` and `tokenizer.json` against the
+  release `manifest.json` and copies them to `playground/public/release/` (gitignored), together
+  with `web-release.json` (model URL, sha256, size). The browser verifies the model's sha256
+  before creating the ORT session; a mismatch is a hard error.
+- Build modes: `pnpm -C playground build:web` is the browser build; `pnpm -C playground build`
+  stays the build served by `scripts/demo_ui.py` (Python `/api` backend).
+- Deploy: `pnpm -C playground run deploy` (build:web + `wrangler deploy`; `run` is needed because `pnpm deploy` is a built-in). Config is
+  `playground/wrangler.jsonc`: R2 binding `MODELS` -> bucket `gidi-models`, custom domain
+  `gidi.8bu.dev`, only `/models/*` runs the Worker (`playground/worker/index.ts`: GET/HEAD, Range
+  and conditional requests, `cache-control: public, max-age=31536000, immutable`).
+- A new model release is a new R2 key (`<model>/<release>/model.int8.onnx`), never an overwrite:
+  `wrangler r2 object put gidi-models/<key> --file <release model> --remote`.
+- Local check: `pnpm -C playground build:web && pnpm -C playground exec wrangler dev` (add the
+  model to the local R2 with the same `r2 object put ... --local`).

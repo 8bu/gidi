@@ -32,9 +32,7 @@ export function Diagnostics({ response, roundTripMs, info }: DiagnosticsProps) {
       <Item label="Truncated">{String(result.truncated)}</Item>
       <Item label="Target offsets">{spanOrNull(result.target_span)}</Item>
       <Item label="Value offsets">{hasValue ? spanOrNull(result.value_span) : unknown}</Item>
-      {spansOverlap !== null ? (
-        <Item label="Spans overlap">{String(spansOverlap)}</Item>
-      ) : null}
+      {spansOverlap !== null ? <Item label="Spans overlap">{String(spansOverlap)}</Item> : null}
       <Item label="Backend">{info?.backend ?? unknown}</Item>
       <Item label="Precision">{info?.precision ?? unknown}</Item>
       <Item label="Architecture">{info?.architecture ?? unknown}</Item>
@@ -42,6 +40,12 @@ export function Diagnostics({ response, roundTripMs, info }: DiagnosticsProps) {
       <Item label="Max length">{info ? `${info.max_length} tokens` : unknown}</Item>
       <Item label="Model file">{info?.model_file ?? unknown}</Item>
       <Item label="Bundle">{info?.bundle_path ?? info?.bundle ?? unknown}</Item>
+      {info?.model_sha256 ? (
+        <Item label="Model SHA-256 (verified)">{info.model_sha256}</Item>
+      ) : null}
+      {typeof info?.load_ms === "number" ? (
+        <Item label="Model load">{ms(info.load_ms)}</Item>
+      ) : null}
     </dl>
   )
 }

@@ -41,6 +41,10 @@ export type RuntimeInfo = {
   model_file: string | null
   onnx_opset: number | null
   bundle_path: string | null
+  /** Browser mode only: SHA-256 the downloaded model was verified against. */
+  model_sha256?: string | null
+  /** Browser mode only: model download + verification + session creation, in ms. */
+  load_ms?: number | null
 }
 
 export type ErrorKind =
@@ -51,6 +55,8 @@ export type ErrorKind =
   | "missing_artifact"
   | "malformed"
   | "rejected"
+  | "model_load"
+  | "integrity"
 
 export const REQUEST_TIMEOUT_MS = 10_000
 

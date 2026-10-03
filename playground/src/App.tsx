@@ -3,30 +3,32 @@ import { PlugZapIcon } from "lucide-react"
 
 import { Composer } from "@/components/composer"
 import { ErrorAlert } from "@/components/error-alert"
+import { ModelLoader } from "@/components/model-loader"
 import { ResultEmpty, ResultSkeleton, ResultView } from "@/components/result-view"
 import { StatusBar } from "@/components/status-bar"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Spinner } from "@/components/ui/spinner"
 import { TooltipProvider, Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { usePlayground, type InfoState } from "@/hooks/use-playground"
+import { BROWSER_MODE } from "@/lib/backend"
 import { displayName } from "@/lib/format"
 import { PRESETS } from "@/lib/presets"
 
 function RuntimeBadges({ infoState }: { infoState: InfoState }) {
   if (infoState.status === "loading") {
+    const { progress } = infoState
+    const percent = progress?.total ? Math.round((progress.loaded / progress.total) * 100) : null
     return (
       <Badge variant="outline">
         <Spinner data-icon="inline-start" />
-        Connecting
+        {BROWSER_MODE
+          ? percent === null
+            ? "Loading model"
+            : `Loading model ${percent}%`
+          : "Connecting"}
       </Badge>
     )
   }
@@ -36,7 +38,7 @@ function RuntimeBadges({ infoState }: { infoState: InfoState }) {
         <TooltipTrigger asChild>
           <Badge variant="destructive" tabIndex={0}>
             <PlugZapIcon data-icon="inline-start" />
-            Runtime offline
+            {BROWSER_MODE ? "Model not loaded" : "Runtime offline"}
           </Badge>
         </TooltipTrigger>
         <TooltipContent>{infoState.error.message}</TooltipContent>
@@ -60,7 +62,7 @@ function RuntimeBadges({ infoState }: { infoState: InfoState }) {
 }
 
 export function App() {
-  const { text, setText, run, infoState, submit, clear } = usePlayground()
+  const { text, setText, run, infoState, canRun, retry, submit, clear } = usePlayground()
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const resultRef = useRef<HTMLDivElement>(null)
   const running = run.status === "running"
@@ -74,7 +76,10 @@ export function App() {
   // Stacked layout: bring the result into view when a run starts.
   useEffect(() => {
     if (run.status === "running" && !window.matchMedia("(min-width: 1024px)").matches) {
-      resultRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" })
+      resultRef.current?.scrollIntoView({
+        block: "nearest",
+        behavior: "smooth",
+      })
     }
   }, [run.status])
 
@@ -115,6 +120,11 @@ export function App() {
         </p>
 
         <main className="mx-auto grid w-full max-w-6xl flex-1 content-start gap-4 px-4 py-4 sm:px-6 lg:grid-cols-2">
+          {BROWSER_MODE ? (
+            <div className="min-w-0 lg:col-span-2">
+              <ModelLoader infoState={infoState} onRetry={() => void retry()} />
+            </div>
+          ) : null}
           <Card className="min-w-0 self-start lg:sticky lg:top-4">
             <CardHeader>
               <CardTitle>Input</CardTitle>
@@ -130,6 +140,7 @@ export function App() {
                   textareaRef.current?.focus()
                 }}
                 running={running}
+                disabled={!canRun}
                 canClear={text !== "" || run.status !== "idle"}
                 invalid={emptyInputError}
                 textareaRef={textareaRef}
@@ -150,7 +161,7 @@ export function App() {
                       size="sm"
                       lang="vi"
                       className="max-sm:h-9"
-                      disabled={running}
+                      disabled={running || !canRun}
                       onClick={() => runPreset(preset)}
                     >
                       {preset}
@@ -169,9 +180,7 @@ export function App() {
             <CardContent>
               {run.status === "idle" ? <ResultEmpty /> : null}
               {run.status === "running" ? <ResultSkeleton /> : null}
-              {run.status === "error" && !emptyInputError ? (
-                <ErrorAlert error={run.error} />
-              ) : null}
+              {run.status === "error" && !emptyInputError ? <ErrorAlert error={run.error} /> : null}
               {run.status === "error" && emptyInputError ? <ResultEmpty /> : null}
               {run.status === "success" ? (
                 <ResultView
