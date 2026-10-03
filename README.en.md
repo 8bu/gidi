@@ -1,6 +1,8 @@
-# Gidi
+# Gidi — GiaoDịch
 
 [Tiếng Việt](README.md) · **English**
+
+This is my experiment to build a tiny classifier.
 
 Gidi is an experimental machine learning project building a tiny on-device model for short
 Vietnamese personal-finance notes, such as `ăn phở 45k` or `nhận lương 15tr`. For one note it

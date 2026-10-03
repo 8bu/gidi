@@ -1,6 +1,8 @@
-# Gidi
+# Gidi — GiaoDịch
 
 **Tiếng Việt** · [English](README.en.md)
+
+Đây là thử nghiệm của mình để xây dựng một classifier nhỏ.
 
 Gidi là dự án machine learning (học máy) thử nghiệm.
 Dự án xây dựng model on-device nhỏ cho ghi chú tài chính cá nhân tiếng Việt ngắn,
