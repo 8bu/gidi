@@ -1,6 +1,10 @@
-# {model_version} {release_version}
+# Gidi — GiaoDịch
 
 [Tiếng Việt](README.md) · **English**
+
+This is my experiment to build a tiny classifier.
+
+Model: `{model_version}`, release `{release_version}`.
 
 A tiny on-device model for short Vietnamese personal-finance notes such as `mượn chú hai 5 xị`.
 For one note it predicts:

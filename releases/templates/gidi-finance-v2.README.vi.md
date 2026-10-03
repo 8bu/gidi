@@ -11,9 +11,13 @@ tags:
   - on-device
 ---
 
-# {model_version} {release_version}
+# Gidi — GiaoDịch
 
 **Tiếng Việt** · [English](README.en.md)
+
+Đây là thử nghiệm của mình để xây dựng một classifier nhỏ.
+
+Model: `{model_version}`, release `{release_version}`.
 
 Đây là model on-device nhỏ cho ghi chú tài chính cá nhân tiếng Việt ngắn như
 `mượn chú hai 5 xị`.
