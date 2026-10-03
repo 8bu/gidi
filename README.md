@@ -1,41 +1,45 @@
 # Gidi
 
-Gidi is an experimental machine learning project building a tiny on-device classifier for
-short Vietnamese personal-finance notes, such as `ăn phở 45k` or `nhận lương 15tr`.
+**Tiếng Việt** · [English](README.en.md)
 
-The target is a model small enough to run inference locally on modern phones. There is no
-server component and no inference API.
+Gidi là dự án machine learning (học máy) thử nghiệm.
+Dự án xây dựng classifier on-device nhỏ cho ghi chú tài chính cá nhân
+tiếng Việt ngắn, như `ăn phở 45k` hoặc `nhận lương 15tr`.
 
-## Scope
+Mục tiêu là model đủ nhỏ để inference cục bộ trên điện thoại hiện đại.
+Dự án không có server và không có inference API.
 
-Vietnamese-first. Inputs are short, informal, Vietnamese-language notes a person writes for
-themselves; they are not formal bookkeeping records. Amount extraction and normalization may
-stay deterministic code rather than model output.
+## Phạm vi
 
-## Current phase
+Ưu tiên tiếng Việt. Input là ghi chú ngắn, không trang trọng,
+do một người viết cho chính họ.
+Input không phải bản ghi kế toán chính thức.
+Code deterministic có thể trích xuất và normalize số tiền thay cho model.
 
-Deployment hardening is complete. `gidi-finance-v1` (`models/gidi-finance-v1/`, 28.66 MB INT8
-ONNX) is the packaged model, and `src/gidi/inference/` is its runtime. Usage, output schema and
-known limitations: [docs/deployment.md](docs/deployment.md). The research history is in
-`docs/investigation-journal.md`.
+## Giai đoạn hiện tại
 
-Human review and annotation happen in [Quet](https://github.com/8bu/quet) (Quick Utility for
-Evaluating Text), a separate open-source TUI. It is not a dependency of this project. Gidi
-produces the queues and schemas that Quet consumes, and validates what it writes back. Agent
-details are in `AGENTS.md`.
+Deployment hardening đã hoàn tất. `gidi-finance-v1` (`models/gidi-finance-v1/`, 28.66 MB INT8
+ONNX) là model được đóng gói. `src/gidi/inference/` là runtime của model.
+Xem usage, output schema và known limitations tại [docs/deployment.md](docs/deployment.md).
+Lịch sử research nằm trong `docs/investigation-journal.md`.
 
-## Intended stack
+Human review và annotation diễn ra trong [Quet](https://github.com/8bu/quet) (Quick Utility for
+Evaluating Text), một TUI (text user interface) open-source riêng. Quet không phải dependency
+của dự án này. Gidi tạo queue và schema cho Quet.
+Gidi validate dữ liệu Quet ghi lại. Chi tiết về agent nằm trong `AGENTS.md`.
 
-- Python 3.12 managed with `uv`
-- PyTorch, with Apple MPS as the primary device (cuda and cpu also supported)
+## Stack dự kiến
+
+- Python 3.12 được quản lý bằng `uv`
+- PyTorch, với Apple MPS là device chính (cuda và cpu cũng được hỗ trợ)
 - Hugging Face Transformers, Tokenizers, Datasets
-- scikit-learn for evaluation and baselines
-- pytest and ruff for tests and linting
-- Deployment path: PyTorch -> ONNX (INT8) -> ONNX Runtime. The runtime (`src/gidi/inference/`)
-  needs only numpy, onnxruntime and tokenizers.
+- scikit-learn cho evaluation và baseline
+- pytest và ruff cho test và lint
+- Deployment path: PyTorch -> ONNX (INT8) -> ONNX Runtime. Runtime (`src/gidi/inference/`)
+  chỉ cần numpy, onnxruntime và tokenizers.
 
-Explicitly excluded: Poetry, Conda, Lightning, Hydra, W&B, MLflow, Docker, notebook-first
-workflow, cloud training.
+Loại trừ rõ ràng: Poetry, Conda, Lightning, Hydra, W&B, MLflow, Docker, notebook-first
+workflow và cloud training.
 
 ## Development
 
@@ -45,9 +49,9 @@ uv run pytest        # run tests
 uv run ruff check .  # lint
 ```
 
-Only these three commands are established so far.
+Hiện chỉ có ba command này được thiết lập.
 
-## Layout
+## Cấu trúc
 
 ```text
 corpus/raw/         generated raw corpus (never overwritten)
@@ -63,20 +67,22 @@ docs/               project documentation
 src/gidi/           library code
 ```
 
-All corpora and datasets are JSONL.
+Tất cả corpus và dataset đều là JSONL.
 
-## Philosophy
+## Triết lý
 
-- small > large
-- measured > assumed
-- deterministic > generative where possible
-- mobile constraints > benchmark vanity
-- simple experiments > framework complexity
+- nhỏ > lớn
+- đo lường > giả định
+- deterministic > generative khi có thể
+- ràng buộc mobile > benchmark vanity
+- experiment đơn giản > framework phức tạp
 
-## Documentation
+## Tài liệu
 
-See [docs/overview.md](docs/overview.md) for the pipeline, intended architecture, data
-conventions, and device policy. See [experiments/README.md](experiments/README.md) for how
-experiments are recorded and [models/README.md](models/README.md) for local artifacts.
-Release and publish workflow (local build, verification, dry-run publishing, CI):
+Xem [docs/overview.md](docs/overview.md) để đọc về pipeline, architecture dự kiến,
+quy ước data và policy cho device.
+Xem [experiments/README.md](experiments/README.md) để biết cách ghi experiment.
+Xem [models/README.md](models/README.md) để biết về local artifact.
+
+Workflow release và publish (local build, verification, dry-run publishing, CI) nằm tại
 [docs/releasing.md](docs/releasing.md).
