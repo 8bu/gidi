@@ -33,7 +33,7 @@ Code deterministic chuyển span này thành số.
   Demo chạy trong trình duyệt: <https://gidi.8bu.dev>.
 - **`gidi-finance-v1`** vẫn đóng băng và không đổi: chỉ có type và target,
   28.66 MB INT8 ONNX.
-- Research model đã dừng. Hiện không có experiment, compression hoặc distillation mới.
+- Research đang tiếp tục với một value path nhỏ hơn. Chi tiết nằm ở [Lộ trình](#lộ-trình).
 
 Usage, output schema và known limitations nằm tại [docs/deployment.md](docs/deployment.md).
 Lịch sử research nằm trong [docs/investigation-journal.md](docs/investigation-journal.md).
@@ -43,6 +43,32 @@ Evaluating Text), một TUI (text user interface) open-source riêng. Quet khôn
 của dự án này. Gidi tạo queue và schema cho Quet.
 Gidi validate dữ liệu Quet ghi lại.
 Chi tiết về agent nằm trong `AGENTS.md`.
+
+## Lộ trình
+
+Tên experiment nội bộ (`V7`, `V8`) không phải là version release.
+Model public có tên `gidi-finance-vN` và version release như `2.0.3`.
+Value path của `gidi-finance-v2` đến từ experiment nội bộ V7.
+
+**Hiện tại: `gidi-finance-v2`**
+
+- Kiến trúc `dual encoder`: một encoder cho type và target, encoder thứ hai cho value span.
+- Bản phân phối INT8 ONNX trên Hugging Face và GitHub.
+- Runtime trong trình duyệt (onnxruntime-web, WASM). Demo public: <https://gidi.8bu.dev>.
+
+**Research: experiment nội bộ V8 (đang đánh giá)**
+
+- V8 so sánh một value parser tất định (deterministic) với value encoder neural của V7.
+- Model type và target hiện có được giữ nguyên.
+- Mục tiêu: giảm kích thước tải về, bộ nhớ và chi phí inference mà không giảm chất lượng đáng kể.
+- V8 chỉ là experiment. V8 chưa thay thế v2.
+
+**Candidate cho major release tiếp theo: `gidi-finance-v3` / `3.0.0` (chỉ khi V8 được xác nhận)**
+
+- Kiến trúc lai neural và tất định: một encoder cho type và target, value được trích xuất bằng
+  parser tất định, không còn value encoder thứ hai.
+- Runtime trong trình duyệt và trên thiết bị nhỏ hơn đáng kể.
+- v3 chưa được xác nhận. Nếu kết quả V8 không đủ để thay thế, v2 vẫn là release hiện tại.
 
 ## Stack
 

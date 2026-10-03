@@ -26,7 +26,7 @@ converting it to a number stays deterministic code.
   (INT8). The GitHub release 2.0.3 has the INT8 and FP32 archives. In-browser demo:
   <https://gidi.8bu.dev>.
 - **`gidi-finance-v1`** stays frozen and unchanged: type and target only, 28.66 MB INT8 ONNX.
-- Model research is stopped: no new experiments, compression or distillation are in progress.
+- Research on a smaller value path is in progress; see [Roadmap](#roadmap).
 
 Usage, output schema and known limitations: [docs/deployment.md](docs/deployment.md). The
 research history is in [docs/investigation-journal.md](docs/investigation-journal.md).
@@ -35,6 +35,32 @@ Human review and annotation happen in [Quet](https://github.com/8bu/quet) (Quick
 Evaluating Text), a separate open-source TUI. It is not a dependency of this project. Gidi
 produces the queues and schemas that Quet consumes, and validates what it writes back. Agent
 details are in `AGENTS.md`.
+
+## Roadmap
+
+Internal experiment names (`V7`, `V8`) are not release versions. Public models are named
+`gidi-finance-vN`, with release versions such as `2.0.3`. The value path of `gidi-finance-v2`
+comes from internal experiment V7.
+
+**Current: `gidi-finance-v2`**
+
+- Dual-encoder architecture: one encoder for type and target, a second encoder for the value span.
+- INT8 ONNX distribution on Hugging Face and GitHub.
+- Browser runtime (onnxruntime-web, WASM); public demo at <https://gidi.8bu.dev>.
+
+**Research: internal experiment V8 (under evaluation)**
+
+- Benchmarks a deterministic value parser against the V7 neural value encoder.
+- Keeps the existing type and target model unchanged.
+- Goal: smaller download, lower memory and lower inference cost without meaningful quality loss.
+- Experimental only; it does not replace v2.
+
+**Candidate next major release: `gidi-finance-v3` / `3.0.0` (planned only if V8 is validated)**
+
+- Hybrid neural and deterministic architecture: one encoder for type and target, deterministic
+  value extraction, no second value encoder.
+- Materially smaller browser and runtime footprint.
+- Not confirmed. If the V8 evidence does not support replacement, v2 stays the current release.
 
 ## Stack
 
