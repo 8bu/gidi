@@ -1,0 +1,23 @@
+{
+  "arm": "supervised",
+  "variant": "student-4x768",
+  "seed": 3,
+  "kd": {
+    "temperature": 2.0,
+    "alpha_hard": 1.0,
+    "type_weight": 1.0,
+    "span_weight": 1.0
+  },
+  "final_epoch": 40,
+  "test_type_macro_f1": 0.88377025239859,
+  "test_span_f1": 0.6336633663366336,
+  "param_count": 45666059,
+  "param_bytes_fp32": 182664236,
+  "steps": 3640,
+  "device": "mps",
+  "wall_time_sec": 766.0450913750101,
+  "train_time_sec": 761.0201996657997,
+  "sec_per_epoch": 19.025504991644993,
+  "train_examples_per_sec": 38.001619421797415,
+  "checkpoint_path": "models/distillation-v2/supervised/student-4x768/seed3"
+}

@@ -1,0 +1,26 @@
+{
+  "experiment": "deployment-v1",
+  "declared_before_packaging": true,
+  "scope": "deployment hardening only: no training, no architecture/tokenizer/vocabulary/annotation change, no new compression variant, no new data",
+  "architecture": "compression-v3: pretrained BamiBERT-derived 4x768 (layers 2,5,8,11), FFN 2048 (combined criterion), 34 position rows, vocabulary B-rank-8000 (8,338 tokens), max_length 32, ONNX INT8 (dynamic, QInt8 weights)",
+  "version": "gidi-finance-v1",
+  "seed_selection": {
+    "rule": "seed 1, the seed fixed in advance as the export/deployment seed in distillation-v2, compression-v1, compression-v3 and compression-v4",
+    "why_not_held_out_metrics": "experiments/compression-v3/protocol.json declares 'selection: none on held-out data; test and probe-v1 are evaluation only'. The frozen validation split (110 notes) is part of the 723-note training set (every seed fits it at F1 1.000), so no clean held-out selection set exists. Picking the seed with the best test or probe numbers would select on the test/probe sets and bias every later number reported for the deployed model.",
+    "sanity_check_only": "per-seed held-out results are reported for transparency and checked only for a pathological regression (a seed far outside the other two on test joint or a whole probe pattern); they do not rank seeds",
+    "no_weight_averaging_or_ensembling": true
+  },
+  "source_checkpoint": "models/compression-v3/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2048/seed1",
+  "source_onnx": "models/compression-v3-onnx/pos32-vocabB8000-ffn2048-4x768-seed1/",
+  "golden_suite_source": "approved, human-labelled annotation-v1 records outside test and probe-v1 (train/validation splits; skipped records from labels.jsonl for the pipeline-level case). Expected outputs are the PyTorch reference predictions of the deployed checkpoint, with the human label stored alongside for information; the suite checks runtime correctness, not model quality.",
+  "thresholds": "none; confidences are reported, abstention policy is left to a later calibration phase",
+  "acceptance_gate": [
+    "artifact reproducible from the source checkpoint (bitwise or output-identical)",
+    "bundle tokenizer encodes identically to the training tokenizer",
+    "golden suite: PyTorch vs ONNX FP32 vs ONNX INT8 prediction parity reported; runtime output equals the PyTorch reference decode for FP32",
+    "offsets map back to the caller's original string",
+    "robustness inputs never crash",
+    "INT8 model ~28.66 MB",
+    "runtime reads only the bundle directory"
+  ]
+}

@@ -1,0 +1,6 @@
+{"id":"targeted-annotation-v1-02-b5af54b55faa","annotation_status":"complete","type":"borrow","target":{"text":"chu tiem tap hoa","start":0,"end":16}}
+{"id":"targeted-annotation-v1-02-fca3726cfeed","annotation_status":"complete","type":"income","target":{"text":"vietlott","start":6,"end":14}}
+{"id":"targeted-annotation-v1-02-2476bd44d63a","annotation_status":"complete","type":"income","target":{"text":"zalopay","start":0,"end":7}}
+{"id":"targeted-annotation-v1-02-a0d8769e6475","annotation_status":"complete","type":"expense","target":{"text":"vietlott","start":7,"end":15}}
+{"id":"targeted-annotation-v1-02-620b09d874c3","annotation_status":"complete","type":"income","target":{"text":"momo","start":22,"end":26}}
+{"id":"targeted-annotation-v1-02-7b51148566ed","annotation_status":"complete","type":"lend","target":{"text":"cau Hai","start":0,"end":7}}

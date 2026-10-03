@@ -1,0 +1,76 @@
+# Gidi annotation-v1: canonical label contract for the first supervised baseline.
+# Human-readable guide: docs/annotation-v1.md. Validator: gidi.annotation.schema.
+# Changing anything here is a new annotation version, not an edit.
+
+version: annotation-v1
+
+# Canonical transaction taxonomy. There is deliberately no "other": notes whose type cannot be
+# determined from the text get annotation_status "uncertain"; valid finance notes that are not a
+# money-movement event (e.g. debt-state notes "còn nợ Hùng 300k") get "skipped".
+types:
+  expense: Money leaves the user with no expectation of principal repayment.
+  income: >-
+    Money received as salary, freelance/client payment, gift, sale proceeds, rewards, or other
+    ordinary incoming money that is neither borrowing, debt repayment, nor refund.
+  borrow: The user receives loan principal and now owes another party.
+  lend: The user gives loan principal to another party and expects repayment.
+  # Requires evidence of a prior debt/obligation (trả nợ, trả lại, trả tiền mượn, money the user
+  # fronted); a bare "Nam trả 500k" is uncertain, "khách trả 5tr tiền web" is income.
+  repayment_in: Another party repays money they previously owed the user.
+  repayment_out: >-
+    The user repays money they previously owed another party, including payments on an existing
+    financed balance or liability (installments, BNPL, credit-card balance).
+  transfer: >-
+    Movement between the user's own accounts, wallets, cash holdings, or savings, including
+    conversion into investment/store-of-value assets the user still owns (fund certificates,
+    gold held as savings, foreign currency). No economic income or expense occurs.
+    vi-VN heuristic: precious metals/gems bought by quantity or purity (chỉ, lượng, phân, g,
+    carat, 9999, 24K) are transfer ("mua nhẫn PNJ nửa chỉ") unless the note states a use, gift,
+    ceremony, or fashion purpose, which overrides ("mua nhẫn vàng 1 chỉ tặng vợ" -> expense).
+    A returned refundable deposit is transfer ("chủ nhà trả cọc 5tr", "lấy lại tiền cọc 2tr");
+    paying a deposit is transfer only when the note establishes it stays refundable.
+  refund: >-
+    Money returned to the user as reversal, reimbursement, rebate, or spending-linked cashback of
+    an earlier expense.
+
+# Target = minimal explicit expression identifying the external financial counterparty.
+# Named merchants/services/platforms are targets when they are the counterparty ("highlands",
+# "shopee hoàn"). Items, dishes, activities and bill names are never targets ("cơm gà",
+# "đổ xăng", "tiền nhà"). Companions ("với"/"vs"/"cùng") and beneficiaries of a purchase
+# ("mua vở cho bé") are not targets; payment apps/wallets/banks used only as the channel are not
+# targets. A kinship/title prefix before a proper name is excluded (anh/chị/chi/bé/…); a kinship
+# or role noun that is the only identifier is kept (mẹ, khách, cty, chủ nhà, sếp), and so is a
+# generic business/organisation noun that is the only expression of the counterparty
+# ("nhà thuốc hoàn 120k" -> "nhà thuốc", "ngân hàng hoàn phí" -> "ngân hàng"), but not when it
+# only names an item or fee ("tiền thuốc", "phí ngân hàng" -> null). Several
+# plausible counterparties -> uncertain. The user may be the implied recipient when natural
+# ("chị Linh trả nợ 1tr" -> repayment_in), but an ambiguous direction stays uncertain.
+# The validator checks structure and span mechanics; semantic rules live in docs/annotation-v1.md.
+# Types whose target must be null: transfers move money between the user's own holdings.
+null_target_types: [transfer]
+
+statuses:
+  complete: Type (and target, or explicit null target) confidently determined from the text.
+  uncertain: The text does not establish the type or the target; never forced. Requires a note.
+  skipped: >-
+    Not a usable finance note, a valid finance note outside the transaction-event taxonomy
+    (e.g. a debt-state note with no money movement), or the annotator chose not to label it.
+    Type and target must both be null.
+
+# Only these statuses may enter the initial training split.
+trainable_statuses: [complete]
+
+# These statuses must carry a non-empty `note` explaining the ambiguity.
+note_required_statuses: [uncertain]
+
+# These statuses must have `type: null` and `target: null`.
+null_label_statuses: [skipped]
+
+queue:
+  corpus: corpus/reviewed/baseline-01.jsonl
+  out: datasets/annotation-v1/queue.jsonl
+  size: 600
+  # Records are ordered by sha256("<seed>:<id>") and the first `size` approved ones are taken.
+  seed: annotation-v1
+  # Quet review status a corpus record must have to be queued.
+  review_status: approved

@@ -1,0 +1,16 @@
+{
+  "model": "microsoft/Multilingual-MiniLM-L12-H384",
+  "best_epoch": 8,
+  "best_val_score": 0.6916535328556532,
+  "test_type_macro_f1": 0.5820498629559351,
+  "test_span_f1": 0.8080808080808081,
+  "param_count": 117510155,
+  "epochs_run": 10,
+  "steps": 630,
+  "device": "mps",
+  "wall_time_sec": 149.4080713330768,
+  "train_time_sec": 148.4143620415125,
+  "sec_per_epoch": 14.84143620415125,
+  "train_examples_per_sec": 33.756840854786475,
+  "checkpoint_path": "models/baseline-v1/multilingual-minilm-l12-h384/lr2e-05-seed1"
+}

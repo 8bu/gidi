@@ -1,0 +1,233 @@
+{
+  "experiment": "value-span-v2-direction-repair",
+  "declared_before_training": true,
+  "status": "frozen 2026-10-03, declared before training",
+  "question": "Is the value-span-v1 type regression caused by the name-first lend/borrow direction imbalance that targeted-value-01 added to training, and does restoring that balance pass the frozen regression gate while keeping value quality?",
+  "baseline_experiments": {
+    "gidi-finance-v1": "models/compression-v3/ffn/combined-K2048 seeds 1-3 (seed 1 = models/gidi-finance-v1), unchanged",
+    "value-span-v1": "experiments/value-span-v1 (verdict B; protocol sha256 a23ac226e08578380dcf2cca7a2aea4d2a5f8c1b93f880cb4af5f276f863ce28), unchanged"
+  },
+  "out_of_scope": "architecture, loss weights, seed selection, export-seed rule, tokenizer/compression/KD, numeric normalization, date-after-amount examples, any augmentation from test/probe notes, a second repair iteration",
+  "diagnosis": {
+    "evidence": "training rows only; experiments/value-span-v2-direction-repair/data-audit.{md,json} (scripts/build_direction_repair.py)",
+    "class_counts": "borrow/lend are balanced at class level in every batch (targeted-value-01: borrow 23, lend 21)",
+    "finding": "name-first direction family: v1 training rows have 22 lender-first borrow (`X cho mượn`) vs 17 borrower-first lend (`X mượn`), difference 5. targeted-value-01 adds 8 lender-first borrow and 0 borrower-first lend (its 21 lend rows are all `cho X mượn`, 8 of them minimal pairs with its `X cho mượn` rows), so the merged difference is 13",
+    "name_first_balance": {
+      "v1_rows": {
+        "lender_first_borrow": 22,
+        "borrower_first_lend": 17,
+        "difference": 5
+      },
+      "targeted_value_01": {
+        "lender_first_borrow": 8,
+        "borrower_first_lend": 0,
+        "difference": 8
+      },
+      "merged": {
+        "lender_first_borrow": 30,
+        "borrower_first_lend": 17,
+        "difference": 13
+      },
+      "repaired": {
+        "lender_first_borrow": 30,
+        "borrower_first_lend": 25,
+        "difference": 5
+      }
+    }
+  },
+  "repair": {
+    "rule": "append verbatim duplicates of existing non-targeted-value-01 training rows in family B_X_muon with type lend and a complete value label, until the name-first difference returns to its pre-targeted-value-01 value (5). N = 13 - 5 = 8. Order sha256('value-span-v2-direction-repair:<id>'), distinct value surfaces first. Labels are copied unchanged; no label created or edited; ids get suffix '#direction-repair-dup'",
+    "rows": [
+      {
+        "id": "targeted-annotation-v1-01-b32a35e194dc#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-01-b32a35e194dc",
+        "text": "Ngân mượn 300k đóng tiền điện",
+        "type": "lend",
+        "value": "300k",
+        "accented": true
+      },
+      {
+        "id": "targeted-annotation-v1-02-74c083c8a1ec#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-02-74c083c8a1ec",
+        "text": "Khoa muon tam 250k tien xang",
+        "type": "lend",
+        "value": "250k",
+        "accented": false
+      },
+      {
+        "id": "targeted-annotation-v1-01-94faabf61933#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-01-94faabf61933",
+        "text": "bạn thân hỏi mượn 3tr, đã ck",
+        "type": "lend",
+        "value": "3tr",
+        "accented": true
+      },
+      {
+        "id": "targeted-annotation-v1-01-f56bb0a25e64#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-01-f56bb0a25e64",
+        "text": "Tien hoi muon 600k da ck",
+        "type": "lend",
+        "value": "600k",
+        "accented": false
+      },
+      {
+        "id": "targeted-annotation-v1-02-7b51148566ed#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-02-7b51148566ed",
+        "text": "cau Hai vay 3 trieu, thang sau tra",
+        "type": "lend",
+        "value": "3 trieu",
+        "accented": false
+      },
+      {
+        "id": "targeted-annotation-v1-02-0088fe92eea4#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-02-0088fe92eea4",
+        "text": "Thảo vay mình 1tr5, tuần sau trả",
+        "type": "lend",
+        "value": "1tr5",
+        "accented": true
+      },
+      {
+        "id": "targeted-annotation-v1-02-38d93582ba50#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-02-38d93582ba50",
+        "text": "thg Binh vay t 2tr hen luong ve tra",
+        "type": "lend",
+        "value": "2tr",
+        "accented": false
+      },
+      {
+        "id": "targeted-annotation-v1-02-20ec75c320c8#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-02-20ec75c320c8",
+        "text": "anh Tuan muon cua t 800k",
+        "type": "lend",
+        "value": "800k",
+        "accented": false
+      }
+    ],
+    "not_changed": "validation, test and probe are byte-identical copies of training-v1"
+  },
+  "data": {
+    "dir": "datasets/annotation-v2/training-v2-direction-repair",
+    "manifest": "datasets/annotation-v2/training-v2-direction-repair/manifest.json",
+    "train": "train.jsonl: 903 rows = training-v1 train (895) + 8 duplicates; sha256 2e2d02e453e4d89a52b8ebf48b4b9761c868dea38d71ba2b80c96e390c178d7b",
+    "validation": "eef077c97a519dc532112683f3ab35daeaa6e55187c3c2fb01f53a0ee37f629c (unchanged)",
+    "test": "acaca8d767828e48954e91871886ac191a45110af695af7df7573a9c0be6f91d (unchanged)",
+    "probe": "638aeff00243f20af2dbeb2b340da0142631566057aef57d75005b75aedece87 (unchanged)",
+    "builder": "uv run python scripts/build_direction_repair.py --check"
+  },
+  "architecture": {
+    "encoder": "pretrained BamiBERT-derived 4x768 (layers 2,5,8,11), FFN 2048 (models/compression-v3/ffn/combined-K2048), 34 position rows, vocabulary B-rank-8000, max_length 32",
+    "init": "same initial_model(seed) as compression-v3 (pretrained pruned encoder, not the fine-tuned v1 checkpoint); type and target heads bit-identical to v1 for the same seed; value head (768x3, 2,307 params) from its own generator seeded 1_000_003 + seed",
+    "heads": [
+      "type classifier",
+      "target BIO",
+      "value BIO (O, B-VALUE, I-VALUE)"
+    ]
+  },
+  "training": {
+    "recipe": "compression-v3 supervised recipe unchanged: AdamW, encoder lr 5e-5, head lr 1e-3, batch 8, 40 epochs, warmup 0.1, weight decay 0.01, dropout 0.1, max grad norm 1.0",
+    "loss": "type CE + target BIO CE + value BIO CE, equal weights; each logged separately per epoch (train and validation)",
+    "kd": false,
+    "seeds": [
+      1,
+      2,
+      3
+    ],
+    "output": "models/value-span-v2-direction-repair/seed{1,2,3}",
+    "command": "uv run python scripts/train_value_student.py --train datasets/annotation-v2/training-v2-direction-repair/train.jsonl --validation datasets/annotation-v2/training-v2-direction-repair/validation.jsonl --seed 1 --seed 2 --seed 3 --out-dir models/value-span-v2-direction-repair --weights-dir models/value-span-v2-direction-repair",
+    "command_note": "--weights-dir added before any training step: the first launch without it stopped at startup because the weights dir defaults to models/value-span-v1 (FileExistsError, nothing written)"
+  },
+  "selection": {
+    "checkpoint": "last epoch; no early stopping, no checkpoint selection",
+    "hyperparameters": "none tuned; no sweep",
+    "export_seed": "seed 1 (predeclared, as in deployment-v1); test/probe never pick the seed",
+    "reported": "mean and per-seed for every metric"
+  },
+  "metrics": {
+    "type_target": [
+      "type accuracy",
+      "type macro-F1",
+      "target span F1",
+      "target exact",
+      "type+target joint"
+    ],
+    "value": [
+      "value span P/R/F1",
+      "value token F1",
+      "value exact",
+      "value present/null accuracy"
+    ],
+    "full_joint": "type correct AND target exact AND value exact",
+    "value_scoring_set": "value_status == complete records; reported on all complete labels and separately on human-provenance labels only",
+    "sets": [
+      "test (143)",
+      "test v1 subset (105)",
+      "test targeted-value-01 subset (38)",
+      "probe (81)",
+      "validation (monitoring only)"
+    ]
+  },
+  "value_slices": [
+    "explicit_unit",
+    "bare_number",
+    "multi_number",
+    "slang (xi, chai, lit, cu, ty)",
+    "unaccented",
+    "unseen exact surface span vs train",
+    "long/multi-token amounts (>2 v1 tokens or containing a space)",
+    "no_amount (null value)"
+  ],
+  "inspection": "every multi-number value error on test and probe is listed and inspected by hand in the report",
+  "regression_vs_v1": {
+    "baseline": "frozen compression-v3 seeds 1-3 (seed 1 = gidi-finance-v1), scored with the same metric code on the same records",
+    "sets": [
+      "test v1 subset (105)",
+      "probe (81)"
+    ],
+    "checks": [
+      "type accuracy",
+      "type macro-F1",
+      "target exact",
+      "type+target joint",
+      "probe lender-first X cho muon/vay slice",
+      "title/name target boundaries",
+      "insurance",
+      "loan installments"
+    ],
+    "material_regression": "mean over seeds drops by more than 2 notes on the 105-note test (type accuracy, target exact or joint: > 0.019) or more than 2 notes on probe joint (> 0.025), OR seed 1 alone drops by more than 3 notes on any of those, OR the lender-first probe slice loses more than 1 note on mean type accuracy"
+  },
+  "adoption_criteria": {
+    "value_quality": [
+      "test value exact (complete labels, mean over seeds) >= 0.95",
+      "test value exact on human-provenance labels >= 0.90",
+      "test value present/null accuracy >= 0.97",
+      "multi_number test slice value exact >= 0.90",
+      "no value slice with n >= 5 on test below 0.80 exact",
+      "seed 1 meets the same thresholds"
+    ],
+    "regression": "no material regression vs v1 (definition above)",
+    "verdict": {
+      "A": "value_quality and regression both pass: adopt gidi-finance-v2 with value-span head",
+      "B": "value_quality passes, regression fails: value-span works but type/target regressions need fixing",
+      "C": "value_quality fails: value-span quality is not sufficient yet"
+    }
+  },
+  "evaluation": {
+    "command": "uv run python scripts/compare_value_v1.py --experiment value-span-v2-direction-repair --v2-dir models/value-span-v2-direction-repair --data-dir datasets/annotation-v2/training-v2-direction-repair --protocol experiments/value-span-v2-direction-repair/protocol.json --out experiments/value-span-v2-direction-repair",
+    "gate_code": "src/gidi/evaluation/value_gate.py, unchanged from value-span-v1",
+    "also_reported": "per-note type/target changes vs value-span-v1 on test-v1 and probe; whether `ck cho Vũ mượn 700k` is fixed in all seeds; lender-first probe slice vs v1 and value-span-v1; per-gold-type accuracy changes. No subject-first-lend slice is defined in the frozen evaluation data, so none is added"
+  },
+  "verdict": {
+    "A": "value_quality and regression both pass: proceed to gidi-finance-v2 export, hardening, runtime and playground; gidi-finance-v1 unchanged",
+    "B": "value_quality passes, regression fails: stop, keep as evidence",
+    "C": "value_quality fails: stop, keep as evidence"
+  },
+  "known_limitations": [
+    "most value labels are rule-provenance accepted by stratum audit (0 errors in sampled strata); value metrics on them measure agreement with audited rule labels, so the human-only slice is reported separately",
+    "slices are small on test (xi 2, chai 3, lit 1, ty 0, bare 6); slice results are directional",
+    "test has 0 complete no_amount labels; null-value accuracy is measured on validation (2) and is not an adoption gate",
+    "2 trieu ruoi form is absent from all splits",
+    "the frozen v1 validation is in train, as in v1; only the 39 targeted-value-01 validation rows are held out",
+    "family regexes are lexical; a few rows are misfiled (e.g. self-first `mình mượn Huy` lands in B_X_muon as borrow); only B_X_muon lend rows are duplicated",
+    "duplication reweights 8 existing rows; it adds no new wording"
+  ]
+}

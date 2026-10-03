@@ -1,0 +1,16 @@
+{
+  "model": "Qualcomm-AI-Research/BamiBERT",
+  "best_epoch": 9,
+  "best_val_score": 0.874157916485703,
+  "test_type_macro_f1": 0.9356685201062795,
+  "test_span_f1": 0.9126213592233009,
+  "param_count": 102369035,
+  "epochs_run": 12,
+  "steps": 960,
+  "device": "mps",
+  "wall_time_sec": 210.65192216611467,
+  "train_time_sec": 208.3669647097122,
+  "sec_per_epoch": 17.36391372580935,
+  "train_examples_per_sec": 36.454915060947485,
+  "checkpoint_path": "models/targeted-v3/bamibert/lr5e-05-seed1"
+}

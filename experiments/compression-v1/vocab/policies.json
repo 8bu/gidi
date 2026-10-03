@@ -1,0 +1,8605 @@
+{
+ "source_tokenizer": "models/distillation-v2/supervised/student-4x768-pretrained/seed1/tokenizer.json",
+ "construction": {
+  "inputs": "BamiBERT vocab+merges (rank), token categories, 723 train notes only",
+  "mandatory": "specials + single-byte base tokens present in the vocab (215 ids; 46 byte values have no token and already map to <unk> in the baseline)",
+  "train_observed_ids": 1071,
+  "orphans_not_produced_by_a_merge": 0,
+  "orphan_handling": "none exist (every non-special, non-byte token is produced by exactly one merge); closure would drop such tokens unless a policy selected them",
+  "size_model": {
+   "baseline_params": 45666059,
+   "baseline_int8_bytes": 45856637,
+   "position_truncation_params_removed": 1548288,
+   "hidden": 768,
+   "note": "estimate = (params + measured ONNX overhead) bytes, ~1 byte/param"
+  },
+  "grid": {
+   "A-conservative": "M ∪ T ∪ closure(all Vietnamese-compatible tokens)",
+   "B-rank-N": "M ∪ T ∪ closure(Vietnamese-compatible tokens with merge rank < N)",
+   "C-aggressive": "M ∪ T ∪ closure(merge rank < 2000)",
+   "T-only": "M ∪ T (reference)"
+  }
+ },
+ "policies": {
+  "A-conservative": {
+   "spec_dir": "models/compression-v1/vocab/A-conservative",
+   "vocab_rows": 20240,
+   "removed_rows": 241,
+   "embedding_params": 15544320,
+   "total_params_vocab_only": 45480971,
+   "total_params_with_34_positions": 43932683,
+   "est_int8_mb_vocab_only": 45.671549,
+   "est_int8_mb_with_34_positions": 44.123261,
+   "kept_by_category": {
+    "ascii_letters": 9530,
+    "ascii_letters_with_punct": 1047,
+    "ascii_punct_symbols": 190,
+    "base_byte": 210,
+    "digits_numeric": 1498,
+    "other_symbols": 26,
+    "partial_byte": 79,
+    "special": 5,
+    "vietnamese_latin": 7655
+   },
+   "mandatory_kept": true,
+   "merges_kept": 20025,
+   "tokenization": {
+    "train": {
+     "notes": 723,
+     "notes_unchanged": 723,
+     "notes_unchanged_fraction": 1.0,
+     "target_spans": 395,
+     "target_spans_unchanged": 395,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "mean_extra_tokens_per_note": 0.0,
+     "mean_extra_tokens_per_changed_note": 0.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 21,
+     "changed_note_indices": [],
+     "changed_examples": []
+    },
+    "test": {
+     "notes": 105,
+     "notes_unchanged": 105,
+     "notes_unchanged_fraction": 1.0,
+     "target_spans": 51,
+     "target_spans_unchanged": 51,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "mean_extra_tokens_per_note": 0.0,
+     "mean_extra_tokens_per_changed_note": 0.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 16,
+     "changed_note_indices": [],
+     "changed_examples": []
+    },
+    "probe": {
+     "notes": 81,
+     "notes_unchanged": 81,
+     "notes_unchanged_fraction": 1.0,
+     "target_spans": 55,
+     "target_spans_unchanged": 55,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "mean_extra_tokens_per_note": 0.0,
+     "mean_extra_tokens_per_changed_note": 0.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 16,
+     "changed_note_indices": [],
+     "changed_examples": []
+    }
+   },
+   "exactness": {
+    "train_words": {
+     "words": 2082,
+     "all_pieces_kept_identical": 2082,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 0,
+     "fell_back_longer": 0,
+     "fell_back_with_extra_unk": 0
+    },
+    "test_words": {
+     "words": 688,
+     "all_pieces_kept_identical": 688,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 0,
+     "fell_back_longer": 0,
+     "fell_back_with_extra_unk": 0
+    },
+    "probe_words": {
+     "words": 532,
+     "all_pieces_kept_identical": 532,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 0,
+     "fell_back_longer": 0,
+     "fell_back_with_extra_unk": 0
+    },
+    "vocab_token_strings": {
+     "words": 20131,
+     "all_pieces_kept_identical": 20040,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 91,
+     "fell_back_longer": 91,
+     "fell_back_with_extra_unk": 0
+    }
+   },
+   "zero_training": {
+    "per_seed": {
+     "seed1": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9260079231054463,
+        "type_accuracy": 0.9238095238095239,
+        "span_f1": 0.7692307692307692,
+        "span_exact": 0.8666666666666667,
+        "joint": 0.8095238095238095,
+        "joint_accented": 0.8571428571428571,
+        "joint_unaccented": 0.7380952380952381
+       },
+       "probe": {
+        "type_macro_f1": 0.7742430305455514,
+        "type_accuracy": 0.8148148148148148,
+        "span_f1": 0.8035714285714286,
+        "span_exact": 0.8395061728395061,
+        "joint": 0.6666666666666666,
+        "joint_accented": 0.6938775510204082,
+        "joint_unaccented": 0.625
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "probe": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 105,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 81,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed2": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9357325605680868,
+        "type_accuracy": 0.9333333333333333,
+        "span_f1": 0.854368932038835,
+        "span_exact": 0.9142857142857143,
+        "joint": 0.8666666666666667,
+        "joint_accented": 0.9047619047619048,
+        "joint_unaccented": 0.8095238095238095
+       },
+       "probe": {
+        "type_macro_f1": 0.7754540366102232,
+        "type_accuracy": 0.7777777777777778,
+        "span_f1": 0.8224299065420562,
+        "span_exact": 0.8518518518518519,
+        "joint": 0.6666666666666666,
+        "joint_accented": 0.7142857142857143,
+        "joint_unaccented": 0.59375
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "probe": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 105,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 81,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed3": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9218985505750212,
+        "type_accuracy": 0.9238095238095239,
+        "span_f1": 0.8653846153846154,
+        "span_exact": 0.9142857142857143,
+        "joint": 0.8571428571428571,
+        "joint_accented": 0.873015873015873,
+        "joint_unaccented": 0.8333333333333334
+       },
+       "probe": {
+        "type_macro_f1": 0.8343240326433604,
+        "type_accuracy": 0.8395061728395061,
+        "span_f1": 0.7499999999999999,
+        "span_exact": 0.8024691358024691,
+        "joint": 0.6666666666666666,
+        "joint_accented": 0.6938775510204082,
+        "joint_unaccented": 0.625
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "probe": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 105,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 81,
+        "max_abs_diff": 0.0
+       }
+      }
+     }
+    },
+    "summary": {
+     "train": {
+      "type_macro_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "type_accuracy": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_exact": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_accented": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_unaccented": {
+       "mean": 1.0,
+       "std": 0.0
+      }
+     },
+     "test": {
+      "type_macro_f1": {
+       "mean": 0.9278796780828514,
+       "std": 0.0058007216874937486
+      },
+      "type_accuracy": {
+       "mean": 0.9269841269841269,
+       "std": 0.004489566864676477
+      },
+      "span_f1": {
+       "mean": 0.8296614388847399,
+       "std": 0.04296693066389645
+      },
+      "span_exact": {
+       "mean": 0.8984126984126984,
+       "std": 0.022447834323382435
+      },
+      "joint": {
+       "mean": 0.8444444444444444,
+       "std": 0.024996850393688284
+      },
+      "joint_accented": {
+       "mean": 0.8783068783068783,
+       "std": 0.019797129030549972
+      },
+      "joint_unaccented": {
+       "mean": 0.7936507936507936,
+       "std": 0.04046840883803797
+      }
+     },
+     "probe": {
+      "type_macro_f1": {
+       "mean": 0.7946736999330449,
+       "std": 0.02804137772353799
+      },
+      "type_accuracy": {
+       "mean": 0.8106995884773663,
+       "std": 0.02536795885995461
+      },
+      "span_f1": {
+       "mean": 0.7920004450378282,
+       "std": 0.03068048875505832
+      },
+      "span_exact": {
+       "mean": 0.831275720164609,
+       "std": 0.020983619397501162
+      },
+      "joint": {
+       "mean": 0.6666666666666666,
+       "std": 0.0
+      },
+      "joint_accented": {
+       "mean": 0.7006802721088435,
+       "std": 0.00962050042430678
+      },
+      "joint_unaccented": {
+       "mean": 0.6145833333333334,
+       "std": 0.01473139127471974
+      }
+     }
+    },
+    "changes_total_over_seeds": {
+     "train": {
+      "type_changed": 0,
+      "span_changed": 0,
+      "any_prediction_changed": 0,
+      "joint_gained": 0,
+      "joint_lost": 0
+     },
+     "test": {
+      "type_changed": 0,
+      "span_changed": 0,
+      "any_prediction_changed": 0,
+      "joint_gained": 0,
+      "joint_lost": 0
+     },
+     "probe": {
+      "type_changed": 0,
+      "span_changed": 0,
+      "any_prediction_changed": 0,
+      "joint_gained": 0,
+      "joint_lost": 0
+     }
+    },
+    "train_identical_to_unpruned": true
+   }
+  },
+  "B-rank-12000": {
+   "spec_dir": "models/compression-v1/vocab/B-rank-12000",
+   "vocab_rows": 12215,
+   "removed_rows": 8266,
+   "embedding_params": 9381120,
+   "total_params_vocab_only": 39317771,
+   "total_params_with_34_positions": 37769483,
+   "est_int8_mb_vocab_only": 39.508349,
+   "est_int8_mb_with_34_positions": 37.960061,
+   "kept_by_category": {
+    "ascii_letters": 5088,
+    "ascii_letters_with_punct": 509,
+    "ascii_punct_symbols": 126,
+    "base_byte": 210,
+    "digits_numeric": 815,
+    "other_symbols": 17,
+    "partial_byte": 71,
+    "special": 5,
+    "vietnamese_latin": 5374
+   },
+   "mandatory_kept": true,
+   "merges_kept": 12000,
+   "tokenization": {
+    "train": {
+     "notes": 723,
+     "notes_unchanged": 723,
+     "notes_unchanged_fraction": 1.0,
+     "target_spans": 395,
+     "target_spans_unchanged": 395,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "mean_extra_tokens_per_note": 0.0,
+     "mean_extra_tokens_per_changed_note": 0.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 21,
+     "changed_note_indices": [],
+     "changed_examples": []
+    },
+    "test": {
+     "notes": 105,
+     "notes_unchanged": 102,
+     "notes_unchanged_fraction": 0.9714285714285714,
+     "target_spans": 51,
+     "target_spans_unchanged": 50,
+     "target_spans_unchanged_fraction": 0.9803921568627451,
+     "mean_token_count_ratio": 1.0027898027898028,
+     "mean_extra_tokens_per_note": 0.02857142857142857,
+     "mean_extra_tokens_per_changed_note": 1.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 16,
+     "changed_note_indices": [
+      24,
+      62,
+      99
+     ],
+     "changed_examples": [
+      {
+       "text": "hủ tiếu tối qua 35k",
+       "orig": [
+        "<s>",
+        "h",
+        "ủ",
+        " tiếu",
+        " tối",
+        " qua",
+        " 35",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "h",
+        "ủ",
+        " tiế",
+        "u",
+        " tối",
+        " qua",
+        " 35",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "coopmart đồ dùng tuần 412k",
+       "orig": [
+        "<s>",
+        "co",
+        "op",
+        "mart",
+        " đồ",
+        " dùng",
+        " tuần",
+        " 4",
+        "12",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "co",
+        "op",
+        "m",
+        "art",
+        " đồ",
+        " dùng",
+        " tuần",
+        " 4",
+        "12",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "bao hiem tra tien kham 850k",
+       "orig": [
+        "<s>",
+        "bao",
+        " hi",
+        "em",
+        " tra",
+        " t",
+        "ien",
+        " kham",
+        " 850",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "bao",
+        " hi",
+        "em",
+        " tra",
+        " t",
+        "ien",
+        " kham",
+        " 8",
+        "50",
+        "k",
+        "</s>"
+       ]
+      }
+     ]
+    },
+    "probe": {
+     "notes": 81,
+     "notes_unchanged": 78,
+     "notes_unchanged_fraction": 0.9629629629629629,
+     "target_spans": 55,
+     "target_spans_unchanged": 53,
+     "target_spans_unchanged_fraction": 0.9636363636363636,
+     "mean_token_count_ratio": 1.0030329752551974,
+     "mean_extra_tokens_per_note": 0.037037037037037035,
+     "mean_extra_tokens_per_changed_note": 1.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 16,
+     "changed_note_indices": [
+      41,
+      47,
+      68
+     ],
+     "changed_examples": [
+      {
+       "text": "đóng phí bảo hiểm prudential 2tr",
+       "orig": [
+        "<s>",
+        "đ",
+        "óng",
+        " phí",
+        " bảo",
+        " hiểm",
+        " pr",
+        "ud",
+        "ential",
+        " 2",
+        "tr",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "đ",
+        "óng",
+        " phí",
+        " bảo",
+        " hiểm",
+        " pr",
+        "ud",
+        "ent",
+        "ial",
+        " 2",
+        "tr",
+        "</s>"
+       ]
+      },
+      {
+       "text": "prudential chi trả tiền mổ 12tr",
+       "orig": [
+        "<s>",
+        "pr",
+        "ud",
+        "ential",
+        " chi",
+        " trả",
+        " tiền",
+        " mổ",
+        " 12",
+        "tr",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "pr",
+        "ud",
+        "ent",
+        "ial",
+        " chi",
+        " trả",
+        " tiền",
+        " mổ",
+        " 12",
+        "tr",
+        "</s>"
+       ]
+      },
+      {
+       "text": "khoan vay online tamo dong ky 2 900k",
+       "orig": [
+        "<s>",
+        "kho",
+        "an",
+        " vay",
+        " online",
+        " tam",
+        "o",
+        " dong",
+        " k",
+        "y",
+        " 2",
+        " 900",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "k",
+        "ho",
+        "an",
+        " vay",
+        " online",
+        " tam",
+        "o",
+        " dong",
+        " k",
+        "y",
+        " 2",
+        " 900",
+        "k",
+        "</s>"
+       ]
+      }
+     ]
+    }
+   },
+   "exactness": {
+    "train_words": {
+     "words": 2082,
+     "all_pieces_kept_identical": 1987,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 95,
+     "fell_back_longer": 94,
+     "fell_back_with_extra_unk": 0
+    },
+    "test_words": {
+     "words": 688,
+     "all_pieces_kept_identical": 668,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 20,
+     "fell_back_longer": 20,
+     "fell_back_with_extra_unk": 0
+    },
+    "probe_words": {
+     "words": 532,
+     "all_pieces_kept_identical": 510,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 22,
+     "fell_back_longer": 22,
+     "fell_back_with_extra_unk": 0
+    },
+    "vocab_token_strings": {
+     "words": 20131,
+     "all_pieces_kept_identical": 12024,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 8107,
+     "fell_back_longer": 8107,
+     "fell_back_with_extra_unk": 0
+    }
+   },
+   "zero_training": {
+    "per_seed": {
+     "seed1": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9260079231054463,
+        "type_accuracy": 0.9238095238095239,
+        "span_f1": 0.7884615384615384,
+        "span_exact": 0.8761904761904762,
+        "joint": 0.8095238095238095,
+        "joint_accented": 0.8571428571428571,
+        "joint_unaccented": 0.7380952380952381
+       },
+       "probe": {
+        "type_macro_f1": 0.7742430305455514,
+        "type_accuracy": 0.8148148148148148,
+        "span_f1": 0.8108108108108109,
+        "span_exact": 0.8395061728395061,
+        "joint": 0.6666666666666666,
+        "joint_accented": 0.6938775510204082,
+        "joint_unaccented": 0.625
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 0,
+        "span_changed": 1,
+        "any_prediction_changed": 1,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "probe": {
+        "type_changed": 0,
+        "span_changed": 2,
+        "any_prediction_changed": 2,
+        "joint_gained": 0,
+        "joint_lost": 0
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 102,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 78,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed2": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9357325605680868,
+        "type_accuracy": 0.9333333333333333,
+        "span_f1": 0.854368932038835,
+        "span_exact": 0.9142857142857143,
+        "joint": 0.8666666666666667,
+        "joint_accented": 0.9047619047619048,
+        "joint_unaccented": 0.8095238095238095
+       },
+       "probe": {
+        "type_macro_f1": 0.7754540366102232,
+        "type_accuracy": 0.7777777777777778,
+        "span_f1": 0.819047619047619,
+        "span_exact": 0.8395061728395061,
+        "joint": 0.654320987654321,
+        "joint_accented": 0.6938775510204082,
+        "joint_unaccented": 0.59375
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "probe": {
+        "type_changed": 0,
+        "span_changed": 3,
+        "any_prediction_changed": 3,
+        "joint_gained": 0,
+        "joint_lost": 1
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 102,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 78,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed3": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.928876815365786,
+        "type_accuracy": 0.9333333333333333,
+        "span_f1": 0.8653846153846154,
+        "span_exact": 0.9142857142857143,
+        "joint": 0.8666666666666667,
+        "joint_accented": 0.8888888888888888,
+        "joint_unaccented": 0.8333333333333334
+       },
+       "probe": {
+        "type_macro_f1": 0.8479303947284242,
+        "type_accuracy": 0.8518518518518519,
+        "span_f1": 0.7454545454545455,
+        "span_exact": 0.7901234567901234,
+        "joint": 0.654320987654321,
+        "joint_accented": 0.673469387755102,
+        "joint_unaccented": 0.625
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 1,
+        "span_changed": 0,
+        "any_prediction_changed": 1,
+        "joint_gained": 1,
+        "joint_lost": 0
+       },
+       "probe": {
+        "type_changed": 1,
+        "span_changed": 3,
+        "any_prediction_changed": 3,
+        "joint_gained": 0,
+        "joint_lost": 1
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 102,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 78,
+        "max_abs_diff": 0.0
+       }
+      }
+     }
+    },
+    "summary": {
+     "train": {
+      "type_macro_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "type_accuracy": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_exact": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_accented": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_unaccented": {
+       "mean": 1.0,
+       "std": 0.0
+      }
+     },
+     "test": {
+      "type_macro_f1": {
+       "mean": 0.9302057663464397,
+       "std": 0.004079765228268507
+      },
+      "type_accuracy": {
+       "mean": 0.9301587301587301,
+       "std": 0.004489566864676477
+      },
+      "span_f1": {
+       "mean": 0.8360716952949963,
+       "std": 0.033964506917010355
+      },
+      "span_exact": {
+       "mean": 0.9015873015873016,
+       "std": 0.01795826745870596
+      },
+      "joint": {
+       "mean": 0.8476190476190476,
+       "std": 0.026937401188058964
+      },
+      "joint_accented": {
+       "mean": 0.8835978835978836,
+       "std": 0.019797129030549972
+      },
+      "joint_unaccented": {
+       "mean": 0.7936507936507936,
+       "std": 0.04046840883803797
+      }
+     },
+     "probe": {
+      "type_macro_f1": {
+       "mean": 0.7992091539613996,
+       "std": 0.034454666934306155
+      },
+      "type_accuracy": {
+       "mean": 0.8148148148148149,
+       "std": 0.030240614108434295
+      },
+      "span_f1": {
+       "mean": 0.7917709917709917,
+       "std": 0.032922850747575276
+      },
+      "span_exact": {
+       "mean": 0.8230452674897119,
+       "std": 0.023279235594618846
+      },
+      "joint": {
+       "mean": 0.6584362139917695,
+       "std": 0.0058198088986546855
+      },
+      "joint_accented": {
+       "mean": 0.6870748299319728,
+       "std": 0.00962050042430678
+      },
+      "joint_unaccented": {
+       "mean": 0.6145833333333334,
+       "std": 0.01473139127471974
+      }
+     }
+    },
+    "changes_total_over_seeds": {
+     "train": {
+      "type_changed": 0,
+      "span_changed": 0,
+      "any_prediction_changed": 0,
+      "joint_gained": 0,
+      "joint_lost": 0
+     },
+     "test": {
+      "type_changed": 1,
+      "span_changed": 1,
+      "any_prediction_changed": 2,
+      "joint_gained": 1,
+      "joint_lost": 0
+     },
+     "probe": {
+      "type_changed": 1,
+      "span_changed": 8,
+      "any_prediction_changed": 8,
+      "joint_gained": 0,
+      "joint_lost": 2
+     }
+    },
+    "train_identical_to_unpruned": true
+   }
+  },
+  "B-rank-10000": {
+   "spec_dir": "models/compression-v1/vocab/B-rank-10000",
+   "vocab_rows": 10279,
+   "removed_rows": 10202,
+   "embedding_params": 7894272,
+   "total_params_vocab_only": 37830923,
+   "total_params_with_34_positions": 36282635,
+   "est_int8_mb_vocab_only": 38.021501,
+   "est_int8_mb_with_34_positions": 36.473213,
+   "kept_by_category": {
+    "ascii_letters": 4068,
+    "ascii_letters_with_punct": 390,
+    "ascii_punct_symbols": 114,
+    "base_byte": 210,
+    "digits_numeric": 688,
+    "other_symbols": 16,
+    "partial_byte": 69,
+    "special": 5,
+    "vietnamese_latin": 4719
+   },
+   "mandatory_kept": true,
+   "merges_kept": 10064,
+   "tokenization": {
+    "train": {
+     "notes": 723,
+     "notes_unchanged": 723,
+     "notes_unchanged_fraction": 1.0,
+     "target_spans": 395,
+     "target_spans_unchanged": 395,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "mean_extra_tokens_per_note": 0.0,
+     "mean_extra_tokens_per_changed_note": 0.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 21,
+     "changed_note_indices": [],
+     "changed_examples": []
+    },
+    "test": {
+     "notes": 105,
+     "notes_unchanged": 100,
+     "notes_unchanged_fraction": 0.9523809523809523,
+     "target_spans": 51,
+     "target_spans_unchanged": 50,
+     "target_spans_unchanged_fraction": 0.9803921568627451,
+     "mean_token_count_ratio": 1.0046945646945646,
+     "mean_extra_tokens_per_note": 0.047619047619047616,
+     "mean_extra_tokens_per_changed_note": 1.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 16,
+     "changed_note_indices": [
+      24,
+      62,
+      76,
+      88,
+      99
+     ],
+     "changed_examples": [
+      {
+       "text": "hủ tiếu tối qua 35k",
+       "orig": [
+        "<s>",
+        "h",
+        "ủ",
+        " tiếu",
+        " tối",
+        " qua",
+        " 35",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "h",
+        "ủ",
+        " tiế",
+        "u",
+        " tối",
+        " qua",
+        " 35",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "coopmart đồ dùng tuần 412k",
+       "orig": [
+        "<s>",
+        "co",
+        "op",
+        "mart",
+        " đồ",
+        " dùng",
+        " tuần",
+        " 4",
+        "12",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "co",
+        "op",
+        "m",
+        "art",
+        " đồ",
+        " dùng",
+        " tuần",
+        " 4",
+        "12",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "grabfood bún đậu 72k",
+       "orig": [
+        "<s>",
+        "gr",
+        "ab",
+        "f",
+        "ood",
+        " bún",
+        " đậu",
+        " 72",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "gr",
+        "ab",
+        "f",
+        "ood",
+        " bú",
+        "n",
+        " đậu",
+        " 72",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "cashback thẻ vib 230k",
+       "orig": [
+        "<s>",
+        "c",
+        "ash",
+        "back",
+        " thẻ",
+        " vi",
+        "b",
+        " 230",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "c",
+        "ash",
+        "back",
+        " thẻ",
+        " vi",
+        "b",
+        " 2",
+        "30",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "bao hiem tra tien kham 850k",
+       "orig": [
+        "<s>",
+        "bao",
+        " hi",
+        "em",
+        " tra",
+        " t",
+        "ien",
+        " kham",
+        " 850",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "bao",
+        " hi",
+        "em",
+        " tra",
+        " t",
+        "ien",
+        " kham",
+        " 8",
+        "50",
+        "k",
+        "</s>"
+       ]
+      }
+     ]
+    },
+    "probe": {
+     "notes": 81,
+     "notes_unchanged": 78,
+     "notes_unchanged_fraction": 0.9629629629629629,
+     "target_spans": 55,
+     "target_spans_unchanged": 53,
+     "target_spans_unchanged_fraction": 0.9636363636363636,
+     "mean_token_count_ratio": 1.0030329752551974,
+     "mean_extra_tokens_per_note": 0.037037037037037035,
+     "mean_extra_tokens_per_changed_note": 1.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 16,
+     "changed_note_indices": [
+      41,
+      47,
+      68
+     ],
+     "changed_examples": [
+      {
+       "text": "đóng phí bảo hiểm prudential 2tr",
+       "orig": [
+        "<s>",
+        "đ",
+        "óng",
+        " phí",
+        " bảo",
+        " hiểm",
+        " pr",
+        "ud",
+        "ential",
+        " 2",
+        "tr",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "đ",
+        "óng",
+        " phí",
+        " bảo",
+        " hiểm",
+        " pr",
+        "ud",
+        "ent",
+        "ial",
+        " 2",
+        "tr",
+        "</s>"
+       ]
+      },
+      {
+       "text": "prudential chi trả tiền mổ 12tr",
+       "orig": [
+        "<s>",
+        "pr",
+        "ud",
+        "ential",
+        " chi",
+        " trả",
+        " tiền",
+        " mổ",
+        " 12",
+        "tr",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "pr",
+        "ud",
+        "ent",
+        "ial",
+        " chi",
+        " trả",
+        " tiền",
+        " mổ",
+        " 12",
+        "tr",
+        "</s>"
+       ]
+      },
+      {
+       "text": "khoan vay online tamo dong ky 2 900k",
+       "orig": [
+        "<s>",
+        "kho",
+        "an",
+        " vay",
+        " online",
+        " tam",
+        "o",
+        " dong",
+        " k",
+        "y",
+        " 2",
+        " 900",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "k",
+        "ho",
+        "an",
+        " vay",
+        " online",
+        " tam",
+        "o",
+        " dong",
+        " k",
+        "y",
+        " 2",
+        " 900",
+        "k",
+        "</s>"
+       ]
+      }
+     ]
+    }
+   },
+   "exactness": {
+    "train_words": {
+     "words": 2082,
+     "all_pieces_kept_identical": 1966,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 116,
+     "fell_back_longer": 115,
+     "fell_back_with_extra_unk": 0
+    },
+    "test_words": {
+     "words": 688,
+     "all_pieces_kept_identical": 655,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 33,
+     "fell_back_longer": 33,
+     "fell_back_with_extra_unk": 0
+    },
+    "probe_words": {
+     "words": 532,
+     "all_pieces_kept_identical": 508,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 24,
+     "fell_back_longer": 24,
+     "fell_back_with_extra_unk": 0
+    },
+    "vocab_token_strings": {
+     "words": 20131,
+     "all_pieces_kept_identical": 10090,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 10041,
+     "fell_back_longer": 10041,
+     "fell_back_with_extra_unk": 0
+    }
+   },
+   "zero_training": {
+    "per_seed": {
+     "seed1": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9260079231054463,
+        "type_accuracy": 0.9238095238095239,
+        "span_f1": 0.7884615384615384,
+        "span_exact": 0.8761904761904762,
+        "joint": 0.8095238095238095,
+        "joint_accented": 0.8571428571428571,
+        "joint_unaccented": 0.7380952380952381
+       },
+       "probe": {
+        "type_macro_f1": 0.7742430305455514,
+        "type_accuracy": 0.8148148148148148,
+        "span_f1": 0.8108108108108109,
+        "span_exact": 0.8395061728395061,
+        "joint": 0.6666666666666666,
+        "joint_accented": 0.6938775510204082,
+        "joint_unaccented": 0.625
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 0,
+        "span_changed": 1,
+        "any_prediction_changed": 1,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "probe": {
+        "type_changed": 0,
+        "span_changed": 2,
+        "any_prediction_changed": 2,
+        "joint_gained": 0,
+        "joint_lost": 0
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 100,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 78,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed2": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9357325605680868,
+        "type_accuracy": 0.9333333333333333,
+        "span_f1": 0.854368932038835,
+        "span_exact": 0.9142857142857143,
+        "joint": 0.8666666666666667,
+        "joint_accented": 0.9047619047619048,
+        "joint_unaccented": 0.8095238095238095
+       },
+       "probe": {
+        "type_macro_f1": 0.7754540366102232,
+        "type_accuracy": 0.7777777777777778,
+        "span_f1": 0.819047619047619,
+        "span_exact": 0.8395061728395061,
+        "joint": 0.654320987654321,
+        "joint_accented": 0.6938775510204082,
+        "joint_unaccented": 0.59375
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "probe": {
+        "type_changed": 0,
+        "span_changed": 3,
+        "any_prediction_changed": 3,
+        "joint_gained": 0,
+        "joint_lost": 1
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 100,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 78,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed3": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.928876815365786,
+        "type_accuracy": 0.9333333333333333,
+        "span_f1": 0.8653846153846154,
+        "span_exact": 0.9142857142857143,
+        "joint": 0.8666666666666667,
+        "joint_accented": 0.8888888888888888,
+        "joint_unaccented": 0.8333333333333334
+       },
+       "probe": {
+        "type_macro_f1": 0.8479303947284242,
+        "type_accuracy": 0.8518518518518519,
+        "span_f1": 0.7454545454545455,
+        "span_exact": 0.7901234567901234,
+        "joint": 0.654320987654321,
+        "joint_accented": 0.673469387755102,
+        "joint_unaccented": 0.625
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 1,
+        "span_changed": 0,
+        "any_prediction_changed": 1,
+        "joint_gained": 1,
+        "joint_lost": 0
+       },
+       "probe": {
+        "type_changed": 1,
+        "span_changed": 3,
+        "any_prediction_changed": 3,
+        "joint_gained": 0,
+        "joint_lost": 1
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 100,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 78,
+        "max_abs_diff": 0.0
+       }
+      }
+     }
+    },
+    "summary": {
+     "train": {
+      "type_macro_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "type_accuracy": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_exact": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_accented": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_unaccented": {
+       "mean": 1.0,
+       "std": 0.0
+      }
+     },
+     "test": {
+      "type_macro_f1": {
+       "mean": 0.9302057663464397,
+       "std": 0.004079765228268507
+      },
+      "type_accuracy": {
+       "mean": 0.9301587301587301,
+       "std": 0.004489566864676477
+      },
+      "span_f1": {
+       "mean": 0.8360716952949963,
+       "std": 0.033964506917010355
+      },
+      "span_exact": {
+       "mean": 0.9015873015873016,
+       "std": 0.01795826745870596
+      },
+      "joint": {
+       "mean": 0.8476190476190476,
+       "std": 0.026937401188058964
+      },
+      "joint_accented": {
+       "mean": 0.8835978835978836,
+       "std": 0.019797129030549972
+      },
+      "joint_unaccented": {
+       "mean": 0.7936507936507936,
+       "std": 0.04046840883803797
+      }
+     },
+     "probe": {
+      "type_macro_f1": {
+       "mean": 0.7992091539613996,
+       "std": 0.034454666934306155
+      },
+      "type_accuracy": {
+       "mean": 0.8148148148148149,
+       "std": 0.030240614108434295
+      },
+      "span_f1": {
+       "mean": 0.7917709917709917,
+       "std": 0.032922850747575276
+      },
+      "span_exact": {
+       "mean": 0.8230452674897119,
+       "std": 0.023279235594618846
+      },
+      "joint": {
+       "mean": 0.6584362139917695,
+       "std": 0.0058198088986546855
+      },
+      "joint_accented": {
+       "mean": 0.6870748299319728,
+       "std": 0.00962050042430678
+      },
+      "joint_unaccented": {
+       "mean": 0.6145833333333334,
+       "std": 0.01473139127471974
+      }
+     }
+    },
+    "changes_total_over_seeds": {
+     "train": {
+      "type_changed": 0,
+      "span_changed": 0,
+      "any_prediction_changed": 0,
+      "joint_gained": 0,
+      "joint_lost": 0
+     },
+     "test": {
+      "type_changed": 1,
+      "span_changed": 1,
+      "any_prediction_changed": 2,
+      "joint_gained": 1,
+      "joint_lost": 0
+     },
+     "probe": {
+      "type_changed": 1,
+      "span_changed": 8,
+      "any_prediction_changed": 8,
+      "joint_gained": 0,
+      "joint_lost": 2
+     }
+    },
+    "train_identical_to_unpruned": true
+   }
+  },
+  "B-rank-8000": {
+   "spec_dir": "models/compression-v1/vocab/B-rank-8000",
+   "vocab_rows": 8338,
+   "removed_rows": 12143,
+   "embedding_params": 6403584,
+   "total_params_vocab_only": 36340235,
+   "total_params_with_34_positions": 34791947,
+   "est_int8_mb_vocab_only": 36.530813,
+   "est_int8_mb_with_34_positions": 34.982525,
+   "kept_by_category": {
+    "ascii_letters": 3069,
+    "ascii_letters_with_punct": 297,
+    "ascii_punct_symbols": 100,
+    "base_byte": 210,
+    "digits_numeric": 553,
+    "other_symbols": 14,
+    "partial_byte": 67,
+    "special": 5,
+    "vietnamese_latin": 4023
+   },
+   "mandatory_kept": true,
+   "merges_kept": 8123,
+   "tokenization": {
+    "train": {
+     "notes": 723,
+     "notes_unchanged": 723,
+     "notes_unchanged_fraction": 1.0,
+     "target_spans": 395,
+     "target_spans_unchanged": 395,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "mean_extra_tokens_per_note": 0.0,
+     "mean_extra_tokens_per_changed_note": 0.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 21,
+     "changed_note_indices": [],
+     "changed_examples": []
+    },
+    "test": {
+     "notes": 105,
+     "notes_unchanged": 100,
+     "notes_unchanged_fraction": 0.9523809523809523,
+     "target_spans": 51,
+     "target_spans_unchanged": 50,
+     "target_spans_unchanged_fraction": 0.9803921568627451,
+     "mean_token_count_ratio": 1.0046945646945646,
+     "mean_extra_tokens_per_note": 0.047619047619047616,
+     "mean_extra_tokens_per_changed_note": 1.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 16,
+     "changed_note_indices": [
+      24,
+      62,
+      76,
+      88,
+      99
+     ],
+     "changed_examples": [
+      {
+       "text": "hủ tiếu tối qua 35k",
+       "orig": [
+        "<s>",
+        "h",
+        "ủ",
+        " tiếu",
+        " tối",
+        " qua",
+        " 35",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "h",
+        "ủ",
+        " tiế",
+        "u",
+        " tối",
+        " qua",
+        " 35",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "coopmart đồ dùng tuần 412k",
+       "orig": [
+        "<s>",
+        "co",
+        "op",
+        "mart",
+        " đồ",
+        " dùng",
+        " tuần",
+        " 4",
+        "12",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "co",
+        "op",
+        "m",
+        "art",
+        " đồ",
+        " dùng",
+        " tuần",
+        " 4",
+        "12",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "grabfood bún đậu 72k",
+       "orig": [
+        "<s>",
+        "gr",
+        "ab",
+        "f",
+        "ood",
+        " bún",
+        " đậu",
+        " 72",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "gr",
+        "ab",
+        "f",
+        "ood",
+        " bú",
+        "n",
+        " đậu",
+        " 72",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "cashback thẻ vib 230k",
+       "orig": [
+        "<s>",
+        "c",
+        "ash",
+        "back",
+        " thẻ",
+        " vi",
+        "b",
+        " 230",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "c",
+        "ash",
+        "back",
+        " thẻ",
+        " vi",
+        "b",
+        " 2",
+        "30",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "bao hiem tra tien kham 850k",
+       "orig": [
+        "<s>",
+        "bao",
+        " hi",
+        "em",
+        " tra",
+        " t",
+        "ien",
+        " kham",
+        " 850",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "bao",
+        " hi",
+        "em",
+        " tra",
+        " t",
+        "ien",
+        " kham",
+        " 8",
+        "50",
+        "k",
+        "</s>"
+       ]
+      }
+     ]
+    },
+    "probe": {
+     "notes": 81,
+     "notes_unchanged": 77,
+     "notes_unchanged_fraction": 0.9506172839506173,
+     "target_spans": 55,
+     "target_spans_unchanged": 53,
+     "target_spans_unchanged_fraction": 0.9636363636363636,
+     "mean_token_count_ratio": 1.005277644166533,
+     "mean_extra_tokens_per_note": 0.06172839506172839,
+     "mean_extra_tokens_per_changed_note": 1.25,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 16,
+     "changed_note_indices": [
+      41,
+      47,
+      68,
+      78
+     ],
+     "changed_examples": [
+      {
+       "text": "đóng phí bảo hiểm prudential 2tr",
+       "orig": [
+        "<s>",
+        "đ",
+        "óng",
+        " phí",
+        " bảo",
+        " hiểm",
+        " pr",
+        "ud",
+        "ential",
+        " 2",
+        "tr",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "đ",
+        "óng",
+        " phí",
+        " bảo",
+        " hiểm",
+        " pr",
+        "ud",
+        "ent",
+        "ial",
+        " 2",
+        "tr",
+        "</s>"
+       ]
+      },
+      {
+       "text": "prudential chi trả tiền mổ 12tr",
+       "orig": [
+        "<s>",
+        "pr",
+        "ud",
+        "ential",
+        " chi",
+        " trả",
+        " tiền",
+        " mổ",
+        " 12",
+        "tr",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "p",
+        "r",
+        "ud",
+        "ent",
+        "ial",
+        " chi",
+        " trả",
+        " tiền",
+        " mổ",
+        " 12",
+        "tr",
+        "</s>"
+       ]
+      },
+      {
+       "text": "khoan vay online tamo dong ky 2 900k",
+       "orig": [
+        "<s>",
+        "kho",
+        "an",
+        " vay",
+        " online",
+        " tam",
+        "o",
+        " dong",
+        " k",
+        "y",
+        " 2",
+        " 900",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "k",
+        "ho",
+        "an",
+        " vay",
+        " online",
+        " tam",
+        "o",
+        " dong",
+        " k",
+        "y",
+        " 2",
+        " 900",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "co Nhung cho vay 20tr mo tiem",
+       "orig": [
+        "<s>",
+        "co",
+        " Nhung",
+        " cho",
+        " vay",
+        " 20",
+        "tr",
+        " mo",
+        " ti",
+        "em",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "co",
+        " Nhung",
+        " cho",
+        " vay",
+        " 20",
+        "tr",
+        " m",
+        "o",
+        " ti",
+        "em",
+        "</s>"
+       ]
+      }
+     ]
+    }
+   },
+   "exactness": {
+    "train_words": {
+     "words": 2082,
+     "all_pieces_kept_identical": 1939,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 143,
+     "fell_back_longer": 141,
+     "fell_back_with_extra_unk": 0
+    },
+    "test_words": {
+     "words": 688,
+     "all_pieces_kept_identical": 649,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 39,
+     "fell_back_longer": 39,
+     "fell_back_with_extra_unk": 0
+    },
+    "probe_words": {
+     "words": 532,
+     "all_pieces_kept_identical": 502,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 30,
+     "fell_back_longer": 30,
+     "fell_back_with_extra_unk": 0
+    },
+    "vocab_token_strings": {
+     "words": 20131,
+     "all_pieces_kept_identical": 8151,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 11980,
+     "fell_back_longer": 11980,
+     "fell_back_with_extra_unk": 0
+    }
+   },
+   "zero_training": {
+    "per_seed": {
+     "seed1": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9260079231054463,
+        "type_accuracy": 0.9238095238095239,
+        "span_f1": 0.7884615384615384,
+        "span_exact": 0.8761904761904762,
+        "joint": 0.8095238095238095,
+        "joint_accented": 0.8571428571428571,
+        "joint_unaccented": 0.7380952380952381
+       },
+       "probe": {
+        "type_macro_f1": 0.8083233293317326,
+        "type_accuracy": 0.8271604938271605,
+        "span_f1": 0.7927927927927927,
+        "span_exact": 0.8271604938271605,
+        "joint": 0.6666666666666666,
+        "joint_accented": 0.6938775510204082,
+        "joint_unaccented": 0.625
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 0,
+        "span_changed": 1,
+        "any_prediction_changed": 1,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "probe": {
+        "type_changed": 1,
+        "span_changed": 3,
+        "any_prediction_changed": 3,
+        "joint_gained": 0,
+        "joint_lost": 0
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 100,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 77,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed2": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9357325605680868,
+        "type_accuracy": 0.9333333333333333,
+        "span_f1": 0.854368932038835,
+        "span_exact": 0.9142857142857143,
+        "joint": 0.8666666666666667,
+        "joint_accented": 0.9047619047619048,
+        "joint_unaccented": 0.8095238095238095
+       },
+       "probe": {
+        "type_macro_f1": 0.7754540366102232,
+        "type_accuracy": 0.7777777777777778,
+        "span_f1": 0.819047619047619,
+        "span_exact": 0.8395061728395061,
+        "joint": 0.654320987654321,
+        "joint_accented": 0.6938775510204082,
+        "joint_unaccented": 0.59375
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "probe": {
+        "type_changed": 0,
+        "span_changed": 3,
+        "any_prediction_changed": 3,
+        "joint_gained": 0,
+        "joint_lost": 1
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 100,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 77,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed3": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.928876815365786,
+        "type_accuracy": 0.9333333333333333,
+        "span_f1": 0.8653846153846154,
+        "span_exact": 0.9142857142857143,
+        "joint": 0.8666666666666667,
+        "joint_accented": 0.8888888888888888,
+        "joint_unaccented": 0.8333333333333334
+       },
+       "probe": {
+        "type_macro_f1": 0.8479303947284242,
+        "type_accuracy": 0.8518518518518519,
+        "span_f1": 0.7454545454545455,
+        "span_exact": 0.7901234567901234,
+        "joint": 0.654320987654321,
+        "joint_accented": 0.673469387755102,
+        "joint_unaccented": 0.625
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 1,
+        "span_changed": 0,
+        "any_prediction_changed": 1,
+        "joint_gained": 1,
+        "joint_lost": 0
+       },
+       "probe": {
+        "type_changed": 1,
+        "span_changed": 3,
+        "any_prediction_changed": 3,
+        "joint_gained": 0,
+        "joint_lost": 1
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 100,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 77,
+        "max_abs_diff": 0.0
+       }
+      }
+     }
+    },
+    "summary": {
+     "train": {
+      "type_macro_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "type_accuracy": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_exact": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_accented": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_unaccented": {
+       "mean": 1.0,
+       "std": 0.0
+      }
+     },
+     "test": {
+      "type_macro_f1": {
+       "mean": 0.9302057663464397,
+       "std": 0.004079765228268507
+      },
+      "type_accuracy": {
+       "mean": 0.9301587301587301,
+       "std": 0.004489566864676477
+      },
+      "span_f1": {
+       "mean": 0.8360716952949963,
+       "std": 0.033964506917010355
+      },
+      "span_exact": {
+       "mean": 0.9015873015873016,
+       "std": 0.01795826745870596
+      },
+      "joint": {
+       "mean": 0.8476190476190476,
+       "std": 0.026937401188058964
+      },
+      "joint_accented": {
+       "mean": 0.8835978835978836,
+       "std": 0.019797129030549972
+      },
+      "joint_unaccented": {
+       "mean": 0.7936507936507936,
+       "std": 0.04046840883803797
+      }
+     },
+     "probe": {
+      "type_macro_f1": {
+       "mean": 0.8105692535567933,
+       "std": 0.02963093825984331
+      },
+      "type_accuracy": {
+       "mean": 0.8189300411522634,
+       "std": 0.03079553404752215
+      },
+      "span_f1": {
+       "mean": 0.7857649857649857,
+       "std": 0.03045245117593387
+      },
+      "span_exact": {
+       "mean": 0.8189300411522633,
+       "std": 0.02098361939750118
+      },
+      "joint": {
+       "mean": 0.6584362139917695,
+       "std": 0.0058198088986546855
+      },
+      "joint_accented": {
+       "mean": 0.6870748299319728,
+       "std": 0.00962050042430678
+      },
+      "joint_unaccented": {
+       "mean": 0.6145833333333334,
+       "std": 0.01473139127471974
+      }
+     }
+    },
+    "changes_total_over_seeds": {
+     "train": {
+      "type_changed": 0,
+      "span_changed": 0,
+      "any_prediction_changed": 0,
+      "joint_gained": 0,
+      "joint_lost": 0
+     },
+     "test": {
+      "type_changed": 1,
+      "span_changed": 1,
+      "any_prediction_changed": 2,
+      "joint_gained": 1,
+      "joint_lost": 0
+     },
+     "probe": {
+      "type_changed": 2,
+      "span_changed": 9,
+      "any_prediction_changed": 9,
+      "joint_gained": 0,
+      "joint_lost": 2
+     }
+    },
+    "train_identical_to_unpruned": true
+   }
+  },
+  "B-rank-6000": {
+   "spec_dir": "models/compression-v1/vocab/B-rank-6000",
+   "vocab_rows": 6428,
+   "removed_rows": 14053,
+   "embedding_params": 4936704,
+   "total_params_vocab_only": 34873355,
+   "total_params_with_34_positions": 33325067,
+   "est_int8_mb_vocab_only": 35.063933,
+   "est_int8_mb_with_34_positions": 33.515645,
+   "kept_by_category": {
+    "ascii_letters": 2149,
+    "ascii_letters_with_punct": 192,
+    "ascii_punct_symbols": 81,
+    "base_byte": 210,
+    "digits_numeric": 450,
+    "other_symbols": 9,
+    "partial_byte": 66,
+    "special": 5,
+    "vietnamese_latin": 3266
+   },
+   "mandatory_kept": true,
+   "merges_kept": 6213,
+   "tokenization": {
+    "train": {
+     "notes": 723,
+     "notes_unchanged": 723,
+     "notes_unchanged_fraction": 1.0,
+     "target_spans": 395,
+     "target_spans_unchanged": 395,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "mean_extra_tokens_per_note": 0.0,
+     "mean_extra_tokens_per_changed_note": 0.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 21,
+     "changed_note_indices": [],
+     "changed_examples": []
+    },
+    "test": {
+     "notes": 105,
+     "notes_unchanged": 95,
+     "notes_unchanged_fraction": 0.9047619047619048,
+     "target_spans": 51,
+     "target_spans_unchanged": 48,
+     "target_spans_unchanged_fraction": 0.9411764705882353,
+     "mean_token_count_ratio": 1.0094949494949494,
+     "mean_extra_tokens_per_note": 0.09523809523809523,
+     "mean_extra_tokens_per_changed_note": 1.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 16,
+     "changed_note_indices": [
+      3,
+      24,
+      30,
+      42,
+      62,
+      68,
+      76,
+      88,
+      99,
+      101
+     ],
+     "changed_examples": [
+      {
+       "text": "trà đá vỉa hè 10k",
+       "orig": [
+        "<s>",
+        "tr",
+        "à",
+        " đá",
+        " vỉa",
+        " hè",
+        " 10",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "tr",
+        "à",
+        " đá",
+        " vỉ",
+        "a",
+        " hè",
+        " 10",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "hủ tiếu tối qua 35k",
+       "orig": [
+        "<s>",
+        "h",
+        "ủ",
+        " tiếu",
+        " tối",
+        " qua",
+        " 35",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "h",
+        "ủ",
+        " tiế",
+        "u",
+        " tối",
+        " qua",
+        " 35",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "qua sinh nhat chi Ha 350k",
+       "orig": [
+        "<s>",
+        "qua",
+        " sinh",
+        " nh",
+        "at",
+        " chi",
+        " Ha",
+        " 350",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "qua",
+        " sinh",
+        " nh",
+        "at",
+        " chi",
+        " H",
+        "a",
+        " 350",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "tien chay grab hom nay 450k",
+       "orig": [
+        "<s>",
+        "t",
+        "ien",
+        " chay",
+        " gr",
+        "ab",
+        " hom",
+        " nay",
+        " 450",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "t",
+        "ien",
+        " ch",
+        "ay",
+        " gr",
+        "ab",
+        " hom",
+        " nay",
+        " 450",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "coopmart đồ dùng tuần 412k",
+       "orig": [
+        "<s>",
+        "co",
+        "op",
+        "mart",
+        " đồ",
+        " dùng",
+        " tuần",
+        " 4",
+        "12",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "co",
+        "op",
+        "m",
+        "art",
+        " đồ",
+        " dùng",
+        " tuần",
+        " 4",
+        "12",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "nhan tien day kem 2tr4",
+       "orig": [
+        "<s>",
+        "nh",
+        "an",
+        " t",
+        "ien",
+        " day",
+        " kem",
+        " 2",
+        "tr",
+        "4",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "nh",
+        "an",
+        " t",
+        "ien",
+        " d",
+        "ay",
+        " kem",
+        " 2",
+        "tr",
+        "4",
+        "</s>"
+       ]
+      },
+      {
+       "text": "grabfood bún đậu 72k",
+       "orig": [
+        "<s>",
+        "gr",
+        "ab",
+        "f",
+        "ood",
+        " bún",
+        " đậu",
+        " 72",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "gr",
+        "ab",
+        "f",
+        "ood",
+        " bú",
+        "n",
+        " đậu",
+        " 72",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "cashback thẻ vib 230k",
+       "orig": [
+        "<s>",
+        "c",
+        "ash",
+        "back",
+        " thẻ",
+        " vi",
+        "b",
+        " 230",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "c",
+        "ash",
+        "back",
+        " thẻ",
+        " vi",
+        "b",
+        " 2",
+        "30",
+        "k",
+        "</s>"
+       ]
+      }
+     ]
+    },
+    "probe": {
+     "notes": 81,
+     "notes_unchanged": 73,
+     "notes_unchanged_fraction": 0.9012345679012346,
+     "target_spans": 55,
+     "target_spans_unchanged": 51,
+     "target_spans_unchanged_fraction": 0.9272727272727272,
+     "mean_token_count_ratio": 1.0111839292394849,
+     "mean_extra_tokens_per_note": 0.12345679012345678,
+     "mean_extra_tokens_per_changed_note": 1.25,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 17,
+     "changed_note_indices": [
+      18,
+      36,
+      41,
+      47,
+      61,
+      67,
+      68,
+      78
+     ],
+     "changed_examples": [
+      {
+       "text": "mẹ gửi 500k tiêu vặt",
+       "orig": [
+        "<s>",
+        "mẹ",
+        " gửi",
+        " 500",
+        "k",
+        " tiêu",
+        " vặt",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "mẹ",
+        " gửi",
+        " 500",
+        "k",
+        " tiêu",
+        " v",
+        "ặt",
+        "</s>"
+       ]
+      },
+      {
+       "text": "đóng bảo hiểm xe máy 66k",
+       "orig": [
+        "<s>",
+        "đ",
+        "óng",
+        " bảo",
+        " hiểm",
+        " xe",
+        " máy",
+        " 66",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "đ",
+        "óng",
+        " bảo",
+        " hiểm",
+        " xe",
+        " máy",
+        " 6",
+        "6",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "đóng phí bảo hiểm prudential 2tr",
+       "orig": [
+        "<s>",
+        "đ",
+        "óng",
+        " phí",
+        " bảo",
+        " hiểm",
+        " pr",
+        "ud",
+        "ential",
+        " 2",
+        "tr",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "đ",
+        "óng",
+        " phí",
+        " bảo",
+        " hiểm",
+        " pr",
+        "ud",
+        "ent",
+        "ial",
+        " 2",
+        "tr",
+        "</s>"
+       ]
+      },
+      {
+       "text": "prudential chi trả tiền mổ 12tr",
+       "orig": [
+        "<s>",
+        "pr",
+        "ud",
+        "ential",
+        " chi",
+        " trả",
+        " tiền",
+        " mổ",
+        " 12",
+        "tr",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "p",
+        "r",
+        "ud",
+        "ent",
+        "ial",
+        " chi",
+        " trả",
+        " tiền",
+        " mổ",
+        " 12",
+        "tr",
+        "</s>"
+       ]
+      },
+      {
+       "text": "minigame shopee trúng 100k",
+       "orig": [
+        "<s>",
+        "min",
+        "ig",
+        "ame",
+        " shop",
+        "ee",
+        " trúng",
+        " 100",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "m",
+        "in",
+        "ig",
+        "ame",
+        " shop",
+        "ee",
+        " trúng",
+        " 100",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "vay mua nhà techcombank trả kỳ tháng 12 9tr5",
+       "orig": [
+        "<s>",
+        "v",
+        "ay",
+        " mua",
+        " nhà",
+        " t",
+        "ech",
+        "combank",
+        " trả",
+        " kỳ",
+        " tháng",
+        " 12",
+        " 9",
+        "tr",
+        "5",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "v",
+        "ay",
+        " mua",
+        " nhà",
+        " t",
+        "ech",
+        "com",
+        "bank",
+        " trả",
+        " kỳ",
+        " tháng",
+        " 12",
+        " 9",
+        "tr",
+        "5",
+        "</s>"
+       ]
+      },
+      {
+       "text": "khoan vay online tamo dong ky 2 900k",
+       "orig": [
+        "<s>",
+        "kho",
+        "an",
+        " vay",
+        " online",
+        " tam",
+        "o",
+        " dong",
+        " k",
+        "y",
+        " 2",
+        " 900",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "k",
+        "ho",
+        "an",
+        " vay",
+        " online",
+        " tam",
+        "o",
+        " dong",
+        " k",
+        "y",
+        " 2",
+        " 900",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "co Nhung cho vay 20tr mo tiem",
+       "orig": [
+        "<s>",
+        "co",
+        " Nhung",
+        " cho",
+        " vay",
+        " 20",
+        "tr",
+        " mo",
+        " ti",
+        "em",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "co",
+        " Nh",
+        "ung",
+        " cho",
+        " vay",
+        " 20",
+        "tr",
+        " m",
+        "o",
+        " ti",
+        "em",
+        "</s>"
+       ]
+      }
+     ]
+    }
+   },
+   "exactness": {
+    "train_words": {
+     "words": 2082,
+     "all_pieces_kept_identical": 1899,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 183,
+     "fell_back_longer": 181,
+     "fell_back_with_extra_unk": 0
+    },
+    "test_words": {
+     "words": 688,
+     "all_pieces_kept_identical": 628,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 60,
+     "fell_back_longer": 60,
+     "fell_back_with_extra_unk": 0
+    },
+    "probe_words": {
+     "words": 532,
+     "all_pieces_kept_identical": 485,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 47,
+     "fell_back_longer": 47,
+     "fell_back_with_extra_unk": 0
+    },
+    "vocab_token_strings": {
+     "words": 20131,
+     "all_pieces_kept_identical": 6242,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 13889,
+     "fell_back_longer": 13889,
+     "fell_back_with_extra_unk": 0
+    }
+   },
+   "zero_training": {
+    "per_seed": {
+     "seed1": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.92194298926547,
+        "type_accuracy": 0.9238095238095239,
+        "span_f1": 0.7884615384615384,
+        "span_exact": 0.8761904761904762,
+        "joint": 0.8095238095238095,
+        "joint_accented": 0.8571428571428571,
+        "joint_unaccented": 0.7380952380952381
+       },
+       "probe": {
+        "type_macro_f1": 0.7845138055222088,
+        "type_accuracy": 0.8271604938271605,
+        "span_f1": 0.7927927927927927,
+        "span_exact": 0.8271604938271605,
+        "joint": 0.6666666666666666,
+        "joint_accented": 0.7142857142857143,
+        "joint_unaccented": 0.59375
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 1,
+        "span_changed": 2,
+        "any_prediction_changed": 3,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "probe": {
+        "type_changed": 2,
+        "span_changed": 5,
+        "any_prediction_changed": 6,
+        "joint_gained": 1,
+        "joint_lost": 1
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 95,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 73,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed2": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9357325605680868,
+        "type_accuracy": 0.9333333333333333,
+        "span_f1": 0.8235294117647058,
+        "span_exact": 0.8952380952380953,
+        "joint": 0.8476190476190476,
+        "joint_accented": 0.8888888888888888,
+        "joint_unaccented": 0.7857142857142857
+       },
+       "probe": {
+        "type_macro_f1": 0.7516445128006994,
+        "type_accuracy": 0.7777777777777778,
+        "span_f1": 0.819047619047619,
+        "span_exact": 0.8395061728395061,
+        "joint": 0.654320987654321,
+        "joint_accented": 0.7142857142857143,
+        "joint_unaccented": 0.5625
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 0,
+        "span_changed": 2,
+        "any_prediction_changed": 2,
+        "joint_gained": 0,
+        "joint_lost": 2
+       },
+       "probe": {
+        "type_changed": 1,
+        "span_changed": 5,
+        "any_prediction_changed": 6,
+        "joint_gained": 1,
+        "joint_lost": 2
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 95,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 73,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed3": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9248889811970308,
+        "type_accuracy": 0.9333333333333333,
+        "span_f1": 0.838095238095238,
+        "span_exact": 0.9047619047619048,
+        "joint": 0.8571428571428571,
+        "joint_accented": 0.8888888888888888,
+        "joint_unaccented": 0.8095238095238095
+       },
+       "probe": {
+        "type_macro_f1": 0.8157538877620014,
+        "type_accuracy": 0.8395061728395061,
+        "span_f1": 0.7454545454545455,
+        "span_exact": 0.7901234567901234,
+        "joint": 0.6419753086419753,
+        "joint_accented": 0.673469387755102,
+        "joint_unaccented": 0.59375
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 2,
+        "span_changed": 2,
+        "any_prediction_changed": 3,
+        "joint_gained": 1,
+        "joint_lost": 1
+       },
+       "probe": {
+        "type_changed": 3,
+        "span_changed": 5,
+        "any_prediction_changed": 6,
+        "joint_gained": 0,
+        "joint_lost": 2
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 95,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 73,
+        "max_abs_diff": 0.0
+       }
+      }
+     }
+    },
+    "summary": {
+     "train": {
+      "type_macro_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "type_accuracy": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_exact": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_accented": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_unaccented": {
+       "mean": 1.0,
+       "std": 0.0
+      }
+     },
+     "test": {
+      "type_macro_f1": {
+       "mean": 0.9275215103435293,
+       "std": 0.005929346588951219
+      },
+      "type_accuracy": {
+       "mean": 0.9301587301587301,
+       "std": 0.004489566864676477
+      },
+      "span_f1": {
+       "mean": 0.8166953961071607,
+       "std": 0.020831128347383644
+      },
+      "span_exact": {
+       "mean": 0.8920634920634921,
+       "std": 0.01187827741832998
+      },
+      "joint": {
+       "mean": 0.8380952380952381,
+       "std": 0.020573779994945567
+      },
+      "joint_accented": {
+       "mean": 0.8783068783068783,
+       "std": 0.014965222882254972
+      },
+      "joint_unaccented": {
+       "mean": 0.7777777777777778,
+       "std": 0.029695693545824915
+      }
+     },
+     "probe": {
+      "type_macro_f1": {
+       "mean": 0.7839707353616365,
+       "std": 0.02617535970312132
+      },
+      "type_accuracy": {
+       "mean": 0.8148148148148149,
+       "std": 0.02666971480826278
+      },
+      "span_f1": {
+       "mean": 0.7857649857649857,
+       "std": 0.03045245117593387
+      },
+      "span_exact": {
+       "mean": 0.8189300411522633,
+       "std": 0.02098361939750118
+      },
+      "joint": {
+       "mean": 0.6543209876543209,
+       "std": 0.010080204702811431
+      },
+      "joint_accented": {
+       "mean": 0.7006802721088435,
+       "std": 0.01924100084861356
+      },
+      "joint_unaccented": {
+       "mean": 0.5833333333333334,
+       "std": 0.01473139127471974
+      }
+     }
+    },
+    "changes_total_over_seeds": {
+     "train": {
+      "type_changed": 0,
+      "span_changed": 0,
+      "any_prediction_changed": 0,
+      "joint_gained": 0,
+      "joint_lost": 0
+     },
+     "test": {
+      "type_changed": 3,
+      "span_changed": 6,
+      "any_prediction_changed": 8,
+      "joint_gained": 1,
+      "joint_lost": 3
+     },
+     "probe": {
+      "type_changed": 6,
+      "span_changed": 15,
+      "any_prediction_changed": 18,
+      "joint_gained": 2,
+      "joint_lost": 5
+     }
+    },
+    "train_identical_to_unpruned": true
+   }
+  },
+  "B-rank-4000": {
+   "spec_dir": "models/compression-v1/vocab/B-rank-4000",
+   "vocab_rows": 4565,
+   "removed_rows": 15916,
+   "embedding_params": 3505920,
+   "total_params_vocab_only": 33442571,
+   "total_params_with_34_positions": 31894283,
+   "est_int8_mb_vocab_only": 33.633149,
+   "est_int8_mb_with_34_positions": 32.084861,
+   "kept_by_category": {
+    "ascii_letters": 1374,
+    "ascii_letters_with_punct": 103,
+    "ascii_punct_symbols": 57,
+    "base_byte": 210,
+    "digits_numeric": 308,
+    "other_symbols": 4,
+    "partial_byte": 59,
+    "special": 5,
+    "vietnamese_latin": 2445
+   },
+   "mandatory_kept": true,
+   "merges_kept": 4350,
+   "tokenization": {
+    "train": {
+     "notes": 723,
+     "notes_unchanged": 723,
+     "notes_unchanged_fraction": 1.0,
+     "target_spans": 395,
+     "target_spans_unchanged": 395,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "mean_extra_tokens_per_note": 0.0,
+     "mean_extra_tokens_per_changed_note": 0.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 21,
+     "changed_note_indices": [],
+     "changed_examples": []
+    },
+    "test": {
+     "notes": 105,
+     "notes_unchanged": 92,
+     "notes_unchanged_fraction": 0.8761904761904762,
+     "target_spans": 51,
+     "target_spans_unchanged": 47,
+     "target_spans_unchanged_fraction": 0.9215686274509803,
+     "mean_token_count_ratio": 1.0129650243935957,
+     "mean_extra_tokens_per_note": 0.13333333333333333,
+     "mean_extra_tokens_per_changed_note": 1.0769230769230769,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 16,
+     "changed_note_indices": [
+      3,
+      24,
+      30,
+      42,
+      62,
+      68,
+      70,
+      74,
+      76,
+      88,
+      99,
+      101,
+      103
+     ],
+     "changed_examples": [
+      {
+       "text": "trà đá vỉa hè 10k",
+       "orig": [
+        "<s>",
+        "tr",
+        "à",
+        " đá",
+        " vỉa",
+        " hè",
+        " 10",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "tr",
+        "à",
+        " đá",
+        " v\\xe1\\xbb",
+        "\\x89",
+        "a",
+        " hè",
+        " 10",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "hủ tiếu tối qua 35k",
+       "orig": [
+        "<s>",
+        "h",
+        "ủ",
+        " tiếu",
+        " tối",
+        " qua",
+        " 35",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "h",
+        "ủ",
+        " tiế",
+        "u",
+        " tối",
+        " qua",
+        " 35",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "qua sinh nhat chi Ha 350k",
+       "orig": [
+        "<s>",
+        "qua",
+        " sinh",
+        " nh",
+        "at",
+        " chi",
+        " Ha",
+        " 350",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "qua",
+        " sinh",
+        " nh",
+        "at",
+        " chi",
+        " H",
+        "a",
+        " 350",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "tien chay grab hom nay 450k",
+       "orig": [
+        "<s>",
+        "t",
+        "ien",
+        " chay",
+        " gr",
+        "ab",
+        " hom",
+        " nay",
+        " 450",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "t",
+        "ien",
+        " ch",
+        "ay",
+        " gr",
+        "ab",
+        " hom",
+        " nay",
+        " 450",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "coopmart đồ dùng tuần 412k",
+       "orig": [
+        "<s>",
+        "co",
+        "op",
+        "mart",
+        " đồ",
+        " dùng",
+        " tuần",
+        " 4",
+        "12",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "co",
+        "op",
+        "m",
+        "art",
+        " đồ",
+        " dùng",
+        " tuần",
+        " 4",
+        "12",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "nhan tien day kem 2tr4",
+       "orig": [
+        "<s>",
+        "nh",
+        "an",
+        " t",
+        "ien",
+        " day",
+        " kem",
+        " 2",
+        "tr",
+        "4",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "nh",
+        "an",
+        " t",
+        "ien",
+        " d",
+        "ay",
+        " kem",
+        " 2",
+        "tr",
+        "4",
+        "</s>"
+       ]
+      },
+      {
+       "text": "starbucks 1 ly 89,000",
+       "orig": [
+        "<s>",
+        "st",
+        "arb",
+        "uck",
+        "s",
+        " 1",
+        " ly",
+        " 89",
+        ",",
+        "000",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "st",
+        "arb",
+        "uc",
+        "k",
+        "s",
+        " 1",
+        " ly",
+        " 89",
+        ",",
+        "000",
+        "</s>"
+       ]
+      },
+      {
+       "text": "thưởng kpi quý 3 3tr2",
+       "orig": [
+        "<s>",
+        "th",
+        "ưởng",
+        " k",
+        "pi",
+        " quý",
+        " 3",
+        " 3",
+        "tr",
+        "2",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "th",
+        "ưởng",
+        " k",
+        "p",
+        "i",
+        " quý",
+        " 3",
+        " 3",
+        "tr",
+        "2",
+        "</s>"
+       ]
+      }
+     ]
+    },
+    "probe": {
+     "notes": 81,
+     "notes_unchanged": 73,
+     "notes_unchanged_fraction": 0.9012345679012346,
+     "target_spans": 55,
+     "target_spans_unchanged": 51,
+     "target_spans_unchanged_fraction": 0.9272727272727272,
+     "mean_token_count_ratio": 1.0111839292394849,
+     "mean_extra_tokens_per_note": 0.12345679012345678,
+     "mean_extra_tokens_per_changed_note": 1.25,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 17,
+     "changed_note_indices": [
+      18,
+      36,
+      41,
+      47,
+      61,
+      67,
+      68,
+      78
+     ],
+     "changed_examples": [
+      {
+       "text": "mẹ gửi 500k tiêu vặt",
+       "orig": [
+        "<s>",
+        "mẹ",
+        " gửi",
+        " 500",
+        "k",
+        " tiêu",
+        " vặt",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "mẹ",
+        " gửi",
+        " 500",
+        "k",
+        " tiêu",
+        " v",
+        "ặt",
+        "</s>"
+       ]
+      },
+      {
+       "text": "đóng bảo hiểm xe máy 66k",
+       "orig": [
+        "<s>",
+        "đ",
+        "óng",
+        " bảo",
+        " hiểm",
+        " xe",
+        " máy",
+        " 66",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "đ",
+        "óng",
+        " bảo",
+        " hiểm",
+        " xe",
+        " máy",
+        " 6",
+        "6",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "đóng phí bảo hiểm prudential 2tr",
+       "orig": [
+        "<s>",
+        "đ",
+        "óng",
+        " phí",
+        " bảo",
+        " hiểm",
+        " pr",
+        "ud",
+        "ential",
+        " 2",
+        "tr",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "đ",
+        "óng",
+        " phí",
+        " bảo",
+        " hiểm",
+        " pr",
+        "ud",
+        "ent",
+        "ial",
+        " 2",
+        "tr",
+        "</s>"
+       ]
+      },
+      {
+       "text": "prudential chi trả tiền mổ 12tr",
+       "orig": [
+        "<s>",
+        "pr",
+        "ud",
+        "ential",
+        " chi",
+        " trả",
+        " tiền",
+        " mổ",
+        " 12",
+        "tr",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "p",
+        "r",
+        "ud",
+        "ent",
+        "ial",
+        " chi",
+        " trả",
+        " tiền",
+        " mổ",
+        " 12",
+        "tr",
+        "</s>"
+       ]
+      },
+      {
+       "text": "minigame shopee trúng 100k",
+       "orig": [
+        "<s>",
+        "min",
+        "ig",
+        "ame",
+        " shop",
+        "ee",
+        " trúng",
+        " 100",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "m",
+        "in",
+        "ig",
+        "ame",
+        " shop",
+        "ee",
+        " trúng",
+        " 100",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "vay mua nhà techcombank trả kỳ tháng 12 9tr5",
+       "orig": [
+        "<s>",
+        "v",
+        "ay",
+        " mua",
+        " nhà",
+        " t",
+        "ech",
+        "combank",
+        " trả",
+        " kỳ",
+        " tháng",
+        " 12",
+        " 9",
+        "tr",
+        "5",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "v",
+        "ay",
+        " mua",
+        " nhà",
+        " t",
+        "ech",
+        "com",
+        "bank",
+        " trả",
+        " kỳ",
+        " tháng",
+        " 12",
+        " 9",
+        "tr",
+        "5",
+        "</s>"
+       ]
+      },
+      {
+       "text": "khoan vay online tamo dong ky 2 900k",
+       "orig": [
+        "<s>",
+        "kho",
+        "an",
+        " vay",
+        " online",
+        " tam",
+        "o",
+        " dong",
+        " k",
+        "y",
+        " 2",
+        " 900",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "k",
+        "ho",
+        "an",
+        " vay",
+        " online",
+        " tam",
+        "o",
+        " dong",
+        " k",
+        "y",
+        " 2",
+        " 900",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "co Nhung cho vay 20tr mo tiem",
+       "orig": [
+        "<s>",
+        "co",
+        " Nhung",
+        " cho",
+        " vay",
+        " 20",
+        "tr",
+        " mo",
+        " ti",
+        "em",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "co",
+        " Nh",
+        "ung",
+        " cho",
+        " vay",
+        " 20",
+        "tr",
+        " m",
+        "o",
+        " ti",
+        "em",
+        "</s>"
+       ]
+      }
+     ]
+    }
+   },
+   "exactness": {
+    "train_words": {
+     "words": 2082,
+     "all_pieces_kept_identical": 1851,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 231,
+     "fell_back_longer": 228,
+     "fell_back_with_extra_unk": 0
+    },
+    "test_words": {
+     "words": 688,
+     "all_pieces_kept_identical": 604,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 84,
+     "fell_back_longer": 83,
+     "fell_back_with_extra_unk": 0
+    },
+    "probe_words": {
+     "words": 532,
+     "all_pieces_kept_identical": 474,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 58,
+     "fell_back_longer": 58,
+     "fell_back_with_extra_unk": 0
+    },
+    "vocab_token_strings": {
+     "words": 20131,
+     "all_pieces_kept_identical": 4386,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 15745,
+     "fell_back_longer": 15745,
+     "fell_back_with_extra_unk": 0
+    }
+   },
+   "zero_training": {
+    "per_seed": {
+     "seed1": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.92194298926547,
+        "type_accuracy": 0.9238095238095239,
+        "span_f1": 0.780952380952381,
+        "span_exact": 0.8666666666666667,
+        "joint": 0.8,
+        "joint_accented": 0.8412698412698413,
+        "joint_unaccented": 0.7380952380952381
+       },
+       "probe": {
+        "type_macro_f1": 0.7845138055222088,
+        "type_accuracy": 0.8271604938271605,
+        "span_f1": 0.7927927927927927,
+        "span_exact": 0.8271604938271605,
+        "joint": 0.6666666666666666,
+        "joint_accented": 0.7142857142857143,
+        "joint_unaccented": 0.59375
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 1,
+        "span_changed": 4,
+        "any_prediction_changed": 5,
+        "joint_gained": 0,
+        "joint_lost": 1
+       },
+       "probe": {
+        "type_changed": 2,
+        "span_changed": 5,
+        "any_prediction_changed": 6,
+        "joint_gained": 1,
+        "joint_lost": 1
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 92,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 73,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed2": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9357325605680868,
+        "type_accuracy": 0.9333333333333333,
+        "span_f1": 0.8155339805825242,
+        "span_exact": 0.8857142857142857,
+        "joint": 0.8380952380952381,
+        "joint_accented": 0.873015873015873,
+        "joint_unaccented": 0.7857142857142857
+       },
+       "probe": {
+        "type_macro_f1": 0.7516445128006994,
+        "type_accuracy": 0.7777777777777778,
+        "span_f1": 0.819047619047619,
+        "span_exact": 0.8395061728395061,
+        "joint": 0.654320987654321,
+        "joint_accented": 0.7142857142857143,
+        "joint_unaccented": 0.5625
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 0,
+        "span_changed": 4,
+        "any_prediction_changed": 4,
+        "joint_gained": 0,
+        "joint_lost": 3
+       },
+       "probe": {
+        "type_changed": 1,
+        "span_changed": 5,
+        "any_prediction_changed": 6,
+        "joint_gained": 1,
+        "joint_lost": 2
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 92,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 73,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed3": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9248889811970308,
+        "type_accuracy": 0.9333333333333333,
+        "span_f1": 0.8113207547169811,
+        "span_exact": 0.8857142857142857,
+        "joint": 0.8380952380952381,
+        "joint_accented": 0.873015873015873,
+        "joint_unaccented": 0.7857142857142857
+       },
+       "probe": {
+        "type_macro_f1": 0.8157538877620014,
+        "type_accuracy": 0.8395061728395061,
+        "span_f1": 0.7454545454545455,
+        "span_exact": 0.7901234567901234,
+        "joint": 0.6419753086419753,
+        "joint_accented": 0.673469387755102,
+        "joint_unaccented": 0.59375
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 2,
+        "span_changed": 4,
+        "any_prediction_changed": 5,
+        "joint_gained": 1,
+        "joint_lost": 3
+       },
+       "probe": {
+        "type_changed": 3,
+        "span_changed": 5,
+        "any_prediction_changed": 6,
+        "joint_gained": 0,
+        "joint_lost": 2
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 92,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 73,
+        "max_abs_diff": 0.0
+       }
+      }
+     }
+    },
+    "summary": {
+     "train": {
+      "type_macro_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "type_accuracy": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_exact": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_accented": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_unaccented": {
+       "mean": 1.0,
+       "std": 0.0
+      }
+     },
+     "test": {
+      "type_macro_f1": {
+       "mean": 0.9275215103435293,
+       "std": 0.005929346588951219
+      },
+      "type_accuracy": {
+       "mean": 0.9301587301587301,
+       "std": 0.004489566864676477
+      },
+      "span_f1": {
+       "mean": 0.8026023720839621,
+       "std": 0.015405181055880233
+      },
+      "span_exact": {
+       "mean": 0.8793650793650793,
+       "std": 0.008979133729352953
+      },
+      "joint": {
+       "mean": 0.8253968253968255,
+       "std": 0.01795826745870596
+      },
+      "joint_accented": {
+       "mean": 0.8624338624338624,
+       "std": 0.014965222882254972
+      },
+      "joint_unaccented": {
+       "mean": 0.7698412698412698,
+       "std": 0.022447834323382435
+      }
+     },
+     "probe": {
+      "type_macro_f1": {
+       "mean": 0.7839707353616365,
+       "std": 0.02617535970312132
+      },
+      "type_accuracy": {
+       "mean": 0.8148148148148149,
+       "std": 0.02666971480826278
+      },
+      "span_f1": {
+       "mean": 0.7857649857649857,
+       "std": 0.03045245117593387
+      },
+      "span_exact": {
+       "mean": 0.8189300411522633,
+       "std": 0.02098361939750118
+      },
+      "joint": {
+       "mean": 0.6543209876543209,
+       "std": 0.010080204702811431
+      },
+      "joint_accented": {
+       "mean": 0.7006802721088435,
+       "std": 0.01924100084861356
+      },
+      "joint_unaccented": {
+       "mean": 0.5833333333333334,
+       "std": 0.01473139127471974
+      }
+     }
+    },
+    "changes_total_over_seeds": {
+     "train": {
+      "type_changed": 0,
+      "span_changed": 0,
+      "any_prediction_changed": 0,
+      "joint_gained": 0,
+      "joint_lost": 0
+     },
+     "test": {
+      "type_changed": 3,
+      "span_changed": 12,
+      "any_prediction_changed": 14,
+      "joint_gained": 1,
+      "joint_lost": 7
+     },
+     "probe": {
+      "type_changed": 6,
+      "span_changed": 15,
+      "any_prediction_changed": 18,
+      "joint_gained": 2,
+      "joint_lost": 5
+     }
+    },
+    "train_identical_to_unpruned": true
+   }
+  },
+  "C-aggressive": {
+   "spec_dir": "models/compression-v1/vocab/C-aggressive",
+   "vocab_rows": 2774,
+   "removed_rows": 17707,
+   "embedding_params": 2130432,
+   "total_params_vocab_only": 32067083,
+   "total_params_with_34_positions": 30518795,
+   "est_int8_mb_vocab_only": 32.257661,
+   "est_int8_mb_with_34_positions": 30.709373,
+   "kept_by_category": {
+    "ascii_letters": 780,
+    "ascii_letters_with_punct": 19,
+    "ascii_punct_symbols": 40,
+    "base_byte": 210,
+    "digits_numeric": 185,
+    "other_symbols": 6,
+    "partial_byte": 44,
+    "special": 5,
+    "vietnamese_latin": 1485
+   },
+   "mandatory_kept": true,
+   "merges_kept": 2559,
+   "tokenization": {
+    "train": {
+     "notes": 723,
+     "notes_unchanged": 723,
+     "notes_unchanged_fraction": 1.0,
+     "target_spans": 395,
+     "target_spans_unchanged": 395,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "mean_extra_tokens_per_note": 0.0,
+     "mean_extra_tokens_per_changed_note": 0.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 21,
+     "changed_note_indices": [],
+     "changed_examples": []
+    },
+    "test": {
+     "notes": 105,
+     "notes_unchanged": 83,
+     "notes_unchanged_fraction": 0.7904761904761904,
+     "target_spans": 51,
+     "target_spans_unchanged": 43,
+     "target_spans_unchanged_fraction": 0.8431372549019608,
+     "mean_token_count_ratio": 1.0238532631389774,
+     "mean_extra_tokens_per_note": 0.2571428571428571,
+     "mean_extra_tokens_per_changed_note": 1.2272727272727273,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 18,
+     "changed_note_indices": [
+      3,
+      5,
+      10,
+      16,
+      24,
+      28,
+      30,
+      36,
+      42,
+      59,
+      62,
+      68,
+      70,
+      74,
+      76,
+      85,
+      87,
+      88,
+      97,
+      99,
+      101,
+      103
+     ],
+     "changed_examples": [
+      {
+       "text": "trà đá vỉa hè 10k",
+       "orig": [
+        "<s>",
+        "tr",
+        "à",
+        " đá",
+        " vỉa",
+        " hè",
+        " 10",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "tr",
+        "à",
+        " đá",
+        " v\\xe1\\xbb",
+        "\\x89",
+        "a",
+        " h",
+        "è",
+        " 10",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "mua giay the thao 1tr25",
+       "orig": [
+        "<s>",
+        "mua",
+        " gi",
+        "ay",
+        " the",
+        " thao",
+        " 1",
+        "tr",
+        "25",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "mua",
+        " gi",
+        "ay",
+        " the",
+        " thao",
+        " 1",
+        "tr",
+        "2",
+        "5",
+        "</s>"
+       ]
+      },
+      {
+       "text": "mua vàng nhẫn pnj nửa chỉ 3tr95",
+       "orig": [
+        "<s>",
+        "mua",
+        " vàng",
+        " nhẫn",
+        " p",
+        "n",
+        "j",
+        " nửa",
+        " chỉ",
+        " 3",
+        "tr",
+        "95",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "mua",
+        " vàng",
+        " nhẫn",
+        " p",
+        "n",
+        "j",
+        " nửa",
+        " chỉ",
+        " 3",
+        "tr",
+        "9",
+        "5",
+        "</s>"
+       ]
+      },
+      {
+       "text": "cho bạn Kiên mượn 1tr2 ck vcb",
+       "orig": [
+        "<s>",
+        "cho",
+        " bạn",
+        " Kiên",
+        " mượn",
+        " 1",
+        "tr",
+        "2",
+        " c",
+        "k",
+        " v",
+        "c",
+        "b",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "cho",
+        " bạn",
+        " K",
+        "iên",
+        " mượn",
+        " 1",
+        "tr",
+        "2",
+        " c",
+        "k",
+        " v",
+        "c",
+        "b",
+        "</s>"
+       ]
+      },
+      {
+       "text": "hủ tiếu tối qua 35k",
+       "orig": [
+        "<s>",
+        "h",
+        "ủ",
+        " tiếu",
+        " tối",
+        " qua",
+        " 35",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "h",
+        "ủ",
+        " tiế",
+        "u",
+        " tối",
+        " qua",
+        " 35",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "hạt cho chó 420.000đ",
+       "orig": [
+        "<s>",
+        "h",
+        "ạt",
+        " cho",
+        " chó",
+        " 420",
+        ".",
+        "000đ",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "h",
+        "ạt",
+        " cho",
+        " ch",
+        "ó",
+        " 420",
+        ".",
+        "000đ",
+        "</s>"
+       ]
+      },
+      {
+       "text": "qua sinh nhat chi Ha 350k",
+       "orig": [
+        "<s>",
+        "qua",
+        " sinh",
+        " nh",
+        "at",
+        " chi",
+        " Ha",
+        " 350",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "qua",
+        " sinh",
+        " nh",
+        "at",
+        " chi",
+        " H",
+        "a",
+        " 350",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "mua giày ở shopee 649k",
+       "orig": [
+        "<s>",
+        "mua",
+        " giày",
+        " ở",
+        " shop",
+        "ee",
+        " 6",
+        "49",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "mua",
+        " giày",
+        " ở",
+        " shop",
+        "ee",
+        " 64",
+        "9",
+        "k",
+        "</s>"
+       ]
+      }
+     ]
+    },
+    "probe": {
+     "notes": 81,
+     "notes_unchanged": 67,
+     "notes_unchanged_fraction": 0.8271604938271605,
+     "target_spans": 55,
+     "target_spans_unchanged": 48,
+     "target_spans_unchanged_fraction": 0.8727272727272727,
+     "mean_token_count_ratio": 1.0212054406498852,
+     "mean_extra_tokens_per_note": 0.2222222222222222,
+     "mean_extra_tokens_per_changed_note": 1.2857142857142858,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 17,
+     "changed_note_indices": [
+      2,
+      4,
+      18,
+      32,
+      36,
+      41,
+      47,
+      52,
+      61,
+      62,
+      67,
+      68,
+      73,
+      78
+     ],
+     "changed_examples": [
+      {
+       "text": "ông ngoại cho mượn 10tr sửa mái",
+       "orig": [
+        "<s>",
+        "ông",
+        " ngoại",
+        " cho",
+        " mượn",
+        " 10",
+        "tr",
+        " sửa",
+        " mái",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "ông",
+        " ngoại",
+        " cho",
+        " mượn",
+        " 10",
+        "tr",
+        " sửa",
+        " m",
+        "ái",
+        "</s>"
+       ]
+      },
+      {
+       "text": "anh Quan cho vay 15tr lam von",
+       "orig": [
+        "<s>",
+        "anh",
+        " Quan",
+        " cho",
+        " vay",
+        " 15",
+        "tr",
+        " lam",
+        " von",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "anh",
+        " Qu",
+        "an",
+        " cho",
+        " vay",
+        " 15",
+        "tr",
+        " lam",
+        " von",
+        "</s>"
+       ]
+      },
+      {
+       "text": "mẹ gửi 500k tiêu vặt",
+       "orig": [
+        "<s>",
+        "mẹ",
+        " gửi",
+        " 500",
+        "k",
+        " tiêu",
+        " vặt",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "mẹ",
+        " gửi",
+        " 500",
+        "k",
+        " tiêu",
+        " v",
+        "ặt",
+        "</s>"
+       ]
+      },
+      {
+       "text": "li xi be Su 50k",
+       "orig": [
+        "<s>",
+        "li",
+        " xi",
+        " be",
+        " Su",
+        " 50",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "li",
+        " xi",
+        " be",
+        " S",
+        "u",
+        " 50",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "đóng bảo hiểm xe máy 66k",
+       "orig": [
+        "<s>",
+        "đ",
+        "óng",
+        " bảo",
+        " hiểm",
+        " xe",
+        " máy",
+        " 66",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "đ",
+        "óng",
+        " bảo",
+        " hiểm",
+        " xe",
+        " máy",
+        " 6",
+        "6",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "đóng phí bảo hiểm prudential 2tr",
+       "orig": [
+        "<s>",
+        "đ",
+        "óng",
+        " phí",
+        " bảo",
+        " hiểm",
+        " pr",
+        "ud",
+        "ential",
+        " 2",
+        "tr",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "đ",
+        "óng",
+        " phí",
+        " bảo",
+        " hiểm",
+        " pr",
+        "ud",
+        "ent",
+        "ia",
+        "l",
+        " 2",
+        "tr",
+        "</s>"
+       ]
+      },
+      {
+       "text": "prudential chi trả tiền mổ 12tr",
+       "orig": [
+        "<s>",
+        "pr",
+        "ud",
+        "ential",
+        " chi",
+        " trả",
+        " tiền",
+        " mổ",
+        " 12",
+        "tr",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "p",
+        "r",
+        "ud",
+        "ent",
+        "ia",
+        "l",
+        " chi",
+        " trả",
+        " tiền",
+        " mổ",
+        " 12",
+        "tr",
+        "</s>"
+       ]
+      },
+      {
+       "text": "baohiem tra tien ve may bay bi huy 1tr2",
+       "orig": [
+        "<s>",
+        "bao",
+        "hi",
+        "em",
+        " tra",
+        " t",
+        "ien",
+        " ve",
+        " may",
+        " bay",
+        " bi",
+        " huy",
+        " 1",
+        "tr",
+        "2",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "bao",
+        "hi",
+        "em",
+        " tra",
+        " t",
+        "ien",
+        " ve",
+        " may",
+        " bay",
+        " b",
+        "i",
+        " huy",
+        " 1",
+        "tr",
+        "2",
+        "</s>"
+       ]
+      }
+     ]
+    }
+   },
+   "exactness": {
+    "train_words": {
+     "words": 2082,
+     "all_pieces_kept_identical": 1781,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 301,
+     "fell_back_longer": 293,
+     "fell_back_with_extra_unk": 0
+    },
+    "test_words": {
+     "words": 688,
+     "all_pieces_kept_identical": 573,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 115,
+     "fell_back_longer": 113,
+     "fell_back_with_extra_unk": 0
+    },
+    "probe_words": {
+     "words": 532,
+     "all_pieces_kept_identical": 464,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 68,
+     "fell_back_longer": 68,
+     "fell_back_with_extra_unk": 0
+    },
+    "vocab_token_strings": {
+     "words": 20131,
+     "all_pieces_kept_identical": 2602,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 17529,
+     "fell_back_longer": 17529,
+     "fell_back_with_extra_unk": 0
+    }
+   },
+   "zero_training": {
+    "per_seed": {
+     "seed1": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9167251665081945,
+        "type_accuracy": 0.9142857142857143,
+        "span_f1": 0.780952380952381,
+        "span_exact": 0.8666666666666667,
+        "joint": 0.8,
+        "joint_accented": 0.8412698412698413,
+        "joint_unaccented": 0.7380952380952381
+       },
+       "probe": {
+        "type_macro_f1": 0.7845138055222088,
+        "type_accuracy": 0.8271604938271605,
+        "span_f1": 0.7499999999999999,
+        "span_exact": 0.8024691358024691,
+        "joint": 0.6419753086419753,
+        "joint_accented": 0.673469387755102,
+        "joint_unaccented": 0.59375
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 2,
+        "span_changed": 5,
+        "any_prediction_changed": 7,
+        "joint_gained": 0,
+        "joint_lost": 1
+       },
+       "probe": {
+        "type_changed": 2,
+        "span_changed": 7,
+        "any_prediction_changed": 8,
+        "joint_gained": 1,
+        "joint_lost": 3
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 83,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 67,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed2": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9357325605680868,
+        "type_accuracy": 0.9333333333333333,
+        "span_f1": 0.7766990291262137,
+        "span_exact": 0.8666666666666667,
+        "joint": 0.819047619047619,
+        "joint_accented": 0.8412698412698413,
+        "joint_unaccented": 0.7857142857142857
+       },
+       "probe": {
+        "type_macro_f1": 0.7516445128006994,
+        "type_accuracy": 0.7777777777777778,
+        "span_f1": 0.7924528301886793,
+        "span_exact": 0.8271604938271605,
+        "joint": 0.6419753086419753,
+        "joint_accented": 0.6938775510204082,
+        "joint_unaccented": 0.5625
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 0,
+        "span_changed": 7,
+        "any_prediction_changed": 7,
+        "joint_gained": 0,
+        "joint_lost": 5
+       },
+       "probe": {
+        "type_changed": 1,
+        "span_changed": 7,
+        "any_prediction_changed": 8,
+        "joint_gained": 1,
+        "joint_lost": 3
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 83,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 67,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed3": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9143584542730612,
+        "type_accuracy": 0.9142857142857143,
+        "span_f1": 0.8113207547169811,
+        "span_exact": 0.8857142857142857,
+        "joint": 0.8285714285714286,
+        "joint_accented": 0.8571428571428571,
+        "joint_unaccented": 0.7857142857142857
+       },
+       "probe": {
+        "type_macro_f1": 0.802121768247529,
+        "type_accuracy": 0.8271604938271605,
+        "span_f1": 0.7207207207207208,
+        "span_exact": 0.7777777777777778,
+        "joint": 0.6296296296296297,
+        "joint_accented": 0.6530612244897959,
+        "joint_unaccented": 0.59375
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 4,
+        "span_changed": 5,
+        "any_prediction_changed": 8,
+        "joint_gained": 1,
+        "joint_lost": 4
+       },
+       "probe": {
+        "type_changed": 4,
+        "span_changed": 7,
+        "any_prediction_changed": 8,
+        "joint_gained": 0,
+        "joint_lost": 3
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 83,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 67,
+        "max_abs_diff": 0.0
+       }
+      }
+     }
+    },
+    "summary": {
+     "train": {
+      "type_macro_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "type_accuracy": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_exact": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_accented": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_unaccented": {
+       "mean": 1.0,
+       "std": 0.0
+      }
+     },
+     "test": {
+      "type_macro_f1": {
+       "mean": 0.9222720604497808,
+       "std": 0.009566926684404965
+      },
+      "type_accuracy": {
+       "mean": 0.9206349206349206,
+       "std": 0.008979133729353005
+      },
+      "span_f1": {
+       "mean": 0.7896573882651919,
+       "std": 0.015416416249303169
+      },
+      "span_exact": {
+       "mean": 0.873015873015873,
+       "std": 0.008979133729352953
+      },
+      "joint": {
+       "mean": 0.815873015873016,
+       "std": 0.01187827741832997
+      },
+      "joint_accented": {
+       "mean": 0.8465608465608465,
+       "std": 0.00748261144112746
+      },
+      "joint_unaccented": {
+       "mean": 0.7698412698412698,
+       "std": 0.022447834323382435
+      }
+     },
+     "probe": {
+      "type_macro_f1": {
+       "mean": 0.7794266955234791,
+       "std": 0.020918848685105393
+      },
+      "type_accuracy": {
+       "mean": 0.8106995884773663,
+       "std": 0.023279235594618846
+      },
+      "span_f1": {
+       "mean": 0.7543911836364666,
+       "std": 0.02944866440070104
+      },
+      "span_exact": {
+       "mean": 0.8024691358024691,
+       "std": 0.020160409405622862
+      },
+      "joint": {
+       "mean": 0.6378600823045267,
+       "std": 0.0058198088986546855
+      },
+      "joint_accented": {
+       "mean": 0.673469387755102,
+       "std": 0.016663195529137285
+      },
+      "joint_unaccented": {
+       "mean": 0.5833333333333334,
+       "std": 0.01473139127471974
+      }
+     }
+    },
+    "changes_total_over_seeds": {
+     "train": {
+      "type_changed": 0,
+      "span_changed": 0,
+      "any_prediction_changed": 0,
+      "joint_gained": 0,
+      "joint_lost": 0
+     },
+     "test": {
+      "type_changed": 6,
+      "span_changed": 17,
+      "any_prediction_changed": 22,
+      "joint_gained": 1,
+      "joint_lost": 10
+     },
+     "probe": {
+      "type_changed": 7,
+      "span_changed": 21,
+      "any_prediction_changed": 24,
+      "joint_gained": 2,
+      "joint_lost": 9
+     }
+    },
+    "train_identical_to_unpruned": true
+   }
+  },
+  "T-only": {
+   "spec_dir": null,
+   "vocab_rows": 1545,
+   "removed_rows": 18936,
+   "embedding_params": 1186560,
+   "total_params_vocab_only": 31123211,
+   "total_params_with_34_positions": 29574923,
+   "est_int8_mb_vocab_only": 31.313789,
+   "est_int8_mb_with_34_positions": 29.765501,
+   "kept_by_category": {
+    "ascii_letters": 562,
+    "ascii_punct_symbols": 1,
+    "base_byte": 210,
+    "digits_numeric": 150,
+    "partial_byte": 25,
+    "special": 5,
+    "vietnamese_latin": 592
+   },
+   "mandatory_kept": true,
+   "merges_kept": 1330,
+   "tokenization": {
+    "train": {
+     "notes": 723,
+     "notes_unchanged": 723,
+     "notes_unchanged_fraction": 1.0,
+     "target_spans": 395,
+     "target_spans_unchanged": 395,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "mean_extra_tokens_per_note": 0.0,
+     "mean_extra_tokens_per_changed_note": 0.0,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 21,
+     "changed_note_indices": [],
+     "changed_examples": []
+    },
+    "test": {
+     "notes": 105,
+     "notes_unchanged": 72,
+     "notes_unchanged_fraction": 0.6857142857142857,
+     "target_spans": 51,
+     "target_spans_unchanged": 36,
+     "target_spans_unchanged_fraction": 0.7058823529411765,
+     "mean_token_count_ratio": 1.04466859859717,
+     "mean_extra_tokens_per_note": 0.4666666666666667,
+     "mean_extra_tokens_per_changed_note": 1.4848484848484849,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 19,
+     "changed_note_indices": [
+      3,
+      5,
+      10,
+      16,
+      19,
+      24,
+      28,
+      29,
+      30,
+      31,
+      36,
+      38,
+      41,
+      42,
+      48,
+      52,
+      56,
+      59,
+      62,
+      68,
+      70,
+      74,
+      76,
+      85,
+      87,
+      88,
+      91,
+      97,
+      99,
+      101,
+      102,
+      103,
+      104
+     ],
+     "changed_examples": [
+      {
+       "text": "trà đá vỉa hè 10k",
+       "orig": [
+        "<s>",
+        "tr",
+        "à",
+        " đá",
+        " vỉa",
+        " hè",
+        " 10",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "tr",
+        "à",
+        " đ",
+        "á",
+        " v\\xe1\\xbb",
+        "\\x89",
+        "a",
+        " h",
+        "è",
+        " 10",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "mua giay the thao 1tr25",
+       "orig": [
+        "<s>",
+        "mua",
+        " gi",
+        "ay",
+        " the",
+        " thao",
+        " 1",
+        "tr",
+        "25",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "mua",
+        " gi",
+        "ay",
+        " the",
+        " th",
+        "ao",
+        " 1",
+        "tr",
+        "2",
+        "5",
+        "</s>"
+       ]
+      },
+      {
+       "text": "mua vàng nhẫn pnj nửa chỉ 3tr95",
+       "orig": [
+        "<s>",
+        "mua",
+        " vàng",
+        " nhẫn",
+        " p",
+        "n",
+        "j",
+        " nửa",
+        " chỉ",
+        " 3",
+        "tr",
+        "95",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "mua",
+        " vàng",
+        " nhẫn",
+        " p",
+        "n",
+        "j",
+        " nửa",
+        " chỉ",
+        " 3",
+        "tr",
+        "9",
+        "5",
+        "</s>"
+       ]
+      },
+      {
+       "text": "cho bạn Kiên mượn 1tr2 ck vcb",
+       "orig": [
+        "<s>",
+        "cho",
+        " bạn",
+        " Kiên",
+        " mượn",
+        " 1",
+        "tr",
+        "2",
+        " c",
+        "k",
+        " v",
+        "c",
+        "b",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "cho",
+        " bạn",
+        " K",
+        "iên",
+        " mượn",
+        " 1",
+        "tr",
+        "2",
+        " c",
+        "k",
+        " v",
+        "c",
+        "b",
+        "</s>"
+       ]
+      },
+      {
+       "text": "vé bóng đá 200k",
+       "orig": [
+        "<s>",
+        "v",
+        "é",
+        " bóng",
+        " đá",
+        " 200",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "v",
+        "é",
+        " bóng",
+        " đ",
+        "á",
+        " 200",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "hủ tiếu tối qua 35k",
+       "orig": [
+        "<s>",
+        "h",
+        "ủ",
+        " tiếu",
+        " tối",
+        " qua",
+        " 35",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "h",
+        "ủ",
+        " tiế",
+        "u",
+        " tối",
+        " qua",
+        " 35",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "hạt cho chó 420.000đ",
+       "orig": [
+        "<s>",
+        "h",
+        "ạt",
+        " cho",
+        " chó",
+        " 420",
+        ".",
+        "000đ",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "h",
+        "ạt",
+        " cho",
+        " ch",
+        "ó",
+        " 420",
+        ".",
+        "000đ",
+        "</s>"
+       ]
+      },
+      {
+       "text": "thưởng quý 5 triệu",
+       "orig": [
+        "<s>",
+        "th",
+        "ưởng",
+        " quý",
+        " 5",
+        " triệu",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "th",
+        "ưởng",
+        " qu",
+        "ý",
+        " 5",
+        " triệu",
+        "</s>"
+       ]
+      }
+     ]
+    },
+    "probe": {
+     "notes": 81,
+     "notes_unchanged": 58,
+     "notes_unchanged_fraction": 0.7160493827160493,
+     "target_spans": 55,
+     "target_spans_unchanged": 45,
+     "target_spans_unchanged_fraction": 0.8181818181818182,
+     "mean_token_count_ratio": 1.036689699189699,
+     "mean_extra_tokens_per_note": 0.3950617283950617,
+     "mean_extra_tokens_per_changed_note": 1.391304347826087,
+     "notes_truncated_at_32": {
+      "orig": 0,
+      "pruned": 0
+     },
+     "truncation_increase": 0,
+     "max_pruned_length_with_specials": 17,
+     "changed_note_indices": [
+      2,
+      4,
+      17,
+      18,
+      22,
+      32,
+      36,
+      37,
+      41,
+      47,
+      49,
+      52,
+      59,
+      61,
+      62,
+      63,
+      67,
+      68,
+      69,
+      73,
+      74,
+      75,
+      78
+     ],
+     "changed_examples": [
+      {
+       "text": "ông ngoại cho mượn 10tr sửa mái",
+       "orig": [
+        "<s>",
+        "ông",
+        " ngoại",
+        " cho",
+        " mượn",
+        " 10",
+        "tr",
+        " sửa",
+        " mái",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "ông",
+        " ngoại",
+        " cho",
+        " mượn",
+        " 10",
+        "tr",
+        " sửa",
+        " m",
+        "ái",
+        "</s>"
+       ]
+      },
+      {
+       "text": "anh Quan cho vay 15tr lam von",
+       "orig": [
+        "<s>",
+        "anh",
+        " Quan",
+        " cho",
+        " vay",
+        " 15",
+        "tr",
+        " lam",
+        " von",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "anh",
+        " Qu",
+        "an",
+        " cho",
+        " vay",
+        " 15",
+        "tr",
+        " lam",
+        " von",
+        "</s>"
+       ]
+      },
+      {
+       "text": "chi Nga vay 10 cu, cuoi nam tra",
+       "orig": [
+        "<s>",
+        "chi",
+        " Nga",
+        " vay",
+        " 10",
+        " cu",
+        ",",
+        " cu",
+        "oi",
+        " nam",
+        " tra",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "chi",
+        " Ng",
+        "a",
+        " vay",
+        " 10",
+        " cu",
+        ",",
+        " cu",
+        "oi",
+        " nam",
+        " tra",
+        "</s>"
+       ]
+      },
+      {
+       "text": "mẹ gửi 500k tiêu vặt",
+       "orig": [
+        "<s>",
+        "mẹ",
+        " gửi",
+        " 500",
+        "k",
+        " tiêu",
+        " vặt",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "mẹ",
+        " gửi",
+        " 500",
+        "k",
+        " tiêu",
+        " v",
+        "ặt",
+        "</s>"
+       ]
+      },
+      {
+       "text": "bà ngoại dúi cho 200k",
+       "orig": [
+        "<s>",
+        "bà",
+        " ngoại",
+        " d",
+        "úi",
+        " cho",
+        " 200",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "bà",
+        " ngoại",
+        " d",
+        "ú",
+        "i",
+        " cho",
+        " 200",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "li xi be Su 50k",
+       "orig": [
+        "<s>",
+        "li",
+        " xi",
+        " be",
+        " Su",
+        " 50",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "li",
+        " xi",
+        " be",
+        " S",
+        "u",
+        " 50",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "đóng bảo hiểm xe máy 66k",
+       "orig": [
+        "<s>",
+        "đ",
+        "óng",
+        " bảo",
+        " hiểm",
+        " xe",
+        " máy",
+        " 66",
+        "k",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "đ",
+        "óng",
+        " bảo",
+        " hiểm",
+        " xe",
+        " máy",
+        " 6",
+        "6",
+        "k",
+        "</s>"
+       ]
+      },
+      {
+       "text": "phí bảo hiểm sức khỏe quý 3 1tr8",
+       "orig": [
+        "<s>",
+        "ph",
+        "í",
+        " bảo",
+        " hiểm",
+        " sức",
+        " khỏe",
+        " quý",
+        " 3",
+        " 1",
+        "tr",
+        "8",
+        "</s>"
+       ],
+       "pruned": [
+        "<s>",
+        "ph",
+        "í",
+        " bảo",
+        " hiểm",
+        " sức",
+        " khỏe",
+        " qu",
+        "ý",
+        " 3",
+        " 1",
+        "tr",
+        "8",
+        "</s>"
+       ]
+      }
+     ]
+    }
+   },
+   "exactness": {
+    "train_words": {
+     "words": 2082,
+     "all_pieces_kept_identical": 1732,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 350,
+     "fell_back_longer": 339,
+     "fell_back_with_extra_unk": 0
+    },
+    "test_words": {
+     "words": 688,
+     "all_pieces_kept_identical": 543,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 145,
+     "fell_back_longer": 141,
+     "fell_back_with_extra_unk": 0
+    },
+    "probe_words": {
+     "words": 532,
+     "all_pieces_kept_identical": 446,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 86,
+     "fell_back_longer": 86,
+     "fell_back_with_extra_unk": 0
+    },
+    "vocab_token_strings": {
+     "words": 20131,
+     "all_pieces_kept_identical": 1400,
+     "all_pieces_kept_mismatched": 0,
+     "fell_back": 18731,
+     "fell_back_longer": 18731,
+     "fell_back_with_extra_unk": 0
+    }
+   },
+   "zero_training": {
+    "per_seed": {
+     "seed1": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9167251665081945,
+        "type_accuracy": 0.9142857142857143,
+        "span_f1": 0.7047619047619048,
+        "span_exact": 0.8285714285714286,
+        "joint": 0.7619047619047619,
+        "joint_accented": 0.7777777777777778,
+        "joint_unaccented": 0.7380952380952381
+       },
+       "probe": {
+        "type_macro_f1": 0.7733969149878842,
+        "type_accuracy": 0.8148148148148148,
+        "span_f1": 0.7499999999999999,
+        "span_exact": 0.7901234567901234,
+        "joint": 0.6172839506172839,
+        "joint_accented": 0.673469387755102,
+        "joint_unaccented": 0.53125
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 2,
+        "span_changed": 12,
+        "any_prediction_changed": 13,
+        "joint_gained": 0,
+        "joint_lost": 5
+       },
+       "probe": {
+        "type_changed": 3,
+        "span_changed": 9,
+        "any_prediction_changed": 11,
+        "joint_gained": 1,
+        "joint_lost": 5
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 72,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 58,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed2": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.9273265796703296,
+        "type_accuracy": 0.9238095238095239,
+        "span_f1": 0.7254901960784313,
+        "span_exact": 0.8380952380952381,
+        "joint": 0.7904761904761904,
+        "joint_accented": 0.7936507936507936,
+        "joint_unaccented": 0.7857142857142857
+       },
+       "probe": {
+        "type_macro_f1": 0.7516445128006994,
+        "type_accuracy": 0.7777777777777778,
+        "span_f1": 0.7924528301886793,
+        "span_exact": 0.8148148148148148,
+        "joint": 0.6296296296296297,
+        "joint_accented": 0.6938775510204082,
+        "joint_unaccented": 0.53125
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 3,
+        "span_changed": 13,
+        "any_prediction_changed": 14,
+        "joint_gained": 1,
+        "joint_lost": 9
+       },
+       "probe": {
+        "type_changed": 1,
+        "span_changed": 9,
+        "any_prediction_changed": 10,
+        "joint_gained": 1,
+        "joint_lost": 4
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 72,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 58,
+        "max_abs_diff": 0.0
+       }
+      }
+     },
+     "seed3": {
+      "metrics": {
+       "train": {
+        "type_macro_f1": 1.0,
+        "type_accuracy": 1.0,
+        "span_f1": 1.0,
+        "span_exact": 1.0,
+        "joint": 1.0,
+        "joint_accented": 1.0,
+        "joint_unaccented": 1.0
+       },
+       "test": {
+        "type_macro_f1": 0.8877469932178803,
+        "type_accuracy": 0.8857142857142857,
+        "span_f1": 0.7547169811320754,
+        "span_exact": 0.8571428571428571,
+        "joint": 0.7714285714285715,
+        "joint_accented": 0.7619047619047619,
+        "joint_unaccented": 0.7857142857142857
+       },
+       "probe": {
+        "type_macro_f1": 0.8157538877620014,
+        "type_accuracy": 0.8395061728395061,
+        "span_f1": 0.6964285714285715,
+        "span_exact": 0.7530864197530864,
+        "joint": 0.6049382716049383,
+        "joint_accented": 0.6530612244897959,
+        "joint_unaccented": 0.53125
+       }
+      },
+      "changes_vs_unpruned": {
+       "train": {
+        "type_changed": 0,
+        "span_changed": 0,
+        "any_prediction_changed": 0,
+        "joint_gained": 0,
+        "joint_lost": 0
+       },
+       "test": {
+        "type_changed": 5,
+        "span_changed": 11,
+        "any_prediction_changed": 14,
+        "joint_gained": 0,
+        "joint_lost": 9
+       },
+       "probe": {
+        "type_changed": 3,
+        "span_changed": 10,
+        "any_prediction_changed": 11,
+        "joint_gained": 0,
+        "joint_lost": 5
+       }
+      },
+      "logits": {
+       "train": {
+        "notes_compared": 723,
+        "max_abs_diff": 0.0
+       },
+       "test": {
+        "notes_compared": 72,
+        "max_abs_diff": 0.0
+       },
+       "probe": {
+        "notes_compared": 58,
+        "max_abs_diff": 0.0
+       }
+      }
+     }
+    },
+    "summary": {
+     "train": {
+      "type_macro_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "type_accuracy": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_f1": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "span_exact": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_accented": {
+       "mean": 1.0,
+       "std": 0.0
+      },
+      "joint_unaccented": {
+       "mean": 1.0,
+       "std": 0.0
+      }
+     },
+     "test": {
+      "type_macro_f1": {
+       "mean": 0.9105995797988015,
+       "std": 0.01672877810515851
+      },
+      "type_accuracy": {
+       "mean": 0.9079365079365079,
+       "std": 0.01618736353521522
+      },
+      "span_f1": {
+       "mean": 0.7283230273241372,
+       "std": 0.02049221174718792
+      },
+      "span_exact": {
+       "mean": 0.8412698412698413,
+       "std": 0.011878277418329931
+      },
+      "joint": {
+       "mean": 0.7746031746031745,
+       "std": 0.01187827741832997
+      },
+      "joint_accented": {
+       "mean": 0.7777777777777777,
+       "std": 0.012960263189328984
+      },
+      "joint_unaccented": {
+       "mean": 0.7698412698412698,
+       "std": 0.022447834323382435
+      }
+     },
+     "probe": {
+      "type_macro_f1": {
+       "mean": 0.7802651051835284,
+       "std": 0.0266193165064377
+      },
+      "type_accuracy": {
+       "mean": 0.8106995884773663,
+       "std": 0.02536795885995461
+      },
+      "span_f1": {
+       "mean": 0.7462938005390836,
+       "std": 0.039289239438130355
+      },
+      "span_exact": {
+       "mean": 0.7860082304526749,
+       "std": 0.02536795885995461
+      },
+      "joint": {
+       "mean": 0.6172839506172839,
+       "std": 0.010080204702811431
+      },
+      "joint_accented": {
+       "mean": 0.673469387755102,
+       "std": 0.016663195529137285
+      },
+      "joint_unaccented": {
+       "mean": 0.53125,
+       "std": 0.0
+      }
+     }
+    },
+    "changes_total_over_seeds": {
+     "train": {
+      "type_changed": 0,
+      "span_changed": 0,
+      "any_prediction_changed": 0,
+      "joint_gained": 0,
+      "joint_lost": 0
+     },
+     "test": {
+      "type_changed": 10,
+      "span_changed": 36,
+      "any_prediction_changed": 41,
+      "joint_gained": 1,
+      "joint_lost": 23
+     },
+     "probe": {
+      "type_changed": 7,
+      "span_changed": 28,
+      "any_prediction_changed": 32,
+      "joint_gained": 2,
+      "joint_lost": 14
+     }
+    },
+    "train_identical_to_unpruned": true
+   }
+  }
+ },
+ "oov_probe": {
+  "strings": [
+   {
+    "string": "Highlands",
+    "in_test_or_probe_text": false,
+    "original": [
+     " High",
+     "lands"
+    ],
+    "A-conservative": [
+     " High",
+     "lands"
+    ],
+    "B-rank-12000": [
+     " High",
+     "lands"
+    ],
+    "B-rank-10000": [
+     " High",
+     "lands"
+    ],
+    "B-rank-8000": [
+     " H",
+     "igh",
+     "lands"
+    ],
+    "B-rank-6000": [
+     " H",
+     "igh",
+     "lands"
+    ],
+    "B-rank-4000": [
+     " H",
+     "igh",
+     "lands"
+    ],
+    "C-aggressive": [
+     " H",
+     "igh",
+     "lands"
+    ],
+    "T-only": [
+     " H",
+     "igh",
+     "lands"
+    ]
+   },
+   {
+    "string": "Phúc Long",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Phúc",
+     " Long"
+    ],
+    "A-conservative": [
+     " Phúc",
+     " Long"
+    ],
+    "B-rank-12000": [
+     " Phúc",
+     " Long"
+    ],
+    "B-rank-10000": [
+     " Phúc",
+     " Long"
+    ],
+    "B-rank-8000": [
+     " Phúc",
+     " Long"
+    ],
+    "B-rank-6000": [
+     " Phúc",
+     " Long"
+    ],
+    "B-rank-4000": [
+     " Phúc",
+     " Long"
+    ],
+    "C-aggressive": [
+     " Phúc",
+     " Long"
+    ],
+    "T-only": [
+     " Phúc",
+     " Long"
+    ]
+   },
+   {
+    "string": "Bách Hóa Xanh",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Bách",
+     " Hóa",
+     " Xanh"
+    ],
+    "A-conservative": [
+     " Bách",
+     " Hóa",
+     " Xanh"
+    ],
+    "B-rank-12000": [
+     " Bách",
+     " Hóa",
+     " Xanh"
+    ],
+    "B-rank-10000": [
+     " Bách",
+     " Hóa",
+     " Xanh"
+    ],
+    "B-rank-8000": [
+     " Bách",
+     " Hóa",
+     " Xanh"
+    ],
+    "B-rank-6000": [
+     " B",
+     "ách",
+     " Hóa",
+     " X",
+     "anh"
+    ],
+    "B-rank-4000": [
+     " B",
+     "ách",
+     " Hóa",
+     " X",
+     "anh"
+    ],
+    "C-aggressive": [
+     " B",
+     "ách",
+     " H",
+     "óa",
+     " X",
+     "anh"
+    ],
+    "T-only": [
+     " B",
+     "ách",
+     " H",
+     "óa",
+     " X",
+     "anh"
+    ]
+   },
+   {
+    "string": "Grab",
+    "in_test_or_probe_text": true,
+    "original": [
+     " Grab"
+    ],
+    "A-conservative": [
+     " Grab"
+    ],
+    "B-rank-12000": [
+     " Grab"
+    ],
+    "B-rank-10000": [
+     " Grab"
+    ],
+    "B-rank-8000": [
+     " Gr",
+     "ab"
+    ],
+    "B-rank-6000": [
+     " Gr",
+     "ab"
+    ],
+    "B-rank-4000": [
+     " Gr",
+     "ab"
+    ],
+    "C-aggressive": [
+     " G",
+     "r",
+     "ab"
+    ],
+    "T-only": [
+     " G",
+     "r",
+     "ab"
+    ]
+   },
+   {
+    "string": "Momo",
+    "in_test_or_probe_text": true,
+    "original": [
+     " M",
+     "omo"
+    ],
+    "A-conservative": [
+     " M",
+     "omo"
+    ],
+    "B-rank-12000": [
+     " M",
+     "omo"
+    ],
+    "B-rank-10000": [
+     " M",
+     "omo"
+    ],
+    "B-rank-8000": [
+     " M",
+     "omo"
+    ],
+    "B-rank-6000": [
+     " M",
+     "omo"
+    ],
+    "B-rank-4000": [
+     " M",
+     "omo"
+    ],
+    "C-aggressive": [
+     " M",
+     "omo"
+    ],
+    "T-only": [
+     " M",
+     "omo"
+    ]
+   },
+   {
+    "string": "Tiki",
+    "in_test_or_probe_text": true,
+    "original": [
+     " T",
+     "iki"
+    ],
+    "A-conservative": [
+     " T",
+     "iki"
+    ],
+    "B-rank-12000": [
+     " T",
+     "iki"
+    ],
+    "B-rank-10000": [
+     " T",
+     "iki"
+    ],
+    "B-rank-8000": [
+     " T",
+     "iki"
+    ],
+    "B-rank-6000": [
+     " T",
+     "iki"
+    ],
+    "B-rank-4000": [
+     " T",
+     "iki"
+    ],
+    "C-aggressive": [
+     " T",
+     "iki"
+    ],
+    "T-only": [
+     " T",
+     "iki"
+    ]
+   },
+   {
+    "string": "Lazada",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Laz",
+     "ada"
+    ],
+    "A-conservative": [
+     " Laz",
+     "ada"
+    ],
+    "B-rank-12000": [
+     " L",
+     "az",
+     "ada"
+    ],
+    "B-rank-10000": [
+     " L",
+     "az",
+     "ada"
+    ],
+    "B-rank-8000": [
+     " L",
+     "az",
+     "ada"
+    ],
+    "B-rank-6000": [
+     " L",
+     "az",
+     "ada"
+    ],
+    "B-rank-4000": [
+     " L",
+     "az",
+     "ada"
+    ],
+    "C-aggressive": [
+     " L",
+     "az",
+     "ada"
+    ],
+    "T-only": [
+     " L",
+     "az",
+     "ada"
+    ]
+   },
+   {
+    "string": "Circle K",
+    "in_test_or_probe_text": false,
+    "original": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "A-conservative": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "B-rank-12000": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "B-rank-10000": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "B-rank-8000": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "B-rank-6000": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "B-rank-4000": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "C-aggressive": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "T-only": [
+     " C",
+     "ircle",
+     " K"
+    ]
+   },
+   {
+    "string": "Thế Giới Di Động",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Thế",
+     " Giới",
+     " Di",
+     " Động"
+    ],
+    "A-conservative": [
+     " Thế",
+     " Giới",
+     " Di",
+     " Động"
+    ],
+    "B-rank-12000": [
+     " Thế",
+     " Giới",
+     " Di",
+     " Động"
+    ],
+    "B-rank-10000": [
+     " Thế",
+     " Giới",
+     " Di",
+     " Động"
+    ],
+    "B-rank-8000": [
+     " Thế",
+     " Giới",
+     " Di",
+     " Động"
+    ],
+    "B-rank-6000": [
+     " Thế",
+     " Giới",
+     " Di",
+     " Động"
+    ],
+    "B-rank-4000": [
+     " Thế",
+     " Gi\\xe1\\xbb",
+     "\\x9bi",
+     " Di",
+     " Đ",
+     "ộng"
+    ],
+    "C-aggressive": [
+     " Thế",
+     " G",
+     "i\\xe1\\xbb",
+     "\\x9bi",
+     " D",
+     "i",
+     " Đ",
+     "ộng"
+    ],
+    "T-only": [
+     " Th",
+     "ế",
+     " G",
+     "i\\xe1\\xbb",
+     "\\x9bi",
+     " D",
+     "i",
+     " \\xc4",
+     "\\x90",
+     "ộ",
+     "ng"
+    ]
+   },
+   {
+    "string": "GS25",
+    "in_test_or_probe_text": false,
+    "original": [
+     " GS",
+     "25"
+    ],
+    "A-conservative": [
+     " GS",
+     "25"
+    ],
+    "B-rank-12000": [
+     " GS",
+     "25"
+    ],
+    "B-rank-10000": [
+     " GS",
+     "25"
+    ],
+    "B-rank-8000": [
+     " GS",
+     "25"
+    ],
+    "B-rank-6000": [
+     " GS",
+     "25"
+    ],
+    "B-rank-4000": [
+     " G",
+     "S",
+     "25"
+    ],
+    "C-aggressive": [
+     " G",
+     "S",
+     "2",
+     "5"
+    ],
+    "T-only": [
+     " G",
+     "S",
+     "2",
+     "5"
+    ]
+   },
+   {
+    "string": "Winmart",
+    "in_test_or_probe_text": false,
+    "original": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "A-conservative": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "B-rank-12000": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "B-rank-10000": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "B-rank-8000": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "B-rank-6000": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "B-rank-4000": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "C-aggressive": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "T-only": [
+     "W",
+     "inm",
+     "art"
+    ]
+   },
+   {
+    "string": "The Coffee House",
+    "in_test_or_probe_text": false,
+    "original": [
+     " The",
+     " Co",
+     "ffee",
+     " House"
+    ],
+    "A-conservative": [
+     " The",
+     " Co",
+     "ffee",
+     " House"
+    ],
+    "B-rank-12000": [
+     " The",
+     " Co",
+     "ff",
+     "ee",
+     " House"
+    ],
+    "B-rank-10000": [
+     " The",
+     " Co",
+     "ff",
+     "ee",
+     " Ho",
+     "use"
+    ],
+    "B-rank-8000": [
+     " The",
+     " Co",
+     "ff",
+     "ee",
+     " Ho",
+     "use"
+    ],
+    "B-rank-6000": [
+     " The",
+     " Co",
+     "ff",
+     "ee",
+     " Ho",
+     "use"
+    ],
+    "B-rank-4000": [
+     " The",
+     " Co",
+     "ff",
+     "ee",
+     " Ho",
+     "use"
+    ],
+    "C-aggressive": [
+     " Th",
+     "e",
+     " C",
+     "o",
+     "ff",
+     "ee",
+     " H",
+     "o",
+     "us",
+     "e"
+    ],
+    "T-only": [
+     " Th",
+     "e",
+     " C",
+     "o",
+     "f",
+     "f",
+     "ee",
+     " H",
+     "ou",
+     "s",
+     "e"
+    ]
+   },
+   {
+    "string": "Trung Nguyên",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Trung",
+     " Nguyên"
+    ],
+    "A-conservative": [
+     " Trung",
+     " Nguyên"
+    ],
+    "B-rank-12000": [
+     " Trung",
+     " Nguyên"
+    ],
+    "B-rank-10000": [
+     " Trung",
+     " Nguyên"
+    ],
+    "B-rank-8000": [
+     " Trung",
+     " Nguyên"
+    ],
+    "B-rank-6000": [
+     " Trung",
+     " Nguyên"
+    ],
+    "B-rank-4000": [
+     " Trung",
+     " Nguyên"
+    ],
+    "C-aggressive": [
+     " Trung",
+     " Nguyên"
+    ],
+    "T-only": [
+     " T",
+     "r",
+     "ung",
+     " Ng",
+     "uy",
+     "ên"
+    ]
+   },
+   {
+    "string": "Gong Cha",
+    "in_test_or_probe_text": false,
+    "original": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "A-conservative": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "B-rank-12000": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "B-rank-10000": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "B-rank-8000": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "B-rank-6000": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "B-rank-4000": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "C-aggressive": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "T-only": [
+     " G",
+     "ong",
+     " Cha"
+    ]
+   },
+   {
+    "string": "KFC",
+    "in_test_or_probe_text": false,
+    "original": [
+     " K",
+     "FC"
+    ],
+    "A-conservative": [
+     " K",
+     "FC"
+    ],
+    "B-rank-12000": [
+     " K",
+     "FC"
+    ],
+    "B-rank-10000": [
+     " K",
+     "FC"
+    ],
+    "B-rank-8000": [
+     " K",
+     "FC"
+    ],
+    "B-rank-6000": [
+     " K",
+     "F",
+     "C"
+    ],
+    "B-rank-4000": [
+     " K",
+     "F",
+     "C"
+    ],
+    "C-aggressive": [
+     " K",
+     "F",
+     "C"
+    ],
+    "T-only": [
+     " K",
+     "F",
+     "C"
+    ]
+   },
+   {
+    "string": "Jollibee",
+    "in_test_or_probe_text": false,
+    "original": [
+     " J",
+     "oll",
+     "ib",
+     "ee"
+    ],
+    "A-conservative": [
+     " J",
+     "oll",
+     "ib",
+     "ee"
+    ],
+    "B-rank-12000": [
+     " J",
+     "oll",
+     "ib",
+     "ee"
+    ],
+    "B-rank-10000": [
+     " J",
+     "oll",
+     "ib",
+     "ee"
+    ],
+    "B-rank-8000": [
+     " J",
+     "oll",
+     "ib",
+     "ee"
+    ],
+    "B-rank-6000": [
+     " J",
+     "oll",
+     "ib",
+     "ee"
+    ],
+    "B-rank-4000": [
+     " J",
+     "oll",
+     "ib",
+     "ee"
+    ],
+    "C-aggressive": [
+     " J",
+     "ol",
+     "l",
+     "ib",
+     "ee"
+    ],
+    "T-only": [
+     "J",
+     "o",
+     "l",
+     "li",
+     "b",
+     "ee"
+    ]
+   },
+   {
+    "string": "Shopee",
+    "in_test_or_probe_text": true,
+    "original": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "A-conservative": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "B-rank-12000": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "B-rank-10000": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "B-rank-8000": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "B-rank-6000": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "B-rank-4000": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "C-aggressive": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "T-only": [
+     " S",
+     "h",
+     "op",
+     "ee"
+    ]
+   },
+   {
+    "string": "Xanh SM",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Xanh",
+     " SM"
+    ],
+    "A-conservative": [
+     " Xanh",
+     " SM"
+    ],
+    "B-rank-12000": [
+     " Xanh",
+     " SM"
+    ],
+    "B-rank-10000": [
+     " Xanh",
+     " S",
+     "M"
+    ],
+    "B-rank-8000": [
+     " Xanh",
+     " S",
+     "M"
+    ],
+    "B-rank-6000": [
+     " X",
+     "anh",
+     " S",
+     "M"
+    ],
+    "B-rank-4000": [
+     " X",
+     "anh",
+     " S",
+     "M"
+    ],
+    "C-aggressive": [
+     " X",
+     "anh",
+     " S",
+     "M"
+    ],
+    "T-only": [
+     " X",
+     "anh",
+     " S",
+     "M"
+    ]
+   },
+   {
+    "string": "Nguyễn Văn Hùng",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "A-conservative": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "B-rank-12000": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "B-rank-10000": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "B-rank-8000": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "B-rank-6000": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "B-rank-4000": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "C-aggressive": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "T-only": [
+     " Ng",
+     "uy\\xe1\\xbb",
+     "\\x85",
+     "n",
+     " V",
+     "ăn",
+     " Hùng"
+    ]
+   },
+   {
+    "string": "Trần Thị Lan",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "A-conservative": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "B-rank-12000": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "B-rank-10000": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "B-rank-8000": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "B-rank-6000": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "B-rank-4000": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "C-aggressive": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "T-only": [
+     " T",
+     "r",
+     "ần",
+     " Th",
+     "ị",
+     " Lan"
+    ]
+   },
+   {
+    "string": "Phạm Quỳnh Anh",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Phạm",
+     " Quỳnh",
+     " Anh"
+    ],
+    "A-conservative": [
+     " Phạm",
+     " Quỳnh",
+     " Anh"
+    ],
+    "B-rank-12000": [
+     " Phạm",
+     " Quỳnh",
+     " Anh"
+    ],
+    "B-rank-10000": [
+     " Phạm",
+     " Quỳnh",
+     " Anh"
+    ],
+    "B-rank-8000": [
+     " Phạm",
+     " Quỳnh",
+     " Anh"
+    ],
+    "B-rank-6000": [
+     " Phạm",
+     " Quỳnh",
+     " Anh"
+    ],
+    "B-rank-4000": [
+     " Phạm",
+     " Quỳnh",
+     " Anh"
+    ],
+    "C-aggressive": [
+     " Phạm",
+     " Qu",
+     "ỳ",
+     "nh",
+     " Anh"
+    ],
+    "T-only": [
+     " Ph",
+     "ạm",
+     " Qu",
+     "\\xe1\\xbb",
+     "\\xb3",
+     "nh",
+     "A",
+     "nh"
+    ]
+   },
+   {
+    "string": "Đặng Thuỳ Dương",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Đặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "A-conservative": [
+     " Đặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "B-rank-12000": [
+     " Đặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "B-rank-10000": [
+     " Đặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "B-rank-8000": [
+     " Đặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "B-rank-6000": [
+     " Đặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "B-rank-4000": [
+     " Đặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "C-aggressive": [
+     " Đ",
+     "ặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "T-only": [
+     " \\xc4",
+     "\\x90",
+     "ặng",
+     " Thu",
+     "\\xe1\\xbb",
+     "\\xb3",
+     " D",
+     "ương"
+    ]
+   },
+   {
+    "string": "Khôi",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Khôi"
+    ],
+    "A-conservative": [
+     " Khôi"
+    ],
+    "B-rank-12000": [
+     " Khôi"
+    ],
+    "B-rank-10000": [
+     " Khôi"
+    ],
+    "B-rank-8000": [
+     " Khôi"
+    ],
+    "B-rank-6000": [
+     " Khôi"
+    ],
+    "B-rank-4000": [
+     " Khôi"
+    ],
+    "C-aggressive": [
+     " Khôi"
+    ],
+    "T-only": [
+     " Khôi"
+    ]
+   },
+   {
+    "string": "Uyên",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Uyên"
+    ],
+    "A-conservative": [
+     " Uyên"
+    ],
+    "B-rank-12000": [
+     " Uyên"
+    ],
+    "B-rank-10000": [
+     " Uyên"
+    ],
+    "B-rank-8000": [
+     " Uyên"
+    ],
+    "B-rank-6000": [
+     " Uy",
+     "ên"
+    ],
+    "B-rank-4000": [
+     " Uy",
+     "ên"
+    ],
+    "C-aggressive": [
+     " U",
+     "y",
+     "ên"
+    ],
+    "T-only": [
+     "U",
+     "y",
+     "ên"
+    ]
+   },
+   {
+    "string": "Thịnh",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Thịnh"
+    ],
+    "A-conservative": [
+     " Thịnh"
+    ],
+    "B-rank-12000": [
+     " Thịnh"
+    ],
+    "B-rank-10000": [
+     " Thịnh"
+    ],
+    "B-rank-8000": [
+     " Thịnh"
+    ],
+    "B-rank-6000": [
+     " Thịnh"
+    ],
+    "B-rank-4000": [
+     " Thị",
+     "nh"
+    ],
+    "C-aggressive": [
+     " Thị",
+     "nh"
+    ],
+    "T-only": [
+     " Th",
+     "ị",
+     "nh"
+    ]
+   },
+   {
+    "string": "highlands coffee",
+    "in_test_or_probe_text": false,
+    "original": [
+     " high",
+     "lands",
+     " co",
+     "ffee"
+    ],
+    "A-conservative": [
+     " high",
+     "lands",
+     " co",
+     "ffee"
+    ],
+    "B-rank-12000": [
+     " high",
+     "lands",
+     " co",
+     "ff",
+     "ee"
+    ],
+    "B-rank-10000": [
+     " high",
+     "lands",
+     " co",
+     "ff",
+     "ee"
+    ],
+    "B-rank-8000": [
+     " high",
+     "lands",
+     " co",
+     "ff",
+     "ee"
+    ],
+    "B-rank-6000": [
+     " high",
+     "lands",
+     " co",
+     "ff",
+     "ee"
+    ],
+    "B-rank-4000": [
+     " high",
+     "lands",
+     " co",
+     "ff",
+     "ee"
+    ],
+    "C-aggressive": [
+     " high",
+     "lands",
+     " c",
+     "o",
+     "ff",
+     "ee"
+    ],
+    "T-only": [
+     " high",
+     "lands",
+     " c",
+     "o",
+     "f",
+     "f",
+     "ee"
+    ]
+   },
+   {
+    "string": "phuc long",
+    "in_test_or_probe_text": false,
+    "original": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "A-conservative": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "B-rank-12000": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "B-rank-10000": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "B-rank-8000": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "B-rank-6000": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "B-rank-4000": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "C-aggressive": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "T-only": [
+     " ph",
+     "uc",
+     " long"
+    ]
+   },
+   {
+    "string": "bach hoa xanh",
+    "in_test_or_probe_text": false,
+    "original": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "A-conservative": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "B-rank-12000": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "B-rank-10000": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "B-rank-8000": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "B-rank-6000": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "B-rank-4000": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "C-aggressive": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "T-only": [
+     " ba",
+     "ch",
+     " hoa",
+     " x",
+     "anh"
+    ]
+   },
+   {
+    "string": "the gioi di dong",
+    "in_test_or_probe_text": false,
+    "original": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "A-conservative": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "B-rank-12000": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "B-rank-10000": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "B-rank-8000": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "B-rank-6000": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "B-rank-4000": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "C-aggressive": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "T-only": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ]
+   },
+   {
+    "string": "nguyen van hung",
+    "in_test_or_probe_text": false,
+    "original": [
+     " nguy",
+     "en",
+     " van",
+     " hung"
+    ],
+    "A-conservative": [
+     " nguy",
+     "en",
+     " van",
+     " hung"
+    ],
+    "B-rank-12000": [
+     " nguy",
+     "en",
+     " van",
+     " hung"
+    ],
+    "B-rank-10000": [
+     " nguy",
+     "en",
+     " van",
+     " hung"
+    ],
+    "B-rank-8000": [
+     " nguy",
+     "en",
+     " van",
+     " hung"
+    ],
+    "B-rank-6000": [
+     " nguy",
+     "en",
+     " van",
+     " hung"
+    ],
+    "B-rank-4000": [
+     " nguy",
+     "en",
+     " van",
+     " h",
+     "ung"
+    ],
+    "C-aggressive": [
+     " nguy",
+     "en",
+     " van",
+     " h",
+     "ung"
+    ],
+    "T-only": [
+     " ng",
+     "uyen",
+     " van",
+     " h",
+     "ung"
+    ]
+   },
+   {
+    "string": "tran thi lan",
+    "in_test_or_probe_text": false,
+    "original": [
+     " tr",
+     "an",
+     " thi",
+     " lan"
+    ],
+    "A-conservative": [
+     " tr",
+     "an",
+     " thi",
+     " lan"
+    ],
+    "B-rank-12000": [
+     " tr",
+     "an",
+     " thi",
+     " lan"
+    ],
+    "B-rank-10000": [
+     " tr",
+     "an",
+     " thi",
+     " lan"
+    ],
+    "B-rank-8000": [
+     " tr",
+     "an",
+     " thi",
+     " lan"
+    ],
+    "B-rank-6000": [
+     " tr",
+     "an",
+     " thi",
+     " lan"
+    ],
+    "B-rank-4000": [
+     " tr",
+     "an",
+     " thi",
+     " lan"
+    ],
+    "C-aggressive": [
+     " tr",
+     "an",
+     " thi",
+     " l",
+     "an"
+    ],
+    "T-only": [
+     " tr",
+     "an",
+     " thi",
+     " l",
+     "an"
+    ]
+   },
+   {
+    "string": "co Huong",
+    "in_test_or_probe_text": false,
+    "original": [
+     " co",
+     " Hu",
+     "ong"
+    ],
+    "A-conservative": [
+     " co",
+     " Hu",
+     "ong"
+    ],
+    "B-rank-12000": [
+     " co",
+     " Hu",
+     "ong"
+    ],
+    "B-rank-10000": [
+     " co",
+     " Hu",
+     "ong"
+    ],
+    "B-rank-8000": [
+     " co",
+     " Hu",
+     "ong"
+    ],
+    "B-rank-6000": [
+     " co",
+     " Hu",
+     "ong"
+    ],
+    "B-rank-4000": [
+     " co",
+     " Hu",
+     "ong"
+    ],
+    "C-aggressive": [
+     " c",
+     "o",
+     " Hu",
+     "ong"
+    ],
+    "T-only": [
+     " c",
+     "o",
+     " H",
+     "uong"
+    ]
+   },
+   {
+    "string": "2tr35",
+    "in_test_or_probe_text": false,
+    "original": [
+     " 2",
+     "tr",
+     "35"
+    ],
+    "A-conservative": [
+     " 2",
+     "tr",
+     "35"
+    ],
+    "B-rank-12000": [
+     " 2",
+     "tr",
+     "35"
+    ],
+    "B-rank-10000": [
+     " 2",
+     "tr",
+     "35"
+    ],
+    "B-rank-8000": [
+     " 2",
+     "tr",
+     "35"
+    ],
+    "B-rank-6000": [
+     " 2",
+     "tr",
+     "35"
+    ],
+    "B-rank-4000": [
+     " 2",
+     "tr",
+     "35"
+    ],
+    "C-aggressive": [
+     " 2",
+     "tr",
+     "3",
+     "5"
+    ],
+    "T-only": [
+     " 2",
+     "tr",
+     "3",
+     "5"
+    ]
+   },
+   {
+    "string": "7tr8",
+    "in_test_or_probe_text": false,
+    "original": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "A-conservative": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "B-rank-12000": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "B-rank-10000": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "B-rank-8000": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "B-rank-6000": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "B-rank-4000": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "C-aggressive": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "T-only": [
+     " 7",
+     "tr",
+     "8"
+    ]
+   },
+   {
+    "string": "250k",
+    "in_test_or_probe_text": true,
+    "original": [
+     " 250",
+     "k"
+    ],
+    "A-conservative": [
+     " 250",
+     "k"
+    ],
+    "B-rank-12000": [
+     " 250",
+     "k"
+    ],
+    "B-rank-10000": [
+     " 250",
+     "k"
+    ],
+    "B-rank-8000": [
+     " 250",
+     "k"
+    ],
+    "B-rank-6000": [
+     " 250",
+     "k"
+    ],
+    "B-rank-4000": [
+     " 250",
+     "k"
+    ],
+    "C-aggressive": [
+     " 250",
+     "k"
+    ],
+    "T-only": [
+     " 250",
+     "k"
+    ]
+   },
+   {
+    "string": "1.25tr",
+    "in_test_or_probe_text": false,
+    "original": [
+     " 1",
+     ".",
+     "25",
+     "tr"
+    ],
+    "A-conservative": [
+     " 1",
+     ".",
+     "25",
+     "tr"
+    ],
+    "B-rank-12000": [
+     " 1",
+     ".",
+     "25",
+     "tr"
+    ],
+    "B-rank-10000": [
+     " 1",
+     ".",
+     "25",
+     "tr"
+    ],
+    "B-rank-8000": [
+     " 1",
+     ".",
+     "25",
+     "tr"
+    ],
+    "B-rank-6000": [
+     " 1",
+     ".",
+     "25",
+     "tr"
+    ],
+    "B-rank-4000": [
+     " 1",
+     ".",
+     "25",
+     "tr"
+    ],
+    "C-aggressive": [
+     " 1",
+     ".",
+     "2",
+     "5",
+     "tr"
+    ],
+    "T-only": [
+     " 1",
+     ".",
+     "2",
+     "5",
+     "tr"
+    ]
+   },
+   {
+    "string": "12,500,000",
+    "in_test_or_probe_text": false,
+    "original": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "A-conservative": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "B-rank-12000": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "B-rank-10000": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "B-rank-8000": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "B-rank-6000": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "B-rank-4000": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "C-aggressive": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "T-only": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ]
+   },
+   {
+    "string": "3 triệu rưỡi",
+    "in_test_or_probe_text": false,
+    "original": [
+     " 3",
+     " triệu",
+     " rưỡi"
+    ],
+    "A-conservative": [
+     " 3",
+     " triệu",
+     " rưỡi"
+    ],
+    "B-rank-12000": [
+     " 3",
+     " triệu",
+     " rưỡi"
+    ],
+    "B-rank-10000": [
+     " 3",
+     " triệu",
+     " rưỡi"
+    ],
+    "B-rank-8000": [
+     " 3",
+     " triệu",
+     " r",
+     "ưỡi"
+    ],
+    "B-rank-6000": [
+     " 3",
+     " triệu",
+     " r",
+     "ưỡi"
+    ],
+    "B-rank-4000": [
+     " 3",
+     " triệu",
+     " r",
+     "ưỡi"
+    ],
+    "C-aggressive": [
+     " 3",
+     " triệu",
+     " r",
+     "ư\\xe1\\xbb",
+     "\\xa1",
+     "i"
+    ],
+    "T-only": [
+     " 3",
+     " triệu",
+     " r",
+     "ư\\xe1\\xbb",
+     "\\xa1",
+     "i"
+    ]
+   },
+   {
+    "string": "70 ngàn",
+    "in_test_or_probe_text": false,
+    "original": [
+     " 70",
+     " ngàn"
+    ],
+    "A-conservative": [
+     " 70",
+     " ngàn"
+    ],
+    "B-rank-12000": [
+     " 70",
+     " ngàn"
+    ],
+    "B-rank-10000": [
+     " 70",
+     " ngàn"
+    ],
+    "B-rank-8000": [
+     " 70",
+     " ngàn"
+    ],
+    "B-rank-6000": [
+     " 70",
+     " ngàn"
+    ],
+    "B-rank-4000": [
+     " 70",
+     " ngàn"
+    ],
+    "C-aggressive": [
+     " 70",
+     " ng",
+     "àn"
+    ],
+    "T-only": [
+     " 70",
+     " ng",
+     "àn"
+    ]
+   },
+   {
+    "string": "1tỷ2",
+    "in_test_or_probe_text": false,
+    "original": [
+     " 1",
+     "tỷ",
+     "2"
+    ],
+    "A-conservative": [
+     " 1",
+     "tỷ",
+     "2"
+    ],
+    "B-rank-12000": [
+     " 1",
+     "t",
+     "ỷ",
+     "2"
+    ],
+    "B-rank-10000": [
+     " 1",
+     "t",
+     "ỷ",
+     "2"
+    ],
+    "B-rank-8000": [
+     " 1",
+     "t",
+     "ỷ",
+     "2"
+    ],
+    "B-rank-6000": [
+     " 1",
+     "t",
+     "ỷ",
+     "2"
+    ],
+    "B-rank-4000": [
+     " 1",
+     "t",
+     "ỷ",
+     "2"
+    ],
+    "C-aggressive": [
+     " 1",
+     "t",
+     "\\xe1\\xbb",
+     "\\xb7",
+     "2"
+    ],
+    "T-only": [
+     " 1",
+     "t",
+     "\\xe1\\xbb",
+     "\\xb7",
+     "2"
+    ]
+   }
+  ],
+  "summary": {
+   "A-conservative": {
+    "changed": 0,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 2.85
+   },
+   "B-rank-12000": {
+    "changed": 4,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 2.95
+   },
+   "B-rank-10000": {
+    "changed": 5,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 3.0
+   },
+   "B-rank-8000": {
+    "changed": 8,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 3.075
+   },
+   "B-rank-6000": {
+    "changed": 11,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 3.2
+   },
+   "B-rank-4000": {
+    "changed": 15,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 3.325
+   },
+   "C-aggressive": {
+    "changed": 23,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 3.9
+   },
+   "T-only": {
+    "changed": 29,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 4.55
+   }
+  }
+ },
+ "zero_training": {
+  "baseline": {
+   "per_seed": {
+    "seed1": {
+     "train": {
+      "type_macro_f1": 1.0,
+      "type_accuracy": 1.0,
+      "span_f1": 1.0,
+      "span_exact": 1.0,
+      "joint": 1.0,
+      "joint_accented": 1.0,
+      "joint_unaccented": 1.0
+     },
+     "test": {
+      "type_macro_f1": 0.9260079231054463,
+      "type_accuracy": 0.9238095238095239,
+      "span_f1": 0.7692307692307692,
+      "span_exact": 0.8666666666666667,
+      "joint": 0.8095238095238095,
+      "joint_accented": 0.8571428571428571,
+      "joint_unaccented": 0.7380952380952381
+     },
+     "probe": {
+      "type_macro_f1": 0.7742430305455514,
+      "type_accuracy": 0.8148148148148148,
+      "span_f1": 0.8035714285714286,
+      "span_exact": 0.8395061728395061,
+      "joint": 0.6666666666666666,
+      "joint_accented": 0.6938775510204082,
+      "joint_unaccented": 0.625
+     }
+    },
+    "seed2": {
+     "train": {
+      "type_macro_f1": 1.0,
+      "type_accuracy": 1.0,
+      "span_f1": 1.0,
+      "span_exact": 1.0,
+      "joint": 1.0,
+      "joint_accented": 1.0,
+      "joint_unaccented": 1.0
+     },
+     "test": {
+      "type_macro_f1": 0.9357325605680868,
+      "type_accuracy": 0.9333333333333333,
+      "span_f1": 0.854368932038835,
+      "span_exact": 0.9142857142857143,
+      "joint": 0.8666666666666667,
+      "joint_accented": 0.9047619047619048,
+      "joint_unaccented": 0.8095238095238095
+     },
+     "probe": {
+      "type_macro_f1": 0.7754540366102232,
+      "type_accuracy": 0.7777777777777778,
+      "span_f1": 0.8224299065420562,
+      "span_exact": 0.8518518518518519,
+      "joint": 0.6666666666666666,
+      "joint_accented": 0.7142857142857143,
+      "joint_unaccented": 0.59375
+     }
+    },
+    "seed3": {
+     "train": {
+      "type_macro_f1": 1.0,
+      "type_accuracy": 1.0,
+      "span_f1": 1.0,
+      "span_exact": 1.0,
+      "joint": 1.0,
+      "joint_accented": 1.0,
+      "joint_unaccented": 1.0
+     },
+     "test": {
+      "type_macro_f1": 0.9218985505750212,
+      "type_accuracy": 0.9238095238095239,
+      "span_f1": 0.8653846153846154,
+      "span_exact": 0.9142857142857143,
+      "joint": 0.8571428571428571,
+      "joint_accented": 0.873015873015873,
+      "joint_unaccented": 0.8333333333333334
+     },
+     "probe": {
+      "type_macro_f1": 0.8343240326433604,
+      "type_accuracy": 0.8395061728395061,
+      "span_f1": 0.7499999999999999,
+      "span_exact": 0.8024691358024691,
+      "joint": 0.6666666666666666,
+      "joint_accented": 0.6938775510204082,
+      "joint_unaccented": 0.625
+     }
+    }
+   },
+   "summary": {
+    "train": {
+     "type_macro_f1": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "type_accuracy": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "span_f1": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "span_exact": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "joint": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "joint_accented": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "joint_unaccented": {
+      "mean": 1.0,
+      "std": 0.0
+     }
+    },
+    "test": {
+     "type_macro_f1": {
+      "mean": 0.9278796780828514,
+      "std": 0.0058007216874937486
+     },
+     "type_accuracy": {
+      "mean": 0.9269841269841269,
+      "std": 0.004489566864676477
+     },
+     "span_f1": {
+      "mean": 0.8296614388847399,
+      "std": 0.04296693066389645
+     },
+     "span_exact": {
+      "mean": 0.8984126984126984,
+      "std": 0.022447834323382435
+     },
+     "joint": {
+      "mean": 0.8444444444444444,
+      "std": 0.024996850393688284
+     },
+     "joint_accented": {
+      "mean": 0.8783068783068783,
+      "std": 0.019797129030549972
+     },
+     "joint_unaccented": {
+      "mean": 0.7936507936507936,
+      "std": 0.04046840883803797
+     }
+    },
+    "probe": {
+     "type_macro_f1": {
+      "mean": 0.7946736999330449,
+      "std": 0.02804137772353799
+     },
+     "type_accuracy": {
+      "mean": 0.8106995884773663,
+      "std": 0.02536795885995461
+     },
+     "span_f1": {
+      "mean": 0.7920004450378282,
+      "std": 0.03068048875505832
+     },
+     "span_exact": {
+      "mean": 0.831275720164609,
+      "std": 0.020983619397501162
+     },
+     "joint": {
+      "mean": 0.6666666666666666,
+      "std": 0.0
+     },
+     "joint_accented": {
+      "mean": 0.7006802721088435,
+      "std": 0.00962050042430678
+     },
+     "joint_unaccented": {
+      "mean": 0.6145833333333334,
+      "std": 0.01473139127471974
+     }
+    }
+   }
+  },
+  "notes": "metrics: mean/pstd over seeds"
+ }
+}

@@ -1,0 +1,81 @@
+{"id":"probe-v1-6b06bcc7784a","annotation_status":"complete","type":"borrow","target":{"text":"Mai","start":4,"end":7}}
+{"id":"probe-v1-4d36e861a448","annotation_status":"complete","type":"borrow","target":{"text":"Tuấn","start":0,"end":4}}
+{"id":"probe-v1-641f3c447c97","annotation_status":"complete","type":"borrow","target":{"text":"ông ngoại","start":0,"end":9}}
+{"id":"probe-v1-931b7bb2d6c9","annotation_status":"complete","type":"borrow","target":{"text":"Khoa","start":4,"end":8}}
+{"id":"probe-v1-a0fb7beabf86","annotation_status":"complete","type":"borrow","target":{"text":"Quan","start":4,"end":8}}
+{"id":"probe-v1-3ed6ba9bbf3b","annotation_status":"complete","type":"borrow","target":{"text":"me","start":0,"end":2}}
+{"id":"probe-v1-6896a19bf60c","annotation_status":"complete","type":"borrow","target":{"text":"sếp","start":0,"end":3}}
+{"id":"probe-v1-500429aa5e3e","annotation_status":"complete","type":"borrow","target":{"text":"Vinh","start":0,"end":4}}
+{"id":"probe-v1-5b7b837cccab","annotation_status":"complete","type":"borrow","target":{"text":"Hà","start":8,"end":10}}
+{"id":"probe-v1-6c08b0191ac7","annotation_status":"complete","type":"lend","target":{"text":"Mai","start":4,"end":7}}
+{"id":"probe-v1-8e9411f326b9","annotation_status":"complete","type":"lend","target":{"text":"Tuấn","start":0,"end":4}}
+{"id":"probe-v1-58b69ecc86c7","annotation_status":"complete","type":"lend","target":{"text":"Khoa","start":4,"end":8}}
+{"id":"probe-v1-2622434df14d","annotation_status":"complete","type":"lend","target":{"text":"em họ","start":0,"end":5}}
+{"id":"probe-v1-72509f9383c4","annotation_status":"complete","type":"lend","target":{"text":"Phúc","start":0,"end":4}}
+{"id":"probe-v1-46003bb886f3","annotation_status":"complete","type":"lend","target":{"text":"ban cung lop","start":0,"end":12}}
+{"id":"probe-v1-78493693bc1e","annotation_status":"complete","type":"lend","target":{"text":"Duc","start":4,"end":7}}
+{"id":"probe-v1-88584f87e2d4","annotation_status":"complete","type":"lend","target":{"text":"Hằng","start":0,"end":4}}
+{"id":"probe-v1-cfad2cfb8b8c","annotation_status":"complete","type":"lend","target":{"text":"Nga","start":4,"end":7}}
+{"id":"probe-v1-c0b1383f4ef4","annotation_status":"complete","type":"income","target":{"text":"mẹ","start":0,"end":2}}
+{"id":"probe-v1-0bafb4ca6cdd","annotation_status":"complete","type":"income","target":{"text":"ông nội","start":0,"end":7}}
+{"id":"probe-v1-f0afd02e09be","annotation_status":"complete","type":"income","target":{"text":"ba","start":0,"end":2}}
+{"id":"probe-v1-37738f897e9f","annotation_status":"complete","type":"income","target":{"text":"chi hai","start":0,"end":7}}
+{"id":"probe-v1-017643f593f4","annotation_status":"complete","type":"income","target":{"text":"bà ngoại","start":0,"end":8}}
+{"id":"probe-v1-471ec841e6cd","annotation_status":"complete","type":"income","target":{"text":"bo me","start":0,"end":5}}
+{"id":"probe-v1-565037cfc9f2","annotation_status":"complete","type":"income","target":{"text":"cô Út","start":5,"end":10}}
+{"id":"probe-v1-1ef6818189d5","annotation_status":"complete","type":"income","target":{"text":"cau","start":0,"end":3}}
+{"id":"probe-v1-d72eaeae057f","annotation_status":"complete","type":"income","target":{"text":"anh trai","start":0,"end":8}}
+{"id":"probe-v1-da7dd20f071d","annotation_status":"complete","type":"expense","target":{"text":"Bin","start":9,"end":12}}
+{"id":"probe-v1-29a4f6893ab4","annotation_status":"complete","type":"expense","target":{"text":"ong ngoai","start":6,"end":15}}
+{"id":"probe-v1-5f9010f79258","annotation_status":"complete","type":"expense","target":{"text":"ông bà","start":10,"end":16}}
+{"id":"probe-v1-1ca03a56b8ac","annotation_status":"complete","type":"expense","target":{"text":"mẹ","start":4,"end":6}}
+{"id":"probe-v1-db6afb507541","annotation_status":"complete","type":"expense","target":{"text":"ba","start":4,"end":6}}
+{"id":"probe-v1-034dbf145af7","annotation_status":"complete","type":"expense","target":{"text":"Su","start":9,"end":11}}
+{"id":"probe-v1-f65027a5fd14","annotation_status":"complete","type":"expense","target":{"text":"bác Tư","start":5,"end":11}}
+{"id":"probe-v1-732afc3f5f6e","annotation_status":"complete","type":"expense","target":{"text":"em gai","start":4,"end":10}}
+{"id":"probe-v1-b4d4848ad040","annotation_status":"complete","type":"expense","target":{"text":"Vy","start":5,"end":7}}
+{"id":"probe-v1-8164bc2f5e97","annotation_status":"complete","type":"expense","target":null}
+{"id":"probe-v1-008b0f232668","annotation_status":"complete","type":"expense","target":null}
+{"id":"probe-v1-ee15ec3782f5","annotation_status":"complete","type":"expense","target":null}
+{"id":"probe-v1-63af8c2f606a","annotation_status":"complete","type":"expense","target":null}
+{"id":"probe-v1-4b87816eb673","annotation_status":"complete","type":"expense","target":null}
+{"id":"probe-v1-2dd2d51e473f","annotation_status":"complete","type":"expense","target":{"text":"prudential","start":18,"end":28}}
+{"id":"probe-v1-f43b1d4ef0b7","annotation_status":"complete","type":"expense","target":{"text":"aia","start":7,"end":10}}
+{"id":"probe-v1-94a4a6245888","annotation_status":"complete","type":"expense","target":null}
+{"id":"probe-v1-e118c8b4f87b","annotation_status":"complete","type":"expense","target":null}
+{"id":"probe-v1-04fcbffd81a4","annotation_status":"complete","type":"refund","target":null}
+{"id":"probe-v1-6d13d8fd2993","annotation_status":"complete","type":"refund","target":null}
+{"id":"probe-v1-565127901313","annotation_status":"complete","type":"refund","target":{"text":"prudential","start":0,"end":10}}
+{"id":"probe-v1-0fd9e0112e34","annotation_status":"complete","type":"refund","target":{"text":"bảo việt","start":0,"end":8}}
+{"id":"probe-v1-121629fc51c3","annotation_status":"complete","type":"refund","target":null}
+{"id":"probe-v1-fd585d236671","annotation_status":"complete","type":"refund","target":null}
+{"id":"probe-v1-9823b73798b0","annotation_status":"complete","type":"refund","target":null}
+{"id":"probe-v1-4b6584851a37","annotation_status":"complete","type":"refund","target":null}
+{"id":"probe-v1-058315c43587","annotation_status":"complete","type":"refund","target":null}
+{"id":"probe-v1-49168ea5445e","annotation_status":"complete","type":"income","target":null}
+{"id":"probe-v1-dec1ce82632b","annotation_status":"complete","type":"income","target":{"text":"vietlott","start":6,"end":14}}
+{"id":"probe-v1-f1681e6a835c","annotation_status":"complete","type":"income","target":null}
+{"id":"probe-v1-6cbe5d023674","annotation_status":"complete","type":"income","target":null}
+{"id":"probe-v1-fcb9b075334c","annotation_status":"complete","type":"income","target":null}
+{"id":"probe-v1-9d6585d8d156","annotation_status":"complete","type":"income","target":null}
+{"id":"probe-v1-0e4ff440b1e4","annotation_status":"complete","type":"income","target":null}
+{"id":"probe-v1-71c9fc1e19b6","annotation_status":"complete","type":"income","target":{"text":"shopee","start":9,"end":15}}
+{"id":"probe-v1-5b4c82ad965b","annotation_status":"complete","type":"income","target":null}
+{"id":"probe-v1-251907cc9b56","annotation_status":"complete","type":"repayment_out","target":null}
+{"id":"probe-v1-1fce2aa62386","annotation_status":"complete","type":"repayment_out","target":null}
+{"id":"probe-v1-08249209dea6","annotation_status":"complete","type":"repayment_out","target":null}
+{"id":"probe-v1-c9c71b1e2c01","annotation_status":"complete","type":"repayment_out","target":null}
+{"id":"probe-v1-0d27af6a5271","annotation_status":"complete","type":"repayment_out","target":{"text":"techcombank","start":12,"end":23}}
+{"id":"probe-v1-1ad572c5d076","annotation_status":"complete","type":"repayment_out","target":{"text":"tamo","start":17,"end":21}}
+{"id":"probe-v1-f46cacf7238c","annotation_status":"complete","type":"repayment_out","target":null}
+{"id":"probe-v1-88eca19af17e","annotation_status":"complete","type":"repayment_out","target":{"text":"ngan hang","start":4,"end":13}}
+{"id":"probe-v1-af91db4556d0","annotation_status":"complete","type":"repayment_out","target":{"text":"mb","start":22,"end":24}}
+{"id":"probe-v1-49647b72d15f","annotation_status":"complete","type":"borrow","target":{"text":"Lan","start":7,"end":10}}
+{"id":"probe-v1-20b1d79161f3","annotation_status":"complete","type":"lend","target":{"text":"Hương","start":7,"end":12}}
+{"id":"probe-v1-01534cdfeceb","annotation_status":"complete","type":"repayment_in","target":{"text":"Thành","start":4,"end":9}}
+{"id":"probe-v1-a7c14a44be47","annotation_status":"complete","type":"repayment_in","target":{"text":"Bình","start":4,"end":8}}
+{"id":"probe-v1-26da30e8b087","annotation_status":"complete","type":"borrow","target":{"text":"Dung","start":9,"end":13}}
+{"id":"probe-v1-c8abef2aa1e1","annotation_status":"complete","type":"repayment_out","target":{"text":"Loan","start":7,"end":11}}
+{"id":"probe-v1-8b2f615829fa","annotation_status":"complete","type":"borrow","target":{"text":"Nhung","start":3,"end":8}}
+{"id":"probe-v1-fb12b09ceb74","annotation_status":"complete","type":"borrow","target":{"text":"chú Tư","start":0,"end":6}}
+{"id":"probe-v1-c1c1e353a57b","annotation_status":"complete","type":"lend","target":{"text":"Hùng","start":4,"end":8}}

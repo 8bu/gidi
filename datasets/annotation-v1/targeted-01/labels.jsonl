@@ -1,0 +1,163 @@
+{"id":"targeted-annotation-v1-01-62e250adf9c6","annotation_status":"complete","type":"transfer","target":null}
+{"id":"targeted-annotation-v1-01-9b8bdc05488f","annotation_status":"uncertain","type":null,"target":{"text":"Nam","start":0,"end":3},"note":"incoming money with no reason: gift, loan, repayment, or refund"}
+{"id":"targeted-annotation-v1-01-565ed2fb3326","annotation_status":"uncertain","type":null,"target":{"text":"Linh","start":4,"end":8},"note":"trả X with no reason: paying X for something vs repaying a debt"}
+{"id":"targeted-annotation-v1-01-6b71966f3f06","annotation_status":"complete","type":"lend","target":{"text":"Thắng","start":0,"end":5}}
+{"id":"targeted-annotation-v1-01-477af5542d30","annotation_status":"complete","type":"refund","target":{"text":"cua hang","start":0,"end":8}}
+{"id":"targeted-annotation-v1-01-df6029d5beec","annotation_status":"complete","type":"transfer","target":null}
+{"id":"targeted-annotation-v1-01-2bdb46bbee94","annotation_status":"uncertain","type":null,"target":{"text":"Hạnh","start":13,"end":17},"note":"money received from Hạnh with no reason: gift, loan, repayment, or refund"}
+{"id":"targeted-annotation-v1-01-39a7045672ea","annotation_status":"complete","type":"refund","target":{"text":"vietnam airlines","start":0,"end":16}}
+{"id":"targeted-annotation-v1-01-c3b27ce9ae78","annotation_status":"complete","type":"lend","target":{"text":"ban cu","start":4,"end":10}}
+{"id":"targeted-annotation-v1-01-42aef85ba4cb","annotation_status":"uncertain","type":null,"target":{"text":"dong nghiep","start":0,"end":11},"note":"X trả tiền ăn/cơm with no debt word: repayment of a fronted meal, reimbursement, or payment"}
+{"id":"targeted-annotation-v1-01-56f907766505","annotation_status":"complete","type":"borrow","target":{"text":"tcb","start":13,"end":16}}
+{"id":"targeted-annotation-v1-01-de5a32c060ec","annotation_status":"complete","type":"repayment_out","target":{"text":"Thảo","start":12,"end":16}}
+{"id":"targeted-annotation-v1-01-649aa2ce6809","annotation_status":"complete","type":"borrow","target":null}
+{"id":"targeted-annotation-v1-01-5b89e8677c73","annotation_status":"complete","type":"lend","target":{"text":"Nghia","start":8,"end":13}}
+{"id":"targeted-annotation-v1-01-6ddde33f35c6","annotation_status":"complete","type":"repayment_in","target":{"text":"dì Tư","start":0,"end":5}}
+{"id":"targeted-annotation-v1-01-567c315344db","annotation_status":"complete","type":"repayment_in","target":{"text":"Nam","start":0,"end":3}}
+{"id":"targeted-annotation-v1-01-38ce17a93a13","annotation_status":"complete","type":"borrow","target":null}
+{"id":"targeted-annotation-v1-01-f2e9396ff58d","annotation_status":"complete","type":"refund","target":{"text":"shopee","start":0,"end":6}}
+{"id":"targeted-annotation-v1-01-12681c4c5543","annotation_status":"complete","type":"repayment_in","target":{"text":"ông anh họ","start":0,"end":10}}
+{"id":"targeted-annotation-v1-01-a07b6b6eb45c","annotation_status":"complete","type":"refund","target":{"text":"bảo việt","start":0,"end":8}}
+{"id":"targeted-annotation-v1-01-12aff90931a1","annotation_status":"complete","type":"repayment_out","target":{"text":"Vinh","start":12,"end":16}}
+{"id":"targeted-annotation-v1-01-b1cafcd91e80","annotation_status":"complete","type":"repayment_in","target":{"text":"anh Bảy","start":0,"end":7}}
+{"id":"targeted-annotation-v1-01-6929d7eb6cde","annotation_status":"complete","type":"repayment_in","target":{"text":"Hung","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-84622e5a18da","annotation_status":"complete","type":"repayment_in","target":{"text":"Nhi","start":0,"end":3}}
+{"id":"targeted-annotation-v1-01-e93559ab7d22","annotation_status":"complete","type":"lend","target":{"text":"bác Bảy","start":4,"end":11}}
+{"id":"targeted-annotation-v1-01-77e8b73b5a1a","annotation_status":"complete","type":"lend","target":{"text":"Lợi","start":4,"end":7}}
+{"id":"targeted-annotation-v1-01-94faabf61933","annotation_status":"complete","type":"lend","target":{"text":"bạn thân","start":0,"end":8}}
+{"id":"targeted-annotation-v1-01-b905ee419bca","annotation_status":"complete","type":"repayment_in","target":{"text":"Toan","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-2123e0493a3e","annotation_status":"complete","type":"refund","target":{"text":"cgv","start":0,"end":3}}
+{"id":"targeted-annotation-v1-01-cf81f8019195","annotation_status":"complete","type":"refund","target":{"text":"lazda","start":0,"end":5}}
+{"id":"targeted-annotation-v1-01-8e510f0c909b","annotation_status":"uncertain","type":null,"target":{"text":"Quan","start":13,"end":17},"note":"bare X trả with no debt context: repayment, payment for goods/services, or reimbursement"}
+{"id":"targeted-annotation-v1-01-f4f7872ea319","annotation_status":"complete","type":"repayment_in","target":{"text":"Phong","start":0,"end":5}}
+{"id":"targeted-annotation-v1-01-43de7a19db10","annotation_status":"uncertain","type":null,"target":{"text":"Tùng","start":4,"end":8},"note":"cho X without vay/mượn: gift vs loan"}
+{"id":"targeted-annotation-v1-01-6a266c1e72d5","annotation_status":"complete","type":"repayment_in","target":{"text":"bac Sau","start":0,"end":7}}
+{"id":"targeted-annotation-v1-01-e13a074f95ce","annotation_status":"complete","type":"repayment_in","target":{"text":"Duy","start":0,"end":3}}
+{"id":"targeted-annotation-v1-01-0c8842810466","annotation_status":"complete","type":"repayment_out","target":{"text":"Vy","start":10,"end":12}}
+{"id":"targeted-annotation-v1-01-14585595ed52","annotation_status":"uncertain","type":null,"target":{"text":"Quynh","start":3,"end":8},"note":"ck X with no reason: gift, payment, or loan"}
+{"id":"targeted-annotation-v1-01-a9b98b07c2ec","annotation_status":"complete","type":"refund","target":{"text":"cty","start":0,"end":3}}
+{"id":"targeted-annotation-v1-01-01b90eba86eb","annotation_status":"uncertain","type":null,"target":{"text":"Dung","start":4,"end":8},"note":"trả X with no reason: paying X for something vs repaying a debt"}
+{"id":"targeted-annotation-v1-01-ed5f06e8f11a","annotation_status":"complete","type":"repayment_in","target":{"text":"Bao","start":10,"end":13}}
+{"id":"targeted-annotation-v1-01-3153450dd384","annotation_status":"complete","type":"repayment_in","target":{"text":"chú Hai","start":0,"end":7}}
+{"id":"targeted-annotation-v1-01-739722c10c6d","annotation_status":"complete","type":"refund","target":{"text":"youtube","start":0,"end":7}}
+{"id":"targeted-annotation-v1-01-626c184c2e27","annotation_status":"complete","type":"repayment_in","target":{"text":"Trang","start":0,"end":5}}
+{"id":"targeted-annotation-v1-01-7f69d10ccac2","annotation_status":"complete","type":"repayment_in","target":{"text":"Ngan","start":3,"end":7}}
+{"id":"targeted-annotation-v1-01-a64f0c5514e6","annotation_status":"complete","type":"refund","target":{"text":"cty","start":0,"end":3}}
+{"id":"targeted-annotation-v1-01-840d03025b97","annotation_status":"complete","type":"refund","target":{"text":"tiki","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-8b423e671b26","annotation_status":"complete","type":"refund","target":{"text":"grab","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-5026c2507378","annotation_status":"complete","type":"repayment_in","target":{"text":"Khoa","start":7,"end":11}}
+{"id":"targeted-annotation-v1-01-89980a1e50a3","annotation_status":"complete","type":"refund","target":{"text":"vib","start":13,"end":16}}
+{"id":"targeted-annotation-v1-01-ada56a291022","annotation_status":"complete","type":"borrow","target":{"text":"bo","start":4,"end":6}}
+{"id":"targeted-annotation-v1-01-1e750596c3c4","annotation_status":"complete","type":"refund","target":{"text":"công ty du lịch","start":10,"end":25}}
+{"id":"targeted-annotation-v1-01-e2450e838572","annotation_status":"complete","type":"refund","target":{"text":"nhà thuốc","start":0,"end":9}}
+{"id":"targeted-annotation-v1-01-94f1d8f8a603","annotation_status":"complete","type":"refund","target":{"text":"grab","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-b24c6a87277e","annotation_status":"complete","type":"repayment_in","target":{"text":"Hòa","start":0,"end":3}}
+{"id":"targeted-annotation-v1-01-bcb30833633f","annotation_status":"complete","type":"refund","target":{"text":"cửa hàng","start":22,"end":30}}
+{"id":"targeted-annotation-v1-01-461c379c7e7e","annotation_status":"complete","type":"repayment_in","target":{"text":"anh re","start":0,"end":6}}
+{"id":"targeted-annotation-v1-01-2e8d38cf6a18","annotation_status":"uncertain","type":null,"target":{"text":"Lan","start":4,"end":7},"note":"Lan hands over money with no reason: gift, loan, repayment, or refund"}
+{"id":"targeted-annotation-v1-01-6b58830b35cb","annotation_status":"complete","type":"refund","target":{"text":"tiki","start":8,"end":12}}
+{"id":"targeted-annotation-v1-01-6bba62a2c043","annotation_status":"complete","type":"repayment_in","target":{"text":"cô Út","start":0,"end":5},"note":"bare `X gửi trả` with no debt context: repayment, payment, or reimbursement"}
+{"id":"targeted-annotation-v1-01-e1c32e5a12ab","annotation_status":"complete","type":"repayment_in","target":{"text":"Linh","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-aec9b2eb6bed","annotation_status":"complete","type":"refund","target":{"text":"kế toán","start":0,"end":7}}
+{"id":"targeted-annotation-v1-01-cc8c50502b1e","annotation_status":"complete","type":"lend","target":{"text":"Khai","start":8,"end":12}}
+{"id":"targeted-annotation-v1-01-f491de98c508","annotation_status":"complete","type":"lend","target":{"text":"em họ","start":0,"end":5}}
+{"id":"targeted-annotation-v1-01-dfb2984f1554","annotation_status":"complete","type":"repayment_in","target":{"text":"Lộc","start":0,"end":3}}
+{"id":"targeted-annotation-v1-01-caf5970b61b3","annotation_status":"uncertain","type":null,"target":{"text":"Khoa","start":4,"end":8},"note":"đưa X with no reason: gift, payment, or loan"}
+{"id":"targeted-annotation-v1-01-18c5d8f73427","annotation_status":"complete","type":"borrow","target":{"text":"em gái","start":5,"end":11}}
+{"id":"targeted-annotation-v1-01-86a1d00f5a29","annotation_status":"complete","type":"borrow","target":{"text":"home credit","start":4,"end":15}}
+{"id":"targeted-annotation-v1-01-1f5526cc0d6f","annotation_status":"complete","type":"borrow","target":{"text":"ban","start":9,"end":12}}
+{"id":"targeted-annotation-v1-01-a14ac2e07a88","annotation_status":"complete","type":"borrow","target":{"text":"đồng nghiệp","start":9,"end":20}}
+{"id":"targeted-annotation-v1-01-d63cb2a54b54","annotation_status":"uncertain","type":null,"target":{"text":"Kiet","start":0,"end":4},"note":"bare X trả with no debt context: repayment, payment for goods/services, or reimbursement"}
+{"id":"targeted-annotation-v1-01-449cf31eb5b9","annotation_status":"complete","type":"borrow","target":null}
+{"id":"targeted-annotation-v1-01-1d247aecdecf","annotation_status":"complete","type":"refund","target":{"text":"shopeefood","start":0,"end":10}}
+{"id":"targeted-annotation-v1-01-e38a300f673d","annotation_status":"complete","type":"lend","target":{"text":"Tâm","start":4,"end":7}}
+{"id":"targeted-annotation-v1-01-b7ad5e8caeeb","annotation_status":"uncertain","type":null,"target":{"text":"Tuan","start":0,"end":4},"note":"incoming money with no reason: gift, loan, repayment, or refund"}
+{"id":"targeted-annotation-v1-01-f47b5768e090","annotation_status":"complete","type":"repayment_in","target":{"text":"Trung","start":0,"end":5}}
+{"id":"targeted-annotation-v1-01-f76d0b858a29","annotation_status":"complete","type":"lend","target":{"text":"Hiếu","start":4,"end":8}}
+{"id":"targeted-annotation-v1-01-67bce97caab8","annotation_status":"complete","type":"refund","target":{"text":"shopee","start":19,"end":25}}
+{"id":"targeted-annotation-v1-01-69c8749dcb85","annotation_status":"uncertain","type":null,"target":{"text":"Phát","start":4,"end":8},"note":"incoming transfer with no reason: gift, loan, repayment, or refund"}
+{"id":"targeted-annotation-v1-01-d038547aa79a","annotation_status":"complete","type":"repayment_in","target":{"text":"Mai","start":4,"end":7}}
+{"id":"targeted-annotation-v1-01-50aaa020e8f2","annotation_status":"complete","type":"borrow","target":{"text":"Nhan","start":5,"end":9}}
+{"id":"targeted-annotation-v1-01-bb80749d05e4","annotation_status":"complete","type":"repayment_in","target":{"text":"Tai","start":4,"end":7}}
+{"id":"targeted-annotation-v1-01-f6c9da29169b","annotation_status":"complete","type":"expense","target":{"text":"em","start":4,"end":6}}
+{"id":"targeted-annotation-v1-01-2e1e398f2e16","annotation_status":"complete","type":"borrow","target":{"text":"chủ quán","start":16,"end":24}}
+{"id":"targeted-annotation-v1-01-29254f99f21d","annotation_status":"complete","type":"repayment_in","target":{"text":"bạn cùng phòng","start":0,"end":14}}
+{"id":"targeted-annotation-v1-01-8b9aea00438d","annotation_status":"complete","type":"repayment_in","target":{"text":"Thao","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-8a2ae1870545","annotation_status":"complete","type":"borrow","target":{"text":"Loan","start":9,"end":13}}
+{"id":"targeted-annotation-v1-01-0f3e144cbcb1","annotation_status":"complete","type":"borrow","target":{"text":"anh Tư","start":0,"end":6}}
+{"id":"targeted-annotation-v1-01-7fb4eedb38da","annotation_status":"complete","type":"repayment_in","target":{"text":"em trai","start":0,"end":7}}
+{"id":"targeted-annotation-v1-01-552a72c4cc43","annotation_status":"complete","type":"refund","target":{"text":"vpbank","start":9,"end":15}}
+{"id":"targeted-annotation-v1-01-bb1567dee653","annotation_status":"complete","type":"borrow","target":{"text":"vpbank","start":13,"end":19}}
+{"id":"targeted-annotation-v1-01-d0de2032c670","annotation_status":"uncertain","type":null,"target":{"text":"Mạnh","start":7,"end":11},"note":"ck cho X without vay/mượn or reason: gift, payment, or loan"}
+{"id":"targeted-annotation-v1-01-b716c52e376d","annotation_status":"complete","type":"refund","target":{"text":"netflix","start":8,"end":15}}
+{"id":"targeted-annotation-v1-01-aad336761d3d","annotation_status":"uncertain","type":null,"target":{"text":"Quyên","start":9,"end":14},"note":"mình trả X with no reason: paying X for something vs repaying a debt"}
+{"id":"targeted-annotation-v1-01-13baa014c8fa","annotation_status":"complete","type":"borrow","target":{"text":"Hải","start":4,"end":7}}
+{"id":"targeted-annotation-v1-01-a6f095c4447e","annotation_status":"complete","type":"repayment_in","target":{"text":"Duc","start":7,"end":10}}
+{"id":"targeted-annotation-v1-01-f65d54c745fa","annotation_status":"complete","type":"refund","target":{"text":"tcb","start":0,"end":3}}
+{"id":"targeted-annotation-v1-01-1dbfba8a25c5","annotation_status":"complete","type":"repayment_in","target":{"text":"me","start":0,"end":2}}
+{"id":"targeted-annotation-v1-01-ecc365be5953","annotation_status":"uncertain","type":null,"target":{"text":"Quyên","start":0,"end":5},"note":"bare X trả with no debt context: repayment, payment for goods/services, or reimbursement"}
+{"id":"targeted-annotation-v1-01-a6c620e7de75","annotation_status":"complete","type":"borrow","target":{"text":"Tài","start":9,"end":12}}
+{"id":"targeted-annotation-v1-01-c2089103466c","annotation_status":"complete","type":"refund","target":{"text":"sendo","start":8,"end":13}}
+{"id":"targeted-annotation-v1-01-95e3e3addb57","annotation_status":"complete","type":"refund","target":{"text":"spotify","start":0,"end":7}}
+{"id":"targeted-annotation-v1-01-86d31eab999f","annotation_status":"complete","type":"refund","target":{"text":"phòng nhân sự","start":0,"end":13}}
+{"id":"targeted-annotation-v1-01-0213e96be9c0","annotation_status":"complete","type":"repayment_out","target":{"text":"Hà","start":8,"end":10}}
+{"id":"targeted-annotation-v1-01-d15af31a2e75","annotation_status":"complete","type":"repayment_in","target":{"text":"Minh","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-7b06da87f618","annotation_status":"complete","type":"lend","target":{"text":"Phat","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-688288088e88","annotation_status":"uncertain","type":null,"target":{"text":"Thanh","start":10,"end":15},"note":"bare X trả with no debt context: repayment, payment for goods/services, or reimbursement"}
+{"id":"targeted-annotation-v1-01-ceb3a7185b19","annotation_status":"complete","type":"lend","target":{"text":"Dung","start":4,"end":8}}
+{"id":"targeted-annotation-v1-01-996fea9ebaec","annotation_status":"complete","type":"transfer","target":null}
+{"id":"targeted-annotation-v1-01-55b6ac7b711d","annotation_status":"complete","type":"repayment_in","target":{"text":"Binh","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-f1c001187279","annotation_status":"complete","type":"repayment_in","target":{"text":"Khang","start":0,"end":5}}
+{"id":"targeted-annotation-v1-01-8c87a35c5ae4","annotation_status":"complete","type":"repayment_in","target":{"text":"Tri","start":0,"end":3}}
+{"id":"targeted-annotation-v1-01-af19c277cfcb","annotation_status":"complete","type":"transfer","target":null}
+{"id":"targeted-annotation-v1-01-f56bb0a25e64","annotation_status":"complete","type":"lend","target":{"text":"Tien","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-2cda1d910520","annotation_status":"complete","type":"borrow","target":{"text":"ngân hàng","start":4,"end":13}}
+{"id":"targeted-annotation-v1-01-ad2a499af4f4","annotation_status":"uncertain","type":null,"target":{"text":"Vy","start":0,"end":2},"note":"X trả tiền ăn/cơm with no debt word: repayment of a fronted meal, reimbursement, or payment"}
+{"id":"targeted-annotation-v1-01-b0ec9dfac78c","annotation_status":"complete","type":"refund","target":null}
+{"id":"targeted-annotation-v1-01-b7fe9d507f99","annotation_status":"complete","type":"lend","target":{"text":"bạn cùng lớp","start":4,"end":16}}
+{"id":"targeted-annotation-v1-01-bd1024efc92d","annotation_status":"uncertain","type":null,"target":null,"note":"X ck hộ Y: who owes whom, and in which direction, is unclear"}
+{"id":"targeted-annotation-v1-01-7d1037648087","annotation_status":"complete","type":"repayment_in","target":{"text":"roommate","start":0,"end":8}}
+{"id":"targeted-annotation-v1-01-6bd81e618b99","annotation_status":"complete","type":"borrow","target":{"text":"Thuy","start":3,"end":7}}
+{"id":"targeted-annotation-v1-01-b97776ee55a7","annotation_status":"complete","type":"refund","target":{"text":"bamboo","start":0,"end":6}}
+{"id":"targeted-annotation-v1-01-889630a3f40c","annotation_status":"complete","type":"refund","target":null}
+{"id":"targeted-annotation-v1-01-35299bba21dc","annotation_status":"complete","type":"lend","target":{"text":"em hang xom","start":4,"end":15}}
+{"id":"targeted-annotation-v1-01-81f1c9cec4b3","annotation_status":"complete","type":"refund","target":null}
+{"id":"targeted-annotation-v1-01-5511db7fa41d","annotation_status":"complete","type":"repayment_in","target":{"text":"Vinh","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-1f4fa2ee9993","annotation_status":"complete","type":"repayment_out","target":{"text":"Long","start":7,"end":11}}
+{"id":"targeted-annotation-v1-01-cb9e010fcde6","annotation_status":"complete","type":"lend","target":{"text":"Hoa","start":8,"end":11}}
+{"id":"targeted-annotation-v1-01-4bdda63023c1","annotation_status":"uncertain","type":null,"target":{"text":"Nhung","start":12,"end":17},"note":"X trả tiền ăn/cơm with no debt word: repayment of a fronted meal, reimbursement, or payment"}
+{"id":"targeted-annotation-v1-01-38792e4d923d","annotation_status":"complete","type":"repayment_in","target":{"text":"Long","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-74f7d92f5ea2","annotation_status":"uncertain","type":null,"target":{"text":"Hieu","start":0,"end":4},"note":"bare X trả with no debt context: repayment, payment for goods/services, or reimbursement"}
+{"id":"targeted-annotation-v1-01-7d969cbfc6ac","annotation_status":"complete","type":"repayment_out","target":{"text":"Phong","start":8,"end":13}}
+{"id":"targeted-annotation-v1-01-19d2e3a9b0d5","annotation_status":"complete","type":"refund","target":null}
+{"id":"targeted-annotation-v1-01-f1a0c1f8f95f","annotation_status":"complete","type":"repayment_in","target":{"text":"Son","start":0,"end":3}}
+{"id":"targeted-annotation-v1-01-f030130ba1d6","annotation_status":"complete","type":"borrow","target":{"text":"chi ho","start":4,"end":10}}
+{"id":"targeted-annotation-v1-01-e403d7df5ad0","annotation_status":"complete","type":"repayment_in","target":{"text":"Hà","start":0,"end":2}}
+{"id":"targeted-annotation-v1-01-f97dce29f408","annotation_status":"complete","type":"refund","target":{"text":"zalopay","start":0,"end":7}}
+{"id":"targeted-annotation-v1-01-672ff4340e2b","annotation_status":"complete","type":"lend","target":{"text":"em trai","start":8,"end":15}}
+{"id":"targeted-annotation-v1-01-952f105851cc","annotation_status":"complete","type":"borrow","target":null}
+{"id":"targeted-annotation-v1-01-71d5e9dc1c17","annotation_status":"uncertain","type":null,"target":{"text":"cty","start":0,"end":3},"note":"cty sends money with no reason: pay, reimbursement, or advance"}
+{"id":"targeted-annotation-v1-01-e9f840de6895","annotation_status":"complete","type":"lend","target":{"text":"anh rể","start":4,"end":10}}
+{"id":"targeted-annotation-v1-01-7243124c94e5","annotation_status":"complete","type":"repayment_in","target":{"text":"Tuấn","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-96249badd4d9","annotation_status":"complete","type":"repayment_in","target":{"text":"Sơn","start":9,"end":12}}
+{"id":"targeted-annotation-v1-01-9ef345e000c2","annotation_status":"complete","type":"refund","target":null}
+{"id":"targeted-annotation-v1-01-8b5804d4944f","annotation_status":"complete","type":"lend","target":{"text":"Vũ","start":7,"end":9}}
+{"id":"targeted-annotation-v1-01-bd0d6d97d68e","annotation_status":"complete","type":"repayment_in","target":{"text":"Thảo","start":4,"end":8}}
+{"id":"targeted-annotation-v1-01-a204758d9d4e","annotation_status":"complete","type":"repayment_in","target":{"text":"Tuan","start":11,"end":15}}
+{"id":"targeted-annotation-v1-01-a30685052497","annotation_status":"complete","type":"repayment_in","target":{"text":"mẹ","start":0,"end":2}}
+{"id":"targeted-annotation-v1-01-d864f618f583","annotation_status":"complete","type":"refund","target":{"text":"apple","start":0,"end":5}}
+{"id":"targeted-annotation-v1-01-3a5cb370e770","annotation_status":"uncertain","type":null,"target":{"text":"Phúc","start":10,"end":14},"note":"bare X trả with no debt context: repayment, payment for goods/services, or reimbursement"}
+{"id":"targeted-annotation-v1-01-35e47af585b3","annotation_status":"complete","type":"repayment_in","target":{"text":"Hùng","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-e154f63cb75f","annotation_status":"complete","type":"refund","target":null}
+{"id":"targeted-annotation-v1-01-b32a35e194dc","annotation_status":"complete","type":"lend","target":{"text":"Ngân","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-c29271668522","annotation_status":"complete","type":"refund","target":{"text":"lazada","start":0,"end":6}}
+{"id":"targeted-annotation-v1-01-263e0a003d5e","annotation_status":"complete","type":"repayment_in","target":{"text":"Đạt","start":0,"end":3}}
+{"id":"targeted-annotation-v1-01-9e8d9fea52b7","annotation_status":"complete","type":"refund","target":null}
+{"id":"targeted-annotation-v1-01-ca107a51a983","annotation_status":"uncertain","type":null,"target":{"text":"em gai","start":0,"end":6},"note":"bare X trả with no debt context: repayment, payment for goods/services, or reimbursement"}
+{"id":"targeted-annotation-v1-01-4d06a6abdd9b","annotation_status":"complete","type":"refund","target":{"text":"điện máy xanh","start":0,"end":13}}
+{"id":"targeted-annotation-v1-01-ed01eac7c566","annotation_status":"complete","type":"repayment_out","target":{"text":"Hùng","start":7,"end":11}}
+{"id":"targeted-annotation-v1-01-958092f67255","annotation_status":"complete","type":"refund","target":{"text":"momo","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-7f35bfd9fab5","annotation_status":"complete","type":"transfer","target":null}
+{"id":"targeted-annotation-v1-01-9d98b78854de","annotation_status":"complete","type":"repayment_in","target":{"text":"Lâm","start":18,"end":21}}
+{"id":"targeted-annotation-v1-01-fae0f4173362","annotation_status":"complete","type":"refund","target":{"text":"vietjet","start":0,"end":7}}
+{"id":"targeted-annotation-v1-01-7fe2b9e197ab","annotation_status":"complete","type":"borrow","target":{"text":"bố","start":0,"end":2}}

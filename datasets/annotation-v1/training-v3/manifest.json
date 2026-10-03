@@ -1,0 +1,108 @@
+{
+  "name": "training-v3",
+  "annotation_version": "annotation-v1",
+  "purpose": "controlled experiment: frozen train + targeted-02 + targeted-03, same frozen evaluation sets",
+  "counts": {
+    "original_train": 501,
+    "targeted_02_trainable": 112,
+    "targeted_03_trainable": 20,
+    "train": 633
+  },
+  "source_batch_counts": {
+    "baseline-01": 410,
+    "targeted-annotation-v1-01": 91,
+    "targeted-annotation-v1-02": 112,
+    "targeted-annotation-v1-03": 20
+  },
+  "type_counts": {
+    "expense": 178,
+    "income": 73,
+    "borrow": 75,
+    "lend": 60,
+    "repayment_in": 37,
+    "repayment_out": 64,
+    "transfer": 93,
+    "refund": 53
+  },
+  "type_counts_targeted_02": {
+    "expense": 23,
+    "income": 26,
+    "borrow": 27,
+    "lend": 18,
+    "repayment_in": 0,
+    "repayment_out": 8,
+    "transfer": 0,
+    "refund": 10
+  },
+  "type_counts_targeted_03": {
+    "expense": 4,
+    "income": 0,
+    "borrow": 6,
+    "lend": 0,
+    "repayment_in": 0,
+    "repayment_out": 6,
+    "transfer": 0,
+    "refund": 4
+  },
+  "accented_counts": {
+    "accented": 364,
+    "unaccented": 269
+  },
+  "targeted_02_patterns": {
+    "family_gift_in": 14,
+    "gift_out": 14,
+    "insurance_payout": 10,
+    "insurance_premium": 6,
+    "lender_first_cho_muon": 28,
+    "loan_installment": 11,
+    "subject_first_muon": 14,
+    "title_name_span": 36,
+    "windfall": 15
+  },
+  "targeted_02_groups": {
+    "groups": 78,
+    "minimal_pair_groups": 34,
+    "note": "a group is one unit: never split it across train/validation/test"
+  },
+  "targeted_03_patterns": {
+    "insurance_payout": 4,
+    "insurance_premium": 4,
+    "loan_installment": 12
+  },
+  "targeted_03_groups": {
+    "groups": 10,
+    "minimal_pair_groups": 10,
+    "note": "a group is one unit: never split it across train/validation/test"
+  },
+  "evaluation_sets": "validation.jsonl and test.jsonl are symlinks to the frozen splits",
+  "leakage_gate": {
+    "checked": 132,
+    "eval_refs": 296,
+    "fail_on": [
+      "eval_bag_match",
+      "eval_near",
+      "eval_norm_match",
+      "eval_skel_match",
+      "train_duplicate"
+    ],
+    "failures": 0,
+    "max_eval_similarity": 0.848,
+    "median_eval_similarity": 0.636
+  },
+  "files": {
+    "train.jsonl": "bccb4b38502b492d172edfe2e8b7b05aa122b3abd5d76c4cd7b53cc40c46aed2"
+  },
+  "evaluation_files": {
+    "datasets/annotation-v1/splits/validation.jsonl": "5c8039978a84943db4ffa44524a65200ff5022ce06092e128ffbbe8fbff8df87",
+    "datasets/annotation-v1/splits/test.jsonl": "13fc3de4b7be58a689124c31477a14cf7cbb3d82e09a8c4276174f0825c775d0",
+    "datasets/probe-v1/README.md": "760733e60087ad15148721378becea186b9b44ed571bf64a59341066adf7fac1",
+    "datasets/probe-v1/human-labels.jsonl": "0567ac7cd10db80da063582144707d50d41a87fe5d459ba9aa9ecebbfa4ea0a9",
+    "datasets/probe-v1/labels.jsonl": "7baa5aff2e2a5be2b2261bb8c9a4f9b607005f67ec766e61a5b4b2726d5ee264",
+    "datasets/probe-v1/manifest.json": "214bc0f5064105a7a39bcf692d3dbef3c5ea1d5dc127305e5abcf532803c45c4",
+    "datasets/probe-v1/notes.jsonl": "6ffc9017bf8a153fe42741f20788b47e35ddd6213afb5479ac25e32d26c31797",
+    "datasets/probe-v1/proposals.jsonl": "2ac749def91c0cf34c1107c47cbf724f286c90ec59c8bb33d379eec86adb052c",
+    "datasets/probe-v1/provenance.jsonl": "b927658409c8b55e5596a57c8f376fd32612d5e2ac44575dde2063a2d230d333",
+    "datasets/probe-v1/queue.jsonl": "ea3d3f118d211b98a65dd06be6a06c6d7fd6bbe076c9ad9b375d448f24d60451",
+    "datasets/probe-v1/recheck.jsonl": "b7f4b0fb910059c345467aacea908241e41950edf98622c98831d9fd2feff1b2"
+  }
+}

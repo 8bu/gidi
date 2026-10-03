@@ -1,0 +1,118 @@
+{
+  "experiment": "value-span-v6-value-adapter",
+  "declared_before_training": true,
+  "status": "frozen 2026-10-03, declared before training",
+  "question": "Can one small trainable value-only Transformer block (before the v5 MLP + CRF head) close most of the gap to value-span-v1 without changing v1 type/target behaviour?",
+  "unchanged_evidence": [
+    "models/gidi-finance-v1",
+    "experiments/value-span-v1",
+    "experiments/value-span-v2-direction-repair",
+    "experiments/value-span-v3-frozen-v1",
+    "experiments/value-span-v4-nonlinear-head",
+    "experiments/value-span-v5-crf"
+  ],
+  "out_of_scope": "more than one adapter block, BiLSTM, adapters inside encoder layers, unfreezing any encoder layer, type/target fine-tuning, auxiliary token CE or any other loss term, hard BIO transition constraints, loss weighting, new/duplicated/augmented/synthetic data, label changes, hyperparameter sweep, architecture variants, a second attempt after test/probe results, numeric normalization",
+  "base_model": {
+    "checkpoint": "models/compression-v3/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2048/seed1",
+    "model_safetensors_sha256": "bfb2195aad55dee1593bc9c017016c00b3f077674650657fb056c1cdfc930556",
+    "note": "the PyTorch checkpoint gidi-finance-v1 was frozen from (models/gidi-finance-v1/manifest.json sources.checkpoint_model_safetensors); loaded as trained, never re-initialised",
+    "identical_across_runs": "every value-head seed loads the same base weights; checked by sha256 of the frozen state before and after training"
+  },
+  "architecture": {
+    "graph": "frozen v1 encoder last_hidden_state H (after the model's shared dropout, identity in eval) -> frozen type head (mean pool of H) and frozen target BIO head (H), exactly as v1; value branch: H -> value adapter -> MLP emissions -> linear-chain CRF. The adapter returns a new tensor; H itself is never modified or replaced, and the encoder has requires_grad False so no value gradient reaches it",
+    "frozen": "every encoder parameter, type head, target BIO head (requires_grad False)",
+    "value_adapter": {
+      "module": "one torch.nn.TransformerEncoderLayer (batch_first), value branch only; no stacking",
+      "hidden_size": 768,
+      "num_heads": 12,
+      "head_dim": 64,
+      "ffn_size": 1024,
+      "ffn_activation": "GELU",
+      "dropout": "0.1 on attention weights, after the FFN activation, and on both residual branches",
+      "layer_norm": "post-LN (norm_first False), eps 1e-5, as the RoBERTa-layout v1 encoder layers",
+      "residual": "x1 = LayerNorm1(H + Dropout(MultiHeadSelfAttention(H))); x2 = LayerNorm2(x1 + Dropout(Linear2(Dropout(GELU(Linear1(x1))))))",
+      "attention_mask": "key padding mask from the attention mask (padding keys excluded)",
+      "params": 3940096
+    },
+    "value_head": "x2 -> Linear(768,256) -> GELU -> Dropout(0.1) -> Linear(256,3) emissions (197,635 params) -> linear-chain CRF over O / B-VALUE / I-VALUE (start [3], end [3], transitions [3,3]; 15 params; learned, no hard constraints); head arch `adapter-mlp-crf`",
+    "trainable_params": 4137746,
+    "init": "MLP and CRF exactly as v5 (private generators VALUE_HEAD_SEED_BASE (1_000_003) + seed, + 1_000_000, + 2_000_000); adapter: PyTorch default TransformerEncoderLayer init under torch.manual_seed(VALUE_HEAD_SEED_BASE + seed + 3_000_000) in a forked RNG",
+    "decoding": "Viterbi over the real tokens (special tokens O), then the unchanged value span rule and best-span choice; confidence from softmax(emission) of the Viterbi tags",
+    "outputs": "type_logits [batch, 8], target_logits [batch, seq, 3], value_logits = CRF emission scores [batch, seq, 3]",
+    "mode": "encoder, type head, target head and the model's shared dropout in eval mode throughout; the value branch (adapter + MLP) in train mode during training, eval at evaluation"
+  },
+  "pre_training_checks": [
+    "optimizer param groups contain exactly the value-branch parameters: 12 adapter tensors + 4 MLP tensors + 3 CRF tensors (19), nothing else",
+    "every v1 encoder parameter, type head and target head has requires_grad False",
+    "after the first backward pass every frozen parameter has grad None (or all zero)",
+    "frozen state sha256 equals the base checkpoint's before training, after the last epoch and in the saved checkpoint"
+  ],
+  "data": {
+    "dir": "datasets/annotation-v2/training-v1",
+    "train": "train.jsonl (895 rows), sha256 0a03db64238e6f202918a30e3727178c437045ce4703d38f14a7dda9883589e5",
+    "validation": "validation.jsonl (149), sha256 eef077c97a519dc532112683f3ab35daeaa6e55187c3c2fb01f53a0ee37f629c; logged per epoch only, never used for selection",
+    "test": "test.jsonl (143 = 105 v1 + 38 targeted-value-01), sha256 acaca8d767828e48954e91871886ac191a45110af695af7df7573a9c0be6f91d; evaluation only",
+    "probe": "probe-v1-eval-only.jsonl (81), sha256 638aeff00243f20af2dbeb2b340da0142631566057aef57d75005b75aedece87; evaluation only",
+    "value_supervision": "value loss only on value_status == complete; uncertain value labels masked",
+    "not_used": "datasets/annotation-v2/training-v2-direction-repair (no duplicated rows)"
+  },
+  "training": {
+    "loss": "value CRF negative log-likelihood only, mean over the notes of the batch with value_status == complete; uncertain notes excluded; no auxiliary token CE (none required: the CRF NLL trains emissions and transitions end to end, as in v5)",
+    "recipe": "AdamW; lr 3e-4 for the adapter block, 1e-3 for the MLP and CRF (the v4/v5 head lr); weight decay 0.01 on weight matrices (adapter in_proj/out_proj/linear1/linear2, MLP Linear weights), 0 on biases, LayerNorms and CRF transitions; batch 8; 40 epochs; linear warmup 0.1 then linear decay (all groups); max grad norm 1.0 over the whole value branch; dropout 0.1; per-epoch shuffle seeded by seed + epoch",
+    "rationale": "head settings identical to v5 so the change is the adapter; 3e-4 is a standard AdamW rate for a freshly initialised post-LN Transformer block with warmup (1e-3 risks post-LN instability; the v1 encoder's own fine-tuning lr is lower still); chosen before training, no sweep",
+    "seeds": [
+      1,
+      2,
+      3
+    ],
+    "seed_meaning": "value adapter, MLP and CRF initialisation and batch order only; base weights identical",
+    "selection": "last epoch; no early stopping",
+    "output": "models/value-span-v6-value-adapter/seed{1,2,3}",
+    "device": "MPS (not bit-reproducible; evaluation on CPU)"
+  },
+  "export_seed": "value-head seed 1; this experiment does not export (A means stop and report)",
+  "evaluation": {
+    "invariance": "for every test (143, incl. the 105 frozen v1 test records) and probe (81) record, and for every value-head seed: type logits, type prediction, target logits, target BIO prediction and target span equal the base v1 checkpoint's (CPU, same inputs; logits compared with max abs diff, required 0 on CPU; predictions/spans exactly equal). Also cross-checked against the frozen v1 seed-1 predictions in experiments/value-span-v1/eval/v1-seed1-*-predictions.jsonl",
+    "value": "same metric code, sets, slices and value-quality criteria as value-span-v1 / v3 / v4 / v5 (value_gate.value_quality_criteria), Viterbi decoding: per seed, mean/std over seeds and seed 1. Reported: value exact, span precision/recall/F1, token F1, human-only exact, present/null, slices explicit_unit, bare_number, multi_number, slang, unaccented, unseen_span, long_multi_token; sets test, test-v1, test-targeted, probe, validation (monitoring)",
+    "error_categories": "every wrong value on complete labels (test, probe, per seed) classified by span position: wrong-number selection (no overlap), boundary truncation (inside gold), left overrun, right overrun into date/time, right overrun punctuation-only, other right overrun, missed (null)",
+    "inspection": "every multi-number value error on test and probe listed and inspected by hand, classified as wrong candidate selection, span truncation, date/period absorption, punctuation, or other boundary error",
+    "tracked_cases": "report only, never used for training or tuning: `cho a Nam vay 1 triệu 20/10` (gold `1 triệu`) and `Thắng vay 5 củ, hẹn t10 trả` (gold `5 củ`)",
+    "comparison": "compared with value-span-v3 (linear), v4 (MLP), v5 (MLP + CRF) and value-span-v1 (full joint fine-tune; test value exact 0.988). Error categories compared specifically against v5, with attention to v5's emission-level failures: leading number piece predicted O (`540k` -> `k`, `170` -> `0`, `612` -> `12`), B restart inside one amount (`230k` -> `2`), partial numeric token spans (`9tr5` -> `tr5`), amount vs period/date (`1 triệu 20/10`, `300 hom 5/10`)"
+  },
+  "value_slices": [
+    "explicit_unit",
+    "bare_number",
+    "multi_number",
+    "slang (xi, chai, lit, cu, ty)",
+    "unaccented",
+    "unseen exact surface span vs train",
+    "long/multi-token amounts (>2 v1 tokens or containing a space)",
+    "no_amount (null value)"
+  ],
+  "adoption_criteria": {
+    "type_target": "type and target predictions identical to gidi-finance-v1 (base checkpoint) on every test-v1 and probe record (test-targeted and full test also reported); any difference is an implementation failure",
+    "value_quality": [
+      "test value exact (complete labels, mean over seeds) >= 0.95",
+      "test value exact on human-provenance labels >= 0.90",
+      "test value present/null accuracy >= 0.97",
+      "multi_number test slice value exact >= 0.90",
+      "no value slice with n >= 5 on test below 0.80 exact",
+      "seed 1 meets the same thresholds"
+    ],
+    "verdict": {
+      "A": "invariance passes and all value-quality criteria pass: stop and report success; no export and no playground change in this experiment",
+      "B": "invariance passes, value quality fails: stop; no second adapter block, BiLSTM, encoder-layer adapters, partial unfreezing, new augmentation or loss weighting",
+      "C": "invariance fails: implementation bug; fix only the bug and rerun the same frozen protocol"
+    }
+  },
+  "known_limitations": [
+    "most value labels are rule-provenance accepted by stratum audit (0 errors in sampled strata); value metrics on them measure agreement with audited rule labels, so the human-only slice is reported separately",
+    "slices are small on test (xi 2, chai 3, lit 1, ty 0, bare 6); slice results are directional",
+    "test has 0 complete no_amount labels; null-value accuracy is measured on validation (2) and is not an adoption gate",
+    "2 trieu ruoi form is absent from all splits",
+    "the frozen v1 validation is in train, as in v1; only the 39 targeted-value-01 validation rows are held out",
+    "the adapter adds ~3.94M trainable parameters (4.14M value branch total); with 895 training notes and last-epoch selection overfitting is possible and is reported, not tuned"
+  ],
+  "hypothesis": "The frozen v1 encoder carries value information, but token-wise readouts (linear v3 0.765, MLP v4 0.863, MLP+CRF v5 0.902 test exact) cannot fix emission-level errors (leading number piece strongly O, B restart inside one amount, amount vs period/date). A value-specific contextual block may re-contextualise tokens for the value task only.",
+  "runtime_schema": "unchanged if ever exported: type, type_confidence, target, target_span, target_confidence, value_text, value_span, value_confidence, truncated, model_version gidi-finance-v2; no numeric VND normalization; this experiment does not export"
+}

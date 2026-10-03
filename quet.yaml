@@ -1,0 +1,20 @@
+# Quet configuration. Missing keys keep their built-in defaults.
+# Reference: https://github.com/8bu/quet/blob/main/docs/configuration.md
+
+review:
+  # Auto-advance past records that already have a status.
+  skip_reviewed: true
+
+checks:
+  # Records longer than this many characters get the too_long flag.
+  max_chars: 160
+  # A character repeated this many times in a row gets repeated_chars.
+  repeated_char_threshold: 5
+  # Share of symbols above which a record gets weird_symbols.
+  weird_symbol_ratio: 0.35
+  # A normalized shape seen this many times gets possible_template.
+  template_min_occurrences: 8
+
+# Manual flags file, relative to this file. Without it Quet looks for ./flags.yaml,
+# then flags.yaml next to the corpus, then ~/.config/quet/flags.yaml.
+# flags_file: ./flags.yaml

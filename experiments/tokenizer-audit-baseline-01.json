@@ -1,0 +1,1017 @@
+{
+  "corpus": [
+    "corpus/reviewed/baseline-01.jsonl"
+  ],
+  "examples": 20,
+  "reports": [
+    {
+      "name": "vinai/phobert-base",
+      "vocab_size": 64000,
+      "n_texts": 1000,
+      "n_words": 5283,
+      "mean_tokens_per_text": 7.416,
+      "p50_tokens_per_text": 7.0,
+      "p95_tokens_per_text": 10.0,
+      "max_tokens_per_text": 15,
+      "fertility": 1.403747870528109,
+      "pct_words_split": 31.894756766988454,
+      "unk_token": "<unk>",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 1.0,
+      "roundtrip_failures": [],
+      "unk_characters": [],
+      "n_amounts": 957,
+      "mean_amount_tokens": 2.295715778474399,
+      "max_amount_tokens": 4,
+      "n_shorthand": 258,
+      "mean_shorthand_tokens": 1.87984496124031,
+      "pct_shorthand_split": 63.95348837209303,
+      "probes": [
+        {
+          "text": "1tr5",
+          "tokens": [
+            "1@@",
+            "tr@@",
+            "5"
+          ],
+          "pieces": [
+            "1@@",
+            "tr@@",
+            "5"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "2tr",
+          "tokens": [
+            "2@@",
+            "tr"
+          ],
+          "pieces": [
+            "2@@",
+            "tr"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "2 củ",
+          "tokens": [
+            "2",
+            "củ"
+          ],
+          "pieces": [
+            "2",
+            "củ"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "5 lít",
+          "tokens": [
+            "5",
+            "lít"
+          ],
+          "pieces": [
+            "5",
+            "lít"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45k",
+          "tokens": [
+            "45@@",
+            "k"
+          ],
+          "pieces": [
+            "45@@",
+            "k"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45.000đ",
+          "tokens": [
+            "45@@",
+            ".000@@",
+            "đ"
+          ],
+          "pieces": [
+            "45@@",
+            ".000@@",
+            "đ"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "ck",
+          "tokens": [
+            "ck"
+          ],
+          "pieces": [
+            "ck"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "thg",
+          "tokens": [
+            "th@@",
+            "g"
+          ],
+          "pieces": [
+            "th@@",
+            "g"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "tien nha",
+          "tokens": [
+            "ti@@",
+            "en",
+            "nha"
+          ],
+          "pieces": [
+            "ti@@",
+            "en",
+            "nha"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "an trua",
+          "tokens": [
+            "an",
+            "tr@@",
+            "ua"
+          ],
+          "pieces": [
+            "an",
+            "tr@@",
+            "ua"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "shope",
+          "tokens": [
+            "sho@@",
+            "pe"
+          ],
+          "pieces": [
+            "sho@@",
+            "pe"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refund",
+          "tokens": [
+            "ref@@",
+            "und"
+          ],
+          "pieces": [
+            "ref@@",
+            "und"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refun",
+          "tokens": [
+            "re@@",
+            "fun"
+          ],
+          "pieces": [
+            "re@@",
+            "fun"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "grab",
+          "tokens": [
+            "gra@@",
+            "b"
+          ],
+          "pieces": [
+            "gra@@",
+            "b"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "khach tra not",
+          "tokens": [
+            "kha@@",
+            "ch",
+            "tra",
+            "not"
+          ],
+          "pieces": [
+            "kha@@",
+            "ch",
+            "tra",
+            "not"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        }
+      ]
+    },
+    {
+      "name": "bert-base-multilingual-cased",
+      "vocab_size": 119547,
+      "n_texts": 1000,
+      "n_words": 5283,
+      "mean_tokens_per_text": 8.229,
+      "p50_tokens_per_text": 8.0,
+      "p95_tokens_per_text": 12.0,
+      "max_tokens_per_text": 15,
+      "fertility": 1.5576377058489494,
+      "pct_words_split": 44.53908763959871,
+      "unk_token": "[UNK]",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 0.911,
+      "roundtrip_failures": [
+        {
+          "text": "đổ xăng 80.000đ",
+          "roundtrip": "đổ xăng 80. 000đ"
+        },
+        {
+          "text": "winmart đi chợ 347,000",
+          "roundtrip": "winmart đi chợ 347, 000"
+        },
+        {
+          "text": "mua thuốc cảm 125.000d",
+          "roundtrip": "mua thuốc cảm 125. 000d"
+        },
+        {
+          "text": "com trua van phong 35,000",
+          "roundtrip": "com trua van phong 35, 000"
+        },
+        {
+          "text": "freelance dich bai 1,5tr",
+          "roundtrip": "freelance dich bai 1, 5tr"
+        },
+        {
+          "text": "cty hoàn tiền công tác 780.000đ",
+          "roundtrip": "cty hoàn tiền công tác 780. 000đ"
+        },
+        {
+          "text": "ck vcb sang mb bank 4,5tr",
+          "roundtrip": "ck vcb sang mb bank 4, 5tr"
+        },
+        {
+          "text": "trả nợ thẻ tcb 3.200.000đ",
+          "roundtrip": "trả nợ thẻ tcb 3. 200. 000đ"
+        },
+        {
+          "text": "20/10 mua hoa tặng mẹ 250k",
+          "roundtrip": "20 / 10 mua hoa tặng mẹ 250k"
+        },
+        {
+          "text": "đi chợ winmart 312,000",
+          "roundtrip": "đi chợ winmart 312, 000"
+        },
+        {
+          "text": "khám răng 400.000",
+          "roundtrip": "khám răng 400. 000"
+        },
+        {
+          "text": "nạp zalopay 200.000đ",
+          "roundtrip": "nạp zalopay 200. 000đ"
+        },
+        {
+          "text": "tra the tin dung vcb 2,5tr",
+          "roundtrip": "tra the tin dung vcb 2, 5tr"
+        },
+        {
+          "text": "20/9 gửi thêm vào sổ 10tr",
+          "roundtrip": "20 / 9 gửi thêm vào sổ 10tr"
+        },
+        {
+          "text": "tiền điện tháng 10 hết 742,000",
+          "roundtrip": "tiền điện tháng 10 hết 742, 000"
+        },
+        {
+          "text": "be chở về nhà 42.000",
+          "roundtrip": "be chở về nhà 42. 000"
+        },
+        {
+          "text": "mua sữa cho bé 540.000d",
+          "roundtrip": "mua sữa cho bé 540. 000d"
+        },
+        {
+          "text": "khách ck tiền dịch 1,5tr",
+          "roundtrip": "khách ck tiền dịch 1, 5tr"
+        },
+        {
+          "text": "trả thẻ tín dụng 8,5tr",
+          "roundtrip": "trả thẻ tín dụng 8, 5tr"
+        },
+        {
+          "text": "góp laptop fe credit 1.450.000",
+          "roundtrip": "góp laptop fe credit 1. 450. 000"
+        }
+      ],
+      "unk_characters": [],
+      "n_amounts": 957,
+      "mean_amount_tokens": 2.362591431556949,
+      "max_amount_tokens": 6,
+      "n_shorthand": 258,
+      "mean_shorthand_tokens": 1.9186046511627908,
+      "pct_shorthand_split": 70.54263565891473,
+      "probes": [
+        {
+          "text": "1tr5",
+          "tokens": [
+            "1",
+            "##tr",
+            "##5"
+          ],
+          "pieces": [
+            "1",
+            "##tr",
+            "##5"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "2tr",
+          "tokens": [
+            "2",
+            "##tr"
+          ],
+          "pieces": [
+            "2",
+            "##tr"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "2 củ",
+          "tokens": [
+            "2",
+            "c",
+            "##ủ"
+          ],
+          "pieces": [
+            "2",
+            "c",
+            "##ủ"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "5 lít",
+          "tokens": [
+            "5",
+            "l",
+            "##ít"
+          ],
+          "pieces": [
+            "5",
+            "l",
+            "##ít"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "45k",
+          "tokens": [
+            "45",
+            "##k"
+          ],
+          "pieces": [
+            "45",
+            "##k"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45.000đ",
+          "tokens": [
+            "45",
+            ".",
+            "000",
+            "##đ"
+          ],
+          "pieces": [
+            "45",
+            ".",
+            "000",
+            "##đ"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        },
+        {
+          "text": "ck",
+          "tokens": [
+            "c",
+            "##k"
+          ],
+          "pieces": [
+            "c",
+            "##k"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "thg",
+          "tokens": [
+            "th",
+            "##g"
+          ],
+          "pieces": [
+            "th",
+            "##g"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "tien nha",
+          "tokens": [
+            "tien",
+            "n",
+            "##ha"
+          ],
+          "pieces": [
+            "tien",
+            "n",
+            "##ha"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "an trua",
+          "tokens": [
+            "an",
+            "tr",
+            "##ua"
+          ],
+          "pieces": [
+            "an",
+            "tr",
+            "##ua"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "shope",
+          "tokens": [
+            "shop",
+            "##e"
+          ],
+          "pieces": [
+            "shop",
+            "##e"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refund",
+          "tokens": [
+            "ref",
+            "##und"
+          ],
+          "pieces": [
+            "ref",
+            "##und"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refun",
+          "tokens": [
+            "ref",
+            "##un"
+          ],
+          "pieces": [
+            "ref",
+            "##un"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "grab",
+          "tokens": [
+            "gra",
+            "##b"
+          ],
+          "pieces": [
+            "gra",
+            "##b"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "khach tra not",
+          "tokens": [
+            "k",
+            "##ha",
+            "##ch",
+            "tra",
+            "not"
+          ],
+          "pieces": [
+            "k",
+            "##ha",
+            "##ch",
+            "tra",
+            "not"
+          ],
+          "n_tokens": 5,
+          "has_unk": false
+        }
+      ]
+    },
+    {
+      "name": "FacebookAI/xlm-roberta-base",
+      "vocab_size": 250002,
+      "n_texts": 1000,
+      "n_words": 5283,
+      "mean_tokens_per_text": 7.427,
+      "p50_tokens_per_text": 7.0,
+      "p95_tokens_per_text": 10.0,
+      "max_tokens_per_text": 15,
+      "fertility": 1.4058300208215029,
+      "pct_words_split": 34.923339011925044,
+      "unk_token": "<unk>",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 1.0,
+      "roundtrip_failures": [],
+      "unk_characters": [],
+      "n_amounts": 957,
+      "mean_amount_tokens": 2.219435736677116,
+      "max_amount_tokens": 4,
+      "n_shorthand": 258,
+      "mean_shorthand_tokens": 1.813953488372093,
+      "pct_shorthand_split": 69.37984496124031,
+      "probes": [
+        {
+          "text": "1tr5",
+          "tokens": [
+            "▁1",
+            "tr",
+            "5"
+          ],
+          "pieces": [
+            "1",
+            "tr",
+            "5"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "2tr",
+          "tokens": [
+            "▁2",
+            "tr"
+          ],
+          "pieces": [
+            "2",
+            "tr"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "2 củ",
+          "tokens": [
+            "▁2",
+            "▁củ"
+          ],
+          "pieces": [
+            "2",
+            "củ"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "5 lít",
+          "tokens": [
+            "▁5",
+            "▁lí",
+            "t"
+          ],
+          "pieces": [
+            "5",
+            "lí",
+            "t"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "45k",
+          "tokens": [
+            "▁45",
+            "k"
+          ],
+          "pieces": [
+            "45",
+            "k"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45.000đ",
+          "tokens": [
+            "▁4",
+            "5.000",
+            "đ"
+          ],
+          "pieces": [
+            "4",
+            "5.000",
+            "đ"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "ck",
+          "tokens": [
+            "▁",
+            "ck"
+          ],
+          "pieces": [
+            "",
+            "ck"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "thg",
+          "tokens": [
+            "▁th",
+            "g"
+          ],
+          "pieces": [
+            "th",
+            "g"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "tien nha",
+          "tokens": [
+            "▁tien",
+            "▁nha"
+          ],
+          "pieces": [
+            "tien",
+            "nha"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "an trua",
+          "tokens": [
+            "▁an",
+            "▁tru",
+            "a"
+          ],
+          "pieces": [
+            "an",
+            "tru",
+            "a"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "shope",
+          "tokens": [
+            "▁shop",
+            "e"
+          ],
+          "pieces": [
+            "shop",
+            "e"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refund",
+          "tokens": [
+            "▁refund"
+          ],
+          "pieces": [
+            "refund"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "refun",
+          "tokens": [
+            "▁refu",
+            "n"
+          ],
+          "pieces": [
+            "refu",
+            "n"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "grab",
+          "tokens": [
+            "▁grab"
+          ],
+          "pieces": [
+            "grab"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "khach tra not",
+          "tokens": [
+            "▁kha",
+            "ch",
+            "▁tra",
+            "▁not"
+          ],
+          "pieces": [
+            "kha",
+            "ch",
+            "tra",
+            "not"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        }
+      ]
+    },
+    {
+      "name": "models/tokenizers/BamiBERT",
+      "vocab_size": 20480,
+      "n_texts": 1000,
+      "n_words": 5283,
+      "mean_tokens_per_text": 7.99,
+      "p50_tokens_per_text": 8.0,
+      "p95_tokens_per_text": 11.0,
+      "max_tokens_per_text": 16,
+      "fertility": 1.5123982585652092,
+      "pct_words_split": 64.98201779292069,
+      "unk_token": "<unk>",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 1.0,
+      "roundtrip_failures": [],
+      "unk_characters": [],
+      "n_amounts": 957,
+      "mean_amount_tokens": 2.3573667711598745,
+      "max_amount_tokens": 5,
+      "n_shorthand": 258,
+      "mean_shorthand_tokens": 2.131782945736434,
+      "pct_shorthand_split": 80.23255813953489,
+      "probes": [
+        {
+          "text": "1tr5",
+          "tokens": [
+            "1",
+            "tr",
+            "5"
+          ],
+          "pieces": [
+            "1",
+            "tr",
+            "5"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "2tr",
+          "tokens": [
+            "2",
+            "tr"
+          ],
+          "pieces": [
+            "2",
+            "tr"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "2 củ",
+          "tokens": [
+            "2",
+            "Ġcá»§"
+          ],
+          "pieces": [
+            "2",
+            " củ"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "5 lít",
+          "tokens": [
+            "5",
+            "ĠlÃŃt"
+          ],
+          "pieces": [
+            "5",
+            " lít"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45k",
+          "tokens": [
+            "45",
+            "k"
+          ],
+          "pieces": [
+            "45",
+            "k"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45.000đ",
+          "tokens": [
+            "45",
+            ".",
+            "000Äĳ"
+          ],
+          "pieces": [
+            "45",
+            ".",
+            "000đ"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "ck",
+          "tokens": [
+            "ck"
+          ],
+          "pieces": [
+            "ck"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "thg",
+          "tokens": [
+            "th",
+            "g"
+          ],
+          "pieces": [
+            "th",
+            "g"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "tien nha",
+          "tokens": [
+            "t",
+            "ien",
+            "Ġnha"
+          ],
+          "pieces": [
+            "t",
+            "ien",
+            " nha"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "an trua",
+          "tokens": [
+            "an",
+            "Ġtr",
+            "ua"
+          ],
+          "pieces": [
+            "an",
+            " tr",
+            "ua"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "shope",
+          "tokens": [
+            "sh",
+            "ope"
+          ],
+          "pieces": [
+            "sh",
+            "ope"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refund",
+          "tokens": [
+            "ref",
+            "und"
+          ],
+          "pieces": [
+            "ref",
+            "und"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refun",
+          "tokens": [
+            "ref",
+            "un"
+          ],
+          "pieces": [
+            "ref",
+            "un"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "grab",
+          "tokens": [
+            "gr",
+            "ab"
+          ],
+          "pieces": [
+            "gr",
+            "ab"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "khach tra not",
+          "tokens": [
+            "kh",
+            "ach",
+            "Ġtra",
+            "Ġnot"
+          ],
+          "pieces": [
+            "kh",
+            "ach",
+            " tra",
+            " not"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        }
+      ]
+    }
+  ]
+}

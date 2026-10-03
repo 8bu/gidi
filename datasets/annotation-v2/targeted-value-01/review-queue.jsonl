@@ -1,0 +1,77 @@
+{"id": "targeted-value-01-7677d734b290", "text": "sua nha het 1 ty 2", "review_group": "must_review", "stratum": "compound_amount", "reasons": ["compound_amount"]}
+{"id": "targeted-value-01-7c7dec5a8455", "text": "Dat 3 ban tiec 12/11 tra coc 3tr", "review_group": "must_review", "stratum": "type_status_not_complete", "reasons": ["type_status_not_complete", "type_intent_mismatch", "numeric_ambiguity"]}
+{"id": "targeted-value-01-d92e51ade365", "text": "vừa nhận lương xong", "review_group": "must_review", "stratum": "no_candidate", "reasons": ["no_candidate"]}
+{"id": "targeted-value-01-ee2c2b699504", "text": "mượn mẹ 2tr, mượn chị 1tr", "review_group": "must_review", "stratum": "multiple_money_candidates", "reasons": ["multiple_money_candidates", "type_status_not_complete", "type_intent_mismatch"]}
+{"id": "targeted-value-01-39471dfda9a9", "text": "shopee 250k phí ship 20k", "review_group": "must_review", "stratum": "multiple_money_candidates", "reasons": ["multiple_money_candidates"]}
+{"id": "targeted-value-01-22c2cb0fbc02", "text": "cf 35k bánh 25k", "review_group": "must_review", "stratum": "multiple_money_candidates", "reasons": ["multiple_money_candidates"]}
+{"id": "targeted-value-01-b88732ce8e34", "text": "cho anh Sang vay 1 trieu 5 han 20/11", "review_group": "must_review", "stratum": "compound_amount", "reasons": ["compound_amount"]}
+{"id": "targeted-value-01-62d5cbc6048d", "text": "hoan shopee 150k + 90k", "review_group": "must_review", "stratum": "multiple_money_candidates", "reasons": ["multiple_money_candidates", "unusual_punctuation"]}
+{"id": "targeted-value-01-11c087564fa5", "text": "do xang 50k rua xe 30k", "review_group": "must_review", "stratum": "multiple_money_candidates", "reasons": ["multiple_money_candidates"]}
+{"id": "targeted-value-01-bf1e533bf271", "text": "tien phong 2tr5 coc 2tr5", "review_group": "must_review", "stratum": "multiple_money_candidates", "reasons": ["multiple_money_candidates", "type_status_not_complete", "type_intent_mismatch"]}
+{"id": "targeted-value-01-04b5ef77a273", "text": "do xang day binh", "review_group": "must_review", "stratum": "no_candidate", "reasons": ["no_candidate"]}
+{"id": "targeted-value-01-f01a7772b958", "text": "trả nợ Hùng xong rồi", "review_group": "must_review", "stratum": "no_candidate", "reasons": ["no_candidate"]}
+{"id": "targeted-value-01-83a07c8ae25d", "text": "shopee hoàn tiền rồi", "review_group": "must_review", "stratum": "no_candidate", "reasons": ["no_candidate"]}
+{"id": "targeted-value-01-71e0fd9c6094", "text": "tien dien 400k tien nuoc 120k", "review_group": "must_review", "stratum": "multiple_money_candidates", "reasons": ["multiple_money_candidates"]}
+{"id": "targeted-value-01-3cbc329ec66b", "text": "vé máy bay 2tr1 hành lý 350k", "review_group": "must_review", "stratum": "multiple_money_candidates", "reasons": ["multiple_money_candidates"]}
+{"id": "targeted-value-01-82b91a17600c", "text": "muon me tien dong hoc", "review_group": "must_review", "stratum": "no_candidate", "reasons": ["no_candidate"]}
+{"id": "targeted-value-01-b1db9a68d0b5", "text": "thanh toan the tin dung vpbank 4 cu 2", "review_group": "must_review", "stratum": "compound_amount", "reasons": ["compound_amount"]}
+{"id": "targeted-value-01-662ff6e25bae", "text": "momo hoàn 3 đơn 45k", "review_group": "must_review", "stratum": "numeric_ambiguity", "reasons": ["numeric_ambiguity"]}
+{"id": "targeted-value-01-215a55bab1b3", "text": "grab 89k ship 15k", "review_group": "must_review", "stratum": "multiple_money_candidates", "reasons": ["multiple_money_candidates"]}
+{"id": "targeted-value-01-90f98f99e74a", "text": "lay lai tien coc xe 1 trieu 5", "review_group": "must_review", "stratum": "compound_amount", "reasons": ["compound_amount"]}
+{"id": "targeted-value-01-3417292a3719", "text": "Lan trả lại tiền mượn rồi", "review_group": "must_review", "stratum": "no_candidate", "reasons": ["no_candidate"]}
+{"id": "targeted-value-01-a1c3df92db22", "text": "Cty hoan tien cong tac thang 10 1 trieu 2", "review_group": "must_review", "stratum": "compound_amount", "reasons": ["compound_amount"]}
+{"id": "targeted-value-01-78452505325e", "text": "tat toan khoan vay vcb 1 ty 2", "review_group": "must_review", "stratum": "compound_amount", "reasons": ["compound_amount"]}
+{"id": "targeted-value-01-28b653c47042", "text": "lương 12tr thưởng 3tr", "review_group": "must_review", "stratum": "multiple_money_candidates", "reasons": ["multiple_money_candidates"]}
+{"id": "targeted-value-01-1deba1b4e09b", "text": "com 60k cf 25k", "review_group": "must_review", "stratum": "multiple_money_candidates", "reasons": ["multiple_money_candidates"]}
+{"id": "targeted-value-01-3c4582197d24", "text": "ban dat 1 ty 2", "review_group": "must_review", "stratum": "compound_amount", "reasons": ["compound_amount"]}
+{"id": "targeted-value-01-6805ee9e7cd4", "text": "mua vang 1 chi", "review_group": "must_review", "stratum": "no_candidate", "reasons": ["no_candidate"]}
+{"id": "targeted-value-01-45b75713a050", "text": "cho Tâm mượn tiền ăn", "review_group": "must_review", "stratum": "no_candidate", "reasons": ["no_candidate"]}
+{"id": "targeted-value-01-22dd4045a8e3", "text": "mua rau 45k thit 120k", "review_group": "must_review", "stratum": "multiple_money_candidates", "reasons": ["multiple_money_candidates"]}
+{"id": "targeted-value-01-60216ed599b0", "text": "dong tien net.", "review_group": "must_review", "stratum": "no_candidate", "reasons": ["no_candidate"]}
+{"id": "targeted-value-01-6f1668cf99c9", "text": "Lan tra 500k Minh tra 300k tien muon", "review_group": "must_review", "stratum": "multiple_money_candidates", "reasons": ["multiple_money_candidates", "type_status_not_complete", "type_intent_mismatch"]}
+{"id": "targeted-value-01-7845c58c4911", "text": "nạp momo", "review_group": "must_review", "stratum": "no_candidate", "reasons": ["no_candidate"]}
+{"id": "targeted-value-01-e571378ed04a", "text": "bảo hiểm nhân thọ năm 2 đóng 8tr", "review_group": "must_review", "stratum": "numeric_ambiguity", "reasons": ["numeric_ambiguity"]}
+{"id": "targeted-value-01-54bc4eadaf82", "text": "an lau 450k tip 50k", "review_group": "must_review", "stratum": "multiple_money_candidates", "reasons": ["multiple_money_candidates"]}
+{"id": "targeted-value-01-1b1c19857bbd", "text": "bảo hiểm chi trả viện phí 3 củ 5", "review_group": "must_review", "stratum": "compound_amount", "reasons": ["compound_amount"]}
+{"id": "targeted-value-01-2530c5003c9f", "text": "tiền nhà 3tr điện 450k nước 90k", "review_group": "must_review", "stratum": "multiple_money_candidates", "reasons": ["multiple_money_candidates"]}
+{"id": "targeted-value-01-e08609e17e17", "text": "tien thue nha 4 cu ruoi", "review_group": "hard_sample", "stratum": "slang_cu", "reasons": []}
+{"id": "targeted-value-01-c70b57187e5f", "text": "bán đồ cũ 250", "review_group": "hard_sample", "stratum": "bare_number", "reasons": []}
+{"id": "targeted-value-01-68c42bb580f3", "text": "tra no vcb 3 chai", "review_group": "hard_sample", "stratum": "slang_chai", "reasons": []}
+{"id": "targeted-value-01-1fc19bd97493", "text": "ban xe duoc 1 ty", "review_group": "hard_sample", "stratum": "slang_ty", "reasons": []}
+{"id": "targeted-value-01-5b3330e90b21", "text": "rút 5 chai tiêu tuần này", "review_group": "hard_sample", "stratum": "slang_chai", "reasons": []}
+{"id": "targeted-value-01-253dd8d05ea4", "text": "cho cau ut vay 5 xi mua ga", "review_group": "hard_sample", "stratum": "slang_xi", "reasons": []}
+{"id": "targeted-value-01-19376211fd6f", "text": "cho Bình mượn 3 lít", "review_group": "hard_sample", "stratum": "slang_lit", "reasons": []}
+{"id": "targeted-value-01-4aed8dd91fbf", "text": "vay vcb mua nhà 2 tỷ", "review_group": "hard_sample", "stratum": "slang_ty", "reasons": []}
+{"id": "targeted-value-01-f3e30be1c7e1", "text": "đổ xăng hết 50", "review_group": "hard_sample", "stratum": "bare_number", "reasons": []}
+{"id": "targeted-value-01-0eb1be46b196", "text": "cho Binh muon 400 hen 15/11 tra", "review_group": "hard_sample", "stratum": "multi_number", "reasons": []}
+{"id": "targeted-value-01-1d0b7db9b3fb", "text": "hoàn thuế thu nhập năm 2023 3.350.000", "review_group": "hard_sample", "stratum": "multi_number", "reasons": []}
+{"id": "targeted-value-01-4186dcac19aa", "text": "Hạnh trả lại 2 chai", "review_group": "hard_sample", "stratum": "slang_chai", "reasons": []}
+{"id": "targeted-value-01-8de0552f1817", "text": "shopee hoan 85", "review_group": "hard_sample", "stratum": "bare_number", "reasons": []}
+{"id": "targeted-value-01-7e3b70b12aa4", "text": "mb bank giai ngan 50 cu mua xe", "review_group": "hard_sample", "stratum": "slang_cu", "reasons": []}
+{"id": "targeted-value-01-42568b452fc4", "text": "Dũng trả nợ 4 lít", "review_group": "hard_sample", "stratum": "slang_lit", "reasons": []}
+{"id": "targeted-value-01-d821f74b4bd7", "text": "ba cho 5 xị", "review_group": "hard_sample", "stratum": "slang_xi", "reasons": []}
+{"id": "targeted-value-01-82536aaf013b", "text": "Ha tra no ky 2 1tr", "review_group": "hard_sample", "stratum": "multi_number", "reasons": []}
+{"id": "targeted-value-01-0cda938e538d", "text": "cho cậu Năm vay 2 củ rưỡi", "review_group": "hard_sample", "stratum": "slang_cu", "reasons": []}
+{"id": "targeted-value-01-f8b799616102", "text": "gui chi Mai 8 xi tra tien muon", "review_group": "hard_sample", "stratum": "slang_xi", "reasons": []}
+{"id": "targeted-value-01-ea77780852de", "text": "tra no a Phuc 6 lit", "review_group": "hard_sample", "stratum": "slang_lit", "reasons": []}
+{"id": "targeted-value-01-7f2d5e79d7e5", "text": "mở sổ tiết kiệm 1 tỷ", "review_group": "hard_sample", "stratum": "slang_ty", "reasons": []}
+{"id": "targeted-value-01-03833a030b50", "text": "em tra lai 200 K", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-c2d123f6a16b", "text": "chuyển 5.000.000 qua tài khoản tiết kiệm", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-99da4bd13069", "text": "Son tra lai 2tr3", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-6c830c72bf69", "text": "tra du no Nam 2000000", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-4c2db1461175", "text": "tiền gửi xe 350.000 đồng", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-c6b0e08ac736", "text": "cf sáng 45.000 vnd", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-70e6271e3ff6", "text": "Khach ck 1,2tr tien thiet ke", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-bf1e41e04826", "text": "shopee tra lai tien don huy 125.000d", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-d79df71ecf22", "text": "rút 500 K ở cây ATM", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-cf26a0a9d4e6", "text": "hoan coc phong 2.500.000", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-46492a1ffe03", "text": "cho chị Loan mượn 800 ngàn tiền trọ.", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-62e620ac02cf", "text": "duoc hoan tien the tin dung 60 ngan", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-d751b9d505f1", "text": "cho Long vay 1,5tr mua xang", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-3add318d322a", "text": "mượn cô Thúy 2 triệu đóng tiền học", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-07d0b935c911", "text": "mua bảo hiểm xe máy 66000", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-a9b2f012002b", "text": "mẹ cho mượn 5000000 đóng tiền trường.", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-9e222bd78ce6", "text": "bán laptop cũ được 7 triệu", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-60157b9f6c2a", "text": "bh boi thuong va cham xe 1tr5", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-62bc7f1fccdb", "text": "ban iphone cu 4tr5", "review_group": "clean_audit", "stratum": "clean", "reasons": []}
+{"id": "targeted-value-01-7a356ece98c0", "text": "trả hết nợ Bảo 2 triệu", "review_group": "clean_audit", "stratum": "clean", "reasons": []}

@@ -1,0 +1,94 @@
+{
+  "name": "distillation-v1",
+  "annotation_version": "annotation-v1",
+  "purpose": "final teacher training data: targeted-v2 training data (frozen train + targeted-02) plus the frozen validation split; validation is in-sample from here on, so the frozen test split and probe-v1 stay the only held-out evaluation",
+  "counts": {
+    "original_train": 501,
+    "targeted_02": 112,
+    "frozen_validation": 110,
+    "train": 723
+  },
+  "type_counts": {
+    "expense": 207,
+    "income": 84,
+    "borrow": 79,
+    "lend": 69,
+    "repayment_in": 45,
+    "repayment_out": 69,
+    "transfer": 113,
+    "refund": 57
+  },
+  "type_counts_by_source": {
+    "original_train": {
+      "expense": 151,
+      "income": 47,
+      "borrow": 42,
+      "lend": 42,
+      "repayment_in": 37,
+      "repayment_out": 50,
+      "transfer": 93,
+      "refund": 39
+    },
+    "targeted_02": {
+      "expense": 23,
+      "income": 26,
+      "borrow": 27,
+      "lend": 18,
+      "repayment_in": 0,
+      "repayment_out": 8,
+      "transfer": 0,
+      "refund": 10
+    },
+    "frozen_validation": {
+      "expense": 33,
+      "income": 11,
+      "borrow": 10,
+      "lend": 9,
+      "repayment_in": 8,
+      "repayment_out": 11,
+      "transfer": 20,
+      "refund": 8
+    }
+  },
+  "sources": {
+    "datasets/annotation-v1/training-v2/train.jsonl": "d9d0b6d5eb01b2fa426beb1f60b4b3708d43242146046de5430a3daa856dc866",
+    "datasets/annotation-v1/training-v2/manifest.json": "afb54a03b118352b55b94cd389a0f10d3ee93f7a3e5dd1991de4a66ca5ce457f",
+    "datasets/annotation-v1/splits/validation.jsonl": "5c8039978a84943db4ffa44524a65200ff5022ce06092e128ffbbe8fbff8df87"
+  },
+  "files": {
+    "train.jsonl": "fc18d15e4ff83e7406754001498c5416711f7bc2d4c5681e47157f407115593a"
+  },
+  "evaluation_sets": "validation.jsonl (in-sample, logging only) and test.jsonl are symlinks to the frozen splits",
+  "evaluation_files": {
+    "datasets/annotation-v1/splits/validation.jsonl": "5c8039978a84943db4ffa44524a65200ff5022ce06092e128ffbbe8fbff8df87",
+    "datasets/annotation-v1/splits/test.jsonl": "13fc3de4b7be58a689124c31477a14cf7cbb3d82e09a8c4276174f0825c775d0",
+    "datasets/probe-v1/README.md": "760733e60087ad15148721378becea186b9b44ed571bf64a59341066adf7fac1",
+    "datasets/probe-v1/human-labels.jsonl": "0567ac7cd10db80da063582144707d50d41a87fe5d459ba9aa9ecebbfa4ea0a9",
+    "datasets/probe-v1/labels.jsonl": "7baa5aff2e2a5be2b2261bb8c9a4f9b607005f67ec766e61a5b4b2726d5ee264",
+    "datasets/probe-v1/manifest.json": "214bc0f5064105a7a39bcf692d3dbef3c5ea1d5dc127305e5abcf532803c45c4",
+    "datasets/probe-v1/notes.jsonl": "6ffc9017bf8a153fe42741f20788b47e35ddd6213afb5479ac25e32d26c31797",
+    "datasets/probe-v1/proposals.jsonl": "2ac749def91c0cf34c1107c47cbf724f286c90ec59c8bb33d379eec86adb052c",
+    "datasets/probe-v1/provenance.jsonl": "b927658409c8b55e5596a57c8f376fd32612d5e2ac44575dde2063a2d230d333",
+    "datasets/probe-v1/queue.jsonl": "ea3d3f118d211b98a65dd06be6a06c6d7fd6bbe076c9ad9b375d448f24d60451",
+    "datasets/probe-v1/recheck.jsonl": "b7f4b0fb910059c345467aacea908241e41950edf98622c98831d9fd2feff1b2"
+  },
+  "excluded": [
+    {
+      "path": "datasets/annotation-v1/splits/test.jsonl",
+      "reason": "frozen held-out test split: evaluation-only"
+    },
+    {
+      "path": "datasets/probe-v1/",
+      "reason": "diagnostic probe set: evaluation-only, never trained on or augmented from"
+    },
+    {
+      "path": "datasets/annotation-v1/targeted-03/",
+      "reason": "targeted-03 batch: experiment artifact rejected as teacher data"
+    },
+    {
+      "path": "datasets/annotation-v1/training-v3/",
+      "reason": "training-v3 (frozen train + targeted-02 + targeted-03): rejected as teacher"
+    }
+  ],
+  "guard": "gidi.distillation.guard.assert_distillation_trainable"
+}

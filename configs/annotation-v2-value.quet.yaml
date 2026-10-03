@@ -1,0 +1,27 @@
+# Quet schema for the annotation-v2 VALUE pass. In this pass Quet's single span field `target`
+# IS the value span (the exact substring that is the monetary amount); type/target of annotation-v1
+# are labelled in their own pass with configs/annotation-v1.yaml. Guide: docs/annotation-v2.md.
+#
+#   quet annotate datasets/annotation-v2/value-review-queue.jsonl \
+#     --schema configs/annotation-v2-value.quet.yaml \
+#     --out datasets/annotation-v2/value-labels.jsonl \
+#     --proposals datasets/annotation-v2/value-proposals.jsonl
+version: annotation-v2-value
+
+types:
+  amount: >-
+    The note states a monetary amount. Select the minimal full amount expression as the target:
+    number plus attached unit/slang/currency ("50k", "1tr5", "2 triệu", "5 xị", "80.000đ", "100").
+    Exclude quantities, months/periods, dates, times, percentages, approximators and /tháng.
+  no_amount: The note states no amount (target stays empty).
+
+null_target_types: [no_amount]
+
+statuses:
+  complete: The amount span, or the absence of any amount, is confidently determined.
+  uncertain: >-
+    Several money amounts and none is clearly the transaction amount, or the amount cannot be
+    delimited. Never forced. Gidi requires a note.
+  skipped: Not worth labelling (saves a null type and target).
+
+null_label_statuses: [skipped]

@@ -1,0 +1,70 @@
+2026-10-03 09:41:02,865 WARNING MPS kernels are not bit-reproducible; repeated runs of a seed may differ.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-03 09:41:03,280 WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 7328.60it/s]
+[transformers] [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.decoder.bias      | UNEXPECTED |  | 
+lm_head.dense.weight      | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-10-03 09:41:04,277 WARNING [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.decoder.bias      | UNEXPECTED |  | 
+lm_head.dense.weight      | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/torch/autograd/graph.py:1072: UserWarning: index_put_with_accumulate_mps does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/Context.cpp:190.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2026-10-03 09:41:14,769 INFO [value seed1] epoch 1 step 113 loss 3.3992 (type 2.0113 target 0.6264 value 0.7615) val: value F1 0.5074 exact 0.4863 8.3s
+2026-10-03 09:41:22,480 INFO [value seed1] epoch 2 step 226 loss 2.2729 (type 1.6277 target 0.4091 value 0.2361) val: value F1 0.9273 exact 0.9247 7.6s
+2026-10-03 09:41:30,174 INFO [value seed1] epoch 3 step 339 loss 1.2923 (type 0.8307 target 0.3448 value 0.1168) val: value F1 0.9481 exact 0.9452 7.6s
+2026-10-03 09:41:37,802 INFO [value seed1] epoch 4 step 452 loss 0.6972 (type 0.3727 target 0.2698 value 0.0547) val: value F1 0.9689 exact 0.9658 7.5s
+2026-10-03 09:41:45,450 INFO [value seed1] epoch 5 step 565 loss 0.4189 (type 0.2047 target 0.1837 value 0.0305) val: value F1 0.9931 exact 0.9932 7.6s
+2026-10-03 09:41:53,187 INFO [value seed1] epoch 6 step 678 loss 0.2121 (type 0.0895 target 0.1040 value 0.0187) val: value F1 0.9896 exact 0.9863 7.6s
+2026-10-03 09:42:00,803 INFO [value seed1] epoch 7 step 791 loss 0.1226 (type 0.0444 target 0.0710 value 0.0072) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:42:08,296 INFO [value seed1] epoch 8 step 904 loss 0.0812 (type 0.0260 target 0.0489 value 0.0063) val: value F1 0.9861 exact 0.9795 7.4s
+2026-10-03 09:42:15,838 INFO [value seed1] epoch 9 step 1017 loss 0.0454 (type 0.0249 target 0.0158 value 0.0048) val: value F1 1.0000 exact 1.0000 7.4s
+2026-10-03 09:42:23,427 INFO [value seed1] epoch 10 step 1130 loss 0.0251 (type 0.0065 target 0.0143 value 0.0043) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:42:30,996 INFO [value seed1] epoch 11 step 1243 loss 0.0271 (type 0.0149 target 0.0077 value 0.0045) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:42:38,521 INFO [value seed1] epoch 12 step 1356 loss 0.0099 (type 0.0023 target 0.0042 value 0.0033) val: value F1 1.0000 exact 1.0000 7.4s
+2026-10-03 09:42:46,129 INFO [value seed1] epoch 13 step 1469 loss 0.0088 (type 0.0030 target 0.0051 value 0.0007) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:42:53,689 INFO [value seed1] epoch 14 step 1582 loss 0.0046 (type 0.0013 target 0.0026 value 0.0006) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:43:01,310 INFO [value seed1] epoch 15 step 1695 loss 0.0029 (type 0.0008 target 0.0017 value 0.0004) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:43:09,012 INFO [value seed1] epoch 16 step 1808 loss 0.0017 (type 0.0003 target 0.0013 value 0.0002) val: value F1 0.9965 exact 0.9932 7.6s
+2026-10-03 09:43:16,644 INFO [value seed1] epoch 17 step 1921 loss 0.0022 (type 0.0006 target 0.0015 value 0.0001) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:43:24,240 INFO [value seed1] epoch 18 step 2034 loss 0.0008 (type 0.0004 target 0.0003 value 0.0001) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:43:31,824 INFO [value seed1] epoch 19 step 2147 loss 0.0024 (type 0.0018 target 0.0004 value 0.0002) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:43:39,335 INFO [value seed1] epoch 20 step 2260 loss 0.0009 (type 0.0002 target 0.0005 value 0.0002) val: value F1 0.9965 exact 0.9932 7.4s
+2026-10-03 09:43:46,837 INFO [value seed1] epoch 21 step 2373 loss 0.0014 (type 0.0002 target 0.0012 value 0.0001) val: value F1 0.9965 exact 0.9932 7.4s
+2026-10-03 09:43:54,437 INFO [value seed1] epoch 22 step 2486 loss 0.0012 (type 0.0001 target 0.0004 value 0.0006) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:44:02,153 INFO [value seed1] epoch 23 step 2599 loss 0.0004 (type 0.0001 target 0.0002 value 0.0001) val: value F1 1.0000 exact 1.0000 7.6s
+2026-10-03 09:44:09,831 INFO [value seed1] epoch 24 step 2712 loss 0.0009 (type 0.0002 target 0.0006 value 0.0001) val: value F1 0.9965 exact 0.9932 7.6s
+2026-10-03 09:44:17,408 INFO [value seed1] epoch 25 step 2825 loss 0.0004 (type 0.0002 target 0.0002 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:44:25,121 INFO [value seed1] epoch 26 step 2938 loss 0.0002 (type 0.0001 target 0.0001 value 0.0000) val: value F1 0.9965 exact 0.9932 7.6s
+2026-10-03 09:44:32,683 INFO [value seed1] epoch 27 step 3051 loss 0.0009 (type 0.0001 target 0.0005 value 0.0002) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:44:40,227 INFO [value seed1] epoch 28 step 3164 loss 0.0007 (type 0.0001 target 0.0005 value 0.0001) val: value F1 1.0000 exact 1.0000 7.4s
+2026-10-03 09:44:47,823 INFO [value seed1] epoch 29 step 3277 loss 0.0002 (type 0.0001 target 0.0000 value 0.0000) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:44:55,415 INFO [value seed1] epoch 30 step 3390 loss 0.0002 (type 0.0001 target 0.0001 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:45:03,002 INFO [value seed1] epoch 31 step 3503 loss 0.0009 (type 0.0001 target 0.0004 value 0.0004) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:45:10,637 INFO [value seed1] epoch 32 step 3616 loss 0.0002 (type 0.0001 target 0.0000 value 0.0001) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:45:18,285 INFO [value seed1] epoch 33 step 3729 loss 0.0003 (type 0.0001 target 0.0002 value 0.0000) val: value F1 1.0000 exact 1.0000 7.6s
+2026-10-03 09:45:25,888 INFO [value seed1] epoch 34 step 3842 loss 0.0003 (type 0.0001 target 0.0002 value 0.0001) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:45:33,473 INFO [value seed1] epoch 35 step 3955 loss 0.0004 (type 0.0001 target 0.0004 value 0.0000) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:45:41,168 INFO [value seed1] epoch 36 step 4068 loss 0.0002 (type 0.0001 target 0.0000 value 0.0001) val: value F1 1.0000 exact 1.0000 7.6s
+2026-10-03 09:45:48,762 INFO [value seed1] epoch 37 step 4181 loss 0.0001 (type 0.0001 target 0.0000 value 0.0000) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:45:56,323 INFO [value seed1] epoch 38 step 4294 loss 0.0003 (type 0.0001 target 0.0001 value 0.0002) val: value F1 0.9965 exact 0.9932 7.5s
+/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

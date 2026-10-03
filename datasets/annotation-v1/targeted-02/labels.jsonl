@@ -1,0 +1,112 @@
+{"id":"targeted-annotation-v1-02-e3ec0474c1eb","annotation_status":"complete","type":"repayment_out","target":{"text":"acb","start":11,"end":14}}
+{"id":"targeted-annotation-v1-02-fa1920fb927c","annotation_status":"complete","type":"borrow","target":{"text":"acb","start":0,"end":3}}
+{"id":"targeted-annotation-v1-02-f50aa1275b16","annotation_status":"complete","type":"income","target":{"text":"mợ Hai","start":0,"end":6}}
+{"id":"targeted-annotation-v1-02-9de55e9e1450","annotation_status":"complete","type":"lend","target":{"text":"Huy","start":0,"end":3}}
+{"id":"targeted-annotation-v1-02-b5af54b55faa","annotation_status":"complete","type":"borrow","target":{"text":"chu tiem tap hoa","start":0,"end":16}}
+{"id":"targeted-annotation-v1-02-a446cfd02b5c","annotation_status":"complete","type":"lend","target":{"text":"Hạnh","start":7,"end":11}}
+{"id":"targeted-annotation-v1-02-13ce4d50548c","annotation_status":"complete","type":"refund","target":null}
+{"id":"targeted-annotation-v1-02-c3eb51a9cb84","annotation_status":"complete","type":"expense","target":{"text":"cậu","start":10,"end":13}}
+{"id":"targeted-annotation-v1-02-03c0e13b9684","annotation_status":"complete","type":"repayment_out","target":{"text":"mirae asset","start":14,"end":25}}
+{"id":"targeted-annotation-v1-02-05ca00ce13ab","annotation_status":"complete","type":"refund","target":{"text":"generali","start":0,"end":8}}
+{"id":"targeted-annotation-v1-02-fca3726cfeed","annotation_status":"complete","type":"income","target":{"text":"vietlott","start":6,"end":14}}
+{"id":"targeted-annotation-v1-02-8e57165a2827","annotation_status":"complete","type":"borrow","target":{"text":"Binh","start":10,"end":14}}
+{"id":"targeted-annotation-v1-02-642093d3cf2a","annotation_status":"complete","type":"expense","target":{"text":"aia","start":9,"end":12}}
+{"id":"targeted-annotation-v1-02-4848738dab18","annotation_status":"complete","type":"income","target":null}
+{"id":"targeted-annotation-v1-02-79f48cd92a7f","annotation_status":"complete","type":"borrow","target":{"text":"tpbank","start":23,"end":29}}
+{"id":"targeted-annotation-v1-02-e8b7919eb353","annotation_status":"complete","type":"borrow","target":{"text":"Lộc","start":4,"end":7}}
+{"id":"targeted-annotation-v1-02-6c08d107ce9f","annotation_status":"complete","type":"lend","target":{"text":"em gái","start":0,"end":6}}
+{"id":"targeted-annotation-v1-02-0731f93388fd","annotation_status":"complete","type":"income","target":{"text":"bà ngoại","start":0,"end":8}}
+{"id":"targeted-annotation-v1-02-73ca057f7286","annotation_status":"complete","type":"borrow","target":{"text":"Thảo","start":4,"end":8}}
+{"id":"targeted-annotation-v1-02-21398c4225fd","annotation_status":"complete","type":"expense","target":{"text":"pvi","start":9,"end":12}}
+{"id":"targeted-annotation-v1-02-147210487075","annotation_status":"complete","type":"refund","target":null}
+{"id":"targeted-annotation-v1-02-5960172ce44e","annotation_status":"complete","type":"income","target":null}
+{"id":"targeted-annotation-v1-02-d8c52ad78db0","annotation_status":"complete","type":"expense","target":null}
+{"id":"targeted-annotation-v1-02-7798b9cedb61","annotation_status":"complete","type":"refund","target":{"text":"pvi","start":0,"end":3}}
+{"id":"targeted-annotation-v1-02-1ef543122a88","annotation_status":"complete","type":"income","target":{"text":"ba","start":0,"end":2}}
+{"id":"targeted-annotation-v1-02-6c5e5f94f774","annotation_status":"complete","type":"lend","target":{"text":"dì Út","start":7,"end":12}}
+{"id":"targeted-annotation-v1-02-92a3a295a92e","annotation_status":"complete","type":"repayment_out","target":{"text":"fe credit","start":15,"end":24}}
+{"id":"targeted-annotation-v1-02-77b7f8dc3cd1","annotation_status":"complete","type":"borrow","target":{"text":"Xuân","start":3,"end":7}}
+{"id":"targeted-annotation-v1-02-d0938d7770cb","annotation_status":"complete","type":"income","target":null}
+{"id":"targeted-annotation-v1-02-8700c84c89aa","annotation_status":"complete","type":"expense","target":{"text":"bà ngoại","start":5,"end":13}}
+{"id":"targeted-annotation-v1-02-604dd4ad8261","annotation_status":"complete","type":"borrow","target":{"text":"dì Út","start":0,"end":5}}
+{"id":"targeted-annotation-v1-02-f620db43fcbd","annotation_status":"complete","type":"income","target":null}
+{"id":"targeted-annotation-v1-02-9f37e7bf0e31","annotation_status":"complete","type":"borrow","target":{"text":"me","start":0,"end":2}}
+{"id":"targeted-annotation-v1-02-42c6ac3784a7","annotation_status":"complete","type":"income","target":null}
+{"id":"targeted-annotation-v1-02-c016a852640d","annotation_status":"complete","type":"expense","target":{"text":"con","start":6,"end":9}}
+{"id":"targeted-annotation-v1-02-44ea7cca6eed","annotation_status":"complete","type":"borrow","target":{"text":"Tin","start":4,"end":7}}
+{"id":"targeted-annotation-v1-02-2476bd44d63a","annotation_status":"complete","type":"income","target":{"text":"zalopay","start":0,"end":7}}
+{"id":"targeted-annotation-v1-02-6673f2cf91c3","annotation_status":"complete","type":"income","target":null}
+{"id":"targeted-annotation-v1-02-d28360c275a9","annotation_status":"complete","type":"expense","target":null}
+{"id":"targeted-annotation-v1-02-d80e29578722","annotation_status":"complete","type":"lend","target":{"text":"chu Ba","start":0,"end":6}}
+{"id":"targeted-annotation-v1-02-938d205a69dd","annotation_status":"complete","type":"borrow","target":{"text":"chi ba","start":0,"end":6}}
+{"id":"targeted-annotation-v1-02-1e49a4012403","annotation_status":"complete","type":"borrow","target":{"text":"Hạnh","start":3,"end":7}}
+{"id":"targeted-annotation-v1-02-20ec75c320c8","annotation_status":"complete","type":"lend","target":{"text":"Tuan","start":4,"end":8}}
+{"id":"targeted-annotation-v1-02-f8be378d1dcd","annotation_status":"complete","type":"borrow","target":{"text":"sep","start":0,"end":3}}
+{"id":"targeted-annotation-v1-02-e430f65e08d9","annotation_status":"complete","type":"expense","target":{"text":"chi","start":4,"end":7}}
+{"id":"targeted-annotation-v1-02-79ebdef314fc","annotation_status":"complete","type":"refund","target":null}
+{"id":"targeted-annotation-v1-02-cd08c3dc282e","annotation_status":"complete","type":"borrow","target":{"text":"Bao","start":4,"end":7}}
+{"id":"targeted-annotation-v1-02-8c07d222a90e","annotation_status":"complete","type":"expense","target":{"text":"me","start":4,"end":6}}
+{"id":"targeted-annotation-v1-02-d3b18de3c1e1","annotation_status":"complete","type":"lend","target":{"text":"ban cung phong","start":4,"end":18}}
+{"id":"targeted-annotation-v1-02-e9e97ba3cb34","annotation_status":"complete","type":"borrow","target":{"text":"cô Bảy","start":0,"end":6}}
+{"id":"targeted-annotation-v1-02-7a6c1fc48c73","annotation_status":"complete","type":"income","target":null}
+{"id":"targeted-annotation-v1-02-8f4bac6fc480","annotation_status":"complete","type":"borrow","target":{"text":"chu Ba","start":9,"end":15}}
+{"id":"targeted-annotation-v1-02-56dc76788cd4","annotation_status":"complete","type":"income","target":{"text":"chi","start":0,"end":3}}
+{"id":"targeted-annotation-v1-02-4b10b4e3238b","annotation_status":"complete","type":"refund","target":null}
+{"id":"targeted-annotation-v1-02-85f5f50f3f91","annotation_status":"complete","type":"expense","target":{"text":"ong ba ngoai","start":4,"end":16}}
+{"id":"targeted-annotation-v1-02-0d55b9f7d840","annotation_status":"complete","type":"borrow","target":{"text":"anh ba","start":0,"end":6}}
+{"id":"targeted-annotation-v1-02-ccc53af05e0e","annotation_status":"complete","type":"expense","target":{"text":"ba","start":5,"end":7}}
+{"id":"targeted-annotation-v1-02-aacebb7a96aa","annotation_status":"complete","type":"expense","target":null}
+{"id":"targeted-annotation-v1-02-c41d0cab4cf4","annotation_status":"complete","type":"income","target":null}
+{"id":"targeted-annotation-v1-02-39d17f2ab70c","annotation_status":"complete","type":"borrow","target":{"text":"Phuc","start":0,"end":4}}
+{"id":"targeted-annotation-v1-02-97bdd28f52fa","annotation_status":"complete","type":"income","target":{"text":"bà nội","start":12,"end":18}}
+{"id":"targeted-annotation-v1-02-39c62b23bb5b","annotation_status":"complete","type":"repayment_out","target":{"text":"shinhan finance","start":4,"end":19}}
+{"id":"targeted-annotation-v1-02-a0d8769e6475","annotation_status":"complete","type":"expense","target":{"text":"vietlott","start":7,"end":15}}
+{"id":"targeted-annotation-v1-02-cf5167efee0a","annotation_status":"complete","type":"income","target":{"text":"anh hai","start":0,"end":7}}
+{"id":"targeted-annotation-v1-02-04b27caab9c9","annotation_status":"complete","type":"repayment_out","target":null}
+{"id":"targeted-annotation-v1-02-2988d1b14bc4","annotation_status":"complete","type":"income","target":{"text":"Hung","start":4,"end":8}}
+{"id":"targeted-annotation-v1-02-078d15036797","annotation_status":"complete","type":"expense","target":{"text":"di Sau","start":6,"end":12}}
+{"id":"targeted-annotation-v1-02-5cc64ca60ca2","annotation_status":"complete","type":"lend","target":{"text":"Phuc","start":9,"end":13}}
+{"id":"targeted-annotation-v1-02-0088fe92eea4","annotation_status":"complete","type":"lend","target":{"text":"Thảo","start":0,"end":4}}
+{"id":"targeted-annotation-v1-02-38d93582ba50","annotation_status":"complete","type":"lend","target":{"text":"Binh","start":4,"end":8}}
+{"id":"targeted-annotation-v1-02-d3f66ab155fa","annotation_status":"complete","type":"refund","target":null}
+{"id":"targeted-annotation-v1-02-ee2d04c4e841","annotation_status":"complete","type":"borrow","target":{"text":"bác Hai","start":0,"end":7}}
+{"id":"targeted-annotation-v1-02-8c694e651d9b","annotation_status":"complete","type":"income","target":{"text":"ong ba ngoai","start":0,"end":12}}
+{"id":"targeted-annotation-v1-02-fcce7c3e4a1d","annotation_status":"complete","type":"expense","target":{"text":"Hung","start":14,"end":18}}
+{"id":"targeted-annotation-v1-02-9992d73fa731","annotation_status":"complete","type":"expense","target":{"text":"chú Ba","start":3,"end":9}}
+{"id":"targeted-annotation-v1-02-3d33a0dc1933","annotation_status":"complete","type":"borrow","target":{"text":"chi gai","start":0,"end":7}}
+{"id":"targeted-annotation-v1-02-ba52fa2c4d8f","annotation_status":"complete","type":"expense","target":{"text":"Lan","start":22,"end":25}}
+{"id":"targeted-annotation-v1-02-c9eb9e6e30d3","annotation_status":"complete","type":"borrow","target":{"text":"đồng nghiệp","start":5,"end":16}}
+{"id":"targeted-annotation-v1-02-bdabb430b153","annotation_status":"complete","type":"expense","target":{"text":"bà nội","start":18,"end":24}}
+{"id":"targeted-annotation-v1-02-ea8ed5d87185","annotation_status":"complete","type":"lend","target":{"text":"Khôi","start":10,"end":14}}
+{"id":"targeted-annotation-v1-02-3eb57e38de07","annotation_status":"complete","type":"refund","target":{"text":"aia","start":0,"end":3}}
+{"id":"targeted-annotation-v1-02-b2b2c66c75d7","annotation_status":"complete","type":"lend","target":{"text":"chi ba","start":7,"end":13}}
+{"id":"targeted-annotation-v1-02-ba915af24bf4","annotation_status":"complete","type":"repayment_out","target":{"text":"tpbank","start":13,"end":19}}
+{"id":"targeted-annotation-v1-02-c0a8074e6658","annotation_status":"complete","type":"expense","target":null}
+{"id":"targeted-annotation-v1-02-2074529bb6d4","annotation_status":"complete","type":"refund","target":null}
+{"id":"targeted-annotation-v1-02-157fd4141a09","annotation_status":"complete","type":"repayment_out","target":{"text":"mcredit","start":0,"end":7}}
+{"id":"targeted-annotation-v1-02-b54ddfd7457d","annotation_status":"complete","type":"expense","target":{"text":"bảo việt nhân thọ","start":8,"end":25}}
+{"id":"targeted-annotation-v1-02-b7d030ceff99","annotation_status":"complete","type":"borrow","target":{"text":"ông nội","start":0,"end":7}}
+{"id":"targeted-annotation-v1-02-66ff4e082c7b","annotation_status":"complete","type":"borrow","target":{"text":"Huy","start":10,"end":13}}
+{"id":"targeted-annotation-v1-02-4848d3d69d8e","annotation_status":"complete","type":"refund","target":{"text":"bảo việt nhân thọ","start":0,"end":17}}
+{"id":"targeted-annotation-v1-02-d189a174fcf6","annotation_status":"complete","type":"lend","target":{"text":"Hùng","start":4,"end":8}}
+{"id":"targeted-annotation-v1-02-620b09d874c3","annotation_status":"complete","type":"income","target":{"text":"momo","start":22,"end":26}}
+{"id":"targeted-annotation-v1-02-3259f0ea7f77","annotation_status":"complete","type":"borrow","target":{"text":"ban cung phong","start":0,"end":14}}
+{"id":"targeted-annotation-v1-02-6c0b40f61719","annotation_status":"complete","type":"lend","target":{"text":"Tin","start":10,"end":13}}
+{"id":"targeted-annotation-v1-02-74c083c8a1ec","annotation_status":"complete","type":"lend","target":{"text":"Khoa","start":0,"end":4}}
+{"id":"targeted-annotation-v1-02-7b51148566ed","annotation_status":"complete","type":"lend","target":{"text":"cau Hai","start":0,"end":7}}
+{"id":"targeted-annotation-v1-02-7a6036756c5b","annotation_status":"complete","type":"lend","target":{"text":"bác Hai","start":4,"end":11}}
+{"id":"targeted-annotation-v1-02-c786e3c75f27","annotation_status":"complete","type":"income","target":{"text":"di Sau","start":0,"end":6}}
+{"id":"targeted-annotation-v1-02-ba3bc53d6e46","annotation_status":"complete","type":"lend","target":{"text":"Ngân","start":0,"end":4}}
+{"id":"targeted-annotation-v1-02-a7b5a0ec30ac","annotation_status":"complete","type":"income","target":{"text":"cậu","start":0,"end":3}}
+{"id":"targeted-annotation-v1-02-c15296cabe23","annotation_status":"complete","type":"income","target":{"text":"má","start":0,"end":2}}
+{"id":"targeted-annotation-v1-02-2de04f09f4f2","annotation_status":"complete","type":"borrow","target":{"text":"chú Năm","start":0,"end":7}}
+{"id":"targeted-annotation-v1-02-48f98a9028a4","annotation_status":"complete","type":"borrow","target":{"text":"Khôi","start":4,"end":8}}
+{"id":"targeted-annotation-v1-02-7c833db17dc4","annotation_status":"complete","type":"income","target":{"text":"Nam","start":9,"end":12}}
+{"id":"targeted-annotation-v1-02-9237dd8fdbf9","annotation_status":"complete","type":"expense","target":{"text":"anh hai","start":4,"end":11}}
+{"id":"targeted-annotation-v1-02-6199a4e9956d","annotation_status":"complete","type":"income","target":{"text":"chú Ba","start":0,"end":6}}
+{"id":"targeted-annotation-v1-02-5f75e1f99f07","annotation_status":"complete","type":"expense","target":null}
+{"id":"targeted-annotation-v1-02-c96072f9037e","annotation_status":"complete","type":"repayment_out","target":null}
+{"id":"targeted-annotation-v1-02-9a5957f606ad","annotation_status":"complete","type":"income","target":{"text":"me","start":0,"end":2}}
+{"id":"targeted-annotation-v1-02-f7dd94267e67","annotation_status":"complete","type":"expense","target":{"text":"cháu","start":5,"end":9}}
+{"id":"targeted-annotation-v1-02-ca3de082fd7e","annotation_status":"complete","type":"income","target":null}
+{"id":"targeted-annotation-v1-02-1a18bf78d8f5","annotation_status":"complete","type":"borrow","target":{"text":"mirae asset","start":0,"end":11}}

@@ -1,0 +1,108 @@
+{
+  "name": "targeted-annotation-v1-03",
+  "annotation_version": "annotation-v1",
+  "role": "training augmentation (final round): loan drawdown vs installment, insurance payout vs premium",
+  "merged_into_baseline": false,
+  "source": "synthetic-targeted; generated from the targeted-v2 residual-gap descriptions only",
+  "id_prefix": "targeted-annotation-v1-03-",
+  "total": 20,
+  "status_counts": {
+    "complete": 20
+  },
+  "review": {
+    "ai_accepted": 20,
+    "human_reviewed": 0,
+    "escalated_pending_human": 0,
+    "pass_disagreements": 0,
+    "intent_mismatches": 0
+  },
+  "accented_counts": {
+    "accented": 10,
+    "unaccented": 10
+  },
+  "groups": {
+    "total": 10,
+    "minimal_pair_groups": 10,
+    "pair_groups_with_type_flip": 10,
+    "singles": 0,
+    "note": "`group` (in notes.jsonl/provenance.jsonl) must be kept as one unit by any future split"
+  },
+  "blocks": {
+    "L": {
+      "n": 12,
+      "accented": 6,
+      "unaccented": 6,
+      "types": {
+        "borrow": 6,
+        "repayment_out": 6
+      },
+      "pair_groups": 6,
+      "auto_accepted": 12,
+      "escalated": 0
+    },
+    "I": {
+      "n": 8,
+      "accented": 4,
+      "unaccented": 4,
+      "types": {
+        "refund": 4,
+        "expense": 4
+      },
+      "pair_groups": 4,
+      "auto_accepted": 8,
+      "escalated": 0
+    }
+  },
+  "patterns": {
+    "loan_installment": {
+      "n": 12,
+      "types": {
+        "borrow": 6,
+        "repayment_out": 6
+      }
+    },
+    "insurance_payout": {
+      "n": 4,
+      "types": {
+        "refund": 4
+      }
+    },
+    "insurance_premium": {
+      "n": 4,
+      "types": {
+        "expense": 4
+      }
+    }
+  },
+  "excluded_sources": [
+    "datasets/probe-v1 (evaluation-only)",
+    "datasets/annotation-v1/splits/validation.jsonl",
+    "datasets/annotation-v1/splits/test.jsonl"
+  ],
+  "similarity_check": {
+    "module": "gidi.annotation.leakage",
+    "eval_refs": 296,
+    "train_refs": 660,
+    "train_refs_include": [
+      "annotation-v1 train incl. targeted-01",
+      "targeted-02"
+    ],
+    "rejects": 0,
+    "warnings": 0,
+    "max_eval_similarity": 0.69,
+    "max_train_similarity": 0.754
+  },
+  "files": {
+    "notes.jsonl": "c4d4096fe2bc73a5fbe462010704b0d81a9d73a25595849c5ac75cd1fa86c548",
+    "queue.jsonl": "9cc4b6c524d334ed9e1e55fa36749ddd562dc3e3b45067010363f071c5f39d88",
+    "labels.jsonl": "9c90e83d4e3b3280d75f32fc317277a57cf20f84503473940218527a75ffc971",
+    "provenance.jsonl": "4b85dd2957ab6cee3f37d660cc5620ebc316a7318cf611615371eba20cd1a391"
+  },
+  "type_counts": {
+    "expense": 4,
+    "borrow": 6,
+    "refund": 4,
+    "repayment_out": 6
+  },
+  "trainable": 20
+}

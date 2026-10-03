@@ -1,0 +1,690 @@
+{
+  "name": "targeted-value-01",
+  "seed": "targeted-value-01:review",
+  "counts": {
+    "total": 253,
+    "auto_accepted": 176,
+    "must_review": 36,
+    "hard_sample": 21,
+    "clean_audit": 20,
+    "queue": 77
+  },
+  "reason_counts": {
+    "multiple_money_candidates": 15,
+    "no_candidate": 10,
+    "compound_amount": 8,
+    "unusual_punctuation": 1,
+    "type_status_not_complete": 4,
+    "type_intent_mismatch": 4,
+    "numeric_ambiguity": 3
+  },
+  "strata": {
+    "multi_number": {
+      "members": 52,
+      "sampled": [
+        "targeted-value-01-0eb1be46b196",
+        "targeted-value-01-1d0b7db9b3fb",
+        "targeted-value-01-82536aaf013b"
+      ],
+      "auto_accepted": [
+        "targeted-value-01-045120eb2e9f",
+        "targeted-value-01-0819fc6cefda",
+        "targeted-value-01-0865471e434c",
+        "targeted-value-01-0adaf99e6a78",
+        "targeted-value-01-116689624ae3",
+        "targeted-value-01-1708c13f90d3",
+        "targeted-value-01-1e8482c1ec69",
+        "targeted-value-01-2703d3c99030",
+        "targeted-value-01-27dadb7ab8d4",
+        "targeted-value-01-28f5cec75266",
+        "targeted-value-01-2954200ac16a",
+        "targeted-value-01-2c64b790437b",
+        "targeted-value-01-3e4cd7d3d367",
+        "targeted-value-01-402131c66132",
+        "targeted-value-01-509ccb343d01",
+        "targeted-value-01-539d38cca2e8",
+        "targeted-value-01-5569733899e7",
+        "targeted-value-01-5c08c83861ab",
+        "targeted-value-01-61c416cf0261",
+        "targeted-value-01-62d05e88fa0f",
+        "targeted-value-01-66be4cd1efd9",
+        "targeted-value-01-6a046488975a",
+        "targeted-value-01-801492af3128",
+        "targeted-value-01-80755833dc44",
+        "targeted-value-01-845e04e0b1be",
+        "targeted-value-01-8826ce50d0a4",
+        "targeted-value-01-8c75ae9bcc43",
+        "targeted-value-01-8fdd508a8c0a",
+        "targeted-value-01-96bfa2aa029b",
+        "targeted-value-01-98d61b7756b2",
+        "targeted-value-01-a529a0f234e5",
+        "targeted-value-01-af08c546f8fb",
+        "targeted-value-01-ba2824c04fb9",
+        "targeted-value-01-bde20b11eb96",
+        "targeted-value-01-bf4c2213dbbb",
+        "targeted-value-01-bfeacbb2fbfb",
+        "targeted-value-01-c65a45185056",
+        "targeted-value-01-c7524a97fa30",
+        "targeted-value-01-ce72dc73edf2",
+        "targeted-value-01-d331a0fdc0d5",
+        "targeted-value-01-d3b920351238",
+        "targeted-value-01-da5af9231d24",
+        "targeted-value-01-db9255492319",
+        "targeted-value-01-dfc552ac8afd",
+        "targeted-value-01-e013550b405e",
+        "targeted-value-01-e06640e8258c",
+        "targeted-value-01-e4e99d88f164",
+        "targeted-value-01-f7b327d20712",
+        "targeted-value-01-fbd6cf50aaf4"
+      ]
+    },
+    "bare_number": {
+      "members": 19,
+      "sampled": [
+        "targeted-value-01-8de0552f1817",
+        "targeted-value-01-c70b57187e5f",
+        "targeted-value-01-f3e30be1c7e1"
+      ],
+      "auto_accepted": [
+        "targeted-value-01-06e9c7dcac0f",
+        "targeted-value-01-0f6fa09197bb",
+        "targeted-value-01-10d61a5e5388",
+        "targeted-value-01-194f954c8855",
+        "targeted-value-01-2e231bbe960e",
+        "targeted-value-01-3cbbdd67dc66",
+        "targeted-value-01-52536d96b855",
+        "targeted-value-01-6aa5cd032742",
+        "targeted-value-01-6e917bbf84a7",
+        "targeted-value-01-7a51a8274dbc",
+        "targeted-value-01-8098578d488b",
+        "targeted-value-01-92dc0ab370c2",
+        "targeted-value-01-98e585209dfb",
+        "targeted-value-01-d617f0594d5b",
+        "targeted-value-01-de4b002a2896",
+        "targeted-value-01-e9489951a533"
+      ]
+    },
+    "slang_xi": {
+      "members": 11,
+      "sampled": [
+        "targeted-value-01-253dd8d05ea4",
+        "targeted-value-01-d821f74b4bd7",
+        "targeted-value-01-f8b799616102"
+      ],
+      "auto_accepted": [
+        "targeted-value-01-1a78f8378c8c",
+        "targeted-value-01-29c114a1fcd6",
+        "targeted-value-01-58626a155c55",
+        "targeted-value-01-742f4e822f79",
+        "targeted-value-01-92de2d4dae24",
+        "targeted-value-01-d022b4b8269a",
+        "targeted-value-01-e5d3f8cc379f",
+        "targeted-value-01-eea1c9cf22b0"
+      ]
+    },
+    "slang_chai": {
+      "members": 12,
+      "sampled": [
+        "targeted-value-01-4186dcac19aa",
+        "targeted-value-01-5b3330e90b21",
+        "targeted-value-01-68c42bb580f3"
+      ],
+      "auto_accepted": [
+        "targeted-value-01-12a2f5a6edb5",
+        "targeted-value-01-44b1112116c5",
+        "targeted-value-01-475389233b2f",
+        "targeted-value-01-4cd290103d2d",
+        "targeted-value-01-a632b05652ca",
+        "targeted-value-01-afc91cd4791c",
+        "targeted-value-01-ca9472bbf2f2",
+        "targeted-value-01-e05db0dd5fc8",
+        "targeted-value-01-e2b330453e4c"
+      ]
+    },
+    "slang_lit": {
+      "members": 9,
+      "sampled": [
+        "targeted-value-01-19376211fd6f",
+        "targeted-value-01-42568b452fc4",
+        "targeted-value-01-ea77780852de"
+      ],
+      "auto_accepted": [
+        "targeted-value-01-31e8fc938dad",
+        "targeted-value-01-382760f9700c",
+        "targeted-value-01-6a6bfecfdeea",
+        "targeted-value-01-c9e8b3867e3f",
+        "targeted-value-01-d398f4aa81de",
+        "targeted-value-01-e277100159cd"
+      ]
+    },
+    "slang_cu": {
+      "members": 15,
+      "sampled": [
+        "targeted-value-01-0cda938e538d",
+        "targeted-value-01-7e3b70b12aa4",
+        "targeted-value-01-e08609e17e17"
+      ],
+      "auto_accepted": [
+        "targeted-value-01-0a8ee75f739d",
+        "targeted-value-01-2bcf5f97171b",
+        "targeted-value-01-512870fbc890",
+        "targeted-value-01-586dabbee4f5",
+        "targeted-value-01-68cf9ccb2011",
+        "targeted-value-01-6f0d662f08dd",
+        "targeted-value-01-6fcb49c1ad29",
+        "targeted-value-01-7e202affe122",
+        "targeted-value-01-7fd25fcbf9ed",
+        "targeted-value-01-b78ded035e9b",
+        "targeted-value-01-c20bf2d378f1",
+        "targeted-value-01-f96cac92dc0c"
+      ]
+    },
+    "slang_ty": {
+      "members": 3,
+      "sampled": [
+        "targeted-value-01-1fc19bd97493",
+        "targeted-value-01-4aed8dd91fbf",
+        "targeted-value-01-7f2d5e79d7e5"
+      ],
+      "auto_accepted": []
+    },
+    "slang_other": {
+      "members": 0,
+      "sampled": [],
+      "auto_accepted": []
+    }
+  },
+  "coverage": {
+    "pattern": {
+      "ambiguous_multi": {
+        "must_review": 15,
+        "hard_sample": 0,
+        "clean_audit": 0,
+        "queue": 15,
+        "auto_accept": 0,
+        "all": 15
+      },
+      "bare_amount": {
+        "must_review": 0,
+        "hard_sample": 3,
+        "clean_audit": 0,
+        "queue": 3,
+        "auto_accept": 16,
+        "all": 19
+      },
+      "bare_nonmoney": {
+        "must_review": 0,
+        "hard_sample": 1,
+        "clean_audit": 0,
+        "queue": 1,
+        "auto_accept": 14,
+        "all": 15
+      },
+      "currency_suffix": {
+        "must_review": 0,
+        "hard_sample": 0,
+        "clean_audit": 3,
+        "queue": 3,
+        "auto_accept": 8,
+        "all": 11
+      },
+      "decimal_tr": {
+        "must_review": 0,
+        "hard_sample": 0,
+        "clean_audit": 2,
+        "queue": 2,
+        "auto_accept": 6,
+        "all": 8
+      },
+      "dotted_full": {
+        "must_review": 0,
+        "hard_sample": 0,
+        "clean_audit": 2,
+        "queue": 2,
+        "auto_accept": 9,
+        "all": 11
+      },
+      "insurance_payout": {
+        "must_review": 1,
+        "hard_sample": 0,
+        "clean_audit": 1,
+        "queue": 2,
+        "auto_accept": 4,
+        "all": 6
+      },
+      "insurance_premium": {
+        "must_review": 0,
+        "hard_sample": 0,
+        "clean_audit": 0,
+        "queue": 0,
+        "auto_accept": 3,
+        "all": 3
+      },
+      "lender_first_cho_muon": {
+        "must_review": 0,
+        "hard_sample": 1,
+        "clean_audit": 2,
+        "queue": 3,
+        "auto_accept": 12,
+        "all": 15
+      },
+      "loan_installment": {
+        "must_review": 0,
+        "hard_sample": 1,
+        "clean_audit": 0,
+        "queue": 1,
+        "auto_accept": 8,
+        "all": 9
+      },
+      "multi_number": {
+        "must_review": 5,
+        "hard_sample": 1,
+        "clean_audit": 0,
+        "queue": 6,
+        "auto_accept": 22,
+        "all": 28
+      },
+      "nghin_ngan": {
+        "must_review": 0,
+        "hard_sample": 0,
+        "clean_audit": 1,
+        "queue": 1,
+        "auto_accept": 11,
+        "all": 12
+      },
+      "no_amount": {
+        "must_review": 10,
+        "hard_sample": 0,
+        "clean_audit": 0,
+        "queue": 10,
+        "auto_accept": 0,
+        "all": 10
+      },
+      "plain_digits": {
+        "must_review": 0,
+        "hard_sample": 0,
+        "clean_audit": 2,
+        "queue": 2,
+        "auto_accept": 10,
+        "all": 12
+      },
+      "slang_chai": {
+        "must_review": 0,
+        "hard_sample": 3,
+        "clean_audit": 0,
+        "queue": 3,
+        "auto_accept": 6,
+        "all": 9
+      },
+      "slang_cu": {
+        "must_review": 1,
+        "hard_sample": 1,
+        "clean_audit": 0,
+        "queue": 2,
+        "auto_accept": 9,
+        "all": 11
+      },
+      "slang_lit": {
+        "must_review": 0,
+        "hard_sample": 3,
+        "clean_audit": 0,
+        "queue": 3,
+        "auto_accept": 3,
+        "all": 6
+      },
+      "slang_ty": {
+        "must_review": 3,
+        "hard_sample": 3,
+        "clean_audit": 0,
+        "queue": 6,
+        "auto_accept": 0,
+        "all": 6
+      },
+      "slang_xi": {
+        "must_review": 0,
+        "hard_sample": 2,
+        "clean_audit": 0,
+        "queue": 2,
+        "auto_accept": 8,
+        "all": 10
+      },
+      "spaced_K": {
+        "must_review": 0,
+        "hard_sample": 0,
+        "clean_audit": 2,
+        "queue": 2,
+        "auto_accept": 10,
+        "all": 12
+      },
+      "tax_refund": {
+        "must_review": 0,
+        "hard_sample": 1,
+        "clean_audit": 0,
+        "queue": 1,
+        "auto_accept": 0,
+        "all": 1
+      },
+      "title_name_span": {
+        "must_review": 0,
+        "hard_sample": 1,
+        "clean_audit": 0,
+        "queue": 1,
+        "auto_accept": 6,
+        "all": 7
+      },
+      "tr_mid": {
+        "must_review": 0,
+        "hard_sample": 0,
+        "clean_audit": 2,
+        "queue": 2,
+        "auto_accept": 7,
+        "all": 9
+      },
+      "trieu_word": {
+        "must_review": 1,
+        "hard_sample": 0,
+        "clean_audit": 3,
+        "queue": 4,
+        "auto_accept": 4,
+        "all": 8
+      }
+    },
+    "amount_form": {
+      "bare": {
+        "must_review": 0,
+        "hard_sample": 4,
+        "clean_audit": 1,
+        "queue": 5,
+        "auto_accept": 31,
+        "all": 36
+      },
+      "currency_suffix": {
+        "must_review": 0,
+        "hard_sample": 0,
+        "clean_audit": 3,
+        "queue": 3,
+        "auto_accept": 12,
+        "all": 15
+      },
+      "decimal_tr": {
+        "must_review": 0,
+        "hard_sample": 0,
+        "clean_audit": 2,
+        "queue": 2,
+        "auto_accept": 9,
+        "all": 11
+      },
+      "dotted_full": {
+        "must_review": 0,
+        "hard_sample": 1,
+        "clean_audit": 2,
+        "queue": 3,
+        "auto_accept": 15,
+        "all": 18
+      },
+      "k": {
+        "must_review": 1,
+        "hard_sample": 0,
+        "clean_audit": 0,
+        "queue": 1,
+        "auto_accept": 9,
+        "all": 10
+      },
+      "nghin_ngan": {
+        "must_review": 0,
+        "hard_sample": 0,
+        "clean_audit": 2,
+        "queue": 2,
+        "auto_accept": 13,
+        "all": 15
+      },
+      "none": {
+        "must_review": 25,
+        "hard_sample": 0,
+        "clean_audit": 0,
+        "queue": 25,
+        "auto_accept": 0,
+        "all": 25
+      },
+      "plain_long": {
+        "must_review": 0,
+        "hard_sample": 0,
+        "clean_audit": 2,
+        "queue": 2,
+        "auto_accept": 12,
+        "all": 14
+      },
+      "slang_chai": {
+        "must_review": 0,
+        "hard_sample": 3,
+        "clean_audit": 0,
+        "queue": 3,
+        "auto_accept": 9,
+        "all": 12
+      },
+      "slang_cu": {
+        "must_review": 2,
+        "hard_sample": 3,
+        "clean_audit": 0,
+        "queue": 5,
+        "auto_accept": 12,
+        "all": 17
+      },
+      "slang_lit": {
+        "must_review": 0,
+        "hard_sample": 3,
+        "clean_audit": 0,
+        "queue": 3,
+        "auto_accept": 6,
+        "all": 9
+      },
+      "slang_ty": {
+        "must_review": 3,
+        "hard_sample": 3,
+        "clean_audit": 0,
+        "queue": 6,
+        "auto_accept": 0,
+        "all": 6
+      },
+      "slang_xi": {
+        "must_review": 0,
+        "hard_sample": 3,
+        "clean_audit": 0,
+        "queue": 3,
+        "auto_accept": 8,
+        "all": 11
+      },
+      "spaced_K": {
+        "must_review": 0,
+        "hard_sample": 0,
+        "clean_audit": 2,
+        "queue": 2,
+        "auto_accept": 12,
+        "all": 14
+      },
+      "tr": {
+        "must_review": 2,
+        "hard_sample": 1,
+        "clean_audit": 0,
+        "queue": 3,
+        "auto_accept": 6,
+        "all": 9
+      },
+      "tr_mid": {
+        "must_review": 0,
+        "hard_sample": 0,
+        "clean_audit": 3,
+        "queue": 3,
+        "auto_accept": 18,
+        "all": 21
+      },
+      "trieu_word": {
+        "must_review": 3,
+        "hard_sample": 0,
+        "clean_audit": 3,
+        "queue": 6,
+        "auto_accept": 4,
+        "all": 10
+      }
+    },
+    "type": {
+      "borrow": {
+        "must_review": 2,
+        "hard_sample": 2,
+        "clean_audit": 2,
+        "queue": 6,
+        "auto_accept": 26,
+        "all": 32
+      },
+      "expense": {
+        "must_review": 16,
+        "hard_sample": 2,
+        "clean_audit": 3,
+        "queue": 21,
+        "auto_accept": 27,
+        "all": 48
+      },
+      "income": {
+        "must_review": 3,
+        "hard_sample": 3,
+        "clean_audit": 3,
+        "queue": 9,
+        "auto_accept": 20,
+        "all": 29
+      },
+      "lend": {
+        "must_review": 2,
+        "hard_sample": 4,
+        "clean_audit": 2,
+        "queue": 8,
+        "auto_accept": 19,
+        "all": 27
+      },
+      "refund": {
+        "must_review": 5,
+        "hard_sample": 2,
+        "clean_audit": 3,
+        "queue": 10,
+        "auto_accept": 20,
+        "all": 30
+      },
+      "repayment_in": {
+        "must_review": 2,
+        "hard_sample": 3,
+        "clean_audit": 2,
+        "queue": 7,
+        "auto_accept": 23,
+        "all": 30
+      },
+      "repayment_out": {
+        "must_review": 3,
+        "hard_sample": 3,
+        "clean_audit": 2,
+        "queue": 8,
+        "auto_accept": 22,
+        "all": 30
+      },
+      "transfer": {
+        "must_review": 3,
+        "hard_sample": 2,
+        "clean_audit": 3,
+        "queue": 8,
+        "auto_accept": 19,
+        "all": 27
+      }
+    },
+    "accent": {
+      "accented": {
+        "must_review": 15,
+        "hard_sample": 11,
+        "clean_audit": 10,
+        "queue": 36,
+        "auto_accept": 100,
+        "all": 136
+      },
+      "unaccented": {
+        "must_review": 21,
+        "hard_sample": 10,
+        "clean_audit": 10,
+        "queue": 41,
+        "auto_accept": 76,
+        "all": 117
+      }
+    },
+    "slang_unit": {
+      "none": {
+        "must_review": 31,
+        "hard_sample": 6,
+        "clean_audit": 20,
+        "queue": 57,
+        "auto_accept": 141,
+        "all": 198
+      },
+      "slang_chai": {
+        "must_review": 0,
+        "hard_sample": 3,
+        "clean_audit": 0,
+        "queue": 3,
+        "auto_accept": 9,
+        "all": 12
+      },
+      "slang_cu": {
+        "must_review": 2,
+        "hard_sample": 3,
+        "clean_audit": 0,
+        "queue": 5,
+        "auto_accept": 12,
+        "all": 17
+      },
+      "slang_lit": {
+        "must_review": 0,
+        "hard_sample": 3,
+        "clean_audit": 0,
+        "queue": 3,
+        "auto_accept": 6,
+        "all": 9
+      },
+      "slang_ty": {
+        "must_review": 3,
+        "hard_sample": 3,
+        "clean_audit": 0,
+        "queue": 6,
+        "auto_accept": 0,
+        "all": 6
+      },
+      "slang_xi": {
+        "must_review": 0,
+        "hard_sample": 3,
+        "clean_audit": 0,
+        "queue": 3,
+        "auto_accept": 8,
+        "all": 11
+      }
+    }
+  },
+  "escalation_rule": {
+    "error": "a human label differs from the proposal on type, target span or value span, or the human annotation_status is not 'complete' (either pass)",
+    "hard_stratum": "any error in a hard-pattern stratum -> review that entire stratum",
+    "clean_audit": {
+      "max_errors_to_accept": 1,
+      "accept": "0-1 errors -> accept the auto-accepted remainder",
+      "expand": ">=2 errors -> stop and expand review to all auto-accepted records"
+    },
+    "must_review": "errors do not trigger escalation (expected); they are reported"
+  },
+  "duplicates": {
+    "reference_texts": 1382,
+    "reference_files": 54,
+    "normalised_matches_corpus": 0,
+    "normalised_matches_batch": 0,
+    "similarity_ge_0.90": 0,
+    "similarity_0.85_to_0.90_not_forced": 31,
+    "max_corpus_similarity": 0.898,
+    "max_batch_similarity": 0.8837
+  },
+  "quet_commands": [
+    "quet annotate datasets/annotation-v2/targeted-value-01/review-queue.jsonl \\\n  --schema configs/annotation-v1.yaml \\\n  --out datasets/annotation-v2/targeted-value-01/labels.jsonl \\\n  --proposals datasets/annotation-v2/targeted-value-01/review-type-proposals.jsonl",
+    "quet annotate datasets/annotation-v2/targeted-value-01/review-queue.jsonl \\\n  --schema configs/annotation-v2-value.quet.yaml \\\n  --out datasets/annotation-v2/targeted-value-01/value-labels.jsonl \\\n  --proposals datasets/annotation-v2/targeted-value-01/review-value-proposals.jsonl"
+  ],
+  "manifest": "datasets/annotation-v2/targeted-value-01/review-manifest.json"
+}

@@ -1,0 +1,155 @@
+2026-10-03 14:10:23,433 WARNING MPS kernels are not bit-reproducible; repeated runs of a seed may differ.
+2026-10-03 14:10:29,695 INFO [value-head seed1] epoch 1 step 112 value loss 6.4379 val: loss 4.3700 exact 0.0890 4.6s
+2026-10-03 14:10:33,051 INFO [value-head seed1] epoch 2 step 224 value loss 3.7932 val: loss 3.6482 exact 0.4726 3.2s
+2026-10-03 14:10:36,105 INFO [value-head seed1] epoch 3 step 336 value loss 3.3142 val: loss 2.8816 exact 0.4658 2.9s
+2026-10-03 14:10:38,730 INFO [value-head seed1] epoch 4 step 448 value loss 3.3338 val: loss 3.2131 exact 0.5479 2.5s
+2026-10-03 14:10:41,436 INFO [value-head seed1] epoch 5 step 560 value loss 3.3594 val: loss 2.0769 exact 0.6301 2.6s
+2026-10-03 14:10:43,863 INFO [value-head seed1] epoch 6 step 672 value loss 2.2817 val: loss 1.9319 exact 0.7055 2.3s
+2026-10-03 14:10:46,586 INFO [value-head seed1] epoch 7 step 784 value loss 2.1602 val: loss 2.7440 exact 0.4863 2.6s
+2026-10-03 14:10:49,206 INFO [value-head seed1] epoch 8 step 896 value loss 1.6989 val: loss 1.9346 exact 0.7260 2.5s
+2026-10-03 14:10:51,924 INFO [value-head seed1] epoch 9 step 1008 value loss 1.4749 val: loss 1.3738 exact 0.6918 2.6s
+2026-10-03 14:10:54,518 INFO [value-head seed1] epoch 10 step 1120 value loss 1.6587 val: loss 1.8159 exact 0.5342 2.5s
+2026-10-03 14:10:57,226 INFO [value-head seed1] epoch 11 step 1232 value loss 1.3997 val: loss 1.0243 exact 0.8425 2.6s
+2026-10-03 14:10:59,843 INFO [value-head seed1] epoch 12 step 1344 value loss 1.2905 val: loss 1.4921 exact 0.7945 2.5s
+2026-10-03 14:11:02,502 INFO [value-head seed1] epoch 13 step 1456 value loss 1.0898 val: loss 0.8980 exact 0.8493 2.5s
+2026-10-03 14:11:05,482 INFO [value-head seed1] epoch 14 step 1568 value loss 1.1712 val: loss 0.8415 exact 0.8151 2.8s
+2026-10-03 14:11:09,276 INFO [value-head seed1] epoch 15 step 1680 value loss 1.0315 val: loss 0.9813 exact 0.8014 3.6s
+2026-10-03 14:11:12,817 INFO [value-head seed1] epoch 16 step 1792 value loss 0.8623 val: loss 0.5354 exact 0.8973 3.4s
+2026-10-03 14:11:16,216 INFO [value-head seed1] epoch 17 step 1904 value loss 0.7792 val: loss 0.6559 exact 0.8562 3.2s
+2026-10-03 14:11:19,757 INFO [value-head seed1] epoch 18 step 2016 value loss 0.8000 val: loss 0.6932 exact 0.8699 3.4s
+2026-10-03 14:11:23,691 INFO [value-head seed1] epoch 19 step 2128 value loss 0.6140 val: loss 0.7641 exact 0.8082 3.7s
+2026-10-03 14:11:32,524 INFO [value-head seed1] epoch 20 step 2240 value loss 0.6439 val: loss 0.4420 exact 0.9110 8.7s
+2026-10-03 14:11:37,398 INFO [value-head seed1] epoch 21 step 2352 value loss 0.6038 val: loss 0.4959 exact 0.8767 3.9s
+2026-10-03 14:11:43,784 INFO [value-head seed1] epoch 22 step 2464 value loss 0.4894 val: loss 1.0102 exact 0.8356 6.1s
+2026-10-03 14:11:47,448 INFO [value-head seed1] epoch 23 step 2576 value loss 0.4867 val: loss 0.7252 exact 0.8630 3.5s
+2026-10-03 14:11:51,138 INFO [value-head seed1] epoch 24 step 2688 value loss 0.4214 val: loss 0.5384 exact 0.8836 3.6s
+2026-10-03 14:11:54,305 INFO [value-head seed1] epoch 25 step 2800 value loss 0.3611 val: loss 0.3906 exact 0.9178 3.1s
+2026-10-03 14:11:57,422 INFO [value-head seed1] epoch 26 step 2912 value loss 0.3569 val: loss 0.5831 exact 0.9110 3.0s
+2026-10-03 14:12:00,495 INFO [value-head seed1] epoch 27 step 3024 value loss 0.2891 val: loss 0.5130 exact 0.9110 2.9s
+2026-10-03 14:12:03,311 INFO [value-head seed1] epoch 28 step 3136 value loss 0.3088 val: loss 0.3097 exact 0.9178 2.7s
+2026-10-03 14:12:06,228 INFO [value-head seed1] epoch 29 step 3248 value loss 0.2604 val: loss 0.3659 exact 0.9384 2.8s
+2026-10-03 14:12:09,224 INFO [value-head seed1] epoch 30 step 3360 value loss 0.1935 val: loss 0.4022 exact 0.9178 2.9s
+2026-10-03 14:12:12,155 INFO [value-head seed1] epoch 31 step 3472 value loss 0.1933 val: loss 0.4727 exact 0.9315 2.8s
+2026-10-03 14:12:14,792 INFO [value-head seed1] epoch 32 step 3584 value loss 0.1903 val: loss 0.3520 exact 0.9452 2.5s
+2026-10-03 14:12:17,442 INFO [value-head seed1] epoch 33 step 3696 value loss 0.1431 val: loss 0.3247 exact 0.9315 2.5s
+2026-10-03 14:12:20,091 INFO [value-head seed1] epoch 34 step 3808 value loss 0.0857 val: loss 0.3757 exact 0.9315 2.5s
+2026-10-03 14:12:22,753 INFO [value-head seed1] epoch 35 step 3920 value loss 0.0702 val: loss 0.2993 exact 0.9452 2.5s
+2026-10-03 14:12:25,366 INFO [value-head seed1] epoch 36 step 4032 value loss 0.0696 val: loss 0.3245 exact 0.9452 2.5s
+2026-10-03 14:12:27,939 INFO [value-head seed1] epoch 37 step 4144 value loss 0.0517 val: loss 0.3829 exact 0.9589 2.4s
+2026-10-03 14:12:30,698 INFO [value-head seed1] epoch 38 step 4256 value loss 0.0363 val: loss 0.2931 exact 0.9521 2.6s
+2026-10-03 14:12:33,370 INFO [value-head seed1] epoch 39 step 4368 value loss 0.0193 val: loss 0.3198 exact 0.9521 2.6s
+2026-10-03 14:12:35,913 INFO [value-head seed1] epoch 40 step 4480 value loss 0.0219 val: loss 0.3074 exact 0.9521 2.4s
+2026-10-03 14:12:36,475 WARNING MPS kernels are not bit-reproducible; repeated runs of a seed may differ.
+2026-10-03 14:12:39,816 INFO [value-head seed2] epoch 1 step 112 value loss 6.4873 val: loss 4.2115 exact 0.2534 2.5s
+2026-10-03 14:12:42,525 INFO [value-head seed2] epoch 2 step 224 value loss 3.9287 val: loss 3.1375 exact 0.6027 2.6s
+2026-10-03 14:12:45,504 INFO [value-head seed2] epoch 3 step 336 value loss 3.3260 val: loss 2.4502 exact 0.5137 2.8s
+2026-10-03 14:12:48,172 INFO [value-head seed2] epoch 4 step 448 value loss 3.1665 val: loss 2.4026 exact 0.6096 2.5s
+2026-10-03 14:12:50,615 INFO [value-head seed2] epoch 5 step 560 value loss 3.2690 val: loss 2.5836 exact 0.5616 2.3s
+2026-10-03 14:12:53,253 INFO [value-head seed2] epoch 6 step 672 value loss 2.3707 val: loss 2.1161 exact 0.5822 2.5s
+2026-10-03 14:12:56,333 INFO [value-head seed2] epoch 7 step 784 value loss 1.9593 val: loss 1.9193 exact 0.5890 2.9s
+2026-10-03 14:12:59,300 INFO [value-head seed2] epoch 8 step 896 value loss 1.6570 val: loss 1.4595 exact 0.6849 2.8s
+2026-10-03 14:13:02,198 INFO [value-head seed2] epoch 9 step 1008 value loss 1.8575 val: loss 2.1587 exact 0.4932 2.8s
+2026-10-03 14:13:04,970 INFO [value-head seed2] epoch 10 step 1120 value loss 1.5512 val: loss 1.1254 exact 0.6849 2.7s
+2026-10-03 14:13:07,743 INFO [value-head seed2] epoch 11 step 1232 value loss 1.4001 val: loss 1.2216 exact 0.7877 2.6s
+2026-10-03 14:13:11,043 INFO [value-head seed2] epoch 12 step 1344 value loss 1.1206 val: loss 1.1657 exact 0.7603 3.1s
+2026-10-03 14:13:14,301 INFO [value-head seed2] epoch 13 step 1456 value loss 1.0699 val: loss 1.0669 exact 0.9041 3.1s
+2026-10-03 14:13:17,393 INFO [value-head seed2] epoch 14 step 1568 value loss 0.9230 val: loss 0.8795 exact 0.8493 3.0s
+2026-10-03 14:13:21,311 INFO [value-head seed2] epoch 15 step 1680 value loss 0.9095 val: loss 0.6546 exact 0.8699 3.8s
+2026-10-03 14:13:24,361 INFO [value-head seed2] epoch 16 step 1792 value loss 0.8632 val: loss 0.6399 exact 0.8904 2.9s
+2026-10-03 14:13:27,209 INFO [value-head seed2] epoch 17 step 1904 value loss 0.8678 val: loss 0.4777 exact 0.9041 2.7s
+2026-10-03 14:13:30,040 INFO [value-head seed2] epoch 18 step 2016 value loss 0.6593 val: loss 0.8092 exact 0.8014 2.7s
+2026-10-03 14:13:32,711 INFO [value-head seed2] epoch 19 step 2128 value loss 0.6890 val: loss 0.9647 exact 0.8082 2.5s
+2026-10-03 14:13:35,752 INFO [value-head seed2] epoch 20 step 2240 value loss 0.5803 val: loss 0.7371 exact 0.8562 2.9s
+2026-10-03 14:13:38,617 INFO [value-head seed2] epoch 21 step 2352 value loss 0.7114 val: loss 0.4016 exact 0.9178 2.7s
+2026-10-03 14:13:41,435 INFO [value-head seed2] epoch 22 step 2464 value loss 0.4710 val: loss 0.5774 exact 0.8973 2.7s
+2026-10-03 14:13:44,036 INFO [value-head seed2] epoch 23 step 2576 value loss 0.3635 val: loss 0.9353 exact 0.8356 2.5s
+2026-10-03 14:13:46,418 INFO [value-head seed2] epoch 24 step 2688 value loss 0.4394 val: loss 0.5033 exact 0.9178 2.3s
+2026-10-03 14:13:48,967 INFO [value-head seed2] epoch 25 step 2800 value loss 0.4781 val: loss 0.4926 exact 0.8973 2.4s
+2026-10-03 14:13:51,362 INFO [value-head seed2] epoch 26 step 2912 value loss 0.3142 val: loss 0.4407 exact 0.9110 2.3s
+2026-10-03 14:13:53,812 INFO [value-head seed2] epoch 27 step 3024 value loss 0.3100 val: loss 0.6488 exact 0.8836 2.3s
+2026-10-03 14:13:56,098 INFO [value-head seed2] epoch 28 step 3136 value loss 0.2757 val: loss 0.4156 exact 0.9315 2.2s
+2026-10-03 14:13:58,567 INFO [value-head seed2] epoch 29 step 3248 value loss 0.2130 val: loss 0.2672 exact 0.9384 2.3s
+2026-10-03 14:14:00,802 INFO [value-head seed2] epoch 30 step 3360 value loss 0.1932 val: loss 0.3888 exact 0.9247 2.1s
+2026-10-03 14:14:03,125 INFO [value-head seed2] epoch 31 step 3472 value loss 0.1729 val: loss 0.3169 exact 0.9452 2.2s
+2026-10-03 14:14:05,570 INFO [value-head seed2] epoch 32 step 3584 value loss 0.1728 val: loss 0.3715 exact 0.9521 2.3s
+2026-10-03 14:14:08,000 INFO [value-head seed2] epoch 33 step 3696 value loss 0.1132 val: loss 0.4216 exact 0.9384 2.3s
+2026-10-03 14:14:10,409 INFO [value-head seed2] epoch 34 step 3808 value loss 0.1355 val: loss 0.3826 exact 0.9041 2.3s
+2026-10-03 14:14:12,759 INFO [value-head seed2] epoch 35 step 3920 value loss 0.1065 val: loss 0.4609 exact 0.9247 2.2s
+2026-10-03 14:14:15,338 INFO [value-head seed2] epoch 36 step 4032 value loss 0.0546 val: loss 0.2913 exact 0.9452 2.5s
+2026-10-03 14:14:17,837 INFO [value-head seed2] epoch 37 step 4144 value loss 0.0422 val: loss 0.3197 exact 0.9315 2.4s
+2026-10-03 14:14:20,385 INFO [value-head seed2] epoch 38 step 4256 value loss 0.0361 val: loss 0.2952 exact 0.9521 2.4s
+2026-10-03 14:14:23,057 INFO [value-head seed2] epoch 39 step 4368 value loss 0.0210 val: loss 0.3509 exact 0.9521 2.6s
+2026-10-03 14:14:26,019 INFO [value-head seed2] epoch 40 step 4480 value loss 0.0169 val: loss 0.3223 exact 0.9589 2.8s
+2026-10-03 14:14:26,666 WARNING MPS kernels are not bit-reproducible; repeated runs of a seed may differ.
+2026-10-03 14:14:29,800 INFO [value-head seed3] epoch 1 step 112 value loss 6.3122 val: loss 4.2499 exact 0.3219 2.4s
+2026-10-03 14:14:32,260 INFO [value-head seed3] epoch 2 step 224 value loss 3.9191 val: loss 2.3963 exact 0.6233 2.3s
+2026-10-03 14:14:34,840 INFO [value-head seed3] epoch 3 step 336 value loss 3.5893 val: loss 2.6919 exact 0.5822 2.4s
+2026-10-03 14:14:38,219 INFO [value-head seed3] epoch 4 step 448 value loss 3.1090 val: loss 2.5913 exact 0.6233 3.1s
+2026-10-03 14:14:42,298 INFO [value-head seed3] epoch 5 step 560 value loss 2.8500 val: loss 1.8816 exact 0.7397 3.6s
+2026-10-03 14:14:46,479 INFO [value-head seed3] epoch 6 step 672 value loss 2.1305 val: loss 1.9050 exact 0.6301 4.0s
+2026-10-03 14:14:50,822 INFO [value-head seed3] epoch 7 step 784 value loss 2.1064 val: loss 1.8228 exact 0.5479 4.1s
+2026-10-03 14:14:54,182 INFO [value-head seed3] epoch 8 step 896 value loss 1.7074 val: loss 1.0280 exact 0.7671 3.2s
+2026-10-03 14:14:58,738 INFO [value-head seed3] epoch 9 step 1008 value loss 1.5048 val: loss 1.6198 exact 0.6781 4.4s
+2026-10-03 14:15:01,752 INFO [value-head seed3] epoch 10 step 1120 value loss 1.3922 val: loss 1.5308 exact 0.7329 2.9s
+2026-10-03 14:15:04,442 INFO [value-head seed3] epoch 11 step 1232 value loss 1.4236 val: loss 2.1977 exact 0.7329 2.6s
+2026-10-03 14:15:06,954 INFO [value-head seed3] epoch 12 step 1344 value loss 1.2916 val: loss 0.9197 exact 0.7534 2.4s
+2026-10-03 14:15:09,703 INFO [value-head seed3] epoch 13 step 1456 value loss 1.1854 val: loss 1.5368 exact 0.8288 2.6s
+2026-10-03 14:15:12,413 INFO [value-head seed3] epoch 14 step 1568 value loss 1.0885 val: loss 0.5403 exact 0.9110 2.6s
+2026-10-03 14:15:14,979 INFO [value-head seed3] epoch 15 step 1680 value loss 0.9511 val: loss 0.8354 exact 0.8288 2.4s
+2026-10-03 14:15:17,693 INFO [value-head seed3] epoch 16 step 1792 value loss 0.9773 val: loss 1.0862 exact 0.8151 2.6s
+2026-10-03 14:15:20,453 INFO [value-head seed3] epoch 17 step 1904 value loss 0.7807 val: loss 0.5866 exact 0.8973 2.6s
+2026-10-03 14:15:23,328 INFO [value-head seed3] epoch 18 step 2016 value loss 0.7551 val: loss 0.9061 exact 0.8288 2.7s
+2026-10-03 14:15:25,926 INFO [value-head seed3] epoch 19 step 2128 value loss 0.6957 val: loss 0.5281 exact 0.8973 2.5s
+2026-10-03 14:15:28,726 INFO [value-head seed3] epoch 20 step 2240 value loss 0.5291 val: loss 0.5252 exact 0.8904 2.7s
+2026-10-03 14:15:31,877 INFO [value-head seed3] epoch 21 step 2352 value loss 0.5383 val: loss 0.5694 exact 0.8904 3.0s
+2026-10-03 14:15:35,035 INFO [value-head seed3] epoch 22 step 2464 value loss 0.4780 val: loss 0.4137 exact 0.9178 3.0s
+2026-10-03 14:15:38,551 INFO [value-head seed3] epoch 23 step 2576 value loss 0.6013 val: loss 0.3650 exact 0.9315 3.3s
+2026-10-03 14:15:42,170 INFO [value-head seed3] epoch 24 step 2688 value loss 0.3673 val: loss 0.5078 exact 0.9041 3.4s
+2026-10-03 14:15:46,001 INFO [value-head seed3] epoch 25 step 2800 value loss 0.3001 val: loss 0.3227 exact 0.9315 3.7s
+2026-10-03 14:15:49,209 INFO [value-head seed3] epoch 26 step 2912 value loss 0.3281 val: loss 0.5505 exact 0.8836 3.1s
+2026-10-03 14:15:54,004 INFO [value-head seed3] epoch 27 step 3024 value loss 0.2491 val: loss 0.4748 exact 0.9247 4.5s
+2026-10-03 14:15:59,921 INFO [value-head seed3] epoch 28 step 3136 value loss 0.4524 val: loss 0.2121 exact 0.9384 5.8s
+2026-10-03 14:16:05,640 INFO [value-head seed3] epoch 29 step 3248 value loss 0.2094 val: loss 0.3914 exact 0.9315 5.6s
+2026-10-03 14:16:10,412 INFO [value-head seed3] epoch 30 step 3360 value loss 0.2721 val: loss 0.3233 exact 0.9521 4.6s
+2026-10-03 14:16:14,948 INFO [value-head seed3] epoch 31 step 3472 value loss 0.1685 val: loss 0.3333 exact 0.9384 4.4s
+2026-10-03 14:16:36,372 INFO [value-head seed3] epoch 32 step 3584 value loss 0.1605 val: loss 0.5046 exact 0.9247 21.1s
+2026-10-03 14:16:43,885 INFO [value-head seed3] epoch 33 step 3696 value loss 0.1088 val: loss 0.2877 exact 0.9384 7.2s
+2026-10-03 14:16:50,120 INFO [value-head seed3] epoch 34 step 3808 value loss 0.1096 val: loss 0.2915 exact 0.9384 5.9s
+2026-10-03 14:17:20,439 INFO [value-head seed3] epoch 35 step 3920 value loss 0.0715 val: loss 0.3408 exact 0.9384 26.6s
+2026-10-03 14:17:46,860 INFO [value-head seed3] epoch 36 step 4032 value loss 0.0500 val: loss 0.3178 exact 0.9384 26.1s
+2026-10-03 14:17:58,489 INFO [value-head seed3] epoch 37 step 4144 value loss 0.0404 val: loss 0.3860 exact 0.9452 11.3s
+2026-10-03 14:18:12,656 INFO [value-head seed3] epoch 38 step 4256 value loss 0.0378 val: loss 0.3678 exact 0.9589 14.0s
+2026-10-03 14:18:16,831 INFO [value-head seed3] epoch 39 step 4368 value loss 0.0276 val: loss 0.3355 exact 0.9589 4.0s
+2026-10-03 14:18:21,640 INFO [value-head seed3] epoch 40 step 4480 value loss 0.0153 val: loss 0.2995 exact 0.9589 4.6s
+[
+  {
+    "seed": 1,
+    "final_epoch": 40,
+    "final_train_value_loss": 0.021924385002681186,
+    "steps": 4480,
+    "device": "mps",
+    "wall_time_sec": 131.58746445784345,
+    "frozen_state_sha256": "705488d3c2e70709811eff74bca96061372aa2ce37cac5efe1b318198dadc72c",
+    "checkpoint_path": "models/value-span-v6-value-adapter/seed1"
+  },
+  {
+    "seed": 2,
+    "final_epoch": 40,
+    "final_train_value_loss": 0.01690072992018291,
+    "steps": 4480,
+    "device": "mps",
+    "wall_time_sec": 109.0039565837942,
+    "frozen_state_sha256": "705488d3c2e70709811eff74bca96061372aa2ce37cac5efe1b318198dadc72c",
+    "checkpoint_path": "models/value-span-v6-value-adapter/seed2"
+  },
+  {
+    "seed": 3,
+    "final_epoch": 40,
+    "final_train_value_loss": 0.015314610941069466,
+    "steps": 4480,
+    "device": "mps",
+    "wall_time_sec": 234.55799820786342,
+    "frozen_state_sha256": "705488d3c2e70709811eff74bca96061372aa2ce37cac5efe1b318198dadc72c",
+    "checkpoint_path": "models/value-span-v6-value-adapter/seed3"
+  }
+]

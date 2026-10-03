@@ -1,0 +1,202 @@
+{
+  "name": "training-v1",
+  "annotation_version": "annotation-v2",
+  "purpose": "annotation-v1 records of the distillation-v1 layout (the data compression-v3 trained on) plus value-span fields; train.jsonl contains the validation ids (in-sample, as in v1)",
+  "counts": {
+    "train": 895,
+    "validation": 149,
+    "test": 143,
+    "probe_eval_only": 81
+  },
+  "v1_counts": {
+    "train": 723,
+    "validation": 110,
+    "test": 105
+  },
+  "value": {
+    "train": {
+      "records": 895,
+      "with_value_span": 879,
+      "no_amount_complete": 10,
+      "masked_uncertain": 6,
+      "by_provenance": {
+        "rule": 807,
+        "human": 88
+      },
+      "by_source": {
+        "rule": 689,
+        "human": 33,
+        "human-uncertain": 1,
+        "extra-auto": 118,
+        "extra-human": 54
+      }
+    },
+    "validation": {
+      "records": 149,
+      "with_value_span": 144,
+      "no_amount_complete": 2,
+      "masked_uncertain": 3,
+      "by_provenance": {
+        "rule": 128,
+        "human": 21
+      },
+      "by_source": {
+        "rule": 99,
+        "human": 11,
+        "extra-auto": 29,
+        "extra-human": 10
+      }
+    },
+    "test": {
+      "records": 143,
+      "with_value_span": 139,
+      "no_amount_complete": 0,
+      "masked_uncertain": 4,
+      "by_provenance": {
+        "rule": 127,
+        "human": 16
+      },
+      "by_source": {
+        "rule": 98,
+        "human": 7,
+        "extra-auto": 29,
+        "extra-human": 9
+      }
+    },
+    "probe_eval_only": {
+      "records": 81,
+      "with_value_span": 81,
+      "no_amount_complete": 0,
+      "masked_uncertain": 0,
+      "by_provenance": {
+        "rule": 76,
+        "human": 5
+      },
+      "by_source": {
+        "rule": 76,
+        "human": 5
+      }
+    }
+  },
+  "human_value_labels": {
+    "file": "datasets/annotation-v2/value-labels.jsonl",
+    "present": true,
+    "labels": 46,
+    "human_differs_from_rule": 0
+  },
+  "awaiting_human_review_masked": {
+    "count": 0,
+    "note": "needs review, no human label yet: value_status uncertain, value loss masked"
+  },
+  "stratum_unverified_masked": {
+    "count": 0,
+    "by_stratum": {},
+    "note": "rule label withheld: the record's stratum has not passed the score; value_status uncertain, value loss masked"
+  },
+  "value_review": {
+    "name": "existing-value-review",
+    "score": "experiments/value-span-v1/review-score.json",
+    "trusted_strata": [
+      "clean",
+      "multi_number_attached_unit",
+      "multi_number_date_or_time",
+      "multi_number_percent",
+      "multi_number_period_or_ordinal",
+      "multi_number_quantity",
+      "multi_number_weekday",
+      "slang_cu"
+    ],
+    "review_queue": 46,
+    "records_by_group": {
+      "auto_accept": 863,
+      "must_review": 14,
+      "clean_audit": 15,
+      "hard_sample": 17
+    }
+  },
+  "span_shape_warnings": [],
+  "extra": {
+    "name": "targeted-value-01",
+    "directory": "datasets/annotation-v2/targeted-value-01",
+    "records": 249,
+    "groups": 228,
+    "groups_in_batch": 232,
+    "split_seed": "value-span-v1",
+    "fractions": [
+      0.7,
+      0.15,
+      0.15
+    ],
+    "per_split": {
+      "train": 172,
+      "validation": 39,
+      "test": 38
+    },
+    "groups_per_split": {
+      "train": 158,
+      "validation": 35,
+      "test": 35
+    },
+    "review": {
+      "queued": 77,
+      "trained": 249,
+      "human": 77,
+      "human_overrides_auto": 0,
+      "auto_accepted": 176,
+      "awaiting_review_excluded": 0,
+      "partial_human_labels_excluded": 0,
+      "not_complete_skipped": 4,
+      "stratum_unverified_excluded": 0
+    },
+    "leakage_gate": {
+      "checked": 249,
+      "eval_refs": 296,
+      "fail_on": [
+        "batch_duplicate",
+        "batch_near_other_group",
+        "eval_bag_match",
+        "eval_near",
+        "eval_norm_match",
+        "eval_skel_match",
+        "train_duplicate"
+      ],
+      "failures": 0,
+      "warnings": {
+        "train_skeleton": 14
+      },
+      "max_eval_similarity": 0.844,
+      "median_eval_similarity": 0.667
+    },
+    "files": {
+      "generation-notes.jsonl": "30d99ce06fe7e3300b84d8402bfdccc2ca2865c1920a5a4d4b1c6f6af561ac16",
+      "review-queue.jsonl": "18634381b3117a088d195f84eb0f2e10cbbd53a6851f3882b968af2a47cc2751",
+      "review-provenance.jsonl": "1c3daf7e5a8ad48cf860c97ad24ddd23f41aec097911dda822b85c56b7d50196",
+      "auto-labels.jsonl": "176924fc93d3c4482e2909c445a586e6256cf004b9cc44f93a2deaba77e8af12",
+      "value-auto-labels.jsonl": "4c42b6d0e1b85e8259f8406d05c489ca8517cfc851eff3e39163980093860a5b",
+      "labels.jsonl": "c30b509a772b6d4ac8ffe12501face3877c3371b296e5adb340d78a502a6d603",
+      "value-labels.jsonl": "4803dfb72fbc7479d41a138c5ce88f807ef9e8313486f3f12db8263b1f97a5f6"
+    }
+  },
+  "evaluation_only": [
+    "probe-v1-eval-only.jsonl"
+  ],
+  "inputs": {
+    "datasets/annotation-v1/distillation-v1/train.jsonl": "fc18d15e4ff83e7406754001498c5416711f7bc2d4c5681e47157f407115593a",
+    "datasets/annotation-v1/distillation-v1/validation.jsonl": "5c8039978a84943db4ffa44524a65200ff5022ce06092e128ffbbe8fbff8df87",
+    "datasets/annotation-v1/distillation-v1/test.jsonl": "13fc3de4b7be58a689124c31477a14cf7cbb3d82e09a8c4276174f0825c775d0",
+    "datasets/annotation-v2/value-queue.jsonl": "524e5de2f724e9376e4408dd3efd5d80d27ddbcaf723467ae8670f419bdf4080",
+    "datasets/annotation-v2/value-proposals.jsonl": "1cdc79532183ba5a241f62cde7cb91b2b8197654f5196c9f0713df71278b4ac1",
+    "datasets/annotation-v2/value-auto-labels.jsonl": "6d25f3e66e475cdc5907abf73c7419571add342e3e4b782af28946c623abb22c",
+    "datasets/annotation-v2/value-review-queue.jsonl": "0696ab306de086bfc5d9ff092700e69f5dc292f6699a49587fb77b9581f69154",
+    "datasets/annotation-v2/value-review-provenance.jsonl": "88ad666d68358c8060b90b2a49d5912980c008be0ddcd739644f75b151af4a01",
+    "datasets/probe-v1/labels.jsonl": "7baa5aff2e2a5be2b2261bb8c9a4f9b607005f67ec766e61a5b4b2726d5ee264",
+    "experiments/value-span-v1/review-score.json": "04584383c4cb040f5b2555206886dc66278a913ab1c480e305f6bf0baf291668",
+    "datasets/annotation-v2/value-labels.jsonl": "3e83a267ba309a92592af9b2be27ca6bf0b0d57c9d5e7e05495fda81ed3579fe"
+  },
+  "files": {
+    "train.jsonl": "0a03db64238e6f202918a30e3727178c437045ce4703d38f14a7dda9883589e5",
+    "validation.jsonl": "eef077c97a519dc532112683f3ab35daeaa6e55187c3c2fb01f53a0ee37f629c",
+    "test.jsonl": "acaca8d767828e48954e91871886ac191a45110af695af7df7573a9c0be6f91d",
+    "probe-v1-eval-only.jsonl": "638aeff00243f20af2dbeb2b340da0142631566057aef57d75005b75aedece87"
+  }
+}

@@ -1,0 +1,1300 @@
+{
+  "backend": {
+    "version": "v2",
+    "seed": 3,
+    "checkpoint": "models/value-span-v6-value-adapter/seed3",
+    "model_sha256": "aec314257392132cbc4613767c7a70e8a22585995ee15bc092d6a6684c92ca81",
+    "epochs": 40
+  },
+  "set": "probe",
+  "monitoring_only": false,
+  "records": {
+    "n": 81,
+    "path": "/Users/8bu/Projects/gidi/datasets/annotation-v2/training-v1/probe-v1-eval-only.jsonl",
+    "sha256": "638aeff00243f20af2dbeb2b340da0142631566057aef57d75005b75aedece87"
+  },
+  "train": {
+    "path": "/Users/8bu/Projects/gidi/datasets/annotation-v2/training-v1/train.jsonl",
+    "n": 895,
+    "sha256": "0a03db64238e6f202918a30e3727178c437045ce4703d38f14a7dda9883589e5"
+  },
+  "summary": {
+    "n": 81,
+    "type_accuracy": 0.7777777777777778,
+    "type_macro_f1": 0.7580047403576816,
+    "target_f1": 0.7818181818181819,
+    "target_exact": 0.8148148148148148,
+    "type_target_joint": 0.6049382716049383,
+    "counts": {
+      "n": 81,
+      "type_correct": 63,
+      "target_correct": 66,
+      "joint_correct": 49
+    },
+    "value": {
+      "n": 81,
+      "exact": 0.9753086419753086,
+      "present_accuracy": 1.0,
+      "span_precision": 0.9753086419753086,
+      "span_recall": 0.9753086419753086,
+      "span_f1": 0.9753086419753086,
+      "full_joint": 0.5925925925925926,
+      "n_errors": 2,
+      "token_f1": 0.994413407821229,
+      "human": {
+        "n": 5,
+        "exact": 1.0,
+        "present_accuracy": 1.0,
+        "span_precision": 1.0,
+        "span_recall": 1.0,
+        "span_f1": 1.0,
+        "full_joint": 0.8,
+        "n_errors": 0
+      }
+    },
+    "value_slices": {
+      "explicit_unit": {
+        "n": 78,
+        "exact": 0.9871794871794872,
+        "present_accuracy": 1.0,
+        "span_precision": 0.9871794871794872,
+        "span_recall": 0.9871794871794872,
+        "span_f1": 0.9871794871794872,
+        "full_joint": 0.6025641025641025,
+        "n_errors": 1
+      },
+      "bare_number": {
+        "n": 0,
+        "exact": null,
+        "present_accuracy": null,
+        "span_precision": null,
+        "span_recall": null,
+        "span_f1": null,
+        "full_joint": null,
+        "n_errors": 0
+      },
+      "multi_number": {
+        "n": 8,
+        "exact": 0.875,
+        "present_accuracy": 1.0,
+        "span_precision": 0.875,
+        "span_recall": 0.875,
+        "span_f1": 0.875,
+        "full_joint": 0.5,
+        "n_errors": 1
+      },
+      "slang": {
+        "n": 3,
+        "exact": 0.6666666666666666,
+        "present_accuracy": 1.0,
+        "span_precision": 0.6666666666666666,
+        "span_recall": 0.6666666666666666,
+        "span_f1": 0.6666666666666666,
+        "full_joint": 0.3333333333333333,
+        "n_errors": 1
+      },
+      "unaccented": {
+        "n": 32,
+        "exact": 0.9375,
+        "present_accuracy": 1.0,
+        "span_precision": 0.9375,
+        "span_recall": 0.9375,
+        "span_f1": 0.9375,
+        "full_joint": 0.5625,
+        "n_errors": 2
+      },
+      "unseen_span": {
+        "n": 6,
+        "exact": 0.8333333333333334,
+        "present_accuracy": 1.0,
+        "span_precision": 0.8333333333333334,
+        "span_recall": 0.8333333333333334,
+        "span_f1": 0.8333333333333334,
+        "full_joint": 0.5,
+        "n_errors": 1
+      },
+      "long_multi_token": {
+        "n": 26,
+        "exact": 0.9615384615384616,
+        "present_accuracy": 1.0,
+        "span_precision": 0.9615384615384616,
+        "span_recall": 0.9615384615384616,
+        "span_f1": 0.9615384615384616,
+        "full_joint": 0.4230769230769231,
+        "n_errors": 1
+      },
+      "no_amount": {
+        "n": 0,
+        "exact": null,
+        "present_accuracy": null,
+        "span_precision": null,
+        "span_recall": null,
+        "span_f1": null,
+        "full_joint": null,
+        "n_errors": 0
+      }
+    },
+    "value_slices_human": {
+      "explicit_unit": {
+        "n": 4,
+        "exact": 1.0,
+        "present_accuracy": 1.0,
+        "span_precision": 1.0,
+        "span_recall": 1.0,
+        "span_f1": 1.0,
+        "full_joint": 0.75,
+        "n_errors": 0
+      },
+      "bare_number": {
+        "n": 0,
+        "exact": null,
+        "present_accuracy": null,
+        "span_precision": null,
+        "span_recall": null,
+        "span_f1": null,
+        "full_joint": null,
+        "n_errors": 0
+      },
+      "multi_number": {
+        "n": 1,
+        "exact": 1.0,
+        "present_accuracy": 1.0,
+        "span_precision": 1.0,
+        "span_recall": 1.0,
+        "span_f1": 1.0,
+        "full_joint": 1.0,
+        "n_errors": 0
+      },
+      "slang": {
+        "n": 1,
+        "exact": 1.0,
+        "present_accuracy": 1.0,
+        "span_precision": 1.0,
+        "span_recall": 1.0,
+        "span_f1": 1.0,
+        "full_joint": 1.0,
+        "n_errors": 0
+      },
+      "unaccented": {
+        "n": 4,
+        "exact": 1.0,
+        "present_accuracy": 1.0,
+        "span_precision": 1.0,
+        "span_recall": 1.0,
+        "span_f1": 1.0,
+        "full_joint": 0.75,
+        "n_errors": 0
+      },
+      "unseen_span": {
+        "n": 1,
+        "exact": 1.0,
+        "present_accuracy": 1.0,
+        "span_precision": 1.0,
+        "span_recall": 1.0,
+        "span_f1": 1.0,
+        "full_joint": 1.0,
+        "n_errors": 0
+      },
+      "long_multi_token": {
+        "n": 4,
+        "exact": 1.0,
+        "present_accuracy": 1.0,
+        "span_precision": 1.0,
+        "span_recall": 1.0,
+        "span_f1": 1.0,
+        "full_joint": 1.0,
+        "n_errors": 0
+      },
+      "no_amount": {
+        "n": 0,
+        "exact": null,
+        "present_accuracy": null,
+        "span_precision": null,
+        "span_recall": null,
+        "span_f1": null,
+        "full_joint": null,
+        "n_errors": 0
+      }
+    }
+  },
+  "metrics": {
+    "n": 81,
+    "n_value_complete": 81,
+    "n_value_masked": 0,
+    "overall": {
+      "type": {
+        "n": 81,
+        "accuracy": 0.7777777777777778,
+        "macro_f1": 0.7580047403576816,
+        "macro_f1_all_classes": 0.6632541478129714,
+        "per_class": {
+          "expense": {
+            "precision": 0.875,
+            "recall": 0.7777777777777778,
+            "f1": 0.823529411764706,
+            "support": 18,
+            "n_pred": 16
+          },
+          "income": {
+            "precision": 0.875,
+            "recall": 0.7777777777777778,
+            "f1": 0.823529411764706,
+            "support": 18,
+            "n_pred": 16
+          },
+          "borrow": {
+            "precision": 0.6923076923076923,
+            "recall": 0.6923076923076923,
+            "f1": 0.6923076923076923,
+            "support": 13,
+            "n_pred": 13
+          },
+          "lend": {
+            "precision": 0.7142857142857143,
+            "recall": 0.9090909090909091,
+            "f1": 0.8,
+            "support": 11,
+            "n_pred": 14
+          },
+          "repayment_in": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "support": 2,
+            "n_pred": 2
+          },
+          "repayment_out": {
+            "precision": 1.0,
+            "recall": 0.8,
+            "f1": 0.888888888888889,
+            "support": 10,
+            "n_pred": 8
+          },
+          "transfer": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0,
+            "n_pred": 3
+          },
+          "refund": {
+            "precision": 0.7777777777777778,
+            "recall": 0.7777777777777778,
+            "f1": 0.7777777777777778,
+            "support": 9,
+            "n_pred": 9
+          }
+        },
+        "labels": [
+          "expense",
+          "income",
+          "borrow",
+          "lend",
+          "repayment_in",
+          "repayment_out",
+          "transfer",
+          "refund"
+        ],
+        "confusion_matrix": [
+          [
+            14,
+            1,
+            0,
+            0,
+            0,
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            14,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            9,
+            4,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            10,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            0,
+            8,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            7
+          ]
+        ]
+      },
+      "target": {
+        "n": 81,
+        "exact_match": 0.8148148148148148,
+        "precision": 0.7818181818181819,
+        "recall": 0.7818181818181819,
+        "f1": 0.7818181818181819,
+        "tp": 43,
+        "n_pred": 55,
+        "n_gold": 55,
+        "gold_target": {
+          "n": 55,
+          "exact_match": 0.7818181818181819,
+          "precision": 0.8269230769230769,
+          "recall": 0.7818181818181819,
+          "f1": 0.8037383177570092,
+          "tp": 43,
+          "n_pred": 52,
+          "n_gold": 55
+        },
+        "gold_null": {
+          "n": 26,
+          "null_accuracy": 0.8846153846153846,
+          "false_span_rate": 0.11538461538461539,
+          "n_false_span": 3
+        },
+        "token": {
+          "precision": 0.8837209302325582,
+          "recall": 0.7916666666666666,
+          "f1": 0.8351648351648352,
+          "tp": 76,
+          "n_pred": 86,
+          "n_gold": 96
+        },
+        "char": {
+          "precision": 0.9149797570850202,
+          "recall": 0.8278388278388278,
+          "f1": 0.8692307692307691,
+          "tp": 226,
+          "n_pred": 247,
+          "n_gold": 273
+        }
+      },
+      "type_target_joint": 0.6049382716049383
+    },
+    "value": {
+      "n": 81,
+      "exact_match": 0.9753086419753086,
+      "present_accuracy": 1.0,
+      "span": {
+        "n": 81,
+        "exact_match": 0.9753086419753086,
+        "precision": 0.9753086419753086,
+        "recall": 0.9753086419753086,
+        "f1": 0.9753086419753086,
+        "tp": 79,
+        "n_pred": 81,
+        "n_gold": 81,
+        "gold_target": {
+          "n": 81,
+          "exact_match": 0.9753086419753086,
+          "precision": 0.9753086419753086,
+          "recall": 0.9753086419753086,
+          "f1": 0.9753086419753086,
+          "tp": 79,
+          "n_pred": 81,
+          "n_gold": 81
+        },
+        "gold_null": {
+          "n": 0,
+          "null_accuracy": null,
+          "false_span_rate": null,
+          "n_false_span": 0
+        }
+      },
+      "token": {
+        "precision": 0.994413407821229,
+        "recall": 0.994413407821229,
+        "f1": 0.994413407821229,
+        "tp": 178,
+        "n_pred": 179,
+        "n_gold": 179
+      },
+      "char": {
+        "precision": 0.9936507936507937,
+        "recall": 0.990506329113924,
+        "f1": 0.9920760697305864,
+        "tp": 313,
+        "n_pred": 315,
+        "n_gold": 316
+      },
+      "outcomes": {
+        "exact": 79,
+        "correct_null": 0,
+        "false_value": 0,
+        "missed_value": 0,
+        "partial_overlap": 2,
+        "disjoint": 0
+      },
+      "n_gold_value": 81,
+      "n_gold_null": 0
+    },
+    "full_joint": {
+      "n": 81,
+      "accuracy": 0.5925925925925926
+    },
+    "slices": {
+      "category": {
+        "compact_unit": {
+          "n": 17,
+          "value": {
+            "n": 17,
+            "exact_match": 1.0,
+            "present_accuracy": 1.0,
+            "span": {
+              "n": 17,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 17,
+              "n_pred": 17,
+              "n_gold": 17,
+              "gold_target": {
+                "n": 17,
+                "exact_match": 1.0,
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "tp": 17,
+                "n_pred": 17,
+                "n_gold": 17
+              },
+              "gold_null": {
+                "n": 0,
+                "null_accuracy": null,
+                "false_span_rate": null,
+                "n_false_span": 0
+              }
+            },
+            "token": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 51,
+              "n_pred": 51,
+              "n_gold": 51
+            },
+            "char": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 68,
+              "n_pred": 68,
+              "n_gold": 68
+            },
+            "outcomes": {
+              "exact": 17,
+              "correct_null": 0,
+              "false_value": 0,
+              "missed_value": 0,
+              "partial_overlap": 0,
+              "disjoint": 0
+            },
+            "n_gold_value": 17,
+            "n_gold_null": 0
+          },
+          "full_joint": 0.4117647058823529
+        },
+        "context_excluded": {
+          "n": 8,
+          "value": {
+            "n": 8,
+            "exact_match": 0.875,
+            "present_accuracy": 1.0,
+            "span": {
+              "n": 8,
+              "exact_match": 0.875,
+              "precision": 0.875,
+              "recall": 0.875,
+              "f1": 0.875,
+              "tp": 7,
+              "n_pred": 8,
+              "n_gold": 8,
+              "gold_target": {
+                "n": 8,
+                "exact_match": 0.875,
+                "precision": 0.875,
+                "recall": 0.875,
+                "f1": 0.875,
+                "tp": 7,
+                "n_pred": 8,
+                "n_gold": 8
+              },
+              "gold_null": {
+                "n": 0,
+                "null_accuracy": null,
+                "false_span_rate": null,
+                "n_false_span": 0
+              }
+            },
+            "token": {
+              "precision": 0.9545454545454546,
+              "recall": 1.0,
+              "f1": 0.9767441860465117,
+              "tp": 21,
+              "n_pred": 22,
+              "n_gold": 21
+            },
+            "char": {
+              "precision": 0.9375,
+              "recall": 1.0,
+              "f1": 0.967741935483871,
+              "tp": 30,
+              "n_pred": 32,
+              "n_gold": 30
+            },
+            "outcomes": {
+              "exact": 7,
+              "correct_null": 0,
+              "false_value": 0,
+              "missed_value": 0,
+              "partial_overlap": 1,
+              "disjoint": 0
+            },
+            "n_gold_value": 8,
+            "n_gold_null": 0
+          },
+          "full_joint": 0.5
+        },
+        "explicit_unit": {
+          "n": 78,
+          "value": {
+            "n": 78,
+            "exact_match": 0.9871794871794872,
+            "present_accuracy": 1.0,
+            "span": {
+              "n": 78,
+              "exact_match": 0.9871794871794872,
+              "precision": 0.9871794871794872,
+              "recall": 0.9871794871794872,
+              "f1": 0.9871794871794872,
+              "tp": 77,
+              "n_pred": 78,
+              "n_gold": 78,
+              "gold_target": {
+                "n": 78,
+                "exact_match": 0.9871794871794872,
+                "precision": 0.9871794871794872,
+                "recall": 0.9871794871794872,
+                "f1": 0.9871794871794872,
+                "tp": 77,
+                "n_pred": 78,
+                "n_gold": 78
+              },
+              "gold_null": {
+                "n": 0,
+                "null_accuracy": null,
+                "false_span_rate": null,
+                "n_false_span": 0
+              }
+            },
+            "token": {
+              "precision": 0.9942528735632183,
+              "recall": 1.0,
+              "f1": 0.9971181556195965,
+              "tp": 173,
+              "n_pred": 174,
+              "n_gold": 173
+            },
+            "char": {
+              "precision": 0.9934426229508196,
+              "recall": 1.0,
+              "f1": 0.9967105263157894,
+              "tp": 303,
+              "n_pred": 305,
+              "n_gold": 303
+            },
+            "outcomes": {
+              "exact": 77,
+              "correct_null": 0,
+              "false_value": 0,
+              "missed_value": 0,
+              "partial_overlap": 1,
+              "disjoint": 0
+            },
+            "n_gold_value": 78,
+            "n_gold_null": 0
+          },
+          "full_joint": 0.6025641025641025
+        },
+        "multi_number": {
+          "n": 8,
+          "value": {
+            "n": 8,
+            "exact_match": 0.875,
+            "present_accuracy": 1.0,
+            "span": {
+              "n": 8,
+              "exact_match": 0.875,
+              "precision": 0.875,
+              "recall": 0.875,
+              "f1": 0.875,
+              "tp": 7,
+              "n_pred": 8,
+              "n_gold": 8,
+              "gold_target": {
+                "n": 8,
+                "exact_match": 0.875,
+                "precision": 0.875,
+                "recall": 0.875,
+                "f1": 0.875,
+                "tp": 7,
+                "n_pred": 8,
+                "n_gold": 8
+              },
+              "gold_null": {
+                "n": 0,
+                "null_accuracy": null,
+                "false_span_rate": null,
+                "n_false_span": 0
+              }
+            },
+            "token": {
+              "precision": 0.9545454545454546,
+              "recall": 1.0,
+              "f1": 0.9767441860465117,
+              "tp": 21,
+              "n_pred": 22,
+              "n_gold": 21
+            },
+            "char": {
+              "precision": 0.9375,
+              "recall": 1.0,
+              "f1": 0.967741935483871,
+              "tp": 30,
+              "n_pred": 32,
+              "n_gold": 30
+            },
+            "outcomes": {
+              "exact": 7,
+              "correct_null": 0,
+              "false_value": 0,
+              "missed_value": 0,
+              "partial_overlap": 1,
+              "disjoint": 0
+            },
+            "n_gold_value": 8,
+            "n_gold_null": 0
+          },
+          "full_joint": 0.5
+        },
+        "slang": {
+          "n": 3,
+          "value": {
+            "n": 3,
+            "exact_match": 0.6666666666666666,
+            "present_accuracy": 1.0,
+            "span": {
+              "n": 3,
+              "exact_match": 0.6666666666666666,
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "f1": 0.6666666666666666,
+              "tp": 2,
+              "n_pred": 3,
+              "n_gold": 3,
+              "gold_target": {
+                "n": 3,
+                "exact_match": 0.6666666666666666,
+                "precision": 0.6666666666666666,
+                "recall": 0.6666666666666666,
+                "f1": 0.6666666666666666,
+                "tp": 2,
+                "n_pred": 3,
+                "n_gold": 3
+              },
+              "gold_null": {
+                "n": 0,
+                "null_accuracy": null,
+                "false_span_rate": null,
+                "n_false_span": 0
+              }
+            },
+            "token": {
+              "precision": 1.0,
+              "recall": 0.8333333333333334,
+              "f1": 0.9090909090909091,
+              "tp": 5,
+              "n_pred": 5,
+              "n_gold": 6
+            },
+            "char": {
+              "precision": 1.0,
+              "recall": 0.7692307692307693,
+              "f1": 0.8695652173913044,
+              "tp": 10,
+              "n_pred": 10,
+              "n_gold": 13
+            },
+            "outcomes": {
+              "exact": 2,
+              "correct_null": 0,
+              "false_value": 0,
+              "missed_value": 0,
+              "partial_overlap": 1,
+              "disjoint": 0
+            },
+            "n_gold_value": 3,
+            "n_gold_null": 0
+          },
+          "full_joint": 0.3333333333333333
+        },
+        "unaccented": {
+          "n": 32,
+          "value": {
+            "n": 32,
+            "exact_match": 0.9375,
+            "present_accuracy": 1.0,
+            "span": {
+              "n": 32,
+              "exact_match": 0.9375,
+              "precision": 0.9375,
+              "recall": 0.9375,
+              "f1": 0.9375,
+              "tp": 30,
+              "n_pred": 32,
+              "n_gold": 32,
+              "gold_target": {
+                "n": 32,
+                "exact_match": 0.9375,
+                "precision": 0.9375,
+                "recall": 0.9375,
+                "f1": 0.9375,
+                "tp": 30,
+                "n_pred": 32,
+                "n_gold": 32
+              },
+              "gold_null": {
+                "n": 0,
+                "null_accuracy": null,
+                "false_span_rate": null,
+                "n_false_span": 0
+              }
+            },
+            "token": {
+              "precision": 0.9863013698630136,
+              "recall": 0.9863013698630136,
+              "f1": 0.9863013698630136,
+              "tp": 72,
+              "n_pred": 73,
+              "n_gold": 73
+            },
+            "char": {
+              "precision": 0.9833333333333333,
+              "recall": 0.9752066115702479,
+              "f1": 0.979253112033195,
+              "tp": 118,
+              "n_pred": 120,
+              "n_gold": 121
+            },
+            "outcomes": {
+              "exact": 30,
+              "correct_null": 0,
+              "false_value": 0,
+              "missed_value": 0,
+              "partial_overlap": 2,
+              "disjoint": 0
+            },
+            "n_gold_value": 32,
+            "n_gold_null": 0
+          },
+          "full_joint": 0.5625
+        }
+      },
+      "surface_pattern": {
+        "seen": {
+          "n": 81,
+          "value": {
+            "n": 81,
+            "exact_match": 0.9753086419753086,
+            "present_accuracy": 1.0,
+            "span": {
+              "n": 81,
+              "exact_match": 0.9753086419753086,
+              "precision": 0.9753086419753086,
+              "recall": 0.9753086419753086,
+              "f1": 0.9753086419753086,
+              "tp": 79,
+              "n_pred": 81,
+              "n_gold": 81,
+              "gold_target": {
+                "n": 81,
+                "exact_match": 0.9753086419753086,
+                "precision": 0.9753086419753086,
+                "recall": 0.9753086419753086,
+                "f1": 0.9753086419753086,
+                "tp": 79,
+                "n_pred": 81,
+                "n_gold": 81
+              },
+              "gold_null": {
+                "n": 0,
+                "null_accuracy": null,
+                "false_span_rate": null,
+                "n_false_span": 0
+              }
+            },
+            "token": {
+              "precision": 0.994413407821229,
+              "recall": 0.994413407821229,
+              "f1": 0.994413407821229,
+              "tp": 178,
+              "n_pred": 179,
+              "n_gold": 179
+            },
+            "char": {
+              "precision": 0.9936507936507937,
+              "recall": 0.990506329113924,
+              "f1": 0.9920760697305864,
+              "tp": 313,
+              "n_pred": 315,
+              "n_gold": 316
+            },
+            "outcomes": {
+              "exact": 79,
+              "correct_null": 0,
+              "false_value": 0,
+              "missed_value": 0,
+              "partial_overlap": 2,
+              "disjoint": 0
+            },
+            "n_gold_value": 81,
+            "n_gold_null": 0
+          },
+          "full_joint": 0.5925925925925926
+        }
+      },
+      "amount_length": {
+        "multi_token": {
+          "n": 81,
+          "value": {
+            "n": 81,
+            "exact_match": 0.9753086419753086,
+            "present_accuracy": 1.0,
+            "span": {
+              "n": 81,
+              "exact_match": 0.9753086419753086,
+              "precision": 0.9753086419753086,
+              "recall": 0.9753086419753086,
+              "f1": 0.9753086419753086,
+              "tp": 79,
+              "n_pred": 81,
+              "n_gold": 81,
+              "gold_target": {
+                "n": 81,
+                "exact_match": 0.9753086419753086,
+                "precision": 0.9753086419753086,
+                "recall": 0.9753086419753086,
+                "f1": 0.9753086419753086,
+                "tp": 79,
+                "n_pred": 81,
+                "n_gold": 81
+              },
+              "gold_null": {
+                "n": 0,
+                "null_accuracy": null,
+                "false_span_rate": null,
+                "n_false_span": 0
+              }
+            },
+            "token": {
+              "precision": 0.994413407821229,
+              "recall": 0.994413407821229,
+              "f1": 0.994413407821229,
+              "tp": 178,
+              "n_pred": 179,
+              "n_gold": 179
+            },
+            "char": {
+              "precision": 0.9936507936507937,
+              "recall": 0.990506329113924,
+              "f1": 0.9920760697305864,
+              "tp": 313,
+              "n_pred": 315,
+              "n_gold": 316
+            },
+            "outcomes": {
+              "exact": 79,
+              "correct_null": 0,
+              "false_value": 0,
+              "missed_value": 0,
+              "partial_overlap": 2,
+              "disjoint": 0
+            },
+            "n_gold_value": 81,
+            "n_gold_null": 0
+          },
+          "full_joint": 0.5925925925925926
+        }
+      },
+      "amount_space": {
+        "no_space": {
+          "n": 72,
+          "value": {
+            "n": 72,
+            "exact_match": 0.9861111111111112,
+            "present_accuracy": 1.0,
+            "span": {
+              "n": 72,
+              "exact_match": 0.9861111111111112,
+              "precision": 0.9861111111111112,
+              "recall": 0.9861111111111112,
+              "f1": 0.9861111111111112,
+              "tp": 71,
+              "n_pred": 72,
+              "n_gold": 72,
+              "gold_target": {
+                "n": 72,
+                "exact_match": 0.9861111111111112,
+                "precision": 0.9861111111111112,
+                "recall": 0.9861111111111112,
+                "f1": 0.9861111111111112,
+                "tp": 71,
+                "n_pred": 72,
+                "n_gold": 72
+              },
+              "gold_null": {
+                "n": 0,
+                "null_accuracy": null,
+                "false_span_rate": null,
+                "n_false_span": 0
+              }
+            },
+            "token": {
+              "precision": 0.9938271604938271,
+              "recall": 1.0,
+              "f1": 0.9969040247678018,
+              "tp": 161,
+              "n_pred": 162,
+              "n_gold": 161
+            },
+            "char": {
+              "precision": 0.9923954372623575,
+              "recall": 1.0,
+              "f1": 0.9961832061068702,
+              "tp": 261,
+              "n_pred": 263,
+              "n_gold": 261
+            },
+            "outcomes": {
+              "exact": 71,
+              "correct_null": 0,
+              "false_value": 0,
+              "missed_value": 0,
+              "partial_overlap": 1,
+              "disjoint": 0
+            },
+            "n_gold_value": 72,
+            "n_gold_null": 0
+          },
+          "full_joint": 0.6111111111111112
+        },
+        "space": {
+          "n": 9,
+          "value": {
+            "n": 9,
+            "exact_match": 0.8888888888888888,
+            "present_accuracy": 1.0,
+            "span": {
+              "n": 9,
+              "exact_match": 0.8888888888888888,
+              "precision": 0.8888888888888888,
+              "recall": 0.8888888888888888,
+              "f1": 0.8888888888888888,
+              "tp": 8,
+              "n_pred": 9,
+              "n_gold": 9,
+              "gold_target": {
+                "n": 9,
+                "exact_match": 0.8888888888888888,
+                "precision": 0.8888888888888888,
+                "recall": 0.8888888888888888,
+                "f1": 0.8888888888888888,
+                "tp": 8,
+                "n_pred": 9,
+                "n_gold": 9
+              },
+              "gold_null": {
+                "n": 0,
+                "null_accuracy": null,
+                "false_span_rate": null,
+                "n_false_span": 0
+              }
+            },
+            "token": {
+              "precision": 1.0,
+              "recall": 0.9444444444444444,
+              "f1": 0.9714285714285714,
+              "tp": 17,
+              "n_pred": 17,
+              "n_gold": 18
+            },
+            "char": {
+              "precision": 1.0,
+              "recall": 0.9454545454545454,
+              "f1": 0.9719626168224299,
+              "tp": 52,
+              "n_pred": 52,
+              "n_gold": 55
+            },
+            "outcomes": {
+              "exact": 8,
+              "correct_null": 0,
+              "false_value": 0,
+              "missed_value": 0,
+              "partial_overlap": 1,
+              "disjoint": 0
+            },
+            "n_gold_value": 9,
+            "n_gold_null": 0
+          },
+          "full_joint": 0.4444444444444444
+        }
+      },
+      "accented": {
+        "false": {
+          "n": 32,
+          "value": {
+            "n": 32,
+            "exact_match": 0.9375,
+            "present_accuracy": 1.0,
+            "span": {
+              "n": 32,
+              "exact_match": 0.9375,
+              "precision": 0.9375,
+              "recall": 0.9375,
+              "f1": 0.9375,
+              "tp": 30,
+              "n_pred": 32,
+              "n_gold": 32,
+              "gold_target": {
+                "n": 32,
+                "exact_match": 0.9375,
+                "precision": 0.9375,
+                "recall": 0.9375,
+                "f1": 0.9375,
+                "tp": 30,
+                "n_pred": 32,
+                "n_gold": 32
+              },
+              "gold_null": {
+                "n": 0,
+                "null_accuracy": null,
+                "false_span_rate": null,
+                "n_false_span": 0
+              }
+            },
+            "token": {
+              "precision": 0.9863013698630136,
+              "recall": 0.9863013698630136,
+              "f1": 0.9863013698630136,
+              "tp": 72,
+              "n_pred": 73,
+              "n_gold": 73
+            },
+            "char": {
+              "precision": 0.9833333333333333,
+              "recall": 0.9752066115702479,
+              "f1": 0.979253112033195,
+              "tp": 118,
+              "n_pred": 120,
+              "n_gold": 121
+            },
+            "outcomes": {
+              "exact": 30,
+              "correct_null": 0,
+              "false_value": 0,
+              "missed_value": 0,
+              "partial_overlap": 2,
+              "disjoint": 0
+            },
+            "n_gold_value": 32,
+            "n_gold_null": 0
+          },
+          "full_joint": 0.5625
+        },
+        "true": {
+          "n": 49,
+          "value": {
+            "n": 49,
+            "exact_match": 1.0,
+            "present_accuracy": 1.0,
+            "span": {
+              "n": 49,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 49,
+              "n_pred": 49,
+              "n_gold": 49,
+              "gold_target": {
+                "n": 49,
+                "exact_match": 1.0,
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "tp": 49,
+                "n_pred": 49,
+                "n_gold": 49
+              },
+              "gold_null": {
+                "n": 0,
+                "null_accuracy": null,
+                "false_span_rate": null,
+                "n_false_span": 0
+              }
+            },
+            "token": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 106,
+              "n_pred": 106,
+              "n_gold": 106
+            },
+            "char": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 195,
+              "n_pred": 195,
+              "n_gold": 195
+            },
+            "outcomes": {
+              "exact": 49,
+              "correct_null": 0,
+              "false_value": 0,
+              "missed_value": 0,
+              "partial_overlap": 0,
+              "disjoint": 0
+            },
+            "n_gold_value": 49,
+            "n_gold_null": 0
+          },
+          "full_joint": 0.6122448979591837
+        }
+      },
+      "source_batch": {
+        "probe-v1": {
+          "n": 81,
+          "value": {
+            "n": 81,
+            "exact_match": 0.9753086419753086,
+            "present_accuracy": 1.0,
+            "span": {
+              "n": 81,
+              "exact_match": 0.9753086419753086,
+              "precision": 0.9753086419753086,
+              "recall": 0.9753086419753086,
+              "f1": 0.9753086419753086,
+              "tp": 79,
+              "n_pred": 81,
+              "n_gold": 81,
+              "gold_target": {
+                "n": 81,
+                "exact_match": 0.9753086419753086,
+                "precision": 0.9753086419753086,
+                "recall": 0.9753086419753086,
+                "f1": 0.9753086419753086,
+                "tp": 79,
+                "n_pred": 81,
+                "n_gold": 81
+              },
+              "gold_null": {
+                "n": 0,
+                "null_accuracy": null,
+                "false_span_rate": null,
+                "n_false_span": 0
+              }
+            },
+            "token": {
+              "precision": 0.994413407821229,
+              "recall": 0.994413407821229,
+              "f1": 0.994413407821229,
+              "tp": 178,
+              "n_pred": 179,
+              "n_gold": 179
+            },
+            "char": {
+              "precision": 0.9936507936507937,
+              "recall": 0.990506329113924,
+              "f1": 0.9920760697305864,
+              "tp": 313,
+              "n_pred": 315,
+              "n_gold": 316
+            },
+            "outcomes": {
+              "exact": 79,
+              "correct_null": 0,
+              "false_value": 0,
+              "missed_value": 0,
+              "partial_overlap": 2,
+              "disjoint": 0
+            },
+            "n_gold_value": 81,
+            "n_gold_null": 0
+          },
+          "full_joint": 0.5925925925925926
+        }
+      }
+    },
+    "alignment": {
+      "truncated": 0,
+      "target_span_truncated": 0,
+      "value_span_truncated": 0,
+      "value_boundary_mismatch": 0
+    }
+  }
+}

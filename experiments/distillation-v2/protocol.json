@@ -1,0 +1,35 @@
+{
+  "experiment": "distillation-v2 (student design diagnostic)",
+  "declared_before_training": true,
+  "data": {
+    "train": "datasets/annotation-v1/distillation-v1/train.jsonl (723, sha256 fc18d15e...)",
+    "teacher_targets": "experiments/distillation-v1/teacher-targets (reused unchanged)",
+    "evaluation_only": ["frozen test (105)", "probe-v1"],
+    "excluded": ["targeted-annotation-v1-03", "training-v3"]
+  },
+  "student": "student-4x768: 4 layers, hidden 768, 12 heads, FFN 3072, BamiBERT vocab, max_length 32, positions 2050 (copied whole)",
+  "init": {
+    "pretrained": "Qualcomm-AI-Research/BamiBERT pretrained encoder (the checkpoint the teacher was fine-tuned from), embeddings + embedding LayerNorm + layers [2,5,8,11] (0-based; top layer of each 3-layer block), shape-identical copies only",
+    "random": "HF _init_weights under set_seed(seed)",
+    "heads": "fresh seeded nn.Linear init, bit-identical across all arms of a seed (model built as random first, then encoder overwritten)"
+  },
+  "arms": {
+    "A": "pretrained supervised (alpha_hard 1)",
+    "B": "pretrained distilled (T 2, alpha_hard 0.5, type/span 1/1)",
+    "C": "random supervised (alpha_hard 1)"
+  },
+  "seeds": [1, 2, 3],
+  "recipe_all_arms": {
+    "lr_encoder": 5e-05,
+    "lr_heads": 0.001,
+    "epochs": 40,
+    "batch_size": 8,
+    "warmup_ratio": 0.1,
+    "weight_decay": 0.01,
+    "dropout": 0.1,
+    "max_grad_norm": 1.0,
+    "schedule": "linear warmup/decay, last epoch kept, no selection",
+    "lr_rationale": "student-v1 lr 5e-4 is 10x the conventional BERT fine-tuning rate and would overwrite copied weights; 5e-5 is the teacher's own fine-tuning lr. Epoch budget = student-v1 (40 epochs, 3,640 steps)."
+  },
+  "fit_check": "If arm C does not fit its training data under the shared recipe (final-epoch in-sample validation type macro-F1 or span F1 < 0.95), run a labelled supplementary random-supervised 4x768 arm with the student-v1 recipe (lr 5e-4) so capacity is not judged on an under-trained control. Decided on training/in-sample signals only, never test or probe."
+}

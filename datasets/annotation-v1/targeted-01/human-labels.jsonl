@@ -1,0 +1,13 @@
+{"id":"targeted-annotation-v1-01-56f907766505","annotation_status":"complete","type":"borrow","target":{"text":"tcb","start":13,"end":16}}
+{"id":"targeted-annotation-v1-01-38ce17a93a13","annotation_status":"complete","type":"borrow","target":null}
+{"id":"targeted-annotation-v1-01-12681c4c5543","annotation_status":"complete","type":"repayment_in","target":{"text":"ông anh họ","start":0,"end":10}}
+{"id":"targeted-annotation-v1-01-6a266c1e72d5","annotation_status":"complete","type":"repayment_in","target":{"text":"bac Sau","start":0,"end":7}}
+{"id":"targeted-annotation-v1-01-e13a074f95ce","annotation_status":"complete","type":"repayment_in","target":{"text":"Duy","start":0,"end":3}}
+{"id":"targeted-annotation-v1-01-626c184c2e27","annotation_status":"complete","type":"repayment_in","target":{"text":"Trang","start":0,"end":5}}
+{"id":"targeted-annotation-v1-01-e1c32e5a12ab","annotation_status":"complete","type":"repayment_in","target":{"text":"Linh","start":0,"end":4}}
+{"id":"targeted-annotation-v1-01-f6c9da29169b","annotation_status":"complete","type":"expense","target":{"text":"em","start":4,"end":6}}
+{"id":"targeted-annotation-v1-01-0213e96be9c0","annotation_status":"complete","type":"repayment_out","target":{"text":"Hà","start":8,"end":10}}
+{"id":"targeted-annotation-v1-01-35299bba21dc","annotation_status":"complete","type":"lend","target":{"text":"em hang xom","start":4,"end":15}}
+{"id":"targeted-annotation-v1-01-f030130ba1d6","annotation_status":"complete","type":"borrow","target":{"text":"chi ho","start":4,"end":10}}
+{"id":"targeted-annotation-v1-01-e403d7df5ad0","annotation_status":"complete","type":"repayment_in","target":{"text":"Hà","start":0,"end":2}}
+{"id":"targeted-annotation-v1-01-952f105851cc","annotation_status":"complete","type":"borrow","target":null}

@@ -1,0 +1,25 @@
+{
+  "huggingface": {
+    "repo_id": "8bu/gidi-finance",
+    "repo_type": "model",
+    "private": true,
+    "tag": "{model_version}-{release_version}",
+    "exclude_kinds": ["onnx-fp32"]
+  },
+  "github": {
+    "repo": "8bu/gidi",
+    "tag": "{model_version}-{release_version}",
+    "title": "{model_version} {release_version}",
+    "draft": true
+  },
+  "kaggle": {
+    "owner": "8bu",
+    "model_slug": "gidi-finance",
+    "framework": "onnx",
+    "variations": {
+      "int8": "{model_version}-int8",
+      "fp32": "{model_version}-fp32"
+    },
+    "license": "Apache 2.0"
+  }
+}

@@ -1,0 +1,701 @@
+{
+  "name": "probe-v1",
+  "evaluation_only": true,
+  "never_train": true,
+  "purpose": "diagnostic probe of nine coverage gaps from experiments/baseline-v1/error-audit.md",
+  "annotation_version": "annotation-v1",
+  "frozen": true,
+  "id_prefix": "probe-v1-",
+  "total": 81,
+  "status_counts": {
+    "complete": 81
+  },
+  "annotator_counts": {
+    "ai_accepted": 74,
+    "human_reviewed": 7
+  },
+  "type_counts": {
+    "borrow": 13,
+    "lend": 11,
+    "income": 18,
+    "expense": 18,
+    "refund": 9,
+    "repayment_out": 10,
+    "repayment_in": 2
+  },
+  "accented_counts": {
+    "accented": 49,
+    "unaccented": 32
+  },
+  "patterns": {
+    "lender_first_cho_muon": {
+      "description": "lender-first `X cho mượn/vay` -> borrow",
+      "n": 9,
+      "accented": 5,
+      "unaccented": 4,
+      "types": {
+        "borrow": 9
+      }
+    },
+    "subject_first_muon": {
+      "description": "subject-first `X mượn/vay` -> lend",
+      "n": 9,
+      "accented": 5,
+      "unaccented": 4,
+      "types": {
+        "lend": 9
+      }
+    },
+    "family_gift_in": {
+      "description": "incoming family gift -> income",
+      "n": 9,
+      "accented": 5,
+      "unaccented": 4,
+      "types": {
+        "income": 9
+      }
+    },
+    "gift_out": {
+      "description": "outgoing lì xì / gift money -> expense",
+      "n": 9,
+      "accented": 6,
+      "unaccented": 3,
+      "types": {
+        "expense": 9
+      }
+    },
+    "insurance_premium": {
+      "description": "insurance premium -> expense",
+      "n": 9,
+      "accented": 6,
+      "unaccented": 3,
+      "types": {
+        "expense": 9
+      }
+    },
+    "insurance_payout": {
+      "description": "insurance payout / reimbursement -> refund",
+      "n": 9,
+      "accented": 6,
+      "unaccented": 3,
+      "types": {
+        "refund": 9
+      }
+    },
+    "windfall": {
+      "description": "windfall / lottery / prize -> income",
+      "n": 9,
+      "accented": 6,
+      "unaccented": 3,
+      "types": {
+        "income": 9
+      }
+    },
+    "loan_installment": {
+      "description": "installment of a named loan product -> repayment_out",
+      "n": 9,
+      "accented": 3,
+      "unaccented": 6,
+      "types": {
+        "repayment_out": 9
+      }
+    },
+    "title_name_span": {
+      "description": "title + proper name target boundary",
+      "n": 9,
+      "accented": 7,
+      "unaccented": 2,
+      "types": {
+        "borrow": 4,
+        "lend": 2,
+        "repayment_in": 2,
+        "repayment_out": 1
+      }
+    }
+  },
+  "similarity_check": {
+    "against": "all 763 annotation-v1 texts (train/validation/test/uncertain/skipped)",
+    "exact_matches": 0,
+    "token_bag_matches": 0,
+    "max_sequence_matcher_ratio": 0.88
+  },
+  "records": [
+    {
+      "id": "probe-v1-6b06bcc7784a",
+      "position": 1,
+      "pattern": "lender_first_cho_muon",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-4d36e861a448",
+      "position": 2,
+      "pattern": "lender_first_cho_muon",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-641f3c447c97",
+      "position": 3,
+      "pattern": "lender_first_cho_muon",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-931b7bb2d6c9",
+      "position": 4,
+      "pattern": "lender_first_cho_muon",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-a0fb7beabf86",
+      "position": 5,
+      "pattern": "lender_first_cho_muon",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-3ed6ba9bbf3b",
+      "position": 6,
+      "pattern": "lender_first_cho_muon",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-6896a19bf60c",
+      "position": 7,
+      "pattern": "lender_first_cho_muon",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-500429aa5e3e",
+      "position": 8,
+      "pattern": "lender_first_cho_muon",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-5b7b837cccab",
+      "position": 9,
+      "pattern": "lender_first_cho_muon",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-6c08b0191ac7",
+      "position": 10,
+      "pattern": "subject_first_muon",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-8e9411f326b9",
+      "position": 11,
+      "pattern": "subject_first_muon",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-58b69ecc86c7",
+      "position": 12,
+      "pattern": "subject_first_muon",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-2622434df14d",
+      "position": 13,
+      "pattern": "subject_first_muon",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-72509f9383c4",
+      "position": 14,
+      "pattern": "subject_first_muon",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-46003bb886f3",
+      "position": 15,
+      "pattern": "subject_first_muon",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-78493693bc1e",
+      "position": 16,
+      "pattern": "subject_first_muon",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-88584f87e2d4",
+      "position": 17,
+      "pattern": "subject_first_muon",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-cfad2cfb8b8c",
+      "position": 18,
+      "pattern": "subject_first_muon",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-c0b1383f4ef4",
+      "position": 19,
+      "pattern": "family_gift_in",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-0bafb4ca6cdd",
+      "position": 20,
+      "pattern": "family_gift_in",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-f0afd02e09be",
+      "position": 21,
+      "pattern": "family_gift_in",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-37738f897e9f",
+      "position": 22,
+      "pattern": "family_gift_in",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-017643f593f4",
+      "position": 23,
+      "pattern": "family_gift_in",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-471ec841e6cd",
+      "position": 24,
+      "pattern": "family_gift_in",
+      "accented": false,
+      "annotator": "human"
+    },
+    {
+      "id": "probe-v1-565037cfc9f2",
+      "position": 25,
+      "pattern": "family_gift_in",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-1ef6818189d5",
+      "position": 26,
+      "pattern": "family_gift_in",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-d72eaeae057f",
+      "position": 27,
+      "pattern": "family_gift_in",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-da7dd20f071d",
+      "position": 28,
+      "pattern": "gift_out",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-29a4f6893ab4",
+      "position": 29,
+      "pattern": "gift_out",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-5f9010f79258",
+      "position": 30,
+      "pattern": "gift_out",
+      "accented": true,
+      "annotator": "human"
+    },
+    {
+      "id": "probe-v1-1ca03a56b8ac",
+      "position": 31,
+      "pattern": "gift_out",
+      "accented": true,
+      "annotator": "human"
+    },
+    {
+      "id": "probe-v1-db6afb507541",
+      "position": 32,
+      "pattern": "gift_out",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-034dbf145af7",
+      "position": 33,
+      "pattern": "gift_out",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-f65027a5fd14",
+      "position": 34,
+      "pattern": "gift_out",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-732afc3f5f6e",
+      "position": 35,
+      "pattern": "gift_out",
+      "accented": false,
+      "annotator": "human"
+    },
+    {
+      "id": "probe-v1-b4d4848ad040",
+      "position": 36,
+      "pattern": "gift_out",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-8164bc2f5e97",
+      "position": 37,
+      "pattern": "insurance_premium",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-008b0f232668",
+      "position": 38,
+      "pattern": "insurance_premium",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-ee15ec3782f5",
+      "position": 39,
+      "pattern": "insurance_premium",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-63af8c2f606a",
+      "position": 40,
+      "pattern": "insurance_premium",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-4b87816eb673",
+      "position": 41,
+      "pattern": "insurance_premium",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-2dd2d51e473f",
+      "position": 42,
+      "pattern": "insurance_premium",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-f43b1d4ef0b7",
+      "position": 43,
+      "pattern": "insurance_premium",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-94a4a6245888",
+      "position": 44,
+      "pattern": "insurance_premium",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-e118c8b4f87b",
+      "position": 45,
+      "pattern": "insurance_premium",
+      "accented": false,
+      "annotator": "human"
+    },
+    {
+      "id": "probe-v1-04fcbffd81a4",
+      "position": 46,
+      "pattern": "insurance_payout",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-6d13d8fd2993",
+      "position": 47,
+      "pattern": "insurance_payout",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-565127901313",
+      "position": 48,
+      "pattern": "insurance_payout",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-0fd9e0112e34",
+      "position": 49,
+      "pattern": "insurance_payout",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-121629fc51c3",
+      "position": 50,
+      "pattern": "insurance_payout",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-fd585d236671",
+      "position": 51,
+      "pattern": "insurance_payout",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-9823b73798b0",
+      "position": 52,
+      "pattern": "insurance_payout",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-4b6584851a37",
+      "position": 53,
+      "pattern": "insurance_payout",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-058315c43587",
+      "position": 54,
+      "pattern": "insurance_payout",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-49168ea5445e",
+      "position": 55,
+      "pattern": "windfall",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-dec1ce82632b",
+      "position": 56,
+      "pattern": "windfall",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-f1681e6a835c",
+      "position": 57,
+      "pattern": "windfall",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-6cbe5d023674",
+      "position": 58,
+      "pattern": "windfall",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-fcb9b075334c",
+      "position": 59,
+      "pattern": "windfall",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-9d6585d8d156",
+      "position": 60,
+      "pattern": "windfall",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-0e4ff440b1e4",
+      "position": 61,
+      "pattern": "windfall",
+      "accented": false,
+      "annotator": "human"
+    },
+    {
+      "id": "probe-v1-71c9fc1e19b6",
+      "position": 62,
+      "pattern": "windfall",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-5b4c82ad965b",
+      "position": 63,
+      "pattern": "windfall",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-251907cc9b56",
+      "position": 64,
+      "pattern": "loan_installment",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-1fce2aa62386",
+      "position": 65,
+      "pattern": "loan_installment",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-08249209dea6",
+      "position": 66,
+      "pattern": "loan_installment",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-c9c71b1e2c01",
+      "position": 67,
+      "pattern": "loan_installment",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-0d27af6a5271",
+      "position": 68,
+      "pattern": "loan_installment",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-1ad572c5d076",
+      "position": 69,
+      "pattern": "loan_installment",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-f46cacf7238c",
+      "position": 70,
+      "pattern": "loan_installment",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-88eca19af17e",
+      "position": 71,
+      "pattern": "loan_installment",
+      "accented": false,
+      "annotator": "human"
+    },
+    {
+      "id": "probe-v1-af91db4556d0",
+      "position": 72,
+      "pattern": "loan_installment",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-49647b72d15f",
+      "position": 73,
+      "pattern": "title_name_span",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-20b1d79161f3",
+      "position": 74,
+      "pattern": "title_name_span",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-01534cdfeceb",
+      "position": 75,
+      "pattern": "title_name_span",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-a7c14a44be47",
+      "position": 76,
+      "pattern": "title_name_span",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-26da30e8b087",
+      "position": 77,
+      "pattern": "title_name_span",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-c8abef2aa1e1",
+      "position": 78,
+      "pattern": "title_name_span",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-8b2f615829fa",
+      "position": 79,
+      "pattern": "title_name_span",
+      "accented": false,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-fb12b09ceb74",
+      "position": 80,
+      "pattern": "title_name_span",
+      "accented": true,
+      "annotator": "ai"
+    },
+    {
+      "id": "probe-v1-c1c1e353a57b",
+      "position": 81,
+      "pattern": "title_name_span",
+      "accented": true,
+      "annotator": "ai"
+    }
+  ],
+  "files": {
+    "README.md": "760733e60087ad15148721378becea186b9b44ed571bf64a59341066adf7fac1",
+    "notes.jsonl": "6ffc9017bf8a153fe42741f20788b47e35ddd6213afb5479ac25e32d26c31797",
+    "queue.jsonl": "ea3d3f118d211b98a65dd06be6a06c6d7fd6bbe076c9ad9b375d448f24d60451",
+    "labels.jsonl": "7baa5aff2e2a5be2b2261bb8c9a4f9b607005f67ec766e61a5b4b2726d5ee264",
+    "provenance.jsonl": "b927658409c8b55e5596a57c8f376fd32612d5e2ac44575dde2063a2d230d333",
+    "recheck.jsonl": "b7f4b0fb910059c345467aacea908241e41950edf98622c98831d9fd2feff1b2",
+    "proposals.jsonl": "2ac749def91c0cf34c1107c47cbf724f286c90ec59c8bb33d379eec86adb052c",
+    "human-labels.jsonl": "0567ac7cd10db80da063582144707d50d41a87fe5d459ba9aa9ecebbfa4ea0a9"
+  }
+}

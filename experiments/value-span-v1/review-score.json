@@ -1,0 +1,532 @@
+{
+  "datasets": {
+    "existing-value-review": {
+      "name": "existing-value-review",
+      "seed": "annotation-v2:existing-value-review",
+      "rule": {
+        "error": "the human value label differs from the proposal (span, or present versus null) or the human annotation_status is not 'complete'",
+        "sampled_stratum": "any error in a sampled stratum -> that stratum is expanded to full review (the scorer writes value-escalation-queue.jsonl)",
+        "clean_audit": {
+          "max_errors_to_accept": 1,
+          "accept": "0-1 errors in the audit sample -> the auto-accepted clean set stands",
+          "expand": ">=2 errors -> stop; the clean auto-accepted population is reviewed in stages of 50 records (value-escalation-queue.jsonl)"
+        },
+        "must_review": "errors do not trigger escalation (expected); they are reported",
+        "unsampled": "unsampled flagged records keep their rule proposal (status pending-stratum-check); they train only when the scorer marks their stratum passed, and are never human labels"
+      },
+      "labels": {
+        "value_labels": 46,
+        "queued": 46,
+        "fully_labelled": 46
+      },
+      "groups": {
+        "must_review": {
+          "queued": 14,
+          "labelled": 14,
+          "pending": 0,
+          "errors": 1,
+          "error_rate": 0.0714,
+          "error_kinds": {
+            "value:status": 1
+          },
+          "error_ids": [
+            "baseline-01-255e6d920a34"
+          ]
+        },
+        "hard_sample": {
+          "queued": 17,
+          "labelled": 17,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        },
+        "clean_audit": {
+          "queued": 15,
+          "labelled": 15,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        }
+      },
+      "strata": {
+        "multi_number_period_or_ordinal": {
+          "queued": 3,
+          "labelled": 3,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        },
+        "multi_number_quantity": {
+          "queued": 3,
+          "labelled": 3,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        },
+        "multi_number_date_or_time": {
+          "queued": 2,
+          "labelled": 2,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        },
+        "multi_number_attached_unit": {
+          "queued": 3,
+          "labelled": 3,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        },
+        "multi_number_weekday": {
+          "queued": 2,
+          "labelled": 2,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        },
+        "multi_number_percent": {
+          "queued": 1,
+          "labelled": 1,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        },
+        "slang_cu": {
+          "queued": 3,
+          "labelled": 3,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        }
+      },
+      "must_review_by_reason": {
+        "multiple_money_candidates": {
+          "queued": 1,
+          "labelled": 1,
+          "errors": 1,
+          "error_rate": 1.0
+        },
+        "no_candidate": {
+          "queued": 2,
+          "labelled": 2,
+          "errors": 0,
+          "error_rate": 0.0
+        },
+        "bare_number": {
+          "queued": 2,
+          "labelled": 2,
+          "errors": 0,
+          "error_rate": 0.0
+        },
+        "number_words": {
+          "queued": 3,
+          "labelled": 3,
+          "errors": 0,
+          "error_rate": 0.0
+        },
+        "split_share": {
+          "queued": 3,
+          "labelled": 3,
+          "errors": 0,
+          "error_rate": 0.0
+        },
+        "cu_collision": {
+          "queued": 3,
+          "labelled": 3,
+          "errors": 0,
+          "error_rate": 0.0
+        }
+      },
+      "error_details": {
+        "baseline-01-255e6d920a34": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "value:status"
+          ]
+        }
+      },
+      "escalation": {
+        "status": "accept_auto_remainder",
+        "strata": {
+          "multi_number_period_or_ordinal": "ok",
+          "multi_number_quantity": "ok",
+          "multi_number_date_or_time": "ok",
+          "multi_number_attached_unit": "ok",
+          "multi_number_weekday": "ok",
+          "multi_number_percent": "ok",
+          "slang_cu": "ok"
+        },
+        "clean_audit": "accept",
+        "reasons": [],
+        "auto_accepted_ids_to_review": [],
+        "queue": null
+      },
+      "strata_status": {
+        "multi_number_period_or_ordinal": "passed",
+        "multi_number_quantity": "passed",
+        "multi_number_date_or_time": "passed",
+        "multi_number_attached_unit": "passed",
+        "multi_number_weekday": "passed",
+        "multi_number_percent": "passed",
+        "slang_cu": "passed",
+        "clean": "passed"
+      },
+      "inputs": {
+        "datasets/annotation-v2/value-review-queue.jsonl": "0696ab306de086bfc5d9ff092700e69f5dc292f6699a49587fb77b9581f69154",
+        "datasets/annotation-v2/value-review-provenance.jsonl": "88ad666d68358c8060b90b2a49d5912980c008be0ddcd739644f75b151af4a01",
+        "datasets/annotation-v2/value-queue.jsonl": "524e5de2f724e9376e4408dd3efd5d80d27ddbcaf723467ae8670f419bdf4080",
+        "datasets/annotation-v2/value-proposals.jsonl": "1cdc79532183ba5a241f62cde7cb91b2b8197654f5196c9f0713df71278b4ac1",
+        "datasets/annotation-v2/value-labels.jsonl": "3e83a267ba309a92592af9b2be27ca6bf0b0d57c9d5e7e05495fda81ed3579fe"
+      }
+    },
+    "targeted-value-01": {
+      "name": "targeted-value-01",
+      "seed": "targeted-value-01:review",
+      "rule": {
+        "error": "a human label differs from the proposal on type, target span or value span, or the human annotation_status is not 'complete' (either pass)",
+        "hard_stratum": "any error in a hard-pattern stratum -> review that entire stratum",
+        "clean_audit": {
+          "max_errors_to_accept": 1,
+          "accept": "0-1 errors -> accept the auto-accepted remainder",
+          "expand": ">=2 errors -> stop and expand review to all auto-accepted records"
+        },
+        "must_review": "errors do not trigger escalation (expected); they are reported"
+      },
+      "labels": {
+        "type_labels": 77,
+        "value_labels": 77,
+        "queued": 77,
+        "fully_labelled": 77
+      },
+      "groups": {
+        "must_review": {
+          "queued": 36,
+          "labelled": 36,
+          "pending": 0,
+          "errors": 16,
+          "error_rate": 0.4444,
+          "error_kinds": {
+            "type:status": 4,
+            "value:status": 15
+          },
+          "error_ids": [
+            "targeted-value-01-7c7dec5a8455",
+            "targeted-value-01-ee2c2b699504",
+            "targeted-value-01-39471dfda9a9",
+            "targeted-value-01-22c2cb0fbc02",
+            "targeted-value-01-62d5cbc6048d",
+            "targeted-value-01-11c087564fa5",
+            "targeted-value-01-bf1e533bf271",
+            "targeted-value-01-71e0fd9c6094",
+            "targeted-value-01-3cbc329ec66b",
+            "targeted-value-01-215a55bab1b3",
+            "targeted-value-01-28b653c47042",
+            "targeted-value-01-1deba1b4e09b",
+            "targeted-value-01-22dd4045a8e3",
+            "targeted-value-01-6f1668cf99c9",
+            "targeted-value-01-54bc4eadaf82",
+            "targeted-value-01-2530c5003c9f"
+          ]
+        },
+        "hard_sample": {
+          "queued": 21,
+          "labelled": 21,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        },
+        "clean_audit": {
+          "queued": 20,
+          "labelled": 20,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        }
+      },
+      "strata": {
+        "multi_number": {
+          "queued": 3,
+          "labelled": 3,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        },
+        "bare_number": {
+          "queued": 3,
+          "labelled": 3,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        },
+        "slang_xi": {
+          "queued": 3,
+          "labelled": 3,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        },
+        "slang_chai": {
+          "queued": 3,
+          "labelled": 3,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        },
+        "slang_lit": {
+          "queued": 3,
+          "labelled": 3,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        },
+        "slang_cu": {
+          "queued": 3,
+          "labelled": 3,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        },
+        "slang_ty": {
+          "queued": 3,
+          "labelled": 3,
+          "pending": 0,
+          "errors": 0,
+          "error_rate": 0.0,
+          "error_kinds": {},
+          "error_ids": []
+        }
+      },
+      "must_review_by_reason": {
+        "multiple_money_candidates": {
+          "queued": 15,
+          "labelled": 15,
+          "errors": 15,
+          "error_rate": 1.0
+        },
+        "no_candidate": {
+          "queued": 10,
+          "labelled": 10,
+          "errors": 0,
+          "error_rate": 0.0
+        },
+        "compound_amount": {
+          "queued": 8,
+          "labelled": 8,
+          "errors": 0,
+          "error_rate": 0.0
+        },
+        "unusual_punctuation": {
+          "queued": 1,
+          "labelled": 1,
+          "errors": 1,
+          "error_rate": 1.0
+        },
+        "type_status_not_complete": {
+          "queued": 4,
+          "labelled": 4,
+          "errors": 4,
+          "error_rate": 1.0
+        },
+        "type_intent_mismatch": {
+          "queued": 4,
+          "labelled": 4,
+          "errors": 4,
+          "error_rate": 1.0
+        },
+        "numeric_ambiguity": {
+          "queued": 3,
+          "labelled": 3,
+          "errors": 1,
+          "error_rate": 0.3333
+        }
+      },
+      "error_details": {
+        "targeted-value-01-7c7dec5a8455": {
+          "group": "must_review",
+          "stratum": "type_status_not_complete",
+          "errors": [
+            "type:status"
+          ]
+        },
+        "targeted-value-01-ee2c2b699504": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "type:status",
+            "value:status"
+          ]
+        },
+        "targeted-value-01-39471dfda9a9": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "value:status"
+          ]
+        },
+        "targeted-value-01-22c2cb0fbc02": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "value:status"
+          ]
+        },
+        "targeted-value-01-62d5cbc6048d": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "value:status"
+          ]
+        },
+        "targeted-value-01-11c087564fa5": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "value:status"
+          ]
+        },
+        "targeted-value-01-bf1e533bf271": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "type:status",
+            "value:status"
+          ]
+        },
+        "targeted-value-01-71e0fd9c6094": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "value:status"
+          ]
+        },
+        "targeted-value-01-3cbc329ec66b": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "value:status"
+          ]
+        },
+        "targeted-value-01-215a55bab1b3": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "value:status"
+          ]
+        },
+        "targeted-value-01-28b653c47042": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "value:status"
+          ]
+        },
+        "targeted-value-01-1deba1b4e09b": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "value:status"
+          ]
+        },
+        "targeted-value-01-22dd4045a8e3": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "value:status"
+          ]
+        },
+        "targeted-value-01-6f1668cf99c9": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "type:status",
+            "value:status"
+          ]
+        },
+        "targeted-value-01-54bc4eadaf82": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "value:status"
+          ]
+        },
+        "targeted-value-01-2530c5003c9f": {
+          "group": "must_review",
+          "stratum": "multiple_money_candidates",
+          "errors": [
+            "value:status"
+          ]
+        }
+      },
+      "escalation": {
+        "status": "accept_auto_remainder",
+        "strata": {
+          "multi_number": "ok",
+          "bare_number": "ok",
+          "slang_xi": "ok",
+          "slang_chai": "ok",
+          "slang_lit": "ok",
+          "slang_cu": "ok",
+          "slang_ty": "ok"
+        },
+        "clean_audit": "accept",
+        "reasons": [],
+        "auto_accepted_ids_to_review": [],
+        "queue": null
+      },
+      "strata_status": {
+        "multi_number": "passed",
+        "bare_number": "passed",
+        "slang_xi": "passed",
+        "slang_chai": "passed",
+        "slang_lit": "passed",
+        "slang_cu": "passed",
+        "slang_ty": "passed",
+        "clean": "passed"
+      },
+      "inputs": {
+        "datasets/annotation-v2/targeted-value-01/review-queue.jsonl": "18634381b3117a088d195f84eb0f2e10cbbd53a6851f3882b968af2a47cc2751",
+        "datasets/annotation-v2/targeted-value-01/review-provenance.jsonl": "1c3daf7e5a8ad48cf860c97ad24ddd23f41aec097911dda822b85c56b7d50196",
+        "datasets/annotation-v2/targeted-value-01/generation-notes.jsonl": "30d99ce06fe7e3300b84d8402bfdccc2ca2865c1920a5a4d4b1c6f6af561ac16",
+        "datasets/annotation-v2/targeted-value-01/review-type-proposals.jsonl": "a6338ff18a1466a3d007381ea905d81cede296f256cdc0790fcdb21ac203b906",
+        "datasets/annotation-v2/targeted-value-01/labels.jsonl": "c30b509a772b6d4ac8ffe12501face3877c3371b296e5adb340d78a502a6d603",
+        "datasets/annotation-v2/targeted-value-01/review-value-proposals.jsonl": "d638ee693c43f683eb3b3096fd2603d174b8cfbf3a600d3bd48bd0fefcb81762",
+        "datasets/annotation-v2/targeted-value-01/value-labels.jsonl": "4803dfb72fbc7479d41a138c5ce88f807ef9e8313486f3f12db8263b1f97a5f6"
+      }
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "name": "targeted-value-01",
+  "annotation_version": "annotation-v2",
+  "role": "risk-based review of a synthetic batch (no full manual review)",
+  "seed": "targeted-value-01:review",
+  "counts": {
+    "total": 253,
+    "auto_accepted": 176,
+    "must_review": 36,
+    "hard_sample": 21,
+    "clean_audit": 20,
+    "queue": 77
+  },
+  "queue_over_80": false,
+  "reason_counts": {
+    "multiple_money_candidates": 15,
+    "no_candidate": 10,
+    "compound_amount": 8,
+    "unusual_punctuation": 1,
+    "type_status_not_complete": 4,
+    "type_intent_mismatch": 4,
+    "numeric_ambiguity": 3
+  },
+  "must_review_first_reason_counts": {
+    "no_candidate": 10,
+    "compound_amount": 8,
+    "numeric_ambiguity": 2,
+    "multiple_money_candidates": 15,
+    "type_status_not_complete": 1
+  },
+  "strata": {
+    "multi_number": {
+      "members": 52,
+      "sampled": 3,
+      "auto_accepted": 49
+    },
+    "bare_number": {
+      "members": 19,
+      "sampled": 3,
+      "auto_accepted": 16
+    },
+    "slang_xi": {
+      "members": 11,
+      "sampled": 3,
+      "auto_accepted": 8
+    },
+    "slang_chai": {
+      "members": 12,
+      "sampled": 3,
+      "auto_accepted": 9
+    },
+    "slang_lit": {
+      "members": 9,
+      "sampled": 3,
+      "auto_accepted": 6
+    },
+    "slang_cu": {
+      "members": 15,
+      "sampled": 3,
+      "auto_accepted": 12
+    },
+    "slang_ty": {
+      "members": 3,
+      "sampled": 3,
+      "auto_accepted": 0
+    },
+    "slang_other": {
+      "members": 0,
+      "sampled": 0,
+      "auto_accepted": 0
+    }
+  },
+  "parameters": {
+    "hard_sample_per_stratum": 3,
+    "clean_audit_size": 20,
+    "hard_strata_order": [
+      "multi_number",
+      "bare_number",
+      "slang_xi",
+      "slang_chai",
+      "slang_lit",
+      "slang_cu",
+      "slang_ty",
+      "slang_other"
+    ],
+    "length_chars": [
+      3,
+      120
+    ],
+    "max_tokens": 32,
+    "near_duplicate_threshold": 0.9,
+    "watch_threshold": 0.85
+  },
+  "duplicates": {
+    "reference_texts": 1382,
+    "reference_files": 54,
+    "normalised_matches_corpus": 0,
+    "normalised_matches_batch": 0,
+    "similarity_ge_0.90": 0,
+    "similarity_0.85_to_0.90_not_forced": 31,
+    "max_corpus_similarity": 0.898,
+    "max_batch_similarity": 0.8837
+  },
+  "not_evaluated": {
+    "unnatural_wording": "no objective signal exists in the inputs (the batch passes corpus validation with 0 errors and 0 warnings); none is invented, so wording is covered only by the hard-pattern sample and the clean audit"
+  },
+  "escalation_rule": {
+    "error": "a human label differs from the proposal on type, target span or value span, or the human annotation_status is not 'complete' (either pass)",
+    "hard_stratum": "any error in a hard-pattern stratum -> review that entire stratum",
+    "clean_audit": {
+      "max_errors_to_accept": 1,
+      "accept": "0-1 errors -> accept the auto-accepted remainder",
+      "expand": ">=2 errors -> stop and expand review to all auto-accepted records"
+    },
+    "must_review": "errors do not trigger escalation (expected); they are reported"
+  },
+  "provenance": {
+    "auto_accept": "synthetic-auto",
+    "queued": "queued-for-human",
+    "note": "auto-accepted labels are never human labels; only Quet writes those"
+  },
+  "inputs": {
+    "corpus/raw/targeted-value-01.jsonl": "d6097537520c70e3ef8ae6bc5b0d1c70193d74d98f8d74203850dbc9114bb0bb",
+    "datasets/annotation-v2/targeted-value-01/generation-notes.jsonl": "30d99ce06fe7e3300b84d8402bfdccc2ca2865c1920a5a4d4b1c6f6af561ac16",
+    "datasets/annotation-v2/targeted-value-01/type-proposals.jsonl": "838977fd39d692392b31e8ea38c014f2f8556b9576ff6127d7e332a38d9947cf",
+    "configs/annotation-v1.yaml": "a5b2d99a20a94007a7724a0335e70bbc857c1f9c2736ca081e135c8eecde9bfe",
+    "configs/annotation-v2.yaml": "86b7090fa246fb7f3519af0590875a65682cf03448199b3b14b80bac1376f813",
+    "configs/annotation-v2-value.quet.yaml": "51fb58e8f9474246172f435a0fea9593abb6dcf7d0d7a2cc7a2a28aa12ceeff3",
+    "tokenizer": {
+      "dir": "models/baseline-v1/bamibert/lr2e-05-seed1",
+      "tokenizer.json": "746cc4a588fb974f8a2d5316ec25940791d9ef1521f72b5294bc18474ea71491"
+    },
+    "reference_texts_sha256": "40d4801d2e4603d2a0a78519dc8ecb283ec60ed4537e973ce509fd435ff6e721"
+  },
+  "files": {
+    "review-queue.jsonl": "18634381b3117a088d195f84eb0f2e10cbbd53a6851f3882b968af2a47cc2751",
+    "review-type-proposals.jsonl": "a6338ff18a1466a3d007381ea905d81cede296f256cdc0790fcdb21ac203b906",
+    "review-value-proposals.jsonl": "d638ee693c43f683eb3b3096fd2603d174b8cfbf3a600d3bd48bd0fefcb81762",
+    "auto-labels.jsonl": "176924fc93d3c4482e2909c445a586e6256cf004b9cc44f93a2deaba77e8af12",
+    "value-auto-labels.jsonl": "4c42b6d0e1b85e8259f8406d05c489ca8517cfc851eff3e39163980093860a5b",
+    "review-provenance.jsonl": "1c3daf7e5a8ad48cf860c97ad24ddd23f41aec097911dda822b85c56b7d50196"
+  }
+}

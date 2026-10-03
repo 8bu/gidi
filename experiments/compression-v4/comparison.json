@@ -1,0 +1,4938 @@
+{
+ "experiment": "compression-v4",
+ "final_ffn_width_experiment": true,
+ "protocol": "experiments/compression-v4/protocol.json",
+ "protocol_sha256": "506ad87beb8eb623de0d83cbc9b5cdf3d4d870e1f78cdbcb2379a2ca6b7e7c6a",
+ "models": {
+  "A": "models/compression-v1/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000/seed{1,2,3} (FFN 3072)",
+  "B": "models/compression-v3/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2048/seed{1,2,3}",
+  "C": "models/compression-v4/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2304/seed{1,2,3}"
+ },
+ "ffn_map": "models/compression-v4/ffn/combined-K2304/ffn_map.json",
+ "ffn_analysis": "experiments/compression-v4/ffn/analysis.json (identical scores to compression-v3)",
+ "k2048_subset_of_k2304": true,
+ "removed_energy": {
+  "2304": {
+   "removed_energy_per_layer": [
+    0.124996706175665,
+    0.1310382261226336,
+    0.10511065316056345,
+    0.21393250156423543
+   ],
+   "removed_energy_mean": 0.14376952175577437
+  },
+  "2048": {
+   "removed_energy_per_layer": [
+    0.16549004766615236,
+    0.18913725773312978,
+    0.14263298954432171,
+    0.2731538362776583
+   ],
+   "removed_energy_mean": 0.19260353280531556
+  }
+ },
+ "estimate": {
+  "ffn_kept_share": 0.75,
+  "params_removed": 4721664,
+  "params_after": 30070283,
+  "est_int8_mb": 30.217979967602123
+ },
+ "c_compression": {
+  "positions": {
+   "rows_before": 2050,
+   "rows_after": 34
+  },
+  "vocab": {
+   "spec": "models/compression-v1/vocab/B-rank-8000",
+   "map_sha256": "da3f4357262e0379a6167107effd7c1ff5e5b8f8a1f99e87f2a44bb736ea3f68",
+   "rows_before": 20481,
+   "rows_after": 8338
+  },
+  "ffn": {
+   "map": "models/compression-v4/ffn/combined-K2304",
+   "map_sha256": "f54ac1d4bf50f53119040c4349e81217dd1b2c4fd1c56613f5ebafeae4109cd2",
+   "criterion": "combined",
+   "intermediate_before": 3072,
+   "intermediate_after": 2304
+  }
+ },
+ "c_recipe": {
+  "lr": 5e-05,
+  "head_lr": 0.001,
+  "epochs": 40,
+  "batch_size": 8,
+  "warmup_ratio": 0.1,
+  "weight_decay": 0.01,
+  "dropout": 0.1,
+  "max_grad_norm": 1.0,
+  "max_length": 32
+ },
+ "fit": "all 3 seeds: in-sample validation type F1 1.000, span F1 1.000 at epoch 40",
+ "metric_definitions": "A, B, C recomputed from saved predictions with one code path; A and B reproduce compression-v3/comparison.json exactly. joint = type correct and span exact; fragments = predicted span starting/ending inside a word; unseen = lowercased target not a substring of any training note; std = sample std over 3 seeds.",
+ "metrics": {
+  "A:test": {
+   "type accuracy": [
+    0.9333333333333333,
+    0.00952380952380949
+   ],
+   "type macro-F1": [
+    0.9354345245163743,
+    0.009281173017622844
+   ],
+   "span F1": [
+    0.8424819517052528,
+    0.03062802340674641
+   ],
+   "span exact": [
+    0.9047619047619048,
+    0.016495721976846456
+   ],
+   "type+span joint": [
+    0.8539682539682539,
+    0.030614764320612574
+   ],
+   "false_span_null_gold": [
+    2.6666666666666665,
+    0.5773502691896257
+   ],
+   "missed_span": [
+    1,
+    0.0
+   ],
+   "wrong_span": [
+    6.333333333333333,
+    1.5275252316519468
+   ],
+   "subword_fragment_spans": [
+    4,
+    2.0
+   ]
+  },
+  "A:probe": {
+   "type accuracy": [
+    0.8189300411522634,
+    0.037716672386467816
+   ],
+   "type macro-F1": [
+    0.812959462706228,
+    0.03587277250115438
+   ],
+   "span F1": [
+    0.7831893643214397,
+    0.033967024589357735
+   ],
+   "span exact": [
+    0.8148148148148148,
+    0.021383343303319504
+   ],
+   "type+span joint": [
+    0.654320987654321,
+    0.012345679012345678
+   ],
+   "false_span_null_gold": [
+    2.6666666666666665,
+    0.5773502691896257
+   ],
+   "missed_span": [
+    3.6666666666666665,
+    2.0816659994661326
+   ],
+   "wrong_span": [
+    8.666666666666666,
+    2.516611478423583
+   ],
+   "subword_fragment_spans": [
+    6.333333333333333,
+    2.0816659994661326
+   ]
+  },
+  "B:test": {
+   "type accuracy": [
+    0.9333333333333333,
+    0.019047619047619035
+   ],
+   "type macro-F1": [
+    0.9433074229850921,
+    0.018057111778316322
+   ],
+   "span F1": [
+    0.8406593406593406,
+    0.034320995591187245
+   ],
+   "span exact": [
+    0.8952380952380953,
+    0.009523809523809545
+   ],
+   "type+span joint": [
+    0.8444444444444444,
+    0.00549857399228213
+   ],
+   "false_span_null_gold": [
+    4,
+    1.0
+   ],
+   "missed_span": [
+    1.3333333333333333,
+    0.5773502691896257
+   ],
+   "wrong_span": [
+    5.666666666666667,
+    2.516611478423583
+   ],
+   "subword_fragment_spans": [
+    2.6666666666666665,
+    0.5773502691896257
+   ]
+  },
+  "B:probe": {
+   "type accuracy": [
+    0.7983539094650206,
+    0.018858336193233884
+   ],
+   "type macro-F1": [
+    0.7798015661533483,
+    0.020282301603729826
+   ],
+   "span F1": [
+    0.7674843674843674,
+    0.021423266810462534
+   ],
+   "span exact": [
+    0.8065843621399177,
+    0.014255562202212982
+   ],
+   "type+span joint": [
+    0.6255144032921811,
+    0.018858336193233884
+   ],
+   "false_span_null_gold": [
+    2,
+    1.0
+   ],
+   "missed_span": [
+    4.333333333333333,
+    1.5275252316519468
+   ],
+   "wrong_span": [
+    9.333333333333334,
+    0.5773502691896257
+   ],
+   "subword_fragment_spans": [
+    4.666666666666667,
+    0.5773502691896257
+   ]
+  },
+  "C:test": {
+   "type accuracy": [
+    0.9238095238095239,
+    0.009523809523809545
+   ],
+   "type macro-F1": [
+    0.9387914585269301,
+    0.007592893858690301
+   ],
+   "span F1": [
+    0.7935171746492501,
+    0.021781000618741695
+   ],
+   "span exact": [
+    0.8761904761904762,
+    0.00952380952380949
+   ],
+   "type+span joint": [
+    0.8222222222222223,
+    0.010997147984564325
+   ],
+   "false_span_null_gold": [
+    3.6666666666666665,
+    0.5773502691896257
+   ],
+   "missed_span": [
+    0.6666666666666666,
+    0.5773502691896257
+   ],
+   "wrong_span": [
+    8.666666666666666,
+    1.1547005383792515
+   ],
+   "subword_fragment_spans": [
+    3.6666666666666665,
+    2.0816659994661326
+   ]
+  },
+  "C:probe": {
+   "type accuracy": [
+    0.7983539094650205,
+    0.014255562202212982
+   ],
+   "type macro-F1": [
+    0.7745010951403554,
+    0.013286378181509273
+   ],
+   "span F1": [
+    0.773368686715933,
+    0.014398135527079968
+   ],
+   "span exact": [
+    0.8065843621399177,
+    0.007127781101106459
+   ],
+   "type+span joint": [
+    0.6378600823045267,
+    0.007127781101106459
+   ],
+   "false_span_null_gold": [
+    1.6666666666666667,
+    1.5275252316519468
+   ],
+   "missed_span": [
+    5.666666666666667,
+    1.1547005383792515
+   ],
+   "wrong_span": [
+    8.333333333333334,
+    0.5773502691896257
+   ],
+   "subword_fragment_spans": [
+    4,
+    2.0
+   ]
+  }
+ },
+ "per_seed": {
+  "A:test": [
+   {
+    "type accuracy": 0.9238095238095239,
+    "type macro-F1": 0.9260079231054463,
+    "span F1": 0.8076923076923077,
+    "span exact": 0.8857142857142857,
+    "type+span joint": 0.819047619047619,
+    "false_span_null_gold": 3,
+    "missed_span": 1,
+    "wrong_span": 8,
+    "subword_fragment_spans": 6
+   },
+   {
+    "type accuracy": 0.9333333333333333,
+    "type macro-F1": 0.9357325605680868,
+    "span F1": 0.854368932038835,
+    "span exact": 0.9142857142857143,
+    "type+span joint": 0.8666666666666667,
+    "false_span_null_gold": 2,
+    "missed_span": 1,
+    "wrong_span": 6,
+    "subword_fragment_spans": 4
+   },
+   {
+    "type accuracy": 0.9428571428571428,
+    "type macro-F1": 0.9445630898755899,
+    "span F1": 0.8653846153846154,
+    "span exact": 0.9142857142857143,
+    "type+span joint": 0.8761904761904762,
+    "false_span_null_gold": 3,
+    "missed_span": 1,
+    "wrong_span": 5,
+    "subword_fragment_spans": 2
+   }
+  ],
+  "A:probe": [
+   {
+    "type accuracy": 0.8271604938271605,
+    "type macro-F1": 0.8146997929606625,
+    "span F1": 0.7927927927927927,
+    "span exact": 0.8271604938271605,
+    "type+span joint": 0.6666666666666666,
+    "false_span_null_gold": 3,
+    "missed_span": 2,
+    "wrong_span": 9,
+    "subword_fragment_spans": 7
+   },
+   {
+    "type accuracy": 0.7777777777777778,
+    "type macro-F1": 0.7762482004295971,
+    "span F1": 0.8113207547169811,
+    "span exact": 0.8271604938271605,
+    "type+span joint": 0.6419753086419753,
+    "false_span_null_gold": 2,
+    "missed_span": 6,
+    "wrong_span": 6,
+    "subword_fragment_spans": 4
+   },
+   {
+    "type accuracy": 0.8518518518518519,
+    "type macro-F1": 0.8479303947284242,
+    "span F1": 0.7454545454545455,
+    "span exact": 0.7901234567901234,
+    "type+span joint": 0.654320987654321,
+    "false_span_null_gold": 3,
+    "missed_span": 3,
+    "wrong_span": 11,
+    "subword_fragment_spans": 8
+   }
+  ],
+  "B:test": [
+   {
+    "type accuracy": 0.9523809523809523,
+    "type macro-F1": 0.962629263775274,
+    "span F1": 0.8076923076923077,
+    "span exact": 0.8857142857142857,
+    "type+span joint": 0.8476190476190476,
+    "false_span_null_gold": 3,
+    "missed_span": 1,
+    "wrong_span": 8,
+    "subword_fragment_spans": 3
+   },
+   {
+    "type accuracy": 0.9333333333333333,
+    "type macro-F1": 0.9404331908201877,
+    "span F1": 0.838095238095238,
+    "span exact": 0.8952380952380953,
+    "type+span joint": 0.8380952380952381,
+    "false_span_null_gold": 4,
+    "missed_span": 1,
+    "wrong_span": 6,
+    "subword_fragment_spans": 3
+   },
+   {
+    "type accuracy": 0.9142857142857143,
+    "type macro-F1": 0.9268598143598143,
+    "span F1": 0.8761904761904761,
+    "span exact": 0.9047619047619048,
+    "type+span joint": 0.8476190476190476,
+    "false_span_null_gold": 5,
+    "missed_span": 2,
+    "wrong_span": 3,
+    "subword_fragment_spans": 2
+   }
+  ],
+  "B:probe": [
+   {
+    "type accuracy": 0.7777777777777778,
+    "type macro-F1": 0.7580047403576816,
+    "span F1": 0.7818181818181819,
+    "span exact": 0.8148148148148148,
+    "type+span joint": 0.6049382716049383,
+    "false_span_null_gold": 3,
+    "missed_span": 3,
+    "wrong_span": 9,
+    "subword_fragment_spans": 5
+   },
+   {
+    "type accuracy": 0.8024691358024691,
+    "type macro-F1": 0.7981192476990796,
+    "span F1": 0.7777777777777778,
+    "span exact": 0.8148148148148148,
+    "type+span joint": 0.6419753086419753,
+    "false_span_null_gold": 2,
+    "missed_span": 4,
+    "wrong_span": 9,
+    "subword_fragment_spans": 5
+   },
+   {
+    "type accuracy": 0.8148148148148148,
+    "type macro-F1": 0.7832807104032835,
+    "span F1": 0.7428571428571428,
+    "span exact": 0.7901234567901234,
+    "type+span joint": 0.6296296296296297,
+    "false_span_null_gold": 1,
+    "missed_span": 6,
+    "wrong_span": 10,
+    "subword_fragment_spans": 4
+   }
+  ],
+  "C:test": [
+   {
+    "type accuracy": 0.9333333333333333,
+    "type macro-F1": 0.9440627492025518,
+    "span F1": 0.7999999999999999,
+    "span exact": 0.8761904761904762,
+    "type+span joint": 0.8285714285714286,
+    "false_span_null_gold": 4,
+    "missed_span": 1,
+    "wrong_span": 8,
+    "subword_fragment_spans": 3
+   },
+   {
+    "type accuracy": 0.9142857142857143,
+    "type macro-F1": 0.9300885108141618,
+    "span F1": 0.7692307692307692,
+    "span exact": 0.8666666666666667,
+    "type+span joint": 0.8095238095238095,
+    "false_span_null_gold": 3,
+    "missed_span": 1,
+    "wrong_span": 10,
+    "subword_fragment_spans": 6
+   },
+   {
+    "type accuracy": 0.9238095238095239,
+    "type macro-F1": 0.9422231155640767,
+    "span F1": 0.8113207547169811,
+    "span exact": 0.8857142857142857,
+    "type+span joint": 0.8285714285714286,
+    "false_span_null_gold": 4,
+    "missed_span": 0,
+    "wrong_span": 8,
+    "subword_fragment_spans": 2
+   }
+  ],
+  "C:probe": [
+   {
+    "type accuracy": 0.7901234567901234,
+    "type macro-F1": 0.7594053005817712,
+    "span F1": 0.7777777777777778,
+    "span exact": 0.8024691358024691,
+    "type+span joint": 0.6296296296296297,
+    "false_span_null_gold": 3,
+    "missed_span": 5,
+    "wrong_span": 8,
+    "subword_fragment_spans": 4
+   },
+   {
+    "type accuracy": 0.7901234567901234,
+    "type macro-F1": 0.7844187150122418,
+    "span F1": 0.7572815533980584,
+    "span exact": 0.8024691358024691,
+    "type+span joint": 0.6419753086419753,
+    "false_span_null_gold": 0,
+    "missed_span": 7,
+    "wrong_span": 9,
+    "subword_fragment_spans": 2
+   },
+   {
+    "type accuracy": 0.8148148148148148,
+    "type macro-F1": 0.779679269827053,
+    "span F1": 0.7850467289719626,
+    "span exact": 0.8148148148148148,
+    "type+span joint": 0.6419753086419753,
+    "false_span_null_gold": 2,
+    "missed_span": 5,
+    "wrong_span": 8,
+    "subword_fragment_spans": 6
+   }
+  ]
+ },
+ "accent": {
+  "test:accented:A": {
+   "n": 63,
+   "type_acc": [
+    0.9417989417989417,
+    0.018328579974273833
+   ],
+   "span_f1": [
+    0.8955046514309025,
+    0.025928210898659085
+   ],
+   "exact": [
+    0.9365079365079365,
+    0.015873015873015872
+   ]
+  },
+  "test:unaccented:A": {
+   "n": 42,
+   "type_acc": [
+    0.9206349206349207,
+    0.01374643498070539
+   ],
+   "span_f1": [
+    0.746588693957115,
+    0.07748997742807393
+   ],
+   "exact": [
+    0.8571428571428571,
+    0.047619047619047616
+   ]
+  },
+  "probe:accented:A": {
+   "n": 49,
+   "type_acc": [
+    0.8435374149659863,
+    0.023565317109780607
+   ],
+   "span_f1": [
+    0.7965309200603319,
+    0.033097725237965746
+   ],
+   "exact": [
+    0.8367346938775511,
+    0.02040816326530609
+   ]
+  },
+  "probe:unaccented:A": {
+   "n": 32,
+   "type_acc": [
+    0.78125,
+    0.0625
+   ],
+   "span_f1": [
+    0.7618237311941226,
+    0.041484426568254205
+   ],
+   "exact": [
+    0.78125,
+    0.03125
+   ]
+  },
+  "test:accented:B": {
+   "n": 63,
+   "type_acc": [
+    0.9470899470899471,
+    0.009164289987136885
+   ],
+   "span_f1": [
+    0.8529178489479288,
+    0.025602345010369558
+   ],
+   "exact": [
+    0.8994708994708994,
+    0.009164289987136948
+   ]
+  },
+  "test:unaccented:B": {
+   "n": 42,
+   "type_acc": [
+    0.9126984126984127,
+    0.036369648372665375
+   ],
+   "span_f1": [
+    0.8183183183183184,
+    0.05559612186658751
+   ],
+   "exact": [
+    0.8888888888888888,
+    0.02749286996141078
+   ]
+  },
+  "probe:accented:B": {
+   "n": 49,
+   "type_acc": [
+    0.8163265306122449,
+    0.020408163265306145
+   ],
+   "span_f1": [
+    0.7700186848562617,
+    0.005747409988830139
+   ],
+   "exact": [
+    0.8163265306122449,
+    0.0
+   ]
+  },
+  "probe:unaccented:B": {
+   "n": 32,
+   "type_acc": [
+    0.7708333333333334,
+    0.018042195912175804
+   ],
+   "span_f1": [
+    0.7633372048006194,
+    0.0567404046990667
+   ],
+   "exact": [
+    0.7916666666666666,
+    0.03608439182435161
+   ]
+  },
+  "test:accented:C": {
+   "n": 63,
+   "type_acc": [
+    0.9417989417989417,
+    0.009164289987136885
+   ],
+   "span_f1": [
+    0.7941176470588236,
+    0.02941176470588236
+   ],
+   "exact": [
+    0.873015873015873,
+    0.015873015873015872
+   ]
+  },
+  "test:unaccented:C": {
+   "n": 42,
+   "type_acc": [
+    0.8968253968253969,
+    0.01374643498070539
+   ],
+   "span_f1": [
+    0.7926874242663716,
+    0.01674937048668613
+   ],
+   "exact": [
+    0.8809523809523809,
+    0.0
+   ]
+  },
+  "probe:accented:C": {
+   "n": 49,
+   "type_acc": [
+    0.8095238095238095,
+    0.011782658554890335
+   ],
+   "span_f1": [
+    0.7655831419823957,
+    0.017773645739922364
+   ],
+   "exact": [
+    0.8095238095238095,
+    0.011782658554890335
+   ]
+  },
+  "probe:unaccented:C": {
+   "n": 32,
+   "type_acc": [
+    0.78125,
+    0.03125
+   ],
+   "span_f1": [
+    0.7855802733851515,
+    0.05939681491350106
+   ],
+   "exact": [
+    0.8020833333333334,
+    0.018042195912175804
+   ]
+  }
+ },
+ "unseen_target": {
+  "test:A": {
+   "seen": {
+    "n": 36,
+    "span_exact": [
+     0.9259259259259259,
+     0.03207501495497923
+    ]
+   },
+   "unseen": {
+    "n": 15,
+    "span_exact": [
+     0.6888888888888889,
+     0.03849001794597504
+    ]
+   }
+  },
+  "probe:A": {
+   "seen": {
+    "n": 41,
+    "span_exact": [
+     0.8211382113821138,
+     0.037256712967120624
+    ]
+   },
+   "unseen": {
+    "n": 14,
+    "span_exact": [
+     0.6428571428571429,
+     0.0
+    ]
+   }
+  },
+  "test:B": {
+   "seen": {
+    "n": 36,
+    "span_exact": [
+     0.9166666666666666,
+     0.02777777777777779
+    ]
+   },
+   "unseen": {
+    "n": 15,
+    "span_exact": [
+     0.7333333333333333,
+     0.06666666666666671
+    ]
+   }
+  },
+  "probe:B": {
+   "seen": {
+    "n": 41,
+    "span_exact": [
+     0.7967479674796748,
+     0.03725671296712064
+    ]
+   },
+   "unseen": {
+    "n": 14,
+    "span_exact": [
+     0.6190476190476191,
+     0.041239304942116174
+    ]
+   }
+  },
+  "test:C": {
+   "seen": {
+    "n": 36,
+    "span_exact": [
+     0.8796296296296297,
+     0.016037507477489547
+    ]
+   },
+   "unseen": {
+    "n": 15,
+    "span_exact": [
+     0.6666666666666666,
+     0.06666666666666665
+    ]
+   }
+  },
+  "probe:C": {
+   "seen": {
+    "n": 41,
+    "span_exact": [
+     0.7886178861788617,
+     0.050772341450393485
+    ]
+   },
+   "unseen": {
+    "n": 14,
+    "span_exact": [
+     0.6190476190476191,
+     0.041239304942116174
+    ]
+   }
+  }
+ },
+ "direction": {
+  "test:A": {
+   "lend_as_borrow": [
+    0.3333333333333333,
+    0.5773502691896257
+   ],
+   "borrow_as_lend": [
+    0,
+    0.0
+   ],
+   "repayment_in_as_repayment_out": [
+    0,
+    0.0
+   ],
+   "repayment_out_as_repayment_in": [
+    0,
+    0.0
+   ],
+   "income_as_expense": [
+    1,
+    0.0
+   ],
+   "expense_as_income": [
+    1.3333333333333333,
+    0.5773502691896257
+   ]
+  },
+  "probe:A": {
+   "lend_as_borrow": [
+    0.6666666666666666,
+    0.5773502691896257
+   ],
+   "borrow_as_lend": [
+    1.3333333333333333,
+    1.1547005383792515
+   ],
+   "repayment_in_as_repayment_out": [
+    0,
+    0.0
+   ],
+   "repayment_out_as_repayment_in": [
+    0,
+    0.0
+   ],
+   "income_as_expense": [
+    0.6666666666666666,
+    0.5773502691896257
+   ],
+   "expense_as_income": [
+    1,
+    0.0
+   ]
+  },
+  "test:B": {
+   "lend_as_borrow": [
+    0,
+    0.0
+   ],
+   "borrow_as_lend": [
+    0,
+    0.0
+   ],
+   "repayment_in_as_repayment_out": [
+    0,
+    0.0
+   ],
+   "repayment_out_as_repayment_in": [
+    0,
+    0.0
+   ],
+   "income_as_expense": [
+    1,
+    0.0
+   ],
+   "expense_as_income": [
+    1.6666666666666667,
+    0.5773502691896257
+   ]
+  },
+  "probe:B": {
+   "lend_as_borrow": [
+    1.3333333333333333,
+    0.5773502691896257
+   ],
+   "borrow_as_lend": [
+    3,
+    1.0
+   ],
+   "repayment_in_as_repayment_out": [
+    0,
+    0.0
+   ],
+   "repayment_out_as_repayment_in": [
+    0,
+    0.0
+   ],
+   "income_as_expense": [
+    0.3333333333333333,
+    0.5773502691896257
+   ],
+   "expense_as_income": [
+    1,
+    0.0
+   ]
+  },
+  "test:C": {
+   "lend_as_borrow": [
+    0,
+    0.0
+   ],
+   "borrow_as_lend": [
+    0,
+    0.0
+   ],
+   "repayment_in_as_repayment_out": [
+    0,
+    0.0
+   ],
+   "repayment_out_as_repayment_in": [
+    0,
+    0.0
+   ],
+   "income_as_expense": [
+    1,
+    0.0
+   ],
+   "expense_as_income": [
+    2,
+    1.0
+   ]
+  },
+  "probe:C": {
+   "lend_as_borrow": [
+    1.3333333333333333,
+    0.5773502691896257
+   ],
+   "borrow_as_lend": [
+    2.6666666666666665,
+    1.1547005383792515
+   ],
+   "repayment_in_as_repayment_out": [
+    0,
+    0.0
+   ],
+   "repayment_out_as_repayment_in": [
+    0,
+    0.0
+   ],
+   "income_as_expense": [
+    1,
+    1.0
+   ],
+   "expense_as_income": [
+    1,
+    0.0
+   ]
+  }
+ },
+ "probe_patterns": {
+  "family_gift_in": {
+   "n": 9,
+   "A": {
+    "success": [
+     0.6666666666666666,
+     0.1924500897298753
+    ],
+    "type_acc": [
+     0.6666666666666666,
+     0.1924500897298753
+    ],
+    "span_exact": [
+     0.8888888888888888,
+     0.0
+    ],
+    "per_seed": [
+     0.7777777777777778,
+     0.4444444444444444,
+     0.7777777777777778
+    ]
+   },
+   "B": {
+    "success": [
+     0.7037037037037037,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.7037037037037037,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.8888888888888888,
+     0.0
+    ],
+    "per_seed": [
+     0.6666666666666666,
+     0.6666666666666666,
+     0.7777777777777778
+    ]
+   },
+   "C": {
+    "success": [
+     0.6666666666666666,
+     0.0
+    ],
+    "type_acc": [
+     0.7037037037037037,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.8888888888888888,
+     0.0
+    ],
+    "per_seed": [
+     0.6666666666666666,
+     0.6666666666666666,
+     0.6666666666666666
+    ]
+   }
+  },
+  "gift_out": {
+   "n": 9,
+   "A": {
+    "success": [
+     0.5555555555555556,
+     0.0
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.0
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.5555555555555556,
+     0.5555555555555556
+    ]
+   },
+   "B": {
+    "success": [
+     0.5555555555555556,
+     0.0
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.0
+    ],
+    "span_exact": [
+     0.7037037037037037,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.5555555555555556,
+     0.5555555555555556
+    ]
+   },
+   "C": {
+    "success": [
+     0.5555555555555556,
+     0.0
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.0
+    ],
+    "span_exact": [
+     0.6666666666666666,
+     0.0
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.5555555555555556,
+     0.5555555555555556
+    ]
+   }
+  },
+  "insurance_payout": {
+   "n": 9,
+   "A": {
+    "success": [
+     0.5185185185185185,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.0
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.5555555555555556,
+     0.4444444444444444
+    ]
+   },
+   "B": {
+    "success": [
+     0.48148148148148145,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.0
+    ],
+    "span_exact": [
+     0.7037037037037037,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.4444444444444444,
+     0.5555555555555556,
+     0.4444444444444444
+    ]
+   },
+   "C": {
+    "success": [
+     0.5555555555555556,
+     0.1111111111111111
+    ],
+    "type_acc": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.7777777777777778,
+     0.1111111111111111
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.6666666666666666,
+     0.4444444444444444
+    ]
+   }
+  },
+  "insurance_premium": {
+   "n": 9,
+   "A": {
+    "success": [
+     0.5185185185185185,
+     0.12830005981991682
+    ],
+    "type_acc": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "span_exact": [
+     0.6666666666666666,
+     0.1111111111111111
+    ],
+    "per_seed": [
+     0.4444444444444444,
+     0.6666666666666666,
+     0.4444444444444444
+    ]
+   },
+   "B": {
+    "success": [
+     0.5185185185185185,
+     0.1697250257391052
+    ],
+    "type_acc": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "span_exact": [
+     0.6666666666666666,
+     0.1111111111111111
+    ],
+    "per_seed": [
+     0.3333333333333333,
+     0.5555555555555556,
+     0.6666666666666666
+    ]
+   },
+   "C": {
+    "success": [
+     0.5925925925925926,
+     0.12830005981991682
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.7037037037037037,
+     0.12830005981991682
+    ],
+    "per_seed": [
+     0.4444444444444444,
+     0.6666666666666666,
+     0.6666666666666666
+    ]
+   }
+  },
+  "lender_first_cho_muon": {
+   "n": 9,
+   "A": {
+    "success": [
+     0.7777777777777778,
+     0.1111111111111111
+    ],
+    "type_acc": [
+     0.8518518518518519,
+     0.12830005981991682
+    ],
+    "span_exact": [
+     0.9259259259259259,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.7777777777777778,
+     0.6666666666666666,
+     0.8888888888888888
+    ]
+   },
+   "B": {
+    "success": [
+     0.5925925925925926,
+     0.06415002990995838
+    ],
+    "type_acc": [
+     0.6666666666666666,
+     0.1111111111111111
+    ],
+    "span_exact": [
+     0.9259259259259259,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.5555555555555556,
+     0.6666666666666666
+    ]
+   },
+   "C": {
+    "success": [
+     0.6666666666666666,
+     0.1111111111111111
+    ],
+    "type_acc": [
+     0.7037037037037037,
+     0.12830005981991682
+    ],
+    "span_exact": [
+     0.9629629629629629,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.6666666666666666,
+     0.7777777777777778
+    ]
+   }
+  },
+  "loan_installment": {
+   "n": 9,
+   "A": {
+    "success": [
+     0.5185185185185185,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.4444444444444444,
+     0.5555555555555556
+    ]
+   },
+   "B": {
+    "success": [
+     0.6296296296296297,
+     0.06415002990995838
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.0
+    ],
+    "span_exact": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.6666666666666666,
+     0.6666666666666666
+    ]
+   },
+   "C": {
+    "success": [
+     0.5555555555555556,
+     0.0
+    ],
+    "type_acc": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.7777777777777778,
+     0.0
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.5555555555555556,
+     0.5555555555555556
+    ]
+   }
+  },
+  "subject_first_muon": {
+   "n": 9,
+   "A": {
+    "success": [
+     0.8888888888888888,
+     0.0
+    ],
+    "type_acc": [
+     0.9259259259259259,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.9629629629629629,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.8888888888888888,
+     0.8888888888888888,
+     0.8888888888888888
+    ]
+   },
+   "B": {
+    "success": [
+     0.7777777777777778,
+     0.1111111111111111
+    ],
+    "type_acc": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "span_exact": [
+     0.9259259259259259,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.8888888888888888,
+     0.7777777777777778,
+     0.6666666666666666
+    ]
+   },
+   "C": {
+    "success": [
+     0.8148148148148148,
+     0.06415002990995838
+    ],
+    "type_acc": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "span_exact": [
+     0.9629629629629629,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.8888888888888888,
+     0.7777777777777778,
+     0.7777777777777778
+    ]
+   }
+  },
+  "title_name_span": {
+   "n": 9,
+   "A": {
+    "success": [
+     0.7037037037037037,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.8148148148148148,
+     0.06415002990995838
+    ],
+    "per_seed": [
+     0.6666666666666666,
+     0.7777777777777778,
+     0.6666666666666666
+    ]
+   },
+   "B": {
+    "success": [
+     0.6296296296296297,
+     0.06415002990995838
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.6666666666666666,
+     0.6666666666666666,
+     0.5555555555555556
+    ]
+   },
+   "C": {
+    "success": [
+     0.6296296296296297,
+     0.06415002990995838
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.7037037037037037,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.6666666666666666,
+     0.5555555555555556,
+     0.6666666666666666
+    ]
+   }
+  },
+  "windfall": {
+   "n": 9,
+   "A": {
+    "success": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "per_seed": [
+     0.7777777777777778,
+     0.7777777777777778,
+     0.6666666666666666
+    ]
+   },
+   "B": {
+    "success": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "per_seed": [
+     0.7777777777777778,
+     0.7777777777777778,
+     0.6666666666666666
+    ]
+   },
+   "C": {
+    "success": [
+     0.7037037037037037,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.8148148148148148,
+     0.06415002990995838
+    ],
+    "per_seed": [
+     0.7777777777777778,
+     0.6666666666666666,
+     0.6666666666666666
+    ]
+   }
+  }
+ },
+ "focus_notes": {
+  "lender_first_cho_muon": [
+   {
+    "id": "probe-v1-6b06bcc7784a",
+    "text": "chị Mai cho mượn 2tr đóng tiền nhà",
+    "gold": [
+     "borrow",
+     "Mai"
+    ],
+    "A": [
+     [
+      "borrow",
+      "Mai"
+     ],
+     [
+      "borrow",
+      "Mai"
+     ],
+     [
+      "borrow",
+      "Mai"
+     ]
+    ],
+    "B": [
+     [
+      "borrow",
+      "Mai"
+     ],
+     [
+      "borrow",
+      "Mai"
+     ],
+     [
+      "borrow",
+      "Mai"
+     ]
+    ],
+    "C": [
+     [
+      "borrow",
+      "Mai"
+     ],
+     [
+      "borrow",
+      "Mai"
+     ],
+     [
+      "borrow",
+      "Mai"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-4d36e861a448",
+    "text": "Tuấn cho vay 5 triệu, hẹn tháng sau trả",
+    "gold": [
+     "borrow",
+     "Tuấn"
+    ],
+    "A": [
+     [
+      "borrow",
+      "Tuấn"
+     ],
+     [
+      "borrow",
+      "Tuấn"
+     ],
+     [
+      "borrow",
+      "Tuấn"
+     ]
+    ],
+    "B": [
+     [
+      "lend",
+      "Tuấn"
+     ],
+     [
+      "lend",
+      "Tuấn"
+     ],
+     [
+      "borrow",
+      "Tuấn"
+     ]
+    ],
+    "C": [
+     [
+      "lend",
+      "Tuấn"
+     ],
+     [
+      "borrow",
+      "Tuấn"
+     ],
+     [
+      "borrow",
+      "Tuấn"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 1,
+     "C": 2
+    }
+   },
+   {
+    "id": "probe-v1-641f3c447c97",
+    "text": "ông ngoại cho mượn 10tr sửa mái",
+    "gold": [
+     "borrow",
+     "ông ngoại"
+    ],
+    "A": [
+     [
+      "borrow",
+      "ông ngoại"
+     ],
+     [
+      "borrow",
+      "ông ngoại"
+     ],
+     [
+      "borrow",
+      "ông ngoại"
+     ]
+    ],
+    "B": [
+     [
+      "borrow",
+      "ông ngoại"
+     ],
+     [
+      "borrow",
+      "ông ngoại"
+     ],
+     [
+      "borrow",
+      "ông ngoại"
+     ]
+    ],
+    "C": [
+     [
+      "borrow",
+      "ông ngoại"
+     ],
+     [
+      "borrow",
+      "ông ngoại"
+     ],
+     [
+      "borrow",
+      "ông ngoại"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-931b7bb2d6c9",
+    "text": "thg Khoa cho muon tam 300k an trua",
+    "gold": [
+     "borrow",
+     "Khoa"
+    ],
+    "A": [
+     [
+      "lend",
+      "Khoa"
+     ],
+     [
+      "lend",
+      "Khoa"
+     ],
+     [
+      "borrow",
+      "Khoa"
+     ]
+    ],
+    "B": [
+     [
+      "lend",
+      "Khoa"
+     ],
+     [
+      "lend",
+      "Khoa"
+     ],
+     [
+      "lend",
+      "Khoa"
+     ]
+    ],
+    "C": [
+     [
+      "lend",
+      "Khoa"
+     ],
+     [
+      "lend",
+      "Khoa"
+     ],
+     [
+      "lend",
+      "Khoa"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 1,
+     "B": 0,
+     "C": 0
+    }
+   },
+   {
+    "id": "probe-v1-a0fb7beabf86",
+    "text": "anh Quan cho vay 15tr lam von",
+    "gold": [
+     "borrow",
+     "Quan"
+    ],
+    "A": [
+     [
+      "borrow",
+      "Quan"
+     ],
+     [
+      "borrow",
+      "anh Quan"
+     ],
+     [
+      "borrow",
+      "anh Quan"
+     ]
+    ],
+    "B": [
+     [
+      "borrow",
+      "Quan"
+     ],
+     [
+      "borrow",
+      "anh Quan"
+     ],
+     [
+      "borrow",
+      "anh Quan"
+     ]
+    ],
+    "C": [
+     [
+      "borrow",
+      "Quan"
+     ],
+     [
+      "borrow",
+      "anh Quan"
+     ],
+     [
+      "borrow",
+      "Quan"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 1,
+     "B": 1,
+     "C": 2
+    }
+   },
+   {
+    "id": "probe-v1-3ed6ba9bbf3b",
+    "text": "me cho muon 1tr5 tra tien dien",
+    "gold": [
+     "borrow",
+     "me"
+    ],
+    "A": [
+     [
+      "lend",
+      "me"
+     ],
+     [
+      "lend",
+      "me"
+     ],
+     [
+      "borrow",
+      "me"
+     ]
+    ],
+    "B": [
+     [
+      "lend",
+      "me"
+     ],
+     [
+      "lend",
+      "me"
+     ],
+     [
+      "lend",
+      "me"
+     ]
+    ],
+    "C": [
+     [
+      "lend",
+      "me"
+     ],
+     [
+      "lend",
+      "me"
+     ],
+     [
+      "lend",
+      "me"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 1,
+     "B": 0,
+     "C": 0
+    }
+   },
+   {
+    "id": "probe-v1-6896a19bf60c",
+    "text": "sếp cho mượn 3tr trước",
+    "gold": [
+     "borrow",
+     "sếp"
+    ],
+    "A": [
+     [
+      "borrow",
+      "sếp"
+     ],
+     [
+      "borrow",
+      "sếp"
+     ],
+     [
+      "borrow",
+      "sếp"
+     ]
+    ],
+    "B": [
+     [
+      "borrow",
+      "sếp"
+     ],
+     [
+      "borrow",
+      "sếp"
+     ],
+     [
+      "borrow",
+      "sếp"
+     ]
+    ],
+    "C": [
+     [
+      "borrow",
+      "sếp"
+     ],
+     [
+      "borrow",
+      "sếp"
+     ],
+     [
+      "borrow",
+      "sếp"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-500429aa5e3e",
+    "text": "Vinh cho minh vay 800k tien nha",
+    "gold": [
+     "borrow",
+     "Vinh"
+    ],
+    "A": [
+     [
+      "borrow",
+      "Vinh"
+     ],
+     [
+      "borrow",
+      "Vinh"
+     ],
+     [
+      "borrow",
+      "Vinh"
+     ]
+    ],
+    "B": [
+     [
+      "borrow",
+      "Vinh"
+     ],
+     [
+      "borrow",
+      "Vinh"
+     ],
+     [
+      "borrow",
+      "Vinh"
+     ]
+    ],
+    "C": [
+     [
+      "borrow",
+      "Vinh"
+     ],
+     [
+      "borrow",
+      "Vinh"
+     ],
+     [
+      "borrow",
+      "Vinh"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-5b7b837cccab",
+    "text": "được cô Hà cho vay 4 củ",
+    "gold": [
+     "borrow",
+     "Hà"
+    ],
+    "A": [
+     [
+      "borrow",
+      "Hà"
+     ],
+     [
+      "borrow",
+      "Hà"
+     ],
+     [
+      "borrow",
+      "Hà"
+     ]
+    ],
+    "B": [
+     [
+      "lend",
+      "Hà"
+     ],
+     [
+      "borrow",
+      "Hà"
+     ],
+     [
+      "borrow",
+      "Hà"
+     ]
+    ],
+    "C": [
+     [
+      "lend",
+      "Hà"
+     ],
+     [
+      "borrow",
+      "Hà"
+     ],
+     [
+      "borrow",
+      "Hà"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 2,
+     "C": 2
+    }
+   }
+  ],
+  "subject_first_muon": [
+   {
+    "id": "probe-v1-6c08b0191ac7",
+    "text": "chị Mai mượn 2tr đóng tiền nhà",
+    "gold": [
+     "lend",
+     "Mai"
+    ],
+    "A": [
+     [
+      "lend",
+      "Mai"
+     ],
+     [
+      "lend",
+      "Mai"
+     ],
+     [
+      "lend",
+      "Mai"
+     ]
+    ],
+    "B": [
+     [
+      "lend",
+      "Mai"
+     ],
+     [
+      "lend",
+      "Mai"
+     ],
+     [
+      "lend",
+      "Mai"
+     ]
+    ],
+    "C": [
+     [
+      "lend",
+      "Mai"
+     ],
+     [
+      "lend",
+      "Mai"
+     ],
+     [
+      "lend",
+      "Mai"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-8e9411f326b9",
+    "text": "Tuấn vay 5 triệu, hẹn tháng sau trả",
+    "gold": [
+     "lend",
+     "Tuấn"
+    ],
+    "A": [
+     [
+      "lend",
+      "Tuấn"
+     ],
+     [
+      "lend",
+      "Tuấn"
+     ],
+     [
+      "lend",
+      "Tuấn"
+     ]
+    ],
+    "B": [
+     [
+      "lend",
+      "Tuấn"
+     ],
+     [
+      "lend",
+      "Tuấn"
+     ],
+     [
+      "lend",
+      "Tuấn"
+     ]
+    ],
+    "C": [
+     [
+      "lend",
+      "Tuấn"
+     ],
+     [
+      "lend",
+      "Tuấn"
+     ],
+     [
+      "lend",
+      "Tuấn"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-58b69ecc86c7",
+    "text": "thg Khoa muon 300k",
+    "gold": [
+     "lend",
+     "Khoa"
+    ],
+    "A": [
+     [
+      "lend",
+      "Khoa"
+     ],
+     [
+      "lend",
+      "Khoa"
+     ],
+     [
+      "lend",
+      "Khoa"
+     ]
+    ],
+    "B": [
+     [
+      "lend",
+      "Khoa"
+     ],
+     [
+      "lend",
+      "Khoa"
+     ],
+     [
+      "lend",
+      "Khoa"
+     ]
+    ],
+    "C": [
+     [
+      "lend",
+      "Khoa"
+     ],
+     [
+      "lend",
+      "Khoa"
+     ],
+     [
+      "lend",
+      "Khoa"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-2622434df14d",
+    "text": "em họ mượn 1tr đóng học",
+    "gold": [
+     "lend",
+     "em họ"
+    ],
+    "A": [
+     [
+      "lend",
+      "em họ"
+     ],
+     [
+      "lend",
+      "em họ"
+     ],
+     [
+      "lend",
+      "em họ"
+     ]
+    ],
+    "B": [
+     [
+      "lend",
+      "em họ"
+     ],
+     [
+      "lend",
+      "em họ"
+     ],
+     [
+      "lend",
+      "em họ"
+     ]
+    ],
+    "C": [
+     [
+      "lend",
+      "em họ"
+     ],
+     [
+      "lend",
+      "em họ"
+     ],
+     [
+      "lend",
+      "em họ"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-72509f9383c4",
+    "text": "Phúc vay 700k mua điện thoại",
+    "gold": [
+     "lend",
+     "Phúc"
+    ],
+    "A": [
+     [
+      "lend",
+      "Phúc"
+     ],
+     [
+      "lend",
+      "Phúc"
+     ],
+     [
+      "lend",
+      "Phúc"
+     ]
+    ],
+    "B": [
+     [
+      "lend",
+      "Phúc"
+     ],
+     [
+      "lend",
+      "Phúc"
+     ],
+     [
+      "borrow",
+      "Phúc"
+     ]
+    ],
+    "C": [
+     [
+      "lend",
+      "Phúc"
+     ],
+     [
+      "lend",
+      "Phúc"
+     ],
+     [
+      "borrow",
+      "Phúc"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 2,
+     "C": 2
+    }
+   },
+   {
+    "id": "probe-v1-46003bb886f3",
+    "text": "ban cung lop muon 400k mua sach",
+    "gold": [
+     "lend",
+     "ban cung lop"
+    ],
+    "A": [
+     [
+      "borrow",
+      "ban cung lop"
+     ],
+     [
+      "borrow",
+      "ban cung lop"
+     ],
+     [
+      "lend",
+      "ban cung lop"
+     ]
+    ],
+    "B": [
+     [
+      "borrow",
+      "ban cung lop"
+     ],
+     [
+      "borrow",
+      "ban cung lop"
+     ],
+     [
+      "borrow",
+      "ban cung lop"
+     ]
+    ],
+    "C": [
+     [
+      "borrow",
+      "ban cung lop"
+     ],
+     [
+      "borrow",
+      "ban cung lop"
+     ],
+     [
+      "borrow",
+      "ban cung lop"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 1,
+     "B": 0,
+     "C": 0
+    }
+   },
+   {
+    "id": "probe-v1-78493693bc1e",
+    "text": "anh Duc muon 2tr dong hoc phi",
+    "gold": [
+     "lend",
+     "Duc"
+    ],
+    "A": [
+     [
+      "lend",
+      "Duc"
+     ],
+     [
+      "lend",
+      "Duc"
+     ],
+     [
+      "lend",
+      "anh"
+     ]
+    ],
+    "B": [
+     [
+      "lend",
+      "Duc"
+     ],
+     [
+      "lend",
+      "anh"
+     ],
+     [
+      "lend",
+      "anh"
+     ]
+    ],
+    "C": [
+     [
+      "lend",
+      "Duc"
+     ],
+     [
+      "lend",
+      "anh"
+     ],
+     [
+      "lend",
+      "Duc"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 2,
+     "B": 1,
+     "C": 2
+    }
+   },
+   {
+    "id": "probe-v1-88584f87e2d4",
+    "text": "Hằng vay 150k, mai trả",
+    "gold": [
+     "lend",
+     "Hằng"
+    ],
+    "A": [
+     [
+      "lend",
+      "Hằng"
+     ],
+     [
+      "lend",
+      "Hằng"
+     ],
+     [
+      "lend",
+      "Hằng"
+     ]
+    ],
+    "B": [
+     [
+      "lend",
+      "Hằng"
+     ],
+     [
+      "lend",
+      "Hằng"
+     ],
+     [
+      "lend",
+      "Hằng"
+     ]
+    ],
+    "C": [
+     [
+      "lend",
+      "Hằng"
+     ],
+     [
+      "lend",
+      "Hằng"
+     ],
+     [
+      "lend",
+      "Hằng"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-cfad2cfb8b8c",
+    "text": "chi Nga vay 10 cu, cuoi nam tra",
+    "gold": [
+     "lend",
+     "Nga"
+    ],
+    "A": [
+     [
+      "lend",
+      "Nga"
+     ],
+     [
+      "lend",
+      "Nga"
+     ],
+     [
+      "lend",
+      "Nga"
+     ]
+    ],
+    "B": [
+     [
+      "lend",
+      "Nga"
+     ],
+     [
+      "lend",
+      "Nga"
+     ],
+     [
+      "lend",
+      "Nga"
+     ]
+    ],
+    "C": [
+     [
+      "lend",
+      "Nga"
+     ],
+     [
+      "lend",
+      "Nga"
+     ],
+     [
+      "lend",
+      "Nga"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   }
+  ],
+  "title_name_span": [
+   {
+    "id": "probe-v1-49647b72d15f",
+    "text": "vay cô Lan 3tr",
+    "gold": [
+     "borrow",
+     "Lan"
+    ],
+    "A": [
+     [
+      "borrow",
+      "Lan"
+     ],
+     [
+      "borrow",
+      "Lan"
+     ],
+     [
+      "borrow",
+      "Lan"
+     ]
+    ],
+    "B": [
+     [
+      "borrow",
+      "Lan"
+     ],
+     [
+      "borrow",
+      "Lan"
+     ],
+     [
+      "borrow",
+      "Lan"
+     ]
+    ],
+    "C": [
+     [
+      "borrow",
+      "Lan"
+     ],
+     [
+      "borrow",
+      "Lan"
+     ],
+     [
+      "borrow",
+      "Lan"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-20b1d79161f3",
+    "text": "cho dì Hương mượn 2tr",
+    "gold": [
+     "lend",
+     "Hương"
+    ],
+    "A": [
+     [
+      "lend",
+      "Hương"
+     ],
+     [
+      "lend",
+      "Hương"
+     ],
+     [
+      "lend",
+      "Hương"
+     ]
+    ],
+    "B": [
+     [
+      "lend",
+      "Hương"
+     ],
+     [
+      "lend",
+      "Hương"
+     ],
+     [
+      "lend",
+      "Hương"
+     ]
+    ],
+    "C": [
+     [
+      "lend",
+      "Hương"
+     ],
+     [
+      "lend",
+      "dì"
+     ],
+     [
+      "lend",
+      "Hương"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 2
+    }
+   },
+   {
+    "id": "probe-v1-01534cdfeceb",
+    "text": "bác Thành hoàn lại 1tr đã mượn",
+    "gold": [
+     "repayment_in",
+     "Thành"
+    ],
+    "A": [
+     [
+      "refund",
+      "Thành"
+     ],
+     [
+      "refund",
+      "Thành"
+     ],
+     [
+      "refund",
+      "Thành"
+     ]
+    ],
+    "B": [
+     [
+      "refund",
+      "Thành"
+     ],
+     [
+      "refund",
+      "Thành"
+     ],
+     [
+      "refund",
+      "Thành"
+     ]
+    ],
+    "C": [
+     [
+      "refund",
+      "ác"
+     ],
+     [
+      "refund",
+      "Thành"
+     ],
+     [
+      "refund",
+      "Thành"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 0,
+     "B": 0,
+     "C": 0
+    }
+   },
+   {
+    "id": "probe-v1-a7c14a44be47",
+    "text": "chú Bình gửi lại 500k tiền xăng",
+    "gold": [
+     "repayment_in",
+     "Bình"
+    ],
+    "A": [
+     [
+      "repayment_in",
+      "chú Bình"
+     ],
+     [
+      "repayment_in",
+      "chú"
+     ],
+     [
+      "repayment_in",
+      "chú"
+     ]
+    ],
+    "B": [
+     [
+      "repayment_in",
+      "chú Bình"
+     ],
+     [
+      "repayment_in",
+      "chú"
+     ],
+     [
+      "repayment_in",
+      "chú"
+     ]
+    ],
+    "C": [
+     [
+      "repayment_in",
+      "chú Bình"
+     ],
+     [
+      "repayment_in",
+      "chú Bình"
+     ],
+     [
+      "repayment_in",
+      "chú"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 0,
+     "B": 0,
+     "C": 0
+    }
+   },
+   {
+    "id": "probe-v1-26da30e8b087",
+    "text": "muon chu Dung 5 cu",
+    "gold": [
+     "borrow",
+     "Dung"
+    ],
+    "A": [
+     [
+      "borrow",
+      "Dung"
+     ],
+     [
+      "borrow",
+      "Dung"
+     ],
+     [
+      "borrow",
+      "Dung"
+     ]
+    ],
+    "B": [
+     [
+      "borrow",
+      "Dung"
+     ],
+     [
+      "borrow",
+      "Dung"
+     ],
+     [
+      "borrow",
+      "Dung"
+     ]
+    ],
+    "C": [
+     [
+      "borrow",
+      "Dung"
+     ],
+     [
+      "borrow",
+      "Dung"
+     ],
+     [
+      "borrow",
+      "Dung"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-c8abef2aa1e1",
+    "text": "trả dì Loan 1tr tiền mượn",
+    "gold": [
+     "repayment_out",
+     "Loan"
+    ],
+    "A": [
+     [
+      "repayment_out",
+      "dì"
+     ],
+     [
+      "repayment_out",
+      "Loan"
+     ],
+     [
+      "repayment_out",
+      "dì"
+     ]
+    ],
+    "B": [
+     [
+      "repayment_out",
+      "dì"
+     ],
+     [
+      "repayment_out",
+      "dì"
+     ],
+     [
+      "repayment_out",
+      "dì"
+     ]
+    ],
+    "C": [
+     [
+      "repayment_out",
+      "dì"
+     ],
+     [
+      "repayment_out",
+      "dì"
+     ],
+     [
+      "repayment_out",
+      "dì"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 1,
+     "B": 0,
+     "C": 0
+    }
+   },
+   {
+    "id": "probe-v1-8b2f615829fa",
+    "text": "co Nhung cho vay 20tr mo tiem",
+    "gold": [
+     "borrow",
+     "Nhung"
+    ],
+    "A": [
+     [
+      "borrow",
+      "Nhung"
+     ],
+     [
+      "borrow",
+      "Nhung"
+     ],
+     [
+      "borrow",
+      "Nhung"
+     ]
+    ],
+    "B": [
+     [
+      "borrow",
+      "Nhung"
+     ],
+     [
+      "borrow",
+      "Nhung"
+     ],
+     [
+      "borrow",
+      null
+     ]
+    ],
+    "C": [
+     [
+      "borrow",
+      "Nhung"
+     ],
+     [
+      "borrow",
+      "Nhung"
+     ],
+     [
+      "borrow",
+      "Nhung"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 2,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-fb12b09ceb74",
+    "text": "chú Tư cho mượn 4tr",
+    "gold": [
+     "borrow",
+     "chú Tư"
+    ],
+    "A": [
+     [
+      "borrow",
+      "chú Tư"
+     ],
+     [
+      "borrow",
+      "chú Tư"
+     ],
+     [
+      "borrow",
+      "chú Tư"
+     ]
+    ],
+    "B": [
+     [
+      "borrow",
+      "chú Tư"
+     ],
+     [
+      "borrow",
+      "chú Tư"
+     ],
+     [
+      "borrow",
+      "chú Tư"
+     ]
+    ],
+    "C": [
+     [
+      "borrow",
+      "chú Tư"
+     ],
+     [
+      "borrow",
+      "chú Tư"
+     ],
+     [
+      "borrow",
+      "chú Tư"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-c1c1e353a57b",
+    "text": "bác Hùng mượn 6tr",
+    "gold": [
+     "lend",
+     "Hùng"
+    ],
+    "A": [
+     [
+      "lend",
+      "Hùng"
+     ],
+     [
+      "lend",
+      "Hùng"
+     ],
+     [
+      "lend",
+      "Hùng"
+     ]
+    ],
+    "B": [
+     [
+      "lend",
+      "Hùng"
+     ],
+     [
+      "lend",
+      "Hùng"
+     ],
+     [
+      "lend",
+      "Hùng"
+     ]
+    ],
+    "C": [
+     [
+      "lend",
+      "Hùng"
+     ],
+     [
+      "lend",
+      "Hùng"
+     ],
+     [
+      "lend",
+      "Hùng"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   }
+  ],
+  "insurance_payout": [
+   {
+    "id": "probe-v1-04fcbffd81a4",
+    "text": "bảo hiểm thanh toán tiền viện 4tr",
+    "gold": [
+     "refund",
+     null
+    ],
+    "A": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ],
+    "B": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ],
+    "C": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-6d13d8fd2993",
+    "text": "bao hiem boi thuong xe 3tr5",
+    "gold": [
+     "refund",
+     null
+    ],
+    "A": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ],
+    "B": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ],
+    "C": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-565127901313",
+    "text": "prudential chi trả tiền mổ 12tr",
+    "gold": [
+     "refund",
+     "prudential"
+    ],
+    "A": [
+     [
+      "refund",
+      "p"
+     ],
+     [
+      "refund",
+      "p"
+     ],
+     [
+      "refund",
+      "p"
+     ]
+    ],
+    "B": [
+     [
+      "refund",
+      "p"
+     ],
+     [
+      "refund",
+      "p"
+     ],
+     [
+      "refund",
+      null
+     ]
+    ],
+    "C": [
+     [
+      "refund",
+      "pr"
+     ],
+     [
+      "transfer",
+      null
+     ],
+     [
+      "refund",
+      "p"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 0,
+     "B": 0,
+     "C": 0
+    }
+   },
+   {
+    "id": "probe-v1-0fd9e0112e34",
+    "text": "bảo việt duyệt bồi thường 2tr4",
+    "gold": [
+     "refund",
+     "bảo việt"
+    ],
+    "A": [
+     [
+      "refund",
+      "bảo việt"
+     ],
+     [
+      "refund",
+      "bảo việt"
+     ],
+     [
+      "refund",
+      "b"
+     ]
+    ],
+    "B": [
+     [
+      "refund",
+      "ảo việt"
+     ],
+     [
+      "refund",
+      "bảo việt"
+     ],
+     [
+      "refund",
+      "việt"
+     ]
+    ],
+    "C": [
+     [
+      "refund",
+      "bảo việt"
+     ],
+     [
+      "refund",
+      "bảo việt"
+     ],
+     [
+      "refund",
+      "ảo việt"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 2,
+     "B": 1,
+     "C": 2
+    }
+   },
+   {
+    "id": "probe-v1-121629fc51c3",
+    "text": "nhận tiền bảo hiểm tai nạn 6tr",
+    "gold": [
+     "refund",
+     null
+    ],
+    "A": [
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ]
+    ],
+    "B": [
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ]
+    ],
+    "C": [
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ]
+    ],
+    "correct_seeds": {
+     "A": 0,
+     "B": 0,
+     "C": 0
+    }
+   },
+   {
+    "id": "probe-v1-fd585d236671",
+    "text": "bh hoan tien thuoc 320k",
+    "gold": [
+     "refund",
+     null
+    ],
+    "A": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ],
+    "B": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ],
+    "C": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-9823b73798b0",
+    "text": "tiền bảo hiểm nằm viện về 2tr8",
+    "gold": [
+     "refund",
+     null
+    ],
+    "A": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ]
+    ],
+    "B": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ]
+    ],
+    "C": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ]
+    ],
+    "correct_seeds": {
+     "A": 0,
+     "B": 0,
+     "C": 0
+    }
+   },
+   {
+    "id": "probe-v1-4b6584851a37",
+    "text": "baohiem tra tien ve may bay bi huy 1tr2",
+    "gold": [
+     "refund",
+     null
+    ],
+    "A": [
+     [
+      "refund",
+      "hi"
+     ],
+     [
+      "refund",
+      "hi"
+     ],
+     [
+      "refund",
+      "baohi"
+     ]
+    ],
+    "B": [
+     [
+      "refund",
+      "hi"
+     ],
+     [
+      "refund",
+      "baohi"
+     ],
+     [
+      "refund",
+      "bao"
+     ]
+    ],
+    "C": [
+     [
+      "refund",
+      "hiem"
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      "hi"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 0,
+     "B": 0,
+     "C": 1
+    }
+   },
+   {
+    "id": "probe-v1-058315c43587",
+    "text": "bảo hiểm xe trả tiền sửa đèn 700k",
+    "gold": [
+     "refund",
+     null
+    ],
+    "A": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ],
+    "B": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ],
+    "C": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   }
+  ],
+  "loan_installment": [
+   {
+    "id": "probe-v1-251907cc9b56",
+    "text": "thanh toan ky 5 khoan vay mua can ho 7tr6",
+    "gold": [
+     "repayment_out",
+     null
+    ],
+    "A": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ],
+    "B": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ],
+    "C": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-1fce2aa62386",
+    "text": "dong tien vay tin chap thang 11 2tr3",
+    "gold": [
+     "repayment_out",
+     null
+    ],
+    "A": [
+     [
+      "borrow",
+      null
+     ],
+     [
+      "borrow",
+      null
+     ],
+     [
+      "borrow",
+      null
+     ]
+    ],
+    "B": [
+     [
+      "borrow",
+      null
+     ],
+     [
+      "borrow",
+      null
+     ],
+     [
+      "borrow",
+      null
+     ]
+    ],
+    "C": [
+     [
+      "borrow",
+      null
+     ],
+     [
+      "borrow",
+      null
+     ],
+     [
+      "borrow",
+      null
+     ]
+    ],
+    "correct_seeds": {
+     "A": 0,
+     "B": 0,
+     "C": 0
+    }
+   },
+   {
+    "id": "probe-v1-08249209dea6",
+    "text": "góp khoản vay mua xe tháng này 4tr1",
+    "gold": [
+     "repayment_out",
+     null
+    ],
+    "A": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ],
+    "B": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ],
+    "C": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-c9c71b1e2c01",
+    "text": "tra no vay sinh vien ky 3 1tr",
+    "gold": [
+     "repayment_out",
+     null
+    ],
+    "A": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      "vi"
+     ],
+     [
+      "repayment_out",
+      "vi"
+     ]
+    ],
+    "B": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ],
+    "C": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      "vi"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 1,
+     "B": 3,
+     "C": 2
+    }
+   },
+   {
+    "id": "probe-v1-0d27af6a5271",
+    "text": "vay mua nhà techcombank trả kỳ tháng 12 9tr5",
+    "gold": [
+     "repayment_out",
+     "techcombank"
+    ],
+    "A": [
+     [
+      "repayment_out",
+      "techcombank"
+     ],
+     [
+      "repayment_out",
+      "techcombank"
+     ],
+     [
+      "repayment_out",
+      "techcombank"
+     ]
+    ],
+    "B": [
+     [
+      "repayment_out",
+      "techcombank"
+     ],
+     [
+      "repayment_out",
+      "techcombank"
+     ],
+     [
+      "repayment_out",
+      "techcombank"
+     ]
+    ],
+    "C": [
+     [
+      "repayment_out",
+      "techcombank"
+     ],
+     [
+      "repayment_out",
+      "techcombank"
+     ],
+     [
+      "repayment_out",
+      "techcombank"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-1ad572c5d076",
+    "text": "khoan vay online tamo dong ky 2 900k",
+    "gold": [
+     "repayment_out",
+     "tamo"
+    ],
+    "A": [
+     [
+      "repayment_out",
+      "k"
+     ],
+     [
+      "lend",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ],
+    "B": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ],
+    "C": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ],
+    "correct_seeds": {
+     "A": 0,
+     "B": 0,
+     "C": 0
+    }
+   },
+   {
+    "id": "probe-v1-f46cacf7238c",
+    "text": "thanh toán khoản vay thế chấp kỳ 14 6tr",
+    "gold": [
+     "repayment_out",
+     null
+    ],
+    "A": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ],
+    "B": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ],
+    "C": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ],
+    "correct_seeds": {
+     "A": 3,
+     "B": 3,
+     "C": 3
+    }
+   },
+   {
+    "id": "probe-v1-88eca19af17e",
+    "text": "vay ngan hang tra thang nay 3tr2",
+    "gold": [
+     "repayment_out",
+     "ngan hang"
+    ],
+    "A": [
+     [
+      "borrow",
+      "ngan hang"
+     ],
+     [
+      "borrow",
+      "ngan hang"
+     ],
+     [
+      "borrow",
+      "ngan hang"
+     ]
+    ],
+    "B": [
+     [
+      "borrow",
+      "ngan hang"
+     ],
+     [
+      "borrow",
+      "ngan hang"
+     ],
+     [
+      "borrow",
+      "ngan hang"
+     ]
+    ],
+    "C": [
+     [
+      "borrow",
+      "ngan hang"
+     ],
+     [
+      "borrow",
+      "ngan hang"
+     ],
+     [
+      "borrow",
+      "ngan hang"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 0,
+     "B": 0,
+     "C": 0
+    }
+   },
+   {
+    "id": "probe-v1-af91db4556d0",
+    "text": "tra goc lai khoan vay mb 5tr",
+    "gold": [
+     "repayment_out",
+     "mb"
+    ],
+    "A": [
+     [
+      "repayment_out",
+      "b"
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      "mb"
+     ]
+    ],
+    "B": [
+     [
+      "repayment_out",
+      "b"
+     ],
+     [
+      "repayment_out",
+      "mb"
+     ],
+     [
+      "repayment_out",
+      "mb"
+     ]
+    ],
+    "C": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      "mb"
+     ]
+    ],
+    "correct_seeds": {
+     "A": 1,
+     "B": 2,
+     "C": 1
+    }
+   }
+  ]
+ },
+ "reproduces_compression_v3": {
+  "A:test": true,
+  "A:probe": true,
+  "B:test": true,
+  "B:probe": true
+ },
+ "note_flips_A_to_C": {
+  "test": {
+   "all_seed_regressions": [],
+   "all_seed_improvements": [],
+   "majority_correct_to_majority_wrong": [
+    {
+     "id": "baseline-01-b590dd3df660",
+     "text": "tra lai chi Mai 2tr",
+     "pattern": null,
+     "gold": [
+      "repayment_out",
+      "Mai"
+     ],
+     "unseen_target": false,
+     "A_correct_seeds": 2,
+     "C_correct_seeds": 0,
+     "C_preds": [
+      [
+       "expense",
+       "Mai"
+      ],
+      [
+       "expense",
+       "Mai"
+      ],
+      [
+       "expense",
+       "Mai"
+      ]
+     ],
+     "type_wrong_seeds": 3,
+     "span_wrong_seeds": 0
+    },
+    {
+     "id": "baseline-01-ba4d9f58a5ff",
+     "text": "nuoc mia 12k",
+     "pattern": null,
+     "gold": [
+      "expense",
+      null
+     ],
+     "unseen_target": false,
+     "A_correct_seeds": 2,
+     "C_correct_seeds": 1,
+     "C_preds": [
+      [
+       "expense",
+       "mia"
+      ],
+      [
+       "expense",
+       null
+      ],
+      [
+       "expense",
+       "mia"
+      ]
+     ],
+     "type_wrong_seeds": 0,
+     "span_wrong_seeds": 2
+    },
+    {
+     "id": "targeted-annotation-v1-01-a07b6b6eb45c",
+     "text": "bảo việt bồi thường viện phí 2tr6",
+     "pattern": null,
+     "gold": [
+      "refund",
+      "bảo việt"
+     ],
+     "unseen_target": false,
+     "A_correct_seeds": 3,
+     "C_correct_seeds": 1,
+     "C_preds": [
+      [
+       "refund",
+       "bảo"
+      ],
+      [
+       "refund",
+       "bảo việt"
+      ],
+      [
+       "refund",
+       "bảo"
+      ]
+     ],
+     "type_wrong_seeds": 0,
+     "span_wrong_seeds": 2
+    },
+    {
+     "id": "targeted-annotation-v1-01-2cda1d910520",
+     "text": "vay ngân hàng mua nhà giải ngân 800tr",
+     "pattern": null,
+     "gold": [
+      "borrow",
+      "ngân hàng"
+     ],
+     "unseen_target": false,
+     "A_correct_seeds": 2,
+     "C_correct_seeds": 0,
+     "C_preds": [
+      [
+       "borrow",
+       "hàng"
+      ],
+      [
+       "borrow",
+       "ngân"
+      ],
+      [
+       "borrow",
+       "hàng"
+      ]
+     ],
+     "type_wrong_seeds": 0,
+     "span_wrong_seeds": 3
+    }
+   ],
+   "majority_wrong_to_majority_correct": [
+    {
+     "id": "targeted-annotation-v1-01-95e3e3addb57",
+     "text": "spotify refund 59k",
+     "pattern": null,
+     "gold": [
+      "refund",
+      "spotify"
+     ],
+     "unseen_target": false,
+     "A_correct_seeds": 1,
+     "C_correct_seeds": 2,
+     "C_preds": [
+      [
+       "expense",
+       "spotify"
+      ],
+      [
+       "refund",
+       "spotify"
+      ],
+      [
+       "refund",
+       "spotify"
+      ]
+     ],
+     "type_wrong_seeds": 1,
+     "span_wrong_seeds": 0
+    }
+   ]
+  },
+  "probe": {
+   "all_seed_regressions": [],
+   "all_seed_improvements": [],
+   "majority_correct_to_majority_wrong": [
+    {
+     "id": "probe-v1-565037cfc9f2",
+     "text": "được cô Út cho 500k",
+     "pattern": "family_gift_in",
+     "gold": [
+      "income",
+      "cô Út"
+     ],
+     "unseen_target": false,
+     "A_correct_seeds": 2,
+     "C_correct_seeds": 1,
+     "C_preds": [
+      [
+       "expense",
+       "cô Út"
+      ],
+      [
+       "income",
+       "cô Út"
+      ],
+      [
+       "expense",
+       "cô Út"
+      ]
+     ],
+     "type_wrong_seeds": 2,
+     "span_wrong_seeds": 0
+    },
+    {
+     "id": "probe-v1-dec1ce82632b",
+     "text": "trung vietlott 10tr",
+     "pattern": "windfall",
+     "gold": [
+      "income",
+      "vietlott"
+     ],
+     "unseen_target": false,
+     "A_correct_seeds": 2,
+     "C_correct_seeds": 1,
+     "C_preds": [
+      [
+       "income",
+       "vietlott"
+      ],
+      [
+       "income",
+       "etlott"
+      ],
+      [
+       "income",
+       "etlott"
+      ]
+     ],
+     "type_wrong_seeds": 0,
+     "span_wrong_seeds": 2
+    }
+   ],
+   "majority_wrong_to_majority_correct": [
+    {
+     "id": "probe-v1-a0fb7beabf86",
+     "text": "anh Quan cho vay 15tr lam von",
+     "pattern": "lender_first_cho_muon",
+     "gold": [
+      "borrow",
+      "Quan"
+     ],
+     "unseen_target": false,
+     "A_correct_seeds": 1,
+     "C_correct_seeds": 2,
+     "C_preds": [
+      [
+       "borrow",
+       "Quan"
+      ],
+      [
+       "borrow",
+       "anh Quan"
+      ],
+      [
+       "borrow",
+       "Quan"
+      ]
+     ],
+     "type_wrong_seeds": 0,
+     "span_wrong_seeds": 1
+    },
+    {
+     "id": "probe-v1-008b0f232668",
+     "text": "phí bảo hiểm sức khỏe quý 3 1tr8",
+     "pattern": "insurance_premium",
+     "gold": [
+      "expense",
+      null
+     ],
+     "unseen_target": false,
+     "A_correct_seeds": 1,
+     "C_correct_seeds": 2,
+     "C_preds": [
+      [
+       "expense",
+       "phí"
+      ],
+      [
+       "expense",
+       null
+      ],
+      [
+       "expense",
+       null
+      ]
+     ],
+     "type_wrong_seeds": 0,
+     "span_wrong_seeds": 1
+    },
+    {
+     "id": "probe-v1-c9c71b1e2c01",
+     "text": "tra no vay sinh vien ky 3 1tr",
+     "pattern": "loan_installment",
+     "gold": [
+      "repayment_out",
+      null
+     ],
+     "unseen_target": false,
+     "A_correct_seeds": 1,
+     "C_correct_seeds": 2,
+     "C_preds": [
+      [
+       "repayment_out",
+       null
+      ],
+      [
+       "repayment_out",
+       null
+      ],
+      [
+       "repayment_out",
+       "vi"
+      ]
+     ],
+     "type_wrong_seeds": 0,
+     "span_wrong_seeds": 1
+    }
+   ]
+  }
+ },
+ "note_flips_B_to_C": {
+  "test": {
+   "all_seed_regressions": [],
+   "all_seed_improvements": [],
+   "majority_correct_to_majority_wrong": [
+    {
+     "id": "targeted-annotation-v1-01-2cda1d910520",
+     "text": "vay ngân hàng mua nhà giải ngân 800tr",
+     "pattern": null,
+     "gold": [
+      "borrow",
+      "ngân hàng"
+     ],
+     "unseen_target": false,
+     "B_correct_seeds": 2,
+     "C_correct_seeds": 0,
+     "C_preds": [
+      [
+       "borrow",
+       "hàng"
+      ],
+      [
+       "borrow",
+       "ngân"
+      ],
+      [
+       "borrow",
+       "hàng"
+      ]
+     ],
+     "type_wrong_seeds": 0,
+     "span_wrong_seeds": 3
+    },
+    {
+     "id": "targeted-annotation-v1-01-6bd81e618b99",
+     "text": "co Thuy cho muon 1tr",
+     "pattern": null,
+     "gold": [
+      "borrow",
+      "Thuy"
+     ],
+     "unseen_target": true,
+     "B_correct_seeds": 2,
+     "C_correct_seeds": 1,
+     "C_preds": [
+      [
+       "borrow",
+       "Thuy"
+      ],
+      [
+       "borrow",
+       "uy"
+      ],
+      [
+       "borrow",
+       "co Thuy"
+      ]
+     ],
+     "type_wrong_seeds": 0,
+     "span_wrong_seeds": 2
+    }
+   ],
+   "majority_wrong_to_majority_correct": []
+  },
+  "probe": {
+   "all_seed_regressions": [],
+   "all_seed_improvements": [],
+   "majority_correct_to_majority_wrong": [
+    {
+     "id": "probe-v1-565037cfc9f2",
+     "text": "được cô Út cho 500k",
+     "pattern": "family_gift_in",
+     "gold": [
+      "income",
+      "cô Út"
+     ],
+     "unseen_target": false,
+     "B_correct_seeds": 2,
+     "C_correct_seeds": 1,
+     "C_preds": [
+      [
+       "expense",
+       "cô Út"
+      ],
+      [
+       "income",
+       "cô Út"
+      ],
+      [
+       "expense",
+       "cô Út"
+      ]
+     ],
+     "type_wrong_seeds": 2,
+     "span_wrong_seeds": 0
+    },
+    {
+     "id": "probe-v1-dec1ce82632b",
+     "text": "trung vietlott 10tr",
+     "pattern": "windfall",
+     "gold": [
+      "income",
+      "vietlott"
+     ],
+     "unseen_target": false,
+     "B_correct_seeds": 2,
+     "C_correct_seeds": 1,
+     "C_preds": [
+      [
+       "income",
+       "vietlott"
+      ],
+      [
+       "income",
+       "etlott"
+      ],
+      [
+       "income",
+       "etlott"
+      ]
+     ],
+     "type_wrong_seeds": 0,
+     "span_wrong_seeds": 2
+    },
+    {
+     "id": "probe-v1-af91db4556d0",
+     "text": "tra goc lai khoan vay mb 5tr",
+     "pattern": "loan_installment",
+     "gold": [
+      "repayment_out",
+      "mb"
+     ],
+     "unseen_target": false,
+     "B_correct_seeds": 2,
+     "C_correct_seeds": 1,
+     "C_preds": [
+      [
+       "repayment_out",
+       null
+      ],
+      [
+       "repayment_out",
+       null
+      ],
+      [
+       "repayment_out",
+       "mb"
+      ]
+     ],
+     "type_wrong_seeds": 0,
+     "span_wrong_seeds": 2
+    }
+   ],
+   "majority_wrong_to_majority_correct": [
+    {
+     "id": "probe-v1-4d36e861a448",
+     "text": "Tuấn cho vay 5 triệu, hẹn tháng sau trả",
+     "pattern": "lender_first_cho_muon",
+     "gold": [
+      "borrow",
+      "Tuấn"
+     ],
+     "unseen_target": false,
+     "B_correct_seeds": 1,
+     "C_correct_seeds": 2,
+     "C_preds": [
+      [
+       "lend",
+       "Tuấn"
+      ],
+      [
+       "borrow",
+       "Tuấn"
+      ],
+      [
+       "borrow",
+       "Tuấn"
+      ]
+     ],
+     "type_wrong_seeds": 1,
+     "span_wrong_seeds": 0
+    },
+    {
+     "id": "probe-v1-a0fb7beabf86",
+     "text": "anh Quan cho vay 15tr lam von",
+     "pattern": "lender_first_cho_muon",
+     "gold": [
+      "borrow",
+      "Quan"
+     ],
+     "unseen_target": false,
+     "B_correct_seeds": 1,
+     "C_correct_seeds": 2,
+     "C_preds": [
+      [
+       "borrow",
+       "Quan"
+      ],
+      [
+       "borrow",
+       "anh Quan"
+      ],
+      [
+       "borrow",
+       "Quan"
+      ]
+     ],
+     "type_wrong_seeds": 0,
+     "span_wrong_seeds": 1
+    },
+    {
+     "id": "probe-v1-78493693bc1e",
+     "text": "anh Duc muon 2tr dong hoc phi",
+     "pattern": "subject_first_muon",
+     "gold": [
+      "lend",
+      "Duc"
+     ],
+     "unseen_target": false,
+     "B_correct_seeds": 1,
+     "C_correct_seeds": 2,
+     "C_preds": [
+      [
+       "lend",
+       "Duc"
+      ],
+      [
+       "lend",
+       "anh"
+      ],
+      [
+       "lend",
+       "Duc"
+      ]
+     ],
+     "type_wrong_seeds": 0,
+     "span_wrong_seeds": 1
+    },
+    {
+     "id": "probe-v1-008b0f232668",
+     "text": "phí bảo hiểm sức khỏe quý 3 1tr8",
+     "pattern": "insurance_premium",
+     "gold": [
+      "expense",
+      null
+     ],
+     "unseen_target": false,
+     "B_correct_seeds": 1,
+     "C_correct_seeds": 2,
+     "C_preds": [
+      [
+       "expense",
+       "phí"
+      ],
+      [
+       "expense",
+       null
+      ],
+      [
+       "expense",
+       null
+      ]
+     ],
+     "type_wrong_seeds": 0,
+     "span_wrong_seeds": 1
+    },
+    {
+     "id": "probe-v1-0fd9e0112e34",
+     "text": "bảo việt duyệt bồi thường 2tr4",
+     "pattern": "insurance_payout",
+     "gold": [
+      "refund",
+      "bảo việt"
+     ],
+     "unseen_target": false,
+     "B_correct_seeds": 1,
+     "C_correct_seeds": 2,
+     "C_preds": [
+      [
+       "refund",
+       "bảo việt"
+      ],
+      [
+       "refund",
+       "bảo việt"
+      ],
+      [
+       "refund",
+       "ảo việt"
+      ]
+     ],
+     "type_wrong_seeds": 0,
+     "span_wrong_seeds": 1
+    }
+   ]
+  }
+ },
+ "paired": {
+  "C-A:test:type accuracy": [
+   0.00952380952380949,
+   -0.01904761904761909,
+   -0.01904761904761898
+  ],
+  "C-A:test:span F1": [
+   -0.007692307692307776,
+   -0.08513816280806585,
+   -0.054063860667634356
+  ],
+  "C-A:test:span exact": [
+   -0.00952380952380949,
+   -0.04761904761904756,
+   -0.02857142857142858
+  ],
+  "C-A:test:type+span joint": [
+   0.009523809523809601,
+   -0.05714285714285716,
+   -0.04761904761904756
+  ],
+  "C-A:probe:type accuracy": [
+   -0.03703703703703709,
+   0.012345679012345623,
+   -0.03703703703703709
+  ],
+  "C-A:probe:span F1": [
+   -0.015015015015014899,
+   -0.0540392013189227,
+   0.03959218351741711
+  ],
+  "C-A:probe:span exact": [
+   -0.024691358024691357,
+   -0.024691358024691357,
+   0.024691358024691357
+  ],
+  "C-A:probe:type+span joint": [
+   -0.03703703703703698,
+   0.0,
+   -0.012345679012345734
+  ],
+  "C-B:test:type accuracy": [
+   -0.01904761904761898,
+   -0.01904761904761909,
+   0.009523809523809601
+  ],
+  "C-B:test:span F1": [
+   -0.007692307692307776,
+   -0.06886446886446884,
+   -0.06486972147349501
+  ],
+  "C-B:test:span exact": [
+   -0.00952380952380949,
+   -0.02857142857142858,
+   -0.01904761904761909
+  ],
+  "C-B:test:type+span joint": [
+   -0.01904761904761898,
+   -0.02857142857142858,
+   -0.01904761904761898
+  ],
+  "C-B:probe:type accuracy": [
+   0.012345679012345623,
+   -0.012345679012345734,
+   0.0
+  ],
+  "C-B:probe:span F1": [
+   -0.004040404040404066,
+   -0.02049622437971943,
+   0.04218958611481982
+  ],
+  "C-B:probe:span exact": [
+   -0.012345679012345623,
+   -0.012345679012345623,
+   0.024691358024691357
+  ],
+  "C-B:probe:type+span joint": [
+   0.024691358024691357,
+   0.0,
+   0.012345679012345623
+  ],
+  "B-A:test:type accuracy": [
+   0.02857142857142847,
+   0.0,
+   -0.02857142857142858
+  ],
+  "B-A:test:span F1": [
+   0.0,
+   -0.016273693943597012,
+   0.010805860805860656
+  ],
+  "B-A:test:span exact": [
+   0.0,
+   -0.01904761904761898,
+   -0.00952380952380949
+  ],
+  "B-A:test:type+span joint": [
+   0.02857142857142858,
+   -0.02857142857142858,
+   -0.02857142857142858
+  ],
+  "B-A:probe:type accuracy": [
+   -0.04938271604938271,
+   0.024691358024691357,
+   -0.03703703703703709
+  ],
+  "B-A:probe:span F1": [
+   -0.010974610974610832,
+   -0.03354297693920327,
+   -0.0025974025974027093
+  ],
+  "B-A:probe:span exact": [
+   -0.012345679012345734,
+   -0.012345679012345734,
+   0.0
+  ],
+  "B-A:probe:type+span joint": [
+   -0.061728395061728336,
+   0.0,
+   -0.024691358024691357
+  ]
+ },
+ "size_latency_seed1": {
+  "A-ffn3072": {
+   "param_count": 34791947,
+   "checkpoint_safetensors_mb": 139.176292,
+   "onnx_fp32_mb": 139.206274,
+   "int8_agreement_50_notes": {
+    "samples": 50,
+    "type_agreement": 1.0,
+    "tag_agreement": 1.0,
+    "tag_tokens": 507,
+    "max_abs_diff_type_logits": 1.2066354751586914
+   },
+   "latency_1thread_total_ms": {
+    "torch_fp32": {
+     "p50": 4.118791548535228,
+     "p95": 4.442542092874646
+    },
+    "onnx_fp32": {
+     "p50": 2.9009791323915124,
+     "p95": 3.293291898444295
+    },
+    "onnx_int8": {
+     "p50": 1.5678125200793147,
+     "p95": 1.9533750601112843
+    }
+   },
+   "export_report": "experiments/compression-v1/export-pos32-vocabB8000-seed1.json",
+   "onnx_int8_mb": 34.966389
+  },
+  "B-ffn2048": {
+   "param_count": 28496395,
+   "checkpoint_safetensors_mb": 113.99406,
+   "onnx_fp32_mb": 114.024066,
+   "int8_agreement_50_notes": {
+    "samples": 50,
+    "type_agreement": 0.96,
+    "tag_agreement": 1.0,
+    "tag_tokens": 507,
+    "max_abs_diff_type_logits": 0.9893467426300049
+   },
+   "latency_1thread_total_ms": {
+    "torch_fp32": {
+     "p50": 3.1044584466144443,
+     "p95": 3.4392911475151777
+    },
+    "onnx_fp32": {
+     "p50": 2.34850007109344,
+     "p95": 3.9223749190568924
+    },
+    "onnx_int8": {
+     "p50": 1.3672709465026855,
+     "p95": 1.7105001024901867
+    }
+   },
+   "export_report": "experiments/compression-v3/export-ffn2048-seed1.json",
+   "onnx_int8_mb": 28.658533
+  },
+  "C-ffn2304": {
+   "param_count": 30070283,
+   "checkpoint_safetensors_mb": 120.28962,
+   "onnx_fp32_mb": 120.319618,
+   "int8_agreement_50_notes": {
+    "samples": 50,
+    "type_agreement": 1.0,
+    "tag_agreement": 0.9980276134122288,
+    "tag_tokens": 507,
+    "max_abs_diff_type_logits": 0.9156583547592163
+   },
+   "latency_1thread_total_ms": {
+    "torch_fp32": {
+     "p50": 3.066061995923519,
+     "p95": 3.4225829876959324
+    },
+    "onnx_fp32": {
+     "p50": 2.2196664940565825,
+     "p95": 2.549625001847744
+    },
+    "onnx_int8": {
+     "p50": 1.3920420315116644,
+     "p95": 1.7013340257108212
+    }
+   },
+   "export_report": "experiments/compression-v4/export-ffn2304-seed1.json",
+   "onnx_int8_mb": 30.235493
+  },
+  "C_estimate_int8_mb": 30.217979967602123
+ },
+ "quantization_seed1": {
+  "pos32-vocabB8000-4x768-seed1": {
+   "test": {
+    "torch": {
+     "type_accuracy": 0.9238095238095239,
+     "type_macro_f1": 0.9260079231054463,
+     "span_f1": 0.8076923076923077,
+     "span_exact": 0.8857142857142857,
+     "joint": 0.819047619047619
+    },
+    "fp32": {
+     "type_accuracy": 0.9238095238095239,
+     "type_macro_f1": 0.9260079231054463,
+     "span_f1": 0.8076923076923077,
+     "span_exact": 0.8857142857142857,
+     "joint": 0.819047619047619
+    },
+    "int8": {
+     "type_accuracy": 0.9238095238095239,
+     "type_macro_f1": 0.9260079231054463,
+     "span_f1": 0.8076923076923077,
+     "span_exact": 0.8857142857142857,
+     "joint": 0.819047619047619
+    }
+   },
+   "probe": {
+    "torch": {
+     "type_accuracy": 0.8271604938271605,
+     "type_macro_f1": 0.8146997929606625,
+     "span_f1": 0.7927927927927927,
+     "span_exact": 0.8271604938271605,
+     "joint": 0.6666666666666666
+    },
+    "fp32": {
+     "type_accuracy": 0.8271604938271605,
+     "type_macro_f1": 0.8146997929606625,
+     "span_f1": 0.7927927927927927,
+     "span_exact": 0.8271604938271605,
+     "joint": 0.6666666666666666
+    },
+    "int8": {
+     "type_accuracy": 0.8395061728395061,
+     "type_macro_f1": 0.8228363809291832,
+     "span_f1": 0.8073394495412846,
+     "span_exact": 0.8271604938271605,
+     "joint": 0.6666666666666666
+    }
+   }
+  },
+  "pos32-vocabB8000-ffn2048-4x768-seed1": {
+   "test": {
+    "torch": {
+     "type_accuracy": 0.9523809523809523,
+     "type_macro_f1": 0.962629263775274,
+     "span_f1": 0.8076923076923077,
+     "span_exact": 0.8857142857142857,
+     "joint": 0.8476190476190476
+    },
+    "fp32": {
+     "type_accuracy": 0.9523809523809523,
+     "type_macro_f1": 0.962629263775274,
+     "span_f1": 0.8076923076923077,
+     "span_exact": 0.8857142857142857,
+     "joint": 0.8476190476190476
+    },
+    "int8": {
+     "type_accuracy": 0.9523809523809523,
+     "type_macro_f1": 0.9615470126930229,
+     "span_f1": 0.8076923076923077,
+     "span_exact": 0.8857142857142857,
+     "joint": 0.8476190476190476
+    }
+   },
+   "probe": {
+    "torch": {
+     "type_accuracy": 0.7777777777777778,
+     "type_macro_f1": 0.7580047403576816,
+     "span_f1": 0.7818181818181819,
+     "span_exact": 0.8148148148148148,
+     "joint": 0.6049382716049383
+    },
+    "fp32": {
+     "type_accuracy": 0.7777777777777778,
+     "type_macro_f1": 0.7580047403576816,
+     "span_f1": 0.7818181818181819,
+     "span_exact": 0.8148148148148148,
+     "joint": 0.6049382716049383
+    },
+    "int8": {
+     "type_accuracy": 0.7777777777777778,
+     "type_macro_f1": 0.7543417366946779,
+     "span_f1": 0.7636363636363637,
+     "span_exact": 0.8024691358024691,
+     "joint": 0.5802469135802469
+    }
+   }
+  },
+  "pos32-vocabB8000-ffn2304-4x768-seed1": {
+   "test": {
+    "torch": {
+     "type_accuracy": 0.9333333333333333,
+     "type_macro_f1": 0.9440627492025518,
+     "span_f1": 0.7999999999999999,
+     "span_exact": 0.8761904761904762,
+     "joint": 0.8285714285714286
+    },
+    "fp32": {
+     "type_accuracy": 0.9333333333333333,
+     "type_macro_f1": 0.9440627492025518,
+     "span_f1": 0.7999999999999999,
+     "span_exact": 0.8761904761904762,
+     "joint": 0.8285714285714286
+    },
+    "int8": {
+     "type_accuracy": 0.9333333333333333,
+     "type_macro_f1": 0.9440627492025518,
+     "span_f1": 0.7999999999999999,
+     "span_exact": 0.8761904761904762,
+     "joint": 0.8285714285714286
+    }
+   },
+   "probe": {
+    "torch": {
+     "type_accuracy": 0.7901234567901234,
+     "type_macro_f1": 0.7594053005817712,
+     "span_f1": 0.7777777777777778,
+     "span_exact": 0.8024691358024691,
+     "joint": 0.6296296296296297
+    },
+    "fp32": {
+     "type_accuracy": 0.7901234567901234,
+     "type_macro_f1": 0.7594053005817712,
+     "span_f1": 0.7777777777777778,
+     "span_exact": 0.8024691358024691,
+     "joint": 0.6296296296296297
+    },
+    "int8": {
+     "type_accuracy": 0.7901234567901234,
+     "type_macro_f1": 0.7594053005817712,
+     "span_f1": 0.766355140186916,
+     "span_exact": 0.8024691358024691,
+     "joint": 0.6296296296296297
+    }
+   }
+  }
+ },
+ "conclusion": "B"
+}

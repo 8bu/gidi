@@ -1,0 +1,105 @@
+{"id": "baseline-01-a8a4e2d1c23b", "text": "muon chi Thao 500k", "gold_type": "borrow", "pred_type": "borrow", "gold_span": {"text": "Thao", "start": 9, "end": 13}, "pred_span": {"text": "Thao", "start": 9, "end": 13}}
+{"id": "baseline-01-f2f46a557baf", "text": "rut tien mat o cay tcb 1tr5", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-d7ab1b1d8d15", "text": "cat quy du phong 500k", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-c2d383dd1a0e", "text": "trà đá vỉa hè 10k", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": {"text": "hè", "start": 11, "end": 13}}
+{"id": "baseline-01-3044ac0da099", "text": "tien rac 30k", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-dab0dcc75d1e", "text": "mua giay the thao 1tr25", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": {"text": "ay", "start": 6, "end": 8}}
+{"id": "baseline-01-c9fb0e452117", "text": "khám răng 500k hôm qua", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-2123a362f627", "text": "ban may anh cu 6tr5", "gold_type": "income", "pred_type": "income", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-3c8e819afef4", "text": "vay đồng nghiệp 400k cuối tháng trả", "gold_type": "borrow", "pred_type": "borrow", "gold_span": {"text": "đồng nghiệp", "start": 4, "end": 15}, "pred_span": {"text": "đồng nghiệp", "start": 4, "end": 15}}
+{"id": "baseline-01-833abfae320a", "text": "được lì xì 800k", "gold_type": "income", "pred_type": "income", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-0f13fd308b63", "text": "mua vàng nhẫn pnj nửa chỉ 3tr95", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-caafbd67cb0a", "text": "tra no tien dien may hom truoc 700k", "gold_type": "repayment_out", "pred_type": "repayment_out", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-90a34dbd7ef8", "text": "anh Long mượn 3 triệu sửa xe", "gold_type": "lend", "pred_type": "lend", "gold_span": {"text": "Long", "start": 4, "end": 8}, "pred_span": {"text": "Long", "start": 4, "end": 8}}
+{"id": "baseline-01-ee03dc138256", "text": "bố cho tiền tiêu 1 triệu", "gold_type": "income", "pred_type": "income", "gold_span": {"text": "bố", "start": 0, "end": 2}, "pred_span": {"text": "bố", "start": 0, "end": 2}}
+{"id": "baseline-01-e54a7d3ca822", "text": "ck tk chính qua tk phụ 1tr", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-f6e34c255202", "text": "mua hoa qua biếu bà 200k", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": {"text": "bà", "start": 17, "end": 19}}
+{"id": "baseline-01-7103ec08b704", "text": "cho bạn Kiên mượn 1tr2 ck vcb", "gold_type": "lend", "pred_type": "lend", "gold_span": {"text": "Kiên", "start": 8, "end": 12}, "pred_span": {"text": "bạn Kiên", "start": 4, "end": 12}}
+{"id": "baseline-01-237a04da0464", "text": "gui xe benh vien 5k", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-324ef45f361c", "text": "ban dt cu dc 3 cu", "gold_type": "income", "pred_type": "income", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-a67e6aa3f39f", "text": "vé bóng đá 200k", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-87fbf0233b5a", "text": "ứng trước của sếp 2tr", "gold_type": "borrow", "pred_type": "borrow", "gold_span": {"text": "sếp", "start": 14, "end": 17}, "pred_span": {"text": "sếp", "start": 14, "end": 17}}
+{"id": "baseline-01-cd356c06d417", "text": "nạp ví grab 150k", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-15cec707aa5d", "text": "sữa cho bé 1tr1", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-e8c066dd0681", "text": "dong bao hiem nhan tho 1tr2", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-69c9cce877fb", "text": "hủ tiếu tối qua 35k", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-6304cab0305e", "text": "quy du lich thang nay 1tr", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-d8a1645f97de", "text": "sinh to bo 30k", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-11b0145e1aae", "text": "đi chợ 180K", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-2627bc241d6d", "text": "hạt cho chó 420.000đ", "gold_type": "expense", "pred_type": "refund", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-96bf8d061373", "text": "thưởng quý 5 triệu", "gold_type": "income", "pred_type": "income", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-11855b6adcc4", "text": "qua sinh nhat chi Ha 350k", "gold_type": "expense", "pred_type": "expense", "gold_span": {"text": "Ha", "start": 18, "end": 20}, "pred_span": null}
+{"id": "baseline-01-fcdb9c84edd6", "text": "mượn Phương 400k mua quà", "gold_type": "borrow", "pred_type": "borrow", "gold_span": {"text": "Phương", "start": 5, "end": 11}, "pred_span": null}
+{"id": "baseline-01-7468ba1eb687", "text": "mua rau thit cho 120k", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-2d74ae01e1f0", "text": "Nam muon 150k tien grab", "gold_type": "lend", "pred_type": "lend", "gold_span": {"text": "Nam", "start": 0, "end": 3}, "pred_span": {"text": "Nam", "start": 0, "end": 3}}
+{"id": "baseline-01-b590dd3df660", "text": "tra lai chi Mai 2tr", "gold_type": "repayment_out", "pred_type": "expense", "gold_span": {"text": "Mai", "start": 12, "end": 15}, "pred_span": {"text": "Mai", "start": 12, "end": 15}}
+{"id": "baseline-01-d7d840164a2e", "text": "tien phong thang 11 3tr2", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": {"text": "phong", "start": 5, "end": 10}}
+{"id": "baseline-01-3ee8710fee18", "text": "mua giày ở shopee 649k", "gold_type": "expense", "pred_type": "expense", "gold_span": {"text": "shopee", "start": 11, "end": 17}, "pred_span": {"text": "shopee", "start": 11, "end": 17}}
+{"id": "baseline-01-78c818fde016", "text": "góp xe tháng 12 1tr9", "gold_type": "repayment_out", "pred_type": "repayment_out", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-82f29c0ccb74", "text": "vay tiêu dùng trả kỳ này 3tr4", "gold_type": "repayment_out", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-ba4d9f58a5ff", "text": "nuoc mia 12k", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": {"text": "mia", "start": 5, "end": 8}}
+{"id": "baseline-01-cee0d0c8e079", "text": "ck sang tk tiet kiem 3tr", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-a7142911f05a", "text": "chè thái 25k", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-ebf8bca50f8d", "text": "tien chay grab hom nay 450k", "gold_type": "income", "pred_type": "expense", "gold_span": {"text": "grab", "start": 10, "end": 14}, "pred_span": {"text": "ab", "start": 12, "end": 14}}
+{"id": "baseline-01-9c472195bd33", "text": "mua sach 2 cuon tiki 215k", "gold_type": "expense", "pred_type": "expense", "gold_span": {"text": "tiki", "start": 16, "end": 20}, "pred_span": {"text": "tiki", "start": 16, "end": 20}}
+{"id": "baseline-01-0f59c6e23599", "text": "chuyển vcb sang tcb 5tr", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-1267d4cc9f5b", "text": "bo heo 100k", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-dbf5b4023040", "text": "trúng vé số 200k", "gold_type": "income", "pred_type": "income", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-3e079aeb93a2", "text": "ck từ tcb sang momo 500k", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-3b15ae81ca06", "text": "trả hết nợ Bình rồi 2 triệu", "gold_type": "repayment_out", "pred_type": "repayment_out", "gold_span": {"text": "Bình", "start": 11, "end": 15}, "pred_span": null}
+{"id": "baseline-01-8333d3354e18", "text": "cuoc internet viettel 180k", "gold_type": "expense", "pred_type": "expense", "gold_span": {"text": "viettel", "start": 14, "end": 21}, "pred_span": {"text": "viettel", "start": 14, "end": 21}}
+{"id": "baseline-01-56a7ee75454e", "text": "gia han goi 4g 120k", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-07ca1f56011d", "text": "de rieng tien sua xe 800k", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-30cd0e980666", "text": "bách hoá xanh rau thịt 187k", "gold_type": "expense", "pred_type": "income", "gold_span": {"text": "bách hoá xanh", "start": 0, "end": 13}, "pred_span": {"text": "bách hoá", "start": 0, "end": 8}}
+{"id": "baseline-01-300261469d21", "text": "tiền nhà tháng 10 4tr", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-da31f9d501a9", "text": "chuyển qua tk phụ 3 triệu", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-8bb7d191a91e", "text": "góp xe tháng 11 2,1tr", "gold_type": "repayment_out", "pred_type": "repayment_out", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-2a7ee878b221", "text": "trả nợ Bảo 300k tiền cf", "gold_type": "repayment_out", "pred_type": "repayment_out", "gold_span": {"text": "Bảo", "start": 7, "end": 10}, "pred_span": {"text": "c", "start": 21, "end": 22}}
+{"id": "baseline-01-39d879de5dec", "text": "tra the tin dung vcb 2,5tr", "gold_type": "repayment_out", "pred_type": "repayment_out", "gold_span": {"text": "vcb", "start": 17, "end": 20}, "pred_span": {"text": "vcb", "start": 17, "end": 20}}
+{"id": "baseline-01-80e41e000438", "text": "phí gym tháng 500k", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-bcb392825ae4", "text": "mì quảng sáng nay 40k", "gold_type": "expense", "pred_type": "expense", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-ba518108d4b3", "text": "tra gop dt thang 3 1tr450", "gold_type": "repayment_out", "pred_type": "repayment_out", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-d1c0bf5f7646", "text": "chuyen tien the phu 700k", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-576ad560ebae", "text": "coopmart đồ dùng tuần 412k", "gold_type": "expense", "pred_type": "income", "gold_span": {"text": "coopmart", "start": 0, "end": 8}, "pred_span": null}
+{"id": "baseline-01-304bfe5637ab", "text": "cho a Nam vay 1 triệu 20/10", "gold_type": "lend", "pred_type": "lend", "gold_span": {"text": "Nam", "start": 6, "end": 9}, "pred_span": {"text": "Nam", "start": 6, "end": 9}}
+{"id": "baseline-01-d74a957149fd", "text": "lì xì cháu 200k", "gold_type": "expense", "pred_type": "income", "gold_span": {"text": "cháu", "start": 6, "end": 10}, "pred_span": {"text": "cháu", "start": 6, "end": 10}}
+{"id": "baseline-01-e2f16245d7af", "text": "vay chú Hải 20tr mua xe", "gold_type": "borrow", "pred_type": "borrow", "gold_span": {"text": "Hải", "start": 8, "end": 11}, "pred_span": {"text": "chú", "start": 4, "end": 7}}
+{"id": "baseline-01-00093031738d", "text": "trả dần nợ cô Hạnh 500k", "gold_type": "repayment_out", "pred_type": "repayment_out", "gold_span": {"text": "Hạnh", "start": 14, "end": 18}, "pred_span": {"text": "Hạnh", "start": 14, "end": 18}}
+{"id": "baseline-01-3d842abb36b3", "text": "để dành mua xe 2 củ", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-2763f3e858d0", "text": "nhan tien day kem 2tr4", "gold_type": "income", "pred_type": "income", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-92e6808256ca", "text": "nhan tien viet bai 600 nghin", "gold_type": "income", "pred_type": "income", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-20eb040c0585", "text": "starbucks 1 ly 89,000", "gold_type": "expense", "pred_type": "expense", "gold_span": {"text": "starbucks", "start": 0, "end": 9}, "pred_span": null}
+{"id": "baseline-01-ea2ada2276b7", "text": "trích lương tiết kiệm 3tr", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-30d790f0205f", "text": "mừng thọ bà nội 1 triệu", "gold_type": "expense", "pred_type": "expense", "gold_span": {"text": "bà nội", "start": 9, "end": 15}, "pred_span": {"text": "thọ", "start": 5, "end": 8}}
+{"id": "baseline-01-13224bd5cc19", "text": "bee đi học 18k", "gold_type": "expense", "pred_type": "expense", "gold_span": {"text": "bee", "start": 0, "end": 3}, "pred_span": {"text": "bee", "start": 0, "end": 3}}
+{"id": "baseline-01-e379fe114a80", "text": "thưởng kpi quý 3 3tr2", "gold_type": "income", "pred_type": "income", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-169ed58e113c", "text": "bán quần áo cũ trên shopee 450k", "gold_type": "income", "pred_type": "income", "gold_span": {"text": "shopee", "start": 20, "end": 26}, "pred_span": {"text": "shopee", "start": 20, "end": 26}}
+{"id": "baseline-01-5c7b93b73456", "text": "grabfood bún đậu 72k", "gold_type": "expense", "pred_type": "expense", "gold_span": {"text": "grabfood", "start": 0, "end": 8}, "pred_span": {"text": "grabfood", "start": 0, "end": 8}}
+{"id": "baseline-01-83a8de1156c4", "text": "mở sổ tiết kiệm agribank 15tr", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-f53c1d549124", "text": "rút 500k đi chợ", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "baseline-01-888a587200b0", "text": "rut 1tr di dam cuoi", "gold_type": "transfer", "pred_type": "transfer", "gold_span": null, "pred_span": null}
+{"id": "targeted-annotation-v1-01-6b71966f3f06", "text": "Thắng vay 5 củ, hẹn t10 trả", "gold_type": "lend", "pred_type": "lend", "gold_span": {"text": "Thắng", "start": 0, "end": 5}, "pred_span": {"text": "Th", "start": 0, "end": 2}}
+{"id": "targeted-annotation-v1-01-6ddde33f35c6", "text": "dì Tư gửi trả 3 triệu đã mượn", "gold_type": "repayment_in", "pred_type": "repayment_in", "gold_span": {"text": "dì Tư", "start": 0, "end": 5}, "pred_span": {"text": "dì Tư", "start": 0, "end": 5}}
+{"id": "targeted-annotation-v1-01-f2e9396ff58d", "text": "shopee hoan tien tra hang 210k", "gold_type": "refund", "pred_type": "refund", "gold_span": {"text": "shopee", "start": 0, "end": 6}, "pred_span": {"text": "shopee", "start": 0, "end": 6}}
+{"id": "targeted-annotation-v1-01-a07b6b6eb45c", "text": "bảo việt bồi thường viện phí 2tr6", "gold_type": "refund", "pred_type": "refund", "gold_span": {"text": "bảo việt", "start": 0, "end": 8}, "pred_span": {"text": "bảo việt", "start": 0, "end": 8}}
+{"id": "targeted-annotation-v1-01-84622e5a18da", "text": "Nhi ck tra lai 120k tien sua", "gold_type": "repayment_in", "pred_type": "repayment_in", "gold_span": {"text": "Nhi", "start": 0, "end": 3}, "pred_span": {"text": "Nhi", "start": 0, "end": 3}}
+{"id": "targeted-annotation-v1-01-77e8b73b5a1a", "text": "cho Lợi 1tr, hẹn cuối tháng trả", "gold_type": "lend", "pred_type": "expense", "gold_span": {"text": "Lợi", "start": 4, "end": 7}, "pred_span": null}
+{"id": "targeted-annotation-v1-01-b905ee419bca", "text": "Toan tra het no roi 2tr", "gold_type": "repayment_in", "pred_type": "repayment_in", "gold_span": {"text": "Toan", "start": 0, "end": 4}, "pred_span": {"text": "Toan", "start": 0, "end": 4}}
+{"id": "targeted-annotation-v1-01-cf81f8019195", "text": "lazda hoàn tiền đơn hủy 259k", "gold_type": "refund", "pred_type": "refund", "gold_span": {"text": "lazda", "start": 0, "end": 5}, "pred_span": {"text": "lazda", "start": 0, "end": 5}}
+{"id": "targeted-annotation-v1-01-89980a1e50a3", "text": "cashback thẻ vib 230k", "gold_type": "refund", "pred_type": "refund", "gold_span": {"text": "vib", "start": 13, "end": 16}, "pred_span": {"text": "vib", "start": 13, "end": 16}}
+{"id": "targeted-annotation-v1-01-dfb2984f1554", "text": "Lộc trả tiền nợ tuần trước 450.000đ", "gold_type": "repayment_in", "pred_type": "repayment_in", "gold_span": {"text": "Lộc", "start": 0, "end": 3}, "pred_span": {"text": "Lộc", "start": 0, "end": 3}}
+{"id": "targeted-annotation-v1-01-86a1d00f5a29", "text": "vay home credit giai ngan 15tr", "gold_type": "borrow", "pred_type": "repayment_out", "gold_span": {"text": "home credit", "start": 4, "end": 15}, "pred_span": {"text": "home credit", "start": 4, "end": 15}}
+{"id": "targeted-annotation-v1-01-1d247aecdecf", "text": "shopeefood hoàn 67k đơn giao thiếu", "gold_type": "refund", "pred_type": "refund", "gold_span": {"text": "shopeefood", "start": 0, "end": 10}, "pred_span": {"text": "shopeefood", "start": 0, "end": 10}}
+{"id": "targeted-annotation-v1-01-8b9aea00438d", "text": "Thao tra lai 350k minh chi ho", "gold_type": "repayment_in", "pred_type": "repayment_in", "gold_span": {"text": "Thao", "start": 0, "end": 4}, "pred_span": {"text": "Thao", "start": 0, "end": 4}}
+{"id": "targeted-annotation-v1-01-7fb4eedb38da", "text": "em trai trả 300k tiền mượn tháng trước", "gold_type": "repayment_in", "pred_type": "repayment_in", "gold_span": {"text": "em trai", "start": 0, "end": 7}, "pred_span": {"text": "em trai", "start": 0, "end": 7}}
+{"id": "targeted-annotation-v1-01-95e3e3addb57", "text": "spotify refund 59k", "gold_type": "refund", "pred_type": "refund", "gold_span": {"text": "spotify", "start": 0, "end": 7}, "pred_span": {"text": "spotify", "start": 0, "end": 7}}
+{"id": "targeted-annotation-v1-01-7b06da87f618", "text": "Phat muon tam 1tr", "gold_type": "lend", "pred_type": "borrow", "gold_span": {"text": "Phat", "start": 0, "end": 4}, "pred_span": {"text": "Phat", "start": 0, "end": 4}}
+{"id": "targeted-annotation-v1-01-2cda1d910520", "text": "vay ngân hàng mua nhà giải ngân 800tr", "gold_type": "borrow", "pred_type": "borrow", "gold_span": {"text": "ngân hàng", "start": 4, "end": 13}, "pred_span": null}
+{"id": "targeted-annotation-v1-01-7d1037648087", "text": "roommate tra tien nha minh dong truoc 1tr5", "gold_type": "repayment_in", "pred_type": "repayment_in", "gold_span": {"text": "roommate", "start": 0, "end": 8}, "pred_span": {"text": "ro", "start": 0, "end": 2}}
+{"id": "targeted-annotation-v1-01-6bd81e618b99", "text": "co Thuy cho muon 1tr", "gold_type": "borrow", "pred_type": "borrow", "gold_span": {"text": "Thuy", "start": 3, "end": 7}, "pred_span": {"text": "Th", "start": 3, "end": 5}}
+{"id": "targeted-annotation-v1-01-81f1c9cec4b3", "text": "bao hiem tra tien kham 850k", "gold_type": "refund", "pred_type": "refund", "gold_span": null, "pred_span": null}
+{"id": "targeted-annotation-v1-01-952f105851cc", "text": "ứng 2tr", "gold_type": "borrow", "pred_type": "lend", "gold_span": null, "pred_span": null}
+{"id": "targeted-annotation-v1-01-e9f840de6895", "text": "cho anh rể vay thêm 10tr", "gold_type": "lend", "pred_type": "lend", "gold_span": {"text": "anh rể", "start": 4, "end": 10}, "pred_span": {"text": "anh", "start": 4, "end": 7}}
+{"id": "targeted-annotation-v1-01-8b5804d4944f", "text": "ck cho Vũ mượn 700k", "gold_type": "lend", "pred_type": "lend", "gold_span": {"text": "Vũ", "start": 7, "end": 9}, "pred_span": null}
+{"id": "targeted-annotation-v1-01-4d06a6abdd9b", "text": "điện máy xanh hoàn tiền nồi cơm lỗi 890k", "gold_type": "refund", "pred_type": "refund", "gold_span": {"text": "điện máy xanh", "start": 0, "end": 13}, "pred_span": null}
+{"id": "targeted-annotation-v1-01-9d98b78854de", "text": "đòi được nợ thằng Lâm 400k", "gold_type": "repayment_in", "pred_type": "expense", "gold_span": {"text": "Lâm", "start": 18, "end": 21}, "pred_span": null}

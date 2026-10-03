@@ -1,0 +1,258 @@
+2026-10-03 09:46:38,315 WARNING MPS kernels are not bit-reproducible; repeated runs of a seed may differ.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-03 09:46:39,551 WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 15062.40it/s]
+[transformers] [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.dense.weight      | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.decoder.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-10-03 09:46:39,683 WARNING [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.dense.weight      | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.decoder.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/torch/autograd/graph.py:1072: UserWarning: index_put_with_accumulate_mps does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/Context.cpp:190.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2026-10-03 09:46:49,608 INFO [value seed1] epoch 1 step 113 loss 3.3992 (type 2.0113 target 0.6264 value 0.7615) val: value F1 0.5074 exact 0.4863 8.2s
+2026-10-03 09:46:57,341 INFO [value seed1] epoch 2 step 226 loss 2.2729 (type 1.6277 target 0.4091 value 0.2361) val: value F1 0.9273 exact 0.9247 7.6s
+2026-10-03 09:47:04,940 INFO [value seed1] epoch 3 step 339 loss 1.2923 (type 0.8307 target 0.3448 value 0.1168) val: value F1 0.9481 exact 0.9452 7.5s
+2026-10-03 09:47:12,530 INFO [value seed1] epoch 4 step 452 loss 0.6972 (type 0.3727 target 0.2698 value 0.0547) val: value F1 0.9689 exact 0.9658 7.5s
+2026-10-03 09:47:20,113 INFO [value seed1] epoch 5 step 565 loss 0.4189 (type 0.2047 target 0.1837 value 0.0305) val: value F1 0.9931 exact 0.9932 7.5s
+2026-10-03 09:47:27,682 INFO [value seed1] epoch 6 step 678 loss 0.2121 (type 0.0895 target 0.1040 value 0.0187) val: value F1 0.9896 exact 0.9863 7.5s
+2026-10-03 09:47:35,262 INFO [value seed1] epoch 7 step 791 loss 0.1226 (type 0.0444 target 0.0710 value 0.0072) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:47:42,765 INFO [value seed1] epoch 8 step 904 loss 0.0812 (type 0.0260 target 0.0489 value 0.0063) val: value F1 0.9861 exact 0.9795 7.4s
+2026-10-03 09:47:50,386 INFO [value seed1] epoch 9 step 1017 loss 0.0454 (type 0.0249 target 0.0158 value 0.0048) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:47:57,973 INFO [value seed1] epoch 10 step 1130 loss 0.0251 (type 0.0065 target 0.0143 value 0.0043) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:48:05,514 INFO [value seed1] epoch 11 step 1243 loss 0.0271 (type 0.0149 target 0.0077 value 0.0045) val: value F1 1.0000 exact 1.0000 7.4s
+2026-10-03 09:48:13,239 INFO [value seed1] epoch 12 step 1356 loss 0.0099 (type 0.0023 target 0.0042 value 0.0033) val: value F1 1.0000 exact 1.0000 7.6s
+2026-10-03 09:48:20,903 INFO [value seed1] epoch 13 step 1469 loss 0.0088 (type 0.0030 target 0.0051 value 0.0007) val: value F1 1.0000 exact 1.0000 7.6s
+2026-10-03 09:48:28,437 INFO [value seed1] epoch 14 step 1582 loss 0.0046 (type 0.0013 target 0.0026 value 0.0006) val: value F1 1.0000 exact 1.0000 7.4s
+2026-10-03 09:48:35,956 INFO [value seed1] epoch 15 step 1695 loss 0.0029 (type 0.0008 target 0.0017 value 0.0004) val: value F1 0.9965 exact 0.9932 7.4s
+2026-10-03 09:48:43,613 INFO [value seed1] epoch 16 step 1808 loss 0.0017 (type 0.0003 target 0.0013 value 0.0002) val: value F1 0.9965 exact 0.9932 7.6s
+2026-10-03 09:48:51,242 INFO [value seed1] epoch 17 step 1921 loss 0.0022 (type 0.0006 target 0.0015 value 0.0001) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:48:58,796 INFO [value seed1] epoch 18 step 2034 loss 0.0008 (type 0.0004 target 0.0003 value 0.0001) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:49:06,409 INFO [value seed1] epoch 19 step 2147 loss 0.0023 (type 0.0017 target 0.0004 value 0.0002) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:49:14,015 INFO [value seed1] epoch 20 step 2260 loss 0.0009 (type 0.0002 target 0.0005 value 0.0002) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:49:21,523 INFO [value seed1] epoch 21 step 2373 loss 0.0014 (type 0.0002 target 0.0012 value 0.0001) val: value F1 0.9965 exact 0.9932 7.4s
+2026-10-03 09:49:29,242 INFO [value seed1] epoch 22 step 2486 loss 0.0012 (type 0.0001 target 0.0004 value 0.0006) val: value F1 1.0000 exact 1.0000 7.6s
+2026-10-03 09:49:36,805 INFO [value seed1] epoch 23 step 2599 loss 0.0004 (type 0.0001 target 0.0002 value 0.0001) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:49:44,445 INFO [value seed1] epoch 24 step 2712 loss 0.0009 (type 0.0002 target 0.0006 value 0.0001) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:49:52,026 INFO [value seed1] epoch 25 step 2825 loss 0.0003 (type 0.0001 target 0.0002 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:49:59,621 INFO [value seed1] epoch 26 step 2938 loss 0.0002 (type 0.0001 target 0.0001 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:50:07,181 INFO [value seed1] epoch 27 step 3051 loss 0.0008 (type 0.0001 target 0.0005 value 0.0003) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:50:14,776 INFO [value seed1] epoch 28 step 3164 loss 0.0007 (type 0.0001 target 0.0005 value 0.0001) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:50:22,446 INFO [value seed1] epoch 29 step 3277 loss 0.0002 (type 0.0001 target 0.0000 value 0.0000) val: value F1 0.9965 exact 0.9932 7.6s
+2026-10-03 09:50:30,037 INFO [value seed1] epoch 30 step 3390 loss 0.0002 (type 0.0001 target 0.0001 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:50:37,604 INFO [value seed1] epoch 31 step 3503 loss 0.0007 (type 0.0001 target 0.0003 value 0.0004) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:50:45,335 INFO [value seed1] epoch 32 step 3616 loss 0.0002 (type 0.0001 target 0.0000 value 0.0001) val: value F1 1.0000 exact 1.0000 7.6s
+2026-10-03 09:50:52,937 INFO [value seed1] epoch 33 step 3729 loss 0.0003 (type 0.0001 target 0.0002 value 0.0000) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:51:00,517 INFO [value seed1] epoch 34 step 3842 loss 0.0004 (type 0.0001 target 0.0002 value 0.0001) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:51:08,059 INFO [value seed1] epoch 35 step 3955 loss 0.0004 (type 0.0001 target 0.0003 value 0.0000) val: value F1 1.0000 exact 1.0000 7.4s
+2026-10-03 09:51:15,614 INFO [value seed1] epoch 36 step 4068 loss 0.0002 (type 0.0001 target 0.0000 value 0.0001) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:51:23,209 INFO [value seed1] epoch 37 step 4181 loss 0.0001 (type 0.0001 target 0.0000 value 0.0000) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:51:30,792 INFO [value seed1] epoch 38 step 4294 loss 0.0003 (type 0.0001 target 0.0001 value 0.0002) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:51:38,366 INFO [value seed1] epoch 39 step 4407 loss 0.0001 (type 0.0001 target 0.0000 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:51:45,922 INFO [value seed1] epoch 40 step 4520 loss 0.0001 (type 0.0001 target 0.0000 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:51:46,986 WARNING MPS kernels are not bit-reproducible; repeated runs of a seed may differ.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 17052.13it/s]
+[transformers] [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.dense.weight      | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.decoder.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-10-03 09:51:48,169 WARNING [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.dense.weight      | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.decoder.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-10-03 09:51:57,138 INFO [value seed2] epoch 1 step 113 loss 3.4347 (type 2.0250 target 0.6524 value 0.7573) val: value F1 0.5948 exact 0.5616 7.6s
+2026-10-03 09:52:04,778 INFO [value seed2] epoch 2 step 226 loss 2.2763 (type 1.6284 target 0.4161 value 0.2318) val: value F1 0.9343 exact 0.9315 7.5s
+2026-10-03 09:52:12,347 INFO [value seed2] epoch 3 step 339 loss 1.2358 (type 0.7719 target 0.3505 value 0.1133) val: value F1 0.9550 exact 0.9521 7.5s
+2026-10-03 09:52:19,969 INFO [value seed2] epoch 4 step 452 loss 0.7427 (type 0.3995 target 0.2846 value 0.0586) val: value F1 0.9619 exact 0.9589 7.5s
+2026-10-03 09:52:27,552 INFO [value seed2] epoch 5 step 565 loss 0.4418 (type 0.2085 target 0.2028 value 0.0305) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:52:35,183 INFO [value seed2] epoch 6 step 678 loss 0.2361 (type 0.1019 target 0.1173 value 0.0169) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:52:42,704 INFO [value seed2] epoch 7 step 791 loss 0.1322 (type 0.0498 target 0.0730 value 0.0094) val: value F1 0.9965 exact 0.9932 7.4s
+2026-10-03 09:52:50,340 INFO [value seed2] epoch 8 step 904 loss 0.0696 (type 0.0254 target 0.0384 value 0.0058) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:52:57,938 INFO [value seed2] epoch 9 step 1017 loss 0.0396 (type 0.0112 target 0.0254 value 0.0030) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:53:05,484 INFO [value seed2] epoch 10 step 1130 loss 0.0234 (type 0.0091 target 0.0109 value 0.0034) val: value F1 0.9965 exact 0.9932 7.4s
+2026-10-03 09:53:13,050 INFO [value seed2] epoch 11 step 1243 loss 0.0141 (type 0.0023 target 0.0097 value 0.0021) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:53:20,679 INFO [value seed2] epoch 12 step 1356 loss 0.0093 (type 0.0031 target 0.0044 value 0.0018) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:53:28,211 INFO [value seed2] epoch 13 step 1469 loss 0.0103 (type 0.0018 target 0.0042 value 0.0042) val: value F1 0.9965 exact 0.9932 7.4s
+2026-10-03 09:53:35,857 INFO [value seed2] epoch 14 step 1582 loss 0.0070 (type 0.0016 target 0.0039 value 0.0014) val: value F1 0.9965 exact 0.9932 7.6s
+2026-10-03 09:53:43,439 INFO [value seed2] epoch 15 step 1695 loss 0.0028 (type 0.0005 target 0.0017 value 0.0006) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:53:51,086 INFO [value seed2] epoch 16 step 1808 loss 0.0026 (type 0.0004 target 0.0019 value 0.0002) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:53:58,716 INFO [value seed2] epoch 17 step 1921 loss 0.0086 (type 0.0054 target 0.0017 value 0.0015) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:54:06,381 INFO [value seed2] epoch 18 step 2034 loss 0.0012 (type 0.0004 target 0.0003 value 0.0006) val: value F1 0.9965 exact 0.9932 7.6s
+2026-10-03 09:54:13,990 INFO [value seed2] epoch 19 step 2147 loss 0.0021 (type 0.0002 target 0.0017 value 0.0001) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:54:21,567 INFO [value seed2] epoch 20 step 2260 loss 0.0017 (type 0.0002 target 0.0009 value 0.0006) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:54:29,176 INFO [value seed2] epoch 21 step 2373 loss 0.0008 (type 0.0003 target 0.0002 value 0.0003) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:54:36,755 INFO [value seed2] epoch 22 step 2486 loss 0.0009 (type 0.0004 target 0.0003 value 0.0002) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:54:44,486 INFO [value seed2] epoch 23 step 2599 loss 0.0015 (type 0.0002 target 0.0009 value 0.0005) val: value F1 0.9965 exact 0.9932 7.6s
+2026-10-03 09:54:52,075 INFO [value seed2] epoch 24 step 2712 loss 0.0019 (type 0.0001 target 0.0007 value 0.0011) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:54:59,725 INFO [value seed2] epoch 25 step 2825 loss 0.0005 (type 0.0001 target 0.0001 value 0.0002) val: value F1 0.9965 exact 0.9932 7.6s
+2026-10-03 09:55:07,302 INFO [value seed2] epoch 26 step 2938 loss 0.0003 (type 0.0001 target 0.0002 value 0.0001) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:55:14,887 INFO [value seed2] epoch 27 step 3051 loss 0.0003 (type 0.0001 target 0.0001 value 0.0002) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:55:22,514 INFO [value seed2] epoch 28 step 3164 loss 0.0003 (type 0.0001 target 0.0001 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:55:30,178 INFO [value seed2] epoch 29 step 3277 loss 0.0009 (type 0.0001 target 0.0002 value 0.0006) val: value F1 0.9965 exact 0.9932 7.6s
+2026-10-03 09:55:37,807 INFO [value seed2] epoch 30 step 3390 loss 0.0002 (type 0.0001 target 0.0001 value 0.0001) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:55:45,429 INFO [value seed2] epoch 31 step 3503 loss 0.0004 (type 0.0002 target 0.0001 value 0.0001) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:55:52,988 INFO [value seed2] epoch 32 step 3616 loss 0.0002 (type 0.0001 target 0.0001 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:56:00,590 INFO [value seed2] epoch 33 step 3729 loss 0.0007 (type 0.0001 target 0.0005 value 0.0001) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:56:08,136 INFO [value seed2] epoch 34 step 3842 loss 0.0002 (type 0.0001 target 0.0001 value 0.0000) val: value F1 0.9965 exact 0.9932 7.4s
+2026-10-03 09:56:15,711 INFO [value seed2] epoch 35 step 3955 loss 0.0002 (type 0.0001 target 0.0000 value 0.0001) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:56:23,366 INFO [value seed2] epoch 36 step 4068 loss 0.0006 (type 0.0001 target 0.0004 value 0.0001) val: value F1 0.9965 exact 0.9932 7.6s
+2026-10-03 09:56:30,908 INFO [value seed2] epoch 37 step 4181 loss 0.0001 (type 0.0001 target 0.0000 value 0.0000) val: value F1 0.9965 exact 0.9932 7.4s
+2026-10-03 09:56:38,489 INFO [value seed2] epoch 38 step 4294 loss 0.0006 (type 0.0001 target 0.0000 value 0.0005) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:56:46,210 INFO [value seed2] epoch 39 step 4407 loss 0.0003 (type 0.0001 target 0.0001 value 0.0001) val: value F1 0.9965 exact 0.9932 7.6s
+2026-10-03 09:56:53,769 INFO [value seed2] epoch 40 step 4520 loss 0.0002 (type 0.0001 target 0.0001 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:56:54,963 WARNING MPS kernels are not bit-reproducible; repeated runs of a seed may differ.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 14357.81it/s]
+[transformers] [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.dense.weight      | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.decoder.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-10-03 09:56:56,164 WARNING [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.dense.weight      | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.decoder.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-10-03 09:57:05,120 INFO [value seed3] epoch 1 step 113 loss 3.4236 (type 2.0110 target 0.6685 value 0.7441) val: value F1 0.6548 exact 0.6370 7.5s
+2026-10-03 09:57:12,858 INFO [value seed3] epoch 2 step 226 loss 2.2645 (type 1.6295 target 0.4128 value 0.2222) val: value F1 0.9306 exact 0.9247 7.6s
+2026-10-03 09:57:20,511 INFO [value seed3] epoch 3 step 339 loss 1.2858 (type 0.8303 target 0.3498 value 0.1058) val: value F1 0.9444 exact 0.9384 7.6s
+2026-10-03 09:57:28,110 INFO [value seed3] epoch 4 step 452 loss 0.7135 (type 0.3743 target 0.2783 value 0.0609) val: value F1 0.9827 exact 0.9795 7.5s
+2026-10-03 09:57:35,692 INFO [value seed3] epoch 5 step 565 loss 0.4194 (type 0.1945 target 0.1946 value 0.0303) val: value F1 0.9931 exact 0.9932 7.5s
+2026-10-03 09:57:43,232 INFO [value seed3] epoch 6 step 678 loss 0.2266 (type 0.0877 target 0.1213 value 0.0175) val: value F1 0.9965 exact 0.9932 7.4s
+2026-10-03 09:57:50,779 INFO [value seed3] epoch 7 step 791 loss 0.1276 (type 0.0468 target 0.0690 value 0.0119) val: value F1 0.9965 exact 0.9932 7.4s
+2026-10-03 09:57:58,372 INFO [value seed3] epoch 8 step 904 loss 0.0737 (type 0.0250 target 0.0417 value 0.0069) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:58:05,932 INFO [value seed3] epoch 9 step 1017 loss 0.0333 (type 0.0094 target 0.0188 value 0.0051) val: value F1 0.9931 exact 0.9932 7.5s
+2026-10-03 09:58:13,530 INFO [value seed3] epoch 10 step 1130 loss 0.0241 (type 0.0043 target 0.0177 value 0.0021) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:58:21,115 INFO [value seed3] epoch 11 step 1243 loss 0.0158 (type 0.0051 target 0.0085 value 0.0022) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:58:28,681 INFO [value seed3] epoch 12 step 1356 loss 0.0084 (type 0.0019 target 0.0047 value 0.0018) val: value F1 1.0000 exact 1.0000 7.5s
+2026-10-03 09:58:36,251 INFO [value seed3] epoch 13 step 1469 loss 0.0112 (type 0.0047 target 0.0050 value 0.0015) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:58:43,796 INFO [value seed3] epoch 14 step 1582 loss 0.0062 (type 0.0020 target 0.0039 value 0.0003) val: value F1 0.9965 exact 0.9932 7.4s
+2026-10-03 09:58:51,393 INFO [value seed3] epoch 15 step 1695 loss 0.0049 (type 0.0008 target 0.0035 value 0.0006) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:58:59,014 INFO [value seed3] epoch 16 step 1808 loss 0.0036 (type 0.0005 target 0.0029 value 0.0003) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:59:06,589 INFO [value seed3] epoch 17 step 1921 loss 0.0024 (type 0.0005 target 0.0015 value 0.0004) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:59:14,179 INFO [value seed3] epoch 18 step 2034 loss 0.0020 (type 0.0007 target 0.0010 value 0.0003) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:59:21,703 INFO [value seed3] epoch 19 step 2147 loss 0.0012 (type 0.0002 target 0.0007 value 0.0003) val: value F1 0.9965 exact 0.9932 7.4s
+2026-10-03 09:59:29,267 INFO [value seed3] epoch 20 step 2260 loss 0.0011 (type 0.0002 target 0.0006 value 0.0003) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:59:36,908 INFO [value seed3] epoch 21 step 2373 loss 0.0010 (type 0.0002 target 0.0007 value 0.0001) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:59:44,515 INFO [value seed3] epoch 22 step 2486 loss 0.0008 (type 0.0001 target 0.0006 value 0.0002) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:59:52,096 INFO [value seed3] epoch 23 step 2599 loss 0.0005 (type 0.0001 target 0.0003 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 09:59:59,669 INFO [value seed3] epoch 24 step 2712 loss 0.0016 (type 0.0002 target 0.0001 value 0.0013) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 10:00:07,230 INFO [value seed3] epoch 25 step 2825 loss 0.0016 (type 0.0002 target 0.0011 value 0.0004) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 10:00:14,798 INFO [value seed3] epoch 26 step 2938 loss 0.0006 (type 0.0001 target 0.0002 value 0.0003) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 10:00:22,386 INFO [value seed3] epoch 27 step 3051 loss 0.0003 (type 0.0001 target 0.0001 value 0.0001) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 10:00:30,064 INFO [value seed3] epoch 28 step 3164 loss 0.0003 (type 0.0001 target 0.0001 value 0.0001) val: value F1 0.9965 exact 0.9932 7.6s
+2026-10-03 10:00:37,775 INFO [value seed3] epoch 29 step 3277 loss 0.0003 (type 0.0001 target 0.0001 value 0.0001) val: value F1 0.9965 exact 0.9932 7.6s
+2026-10-03 10:00:45,492 INFO [value seed3] epoch 30 step 3390 loss 0.0005 (type 0.0001 target 0.0003 value 0.0001) val: value F1 0.9965 exact 0.9932 7.6s
+2026-10-03 10:00:53,114 INFO [value seed3] epoch 31 step 3503 loss 0.0006 (type 0.0001 target 0.0000 value 0.0005) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 10:01:00,729 INFO [value seed3] epoch 32 step 3616 loss 0.0002 (type 0.0001 target 0.0001 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 10:01:08,346 INFO [value seed3] epoch 33 step 3729 loss 0.0005 (type 0.0001 target 0.0004 value 0.0001) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 10:01:15,954 INFO [value seed3] epoch 34 step 3842 loss 0.0002 (type 0.0001 target 0.0000 value 0.0001) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 10:01:23,566 INFO [value seed3] epoch 35 step 3955 loss 0.0002 (type 0.0001 target 0.0001 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 10:01:31,090 INFO [value seed3] epoch 36 step 4068 loss 0.0002 (type 0.0001 target 0.0001 value 0.0000) val: value F1 0.9965 exact 0.9932 7.4s
+2026-10-03 10:01:38,735 INFO [value seed3] epoch 37 step 4181 loss 0.0003 (type 0.0001 target 0.0002 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 10:01:46,348 INFO [value seed3] epoch 38 step 4294 loss 0.0002 (type 0.0001 target 0.0000 value 0.0001) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 10:01:53,928 INFO [value seed3] epoch 39 step 4407 loss 0.0001 (type 0.0001 target 0.0000 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+2026-10-03 10:02:01,517 INFO [value seed3] epoch 40 step 4520 loss 0.0001 (type 0.0000 target 0.0000 value 0.0000) val: value F1 0.9965 exact 0.9932 7.5s
+[
+  {
+    "seed": 1,
+    "final_epoch": 40,
+    "final_train_losses": {
+      "type": 5.1824507855736046e-05,
+      "target": 4.909179313520415e-05,
+      "value": 2.7120747990840305e-05
+    },
+    "param_count": 28498702,
+    "param_bytes_fp32": 113994808,
+    "steps": 4520,
+    "device": "mps",
+    "wall_time_sec": 304.68322433391586,
+    "train_time_sec": 300.6817967907991,
+    "sec_per_epoch": 7.517044919769978,
+    "train_examples_per_sec": 120.12699267302393,
+    "checkpoint_path": "models/value-span-v2-direction-repair/seed1"
+  },
+  {
+    "seed": 2,
+    "final_epoch": 40,
+    "final_train_losses": {
+      "type": 5.1072901691746925e-05,
+      "target": 7.699809111325087e-05,
+      "value": 2.440818445344942e-05
+    },
+    "param_count": 28498702,
+    "param_bytes_fp32": 113994808,
+    "steps": 4520,
+    "device": "mps",
+    "wall_time_sec": 304.2789052911103,
+    "train_time_sec": 300.3625302047003,
+    "sec_per_epoch": 7.509063255117508,
+    "train_examples_per_sec": 120.25468015395872,
+    "checkpoint_path": "models/value-span-v2-direction-repair/seed2"
+  },
+  {
+    "seed": 3,
+    "final_epoch": 40,
+    "final_train_losses": {
+      "type": 4.931688473551674e-05,
+      "target": 3.900656278813835e-05,
+      "value": 2.934210892535944e-05
+    },
+    "param_count": 28498702,
+    "param_bytes_fp32": 113994808,
+    "steps": 4520,
+    "device": "mps",
+    "wall_time_sec": 304.03844608319923,
+    "train_time_sec": 300.08997379266657,
+    "sec_per_epoch": 7.502249344816664,
+    "train_examples_per_sec": 120.36390134431969,
+    "checkpoint_path": "models/value-span-v2-direction-repair/seed3"
+  }
+]

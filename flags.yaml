@@ -1,0 +1,18 @@
+# Quet manual flags: the choices of the flag picker (f), in this order.
+# Each key is a flag name; description is shown next to it.
+
+manual:
+  typo:
+    description: Natural typo, abbreviation, or shorthand.
+
+  ambiguous:
+    description: Meaning is genuinely ambiguous.
+
+  unnatural:
+    description: Unlikely wording for a real user.
+
+  synthetic-looking:
+    description: Looks strongly generated or templated.
+
+  unusual:
+    description: Valid but uncommon example worth revisiting.

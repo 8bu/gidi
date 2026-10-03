@@ -1,0 +1,20 @@
+{
+  "dataset": "datasets/annotation-v2/training-v2-direction-repair",
+  "derived_from": "datasets/annotation-v2/training-v1",
+  "train": {
+    "n": 903,
+    "base": 895,
+    "duplicates": 8
+  },
+  "files": {
+    "probe-v1-eval-only.jsonl": "638aeff00243f20af2dbeb2b340da0142631566057aef57d75005b75aedece87",
+    "test.jsonl": "acaca8d767828e48954e91871886ac191a45110af695af7df7573a9c0be6f91d",
+    "train.jsonl": "2e2d02e453e4d89a52b8ebf48b4b9761c868dea38d71ba2b80c96e390c178d7b",
+    "validation.jsonl": "eef077c97a519dc532112683f3ab35daeaa6e55187c3c2fb01f53a0ee37f629c"
+  },
+  "copied_unchanged": {
+    "validation.jsonl": "eef077c97a519dc532112683f3ab35daeaa6e55187c3c2fb01f53a0ee37f629c",
+    "test.jsonl": "acaca8d767828e48954e91871886ac191a45110af695af7df7573a9c0be6f91d",
+    "probe-v1-eval-only.jsonl": "638aeff00243f20af2dbeb2b340da0142631566057aef57d75005b75aedece87"
+  }
+}

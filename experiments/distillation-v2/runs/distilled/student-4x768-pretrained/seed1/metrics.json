@@ -1,0 +1,1887 @@
+{
+  "validation": {
+    "n": 110,
+    "overall": {
+      "n": 110,
+      "type": {
+        "n": 110,
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "macro_f1_all_classes": 1.0,
+        "per_class": {
+          "expense": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 33,
+            "n_pred": 33
+          },
+          "income": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 11,
+            "n_pred": 11
+          },
+          "borrow": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 10,
+            "n_pred": 10
+          },
+          "lend": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 9,
+            "n_pred": 9
+          },
+          "repayment_in": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 8,
+            "n_pred": 8
+          },
+          "repayment_out": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 11,
+            "n_pred": 11
+          },
+          "transfer": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 20,
+            "n_pred": 20
+          },
+          "refund": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 8,
+            "n_pred": 8
+          }
+        },
+        "labels": [
+          "expense",
+          "income",
+          "borrow",
+          "lend",
+          "repayment_in",
+          "repayment_out",
+          "transfer",
+          "refund"
+        ],
+        "confusion_matrix": [
+          [
+            33,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            11,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            10,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            9,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            11,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            20,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            8
+          ]
+        ]
+      },
+      "target": {
+        "n": 110,
+        "exact_match": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 54,
+        "n_pred": 54,
+        "n_gold": 54,
+        "gold_target": {
+          "n": 54,
+          "exact_match": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 54,
+          "n_pred": 54,
+          "n_gold": 54
+        },
+        "gold_null": {
+          "n": 56,
+          "null_accuracy": 1.0,
+          "false_span_rate": 0.0,
+          "n_false_span": 0
+        }
+      }
+    },
+    "slices": {
+      "accented": {
+        "false": {
+          "n": 45,
+          "type": {
+            "n": 45,
+            "accuracy": 1.0,
+            "macro_f1": 1.0,
+            "macro_f1_all_classes": 1.0,
+            "per_class": {
+              "expense": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 14,
+                "n_pred": 14
+              },
+              "income": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 5,
+                "n_pred": 5
+              },
+              "borrow": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 3,
+                "n_pred": 3
+              },
+              "lend": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 2,
+                "n_pred": 2
+              },
+              "repayment_in": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 4,
+                "n_pred": 4
+              },
+              "repayment_out": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 5,
+                "n_pred": 5
+              },
+              "transfer": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 9,
+                "n_pred": 9
+              },
+              "refund": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 3,
+                "n_pred": 3
+              }
+            },
+            "labels": [
+              "expense",
+              "income",
+              "borrow",
+              "lend",
+              "repayment_in",
+              "repayment_out",
+              "transfer",
+              "refund"
+            ],
+            "confusion_matrix": [
+              [
+                14,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                3,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                9,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                3
+              ]
+            ]
+          },
+          "target": {
+            "n": 45,
+            "exact_match": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 18,
+            "n_pred": 18,
+            "n_gold": 18,
+            "gold_target": {
+              "n": 18,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 18,
+              "n_pred": 18,
+              "n_gold": 18
+            },
+            "gold_null": {
+              "n": 27,
+              "null_accuracy": 1.0,
+              "false_span_rate": 0.0,
+              "n_false_span": 0
+            }
+          }
+        },
+        "true": {
+          "n": 65,
+          "type": {
+            "n": 65,
+            "accuracy": 1.0,
+            "macro_f1": 1.0,
+            "macro_f1_all_classes": 1.0,
+            "per_class": {
+              "expense": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 19,
+                "n_pred": 19
+              },
+              "income": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 6,
+                "n_pred": 6
+              },
+              "borrow": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 7,
+                "n_pred": 7
+              },
+              "lend": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 7,
+                "n_pred": 7
+              },
+              "repayment_in": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 4,
+                "n_pred": 4
+              },
+              "repayment_out": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 6,
+                "n_pred": 6
+              },
+              "transfer": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 11,
+                "n_pred": 11
+              },
+              "refund": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 5,
+                "n_pred": 5
+              }
+            },
+            "labels": [
+              "expense",
+              "income",
+              "borrow",
+              "lend",
+              "repayment_in",
+              "repayment_out",
+              "transfer",
+              "refund"
+            ],
+            "confusion_matrix": [
+              [
+                19,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                6,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                7,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                7,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                6,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                11,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                5
+              ]
+            ]
+          },
+          "target": {
+            "n": 65,
+            "exact_match": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 36,
+            "n_pred": 36,
+            "n_gold": 36,
+            "gold_target": {
+              "n": 36,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 36,
+              "n_pred": 36,
+              "n_gold": 36
+            },
+            "gold_null": {
+              "n": 29,
+              "null_accuracy": 1.0,
+              "false_span_rate": 0.0,
+              "n_false_span": 0
+            }
+          }
+        }
+      },
+      "source_batch": {
+        "baseline-01": {
+          "n": 87,
+          "type": {
+            "n": 87,
+            "accuracy": 1.0,
+            "macro_f1": 1.0,
+            "macro_f1_all_classes": 1.0,
+            "per_class": {
+              "expense": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 32,
+                "n_pred": 32
+              },
+              "income": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 11,
+                "n_pred": 11
+              },
+              "borrow": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 6,
+                "n_pred": 6
+              },
+              "lend": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 6,
+                "n_pred": 6
+              },
+              "repayment_in": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 1,
+                "n_pred": 1
+              },
+              "repayment_out": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 11,
+                "n_pred": 11
+              },
+              "transfer": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 18,
+                "n_pred": 18
+              },
+              "refund": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 2,
+                "n_pred": 2
+              }
+            },
+            "labels": [
+              "expense",
+              "income",
+              "borrow",
+              "lend",
+              "repayment_in",
+              "repayment_out",
+              "transfer",
+              "refund"
+            ],
+            "confusion_matrix": [
+              [
+                32,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                11,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                6,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                6,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                11,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                18,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2
+              ]
+            ]
+          },
+          "target": {
+            "n": 87,
+            "exact_match": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 36,
+            "n_pred": 36,
+            "n_gold": 36,
+            "gold_target": {
+              "n": 36,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 36,
+              "n_pred": 36,
+              "n_gold": 36
+            },
+            "gold_null": {
+              "n": 51,
+              "null_accuracy": 1.0,
+              "false_span_rate": 0.0,
+              "n_false_span": 0
+            }
+          }
+        },
+        "targeted-annotation-v1-01": {
+          "n": 23,
+          "type": {
+            "n": 23,
+            "accuracy": 1.0,
+            "macro_f1": 1.0,
+            "macro_f1_all_classes": 0.75,
+            "per_class": {
+              "expense": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 1,
+                "n_pred": 1
+              },
+              "income": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0,
+                "n_pred": 0
+              },
+              "borrow": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 4,
+                "n_pred": 4
+              },
+              "lend": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 3,
+                "n_pred": 3
+              },
+              "repayment_in": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 7,
+                "n_pred": 7
+              },
+              "repayment_out": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0,
+                "n_pred": 0
+              },
+              "transfer": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 2,
+                "n_pred": 2
+              },
+              "refund": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 6,
+                "n_pred": 6
+              }
+            },
+            "labels": [
+              "expense",
+              "income",
+              "borrow",
+              "lend",
+              "repayment_in",
+              "repayment_out",
+              "transfer",
+              "refund"
+            ],
+            "confusion_matrix": [
+              [
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                4,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                3,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                7,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                6
+              ]
+            ]
+          },
+          "target": {
+            "n": 23,
+            "exact_match": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 18,
+            "n_pred": 18,
+            "n_gold": 18,
+            "gold_target": {
+              "n": 18,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 18,
+              "n_pred": 18,
+              "n_gold": 18
+            },
+            "gold_null": {
+              "n": 5,
+              "null_accuracy": 1.0,
+              "false_span_rate": 0.0,
+              "n_false_span": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "test": {
+    "n": 105,
+    "overall": {
+      "n": 105,
+      "type": {
+        "n": 105,
+        "accuracy": 0.9428571428571428,
+        "macro_f1": 0.9486973752303823,
+        "macro_f1_all_classes": 0.9486973752303823,
+        "per_class": {
+          "expense": {
+            "precision": 0.9666666666666667,
+            "recall": 0.90625,
+            "f1": 0.9354838709677419,
+            "support": 32,
+            "n_pred": 30
+          },
+          "income": {
+            "precision": 0.8181818181818182,
+            "recall": 0.8181818181818182,
+            "f1": 0.8181818181818182,
+            "support": 11,
+            "n_pred": 11
+          },
+          "borrow": {
+            "precision": 0.9,
+            "recall": 1.0,
+            "f1": 0.9473684210526316,
+            "support": 9,
+            "n_pred": 10
+          },
+          "lend": {
+            "precision": 1.0,
+            "recall": 0.8888888888888888,
+            "f1": 0.9411764705882353,
+            "support": 9,
+            "n_pred": 8
+          },
+          "repayment_in": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 8,
+            "n_pred": 8
+          },
+          "repayment_out": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 10,
+            "n_pred": 10
+          },
+          "transfer": {
+            "precision": 0.9,
+            "recall": 1.0,
+            "f1": 0.9473684210526316,
+            "support": 18,
+            "n_pred": 20
+          },
+          "refund": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 8,
+            "n_pred": 8
+          }
+        },
+        "labels": [
+          "expense",
+          "income",
+          "borrow",
+          "lend",
+          "repayment_in",
+          "repayment_out",
+          "transfer",
+          "refund"
+        ],
+        "confusion_matrix": [
+          [
+            29,
+            2,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            9,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            9,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            8,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            18,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            8
+          ]
+        ]
+      },
+      "target": {
+        "n": 105,
+        "exact_match": 0.8952380952380953,
+        "precision": 0.8113207547169812,
+        "recall": 0.8431372549019608,
+        "f1": 0.826923076923077,
+        "tp": 43,
+        "n_pred": 53,
+        "n_gold": 51,
+        "gold_target": {
+          "n": 51,
+          "exact_match": 0.8431372549019608,
+          "precision": 0.86,
+          "recall": 0.8431372549019608,
+          "f1": 0.8514851485148515,
+          "tp": 43,
+          "n_pred": 50,
+          "n_gold": 51
+        },
+        "gold_null": {
+          "n": 54,
+          "null_accuracy": 0.9444444444444444,
+          "false_span_rate": 0.05555555555555555,
+          "n_false_span": 3
+        }
+      }
+    },
+    "slices": {
+      "accented": {
+        "false": {
+          "n": 42,
+          "type": {
+            "n": 42,
+            "accuracy": 0.9523809523809523,
+            "macro_f1": 0.9691427853192559,
+            "macro_f1_all_classes": 0.9691427853192559,
+            "per_class": {
+              "expense": {
+                "precision": 0.9230769230769231,
+                "recall": 0.9230769230769231,
+                "f1": 0.9230769230769231,
+                "support": 13,
+                "n_pred": 13
+              },
+              "income": {
+                "precision": 1.0,
+                "recall": 0.8,
+                "f1": 0.888888888888889,
+                "support": 5,
+                "n_pred": 4
+              },
+              "borrow": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 3,
+                "n_pred": 3
+              },
+              "lend": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 2,
+                "n_pred": 2
+              },
+              "repayment_in": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 4,
+                "n_pred": 4
+              },
+              "repayment_out": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 4,
+                "n_pred": 4
+              },
+              "transfer": {
+                "precision": 0.8888888888888888,
+                "recall": 1.0,
+                "f1": 0.9411764705882353,
+                "support": 8,
+                "n_pred": 9
+              },
+              "refund": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 3,
+                "n_pred": 3
+              }
+            },
+            "labels": [
+              "expense",
+              "income",
+              "borrow",
+              "lend",
+              "repayment_in",
+              "repayment_out",
+              "transfer",
+              "refund"
+            ],
+            "confusion_matrix": [
+              [
+                12,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                4,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                3,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                8,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                3
+              ]
+            ]
+          },
+          "target": {
+            "n": 42,
+            "exact_match": 0.8809523809523809,
+            "precision": 0.7894736842105263,
+            "recall": 0.8333333333333334,
+            "f1": 0.8108108108108109,
+            "tp": 15,
+            "n_pred": 19,
+            "n_gold": 18,
+            "gold_target": {
+              "n": 18,
+              "exact_match": 0.8333333333333334,
+              "precision": 0.8823529411764706,
+              "recall": 0.8333333333333334,
+              "f1": 0.8571428571428571,
+              "tp": 15,
+              "n_pred": 17,
+              "n_gold": 18
+            },
+            "gold_null": {
+              "n": 24,
+              "null_accuracy": 0.9166666666666666,
+              "false_span_rate": 0.08333333333333333,
+              "n_false_span": 2
+            }
+          }
+        },
+        "true": {
+          "n": 63,
+          "type": {
+            "n": 63,
+            "accuracy": 0.9365079365079365,
+            "macro_f1": 0.9390262515262515,
+            "macro_f1_all_classes": 0.9390262515262515,
+            "per_class": {
+              "expense": {
+                "precision": 1.0,
+                "recall": 0.8947368421052632,
+                "f1": 0.9444444444444444,
+                "support": 19,
+                "n_pred": 17
+              },
+              "income": {
+                "precision": 0.7142857142857143,
+                "recall": 0.8333333333333334,
+                "f1": 0.7692307692307692,
+                "support": 6,
+                "n_pred": 7
+              },
+              "borrow": {
+                "precision": 0.8571428571428571,
+                "recall": 1.0,
+                "f1": 0.923076923076923,
+                "support": 6,
+                "n_pred": 7
+              },
+              "lend": {
+                "precision": 1.0,
+                "recall": 0.8571428571428571,
+                "f1": 0.923076923076923,
+                "support": 7,
+                "n_pred": 6
+              },
+              "repayment_in": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 4,
+                "n_pred": 4
+              },
+              "repayment_out": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 6,
+                "n_pred": 6
+              },
+              "transfer": {
+                "precision": 0.9090909090909091,
+                "recall": 1.0,
+                "f1": 0.9523809523809523,
+                "support": 10,
+                "n_pred": 11
+              },
+              "refund": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 5,
+                "n_pred": 5
+              }
+            },
+            "labels": [
+              "expense",
+              "income",
+              "borrow",
+              "lend",
+              "repayment_in",
+              "repayment_out",
+              "transfer",
+              "refund"
+            ],
+            "confusion_matrix": [
+              [
+                17,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                6,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                6,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                6,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                5
+              ]
+            ]
+          },
+          "target": {
+            "n": 63,
+            "exact_match": 0.9047619047619048,
+            "precision": 0.8235294117647058,
+            "recall": 0.8484848484848485,
+            "f1": 0.8358208955223881,
+            "tp": 28,
+            "n_pred": 34,
+            "n_gold": 33,
+            "gold_target": {
+              "n": 33,
+              "exact_match": 0.8484848484848485,
+              "precision": 0.8484848484848485,
+              "recall": 0.8484848484848485,
+              "f1": 0.8484848484848486,
+              "tp": 28,
+              "n_pred": 33,
+              "n_gold": 33
+            },
+            "gold_null": {
+              "n": 30,
+              "null_accuracy": 0.9666666666666667,
+              "false_span_rate": 0.03333333333333333,
+              "n_false_span": 1
+            }
+          }
+        }
+      },
+      "source_batch": {
+        "baseline-01": {
+          "n": 80,
+          "type": {
+            "n": 80,
+            "accuracy": 0.9375,
+            "macro_f1": 0.9501723517003654,
+            "macro_f1_all_classes": 0.712629263775274,
+            "per_class": {
+              "expense": {
+                "precision": 0.9666666666666667,
+                "recall": 0.90625,
+                "f1": 0.9354838709677419,
+                "support": 32,
+                "n_pred": 30
+              },
+              "income": {
+                "precision": 0.8181818181818182,
+                "recall": 0.8181818181818182,
+                "f1": 0.8181818181818182,
+                "support": 11,
+                "n_pred": 11
+              },
+              "borrow": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 5,
+                "n_pred": 5
+              },
+              "lend": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 4,
+                "n_pred": 4
+              },
+              "repayment_in": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0,
+                "n_pred": 0
+              },
+              "repayment_out": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 10,
+                "n_pred": 10
+              },
+              "transfer": {
+                "precision": 0.9,
+                "recall": 1.0,
+                "f1": 0.9473684210526316,
+                "support": 18,
+                "n_pred": 20
+              },
+              "refund": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0,
+                "n_pred": 0
+              }
+            },
+            "labels": [
+              "expense",
+              "income",
+              "borrow",
+              "lend",
+              "repayment_in",
+              "repayment_out",
+              "transfer",
+              "refund"
+            ],
+            "confusion_matrix": [
+              [
+                29,
+                2,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                9,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                18,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          "target": {
+            "n": 80,
+            "exact_match": 0.9125,
+            "precision": 0.8,
+            "recall": 0.8571428571428571,
+            "f1": 0.8275862068965518,
+            "tp": 24,
+            "n_pred": 30,
+            "n_gold": 28,
+            "gold_target": {
+              "n": 28,
+              "exact_match": 0.8571428571428571,
+              "precision": 0.8888888888888888,
+              "recall": 0.8571428571428571,
+              "f1": 0.8727272727272727,
+              "tp": 24,
+              "n_pred": 27,
+              "n_gold": 28
+            },
+            "gold_null": {
+              "n": 52,
+              "null_accuracy": 0.9423076923076923,
+              "false_span_rate": 0.057692307692307696,
+              "n_false_span": 3
+            }
+          }
+        },
+        "targeted-annotation-v1-01": {
+          "n": 25,
+          "type": {
+            "n": 25,
+            "accuracy": 0.96,
+            "macro_f1": 0.9444444444444444,
+            "macro_f1_all_classes": 0.4722222222222222,
+            "per_class": {
+              "expense": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0,
+                "n_pred": 0
+              },
+              "income": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0,
+                "n_pred": 0
+              },
+              "borrow": {
+                "precision": 0.8,
+                "recall": 1.0,
+                "f1": 0.888888888888889,
+                "support": 4,
+                "n_pred": 5
+              },
+              "lend": {
+                "precision": 1.0,
+                "recall": 0.8,
+                "f1": 0.888888888888889,
+                "support": 5,
+                "n_pred": 4
+              },
+              "repayment_in": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 8,
+                "n_pred": 8
+              },
+              "repayment_out": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0,
+                "n_pred": 0
+              },
+              "transfer": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0,
+                "n_pred": 0
+              },
+              "refund": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 8,
+                "n_pred": 8
+              }
+            },
+            "labels": [
+              "expense",
+              "income",
+              "borrow",
+              "lend",
+              "repayment_in",
+              "repayment_out",
+              "transfer",
+              "refund"
+            ],
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                4,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                4,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                8,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                8
+              ]
+            ]
+          },
+          "target": {
+            "n": 25,
+            "exact_match": 0.84,
+            "precision": 0.8260869565217391,
+            "recall": 0.8260869565217391,
+            "f1": 0.8260869565217391,
+            "tp": 19,
+            "n_pred": 23,
+            "n_gold": 23,
+            "gold_target": {
+              "n": 23,
+              "exact_match": 0.8260869565217391,
+              "precision": 0.8260869565217391,
+              "recall": 0.8260869565217391,
+              "f1": 0.8260869565217391,
+              "tp": 19,
+              "n_pred": 23,
+              "n_gold": 23
+            },
+            "gold_null": {
+              "n": 2,
+              "null_accuracy": 1.0,
+              "false_span_rate": 0.0,
+              "n_false_span": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "truncation": {
+    "train": {
+      "n": 723,
+      "truncated": 0,
+      "span_truncated": 0
+    },
+    "validation": {
+      "n": 110,
+      "truncated": 0,
+      "span_truncated": 0
+    },
+    "test": {
+      "n": 105,
+      "truncated": 0,
+      "span_truncated": 0
+    }
+  }
+}

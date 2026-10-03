@@ -1,0 +1,7 @@
+{"id": "baseline-01-e96c368e6c13", "suggested_status": "needs_review", "suggested_flags": ["unnatural"], "confidence": 0.95, "model": "qwen2.5:3b-instruct"}
+{"id": "baseline-01-c4542aeea79f", "suggested_status": "needs_review", "suggested_flags": ["unnatural"], "confidence": 0.8, "model": "qwen2.5:3b-instruct"}
+{"id": "baseline-01-bfcbd8e4cfc4", "suggested_status": "needs_review", "suggested_flags": ["unnatural"], "confidence": 0.9, "model": "qwen2.5:3b-instruct"}
+{"id": "baseline-01-fa5f5ec98141", "suggested_status": "needs_review", "suggested_flags": ["unnatural"], "confidence": 0.95, "model": "qwen2.5:3b-instruct"}
+{"id": "baseline-01-a2a26540de33", "suggested_status": "approved", "suggested_flags": [], "confidence": 1, "model": "qwen2.5:3b-instruct"}
+{"id": "baseline-01-0706f2d42bba", "suggested_status": "needs_review", "suggested_flags": ["synthetic-looking"], "confidence": 0.95, "model": "qwen2.5:3b-instruct"}
+{"id": "baseline-01-78ba9b7f7dfb", "suggested_status": "needs_review", "suggested_flags": ["unnatural"], "confidence": 0.95, "model": "qwen2.5:3b-instruct"}

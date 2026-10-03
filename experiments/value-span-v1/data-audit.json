@@ -1,0 +1,659 @@
+{
+  "title": "value-span data audit",
+  "status": "PRE-REVIEW: rule proposals, no human review yet",
+  "mode": "pre-review",
+  "review_queue": 46,
+  "review_queue_by_group": {
+    "must_review": 14,
+    "hard_sample": 17,
+    "clean_audit": 15
+  },
+  "totals": {
+    "records": 909,
+    "trainable_records_excluding_probe": 828,
+    "records_by_split": {
+      "train": 613,
+      "validation": 110,
+      "test": 105,
+      "probe": 81
+    },
+    "with_value_span": 906,
+    "null_value_span": 3,
+    "states": {
+      "auto_proposed": 782,
+      "proposed_needs_review": 124,
+      "multiple_candidates_needs_review": 1,
+      "no_candidate_needs_review": 2
+    },
+    "auto_proposed_spans": 782,
+    "human_labelled_spans": 0,
+    "needing_review_or_masked": 127,
+    "multi_number_notes": 99,
+    "notes_by_category": {
+      "explicit_unit": 842,
+      "unaccented": 378,
+      "compact_unit": 147,
+      "context_excluded": 102,
+      "multi_number": 99,
+      "separator_format": 41,
+      "slang": 25,
+      "decimal_unit": 17,
+      "currency_suffix": 15,
+      "number_words": 3,
+      "bare_number": 2,
+      "no_candidate": 2,
+      "multiple_money_candidates": 1
+    },
+    "accented_notes": 531,
+    "unaccented_notes": 378
+  },
+  "span_length_chars": {
+    "n": 906,
+    "mean": 4.17,
+    "median": 4.0,
+    "p95": 7,
+    "max": 14,
+    "histogram": {
+      "2": 1,
+      "3": 270,
+      "4": 493,
+      "5": 30,
+      "6": 14,
+      "7": 58,
+      "8": 14,
+      "9": 22,
+      "10": 3,
+      "14": 1
+    }
+  },
+  "patterns": {
+    "<num>k": 405,
+    "<num>tr": 203,
+    "<num>tr<num>": 147,
+    "<num> trieu": 42,
+    "<num> cu": 22,
+    "<num> nghin": 17,
+    "<dec,>tr": 15,
+    "<dot3>đ": 15,
+    "<dot3>": 15,
+    "<com3>": 11,
+    "<num>K": 7,
+    "<num>": 2,
+    "<words> trieu": 2,
+    "<dec.>tr": 2,
+    "<words> nghin": 1
+  },
+  "patterns_by_note_accent": {
+    "accented": {
+      "<num>k": 216,
+      "<num>tr": 123,
+      "<num>tr<num>": 84,
+      "<num> trieu": 36,
+      "<dot3>đ": 14,
+      "<num> nghin": 12,
+      "<dot3>": 11,
+      "<num> cu": 11,
+      "<dec,>tr": 9,
+      "<com3>": 6,
+      "<num>K": 3,
+      "<words> trieu": 2,
+      "<dec.>tr": 2,
+      "<num>": 1
+    },
+    "unaccented": {
+      "<num>k": 189,
+      "<num>tr": 80,
+      "<num>tr<num>": 63,
+      "<num> cu": 11,
+      "<dec,>tr": 6,
+      "<num> trieu": 6,
+      "<num> nghin": 5,
+      "<com3>": 5,
+      "<num>K": 4,
+      "<dot3>": 4,
+      "<num>": 1,
+      "<words> nghin": 1,
+      "<dot3>đ": 1
+    }
+  },
+  "patterns_by_split": {
+    "train": {
+      "<num>k": 277,
+      "<num>tr": 126,
+      "<num>tr<num>": 100,
+      "<num> trieu": 26,
+      "<num> nghin": 15,
+      "<num> cu": 15,
+      "<dot3>đ": 11,
+      "<dot3>": 11,
+      "<dec,>tr": 10,
+      "<com3>": 9,
+      "<num>K": 4,
+      "<num>": 2,
+      "<dec.>tr": 2,
+      "<words> trieu": 1,
+      "<words> nghin": 1
+    },
+    "validation": {
+      "<num>k": 50,
+      "<num>tr": 28,
+      "<num>tr<num>": 15,
+      "<dot3>": 4,
+      "<dec,>tr": 3,
+      "<num>K": 2,
+      "<num> trieu": 2,
+      "<dot3>đ": 2,
+      "<words> trieu": 1,
+      "<num> cu": 1,
+      "<num> nghin": 1,
+      "<com3>": 1
+    },
+    "test": {
+      "<num>k": 53,
+      "<num>tr": 19,
+      "<num>tr<num>": 15,
+      "<num> trieu": 8,
+      "<num> cu": 3,
+      "<dot3>đ": 2,
+      "<dec,>tr": 2,
+      "<num>K": 1,
+      "<num> nghin": 1,
+      "<com3>": 1
+    },
+    "probe": {
+      "<num>tr": 30,
+      "<num>k": 25,
+      "<num>tr<num>": 17,
+      "<num> trieu": 6,
+      "<num> cu": 3
+    }
+  },
+  "seen_unseen_vs_train": {
+    "validation": {
+      "spans": 110,
+      "pattern_seen_in_train": 110,
+      "pattern_unseen_in_train": 0,
+      "unseen_patterns": {},
+      "exact_span_seen_in_train": 90,
+      "exact_span_unseen_in_train": 20
+    },
+    "test": {
+      "spans": 105,
+      "pattern_seen_in_train": 105,
+      "pattern_unseen_in_train": 0,
+      "unseen_patterns": {},
+      "exact_span_seen_in_train": 82,
+      "exact_span_unseen_in_train": 23
+    },
+    "probe": {
+      "spans": 81,
+      "pattern_seen_in_train": 81,
+      "pattern_unseen_in_train": 0,
+      "unseen_patterns": {},
+      "exact_span_seen_in_train": 75,
+      "exact_span_unseen_in_train": 6
+    }
+  },
+  "coverage": [
+    {
+      "form": "100",
+      "required": true,
+      "signatures": [
+        "<num>"
+      ],
+      "total": 2,
+      "n_train": 2,
+      "n_validation": 0,
+      "n_test": 0,
+      "n_probe": 0,
+      "note_accented": 1,
+      "note_unaccented": 1,
+      "span_with_diacritics": 0,
+      "examples": [
+        "500",
+        "500"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "50k",
+      "required": true,
+      "signatures": [
+        "<num>k"
+      ],
+      "total": 405,
+      "n_train": 277,
+      "n_validation": 50,
+      "n_test": 53,
+      "n_probe": 25,
+      "note_accented": 216,
+      "note_unaccented": 189,
+      "span_with_diacritics": 0,
+      "examples": [
+        "67k",
+        "59k"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "50K",
+      "required": false,
+      "signatures": [
+        "<num>K"
+      ],
+      "total": 7,
+      "n_train": 4,
+      "n_validation": 2,
+      "n_test": 1,
+      "n_probe": 0,
+      "note_accented": 3,
+      "note_unaccented": 4,
+      "span_with_diacritics": 0,
+      "examples": [
+        "45K",
+        "59K"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "50 K",
+      "required": true,
+      "signatures": [
+        "<num> K",
+        "<num> k"
+      ],
+      "total": 0,
+      "n_train": 0,
+      "n_validation": 0,
+      "n_test": 0,
+      "n_probe": 0,
+      "note_accented": 0,
+      "note_unaccented": 0,
+      "span_with_diacritics": 0,
+      "examples": [],
+      "status": "ABSENT"
+    },
+    {
+      "form": "1tr",
+      "required": true,
+      "signatures": [
+        "<num>tr"
+      ],
+      "total": 203,
+      "n_train": 126,
+      "n_validation": 28,
+      "n_test": 19,
+      "n_probe": 30,
+      "note_accented": 123,
+      "note_unaccented": 80,
+      "span_with_diacritics": 0,
+      "examples": [
+        "4tr",
+        "2tr"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "1tr5",
+      "required": true,
+      "signatures": [
+        "<num>tr<num>"
+      ],
+      "total": 147,
+      "n_train": 100,
+      "n_validation": 15,
+      "n_test": 15,
+      "n_probe": 17,
+      "note_accented": 84,
+      "note_unaccented": 63,
+      "span_with_diacritics": 0,
+      "examples": [
+        "3tr1",
+        "1tr5"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "1.5tr",
+      "required": true,
+      "signatures": [
+        "<dec.>tr"
+      ],
+      "total": 2,
+      "n_train": 2,
+      "n_validation": 0,
+      "n_test": 0,
+      "n_probe": 0,
+      "note_accented": 2,
+      "note_unaccented": 0,
+      "span_with_diacritics": 0,
+      "examples": [
+        "4.2tr",
+        "1.5tr"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "1,5tr",
+      "required": true,
+      "signatures": [
+        "<dec,>tr"
+      ],
+      "total": 15,
+      "n_train": 10,
+      "n_validation": 3,
+      "n_test": 2,
+      "n_probe": 0,
+      "note_accented": 9,
+      "note_unaccented": 6,
+      "span_with_diacritics": 0,
+      "examples": [
+        "2,3tr",
+        "1,2tr"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "2 triệu",
+      "required": true,
+      "signatures": [
+        "<num> trieu"
+      ],
+      "total": 42,
+      "n_train": 26,
+      "n_validation": 2,
+      "n_test": 8,
+      "n_probe": 6,
+      "note_accented": 36,
+      "note_unaccented": 6,
+      "span_with_diacritics": 36,
+      "examples": [
+        "2 triệu",
+        "1 triệu"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "2 củ",
+      "required": true,
+      "signatures": [
+        "<num> cu"
+      ],
+      "total": 22,
+      "n_train": 15,
+      "n_validation": 1,
+      "n_test": 3,
+      "n_probe": 3,
+      "note_accented": 11,
+      "note_unaccented": 11,
+      "span_with_diacritics": 11,
+      "examples": [
+        "3 củ",
+        "3 cu"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "5 xị",
+      "required": true,
+      "signatures": [
+        "<num> xi"
+      ],
+      "total": 0,
+      "n_train": 0,
+      "n_validation": 0,
+      "n_test": 0,
+      "n_probe": 0,
+      "note_accented": 0,
+      "note_unaccented": 0,
+      "span_with_diacritics": 0,
+      "examples": [],
+      "status": "ABSENT"
+    },
+    {
+      "form": "5 chai",
+      "required": true,
+      "signatures": [
+        "<num> chai"
+      ],
+      "total": 0,
+      "n_train": 0,
+      "n_validation": 0,
+      "n_test": 0,
+      "n_probe": 0,
+      "note_accented": 0,
+      "note_unaccented": 0,
+      "span_with_diacritics": 0,
+      "examples": [],
+      "status": "ABSENT"
+    },
+    {
+      "form": "5 lít",
+      "required": true,
+      "signatures": [
+        "<num> lit"
+      ],
+      "total": 0,
+      "n_train": 0,
+      "n_validation": 0,
+      "n_test": 0,
+      "n_probe": 0,
+      "note_accented": 0,
+      "note_unaccented": 0,
+      "span_with_diacritics": 0,
+      "examples": [],
+      "status": "ABSENT"
+    },
+    {
+      "form": "500 nghìn",
+      "required": true,
+      "signatures": [
+        "<num> nghin"
+      ],
+      "total": 17,
+      "n_train": 15,
+      "n_validation": 1,
+      "n_test": 1,
+      "n_probe": 0,
+      "note_accented": 12,
+      "note_unaccented": 5,
+      "span_with_diacritics": 12,
+      "examples": [
+        "50 nghìn",
+        "350 nghìn"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "500 ngàn",
+      "required": true,
+      "signatures": [
+        "<num> ngan"
+      ],
+      "total": 0,
+      "n_train": 0,
+      "n_validation": 0,
+      "n_test": 0,
+      "n_probe": 0,
+      "note_accented": 0,
+      "note_unaccented": 0,
+      "span_with_diacritics": 0,
+      "examples": [],
+      "status": "ABSENT"
+    },
+    {
+      "form": "1.500.000",
+      "required": true,
+      "signatures": [
+        "<dot3>"
+      ],
+      "total": 15,
+      "n_train": 11,
+      "n_validation": 4,
+      "n_test": 0,
+      "n_probe": 0,
+      "note_accented": 11,
+      "note_unaccented": 4,
+      "span_with_diacritics": 0,
+      "examples": [
+        "745.000",
+        "47.000"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "1500000",
+      "required": true,
+      "signatures": [
+        "<long>"
+      ],
+      "total": 0,
+      "n_train": 0,
+      "n_validation": 0,
+      "n_test": 0,
+      "n_probe": 0,
+      "note_accented": 0,
+      "note_unaccented": 0,
+      "span_with_diacritics": 0,
+      "examples": [],
+      "status": "ABSENT"
+    },
+    {
+      "form": "80.000đ",
+      "required": false,
+      "signatures": [
+        "<dot3>đ"
+      ],
+      "total": 15,
+      "n_train": 11,
+      "n_validation": 2,
+      "n_test": 2,
+      "n_probe": 0,
+      "note_accented": 14,
+      "note_unaccented": 1,
+      "span_with_diacritics": 10,
+      "examples": [
+        "80.000đ",
+        "70.000đ"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "12,500,000",
+      "required": false,
+      "signatures": [
+        "<com3>"
+      ],
+      "total": 11,
+      "n_train": 9,
+      "n_validation": 1,
+      "n_test": 1,
+      "n_probe": 0,
+      "note_accented": 6,
+      "note_unaccented": 5,
+      "span_with_diacritics": 0,
+      "examples": [
+        "12,500,000",
+        "347,000"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "2 tỷ",
+      "required": false,
+      "signatures": [
+        "<num> ty"
+      ],
+      "total": 0,
+      "n_train": 0,
+      "n_validation": 0,
+      "n_test": 0,
+      "n_probe": 0,
+      "note_accented": 0,
+      "note_unaccented": 0,
+      "span_with_diacritics": 0,
+      "examples": [],
+      "status": "ABSENT"
+    },
+    {
+      "form": "2 triệu rưỡi",
+      "required": false,
+      "signatures": [
+        "<num> trieu ruoi"
+      ],
+      "total": 0,
+      "n_train": 0,
+      "n_validation": 0,
+      "n_test": 0,
+      "n_probe": 0,
+      "note_accented": 0,
+      "note_unaccented": 0,
+      "span_with_diacritics": 0,
+      "examples": [],
+      "status": "ABSENT"
+    },
+    {
+      "form": "1 triệu 2",
+      "required": false,
+      "signatures": [
+        "<num> trieu <num>"
+      ],
+      "total": 0,
+      "n_train": 0,
+      "n_validation": 0,
+      "n_test": 0,
+      "n_probe": 0,
+      "note_accented": 0,
+      "note_unaccented": 0,
+      "span_with_diacritics": 0,
+      "examples": [],
+      "status": "ABSENT"
+    }
+  ],
+  "review_reasons": {
+    "multi_number": 98,
+    "bare_number": 2,
+    "multiple_money_candidates": 1,
+    "slang": 24,
+    "no_candidate": 2
+  },
+  "tokens": {
+    "tokenizer": "models/gidi-finance-v1",
+    "max_length": 32,
+    "tokens_per_span": {
+      "n": 906,
+      "mean": 2.31,
+      "median": 2.0,
+      "p95": 3,
+      "max": 5,
+      "histogram": {
+        "1": 2,
+        "2": 667,
+        "3": 197,
+        "4": 30,
+        "5": 10
+      }
+    },
+    "mean_tokens_by_pattern": {
+      "<com3>": 3.73,
+      "<dec,>tr": 4.0,
+      "<dec.>tr": 4.0,
+      "<dot3>": 3.73,
+      "<dot3>đ": 3.67,
+      "<num>": 1.0,
+      "<num> cu": 2.0,
+      "<num> nghin": 2.29,
+      "<num> trieu": 2.14,
+      "<num>K": 2.0,
+      "<num>k": 2.05,
+      "<num>tr": 2.0,
+      "<num>tr<num>": 3.01,
+      "<words> nghin": 5.0,
+      "<words> trieu": 2.0
+    },
+    "notes_truncated_at_32": 0,
+    "spans_losing_tokens_to_truncation": 0,
+    "spans_with_token_boundary_mismatch": 0,
+    "boundary_mismatch_examples": []
+  }
+}

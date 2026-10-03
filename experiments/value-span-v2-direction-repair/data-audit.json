@@ -1,0 +1,724 @@
+{
+  "experiment": "value-span-v2-direction-repair",
+  "source": "datasets/annotation-v2/training-v1/train.jsonl",
+  "source_sha256": "0a03db64238e6f202918a30e3727178c437045ce4703d38f14a7dda9883589e5",
+  "audit": {
+    "class_counts": {
+      "baseline-01": {
+        "expense": 183,
+        "repayment_out": 54,
+        "transfer": 108,
+        "repayment_in": 8,
+        "income": 58,
+        "refund": 15,
+        "borrow": 35,
+        "lend": 36
+      },
+      "targeted-annotation-v1-01": {
+        "transfer": 5,
+        "refund": 32,
+        "lend": 15,
+        "borrow": 17,
+        "repayment_out": 7,
+        "repayment_in": 37,
+        "expense": 1
+      },
+      "targeted-annotation-v1-02": {
+        "repayment_out": 8,
+        "borrow": 27,
+        "income": 26,
+        "lend": 18,
+        "refund": 10,
+        "expense": 23
+      },
+      "targeted-value-01": {
+        "transfer": 20,
+        "expense": 26,
+        "refund": 23,
+        "lend": 21,
+        "repayment_out": 21,
+        "income": 18,
+        "borrow": 23,
+        "repayment_in": 20
+      }
+    },
+    "families": {
+      "A_X_cho_muon": "name-first lender: X cho (minh) muon/vay ...",
+      "A_duoc_X_cho": "duoc X cho muon/vay ...",
+      "B_cho_X_muon": "cho X muon/vay ...",
+      "B_prefix_cho_X_muon": "ck/chuyen/gui cho X muon/vay ...",
+      "B_self_cho_X_muon": "t/em/minh cho X muon/vay ...",
+      "B_X_muon": "name-first borrower: X muon/vay (cua minh) ...",
+      "U_muon_X": "user-first: muon/vay X ...",
+      "C_other": "other lend/borrow wording (ung luong, giai ngan, ...)"
+    },
+    "groups": {
+      "baseline-01": {
+        "n": 71,
+        "by_type": {
+          "borrow": 35,
+          "lend": 36
+        },
+        "families": {
+          "B_cho_X_muon": {
+            "by_type": {
+              "lend": 33
+            },
+            "accented": 18,
+            "unaccented": 15,
+            "examples": [
+              "cho em Ngọc mượn 400k",
+              "cho dong nghiep Thao muon 200k",
+              "cho thằng Bin mượn 150k",
+              "cho em Tí mượn 200 nghìn",
+              "cho em Tú vay 2tr",
+              "cho Tú mượn 1tr"
+            ]
+          },
+          "B_X_muon": {
+            "by_type": {
+              "lend": 3
+            },
+            "accented": 3,
+            "unaccented": 0,
+            "examples": [
+              "Hằng mượn 250k ăn trưa",
+              "Tùng mượn 2tr hẹn cuối tháng",
+              "Phương mượn 150k đổ xăng"
+            ]
+          },
+          "U_muon_X": {
+            "by_type": {
+              "borrow": 34
+            },
+            "accented": 21,
+            "unaccented": 13,
+            "examples": [
+              "vay cậu Ba 10tr",
+              "muon tam dong nghiep 300k",
+              "vay ông ngoại 20tr làm ăn",
+              "vay bạn Quang 5tr, hẹn tháng sau trả",
+              "mượn đồng nghiệp 200k ăn trưa",
+              "mượn a Sơn 700 nghìn"
+            ]
+          },
+          "C_other": {
+            "by_type": {
+              "borrow": 1
+            },
+            "accented": 1,
+            "unaccented": 0,
+            "examples": [
+              "ứng trước lương cty 2tr"
+            ]
+          }
+        }
+      },
+      "targeted-annotation-v1-01": {
+        "n": 32,
+        "by_type": {
+          "lend": 15,
+          "borrow": 17
+        },
+        "families": {
+          "A_X_cho_muon": {
+            "by_type": {
+              "borrow": 2
+            },
+            "accented": 2,
+            "unaccented": 0,
+            "examples": [
+              "anh Tư cho vay 20tr",
+              "bố cho mượn 5tr mua xe"
+            ]
+          },
+          "B_cho_X_muon": {
+            "by_type": {
+              "lend": 9
+            },
+            "accented": 5,
+            "unaccented": 4,
+            "examples": [
+              "cho em hang xom vay 300k",
+              "cho vay Nghia 3tr lai 2%",
+              "cho bạn cùng lớp mượn 150k",
+              "cho ban cu muon 1tr5",
+              "cho chị Hoa mượn tạm 800k",
+              "cho Dung muon 400k"
+            ]
+          },
+          "B_X_muon": {
+            "by_type": {
+              "lend": 4
+            },
+            "accented": 3,
+            "unaccented": 1,
+            "examples": [
+              "bạn thân hỏi mượn 3tr, đã ck",
+              "Ngân mượn 300k đóng tiền điện",
+              "em họ vay 2 triệu nộp học phí",
+              "Tien hoi muon 600k da ck"
+            ]
+          },
+          "U_muon_X": {
+            "by_type": {
+              "borrow": 11
+            },
+            "accented": 7,
+            "unaccented": 4,
+            "examples": [
+              "vay Hải 3tr",
+              "mượn em gái 400k đổ xăng",
+              "muon tam ban 300k",
+              "vay qua app 2tr, nhận tiền rồi",
+              "muon Nhan 200k",
+              "mượn chị Loan 500k tiền trọ"
+            ]
+          },
+          "C_other": {
+            "by_type": {
+              "borrow": 4,
+              "lend": 2
+            },
+            "accented": 4,
+            "unaccented": 2,
+            "examples": [
+              "ứng trước lương chủ quán 1tr",
+              "ung luong 2tr",
+              "rút thấu chi tcb 2tr",
+              "ứng lương tháng 10 3tr",
+              "ứng cho em trai 1tr",
+              "ung cho Khai 500k"
+            ]
+          }
+        }
+      },
+      "targeted-annotation-v1-02": {
+        "n": 45,
+        "by_type": {
+          "borrow": 27,
+          "lend": 18
+        },
+        "families": {
+          "A_X_cho_muon": {
+            "by_type": {
+              "borrow": 19
+            },
+            "accented": 9,
+            "unaccented": 10,
+            "examples": [
+              "anh ba cho t muon 700k sua may tinh",
+              "cô Hạnh cho mượn 3tr đóng tiền trọ",
+              "chú Năm cho mượn tạm 1tr5 trả tiền điện",
+              "ban cung phong cho muon 800k dong tien dien",
+              "Phuc cho minh muon 500k do xang",
+              "chi gai cho muon 6tr dat coc phong tro"
+            ]
+          },
+          "A_duoc_X_cho": {
+            "by_type": {
+              "borrow": 1
+            },
+            "accented": 1,
+            "unaccented": 0,
+            "examples": [
+              "được đồng nghiệp cho mượn 2tr đi khám"
+            ]
+          },
+          "B_cho_X_muon": {
+            "by_type": {
+              "lend": 3
+            },
+            "accented": 2,
+            "unaccented": 1,
+            "examples": [
+              "cho bác Hai vay 10tr mua laptop",
+              "cho cô Hạnh mượn 3tr đóng tiền trọ",
+              "cho ban cung phong muon 800k dong tien dien"
+            ]
+          },
+          "B_self_cho_X_muon": {
+            "by_type": {
+              "lend": 5
+            },
+            "accented": 2,
+            "unaccented": 3,
+            "examples": [
+              "minh cho Phuc muon 500k do xang",
+              "e cho chu Tin vay 5tr sua xe",
+              "em cho dì Út vay 4 củ đi viện",
+              "mk cho chi ba muon 1tr5 dong tien net",
+              "t cho anh Khôi mượn 2tr, lương về ảnh gửi lại"
+            ]
+          },
+          "B_X_muon": {
+            "by_type": {
+              "borrow": 5,
+              "lend": 10
+            },
+            "accented": 7,
+            "unaccented": 8,
+            "examples": [
+              "Thảo vay mình 1tr5, tuần sau trả",
+              "mirae asset duyet khoan vay tieu dung, nhan 12tr",
+              "anh Tuan muon cua t 800k",
+              "thg Binh vay t 2tr hen luong ve tra",
+              "mình mượn Huy 300k nạp game, thứ 6 trả",
+              "em gái vay mình 1tr2 đóng học phí"
+            ]
+          },
+          "U_muon_X": {
+            "by_type": {
+              "borrow": 2
+            },
+            "accented": 1,
+            "unaccented": 1,
+            "examples": [
+              "vay Thảo 1tr5, tuần sau trả",
+              "muon tam chu Ba 5 cu, cuoi thang gui lai"
+            ]
+          }
+        }
+      },
+      "targeted-value-01": {
+        "n": 44,
+        "by_type": {
+          "lend": 21,
+          "borrow": 23
+        },
+        "families": {
+          "A_X_cho_muon": {
+            "by_type": {
+              "borrow": 8
+            },
+            "accented": 7,
+            "unaccented": 1,
+            "examples": [
+              "thg Bảo cho mượn 500 K",
+              "chị Loan cho mượn 1.500.000",
+              "cậu Năm cho vay 2 củ rưỡi",
+              "anh Tu cho vay 3 lit sua xe",
+              "chị Loan cho mượn 800 ngàn tiền trọ",
+              "mẹ cho mượn 5000000 đóng tiền trường."
+            ]
+          },
+          "B_cho_X_muon": {
+            "by_type": {
+              "lend": 21
+            },
+            "accented": 11,
+            "unaccented": 10,
+            "examples": [
+              "cho cậu Năm vay 2 củ rưỡi",
+              "Cho Tin muon 100",
+              "cho Bình mượn 3 lít",
+              "cho cau ut vay 5 xi mua ga",
+              "cho anh Tu vay 3 lit sua xe",
+              "cho em muon 200 K tieu vat"
+            ]
+          },
+          "U_muon_X": {
+            "by_type": {
+              "borrow": 14
+            },
+            "accented": 5,
+            "unaccented": 9,
+            "examples": [
+              "muon chi Hai nua cu",
+              "vay ba Sau 1,5tr",
+              "muon me 3000000 tra tien hoc them cho be",
+              "vay vcb mua nhà 2 tỷ",
+              "muon Tin 100 an sang.",
+              "Muon Hoa 800.000d"
+            ]
+          },
+          "C_other": {
+            "by_type": {
+              "borrow": 1
+            },
+            "accented": 0,
+            "unaccented": 1,
+            "examples": [
+              "mb bank giai ngan 50 cu mua xe"
+            ]
+          }
+        }
+      },
+      "v1_rows (all but targeted-value-01)": {
+        "n": 148,
+        "by_type": {
+          "borrow": 79,
+          "lend": 69
+        },
+        "families": {
+          "A_X_cho_muon": {
+            "by_type": {
+              "borrow": 21
+            },
+            "accented": 11,
+            "unaccented": 10,
+            "examples": [
+              "anh Tư cho vay 20tr",
+              "bố cho mượn 5tr mua xe",
+              "anh ba cho t muon 700k sua may tinh",
+              "cô Hạnh cho mượn 3tr đóng tiền trọ",
+              "chú Năm cho mượn tạm 1tr5 trả tiền điện",
+              "ban cung phong cho muon 800k dong tien dien"
+            ]
+          },
+          "A_duoc_X_cho": {
+            "by_type": {
+              "borrow": 1
+            },
+            "accented": 1,
+            "unaccented": 0,
+            "examples": [
+              "được đồng nghiệp cho mượn 2tr đi khám"
+            ]
+          },
+          "B_cho_X_muon": {
+            "by_type": {
+              "lend": 45
+            },
+            "accented": 25,
+            "unaccented": 20,
+            "examples": [
+              "cho em Ngọc mượn 400k",
+              "cho dong nghiep Thao muon 200k",
+              "cho thằng Bin mượn 150k",
+              "cho em Tí mượn 200 nghìn",
+              "cho em Tú vay 2tr",
+              "cho Tú mượn 1tr"
+            ]
+          },
+          "B_self_cho_X_muon": {
+            "by_type": {
+              "lend": 5
+            },
+            "accented": 2,
+            "unaccented": 3,
+            "examples": [
+              "minh cho Phuc muon 500k do xang",
+              "e cho chu Tin vay 5tr sua xe",
+              "em cho dì Út vay 4 củ đi viện",
+              "mk cho chi ba muon 1tr5 dong tien net",
+              "t cho anh Khôi mượn 2tr, lương về ảnh gửi lại"
+            ]
+          },
+          "B_X_muon": {
+            "by_type": {
+              "lend": 17,
+              "borrow": 5
+            },
+            "accented": 13,
+            "unaccented": 9,
+            "examples": [
+              "Hằng mượn 250k ăn trưa",
+              "Tùng mượn 2tr hẹn cuối tháng",
+              "Phương mượn 150k đổ xăng",
+              "bạn thân hỏi mượn 3tr, đã ck",
+              "Ngân mượn 300k đóng tiền điện",
+              "em họ vay 2 triệu nộp học phí"
+            ]
+          },
+          "U_muon_X": {
+            "by_type": {
+              "borrow": 47
+            },
+            "accented": 29,
+            "unaccented": 18,
+            "examples": [
+              "vay cậu Ba 10tr",
+              "muon tam dong nghiep 300k",
+              "vay ông ngoại 20tr làm ăn",
+              "vay bạn Quang 5tr, hẹn tháng sau trả",
+              "mượn đồng nghiệp 200k ăn trưa",
+              "mượn a Sơn 700 nghìn"
+            ]
+          },
+          "C_other": {
+            "by_type": {
+              "borrow": 5,
+              "lend": 2
+            },
+            "accented": 5,
+            "unaccented": 2,
+            "examples": [
+              "ứng trước lương cty 2tr",
+              "ứng trước lương chủ quán 1tr",
+              "ung luong 2tr",
+              "rút thấu chi tcb 2tr",
+              "ứng lương tháng 10 3tr",
+              "ứng cho em trai 1tr"
+            ]
+          }
+        }
+      },
+      "merged_train": {
+        "n": 192,
+        "by_type": {
+          "borrow": 102,
+          "lend": 90
+        },
+        "families": {
+          "A_X_cho_muon": {
+            "by_type": {
+              "borrow": 29
+            },
+            "accented": 18,
+            "unaccented": 11,
+            "examples": [
+              "anh Tư cho vay 20tr",
+              "bố cho mượn 5tr mua xe",
+              "anh ba cho t muon 700k sua may tinh",
+              "cô Hạnh cho mượn 3tr đóng tiền trọ",
+              "chú Năm cho mượn tạm 1tr5 trả tiền điện",
+              "ban cung phong cho muon 800k dong tien dien"
+            ]
+          },
+          "A_duoc_X_cho": {
+            "by_type": {
+              "borrow": 1
+            },
+            "accented": 1,
+            "unaccented": 0,
+            "examples": [
+              "được đồng nghiệp cho mượn 2tr đi khám"
+            ]
+          },
+          "B_cho_X_muon": {
+            "by_type": {
+              "lend": 66
+            },
+            "accented": 36,
+            "unaccented": 30,
+            "examples": [
+              "cho em Ngọc mượn 400k",
+              "cho dong nghiep Thao muon 200k",
+              "cho thằng Bin mượn 150k",
+              "cho em Tí mượn 200 nghìn",
+              "cho em Tú vay 2tr",
+              "cho Tú mượn 1tr"
+            ]
+          },
+          "B_self_cho_X_muon": {
+            "by_type": {
+              "lend": 5
+            },
+            "accented": 2,
+            "unaccented": 3,
+            "examples": [
+              "minh cho Phuc muon 500k do xang",
+              "e cho chu Tin vay 5tr sua xe",
+              "em cho dì Út vay 4 củ đi viện",
+              "mk cho chi ba muon 1tr5 dong tien net",
+              "t cho anh Khôi mượn 2tr, lương về ảnh gửi lại"
+            ]
+          },
+          "B_X_muon": {
+            "by_type": {
+              "lend": 17,
+              "borrow": 5
+            },
+            "accented": 13,
+            "unaccented": 9,
+            "examples": [
+              "Hằng mượn 250k ăn trưa",
+              "Tùng mượn 2tr hẹn cuối tháng",
+              "Phương mượn 150k đổ xăng",
+              "bạn thân hỏi mượn 3tr, đã ck",
+              "Ngân mượn 300k đóng tiền điện",
+              "em họ vay 2 triệu nộp học phí"
+            ]
+          },
+          "U_muon_X": {
+            "by_type": {
+              "borrow": 61
+            },
+            "accented": 34,
+            "unaccented": 27,
+            "examples": [
+              "vay cậu Ba 10tr",
+              "muon tam dong nghiep 300k",
+              "vay ông ngoại 20tr làm ăn",
+              "vay bạn Quang 5tr, hẹn tháng sau trả",
+              "mượn đồng nghiệp 200k ăn trưa",
+              "mượn a Sơn 700 nghìn"
+            ]
+          },
+          "C_other": {
+            "by_type": {
+              "borrow": 6,
+              "lend": 2
+            },
+            "accented": 5,
+            "unaccented": 3,
+            "examples": [
+              "ứng trước lương cty 2tr",
+              "ứng trước lương chủ quán 1tr",
+              "ung luong 2tr",
+              "rút thấu chi tcb 2tr",
+              "ứng lương tháng 10 3tr",
+              "ứng cho em trai 1tr"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "name_first_balance": {
+    "v1_rows": {
+      "lender_first_borrow": 22,
+      "borrower_first_lend": 17,
+      "difference": 5
+    },
+    "targeted_value_01": {
+      "lender_first_borrow": 8,
+      "borrower_first_lend": 0,
+      "difference": 8
+    },
+    "merged": {
+      "lender_first_borrow": 30,
+      "borrower_first_lend": 17,
+      "difference": 13
+    },
+    "repaired": {
+      "lender_first_borrow": 30,
+      "borrower_first_lend": 25,
+      "difference": 5
+    }
+  },
+  "near_duplicates": {
+    "repeated_masked_texts": [
+      {
+        "batch": "baseline-01",
+        "text": "cho cau tu muon Ntr",
+        "n": 2
+      },
+      {
+        "batch": "baseline-01",
+        "text": "cho linh muon Nk",
+        "n": 2
+      },
+      {
+        "batch": "baseline-01",
+        "text": "cho nam muon Ntr",
+        "n": 2
+      },
+      {
+        "batch": "baseline-01",
+        "text": "muon dong nghiep Nk an trua",
+        "n": 3
+      },
+      {
+        "batch": "baseline-01",
+        "text": "muon me Ntr dong hoc",
+        "n": 2
+      }
+    ],
+    "targeted_value_01_minimal_pairs": [
+      [
+        "lend: cho anh Tu vay 3 lit sua xe",
+        "borrow: anh Tu cho vay 3 lit sua xe"
+      ],
+      [
+        "borrow: dì Út cho mượn 2 chai",
+        "lend: cho dì Út mượn 2 chai"
+      ],
+      [
+        "lend: cho cậu Năm vay 2 củ rưỡi",
+        "borrow: cậu Năm cho vay 2 củ rưỡi"
+      ],
+      [
+        "lend: cho chị Loan mượn 800 ngàn tiền trọ.",
+        "borrow: chị Loan cho mượn 800 ngàn tiền trọ"
+      ],
+      [
+        "borrow: chị Loan cho mượn 1.500.000",
+        "lend: cho chị Loan mượn 1.500.000"
+      ],
+      [
+        "borrow: mẹ cho mượn 5000000 đóng tiền trường.",
+        "lend: cho mẹ mượn 5000000 đóng tiền trường"
+      ],
+      [
+        "lend: cho thg Bảo mượn 500 K",
+        "borrow: thg Bảo cho mượn 500 K"
+      ],
+      [
+        "lend: cho bác Sáu mượn 1.500.000 tiền thuốc",
+        "borrow: bác Sáu cho mượn 1.500.000 tiền thuốc"
+      ]
+    ]
+  },
+  "repair": {
+    "n": 8,
+    "pool": 17,
+    "rows": [
+      {
+        "id": "targeted-annotation-v1-01-b32a35e194dc#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-01-b32a35e194dc",
+        "text": "Ngân mượn 300k đóng tiền điện",
+        "type": "lend",
+        "value": "300k",
+        "accented": true
+      },
+      {
+        "id": "targeted-annotation-v1-02-74c083c8a1ec#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-02-74c083c8a1ec",
+        "text": "Khoa muon tam 250k tien xang",
+        "type": "lend",
+        "value": "250k",
+        "accented": false
+      },
+      {
+        "id": "targeted-annotation-v1-01-94faabf61933#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-01-94faabf61933",
+        "text": "bạn thân hỏi mượn 3tr, đã ck",
+        "type": "lend",
+        "value": "3tr",
+        "accented": true
+      },
+      {
+        "id": "targeted-annotation-v1-01-f56bb0a25e64#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-01-f56bb0a25e64",
+        "text": "Tien hoi muon 600k da ck",
+        "type": "lend",
+        "value": "600k",
+        "accented": false
+      },
+      {
+        "id": "targeted-annotation-v1-02-7b51148566ed#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-02-7b51148566ed",
+        "text": "cau Hai vay 3 trieu, thang sau tra",
+        "type": "lend",
+        "value": "3 trieu",
+        "accented": false
+      },
+      {
+        "id": "targeted-annotation-v1-02-0088fe92eea4#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-02-0088fe92eea4",
+        "text": "Thảo vay mình 1tr5, tuần sau trả",
+        "type": "lend",
+        "value": "1tr5",
+        "accented": true
+      },
+      {
+        "id": "targeted-annotation-v1-02-38d93582ba50#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-02-38d93582ba50",
+        "text": "thg Binh vay t 2tr hen luong ve tra",
+        "type": "lend",
+        "value": "2tr",
+        "accented": false
+      },
+      {
+        "id": "targeted-annotation-v1-02-20ec75c320c8#direction-repair-dup",
+        "duplicate_of": "targeted-annotation-v1-02-20ec75c320c8",
+        "text": "anh Tuan muon cua t 800k",
+        "type": "lend",
+        "value": "800k",
+        "accented": false
+      }
+    ]
+  }
+}

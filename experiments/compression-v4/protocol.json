@@ -1,0 +1,17 @@
+{
+  "experiment": "compression-v4",
+  "declared_before_training": true,
+  "final_ffn_width_experiment": true,
+  "question": "Does FFN width 2304 recover the probe borrow/lend direction lost at 2048 while staying near 30 MB INT8?",
+  "only_change_vs_compression_v3": "FFN intermediate width 2048 -> 2304",
+  "neuron_map": "models/compression-v4/ffn/combined-K2304/ffn_map.json, built by scripts/prune_ffn.py --criterion combined --k 2304 with the compression-v3 procedure (same initial model, same 723 training notes, same scores; analysis reproduces compression-v3/ffn/analysis.json). The 2048 kept set is a subset of the 2304 kept set in every layer.",
+  "estimate": "30,070,283 params, ~30.22 MB INT8; removed-energy proxy 0.144 (per layer 0.125/0.131/0.105/0.214) vs 0.193 at 2048",
+  "training": "compression-v3 recipe unchanged: encoder lr 5e-5, head lr 1e-3, batch 8, 40 epochs, warmup 0.1, weight decay 0.01, dropout 0.1, max grad norm 1.0, last epoch kept; seeds 1,2,3; no KD; no sweep.",
+  "comparisons": {
+    "A": "compression-v1 4x768 FFN 3072",
+    "B": "compression-v3 4x768 FFN 2048",
+    "C": "compression-v4 4x768 FFN 2304"
+  },
+  "decision_rule": "A adopt 2304 if it materially restores directional/probe behaviour at ~30 MB; B adopt 2048 if 2304 does not materially improve held-out behaviour; C keep 3072 if both pruned models show a repeatable important regression. No other width will be tested.",
+  "selection": "none on held-out data; test and probe-v1 are evaluation only."
+}

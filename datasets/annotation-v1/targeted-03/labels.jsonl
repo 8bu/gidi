@@ -1,0 +1,20 @@
+{"id":"targeted-annotation-v1-03-5433c7da9c02","annotation_status":"complete","type":"expense","target":{"text":"manulife","start":17,"end":25}}
+{"id":"targeted-annotation-v1-03-22b7eab32e40","annotation_status":"complete","type":"borrow","target":{"text":"vietinbank","start":19,"end":29}}
+{"id":"targeted-annotation-v1-03-a2f6d80d57c7","annotation_status":"complete","type":"refund","target":{"text":"liberty","start":0,"end":7}}
+{"id":"targeted-annotation-v1-03-f1750ac88024","annotation_status":"complete","type":"expense","target":{"text":"fwd","start":25,"end":28}}
+{"id":"targeted-annotation-v1-03-7164b8f9e928","annotation_status":"complete","type":"repayment_out","target":{"text":"mcredit","start":4,"end":11}}
+{"id":"targeted-annotation-v1-03-85c75555af09","annotation_status":"complete","type":"repayment_out","target":{"text":"fe credit","start":4,"end":13}}
+{"id":"targeted-annotation-v1-03-8fa37c89b390","annotation_status":"complete","type":"refund","target":null}
+{"id":"targeted-annotation-v1-03-4a49b1fc2bd2","annotation_status":"complete","type":"borrow","target":{"text":"fe credit","start":4,"end":13}}
+{"id":"targeted-annotation-v1-03-5bcb718792bc","annotation_status":"complete","type":"repayment_out","target":{"text":"bidv","start":4,"end":8}}
+{"id":"targeted-annotation-v1-03-b269e32a7988","annotation_status":"complete","type":"repayment_out","target":{"text":"vietinbank","start":19,"end":29}}
+{"id":"targeted-annotation-v1-03-b16fbfd38244","annotation_status":"complete","type":"repayment_out","target":{"text":"hd saison","start":10,"end":19}}
+{"id":"targeted-annotation-v1-03-d037609507e3","annotation_status":"complete","type":"repayment_out","target":{"text":"shinhan finance","start":14,"end":29}}
+{"id":"targeted-annotation-v1-03-1b9f5e7476f2","annotation_status":"complete","type":"expense","target":null}
+{"id":"targeted-annotation-v1-03-12300e731bbe","annotation_status":"complete","type":"expense","target":{"text":"liberty","start":15,"end":22}}
+{"id":"targeted-annotation-v1-03-1d73a3efc2ab","annotation_status":"complete","type":"refund","target":{"text":"fwd","start":26,"end":29}}
+{"id":"targeted-annotation-v1-03-9d4b9688520a","annotation_status":"complete","type":"borrow","target":{"text":"shinhan finance","start":8,"end":23}}
+{"id":"targeted-annotation-v1-03-3586d4636626","annotation_status":"complete","type":"borrow","target":{"text":"hd saison","start":10,"end":19}}
+{"id":"targeted-annotation-v1-03-ea5e4d17bdb1","annotation_status":"complete","type":"borrow","target":{"text":"mcredit","start":4,"end":11}}
+{"id":"targeted-annotation-v1-03-817705340288","annotation_status":"complete","type":"refund","target":{"text":"manulife","start":0,"end":8}}
+{"id":"targeted-annotation-v1-03-f6fafbd111fe","annotation_status":"complete","type":"borrow","target":{"text":"bidv","start":4,"end":8}}

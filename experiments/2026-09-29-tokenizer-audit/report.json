@@ -1,0 +1,290 @@
+{
+  "corpus": [
+    "corpus/reviewed/baseline-01.jsonl"
+  ],
+  "examples": 20,
+  "reports": [
+    {
+      "name": "vinai/phobert-base",
+      "vocab_size": 64000,
+      "n_texts": 1000,
+      "n_words": 5283,
+      "mean_tokens_per_text": 7.416,
+      "p50_tokens_per_text": 7.0,
+      "p95_tokens_per_text": 10.0,
+      "max_tokens_per_text": 15,
+      "fertility": 1.403747870528109,
+      "pct_words_split": 31.894756766988454,
+      "unk_token": "<unk>",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 1.0,
+      "roundtrip_failures": [],
+      "unk_characters": [],
+      "n_amounts": 948,
+      "mean_amount_tokens": 2.298523206751055,
+      "max_amount_tokens": 4
+    },
+    {
+      "name": "FPTAI/vibert-base-cased",
+      "vocab_size": 38168,
+      "n_texts": 1000,
+      "n_words": 5283,
+      "mean_tokens_per_text": 8.378,
+      "p50_tokens_per_text": 8.0,
+      "p95_tokens_per_text": 12.0,
+      "max_tokens_per_text": 15,
+      "fertility": 1.5858413780049214,
+      "pct_words_split": 49.11981828506531,
+      "unk_token": "[UNK]",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 0.32,
+      "roundtrip_failures": [
+        {
+          "text": "bún bò sáng nay 40k",
+          "roundtrip": "bun bo sang nay 40k"
+        },
+        {
+          "text": "tra sua vs Linh 55k",
+          "roundtrip": "tra sua vs linh 55k"
+        },
+        {
+          "text": "đổ xăng 80.000đ",
+          "roundtrip": "đo xang 80. 000đ"
+        },
+        {
+          "text": "tiền điện tháng 10 612k",
+          "roundtrip": "tien đien thang 10 612k"
+        },
+        {
+          "text": "winmart đi chợ 347,000",
+          "roundtrip": "winmart đi cho 347, 000"
+        },
+        {
+          "text": "cắt tóc 70k",
+          "roundtrip": "cat toc 70k"
+        },
+        {
+          "text": "mua thuốc cảm 125.000d",
+          "roundtrip": "mua thuoc cam 125. 000d"
+        },
+        {
+          "text": "ăn lẩu vs mn chia 185k",
+          "roundtrip": "an lau vs mn chia 185k"
+        },
+        {
+          "text": "tiền nước 90k",
+          "roundtrip": "tien nuoc 90k"
+        },
+        {
+          "text": "mua giày shopee 450k",
+          "roundtrip": "mua giay shopee 450k"
+        },
+        {
+          "text": "quà sinh nhật Mai 300 nghìn",
+          "roundtrip": "qua sinh nhat mai 300 nghin"
+        },
+        {
+          "text": "circle k mì ly + nước 42k",
+          "roundtrip": "circle k mi ly + nuoc 42k"
+        },
+        {
+          "text": "đám cưới Tuấn mừng 1tr",
+          "roundtrip": "đam cuoi tuan mung 1tr"
+        },
+        {
+          "text": "gửi xe tháng 150k",
+          "roundtrip": "gui xe thang 150k"
+        },
+        {
+          "text": "com trua van phong 35,000",
+          "roundtrip": "com trua van phong 35, 000"
+        },
+        {
+          "text": "vé xem phim cgv 2 vé 190k",
+          "roundtrip": "ve xem phim cgv 2 ve 190k"
+        },
+        {
+          "text": "tiền mạng fpt 220k",
+          "roundtrip": "tien mang fpt 220k"
+        },
+        {
+          "text": "khám răng 1tr2",
+          "roundtrip": "kham rang 1tr2"
+        },
+        {
+          "text": "sửa xe thay nhớt 150K",
+          "roundtrip": "sua xe thay nhot 150k"
+        },
+        {
+          "text": "ốc tối qua vs Hằng 230k",
+          "roundtrip": "oc toi qua vs hang 230k"
+        }
+      ],
+      "unk_characters": [],
+      "n_amounts": 948,
+      "mean_amount_tokens": 2.3850210970464136,
+      "max_amount_tokens": 6
+    },
+    {
+      "name": "bert-base-multilingual-cased",
+      "vocab_size": 119547,
+      "n_texts": 1000,
+      "n_words": 5283,
+      "mean_tokens_per_text": 8.229,
+      "p50_tokens_per_text": 8.0,
+      "p95_tokens_per_text": 12.0,
+      "max_tokens_per_text": 15,
+      "fertility": 1.5576377058489494,
+      "pct_words_split": 44.53908763959871,
+      "unk_token": "[UNK]",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 0.911,
+      "roundtrip_failures": [
+        {
+          "text": "đổ xăng 80.000đ",
+          "roundtrip": "đổ xăng 80. 000đ"
+        },
+        {
+          "text": "winmart đi chợ 347,000",
+          "roundtrip": "winmart đi chợ 347, 000"
+        },
+        {
+          "text": "mua thuốc cảm 125.000d",
+          "roundtrip": "mua thuốc cảm 125. 000d"
+        },
+        {
+          "text": "com trua van phong 35,000",
+          "roundtrip": "com trua van phong 35, 000"
+        },
+        {
+          "text": "freelance dich bai 1,5tr",
+          "roundtrip": "freelance dich bai 1, 5tr"
+        },
+        {
+          "text": "cty hoàn tiền công tác 780.000đ",
+          "roundtrip": "cty hoàn tiền công tác 780. 000đ"
+        },
+        {
+          "text": "ck vcb sang mb bank 4,5tr",
+          "roundtrip": "ck vcb sang mb bank 4, 5tr"
+        },
+        {
+          "text": "trả nợ thẻ tcb 3.200.000đ",
+          "roundtrip": "trả nợ thẻ tcb 3. 200. 000đ"
+        },
+        {
+          "text": "20/10 mua hoa tặng mẹ 250k",
+          "roundtrip": "20 / 10 mua hoa tặng mẹ 250k"
+        },
+        {
+          "text": "đi chợ winmart 312,000",
+          "roundtrip": "đi chợ winmart 312, 000"
+        },
+        {
+          "text": "khám răng 400.000",
+          "roundtrip": "khám răng 400. 000"
+        },
+        {
+          "text": "nạp zalopay 200.000đ",
+          "roundtrip": "nạp zalopay 200. 000đ"
+        },
+        {
+          "text": "tra the tin dung vcb 2,5tr",
+          "roundtrip": "tra the tin dung vcb 2, 5tr"
+        },
+        {
+          "text": "20/9 gửi thêm vào sổ 10tr",
+          "roundtrip": "20 / 9 gửi thêm vào sổ 10tr"
+        },
+        {
+          "text": "tiền điện tháng 10 hết 742,000",
+          "roundtrip": "tiền điện tháng 10 hết 742, 000"
+        },
+        {
+          "text": "be chở về nhà 42.000",
+          "roundtrip": "be chở về nhà 42. 000"
+        },
+        {
+          "text": "mua sữa cho bé 540.000d",
+          "roundtrip": "mua sữa cho bé 540. 000d"
+        },
+        {
+          "text": "khách ck tiền dịch 1,5tr",
+          "roundtrip": "khách ck tiền dịch 1, 5tr"
+        },
+        {
+          "text": "trả thẻ tín dụng 8,5tr",
+          "roundtrip": "trả thẻ tín dụng 8, 5tr"
+        },
+        {
+          "text": "góp laptop fe credit 1.450.000",
+          "roundtrip": "góp laptop fe credit 1. 450. 000"
+        }
+      ],
+      "unk_characters": [],
+      "n_amounts": 948,
+      "mean_amount_tokens": 2.3565400843881856,
+      "max_amount_tokens": 6
+    },
+    {
+      "name": "xlm-roberta-base",
+      "vocab_size": 250002,
+      "n_texts": 1000,
+      "n_words": 5283,
+      "mean_tokens_per_text": 7.427,
+      "p50_tokens_per_text": 7.0,
+      "p95_tokens_per_text": 10.0,
+      "max_tokens_per_text": 15,
+      "fertility": 1.4058300208215029,
+      "pct_words_split": 34.923339011925044,
+      "unk_token": "<unk>",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 1.0,
+      "roundtrip_failures": [],
+      "unk_characters": [],
+      "n_amounts": 948,
+      "mean_amount_tokens": 2.221518987341772,
+      "max_amount_tokens": 4
+    },
+    {
+      "name": "google/mt5-small",
+      "vocab_size": 250100,
+      "n_texts": 1000,
+      "n_words": 5283,
+      "mean_tokens_per_text": 9.659,
+      "p50_tokens_per_text": 9.0,
+      "p95_tokens_per_text": 15.0,
+      "max_tokens_per_text": 21,
+      "fertility": 1.8283172439901572,
+      "pct_words_split": 64.48987317811849,
+      "unk_token": "<unk>",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 1.0,
+      "roundtrip_failures": [],
+      "unk_characters": [],
+      "n_amounts": 948,
+      "mean_amount_tokens": 2.25,
+      "max_amount_tokens": 3
+    },
+    {
+      "name": "microsoft/Multilingual-MiniLM-L12-H384",
+      "vocab_size": 250002,
+      "n_texts": 1000,
+      "n_words": 5283,
+      "mean_tokens_per_text": 7.427,
+      "p50_tokens_per_text": 7.0,
+      "p95_tokens_per_text": 10.0,
+      "max_tokens_per_text": 15,
+      "fertility": 1.4058300208215029,
+      "pct_words_split": 34.923339011925044,
+      "unk_token": "<unk>",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 1.0,
+      "roundtrip_failures": [],
+      "unk_characters": [],
+      "n_amounts": 948,
+      "mean_amount_tokens": 2.221518987341772,
+      "max_amount_tokens": 4
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+2026-10-01 15:06:06,752 INFO run bamibert lr5e-05-seed1
+2026-10-01 15:06:06,779 WARNING MPS kernels are not bit-reproducible across runs even with fixed seeds; expect small metric differences between repeated runs of the same seed.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-01 15:06:07,364 WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 8228.14it/s]
+[transformers] [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.decoder.bias      | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.dense.weight      | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-10-01 15:06:09,529 WARNING [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.decoder.bias      | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.dense.weight      | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-10-01 15:06:30,361 INFO epoch 1 step 80 loss 2.6044 val_score 0.0559 (type F1 0.1118, span F1 0.0000) 19.9s *
+2026-10-01 15:06:48,322 INFO epoch 2 step 160 loss 2.0649 val_score 0.3291 (type F1 0.3411, span F1 0.3171) 17.8s *
+2026-10-01 15:07:05,857 INFO epoch 3 step 240 loss 1.1656 val_score 0.6114 (type F1 0.7228, span F1 0.5000) 17.3s *
+2026-10-01 15:07:22,990 INFO epoch 4 step 320 loss 0.6531 val_score 0.7156 (type F1 0.7073, span F1 0.7238) 16.9s *
+2026-10-01 15:07:40,497 INFO epoch 5 step 400 loss 0.3729 val_score 0.8334 (type F1 0.8950, span F1 0.7719) 17.3s *
+2026-10-01 15:07:57,544 INFO epoch 6 step 480 loss 0.1900 val_score 0.8206 (type F1 0.8594, span F1 0.7818) 17.0s
+2026-10-01 15:08:15,113 INFO epoch 7 step 560 loss 0.1493 val_score 0.8306 (type F1 0.8439, span F1 0.8174) 17.5s
+2026-10-01 15:08:32,363 INFO epoch 8 step 640 loss 0.0881 val_score 0.8401 (type F1 0.8695, span F1 0.8108) 17.0s *
+2026-10-01 15:08:49,544 INFO epoch 9 step 720 loss 0.0802 val_score 0.8742 (type F1 0.8835, span F1 0.8649) 17.0s *
+2026-10-01 15:09:06,513 INFO epoch 10 step 800 loss 0.0170 val_score 0.8542 (type F1 0.8616, span F1 0.8468) 16.9s
+2026-10-01 15:09:23,446 INFO epoch 11 step 880 loss 0.0217 val_score 0.8669 (type F1 0.8740, span F1 0.8598) 16.8s
+2026-10-01 15:09:40,482 INFO epoch 12 step 960 loss 0.0248 val_score 0.8739 (type F1 0.8774, span F1 0.8704) 16.9s
+2026-10-01 15:09:40,483 INFO early stopping: no improvement for 3 epochs
+[
+  {
+    "model": "Qualcomm-AI-Research/BamiBERT",
+    "best_epoch": 9,
+    "best_val_score": 0.874157916485703,
+    "test_type_macro_f1": 0.9356685201062795,
+    "test_span_f1": 0.9126213592233009,
+    "param_count": 102369035,
+    "epochs_run": 12,
+    "steps": 960,
+    "device": "mps",
+    "wall_time_sec": 210.65192216611467,
+    "train_time_sec": 208.3669647097122,
+    "sec_per_epoch": 17.36391372580935,
+    "train_examples_per_sec": 36.454915060947485,
+    "checkpoint_path": "models/targeted-v3/bamibert/lr5e-05-seed1"
+  }
+]

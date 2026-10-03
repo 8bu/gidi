@@ -1,0 +1,493 @@
+{
+  "headline": {
+    "test-v1": {
+      "v1": {
+        "type_correct": {
+          "1": 100,
+          "2": 98,
+          "3": 96
+        },
+        "target_correct": {
+          "1": 93,
+          "2": 94,
+          "3": 95
+        },
+        "joint_correct": {
+          "1": 89,
+          "2": 88,
+          "3": 89
+        }
+      },
+      "value-span-v1": {
+        "type_correct": {
+          "1": 96,
+          "2": 96,
+          "3": 96
+        },
+        "target_correct": {
+          "1": 98,
+          "2": 95,
+          "3": 98
+        },
+        "joint_correct": {
+          "1": 91,
+          "2": 87,
+          "3": 92
+        }
+      },
+      "repair": {
+        "type_correct": {
+          "1": 96,
+          "2": 97,
+          "3": 97
+        },
+        "target_correct": {
+          "1": 98,
+          "2": 94,
+          "3": 95
+        },
+        "joint_correct": {
+          "1": 91,
+          "2": 88,
+          "3": 88
+        }
+      }
+    },
+    "probe": {
+      "v1": {
+        "type_correct": {
+          "1": 63,
+          "2": 65,
+          "3": 66
+        },
+        "target_correct": {
+          "1": 66,
+          "2": 66,
+          "3": 64
+        },
+        "joint_correct": {
+          "1": 49,
+          "2": 52,
+          "3": 51
+        }
+      },
+      "value-span-v1": {
+        "type_correct": {
+          "1": 67,
+          "2": 67,
+          "3": 70
+        },
+        "target_correct": {
+          "1": 70,
+          "2": 74,
+          "3": 70
+        },
+        "joint_correct": {
+          "1": 57,
+          "2": 61,
+          "3": 61
+        }
+      },
+      "repair": {
+        "type_correct": {
+          "1": 69,
+          "2": 65,
+          "3": 70
+        },
+        "target_correct": {
+          "1": 71,
+          "2": 68,
+          "3": 69
+        },
+        "joint_correct": {
+          "1": 60,
+          "2": 54,
+          "3": 58
+        }
+      }
+    }
+  },
+  "per_gold_type": {
+    "test-v1": {
+      "expense": {
+        "n": 32,
+        "v1": [
+          29,
+          29,
+          28
+        ],
+        "value-span-v1": [
+          28,
+          27,
+          27
+        ],
+        "repair": [
+          28,
+          27,
+          29
+        ]
+      },
+      "income": {
+        "n": 11,
+        "v1": [
+          9,
+          9,
+          9
+        ],
+        "value-span-v1": [
+          9,
+          9,
+          9
+        ],
+        "repair": [
+          9,
+          9,
+          9
+        ]
+      },
+      "borrow": {
+        "n": 9,
+        "v1": [
+          9,
+          8,
+          9
+        ],
+        "value-span-v1": [
+          9,
+          9,
+          9
+        ],
+        "repair": [
+          9,
+          9,
+          9
+        ]
+      },
+      "lend": {
+        "n": 9,
+        "v1": [
+          9,
+          9,
+          9
+        ],
+        "value-span-v1": [
+          7,
+          8,
+          8
+        ],
+        "repair": [
+          8,
+          8,
+          8
+        ]
+      },
+      "repayment_in": {
+        "n": 8,
+        "v1": [
+          8,
+          8,
+          8
+        ],
+        "value-span-v1": [
+          8,
+          8,
+          8
+        ],
+        "repair": [
+          8,
+          8,
+          7
+        ]
+      },
+      "repayment_out": {
+        "n": 10,
+        "v1": [
+          10,
+          9,
+          8
+        ],
+        "value-span-v1": [
+          10,
+          10,
+          10
+        ],
+        "repair": [
+          9,
+          10,
+          10
+        ]
+      },
+      "transfer": {
+        "n": 18,
+        "v1": [
+          18,
+          18,
+          17
+        ],
+        "value-span-v1": [
+          18,
+          17,
+          17
+        ],
+        "repair": [
+          17,
+          18,
+          17
+        ]
+      },
+      "refund": {
+        "n": 8,
+        "v1": [
+          8,
+          8,
+          8
+        ],
+        "value-span-v1": [
+          7,
+          8,
+          8
+        ],
+        "repair": [
+          8,
+          8,
+          8
+        ]
+      }
+    },
+    "probe": {
+      "expense": {
+        "n": 18,
+        "v1": [
+          14,
+          15,
+          15
+        ],
+        "value-span-v1": [
+          14,
+          15,
+          15
+        ],
+        "repair": [
+          15,
+          14,
+          15
+        ]
+      },
+      "income": {
+        "n": 18,
+        "v1": [
+          14,
+          14,
+          15
+        ],
+        "value-span-v1": [
+          16,
+          15,
+          15
+        ],
+        "repair": [
+          16,
+          15,
+          17
+        ]
+      },
+      "borrow": {
+        "n": 13,
+        "v1": [
+          9,
+          10,
+          11
+        ],
+        "value-span-v1": [
+          12,
+          12,
+          13
+        ],
+        "repair": [
+          12,
+          11,
+          12
+        ]
+      },
+      "lend": {
+        "n": 11,
+        "v1": [
+          10,
+          10,
+          9
+        ],
+        "value-span-v1": [
+          10,
+          10,
+          11
+        ],
+        "repair": [
+          10,
+          10,
+          10
+        ]
+      },
+      "repayment_in": {
+        "n": 2,
+        "v1": [
+          1,
+          1,
+          1
+        ],
+        "value-span-v1": [
+          1,
+          1,
+          1
+        ],
+        "repair": [
+          1,
+          1,
+          1
+        ]
+      },
+      "repayment_out": {
+        "n": 10,
+        "v1": [
+          8,
+          8,
+          8
+        ],
+        "value-span-v1": [
+          8,
+          8,
+          8
+        ],
+        "repair": [
+          8,
+          8,
+          8
+        ]
+      },
+      "refund": {
+        "n": 9,
+        "v1": [
+          7,
+          7,
+          7
+        ],
+        "value-span-v1": [
+          6,
+          6,
+          7
+        ],
+        "repair": [
+          7,
+          6,
+          7
+        ]
+      }
+    }
+  },
+  "type_changes_vs_value_span_v1": {
+    "test-v1": {
+      "1": {
+        "fixed": [
+          "mua giay the thao 1tr25 (transfer -> expense, gold expense)",
+          "anh Long mượn 3 triệu sửa xe (borrow -> lend, gold lend)",
+          "spotify refund 59k (expense -> refund, gold refund)"
+        ],
+        "broken": [
+          "tra lai chi Mai 2tr (repayment_out -> expense, gold repayment_out)",
+          "de rieng tien sua xe 800k (transfer -> expense, gold transfer)",
+          "bách hoá xanh rau thịt 187k (expense -> income, gold expense)"
+        ]
+      },
+      "2": {
+        "fixed": [
+          "mua giay the thao 1tr25 (transfer -> expense, gold expense)",
+          "de rieng tien sua xe 800k (expense -> transfer, gold transfer)"
+        ],
+        "broken": [
+          "bách hoá xanh rau thịt 187k (expense -> income, gold expense)"
+        ]
+      },
+      "3": {
+        "fixed": [
+          "mua giay the thao 1tr25 (transfer -> expense, gold expense)",
+          "bách hoá xanh rau thịt 187k (income -> expense, gold expense)"
+        ],
+        "broken": [
+          "đòi được nợ thằng Lâm 400k (repayment_in -> repayment_out, gold repayment_in)"
+        ]
+      }
+    },
+    "probe": {
+      "1": {
+        "fixed": [
+          "anh trai cho 1tr5 (lend -> income, gold income)",
+          "bhxh tu dong thang nay 1tr5 (transfer -> expense, gold expense)",
+          "prudential chi trả tiền mổ 12tr (repayment_in -> refund, gold refund)"
+        ],
+        "broken": [
+          "minigame shopee trúng 100k (income -> expense, gold income)"
+        ]
+      },
+      "2": {
+        "fixed": [
+          "ông nội cho 1 triệu mua sách (borrow -> income, gold income)"
+        ],
+        "broken": [
+          "thg Khoa cho muon tam 300k an trua (borrow -> lend, gold borrow)",
+          "lì xì bé Bin 100k (expense -> income, gold expense)",
+          "quay số trúng 500k (income -> borrow, gold income)"
+        ]
+      },
+      "3": {
+        "fixed": [
+          "ông nội cho 1 triệu mua sách (borrow -> income, gold income)",
+          "bo me cho 5tr dong hoc (transfer -> income, gold income)",
+          "bhxh tu dong thang nay 1tr5 (repayment_out -> expense, gold expense)"
+        ],
+        "broken": [
+          "me cho muon 1tr5 tra tien dien (borrow -> lend, gold borrow)",
+          "ban cung lop muon 400k mua sach (lend -> borrow, gold lend)",
+          "lì xì bé Bin 100k (expense -> income, gold expense)"
+        ]
+      }
+    }
+  },
+  "watch_note": {
+    "text": "ck cho Vũ mượn 700k",
+    "gold": "lend",
+    "pred_type": {
+      "v1": {
+        "1": "lend",
+        "2": "lend",
+        "3": "lend"
+      },
+      "value-span-v1": {
+        "1": "borrow",
+        "2": "borrow",
+        "3": "borrow"
+      },
+      "repair": {
+        "1": "borrow",
+        "2": "borrow",
+        "3": "borrow"
+      }
+    }
+  },
+  "probe_lender_first_type_correct": {
+    "v1": {
+      "1": 5,
+      "2": 6,
+      "3": 7
+    },
+    "value-span-v1": {
+      "1": 8,
+      "2": 8,
+      "3": 9
+    },
+    "n": 9,
+    "repair": {
+      "1": 8,
+      "2": 7,
+      "3": 8
+    }
+  }
+}

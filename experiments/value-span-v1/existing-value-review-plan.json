@@ -1,0 +1,391 @@
+{
+  "name": "existing-value-review",
+  "seed": "annotation-v2:existing-value-review",
+  "counts": {
+    "in_scope": 909,
+    "flagged": 127,
+    "clean_auto_accepted": 782,
+    "must_review": 14,
+    "hard_sample": 17,
+    "clean_audit": 15,
+    "review_queue": 46,
+    "unsampled_flagged": 96,
+    "genuinely_ambiguous": 14
+  },
+  "genuinely_ambiguous": "must-review records: flagged notes whose value a rule cannot settle (several or no candidate, a bare number, spelled-out number words, a compound amount, odd punctuation, a split/share amount, a cu/cũ/củ collision). The other flagged notes carry explicit period/quantity/date/unit evidence for the extra number.",
+  "original_queue": {
+    "total": 167,
+    "flagged": 127,
+    "audit_sample": 40,
+    "flagged_by_primary_reason": {
+      "multi_number": 98,
+      "bare_number": 2,
+      "multiple_money_candidates": 1,
+      "slang": 24,
+      "no_candidate": 2
+    },
+    "flagged_by_any_reason": {
+      "multi_number": 99,
+      "bare_number": 2,
+      "multiple_money_candidates": 1,
+      "slang": 25,
+      "no_candidate": 2
+    },
+    "flagged_by_pattern": {
+      "multi_number_period_or_ordinal": 59,
+      "multi_number_quantity": 20,
+      "multi_number_date_or_time": 5,
+      "multi_number_attached_unit": 10,
+      "multi_number_weekday": 2,
+      "multi_number_percent": 1,
+      "multi_number_other": 1,
+      "slang_cu": 22,
+      "slang_other": 3,
+      "flagged_other": 4
+    },
+    "primary_reason_to_new_group": {
+      "multi_number": {
+        "records": 98,
+        "must_review": 3,
+        "hard_sample": 14,
+        "auto_accept": 81
+      },
+      "bare_number": {
+        "records": 2,
+        "must_review": 2,
+        "hard_sample": 0,
+        "auto_accept": 0
+      },
+      "multiple_money_candidates": {
+        "records": 1,
+        "must_review": 1,
+        "hard_sample": 0,
+        "auto_accept": 0
+      },
+      "slang": {
+        "records": 24,
+        "must_review": 6,
+        "hard_sample": 3,
+        "auto_accept": 15
+      },
+      "no_candidate": {
+        "records": 2,
+        "must_review": 2,
+        "hard_sample": 0,
+        "auto_accept": 0
+      }
+    }
+  },
+  "must_review_reason_counts": {
+    "multiple_money_candidates": 1,
+    "no_candidate": 2,
+    "bare_number": 2,
+    "number_words": 3,
+    "split_share": 3,
+    "cu_collision": 3
+  },
+  "must_review": [
+    {
+      "id": "baseline-01-84912823d92c",
+      "text": "lau vs team 20/10 chia moi nguoi 320k",
+      "reasons": [
+        "split_share"
+      ]
+    },
+    {
+      "id": "baseline-01-fa5f5ec98141",
+      "text": "hai tram nghin mua hoa tang me",
+      "reasons": [
+        "number_words"
+      ]
+    },
+    {
+      "id": "baseline-01-ba7c2e8825dc",
+      "text": "lau vs team 1tr2 chia 5",
+      "reasons": [
+        "split_share"
+      ]
+    },
+    {
+      "id": "baseline-01-b323f8915a79",
+      "text": "lì xì bà cho 500",
+      "reasons": [
+        "bare_number"
+      ]
+    },
+    {
+      "id": "targeted-annotation-v1-02-77b7f8dc3cd1",
+      "text": "dì Xuân cho vay 8 củ mua xe máy cũ",
+      "reasons": [
+        "cu_collision"
+      ]
+    },
+    {
+      "id": "baseline-01-f6c7168683c4",
+      "text": "trich 20% luong de danh",
+      "reasons": [
+        "no_candidate"
+      ]
+    },
+    {
+      "id": "baseline-01-ba8e9a28c7bb",
+      "text": "nhan tien ban dt cu 3 cu",
+      "reasons": [
+        "cu_collision"
+      ]
+    },
+    {
+      "id": "baseline-01-d658d723da0b",
+      "text": "rut 500 tieu tuan nay",
+      "reasons": [
+        "bare_number"
+      ]
+    },
+    {
+      "id": "baseline-01-696464d659c5",
+      "text": "lẩu vs team 4 người chia 180k",
+      "reasons": [
+        "split_share"
+      ]
+    },
+    {
+      "id": "baseline-01-289f8839b96a",
+      "text": "gửi góp tiết kiệm tháng 11 hai triệu",
+      "reasons": [
+        "number_words"
+      ]
+    },
+    {
+      "id": "baseline-01-bea282ff517b",
+      "text": "tiền nhà tháng 10 bốn triệu",
+      "reasons": [
+        "number_words"
+      ]
+    },
+    {
+      "id": "baseline-01-255e6d920a34",
+      "text": "grabfood tối 89k ship 15k",
+      "reasons": [
+        "multiple_money_candidates"
+      ]
+    },
+    {
+      "id": "baseline-01-2e1787eca59d",
+      "text": "thuong tet 2 thang luong",
+      "reasons": [
+        "no_candidate"
+      ]
+    },
+    {
+      "id": "baseline-01-324ef45f361c",
+      "text": "ban dt cu dc 3 cu",
+      "reasons": [
+        "cu_collision"
+      ]
+    }
+  ],
+  "strata": {
+    "multi_number_period_or_ordinal": {
+      "population": 58,
+      "sample": 3,
+      "unsampled": 55,
+      "sampled": [
+        {
+          "id": "baseline-01-d7d840164a2e",
+          "text": "tien phong thang 11 3tr2"
+        },
+        {
+          "id": "probe-v1-251907cc9b56",
+          "text": "thanh toan ky 5 khoan vay mua can ho 7tr6"
+        },
+        {
+          "id": "baseline-01-4cb1fa8a1a45",
+          "text": "nhận lương tháng 10 18tr5"
+        }
+      ]
+    },
+    "multi_number_quantity": {
+      "population": 19,
+      "sample": 3,
+      "unsampled": 16,
+      "sampled": [
+        {
+          "id": "baseline-01-9e017ecd0a9b",
+          "text": "ve xem phim cgv 2 ve 180k"
+        },
+        {
+          "id": "baseline-01-15b438d8e091",
+          "text": "mua 1 chỉ vàng 7tr2"
+        },
+        {
+          "id": "targeted-annotation-v1-02-ca3de082fd7e",
+          "text": "5 tờ vé cào trúng 300k"
+        }
+      ]
+    },
+    "multi_number_date_or_time": {
+      "population": 4,
+      "sample": 2,
+      "unsampled": 2,
+      "sampled": [
+        {
+          "id": "baseline-01-304bfe5637ab",
+          "text": "cho a Nam vay 1 triệu 20/10"
+        },
+        {
+          "id": "baseline-01-ce97d487edba",
+          "text": "quà 20/10 cho mẹ 500k"
+        }
+      ]
+    },
+    "multi_number_attached_unit": {
+      "population": 10,
+      "sample": 3,
+      "unsampled": 7,
+      "sampled": [
+        {
+          "id": "baseline-01-25388aa4b37c",
+          "text": "cho Quang mượn tiền mặt 700k t5"
+        },
+        {
+          "id": "baseline-01-56a7ee75454e",
+          "text": "gia han goi 4g 120k"
+        },
+        {
+          "id": "baseline-01-3fca7834ba04",
+          "text": "gửi tk online vcb 10tr kỳ hạn 3t"
+        }
+      ]
+    },
+    "multi_number_weekday": {
+      "population": 2,
+      "sample": 2,
+      "unsampled": 0,
+      "sampled": [
+        {
+          "id": "targeted-annotation-v1-02-66ff4e082c7b",
+          "text": "mình mượn Huy 300k nạp game, thứ 6 trả"
+        },
+        {
+          "id": "targeted-annotation-v1-02-9de55e9e1450",
+          "text": "Huy mượn của mình 300k nạp game, thứ 6 trả"
+        }
+      ]
+    },
+    "multi_number_percent": {
+      "population": 1,
+      "sample": 1,
+      "unsampled": 0,
+      "sampled": [
+        {
+          "id": "targeted-annotation-v1-01-5b89e8677c73",
+          "text": "cho vay Nghia 3tr lai 2%"
+        }
+      ]
+    },
+    "slang_cu": {
+      "population": 19,
+      "sample": 3,
+      "unsampled": 16,
+      "sampled": [
+        {
+          "id": "baseline-01-628139f813bd",
+          "text": "thưởng tết sớm 3 củ"
+        },
+        {
+          "id": "targeted-annotation-v1-02-6c5e5f94f774",
+          "text": "em cho dì Út vay 4 củ đi viện"
+        },
+        {
+          "id": "probe-v1-26da30e8b087",
+          "text": "muon chu Dung 5 cu"
+        }
+      ]
+    }
+  },
+  "clean": {
+    "population": 782,
+    "audit_sample": 15,
+    "audit_sample_size": 15,
+    "audit": [
+      {
+        "id": "baseline-01-16b7e2c80e79",
+        "text": "luong ve 12,500,000"
+      },
+      {
+        "id": "baseline-01-2627bc241d6d",
+        "text": "hạt cho chó 420.000đ"
+      },
+      {
+        "id": "baseline-01-27db89c74fcb",
+        "text": "tiet kiem cho con di hoc 1,5tr"
+      },
+      {
+        "id": "baseline-01-385d471309b4",
+        "text": "mượn a Sơn 700 nghìn"
+      },
+      {
+        "id": "probe-v1-931b7bb2d6c9",
+        "text": "thg Khoa cho muon tam 300k an trua"
+      },
+      {
+        "id": "targeted-annotation-v1-01-c29271668522",
+        "text": "lazada tra tien don huy 99K"
+      },
+      {
+        "id": "baseline-01-3ade82662461",
+        "text": "nạp zalopay 300.000"
+      },
+      {
+        "id": "baseline-01-172a304c1c82",
+        "text": "chợ sáng 120k"
+      },
+      {
+        "id": "probe-v1-49168ea5445e",
+        "text": "xổ số trúng 2 triệu"
+      },
+      {
+        "id": "targeted-annotation-v1-02-ba3bc53d6e46",
+        "text": "Ngân vay tao 1.5tr, mai mốt gửi lại"
+      },
+      {
+        "id": "baseline-01-b5cbe7ed12a5",
+        "text": "thanh toan du no the vcb 6tr"
+      },
+      {
+        "id": "probe-v1-6d13d8fd2993",
+        "text": "bao hiem boi thuong xe 3tr5"
+      },
+      {
+        "id": "baseline-01-3b15ae81ca06",
+        "text": "trả hết nợ Bình rồi 2 triệu"
+      },
+      {
+        "id": "targeted-annotation-v1-01-7d1037648087",
+        "text": "roommate tra tien nha minh dong truoc 1tr5"
+      },
+      {
+        "id": "targeted-annotation-v1-01-a30685052497",
+        "text": "mẹ trả lại 2tr mượn hôm tết"
+      }
+    ]
+  },
+  "sampling": {
+    "per_stratum": "all if population <= 2, 2 if < 6, else 3; spread over accents and v1 type",
+    "clean_audit": "spread over v1 type, accents, span unit form, target present/null, split",
+    "draw": "greedy least-represented-feature pick, ties by sha256(seed:salt:id)"
+  },
+  "escalation_rule": {
+    "error": "the human value label differs from the proposal (span, or present versus null) or the human annotation_status is not 'complete'",
+    "sampled_stratum": "any error in a sampled stratum -> that stratum is expanded to full review (the scorer writes value-escalation-queue.jsonl)",
+    "clean_audit": {
+      "max_errors_to_accept": 1,
+      "accept": "0-1 errors in the audit sample -> the auto-accepted clean set stands",
+      "expand": ">=2 errors -> stop; the clean auto-accepted population is reviewed in stages of 50 records (value-escalation-queue.jsonl)"
+    },
+    "must_review": "errors do not trigger escalation (expected); they are reported",
+    "unsampled": "unsampled flagged records keep their rule proposal (status pending-stratum-check); they train only when the scorer marks their stratum passed, and are never human labels"
+  },
+  "quet_command": "quet annotate datasets/annotation-v2/value-review-queue.jsonl \\\n  --schema configs/annotation-v2-value.quet.yaml \\\n  --out datasets/annotation-v2/value-labels.jsonl \\\n  --proposals datasets/annotation-v2/value-proposals.jsonl",
+  "score_command": "uv run python scripts/score_value_review.py --dataset existing-value-review"
+}

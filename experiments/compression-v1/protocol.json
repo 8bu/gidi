@@ -1,0 +1,15 @@
+{
+  "experiment": "compression-v1",
+  "declared_before_training": true,
+  "baseline": "models/distillation-v2/supervised/student-4x768-pretrained/seed{1,2,3} (distillation-v2 arm A)",
+  "baseline_sha256": {
+    "seed1": "ecce8554f4a03c449de101aaa1957508cfaa9e3138e8f73955b647724267c3e0",
+    "seed2": "8a6cfec537bb6697f6d3a75bfbee639b816f43cf8569a31cdfa9c0df32fe5774",
+    "seed3": "ecee61667abee0c2135f2a0e316109ace3658c39d480e71ffbe4289b3e4309b8"
+  },
+  "chosen_vocab_policy": "B-rank-8000",
+  "policy_rule": "specials + 256 byte tokens + every token observed in the 723 training notes + Vietnamese-compatible tokens with BPE merge rank < 8000, closed under merge parents. Built from the BamiBERT vocab/merges and training notes only.",
+  "choice_rationale": "Largest size reduction among policies that keep the pretraining-frequent Vietnamese vocabulary (rank < 8000) rather than training-only coverage; the hand-written OOV list (not test/probe) changes in 4/40 strings at rank 12000 and grows quickly below 6000. Test/probe coverage numbers were reported, not tuned against.",
+  "training": "same pretrained init as distillation-v2 (BamiBERT layers 2,5,8,11 + fresh seeded heads), then position table truncated to 34 rows and vocabulary pruned to 8,338 rows (exact row copies), then the distillation-v2 supervised recipe unchanged: lr 5e-5, head lr 1e-3, 40 epochs, batch 8, warmup 0.1, weight decay 0.01, dropout 0.1, last epoch kept; seeds 1,2,3; no KD.",
+  "position_only_arm": "not retrained: truncation is bitwise lossless and rows >= 34 are never indexed, so it is functionally the baseline (verified on the trained baselines)."
+}

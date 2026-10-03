@@ -1,0 +1,168 @@
+{
+  "annotation_version": "annotation-v1",
+  "seed": "annotation-v1-split-02",
+  "ratios": {
+    "train": 0.7,
+    "validation": 0.15,
+    "test": 0.15
+  },
+  "grouping": {
+    "rules": [
+      "template (target masked, amounts masked)",
+      "mirror (bag of tokens)",
+      "near-duplicate"
+    ],
+    "target_mask": "§",
+    "stopwords": [
+      "cho",
+      "da",
+      "dc",
+      "duoc",
+      "lai",
+      "minh",
+      "nha",
+      "ok",
+      "roi",
+      "tao",
+      "toi"
+    ],
+    "similarity_threshold": 0.9,
+    "max_length_gap": 6,
+    "min_groups_for_type_coverage": 3
+  },
+  "records": 716,
+  "n_groups": 513,
+  "n_groups_per_split": {
+    "train": 302,
+    "validation": 107,
+    "test": 104
+  },
+  "counts": {
+    "train": {
+      "borrow": {
+        "accented": 27,
+        "unaccented": 15
+      },
+      "expense": {
+        "accented": 90,
+        "unaccented": 61
+      },
+      "income": {
+        "accented": 26,
+        "unaccented": 21
+      },
+      "lend": {
+        "accented": 23,
+        "unaccented": 19
+      },
+      "refund": {
+        "accented": 22,
+        "unaccented": 17
+      },
+      "repayment_in": {
+        "accented": 21,
+        "unaccented": 16
+      },
+      "repayment_out": {
+        "accented": 31,
+        "unaccented": 19
+      },
+      "transfer": {
+        "accented": 59,
+        "unaccented": 34
+      }
+    },
+    "validation": {
+      "borrow": {
+        "accented": 7,
+        "unaccented": 3
+      },
+      "expense": {
+        "accented": 19,
+        "unaccented": 14
+      },
+      "income": {
+        "accented": 6,
+        "unaccented": 5
+      },
+      "lend": {
+        "accented": 7,
+        "unaccented": 2
+      },
+      "refund": {
+        "accented": 5,
+        "unaccented": 3
+      },
+      "repayment_in": {
+        "accented": 4,
+        "unaccented": 4
+      },
+      "repayment_out": {
+        "accented": 6,
+        "unaccented": 5
+      },
+      "transfer": {
+        "accented": 11,
+        "unaccented": 9
+      }
+    },
+    "test": {
+      "borrow": {
+        "accented": 6,
+        "unaccented": 3
+      },
+      "expense": {
+        "accented": 19,
+        "unaccented": 13
+      },
+      "income": {
+        "accented": 6,
+        "unaccented": 5
+      },
+      "lend": {
+        "accented": 7,
+        "unaccented": 2
+      },
+      "refund": {
+        "accented": 5,
+        "unaccented": 3
+      },
+      "repayment_in": {
+        "accented": 4,
+        "unaccented": 4
+      },
+      "repayment_out": {
+        "accented": 6,
+        "unaccented": 4
+      },
+      "transfer": {
+        "accented": 10,
+        "unaccented": 8
+      }
+    }
+  },
+  "source_batch_counts": {
+    "train": {
+      "baseline-01": 410,
+      "targeted-annotation-v1-01": 91
+    },
+    "validation": {
+      "baseline-01": 87,
+      "targeted-annotation-v1-01": 23
+    },
+    "test": {
+      "baseline-01": 80,
+      "targeted-annotation-v1-01": 25
+    }
+  },
+  "combined_sha256": {
+    "queue": "2eb50f01567c7571b7d4b847cf0f34fd53b0e199b11cc612fed6bcfdc7a06550",
+    "labels": "cdb09af17d45f06ecd60ca5812ea679f959cc297a6bf87d0fb76e74dae24ac3a",
+    "provenance": "3b2237bd6807ec1d8c44fbdb749a38ea8def97c96882a7fec8f4c1b8f3ffaeb2"
+  },
+  "sha256": {
+    "train.jsonl": "50754a5bf6c6b2969a919070c4224eb2d64a9543ab0e6de01897d366015100f4",
+    "validation.jsonl": "5c8039978a84943db4ffa44524a65200ff5022ce06092e128ffbbe8fbff8df87",
+    "test.jsonl": "13fc3de4b7be58a689124c31477a14cf7cbb3d82e09a8c4276174f0825c775d0"
+  }
+}

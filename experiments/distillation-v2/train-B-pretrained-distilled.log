@@ -1,0 +1,273 @@
+2026-10-01 22:38:17,421 WARNING MPS kernels are not bit-reproducible; repeated runs of a seed may differ.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-01 22:38:17,726 WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 10067.35it/s]
+[transformers] [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.decoder.bias      | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.dense.weight      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-10-01 22:38:21,321 WARNING [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.decoder.bias      | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.dense.weight      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/torch/autograd/graph.py:1072: UserWarning: index_put_with_accumulate_mps does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/Context.cpp:190.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2026-10-01 22:38:50,143 INFO [distilled student-4x768-pretrained seed1] epoch 1 step 91 loss 6.3065 (in-sample val: type F1 0.0577, span F1 0.0000) 27.2s
+2026-10-01 22:39:09,922 INFO [distilled student-4x768-pretrained seed1] epoch 2 step 182 loss 5.0713 (in-sample val: type F1 0.4332, span F1 0.0000) 19.7s
+2026-10-01 22:39:29,063 INFO [distilled student-4x768-pretrained seed1] epoch 3 step 273 loss 3.4680 (in-sample val: type F1 0.7760, span F1 0.0364) 19.0s
+2026-10-01 22:39:48,870 INFO [distilled student-4x768-pretrained seed1] epoch 4 step 364 loss 2.0683 (in-sample val: type F1 0.9740, span F1 0.0870) 19.7s
+2026-10-01 22:40:09,693 INFO [distilled student-4x768-pretrained seed1] epoch 5 step 455 loss 1.2996 (in-sample val: type F1 0.9778, span F1 0.3250) 20.7s
+2026-10-01 22:40:29,466 INFO [distilled student-4x768-pretrained seed1] epoch 6 step 546 loss 0.7368 (in-sample val: type F1 0.9926, span F1 0.7885) 19.7s
+2026-10-01 22:40:49,234 INFO [distilled student-4x768-pretrained seed1] epoch 7 step 637 loss 0.4596 (in-sample val: type F1 0.9785, span F1 0.8679) 19.6s
+2026-10-01 22:41:08,979 INFO [distilled student-4x768-pretrained seed1] epoch 8 step 728 loss 0.2992 (in-sample val: type F1 0.9915, span F1 0.9533) 19.6s
+2026-10-01 22:41:28,278 INFO [distilled student-4x768-pretrained seed1] epoch 9 step 819 loss 0.1405 (in-sample val: type F1 0.9915, span F1 0.9815) 19.2s
+2026-10-01 22:41:48,209 INFO [distilled student-4x768-pretrained seed1] epoch 10 step 910 loss 0.1063 (in-sample val: type F1 0.9915, span F1 1.0000) 19.8s
+2026-10-01 22:42:07,697 INFO [distilled student-4x768-pretrained seed1] epoch 11 step 1001 loss 0.0715 (in-sample val: type F1 1.0000, span F1 1.0000) 19.4s
+2026-10-01 22:42:31,878 INFO [distilled student-4x768-pretrained seed1] epoch 12 step 1092 loss 0.0430 (in-sample val: type F1 0.9915, span F1 1.0000) 24.0s
+2026-10-01 22:42:52,364 INFO [distilled student-4x768-pretrained seed1] epoch 13 step 1183 loss 0.0415 (in-sample val: type F1 0.9926, span F1 1.0000) 20.4s
+2026-10-01 22:43:12,637 INFO [distilled student-4x768-pretrained seed1] epoch 14 step 1274 loss 0.0277 (in-sample val: type F1 1.0000, span F1 1.0000) 20.1s
+2026-10-01 22:43:32,341 INFO [distilled student-4x768-pretrained seed1] epoch 15 step 1365 loss 0.0192 (in-sample val: type F1 1.0000, span F1 1.0000) 19.6s
+2026-10-01 22:43:53,670 INFO [distilled student-4x768-pretrained seed1] epoch 16 step 1456 loss 0.0320 (in-sample val: type F1 0.9915, span F1 1.0000) 21.2s
+2026-10-01 22:44:13,571 INFO [distilled student-4x768-pretrained seed1] epoch 17 step 1547 loss 0.0161 (in-sample val: type F1 1.0000, span F1 1.0000) 19.8s
+2026-10-01 22:44:33,043 INFO [distilled student-4x768-pretrained seed1] epoch 18 step 1638 loss 0.0177 (in-sample val: type F1 0.9915, span F1 1.0000) 19.4s
+2026-10-01 22:44:52,219 INFO [distilled student-4x768-pretrained seed1] epoch 19 step 1729 loss 0.0142 (in-sample val: type F1 1.0000, span F1 1.0000) 19.0s
+2026-10-01 22:45:11,415 INFO [distilled student-4x768-pretrained seed1] epoch 20 step 1820 loss 0.0168 (in-sample val: type F1 0.9950, span F1 1.0000) 19.1s
+2026-10-01 22:45:30,649 INFO [distilled student-4x768-pretrained seed1] epoch 21 step 1911 loss 0.0220 (in-sample val: type F1 0.9915, span F1 0.9908) 19.1s
+2026-10-01 22:45:50,238 INFO [distilled student-4x768-pretrained seed1] epoch 22 step 2002 loss 0.0209 (in-sample val: type F1 0.9950, span F1 1.0000) 19.5s
+2026-10-01 22:46:10,183 INFO [distilled student-4x768-pretrained seed1] epoch 23 step 2093 loss 0.0190 (in-sample val: type F1 0.9915, span F1 1.0000) 19.8s
+2026-10-01 22:46:29,549 INFO [distilled student-4x768-pretrained seed1] epoch 24 step 2184 loss 0.0102 (in-sample val: type F1 0.9915, span F1 1.0000) 19.2s
+2026-10-01 22:46:49,126 INFO [distilled student-4x768-pretrained seed1] epoch 25 step 2275 loss 0.0105 (in-sample val: type F1 1.0000, span F1 1.0000) 19.5s
+2026-10-01 22:47:08,785 INFO [distilled student-4x768-pretrained seed1] epoch 26 step 2366 loss 0.0099 (in-sample val: type F1 0.9865, span F1 1.0000) 19.5s
+2026-10-01 22:47:29,686 INFO [distilled student-4x768-pretrained seed1] epoch 27 step 2457 loss 0.0049 (in-sample val: type F1 0.9950, span F1 1.0000) 20.8s
+2026-10-01 22:47:49,360 INFO [distilled student-4x768-pretrained seed1] epoch 28 step 2548 loss 0.0168 (in-sample val: type F1 1.0000, span F1 1.0000) 19.6s
+2026-10-01 22:48:09,122 INFO [distilled student-4x768-pretrained seed1] epoch 29 step 2639 loss 0.0065 (in-sample val: type F1 1.0000, span F1 1.0000) 19.6s
+2026-10-01 22:48:29,607 INFO [distilled student-4x768-pretrained seed1] epoch 30 step 2730 loss 0.0079 (in-sample val: type F1 0.9915, span F1 1.0000) 20.4s
+2026-10-01 22:48:49,314 INFO [distilled student-4x768-pretrained seed1] epoch 31 step 2821 loss 0.0085 (in-sample val: type F1 1.0000, span F1 1.0000) 19.6s
+2026-10-01 22:49:09,374 INFO [distilled student-4x768-pretrained seed1] epoch 32 step 2912 loss 0.0070 (in-sample val: type F1 1.0000, span F1 1.0000) 19.9s
+2026-10-01 22:49:29,113 INFO [distilled student-4x768-pretrained seed1] epoch 33 step 3003 loss 0.0044 (in-sample val: type F1 1.0000, span F1 1.0000) 19.6s
+2026-10-01 22:49:48,712 INFO [distilled student-4x768-pretrained seed1] epoch 34 step 3094 loss 0.0076 (in-sample val: type F1 0.9915, span F1 1.0000) 19.5s
+2026-10-01 22:50:08,179 INFO [distilled student-4x768-pretrained seed1] epoch 35 step 3185 loss 0.0057 (in-sample val: type F1 0.9950, span F1 1.0000) 19.3s
+2026-10-01 22:50:26,971 INFO [distilled student-4x768-pretrained seed1] epoch 36 step 3276 loss 0.0053 (in-sample val: type F1 1.0000, span F1 1.0000) 18.7s
+2026-10-01 22:50:46,519 INFO [distilled student-4x768-pretrained seed1] epoch 37 step 3367 loss 0.0037 (in-sample val: type F1 0.9865, span F1 1.0000) 19.4s
+2026-10-01 22:51:06,231 INFO [distilled student-4x768-pretrained seed1] epoch 38 step 3458 loss 0.0049 (in-sample val: type F1 1.0000, span F1 1.0000) 19.6s
+2026-10-01 22:51:23,967 INFO [distilled student-4x768-pretrained seed1] epoch 39 step 3549 loss 0.0038 (in-sample val: type F1 1.0000, span F1 1.0000) 17.6s
+2026-10-01 22:51:41,825 INFO [distilled student-4x768-pretrained seed1] epoch 40 step 3640 loss 0.0039 (in-sample val: type F1 1.0000, span F1 1.0000) 17.7s
+2026-10-01 22:51:42,750 WARNING MPS kernels are not bit-reproducible; repeated runs of a seed may differ.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 19656.43it/s]
+[transformers] [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.decoder.bias      | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.dense.weight      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-10-01 22:51:46,185 WARNING [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.decoder.bias      | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.dense.weight      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-10-01 22:52:05,524 INFO [distilled student-4x768-pretrained seed2] epoch 1 step 91 loss 6.3718 (in-sample val: type F1 0.1114, span F1 0.0000) 19.0s
+2026-10-01 22:52:25,034 INFO [distilled student-4x768-pretrained seed2] epoch 2 step 182 loss 5.0930 (in-sample val: type F1 0.4864, span F1 0.0000) 19.4s
+2026-10-01 22:52:44,558 INFO [distilled student-4x768-pretrained seed2] epoch 3 step 273 loss 3.3732 (in-sample val: type F1 0.9296, span F1 0.0000) 19.4s
+2026-10-01 22:53:03,719 INFO [distilled student-4x768-pretrained seed2] epoch 4 step 364 loss 2.1074 (in-sample val: type F1 0.9559, span F1 0.0317) 19.0s
+2026-10-01 22:53:23,017 INFO [distilled student-4x768-pretrained seed2] epoch 5 step 455 loss 1.2927 (in-sample val: type F1 0.9926, span F1 0.3571) 19.2s
+2026-10-01 22:53:42,539 INFO [distilled student-4x768-pretrained seed2] epoch 6 step 546 loss 0.7871 (in-sample val: type F1 0.9841, span F1 0.6306) 19.4s
+2026-10-01 22:54:02,275 INFO [distilled student-4x768-pretrained seed2] epoch 7 step 637 loss 0.4820 (in-sample val: type F1 0.9915, span F1 0.8649) 19.7s
+2026-10-01 22:54:21,736 INFO [distilled student-4x768-pretrained seed2] epoch 8 step 728 loss 0.2634 (in-sample val: type F1 0.9915, span F1 0.9533) 19.4s
+2026-10-01 22:54:41,504 INFO [distilled student-4x768-pretrained seed2] epoch 9 step 819 loss 0.1487 (in-sample val: type F1 0.9915, span F1 0.9811) 19.6s
+2026-10-01 22:55:00,656 INFO [distilled student-4x768-pretrained seed2] epoch 10 step 910 loss 0.0966 (in-sample val: type F1 0.9950, span F1 1.0000) 19.0s
+2026-10-01 22:55:19,878 INFO [distilled student-4x768-pretrained seed2] epoch 11 step 1001 loss 0.0584 (in-sample val: type F1 0.9915, span F1 1.0000) 19.1s
+2026-10-01 22:55:39,607 INFO [distilled student-4x768-pretrained seed2] epoch 12 step 1092 loss 0.0593 (in-sample val: type F1 1.0000, span F1 1.0000) 19.6s
+2026-10-01 22:55:58,875 INFO [distilled student-4x768-pretrained seed2] epoch 13 step 1183 loss 0.0289 (in-sample val: type F1 1.0000, span F1 1.0000) 19.1s
+2026-10-01 22:56:18,320 INFO [distilled student-4x768-pretrained seed2] epoch 14 step 1274 loss 0.0225 (in-sample val: type F1 0.9950, span F1 1.0000) 19.3s
+2026-10-01 22:56:37,037 INFO [distilled student-4x768-pretrained seed2] epoch 15 step 1365 loss 0.0390 (in-sample val: type F1 1.0000, span F1 1.0000) 18.6s
+2026-10-01 22:56:56,478 INFO [distilled student-4x768-pretrained seed2] epoch 16 step 1456 loss 0.0199 (in-sample val: type F1 1.0000, span F1 1.0000) 19.3s
+2026-10-01 22:57:15,811 INFO [distilled student-4x768-pretrained seed2] epoch 17 step 1547 loss 0.0265 (in-sample val: type F1 0.9915, span F1 1.0000) 19.2s
+2026-10-01 22:57:35,011 INFO [distilled student-4x768-pretrained seed2] epoch 18 step 1638 loss 0.0162 (in-sample val: type F1 0.9950, span F1 1.0000) 19.1s
+2026-10-01 22:57:54,204 INFO [distilled student-4x768-pretrained seed2] epoch 19 step 1729 loss 0.0244 (in-sample val: type F1 1.0000, span F1 1.0000) 19.1s
+2026-10-01 22:58:13,580 INFO [distilled student-4x768-pretrained seed2] epoch 20 step 1820 loss 0.0183 (in-sample val: type F1 0.9950, span F1 1.0000) 19.3s
+2026-10-01 22:58:33,408 INFO [distilled student-4x768-pretrained seed2] epoch 21 step 1911 loss 0.0134 (in-sample val: type F1 1.0000, span F1 1.0000) 19.7s
+2026-10-01 22:58:53,167 INFO [distilled student-4x768-pretrained seed2] epoch 22 step 2002 loss 0.0233 (in-sample val: type F1 1.0000, span F1 1.0000) 19.6s
+2026-10-01 22:59:12,106 INFO [distilled student-4x768-pretrained seed2] epoch 23 step 2093 loss 0.0078 (in-sample val: type F1 0.9915, span F1 1.0000) 18.8s
+2026-10-01 22:59:30,886 INFO [distilled student-4x768-pretrained seed2] epoch 24 step 2184 loss 0.0165 (in-sample val: type F1 0.9950, span F1 1.0000) 18.7s
+2026-10-01 22:59:52,989 INFO [distilled student-4x768-pretrained seed2] epoch 25 step 2275 loss 0.0093 (in-sample val: type F1 0.9915, span F1 1.0000) 22.0s
+2026-10-01 23:00:16,066 INFO [distilled student-4x768-pretrained seed2] epoch 26 step 2366 loss 0.0088 (in-sample val: type F1 1.0000, span F1 1.0000) 22.9s
+2026-10-01 23:00:36,880 INFO [distilled student-4x768-pretrained seed2] epoch 27 step 2457 loss 0.0069 (in-sample val: type F1 0.9915, span F1 1.0000) 20.7s
+2026-10-01 23:00:56,961 INFO [distilled student-4x768-pretrained seed2] epoch 28 step 2548 loss 0.0122 (in-sample val: type F1 1.0000, span F1 1.0000) 19.9s
+2026-10-01 23:01:18,229 INFO [distilled student-4x768-pretrained seed2] epoch 29 step 2639 loss 0.0045 (in-sample val: type F1 0.9915, span F1 1.0000) 21.1s
+2026-10-01 23:01:37,962 INFO [distilled student-4x768-pretrained seed2] epoch 30 step 2730 loss 0.0136 (in-sample val: type F1 1.0000, span F1 1.0000) 19.6s
+2026-10-01 23:01:57,318 INFO [distilled student-4x768-pretrained seed2] epoch 31 step 2821 loss 0.0046 (in-sample val: type F1 0.9915, span F1 1.0000) 19.3s
+2026-10-01 23:02:17,161 INFO [distilled student-4x768-pretrained seed2] epoch 32 step 2912 loss 0.0051 (in-sample val: type F1 0.9950, span F1 1.0000) 19.7s
+2026-10-01 23:02:37,168 INFO [distilled student-4x768-pretrained seed2] epoch 33 step 3003 loss 0.0081 (in-sample val: type F1 0.9915, span F1 1.0000) 19.9s
+2026-10-01 23:02:56,670 INFO [distilled student-4x768-pretrained seed2] epoch 34 step 3094 loss 0.0044 (in-sample val: type F1 0.9950, span F1 1.0000) 19.4s
+2026-10-01 23:03:15,900 INFO [distilled student-4x768-pretrained seed2] epoch 35 step 3185 loss 0.0063 (in-sample val: type F1 1.0000, span F1 1.0000) 19.1s
+2026-10-01 23:03:35,223 INFO [distilled student-4x768-pretrained seed2] epoch 36 step 3276 loss 0.0077 (in-sample val: type F1 0.9915, span F1 1.0000) 19.2s
+2026-10-01 23:03:54,967 INFO [distilled student-4x768-pretrained seed2] epoch 37 step 3367 loss 0.0048 (in-sample val: type F1 0.9915, span F1 1.0000) 19.6s
+2026-10-01 23:04:13,525 INFO [distilled student-4x768-pretrained seed2] epoch 38 step 3458 loss 0.0042 (in-sample val: type F1 1.0000, span F1 1.0000) 18.5s
+2026-10-01 23:04:32,099 INFO [distilled student-4x768-pretrained seed2] epoch 39 step 3549 loss 0.0051 (in-sample val: type F1 1.0000, span F1 1.0000) 18.4s
+2026-10-01 23:04:52,277 INFO [distilled student-4x768-pretrained seed2] epoch 40 step 3640 loss 0.0040 (in-sample val: type F1 1.0000, span F1 1.0000) 20.1s
+2026-10-01 23:04:52,953 WARNING MPS kernels are not bit-reproducible; repeated runs of a seed may differ.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 14631.64it/s]
+[transformers] [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.decoder.bias      | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.dense.weight      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-10-01 23:04:57,273 WARNING [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.decoder.bias      | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.dense.weight      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-10-01 23:05:17,377 INFO [distilled student-4x768-pretrained seed3] epoch 1 step 91 loss 6.3837 (in-sample val: type F1 0.0577, span F1 0.0000) 19.6s
+2026-10-01 23:05:37,130 INFO [distilled student-4x768-pretrained seed3] epoch 2 step 182 loss 5.1328 (in-sample val: type F1 0.6438, span F1 0.0000) 19.6s
+2026-10-01 23:05:56,787 INFO [distilled student-4x768-pretrained seed3] epoch 3 step 273 loss 3.5939 (in-sample val: type F1 0.7864, span F1 0.0000) 19.5s
+2026-10-01 23:06:16,445 INFO [distilled student-4x768-pretrained seed3] epoch 4 step 364 loss 2.1208 (in-sample val: type F1 0.9336, span F1 0.1791) 19.5s
+2026-10-01 23:06:35,869 INFO [distilled student-4x768-pretrained seed3] epoch 5 step 455 loss 1.3509 (in-sample val: type F1 0.9733, span F1 0.5049) 19.3s
+2026-10-01 23:06:55,259 INFO [distilled student-4x768-pretrained seed3] epoch 6 step 546 loss 0.7850 (in-sample val: type F1 0.9926, span F1 0.7647) 19.3s
+2026-10-01 23:07:14,157 INFO [distilled student-4x768-pretrained seed3] epoch 7 step 637 loss 0.4607 (in-sample val: type F1 0.9865, span F1 0.8224) 18.8s
+2026-10-01 23:07:33,677 INFO [distilled student-4x768-pretrained seed3] epoch 8 step 728 loss 0.2785 (in-sample val: type F1 0.9915, span F1 0.9815) 19.4s
+2026-10-01 23:07:53,409 INFO [distilled student-4x768-pretrained seed3] epoch 9 step 819 loss 0.1568 (in-sample val: type F1 0.9915, span F1 0.9725) 19.6s
+2026-10-01 23:08:14,711 INFO [distilled student-4x768-pretrained seed3] epoch 10 step 910 loss 0.0930 (in-sample val: type F1 1.0000, span F1 0.9815) 21.2s
+2026-10-01 23:08:34,624 INFO [distilled student-4x768-pretrained seed3] epoch 11 step 1001 loss 0.0673 (in-sample val: type F1 0.9950, span F1 0.9815) 19.8s
+2026-10-01 23:08:54,336 INFO [distilled student-4x768-pretrained seed3] epoch 12 step 1092 loss 0.0546 (in-sample val: type F1 0.9915, span F1 0.9907) 19.6s
+2026-10-01 23:09:13,567 INFO [distilled student-4x768-pretrained seed3] epoch 13 step 1183 loss 0.0402 (in-sample val: type F1 1.0000, span F1 1.0000) 19.1s
+2026-10-01 23:09:32,851 INFO [distilled student-4x768-pretrained seed3] epoch 14 step 1274 loss 0.0278 (in-sample val: type F1 1.0000, span F1 1.0000) 19.2s
+2026-10-01 23:09:52,170 INFO [distilled student-4x768-pretrained seed3] epoch 15 step 1365 loss 0.0185 (in-sample val: type F1 0.9915, span F1 1.0000) 19.2s
+2026-10-01 23:10:11,830 INFO [distilled student-4x768-pretrained seed3] epoch 16 step 1456 loss 0.0239 (in-sample val: type F1 1.0000, span F1 1.0000) 19.5s
+2026-10-01 23:10:31,435 INFO [distilled student-4x768-pretrained seed3] epoch 17 step 1547 loss 0.0162 (in-sample val: type F1 0.9950, span F1 1.0000) 19.5s
+2026-10-01 23:10:50,851 INFO [distilled student-4x768-pretrained seed3] epoch 18 step 1638 loss 0.0345 (in-sample val: type F1 1.0000, span F1 1.0000) 19.3s
+2026-10-01 23:11:10,212 INFO [distilled student-4x768-pretrained seed3] epoch 19 step 1729 loss 0.0159 (in-sample val: type F1 0.9865, span F1 1.0000) 19.2s
+2026-10-01 23:11:29,442 INFO [distilled student-4x768-pretrained seed3] epoch 20 step 1820 loss 0.0123 (in-sample val: type F1 1.0000, span F1 1.0000) 19.2s
+2026-10-01 23:11:48,909 INFO [distilled student-4x768-pretrained seed3] epoch 21 step 1911 loss 0.0155 (in-sample val: type F1 0.9865, span F1 1.0000) 19.3s
+2026-10-01 23:12:08,175 INFO [distilled student-4x768-pretrained seed3] epoch 22 step 2002 loss 0.0183 (in-sample val: type F1 1.0000, span F1 1.0000) 19.2s
+2026-10-01 23:12:27,793 INFO [distilled student-4x768-pretrained seed3] epoch 23 step 2093 loss 0.0132 (in-sample val: type F1 0.9865, span F1 1.0000) 19.5s
+2026-10-01 23:12:46,940 INFO [distilled student-4x768-pretrained seed3] epoch 24 step 2184 loss 0.0107 (in-sample val: type F1 0.9865, span F1 1.0000) 19.1s
+2026-10-01 23:13:06,478 INFO [distilled student-4x768-pretrained seed3] epoch 25 step 2275 loss 0.0153 (in-sample val: type F1 1.0000, span F1 1.0000) 19.4s
+2026-10-01 23:13:25,685 INFO [distilled student-4x768-pretrained seed3] epoch 26 step 2366 loss 0.0161 (in-sample val: type F1 0.9865, span F1 1.0000) 19.1s
+2026-10-01 23:13:45,279 INFO [distilled student-4x768-pretrained seed3] epoch 27 step 2457 loss 0.0113 (in-sample val: type F1 1.0000, span F1 1.0000) 19.5s
+2026-10-01 23:14:04,507 INFO [distilled student-4x768-pretrained seed3] epoch 28 step 2548 loss 0.0077 (in-sample val: type F1 0.9865, span F1 1.0000) 19.1s
+2026-10-01 23:14:23,698 INFO [distilled student-4x768-pretrained seed3] epoch 29 step 2639 loss 0.0075 (in-sample val: type F1 1.0000, span F1 1.0000) 19.1s
+2026-10-01 23:14:43,229 INFO [distilled student-4x768-pretrained seed3] epoch 30 step 2730 loss 0.0084 (in-sample val: type F1 0.9915, span F1 1.0000) 19.4s
+2026-10-01 23:15:02,652 INFO [distilled student-4x768-pretrained seed3] epoch 31 step 2821 loss 0.0066 (in-sample val: type F1 1.0000, span F1 1.0000) 19.3s
+2026-10-01 23:15:22,135 INFO [distilled student-4x768-pretrained seed3] epoch 32 step 2912 loss 0.0064 (in-sample val: type F1 0.9915, span F1 1.0000) 19.4s
+2026-10-01 23:15:41,118 INFO [distilled student-4x768-pretrained seed3] epoch 33 step 3003 loss 0.0048 (in-sample val: type F1 1.0000, span F1 1.0000) 18.9s
+2026-10-01 23:16:00,768 INFO [distilled student-4x768-pretrained seed3] epoch 34 step 3094 loss 0.0084 (in-sample val: type F1 1.0000, span F1 1.0000) 19.5s
+2026-10-01 23:16:20,219 INFO [distilled student-4x768-pretrained seed3] epoch 35 step 3185 loss 0.0051 (in-sample val: type F1 0.9915, span F1 1.0000) 19.3s
+2026-10-01 23:16:39,530 INFO [distilled student-4x768-pretrained seed3] epoch 36 step 3276 loss 0.0059 (in-sample val: type F1 0.9865, span F1 1.0000) 19.2s
+2026-10-01 23:16:59,100 INFO [distilled student-4x768-pretrained seed3] epoch 37 step 3367 loss 0.0046 (in-sample val: type F1 1.0000, span F1 1.0000) 19.5s
+2026-10-01 23:17:13,753 INFO [distilled student-4x768-pretrained seed3] epoch 38 step 3458 loss 0.0045 (in-sample val: type F1 1.0000, span F1 1.0000) 14.6s
+2026-10-01 23:17:22,723 INFO [distilled student-4x768-pretrained seed3] epoch 39 step 3549 loss 0.0044 (in-sample val: type F1 1.0000, span F1 1.0000) 8.9s
+2026-10-01 23:17:31,839 INFO [distilled student-4x768-pretrained seed3] epoch 40 step 3640 loss 0.0039 (in-sample val: type F1 1.0000, span F1 1.0000) 9.1s
+[
+  {
+    "arm": "distilled",
+    "variant": "student-4x768-pretrained",
+    "seed": 1,
+    "kd": {
+      "temperature": 2.0,
+      "alpha_hard": 0.5,
+      "type_weight": 1.0,
+      "span_weight": 1.0
+    },
+    "final_epoch": 40,
+    "test_type_macro_f1": 0.9486973752303823,
+    "test_span_f1": 0.826923076923077,
+    "param_count": 45666059,
+    "param_bytes_fp32": 182664236,
+    "steps": 3640,
+    "device": "mps",
+    "wall_time_sec": 799.9164173339959,
+    "train_time_sec": 794.2822308344766,
+    "sec_per_epoch": 19.857055770861916,
+    "train_examples_per_sec": 36.41023162461599,
+    "checkpoint_path": "models/distillation-v2/distilled/student-4x768-pretrained/seed1"
+  },
+  {
+    "arm": "distilled",
+    "variant": "student-4x768-pretrained",
+    "seed": 2,
+    "kd": {
+      "temperature": 2.0,
+      "alpha_hard": 0.5,
+      "type_weight": 1.0,
+      "span_weight": 1.0
+    },
+    "final_epoch": 40,
+    "test_type_macro_f1": 0.9402623090703586,
+    "test_span_f1": 0.838095238095238,
+    "param_count": 45666059,
+    "param_bytes_fp32": 182664236,
+    "steps": 3640,
+    "device": "mps",
+    "wall_time_sec": 786.0099469169509,
+    "train_time_sec": 781.206826710375,
+    "sec_per_epoch": 19.530170667759375,
+    "train_examples_per_sec": 37.01964577265761,
+    "checkpoint_path": "models/distillation-v2/distilled/student-4x768-pretrained/seed2"
+  },
+  {
+    "arm": "distilled",
+    "variant": "student-4x768-pretrained",
+    "seed": 3,
+    "kd": {
+      "temperature": 2.0,
+      "alpha_hard": 0.5,
+      "type_weight": 1.0,
+      "span_weight": 1.0
+    },
+    "final_epoch": 40,
+    "test_type_macro_f1": 0.9276784547060647,
+    "test_span_f1": 0.826923076923077,
+    "param_count": 45666059,
+    "param_bytes_fp32": 182664236,
+    "steps": 3640,
+    "device": "mps",
+    "wall_time_sec": 754.2265806670766,
+    "train_time_sec": 749.9176759561524,
+    "sec_per_epoch": 18.74794189890381,
+    "train_examples_per_sec": 38.56423301814658,
+    "checkpoint_path": "models/distillation-v2/distilled/student-4x768-pretrained/seed3"
+  }
+]

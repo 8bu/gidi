@@ -1,0 +1,38 @@
+{
+  "experiment": "deployment-v2",
+  "declared_before_packaging": true,
+  "version": "gidi-finance-v2",
+  "annotation_config": "configs/annotation-v2.yaml",
+  "value_head": true,
+  "value_decoding": "crf_viterbi",
+  "scope": "deployment hardening only: export, runtime integration, parity, hardening, performance, playground. No training, no re-training, no seed change, no architecture/tokenizer/vocabulary/annotation/taxonomy change, no compression/distillation/layer sharing/pruning/QAT, no new data, no threshold change, no special-casing of any note. gidi-finance-v1 is not modified.",
+  "architecture": "accepted value-span-v7-dual-encoder: path A = frozen gidi-finance-v1 (compression-v3 4x768 student, FFN 2048, 34 position rows, vocabulary B-rank-8000) encoder + type head + target BIO head, the only source of type and target; path B = independently fine-tuned copy of the v1 encoder -> Dropout -> Linear(768,256) -> GELU -> Dropout -> Linear(256,3) emissions -> linear-chain CRF (learned start/end/transition scores) -> Viterbi, the only source of the value span. Both paths consume the same input_ids/attention_mask from one tokenization. One ONNX graph, inputs input_ids/attention_mask, outputs type_logits/tag_logits/value_logits (CRF emissions); CRF scores and Viterbi decoding live in the bundle config and the numpy runtime. max_length 32, ONNX INT8 dynamic (QInt8 weights) exactly as v1.",
+  "source_experiment": "experiments/value-span-v7-dual-encoder",
+  "source_experiment_protocol_sha256": "7792e08840f517e7e25da80ee5f2968cff45ed46cb85d19419e352046c3af166",
+  "source_checkpoint": "models/value-span-v7-dual-encoder/seed1",
+  "base_checkpoint": "models/compression-v3/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2048/seed1",
+  "source_onnx": "models/gidi-finance-v2-onnx/",
+  "bundle": "models/gidi-finance-v2",
+  "seed": 1,
+  "seed_selection": {
+    "rule": "value-head seed 1, the export_seed declared in experiments/value-span-v7-dual-encoder/protocol.json before training; path A is the gidi-finance-v1 seed-1 checkpoint",
+    "why_not_held_out_metrics": "selecting the value-head seed by test/probe results would select on evaluation sets and bias every later number reported for the deployed model",
+    "no_weight_averaging_or_ensembling": true
+  },
+  "value_decoding_rule": "tags = CRF Viterbi path over the real (non-special) tokens, special tokens O; spans by the target-head BIO rule (B starts, I extends or starts after O, O/B ends; whitespace-trimmed offsets); the value span is the span with the highest value_confidence (ties to the earlier span); value_confidence = geometric mean over the span's tokens of softmax(value_logits) of the Viterbi tag, or with no span the minimum softmax P(O) over the real tokens. This is exactly gidi.modeling.value_decode.decode_value(..., crf=...) used for every v7 metric.",
+  "golden_suite_source": "approved annotation-v2 records outside test and probe-v1 (training-v1 train/validation). Expected outputs are the PyTorch reference predictions of the source checkpoint decoded by the rule above; human labels are stored alongside for information. The suite checks runtime correctness, not model quality.",
+  "evaluation_sets_report_only": "datasets/annotation-v2/training-v1 test (test-v1 + test-targeted) and probe-v1: used only to report parity and INT8 quality, never to select, tune or special-case",
+  "thresholds": "none; confidences are uncalibrated scores, abstention policy is left to a later calibration phase",
+  "acceptance_gate": [
+    "bundle reproducible from the sources (freeze_deployment --check byte-identical); every bundle file matches manifest.json",
+    "bundle tokenizer encodes identically to the training tokenizer",
+    "PyTorch vs ONNX FP32 on golden suite, test, probe and robustness inputs: 0 mismatches in type, target BIO tags, target span, value Viterbi tags and value span; max abs logit difference and max confidence difference reported for each output",
+    "path A invariance: v2 FP32 type/target outputs equal the v1 PyTorch model, and v2 INT8 type/target predictions and spans equal the gidi-finance-v1 bundle on golden suite, test, probe and robustness inputs (0 mismatches)",
+    "ONNX INT8 vs ONNX FP32: golden suite 0 differences in type, target span and value span; on test and probe each field agrees on >= 99% of notes, every disagreement is listed, and INT8 value metrics still meet the frozen value-span-v7 criteria (test exact >= 0.95, human-only >= 0.90, present/null >= 0.97, multi_number >= 0.90, every slice with n >= 5 >= 0.80)",
+    "runtime output equals the PyTorch reference decode for FP32",
+    "offsets slice the caller's original string; truncated is true exactly when the note exceeds max_length; confidences are finite; null states serialize; robustness inputs never crash",
+    "runtime reads only the bundle directory and imports only numpy, onnxruntime and tokenizers",
+    "INT8 model size, bundle size and CPU latency measured and reported (no size threshold)"
+  ],
+  "on_gate_failure": "stop and report the blocker; no retraining, no seed change, no change to the v7 experiment"
+}

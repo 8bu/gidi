@@ -1,0 +1,95 @@
+2026-10-02 00:09:15,704 WARNING MPS kernels are not bit-reproducible; repeated runs of a seed may differ.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-02 00:09:17,003 WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 11463.50it/s]
+[transformers] [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.dense.weight      | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.decoder.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-10-02 00:09:17,080 WARNING [1mRobertaModel LOAD REPORT[0m from: Qualcomm-AI-Research/BamiBERT
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.dense.weight      | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.decoder.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/torch/autograd/graph.py:1072: UserWarning: index_put_with_accumulate_mps does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/Context.cpp:190.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2026-10-02 00:09:34,849 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 1 step 91 loss 2.6106 (in-sample val: type F1 0.0802, span F1 0.0000) 15.4s
+2026-10-02 00:09:50,314 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 2 step 182 loss 2.0037 (in-sample val: type F1 0.5200, span F1 0.0000) 15.4s
+2026-10-02 00:10:05,530 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 3 step 273 loss 1.2383 (in-sample val: type F1 0.8785, span F1 0.0357) 15.1s
+2026-10-02 00:10:20,804 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 4 step 364 loss 0.7174 (in-sample val: type F1 0.9790, span F1 0.2963) 15.2s
+2026-10-02 00:10:36,147 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 5 step 455 loss 0.4584 (in-sample val: type F1 1.0000, span F1 0.6813) 15.2s
+2026-10-02 00:10:51,675 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 6 step 546 loss 0.2573 (in-sample val: type F1 1.0000, span F1 0.7429) 15.5s
+2026-10-02 00:11:06,988 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 7 step 637 loss 0.1618 (in-sample val: type F1 0.9915, span F1 0.8704) 15.2s
+2026-10-02 00:11:22,414 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 8 step 728 loss 0.1095 (in-sample val: type F1 1.0000, span F1 0.9358) 15.4s
+2026-10-02 00:11:37,928 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 9 step 819 loss 0.0499 (in-sample val: type F1 1.0000, span F1 1.0000) 15.4s
+2026-10-02 00:11:53,456 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 10 step 910 loss 0.0488 (in-sample val: type F1 1.0000, span F1 0.9908) 15.5s
+2026-10-02 00:12:09,040 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 11 step 1001 loss 0.0163 (in-sample val: type F1 1.0000, span F1 1.0000) 15.5s
+2026-10-02 00:12:24,581 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 12 step 1092 loss 0.0163 (in-sample val: type F1 1.0000, span F1 1.0000) 15.4s
+2026-10-02 00:12:40,078 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 13 step 1183 loss 0.0119 (in-sample val: type F1 1.0000, span F1 1.0000) 15.4s
+2026-10-02 00:12:55,663 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 14 step 1274 loss 0.0069 (in-sample val: type F1 1.0000, span F1 1.0000) 15.5s
+2026-10-02 00:13:11,377 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 15 step 1365 loss 0.0084 (in-sample val: type F1 1.0000, span F1 1.0000) 15.6s
+2026-10-02 00:13:27,090 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 16 step 1456 loss 0.0076 (in-sample val: type F1 1.0000, span F1 1.0000) 15.6s
+2026-10-02 00:13:42,365 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 17 step 1547 loss 0.0018 (in-sample val: type F1 1.0000, span F1 1.0000) 15.2s
+2026-10-02 00:13:57,626 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 18 step 1638 loss 0.0023 (in-sample val: type F1 1.0000, span F1 1.0000) 15.2s
+2026-10-02 00:14:13,409 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 19 step 1729 loss 0.0021 (in-sample val: type F1 1.0000, span F1 1.0000) 15.7s
+2026-10-02 00:14:28,825 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 20 step 1820 loss 0.0024 (in-sample val: type F1 1.0000, span F1 1.0000) 15.3s
+2026-10-02 00:14:44,240 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 21 step 1911 loss 0.0004 (in-sample val: type F1 1.0000, span F1 1.0000) 15.3s
+2026-10-02 00:15:00,066 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 22 step 2002 loss 0.0003 (in-sample val: type F1 1.0000, span F1 1.0000) 15.7s
+2026-10-02 00:15:15,708 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 23 step 2093 loss 0.0006 (in-sample val: type F1 1.0000, span F1 1.0000) 15.5s
+2026-10-02 00:15:31,257 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 24 step 2184 loss 0.0013 (in-sample val: type F1 1.0000, span F1 1.0000) 15.5s
+2026-10-02 00:15:47,040 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 25 step 2275 loss 0.0006 (in-sample val: type F1 1.0000, span F1 1.0000) 15.7s
+2026-10-02 00:16:02,560 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 26 step 2366 loss 0.0007 (in-sample val: type F1 1.0000, span F1 1.0000) 15.4s
+2026-10-02 00:16:17,913 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 27 step 2457 loss 0.0002 (in-sample val: type F1 1.0000, span F1 1.0000) 15.2s
+2026-10-02 00:16:33,084 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 28 step 2548 loss 0.0006 (in-sample val: type F1 1.0000, span F1 1.0000) 15.1s
+2026-10-02 00:16:48,131 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 29 step 2639 loss 0.0006 (in-sample val: type F1 1.0000, span F1 1.0000) 15.0s
+2026-10-02 00:17:03,665 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 30 step 2730 loss 0.0003 (in-sample val: type F1 1.0000, span F1 1.0000) 15.5s
+2026-10-02 00:17:19,190 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 31 step 2821 loss 0.0007 (in-sample val: type F1 1.0000, span F1 1.0000) 15.4s
+2026-10-02 00:17:34,800 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 32 step 2912 loss 0.0003 (in-sample val: type F1 1.0000, span F1 1.0000) 15.5s
+2026-10-02 00:17:50,032 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 33 step 3003 loss 0.0007 (in-sample val: type F1 1.0000, span F1 1.0000) 15.2s
+2026-10-02 00:18:05,352 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 34 step 3094 loss 0.0001 (in-sample val: type F1 1.0000, span F1 1.0000) 15.2s
+2026-10-02 00:18:20,606 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 35 step 3185 loss 0.0002 (in-sample val: type F1 1.0000, span F1 1.0000) 15.1s
+2026-10-02 00:18:36,001 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 36 step 3276 loss 0.0001 (in-sample val: type F1 1.0000, span F1 1.0000) 15.3s
+2026-10-02 00:18:51,650 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 37 step 3367 loss 0.0001 (in-sample val: type F1 1.0000, span F1 1.0000) 15.6s
+2026-10-02 00:19:07,106 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 38 step 3458 loss 0.0001 (in-sample val: type F1 1.0000, span F1 1.0000) 15.4s
+2026-10-02 00:19:22,689 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 39 step 3549 loss 0.0001 (in-sample val: type F1 1.0000, span F1 1.0000) 15.5s
+2026-10-02 00:19:38,258 INFO [supervised student-4x768-pretrained-pos32-vocab-B-rank-8000 seed1] epoch 40 step 3640 loss 0.0001 (in-sample val: type F1 1.0000, span F1 1.0000) 15.5s
+[
+  {
+    "arm": "supervised",
+    "variant": "student-4x768-pretrained-pos32-vocab-B-rank-8000",
+    "seed": 1,
+    "kd": {
+      "temperature": 2.0,
+      "alpha_hard": 1.0,
+      "type_weight": 1.0,
+      "span_weight": 1.0
+    },
+    "final_epoch": 40,
+    "test_type_macro_f1": 0.9260079231054463,
+    "test_span_f1": 0.8076923076923077,
+    "param_count": 34791947,
+    "param_bytes_fp32": 139167788,
+    "steps": 3640,
+    "device": "mps",
+    "wall_time_sec": 619.1637887500692,
+    "train_time_sec": 615.3396047486458,
+    "sec_per_epoch": 15.383490118716145,
+    "train_examples_per_sec": 46.9984375730427,
+    "checkpoint_path": "models/compression-v1/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000/seed1"
+  }
+]

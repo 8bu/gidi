@@ -1,0 +1,119 @@
+{
+  "experiment": "value-span-v7-dual-encoder",
+  "declared_before_training": true,
+  "status": "frozen 2026-10-03, declared before training",
+  "question": "Does a fully adaptable value-specific encoder (a clone of the trained v1 encoder) recover value-span-v1 quality while the original v1 encoder and type/target heads stay untouched?",
+  "unchanged_evidence": [
+    "models/gidi-finance-v1",
+    "experiments/value-span-v1",
+    "experiments/value-span-v2-direction-repair",
+    "experiments/value-span-v3-frozen-v1",
+    "experiments/value-span-v4-nonlinear-head",
+    "experiments/value-span-v5-crf",
+    "experiments/value-span-v6-value-adapter"
+  ],
+  "out_of_scope": "any Transformer block beyond the cloned encoder, BiLSTM, adapters, type/target losses, auxiliary token CE or other loss terms, hard BIO constraints, loss weighting, new/duplicated/augmented/synthetic data, label changes, held-out-driven data, hyperparameter sweep, architecture variants, a second attempt after test/probe results, numeric normalization, export, playground changes",
+  "base_model": {
+    "checkpoint": "models/compression-v3/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2048/seed1",
+    "model_safetensors_sha256": "bfb2195aad55dee1593bc9c017016c00b3f077674650657fb056c1cdfc930556",
+    "note": "the PyTorch checkpoint gidi-finance-v1 was frozen from (models/gidi-finance-v1/manifest.json sources.checkpoint_model_safetensors); loaded as trained, never re-initialised",
+    "identical_across_runs": "every value-head seed loads the same base weights; checked by sha256 of the frozen state before and after training"
+  },
+  "architecture": {
+    "path_A_v1_frozen": "input_ids/attention_mask -> original v1 encoder (frozen, eval) -> shared dropout (identity in eval) -> frozen type head (mean pool) and frozen target BIO head; parameters and computation exactly gidi-finance-v1",
+    "path_B_value_trainable": "the same input_ids/attention_mask -> value encoder (a deep copy of the trained v1 encoder: same RoBERTa 4 x 768 config, 12 heads, FFN 2048, its own dropout 0.1 on hidden states and attention) -> Dropout(0.1) (as the v1 heads' input dropout) -> Linear(768,256) -> GELU -> Dropout(0.1) -> Linear(256,3) emissions -> linear-chain CRF over O / B-VALUE / I-VALUE (learned transitions, no hard constraints) -> Viterbi; head arch `encoder-mlp-crf`",
+    "isolation": "path B never reads path A's states; the clone shares no tensor storage with the v1 encoder (checked); v1 parameters have requires_grad False and are excluded from the optimizer, so no value gradient reaches them",
+    "shared": "tokenizer and tokenization (one encode, both encoders consume the same input_ids/attention_mask)",
+    "params": {
+      "v1_encoder_frozen": 28487936,
+      "v1_type_and_target_heads_frozen": 8459,
+      "value_encoder_trainable": 28487936,
+      "value_mlp_trainable": 197635,
+      "crf_trainable": 15,
+      "trainable_total": 28685586,
+      "total": 57181981
+    },
+    "init": "path A: models/compression-v3/.../K2048/seed1 loaded as trained. Value encoder: copy.deepcopy of that trained encoder (bit-identical at init, checked per seed; NOT fresh pretrained weights). MLP and CRF as v5 (private generators VALUE_HEAD_SEED_BASE (1_000_003) + seed, + 1_000_000, + 2_000_000)",
+    "decoding": "Viterbi over the real tokens, then the unchanged value span rule and best-span choice",
+    "outputs": "type_logits [batch, 8] (path A), target_logits [batch, seq, 3] (path A), value_logits = CRF emissions [batch, seq, 3] (path B)",
+    "mode": "path A (v1 encoder, shared dropout, type/target heads) in eval mode throughout; path B (value encoder, dropouts, MLP) in train mode during training, eval at evaluation"
+  },
+  "pre_training_checks": [
+    "value encoder bit-identical to the v1 encoder at init and sharing no storage with it (69 tensors)",
+    "optimizer param groups contain exactly the path-B parameters (value encoder 69 tensors + MLP 4 + CRF 3 = 76), nothing else",
+    "every original v1 encoder, type head and target head parameter has requires_grad False",
+    "after the first backward pass every frozen parameter has grad None (or all zero)",
+    "frozen (path A) state sha256 equals the base checkpoint's before training, after the last epoch and in the saved checkpoint"
+  ],
+  "data": {
+    "dir": "datasets/annotation-v2/training-v1",
+    "train": "train.jsonl (895 rows), sha256 0a03db64238e6f202918a30e3727178c437045ce4703d38f14a7dda9883589e5",
+    "validation": "validation.jsonl (149), sha256 eef077c97a519dc532112683f3ab35daeaa6e55187c3c2fb01f53a0ee37f629c; logged per epoch only, never used for selection",
+    "test": "test.jsonl (143 = 105 v1 + 38 targeted-value-01), sha256 acaca8d767828e48954e91871886ac191a45110af695af7df7573a9c0be6f91d; evaluation only",
+    "probe": "probe-v1-eval-only.jsonl (81), sha256 638aeff00243f20af2dbeb2b340da0142631566057aef57d75005b75aedece87; evaluation only",
+    "value_supervision": "value loss only on value_status == complete; uncertain value labels masked",
+    "not_used": "datasets/annotation-v2/training-v2-direction-repair (no duplicated rows)"
+  },
+  "training": {
+    "loss": "value CRF negative log-likelihood only, mean over the notes of the batch with value_status == complete; uncertain notes excluded; no type or target loss (served by the frozen path A); no auxiliary token CE",
+    "recipe": "value-span-v1's settings (compression-v3 supervised recipe) applied to path B: AdamW, value encoder lr 5e-5, value head (MLP + CRF) lr 1e-3, batch 8, 40 epochs, linear warmup 0.1 then linear decay (all groups), weight decay 0.01 on weight matrices incl. embeddings and 0 on biases, LayerNorms and CRF transitions (the v1 no-decay rule plus CRF), dropout 0.1 (value encoder internal, its output, MLP), max grad norm 1.0 over the whole value branch, per-epoch shuffle seeded by seed + epoch",
+    "rationale": "the value-span-v1 encoder/head learning rates, batch, epochs, warmup, weight decay, dropout and clipping, unchanged; only the objective is value-only and the encoder is an isolated clone of trained v1; chosen before training, no sweep",
+    "seeds": [
+      1,
+      2,
+      3
+    ],
+    "seed_meaning": "MLP and CRF initialisation, batch order, and the dropout stream (torch.manual_seed(seed) after building the model); path A and the value-encoder init are identical across seeds",
+    "selection": "last epoch; no early stopping",
+    "device": "MPS (not bit-reproducible); evaluation on CPU",
+    "output": "models/value-span-v7-dual-encoder/seed{1,2,3}",
+    "command": "uv run python scripts/train_value_head.py --train datasets/annotation-v2/training-v1/train.jsonl --validation datasets/annotation-v2/training-v1/validation.jsonl --seed 1 --seed 2 --seed 3 --head-arch encoder-mlp-crf --lr 1e-3 --encoder-lr 5e-5 --experiment value-span-v7-dual-encoder --out-dir models/value-span-v7-dual-encoder"
+  },
+  "export_seed": "value-head seed 1; this experiment does not export (A means stop and report)",
+  "evaluation": {
+    "invariance": "for every test (143, incl. the 105 frozen v1 test records) and probe (81) record, and for every value-head seed: type logits, type prediction, target logits, target BIO prediction and target span equal the base v1 checkpoint's (CPU, same inputs; logits compared with max abs diff, required 0 on CPU; predictions/spans exactly equal). Also cross-checked against the frozen v1 seed-1 predictions in experiments/value-span-v1/eval/v1-seed1-*-predictions.jsonl",
+    "value": "same metric code, sets, slices and value-quality criteria as value-span-v1 / v3-v6 (value_gate.value_quality_criteria), Viterbi decoding: per seed, mean/std and seed 1. Reported: value exact, span precision/recall/F1, token F1, human-only exact, present/null, slices explicit_unit, bare_number, multi_number, slang, unaccented, unseen_span, long_multi_token; sets test, test-v1, test-targeted, probe, validation (monitoring)",
+    "error_categories": "every wrong value on complete labels (test, probe, per seed) classified by span position: wrong-number selection (no overlap), boundary truncation (inside gold), left overrun, right overrun into date/time, right overrun punctuation-only, other right overrun, missed (null)",
+    "inspection": "every multi-number value error on test and probe listed and inspected by hand, classified as wrong candidate selection, span truncation, date/period absorption, punctuation, or other boundary error",
+    "tracked_cases": "report only, never used for training or tuning: `cho a Nam vay 1 triệu 20/10` (gold `1 triệu`) and `Thắng vay 5 củ, hẹn t10 trả` (gold `5 củ`)",
+    "comparison": "v3 linear, v4 MLP, v5 MLP+CRF, v6 value adapter and value-span-v1 (shared full fine-tune, test value exact 0.988); key comparison v7 isolated value encoder vs value-span-v1 shared encoder",
+    "runtime_cost": "report trainable and total parameter counts, the PyTorch checkpoint size, an INT8 bundle size estimate from the v1 bundle (no export), relative inference cost vs v1 (two encoder passes), and shared tokenization"
+  },
+  "value_slices": [
+    "explicit_unit",
+    "bare_number",
+    "multi_number",
+    "slang (xi, chai, lit, cu, ty)",
+    "unaccented",
+    "unseen exact surface span vs train",
+    "long/multi-token amounts (>2 v1 tokens or containing a space)",
+    "no_amount (null value)"
+  ],
+  "adoption_criteria": {
+    "type_target": "type and target predictions identical to gidi-finance-v1 (base checkpoint) on every test-v1 and probe record (test-targeted and full test also reported); any difference is an implementation failure",
+    "value_quality": [
+      "test value exact (complete labels, mean over seeds) >= 0.95",
+      "test value exact on human-provenance labels >= 0.90",
+      "test value present/null accuracy >= 0.97",
+      "multi_number test slice value exact >= 0.90",
+      "no value slice with n >= 5 on test below 0.80 exact",
+      "seed 1 meets the same thresholds"
+    ],
+    "verdict": {
+      "A": "invariance passes and all value-quality criteria pass: stop and report success; no export and no playground change",
+      "B": "invariance passes, value quality fails: stop; no other architecture or data change",
+      "C": "invariance fails: implementation bug; fix only the bug and rerun the same frozen protocol"
+    }
+  },
+  "known_limitations": [
+    "most value labels are rule-provenance accepted by stratum audit (0 errors in sampled strata); value metrics on them measure agreement with audited rule labels, so the human-only slice is reported separately",
+    "slices are small on test (xi 2, chai 3, lit 1, ty 0, bare 6); slice results are directional",
+    "test has 0 complete no_amount labels; null-value accuracy is measured on validation (2) and is not an adoption gate",
+    "2 trieu ruoi form is absent from all splits",
+    "the frozen v1 validation is in train, as in v1; only the 39 targeted-value-01 validation rows are held out",
+    "the value branch is a full 28.5M-parameter encoder trained on 895 notes; overfitting is possible and is reported, not tuned",
+    "value-span-v1 started from the compression-v3 student initialisation and trained all three tasks; v7 starts from the trained v1 encoder and trains the value task only, so the comparison isolates sharing but not initialisation",
+    "model size roughly doubles; size is reported but is not an adoption criterion in this experiment"
+  ],
+  "hypothesis": "Frozen-v1 readouts plateau at ~0.89-0.90 test value exact (v3 0.765, v4 0.863, v5 0.902, v6 0.887); value-span-v1's shared full fine-tune reached 0.988 but changed type. If full representation adaptation is what the value task needs, an isolated trainable copy of the encoder should reach v1-level value quality with exact type/target invariance."
+}

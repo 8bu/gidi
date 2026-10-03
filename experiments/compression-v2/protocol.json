@@ -1,0 +1,19 @@
+{
+  "experiment": "compression-v2",
+  "declared_before_training": true,
+  "question": "Does removing one transformer layer from the compression-v1 student get INT8 <= 30 MB with acceptable held-out quality?",
+  "starting_point": "compression-v1 student-4x768-pretrained-pos32-vocab-B-rank-8000 (arm C)",
+  "student": "student-3x768: 3 layers, hidden 768, 12 heads, FFN 3072, gelu, dropout 0.1",
+  "init": "pretrained BamiBERT; layer_map(12, 3) = 0-based [3, 7, 11] (1-based 4, 8, 12); embeddings, embedding LayerNorm and whole blocks copied exactly; fresh seeded heads (same convention as distillation-v2/compression-v1)",
+  "compression": "position table truncated to 34 rows; vocabulary pruned to B-rank-8000 (8,338 rows, exact row copies), models/compression-v1/vocab/B-rank-8000 unchanged",
+  "training": "distillation-v2 supervised recipe unchanged: encoder lr 5e-5, head lr 1e-3, batch 8, 40 epochs, warmup 0.1, weight decay 0.01, dropout 0.1, max grad norm 1.0, last epoch kept; same 723 training notes; seeds 1,2,3; same seeded batch order; no KD; no sweep.",
+  "rng_note": "Heads are initialized after the encoder under set_seed(seed); a 3-layer encoder consumes fewer random draws, so head init differs from the 4-layer arm for the same seed. Batch order uses the same seed and data.",
+  "selection": "none: no hyperparameter or checkpoint selection; test and probe-v1 are evaluation only.",
+  "comparisons": {
+    "A": "canonical teacher",
+    "B": "distillation-v2 pretrained 4x768 full vocab",
+    "C": "compression-v1 pretrained 4x768 pos34 + B-rank-8000",
+    "D": "compression-v2 pretrained 3x768 pos34 + B-rank-8000"
+  },
+  "main_comparison": "C vs D"
+}

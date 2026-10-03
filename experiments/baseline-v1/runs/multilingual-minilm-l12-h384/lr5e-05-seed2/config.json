@@ -1,0 +1,54 @@
+{
+  "model": "microsoft/Multilingual-MiniLM-L12-H384",
+  "lr": 5e-05,
+  "seed": 2,
+  "head_lr": 0.001,
+  "epochs": 10,
+  "patience": 3,
+  "max_length": 32,
+  "batch_size": 8,
+  "warmup_ratio": 0.1,
+  "weight_decay": 0.01,
+  "dropout": 0.1,
+  "max_grad_norm": 1.0,
+  "splits_dir": "datasets/annotation-v1/splits",
+  "out_dir": "experiments/baseline-v1/runs",
+  "weights_dir": "models/baseline-v1",
+  "save_weights": true,
+  "max_steps": null,
+  "device": "auto",
+  "overwrite": false,
+  "resolved_device": "mps",
+  "model_slug": "multilingual-minilm-l12-h384",
+  "param_count": 117510155,
+  "split_sizes": {
+    "train": 501,
+    "validation": 110,
+    "test": 105
+  },
+  "truncation": {
+    "train": {
+      "n": 501,
+      "truncated": 0,
+      "span_truncated": 0
+    },
+    "validation": {
+      "n": 110,
+      "truncated": 0,
+      "span_truncated": 0
+    },
+    "test": {
+      "n": 105,
+      "truncated": 0,
+      "span_truncated": 0
+    }
+  },
+  "steps_per_epoch": 63,
+  "total_steps": 630,
+  "env": {
+    "python": "3.12.13",
+    "torch": "2.14.0",
+    "transformers": "5.17.0",
+    "platform": "macOS-26.5.2-arm64-arm-64bit"
+  }
+}

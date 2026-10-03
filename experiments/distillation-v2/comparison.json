@@ -1,0 +1,6544 @@
+{
+ "experiment": "distillation-v2 (student design diagnostic)",
+ "protocol": "experiments/distillation-v2/protocol.json",
+ "protocol_sha256": "ecb2e1fd1ee5f81883f46a5e34120e351f08e4dd226da1638b3409c9cafb45fa",
+ "models": {
+  "final-teacher": "models/distillation-v1/teacher/bamibert/lr5e-05-seed1 (12x768, 102.4M params)",
+  "v1-4x256-random-supervised": "models/distillation-v1/supervised/student-4x256/seed{1,2,3}",
+  "v1-4x256-random-distilled": "models/distillation-v1/distilled/student-4x256/seed{1,2,3}",
+  "v2-4x768-random-supervised": "models/distillation-v2/supervised/student-4x768/seed{1,2,3} (arm C)",
+  "v2-4x768-pretrained-supervised": "models/distillation-v2/supervised/student-4x768-pretrained/seed{1,2,3} (arm A)",
+  "v2-4x768-pretrained-distilled": "models/distillation-v2/distilled/student-4x768-pretrained/seed{1,2,3} (arm B)"
+ },
+ "provenance": {
+  "train_jsonl": "datasets/annotation-v1/distillation-v1/train.jsonl",
+  "train_jsonl_sha256": "fc18d15e4ff83e7406754001498c5416711f7bc2d4c5681e47157f407115593a",
+  "teacher_targets": "experiments/distillation-v1/teacher-targets",
+  "teacher_targets_manifest_sha256": "ed88cfc1d82a5849056e3052b78545f925d34506e1044782a11ee4ca3244b404",
+  "pretrained_source": {
+   "source": "Qualcomm-AI-Research/BamiBERT",
+   "source_commit": "57bc1340debbe4e348ec549047a763caebe4a977",
+   "source_weights_sha256": "c8c8abe5914f2543bd6a65019b685dacf25ad39da5f01b680b082876e1947627",
+   "layer_map": {
+    "0": 2,
+    "1": 5,
+    "2": 8,
+    "3": 11
+   },
+   "n_tensors": 69,
+   "n_values": 45657600
+  },
+  "heads": "fresh seeded nn.Linear init, bit-identical across arms of a seed",
+  "excluded": [
+   "frozen test (eval only)",
+   "probe-v1 (eval only)",
+   "targeted-annotation-v1-03 / training-v3"
+  ]
+ },
+ "recipe": {
+  "lr": 5e-05,
+  "head_lr": 0.001,
+  "epochs": 40,
+  "batch_size": 8,
+  "warmup_ratio": 0.1,
+  "weight_decay": 0.01,
+  "dropout": 0.1,
+  "max_grad_norm": 1.0,
+  "max_length": 32
+ },
+ "kd_arm_B": {
+  "temperature": 2.0,
+  "alpha_hard": 0.5,
+  "type_weight": 1.0,
+  "span_weight": 1.0
+ },
+ "fit_check": {
+  "result": "all 9 runs reach in-sample validation type F1 1.000 and span F1 1.000 at epoch 40; arm C final train loss < 1e-4",
+  "supplementary_arm_run": false
+ },
+ "metric_definitions": "recomputed for all 6 models from saved predictions with one code path; v1 and teacher values reproduce experiments/distillation-v1/comparison.json exactly. Std is sample std over 3 seeds. joint = type correct and span exact. subword_fragment_spans = predicted span that starts or ends inside a word.",
+ "metrics": {
+  "final-teacher:test": {
+   "type accuracy": [
+    0.8952380952380953,
+    0.0
+   ],
+   "type macro-F1": [
+    0.8859534949503317,
+    0.0
+   ],
+   "span F1": [
+    0.9400000000000001,
+    0.0
+   ],
+   "span exact": [
+    0.9523809523809523,
+    0.0
+   ],
+   "type+span joint": [
+    0.8571428571428571,
+    0.0
+   ],
+   "false_span_null_gold": [
+    1,
+    0.0
+   ],
+   "missed_span": [
+    3,
+    0.0
+   ],
+   "wrong_span": [
+    1,
+    0.0
+   ],
+   "subword_fragment_spans": [
+    0,
+    0.0
+   ]
+  },
+  "final-teacher:probe": {
+   "type accuracy": [
+    0.9012345679012346,
+    0.0
+   ],
+   "type macro-F1": [
+    0.9280997032811916,
+    0.0
+   ],
+   "span F1": [
+    0.920353982300885,
+    0.0
+   ],
+   "span exact": [
+    0.9259259259259259,
+    0.0
+   ],
+   "type+span joint": [
+    0.8395061728395061,
+    0.0
+   ],
+   "false_span_null_gold": [
+    3,
+    0.0
+   ],
+   "missed_span": [
+    0,
+    0.0
+   ],
+   "wrong_span": [
+    3,
+    0.0
+   ],
+   "subword_fragment_spans": [
+    3,
+    0.0
+   ]
+  },
+  "v1-4x256-random-supervised:test": {
+   "type accuracy": [
+    0.888888888888889,
+    0.038490017945975084
+   ],
+   "type macro-F1": [
+    0.8871051848512194,
+    0.03731733830677008
+   ],
+   "span F1": [
+    0.6478959810874705,
+    0.026945252721020444
+   ],
+   "span exact": [
+    0.7682539682539683,
+    0.0054985739922821944
+   ],
+   "type+span joint": [
+    0.7015873015873016,
+    0.023967728365938863
+   ],
+   "false_span_null_gold": [
+    5,
+    2.6457513110645907
+   ],
+   "missed_span": [
+    9.333333333333334,
+    1.1547005383792515
+   ],
+   "wrong_span": [
+    10,
+    2.0
+   ],
+   "subword_fragment_spans": [
+    8,
+    1.7320508075688772
+   ]
+  },
+  "v1-4x256-random-supervised:probe": {
+   "type accuracy": [
+    0.7325102880658436,
+    0.04989446770774543
+   ],
+   "type macro-F1": [
+    0.6944813867606479,
+    0.05119412107849148
+   ],
+   "span F1": [
+    0.5651225000758431,
+    0.05380414347666521
+   ],
+   "span exact": [
+    0.6296296296296297,
+    0.04451297870943193
+   ],
+   "type+span joint": [
+    0.4773662551440329,
+    0.037716672386467816
+   ],
+   "false_span_null_gold": [
+    7.333333333333333,
+    1.1547005383792515
+   ],
+   "missed_span": [
+    3,
+    1.7320508075688772
+   ],
+   "wrong_span": [
+    19.666666666666668,
+    2.309401076758503
+   ],
+   "subword_fragment_spans": [
+    11,
+    1.7320508075688772
+   ]
+  },
+  "v1-4x256-random-distilled:test": {
+   "type accuracy": [
+    0.8857142857142857,
+    0.009523809523809545
+   ],
+   "type macro-F1": [
+    0.8711542067214612,
+    0.021094876714431235
+   ],
+   "span F1": [
+    0.6621096186711255,
+    0.019862029628709713
+   ],
+   "span exact": [
+    0.7746031746031746,
+    0.010997147984564325
+   ],
+   "type+span joint": [
+    0.7047619047619047,
+    0.016495721976846456
+   ],
+   "false_span_null_gold": [
+    4.666666666666667,
+    0.5773502691896257
+   ],
+   "missed_span": [
+    10,
+    1.0
+   ],
+   "wrong_span": [
+    9,
+    1.0
+   ],
+   "subword_fragment_spans": [
+    5.333333333333333,
+    0.5773502691896257
+   ]
+  },
+  "v1-4x256-random-distilled:probe": {
+   "type accuracy": [
+    0.6872427983539094,
+    0.025699580240322616
+   ],
+   "type macro-F1": [
+    0.6493706270325811,
+    0.023273696052411
+   ],
+   "span F1": [
+    0.6241116846621434,
+    0.022174873119750076
+   ],
+   "span exact": [
+    0.691358024691358,
+    0.012345679012345678
+   ],
+   "type+span joint": [
+    0.49382716049382713,
+    0.03266359643289621
+   ],
+   "false_span_null_gold": [
+    4.333333333333333,
+    1.1547005383792515
+   ],
+   "missed_span": [
+    4.333333333333333,
+    0.5773502691896257
+   ],
+   "wrong_span": [
+    16.333333333333332,
+    1.5275252316519468
+   ],
+   "subword_fragment_spans": [
+    5.666666666666667,
+    1.1547005383792515
+   ]
+  },
+  "v2-4x768-random-supervised:test": {
+   "type accuracy": [
+    0.8888888888888888,
+    0.0054985739922821944
+   ],
+   "type macro-F1": [
+    0.8905797847457386,
+    0.014855840447108604
+   ],
+   "span F1": [
+    0.6200210682074878,
+    0.012972252536823154
+   ],
+   "span exact": [
+    0.7492063492063492,
+    0.01099714798456426
+   ],
+   "type+span joint": [
+    0.6793650793650794,
+    0.014547859349066156
+   ],
+   "false_span_null_gold": [
+    6.333333333333333,
+    0.5773502691896257
+   ],
+   "missed_span": [
+    8.333333333333334,
+    2.309401076758503
+   ],
+   "wrong_span": [
+    11.666666666666666,
+    1.5275252316519468
+   ],
+   "subword_fragment_spans": [
+    9.333333333333334,
+    2.516611478423583
+   ]
+  },
+  "v2-4x768-random-supervised:probe": {
+   "type accuracy": [
+    0.691358024691358,
+    0.021383343303319438
+   ],
+   "type macro-F1": [
+    0.659918183578357,
+    0.023467701092905746
+   ],
+   "span F1": [
+    0.5925692855326723,
+    0.03181710977888561
+   ],
+   "span exact": [
+    0.654320987654321,
+    0.024691358024691357
+   ],
+   "type+span joint": [
+    0.4362139917695473,
+    0.03968580560079405
+   ],
+   "false_span_null_gold": [
+    6.666666666666667,
+    0.5773502691896257
+   ],
+   "missed_span": [
+    3,
+    1.0
+   ],
+   "wrong_span": [
+    18.333333333333332,
+    2.0816659994661326
+   ],
+   "subword_fragment_spans": [
+    8.666666666666666,
+    3.2145502536643185
+   ]
+  },
+  "v2-4x768-pretrained-supervised:test": {
+   "type accuracy": [
+    0.926984126984127,
+    0.00549857399228213
+   ],
+   "type macro-F1": [
+    0.9278796780828514,
+    0.007104404137127932
+   ],
+   "span F1": [
+    0.8296614388847399,
+    0.05262352797004518
+   ],
+   "span exact": [
+    0.8984126984126984,
+    0.027492869961410718
+   ],
+   "type+span joint": [
+    0.8444444444444444,
+    0.03061476432061255
+   ],
+   "false_span_null_gold": [
+    2.6666666666666665,
+    0.5773502691896257
+   ],
+   "missed_span": [
+    1,
+    0.0
+   ],
+   "wrong_span": [
+    7,
+    2.6457513110645907
+   ],
+   "subword_fragment_spans": [
+    4.333333333333333,
+    2.516611478423583
+   ]
+  },
+  "v2-4x768-pretrained-supervised:probe": {
+   "type accuracy": [
+    0.8106995884773662,
+    0.031069277511402232
+   ],
+   "type macro-F1": [
+    0.794673699933045,
+    0.034343533553657504
+   ],
+   "span F1": [
+    0.7920004450378282,
+    0.037575771254545
+   ],
+   "span exact": [
+    0.831275720164609,
+    0.025699580240322616
+   ],
+   "type+span joint": [
+    0.6666666666666666,
+    0.0
+   ],
+   "false_span_null_gold": [
+    2.3333333333333335,
+    1.1547005383792515
+   ],
+   "missed_span": [
+    2,
+    1.7320508075688772
+   ],
+   "wrong_span": [
+    9.333333333333334,
+    2.516611478423583
+   ],
+   "subword_fragment_spans": [
+    6.333333333333333,
+    2.516611478423583
+   ]
+  },
+  "v2-4x768-pretrained-distilled:test": {
+   "type accuracy": [
+    0.9333333333333333,
+    0.00952380952380949
+   ],
+   "type macro-F1": [
+    0.9388793796689352,
+    0.010577481992368801
+   ],
+   "span F1": [
+    0.8306471306471307,
+    0.00645025026017705
+   ],
+   "span exact": [
+    0.8984126984126984,
+    0.00549857399228213
+   ],
+   "type+span joint": [
+    0.8444444444444444,
+    0.00549857399228213
+   ],
+   "false_span_null_gold": [
+    3,
+    1.0
+   ],
+   "missed_span": [
+    0.6666666666666666,
+    0.5773502691896257
+   ],
+   "wrong_span": [
+    7,
+    1.0
+   ],
+   "subword_fragment_spans": [
+    1.3333333333333333,
+    1.1547005383792515
+   ]
+  },
+  "v2-4x768-pretrained-distilled:probe": {
+   "type accuracy": [
+    0.8189300411522633,
+    0.018858336193233884
+   ],
+   "type macro-F1": [
+    0.787335292539955,
+    0.0351851291040415
+   ],
+   "span F1": [
+    0.7711165711165712,
+    0.012924998918028067
+   ],
+   "span exact": [
+    0.8189300411522633,
+    0.007127781101106522
+   ],
+   "type+span joint": [
+    0.6666666666666666,
+    0.012345679012345678
+   ],
+   "false_span_null_gold": [
+    2.3333333333333335,
+    0.5773502691896257
+   ],
+   "missed_span": [
+    1.6666666666666667,
+    1.1547005383792515
+   ],
+   "wrong_span": [
+    10.666666666666666,
+    1.5275252316519468
+   ],
+   "subword_fragment_spans": [
+    5.333333333333333,
+    2.0816659994661326
+   ]
+  }
+ },
+ "per_seed": {
+  "final-teacher:test": [
+   {
+    "type accuracy": 0.8952380952380953,
+    "type macro-F1": 0.8859534949503317,
+    "span F1": 0.9400000000000001,
+    "span exact": 0.9523809523809523,
+    "type+span joint": 0.8571428571428571,
+    "false_span_null_gold": 1,
+    "missed_span": 3,
+    "wrong_span": 1,
+    "subword_fragment_spans": 0
+   }
+  ],
+  "final-teacher:probe": [
+   {
+    "type accuracy": 0.9012345679012346,
+    "type macro-F1": 0.9280997032811916,
+    "span F1": 0.920353982300885,
+    "span exact": 0.9259259259259259,
+    "type+span joint": 0.8395061728395061,
+    "false_span_null_gold": 3,
+    "missed_span": 0,
+    "wrong_span": 3,
+    "subword_fragment_spans": 3
+   }
+  ],
+  "v1-4x256-random-supervised:test": [
+   {
+    "type accuracy": 0.8952380952380953,
+    "type macro-F1": 0.8891298595845728,
+    "span F1": 0.66,
+    "span exact": 0.7714285714285715,
+    "type+span joint": 0.7047619047619048,
+    "false_span_null_gold": 6,
+    "missed_span": 8,
+    "wrong_span": 10,
+    "subword_fragment_spans": 7
+   },
+   {
+    "type accuracy": 0.9238095238095239,
+    "type macro-F1": 0.9233689692982456,
+    "span F1": 0.6666666666666667,
+    "span exact": 0.7619047619047619,
+    "type+span joint": 0.7238095238095238,
+    "false_span_null_gold": 7,
+    "missed_span": 10,
+    "wrong_span": 8,
+    "subword_fragment_spans": 7
+   },
+   {
+    "type accuracy": 0.8476190476190476,
+    "type macro-F1": 0.8488167256708398,
+    "span F1": 0.6170212765957446,
+    "span exact": 0.7714285714285715,
+    "type+span joint": 0.6761904761904762,
+    "false_span_null_gold": 2,
+    "missed_span": 10,
+    "wrong_span": 12,
+    "subword_fragment_spans": 10
+   }
+  ],
+  "v1-4x256-random-supervised:probe": [
+   {
+    "type accuracy": 0.6790123456790124,
+    "type macro-F1": 0.6367078746111005,
+    "span F1": 0.6206896551724138,
+    "span exact": 0.6666666666666666,
+    "type+span joint": 0.4444444444444444,
+    "false_span_null_gold": 8,
+    "missed_span": 2,
+    "wrong_span": 17,
+    "subword_fragment_spans": 12
+   },
+   {
+    "type accuracy": 0.7777777777777778,
+    "type macro-F1": 0.7342080691925893,
+    "span F1": 0.5614035087719298,
+    "span exact": 0.6419753086419753,
+    "type+span joint": 0.5185185185185185,
+    "false_span_null_gold": 6,
+    "missed_span": 2,
+    "wrong_span": 21,
+    "subword_fragment_spans": 9
+   },
+   {
+    "type accuracy": 0.7407407407407407,
+    "type macro-F1": 0.7125282164782538,
+    "span F1": 0.5132743362831858,
+    "span exact": 0.5802469135802469,
+    "type+span joint": 0.4691358024691358,
+    "false_span_null_gold": 8,
+    "missed_span": 5,
+    "wrong_span": 21,
+    "subword_fragment_spans": 12
+   }
+  ],
+  "v1-4x256-random-distilled:test": [
+   {
+    "type accuracy": 0.8952380952380953,
+    "type macro-F1": 0.8858560206296193,
+    "span F1": 0.6736842105263158,
+    "span exact": 0.780952380952381,
+    "type+span joint": 0.7238095238095238,
+    "false_span_null_gold": 4,
+    "missed_span": 11,
+    "wrong_span": 8,
+    "subword_fragment_spans": 5
+   },
+   {
+    "type accuracy": 0.8761904761904762,
+    "type macro-F1": 0.8469840749203664,
+    "span F1": 0.673469387755102,
+    "span exact": 0.780952380952381,
+    "type+span joint": 0.6952380952380952,
+    "false_span_null_gold": 5,
+    "missed_span": 9,
+    "wrong_span": 9,
+    "subword_fragment_spans": 5
+   },
+   {
+    "type accuracy": 0.8857142857142857,
+    "type macro-F1": 0.8806225246143977,
+    "span F1": 0.6391752577319587,
+    "span exact": 0.7619047619047619,
+    "type+span joint": 0.6952380952380952,
+    "false_span_null_gold": 5,
+    "missed_span": 10,
+    "wrong_span": 10,
+    "subword_fragment_spans": 6
+   }
+  ],
+  "v1-4x256-random-distilled:probe": [
+   {
+    "type accuracy": 0.6790123456790124,
+    "type macro-F1": 0.6282513005202081,
+    "span F1": 0.6486486486486486,
+    "span exact": 0.7037037037037037,
+    "type+span joint": 0.48148148148148145,
+    "false_span_null_gold": 5,
+    "missed_span": 4,
+    "wrong_span": 15,
+    "subword_fragment_spans": 5
+   },
+   {
+    "type accuracy": 0.7160493827160493,
+    "type macro-F1": 0.6743228391835202,
+    "span F1": 0.6055045871559633,
+    "span exact": 0.691358024691358,
+    "type+span joint": 0.5308641975308642,
+    "false_span_null_gold": 3,
+    "missed_span": 4,
+    "wrong_span": 18,
+    "subword_fragment_spans": 5
+   },
+   {
+    "type accuracy": 0.6666666666666666,
+    "type macro-F1": 0.645537741394015,
+    "span F1": 0.6181818181818182,
+    "span exact": 0.6790123456790124,
+    "type+span joint": 0.4691358024691358,
+    "false_span_null_gold": 5,
+    "missed_span": 5,
+    "wrong_span": 16,
+    "subword_fragment_spans": 7
+   }
+  ],
+  "v2-4x768-random-supervised:test": [
+   {
+    "type accuracy": 0.8952380952380953,
+    "type macro-F1": 0.9076197515888961,
+    "span F1": 0.6078431372549019,
+    "span exact": 0.7428571428571429,
+    "type+span joint": 0.6666666666666666,
+    "false_span_null_gold": 7,
+    "missed_span": 7,
+    "wrong_span": 13,
+    "subword_fragment_spans": 12
+   },
+   {
+    "type accuracy": 0.8857142857142857,
+    "type macro-F1": 0.8803493502497298,
+    "span F1": 0.6185567010309279,
+    "span exact": 0.7428571428571429,
+    "type+span joint": 0.6761904761904762,
+    "false_span_null_gold": 6,
+    "missed_span": 11,
+    "wrong_span": 10,
+    "subword_fragment_spans": 7
+   },
+   {
+    "type accuracy": 0.8857142857142857,
+    "type macro-F1": 0.88377025239859,
+    "span F1": 0.6336633663366336,
+    "span exact": 0.7619047619047619,
+    "type+span joint": 0.6952380952380952,
+    "false_span_null_gold": 6,
+    "missed_span": 7,
+    "wrong_span": 12,
+    "subword_fragment_spans": 9
+   }
+  ],
+  "v2-4x768-random-supervised:probe": [
+   {
+    "type accuracy": 0.7160493827160493,
+    "type macro-F1": 0.6866607248960191,
+    "span F1": 0.625,
+    "span exact": 0.6790123456790124,
+    "type+span joint": 0.48148148148148145,
+    "false_span_null_gold": 6,
+    "missed_span": 4,
+    "wrong_span": 16,
+    "subword_fragment_spans": 5
+   },
+   {
+    "type accuracy": 0.6790123456790124,
+    "type macro-F1": 0.6427574066864107,
+    "span F1": 0.5614035087719298,
+    "span exact": 0.6296296296296297,
+    "type+span joint": 0.41975308641975306,
+    "false_span_null_gold": 7,
+    "missed_span": 3,
+    "wrong_span": 20,
+    "subword_fragment_spans": 11
+   },
+   {
+    "type accuracy": 0.6790123456790124,
+    "type macro-F1": 0.6503364191526412,
+    "span F1": 0.591304347826087,
+    "span exact": 0.654320987654321,
+    "type+span joint": 0.4074074074074074,
+    "false_span_null_gold": 7,
+    "missed_span": 2,
+    "wrong_span": 19,
+    "subword_fragment_spans": 10
+   }
+  ],
+  "v2-4x768-pretrained-supervised:test": [
+   {
+    "type accuracy": 0.9238095238095239,
+    "type macro-F1": 0.9260079231054463,
+    "span F1": 0.7692307692307692,
+    "span exact": 0.8666666666666667,
+    "type+span joint": 0.8095238095238095,
+    "false_span_null_gold": 3,
+    "missed_span": 1,
+    "wrong_span": 10,
+    "subword_fragment_spans": 7
+   },
+   {
+    "type accuracy": 0.9333333333333333,
+    "type macro-F1": 0.9357325605680868,
+    "span F1": 0.854368932038835,
+    "span exact": 0.9142857142857143,
+    "type+span joint": 0.8666666666666667,
+    "false_span_null_gold": 2,
+    "missed_span": 1,
+    "wrong_span": 6,
+    "subword_fragment_spans": 4
+   },
+   {
+    "type accuracy": 0.9238095238095239,
+    "type macro-F1": 0.9218985505750212,
+    "span F1": 0.8653846153846154,
+    "span exact": 0.9142857142857143,
+    "type+span joint": 0.8571428571428571,
+    "false_span_null_gold": 3,
+    "missed_span": 1,
+    "wrong_span": 5,
+    "subword_fragment_spans": 2
+   }
+  ],
+  "v2-4x768-pretrained-supervised:probe": [
+   {
+    "type accuracy": 0.8148148148148148,
+    "type macro-F1": 0.7742430305455514,
+    "span F1": 0.8035714285714286,
+    "span exact": 0.8395061728395061,
+    "type+span joint": 0.6666666666666666,
+    "false_span_null_gold": 3,
+    "missed_span": 1,
+    "wrong_span": 9,
+    "subword_fragment_spans": 6
+   },
+   {
+    "type accuracy": 0.7777777777777778,
+    "type macro-F1": 0.7754540366102232,
+    "span F1": 0.8224299065420562,
+    "span exact": 0.8518518518518519,
+    "type+span joint": 0.6666666666666666,
+    "false_span_null_gold": 1,
+    "missed_span": 4,
+    "wrong_span": 7,
+    "subword_fragment_spans": 4
+   },
+   {
+    "type accuracy": 0.8395061728395061,
+    "type macro-F1": 0.8343240326433604,
+    "span F1": 0.7499999999999999,
+    "span exact": 0.8024691358024691,
+    "type+span joint": 0.6666666666666666,
+    "false_span_null_gold": 3,
+    "missed_span": 1,
+    "wrong_span": 12,
+    "subword_fragment_spans": 9
+   }
+  ],
+  "v2-4x768-pretrained-distilled:test": [
+   {
+    "type accuracy": 0.9428571428571428,
+    "type macro-F1": 0.9486973752303823,
+    "span F1": 0.826923076923077,
+    "span exact": 0.8952380952380953,
+    "type+span joint": 0.8476190476190476,
+    "false_span_null_gold": 3,
+    "missed_span": 1,
+    "wrong_span": 7,
+    "subword_fragment_spans": 2
+   },
+   {
+    "type accuracy": 0.9333333333333333,
+    "type macro-F1": 0.9402623090703586,
+    "span F1": 0.838095238095238,
+    "span exact": 0.8952380952380953,
+    "type+span joint": 0.8380952380952381,
+    "false_span_null_gold": 4,
+    "missed_span": 1,
+    "wrong_span": 6,
+    "subword_fragment_spans": 0
+   },
+   {
+    "type accuracy": 0.9238095238095239,
+    "type macro-F1": 0.9276784547060647,
+    "span F1": 0.826923076923077,
+    "span exact": 0.9047619047619048,
+    "type+span joint": 0.8476190476190476,
+    "false_span_null_gold": 2,
+    "missed_span": 0,
+    "wrong_span": 8,
+    "subword_fragment_spans": 2
+   }
+  ],
+  "v2-4x768-pretrained-distilled:probe": [
+   {
+    "type accuracy": 0.8024691358024691,
+    "type macro-F1": 0.7518207282913165,
+    "span F1": 0.7747747747747747,
+    "span exact": 0.8271604938271605,
+    "type+span joint": 0.654320987654321,
+    "false_span_null_gold": 2,
+    "missed_span": 1,
+    "wrong_span": 11,
+    "subword_fragment_spans": 6
+   },
+   {
+    "type accuracy": 0.8395061728395061,
+    "type macro-F1": 0.8221814630055346,
+    "span F1": 0.7818181818181819,
+    "span exact": 0.8148148148148148,
+    "type+span joint": 0.6790123456790124,
+    "false_span_null_gold": 3,
+    "missed_span": 3,
+    "wrong_span": 9,
+    "subword_fragment_spans": 3
+   },
+   {
+    "type accuracy": 0.8148148148148148,
+    "type macro-F1": 0.7880036863230141,
+    "span F1": 0.7567567567567568,
+    "span exact": 0.8148148148148148,
+    "type+span joint": 0.6666666666666666,
+    "false_span_null_gold": 2,
+    "missed_span": 1,
+    "wrong_span": 12,
+    "subword_fragment_spans": 7
+   }
+  ]
+ },
+ "test_per_class_f1": {
+  "final-teacher": {
+   "expense": [
+    0.8999999999999999,
+    0.0
+   ],
+   "income": [
+    0.8181818181818182,
+    0.0
+   ],
+   "borrow": [
+    0.9411764705882353,
+    0.0
+   ],
+   "lend": [
+    1.0,
+    0.0
+   ],
+   "repayment_in": [
+    0.7692307692307693,
+    0.0
+   ],
+   "repayment_out": [
+    0.8695652173913044,
+    0.0
+   ],
+   "transfer": [
+    0.9473684210526316,
+    0.0
+   ],
+   "refund": [
+    0.8421052631578948,
+    0.0
+   ]
+  },
+  "v1-4x256-random-supervised": {
+   "expense": [
+    0.8827284946236559,
+    0.03815139103235659
+   ],
+   "income": [
+    0.7810715854194115,
+    0.053047008119087254
+   ],
+   "borrow": [
+    0.8454545454545455,
+    0.04723774929733306
+   ],
+   "lend": [
+    0.7428571428571429,
+    0.04948716593053937
+   ],
+   "repayment_in": [
+    0.9777777777777777,
+    0.03849001794597504
+   ],
+   "repayment_out": [
+    0.9473684210526316,
+    0.0
+   ],
+   "transfer": [
+    0.9418057338468122,
+    0.061165616173142846
+   ],
+   "refund": [
+    0.9777777777777777,
+    0.03849001794597504
+   ]
+  },
+  "v1-4x256-random-distilled": {
+   "expense": [
+    0.9045698924731183,
+    0.030264328626875517
+   ],
+   "income": [
+    0.7995169082125603,
+    0.029285883219763626
+   ],
+   "borrow": [
+    0.8210936548532457,
+    0.037326732928004876
+   ],
+   "lend": [
+    0.7463046757164404,
+    0.11398883696426075
+   ],
+   "repayment_in": [
+    0.8601307189542484,
+    0.06339532367572358
+   ],
+   "repayment_out": [
+    0.8927875243664718,
+    0.05273976319091104
+   ],
+   "transfer": [
+    0.9644381223328592,
+    0.014782794943688851
+   ],
+   "refund": [
+    0.9803921568627451,
+    0.03396178054056623
+   ]
+  },
+  "v2-4x768-random-supervised": {
+   "expense": [
+    0.860215053763441,
+    0.01862420223192346
+   ],
+   "income": [
+    0.7944664031620553,
+    0.020538151868405734
+   ],
+   "borrow": [
+    0.9,
+    0.0
+   ],
+   "lend": [
+    0.9803921568627451,
+    0.03396178054056623
+   ],
+   "repayment_in": [
+    0.8825396825396825,
+    0.043988591938257236
+   ],
+   "repayment_out": [
+    0.8824561403508773,
+    0.07523432155225106
+   ],
+   "transfer": [
+    0.9644381223328592,
+    0.014782794943688851
+   ],
+   "refund": [
+    0.8601307189542484,
+    0.06339532367572358
+   ]
+  },
+  "v2-4x768-pretrained-supervised": {
+   "expense": [
+    0.9206349206349206,
+    0.0
+   ],
+   "income": [
+    0.8311688311688312,
+    0.02249416633206335
+   ],
+   "borrow": [
+    0.9333333333333333,
+    0.05773502691896256
+   ],
+   "lend": [
+    0.9803921568627451,
+    0.03396178054056623
+   ],
+   "repayment_in": [
+    0.9555555555555556,
+    0.03849001794597504
+   ],
+   "repayment_out": [
+    0.9295460874408243,
+    0.03529925230295919
+   ],
+   "transfer": [
+    0.9559032716927455,
+    0.014782794943688851
+   ],
+   "refund": [
+    0.9165032679738562,
+    0.036156183978430255
+   ]
+  },
+  "v2-4x768-pretrained-distilled": {
+   "expense": [
+    0.9247171928293028,
+    0.009414552225961484
+   ],
+   "income": [
+    0.8181818181818182,
+    0.0
+   ],
+   "borrow": [
+    0.9152292495945746,
+    0.05039947225596315
+   ],
+   "lend": [
+    0.9628482972136223,
+    0.032322930368144105
+   ],
+   "repayment_in": [
+    0.9777777777777777,
+    0.03849001794597504
+   ],
+   "repayment_out": [
+    0.9649122807017544,
+    0.030386856273138165
+   ],
+   "transfer": [
+    0.9473684210526316,
+    0.0
+   ],
+   "refund": [
+    1.0,
+    0.0
+   ]
+  }
+ },
+ "test_confusion_summed": {
+  "labels": [
+   "expense",
+   "income",
+   "borrow",
+   "lend",
+   "repayment_in",
+   "repayment_out",
+   "transfer",
+   "refund"
+  ],
+  "final-teacher": [
+   [
+    27,
+    2,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1
+   ],
+   [
+    1,
+    9,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   [
+    0,
+    0,
+    8,
+    0,
+    0,
+    1,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    9,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    5,
+    1,
+    0,
+    2
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    10,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    18,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    8
+   ]
+  ],
+  "v1-4x256-random-supervised": [
+   [
+    83,
+    9,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0
+   ],
+   [
+    2,
+    27,
+    2,
+    0,
+    0,
+    0,
+    2,
+    0
+   ],
+   [
+    0,
+    0,
+    27,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    3,
+    0,
+    8,
+    16,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    23,
+    0,
+    1,
+    0
+   ],
+   [
+    3,
+    0,
+    0,
+    0,
+    0,
+    27,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    54,
+    0
+   ],
+   [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    23
+   ]
+  ],
+  "v1-4x256-random-distilled": [
+   [
+    85,
+    9,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1
+   ],
+   [
+    1,
+    28,
+    1,
+    0,
+    2,
+    0,
+    1,
+    0
+   ],
+   [
+    0,
+    0,
+    25,
+    1,
+    0,
+    1,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    7,
+    17,
+    2,
+    0,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    1,
+    0,
+    21,
+    0,
+    0,
+    0
+   ],
+   [
+    3,
+    0,
+    0,
+    0,
+    0,
+    25,
+    2,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    54,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    24
+   ]
+  ],
+  "v2-4x768-random-supervised": [
+   [
+    80,
+    8,
+    1,
+    0,
+    0,
+    2,
+    3,
+    2
+   ],
+   [
+    3,
+    27,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    27,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    1,
+    26,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    0,
+    0,
+    19,
+    1,
+    1,
+    2
+   ],
+   [
+    3,
+    0,
+    1,
+    0,
+    0,
+    26,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    54,
+    0
+   ],
+   [
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    21
+   ]
+  ],
+  "v2-4x768-pretrained-supervised": [
+   [
+    87,
+    5,
+    0,
+    0,
+    0,
+    1,
+    3,
+    0
+   ],
+   [
+    3,
+    27,
+    1,
+    0,
+    0,
+    0,
+    2,
+    0
+   ],
+   [
+    0,
+    0,
+    27,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    1,
+    26,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    22,
+    0,
+    0,
+    2
+   ],
+   [
+    1,
+    0,
+    2,
+    0,
+    0,
+    27,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    54,
+    0
+   ],
+   [
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    22
+   ]
+  ],
+  "v2-4x768-pretrained-distilled": [
+   [
+    86,
+    6,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0
+   ],
+   [
+    3,
+    27,
+    1,
+    0,
+    0,
+    0,
+    2,
+    0
+   ],
+   [
+    0,
+    0,
+    26,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    1,
+    26,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    1,
+    0,
+    23,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    1,
+    0,
+    0,
+    28,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    54,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    24
+   ]
+  ]
+ },
+ "probe_patterns": {
+  "family_gift_in": {
+   "n": 9,
+   "final-teacher": {
+    "success": [
+     0.8888888888888888,
+     0.0
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     1.0,
+     0.0
+    ],
+    "success_per_seed": [
+     0.8888888888888888
+    ],
+    "fail_all_runs": 1
+   },
+   "v1-4x256-random-supervised": {
+    "success": [
+     0.4444444444444444,
+     0.11111111111111113
+    ],
+    "type_acc": [
+     0.5555555555555556,
+     0.1111111111111111
+    ],
+    "span_exact": [
+     0.6666666666666666,
+     0.1111111111111111
+    ],
+    "success_per_seed": [
+     0.3333333333333333,
+     0.4444444444444444,
+     0.5555555555555556
+    ],
+    "fail_all_runs": 4
+   },
+   "v1-4x256-random-distilled": {
+    "success": [
+     0.48148148148148145,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.5925925925925926,
+     0.12830005981991682
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.5555555555555556,
+     0.4444444444444444,
+     0.4444444444444444
+    ],
+    "fail_all_runs": 4
+   },
+   "v2-4x768-random-supervised": {
+    "success": [
+     0.4074074074074074,
+     0.12830005981991685
+    ],
+    "type_acc": [
+     0.5555555555555556,
+     0.1111111111111111
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.3333333333333333,
+     0.5555555555555556,
+     0.3333333333333333
+    ],
+    "fail_all_runs": 3
+   },
+   "v2-4x768-pretrained-supervised": {
+    "success": [
+     0.6666666666666666,
+     0.1924500897298753
+    ],
+    "type_acc": [
+     0.7037037037037037,
+     0.23129622216290363
+    ],
+    "span_exact": [
+     0.8888888888888888,
+     0.0
+    ],
+    "success_per_seed": [
+     0.7777777777777778,
+     0.4444444444444444,
+     0.7777777777777778
+    ],
+    "fail_all_runs": 2
+   },
+   "v2-4x768-pretrained-distilled": {
+    "success": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.0
+    ],
+    "span_exact": [
+     0.8888888888888888,
+     0.0
+    ],
+    "success_per_seed": [
+     0.7777777777777778,
+     0.6666666666666666,
+     0.7777777777777778
+    ],
+    "fail_all_runs": 2
+   }
+  },
+  "gift_out": {
+   "n": 9,
+   "final-teacher": {
+    "success": [
+     0.8888888888888888,
+     0.0
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     1.0,
+     0.0
+    ],
+    "success_per_seed": [
+     0.8888888888888888
+    ],
+    "fail_all_runs": 1
+   },
+   "v1-4x256-random-supervised": {
+    "success": [
+     0.5555555555555556,
+     0.1111111111111111
+    ],
+    "type_acc": [
+     0.8518518518518519,
+     0.12830005981991682
+    ],
+    "span_exact": [
+     0.5925925925925926,
+     0.12830005981991682
+    ],
+    "success_per_seed": [
+     0.6666666666666666,
+     0.5555555555555556,
+     0.4444444444444444
+    ],
+    "fail_all_runs": 2
+   },
+   "v1-4x256-random-distilled": {
+    "success": [
+     0.5555555555555556,
+     0.1111111111111111
+    ],
+    "type_acc": [
+     0.8148148148148148,
+     0.06415002990995838
+    ],
+    "span_exact": [
+     0.6666666666666666,
+     0.1111111111111111
+    ],
+    "success_per_seed": [
+     0.6666666666666666,
+     0.4444444444444444,
+     0.5555555555555556
+    ],
+    "fail_all_runs": 3
+   },
+   "v2-4x768-random-supervised": {
+    "success": [
+     0.5185185185185185,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.0
+    ],
+    "span_exact": [
+     0.6666666666666666,
+     0.0
+    ],
+    "success_per_seed": [
+     0.5555555555555556,
+     0.5555555555555556,
+     0.4444444444444444
+    ],
+    "fail_all_runs": 4
+   },
+   "v2-4x768-pretrained-supervised": {
+    "success": [
+     0.5555555555555556,
+     0.0
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.0
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.5555555555555556,
+     0.5555555555555556,
+     0.5555555555555556
+    ],
+    "fail_all_runs": 4
+   },
+   "v2-4x768-pretrained-distilled": {
+    "success": [
+     0.5555555555555556,
+     0.0
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.0
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.5555555555555556,
+     0.5555555555555556,
+     0.5555555555555556
+    ],
+    "fail_all_runs": 4
+   }
+  },
+  "insurance_payout": {
+   "n": 9,
+   "final-teacher": {
+    "success": [
+     0.8888888888888888,
+     0.0
+    ],
+    "type_acc": [
+     1.0,
+     0.0
+    ],
+    "span_exact": [
+     0.8888888888888888,
+     0.0
+    ],
+    "success_per_seed": [
+     0.8888888888888888
+    ],
+    "fail_all_runs": 1
+   },
+   "v1-4x256-random-supervised": {
+    "success": [
+     0.48148148148148145,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.7407407407407407,
+     0.16972502573910514
+    ],
+    "span_exact": [
+     0.6296296296296297,
+     0.12830005981991682
+    ],
+    "success_per_seed": [
+     0.4444444444444444,
+     0.5555555555555556,
+     0.4444444444444444
+    ],
+    "fail_all_runs": 3
+   },
+   "v1-4x256-random-distilled": {
+    "success": [
+     0.5185185185185185,
+     0.12830005981991682
+    ],
+    "type_acc": [
+     0.7037037037037037,
+     0.16972502573910514
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.4444444444444444,
+     0.4444444444444444,
+     0.6666666666666666
+    ],
+    "fail_all_runs": 3
+   },
+   "v2-4x768-random-supervised": {
+    "success": [
+     0.5185185185185185,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.5555555555555556,
+     0.4444444444444444,
+     0.5555555555555556
+    ],
+    "fail_all_runs": 4
+   },
+   "v2-4x768-pretrained-supervised": {
+    "success": [
+     0.6296296296296297,
+     0.12830005981991682
+    ],
+    "type_acc": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.8888888888888888,
+     0.1111111111111111
+    ],
+    "success_per_seed": [
+     0.5555555555555556,
+     0.7777777777777778,
+     0.5555555555555556
+    ],
+    "fail_all_runs": 2
+   },
+   "v2-4x768-pretrained-distilled": {
+    "success": [
+     0.6296296296296297,
+     0.06415002990995838
+    ],
+    "type_acc": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.8888888888888888,
+     0.0
+    ],
+    "success_per_seed": [
+     0.5555555555555556,
+     0.6666666666666666,
+     0.6666666666666666
+    ],
+    "fail_all_runs": 2
+   }
+  },
+  "insurance_premium": {
+   "n": 9,
+   "final-teacher": {
+    "success": [
+     0.6666666666666666,
+     0.0
+    ],
+    "type_acc": [
+     0.6666666666666666,
+     0.0
+    ],
+    "span_exact": [
+     1.0,
+     0.0
+    ],
+    "success_per_seed": [
+     0.6666666666666666
+    ],
+    "fail_all_runs": 3
+   },
+   "v1-4x256-random-supervised": {
+    "success": [
+     0.37037037037037035,
+     0.12830005981991682
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.0
+    ],
+    "span_exact": [
+     0.5555555555555556,
+     0.1111111111111111
+    ],
+    "success_per_seed": [
+     0.4444444444444444,
+     0.4444444444444444,
+     0.2222222222222222
+    ],
+    "fail_all_runs": 4
+   },
+   "v1-4x256-random-distilled": {
+    "success": [
+     0.4444444444444444,
+     0.11111111111111113
+    ],
+    "type_acc": [
+     0.6666666666666666,
+     0.1111111111111111
+    ],
+    "span_exact": [
+     0.6666666666666666,
+     0.1111111111111111
+    ],
+    "success_per_seed": [
+     0.4444444444444444,
+     0.5555555555555556,
+     0.3333333333333333
+    ],
+    "fail_all_runs": 4
+   },
+   "v2-4x768-random-supervised": {
+    "success": [
+     0.18518518518518517,
+     0.06415002990995841
+    ],
+    "type_acc": [
+     0.6296296296296297,
+     0.06415002990995838
+    ],
+    "span_exact": [
+     0.4074074074074074,
+     0.06415002990995841
+    ],
+    "success_per_seed": [
+     0.2222222222222222,
+     0.2222222222222222,
+     0.1111111111111111
+    ],
+    "fail_all_runs": 7
+   },
+   "v2-4x768-pretrained-supervised": {
+    "success": [
+     0.5185185185185185,
+     0.12830005981991682
+    ],
+    "type_acc": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "span_exact": [
+     0.6666666666666666,
+     0.1111111111111111
+    ],
+    "success_per_seed": [
+     0.4444444444444444,
+     0.6666666666666666,
+     0.4444444444444444
+    ],
+    "fail_all_runs": 3
+   },
+   "v2-4x768-pretrained-distilled": {
+    "success": [
+     0.6296296296296297,
+     0.06415002990995838
+    ],
+    "type_acc": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "span_exact": [
+     0.7777777777777778,
+     0.1111111111111111
+    ],
+    "success_per_seed": [
+     0.5555555555555556,
+     0.6666666666666666,
+     0.6666666666666666
+    ],
+    "fail_all_runs": 2
+   }
+  },
+  "lender_first_cho_muon": {
+   "n": 9,
+   "final-teacher": {
+    "success": [
+     1.0,
+     0.0
+    ],
+    "type_acc": [
+     1.0,
+     0.0
+    ],
+    "span_exact": [
+     1.0,
+     0.0
+    ],
+    "success_per_seed": [
+     1.0
+    ],
+    "fail_all_runs": 0
+   },
+   "v1-4x256-random-supervised": {
+    "success": [
+     0.48148148148148145,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.6666666666666666,
+     0.1111111111111111
+    ],
+    "span_exact": [
+     0.8148148148148148,
+     0.06415002990995838
+    ],
+    "success_per_seed": [
+     0.4444444444444444,
+     0.5555555555555556,
+     0.4444444444444444
+    ],
+    "fail_all_runs": 2
+   },
+   "v1-4x256-random-distilled": {
+    "success": [
+     0.4074074074074074,
+     0.23129622216290363
+    ],
+    "type_acc": [
+     0.6296296296296297,
+     0.2312962221629036
+    ],
+    "span_exact": [
+     0.7777777777777778,
+     0.0
+    ],
+    "success_per_seed": [
+     0.3333333333333333,
+     0.6666666666666666,
+     0.2222222222222222
+    ],
+    "fail_all_runs": 3
+   },
+   "v2-4x768-random-supervised": {
+    "success": [
+     0.37037037037037035,
+     0.1697250257391052
+    ],
+    "type_acc": [
+     0.5555555555555556,
+     0.1111111111111111
+    ],
+    "span_exact": [
+     0.8148148148148148,
+     0.06415002990995838
+    ],
+    "success_per_seed": [
+     0.5555555555555556,
+     0.2222222222222222,
+     0.3333333333333333
+    ],
+    "fail_all_runs": 4
+   },
+   "v2-4x768-pretrained-supervised": {
+    "success": [
+     0.7777777777777778,
+     0.1111111111111111
+    ],
+    "type_acc": [
+     0.8518518518518519,
+     0.12830005981991682
+    ],
+    "span_exact": [
+     0.9259259259259259,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.7777777777777778,
+     0.6666666666666666,
+     0.8888888888888888
+    ],
+    "fail_all_runs": 0
+   },
+   "v2-4x768-pretrained-distilled": {
+    "success": [
+     0.7777777777777778,
+     0.1111111111111111
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.1111111111111111
+    ],
+    "span_exact": [
+     0.8888888888888888,
+     0.0
+    ],
+    "success_per_seed": [
+     0.6666666666666666,
+     0.8888888888888888,
+     0.7777777777777778
+    ],
+    "fail_all_runs": 1
+   }
+  },
+  "loan_installment": {
+   "n": 9,
+   "final-teacher": {
+    "success": [
+     0.5555555555555556,
+     0.0
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.0
+    ],
+    "span_exact": [
+     0.6666666666666666,
+     0.0
+    ],
+    "success_per_seed": [
+     0.5555555555555556
+    ],
+    "fail_all_runs": 4
+   },
+   "v1-4x256-random-supervised": {
+    "success": [
+     0.37037037037037035,
+     0.06415002990995841
+    ],
+    "type_acc": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.4444444444444444,
+     0.11111111111111113
+    ],
+    "success_per_seed": [
+     0.3333333333333333,
+     0.4444444444444444,
+     0.3333333333333333
+    ],
+    "fail_all_runs": 4
+   },
+   "v1-4x256-random-distilled": {
+    "success": [
+     0.37037037037037035,
+     0.06415002990995841
+    ],
+    "type_acc": [
+     0.6666666666666666,
+     0.0
+    ],
+    "span_exact": [
+     0.5185185185185185,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.3333333333333333,
+     0.4444444444444444,
+     0.3333333333333333
+    ],
+    "fail_all_runs": 4
+   },
+   "v2-4x768-random-supervised": {
+    "success": [
+     0.37037037037037035,
+     0.06415002990995841
+    ],
+    "type_acc": [
+     0.7037037037037037,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.5185185185185185,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.4444444444444444,
+     0.3333333333333333,
+     0.3333333333333333
+    ],
+    "fail_all_runs": 5
+   },
+   "v2-4x768-pretrained-supervised": {
+    "success": [
+     0.5185185185185185,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.6666666666666666,
+     0.0
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.5555555555555556,
+     0.4444444444444444,
+     0.5555555555555556
+    ],
+    "fail_all_runs": 3
+   },
+   "v2-4x768-pretrained-distilled": {
+    "success": [
+     0.5555555555555556,
+     0.0
+    ],
+    "type_acc": [
+     0.6666666666666666,
+     0.0
+    ],
+    "span_exact": [
+     0.7777777777777778,
+     0.0
+    ],
+    "success_per_seed": [
+     0.5555555555555556,
+     0.5555555555555556,
+     0.5555555555555556
+    ],
+    "fail_all_runs": 3
+   }
+  },
+  "subject_first_muon": {
+   "n": 9,
+   "final-teacher": {
+    "success": [
+     0.8888888888888888,
+     0.0
+    ],
+    "type_acc": [
+     1.0,
+     0.0
+    ],
+    "span_exact": [
+     0.8888888888888888,
+     0.0
+    ],
+    "success_per_seed": [
+     0.8888888888888888
+    ],
+    "fail_all_runs": 1
+   },
+   "v1-4x256-random-supervised": {
+    "success": [
+     0.5185185185185185,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.5185185185185185,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.4444444444444444,
+     0.5555555555555556,
+     0.5555555555555556
+    ],
+    "fail_all_runs": 3
+   },
+   "v1-4x256-random-distilled": {
+    "success": [
+     0.5185185185185185,
+     0.12830005981991682
+    ],
+    "type_acc": [
+     0.5185185185185185,
+     0.12830005981991682
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.4444444444444444,
+     0.4444444444444444,
+     0.6666666666666666
+    ],
+    "fail_all_runs": 3
+   },
+   "v2-4x768-random-supervised": {
+    "success": [
+     0.5185185185185185,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.5555555555555556,
+     0.0
+    ],
+    "span_exact": [
+     0.8148148148148148,
+     0.06415002990995838
+    ],
+    "success_per_seed": [
+     0.5555555555555556,
+     0.5555555555555556,
+     0.4444444444444444
+    ],
+    "fail_all_runs": 4
+   },
+   "v2-4x768-pretrained-supervised": {
+    "success": [
+     0.8888888888888888,
+     0.0
+    ],
+    "type_acc": [
+     0.9259259259259259,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.9629629629629629,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.8888888888888888,
+     0.8888888888888888,
+     0.8888888888888888
+    ],
+    "fail_all_runs": 0
+   },
+   "v2-4x768-pretrained-distilled": {
+    "success": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.9629629629629629,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.8888888888888888,
+     0.7777777777777778,
+     0.8888888888888888
+    ],
+    "fail_all_runs": 0
+   }
+  },
+  "title_name_span": {
+   "n": 9,
+   "final-teacher": {
+    "success": [
+     1.0,
+     0.0
+    ],
+    "type_acc": [
+     1.0,
+     0.0
+    ],
+    "span_exact": [
+     1.0,
+     0.0
+    ],
+    "success_per_seed": [
+     1.0
+    ],
+    "fail_all_runs": 0
+   },
+   "v1-4x256-random-supervised": {
+    "success": [
+     0.4074074074074074,
+     0.06415002990995841
+    ],
+    "type_acc": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "span_exact": [
+     0.4444444444444444,
+     0.0
+    ],
+    "success_per_seed": [
+     0.3333333333333333,
+     0.4444444444444444,
+     0.4444444444444444
+    ],
+    "fail_all_runs": 5
+   },
+   "v1-4x256-random-distilled": {
+    "success": [
+     0.48148148148148145,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.8148148148148148,
+     0.06415002990995838
+    ],
+    "span_exact": [
+     0.48148148148148145,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.4444444444444444,
+     0.5555555555555556,
+     0.4444444444444444
+    ],
+    "fail_all_runs": 4
+   },
+   "v2-4x768-random-supervised": {
+    "success": [
+     0.4444444444444444,
+     0.0
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.4444444444444444,
+     0.0
+    ],
+    "success_per_seed": [
+     0.4444444444444444,
+     0.4444444444444444,
+     0.4444444444444444
+    ],
+    "fail_all_runs": 4
+   },
+   "v2-4x768-pretrained-supervised": {
+    "success": [
+     0.7037037037037037,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.8148148148148148,
+     0.06415002990995838
+    ],
+    "success_per_seed": [
+     0.6666666666666666,
+     0.7777777777777778,
+     0.6666666666666666
+    ],
+    "fail_all_runs": 2
+   },
+   "v2-4x768-pretrained-distilled": {
+    "success": [
+     0.5555555555555556,
+     0.0
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.6296296296296297,
+     0.06415002990995838
+    ],
+    "success_per_seed": [
+     0.5555555555555556,
+     0.5555555555555556,
+     0.5555555555555556
+    ],
+    "fail_all_runs": 4
+   }
+  },
+  "windfall": {
+   "n": 9,
+   "final-teacher": {
+    "success": [
+     0.7777777777777778,
+     0.0
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.8888888888888888,
+     0.0
+    ],
+    "success_per_seed": [
+     0.7777777777777778
+    ],
+    "fail_all_runs": 2
+   },
+   "v1-4x256-random-supervised": {
+    "success": [
+     0.6666666666666666,
+     0.1111111111111111
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.1111111111111111
+    ],
+    "span_exact": [
+     0.7777777777777778,
+     0.0
+    ],
+    "success_per_seed": [
+     0.5555555555555556,
+     0.6666666666666666,
+     0.7777777777777778
+    ],
+    "fail_all_runs": 1
+   },
+   "v1-4x256-random-distilled": {
+    "success": [
+     0.6666666666666666,
+     0.1111111111111111
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.1111111111111111
+    ],
+    "span_exact": [
+     0.8888888888888888,
+     0.0
+    ],
+    "success_per_seed": [
+     0.6666666666666666,
+     0.7777777777777778,
+     0.5555555555555556
+    ],
+    "fail_all_runs": 2
+   },
+   "v2-4x768-random-supervised": {
+    "success": [
+     0.5925925925925926,
+     0.12830005981991682
+    ],
+    "type_acc": [
+     0.8148148148148148,
+     0.06415002990995838
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "success_per_seed": [
+     0.6666666666666666,
+     0.4444444444444444,
+     0.6666666666666666
+    ],
+    "fail_all_runs": 2
+   },
+   "v2-4x768-pretrained-supervised": {
+    "success": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "success_per_seed": [
+     0.7777777777777778,
+     0.7777777777777778,
+     0.6666666666666666
+    ],
+    "fail_all_runs": 2
+   },
+   "v2-4x768-pretrained-distilled": {
+    "success": [
+     0.7037037037037037,
+     0.12830005981991682
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.8148148148148148,
+     0.12830005981991682
+    ],
+    "success_per_seed": [
+     0.7777777777777778,
+     0.7777777777777778,
+     0.5555555555555556
+    ],
+    "fail_all_runs": 1
+   }
+  }
+ },
+ "test_accent": {
+  "true:final-teacher": {
+   "n": 63,
+   "type_acc": [
+    0.9365079365079365,
+    0.0
+   ],
+   "type_f1": [
+    0.9307844932844933,
+    0.0
+   ],
+   "span_f1": [
+    0.9374999999999999,
+    0.0
+   ],
+   "exact": [
+    0.9523809523809523,
+    0.0
+   ]
+  },
+  "false:final-teacher": {
+   "n": 42,
+   "type_acc": [
+    0.8333333333333334,
+    0.0
+   ],
+   "type_f1": [
+    0.8245915032679738,
+    0.0
+   ],
+   "span_f1": [
+    0.9444444444444444,
+    0.0
+   ],
+   "exact": [
+    0.9523809523809523,
+    0.0
+   ]
+  },
+  "true:v1-4x256-random-supervised": {
+   "n": 63,
+   "type_acc": [
+    0.8835978835978836,
+    0.03304231745184336
+   ],
+   "type_f1": [
+    0.8900548525548526,
+    0.03704165027558834
+   ],
+   "span_f1": [
+    0.6199269651113913,
+    0.0544045224945375
+   ],
+   "exact": [
+    0.7407407407407407,
+    0.024246432248443573
+   ]
+  },
+  "false:v1-4x256-random-supervised": {
+   "n": 42,
+   "type_acc": [
+    0.8968253968253969,
+    0.0549857399228215
+   ],
+   "type_f1": [
+    0.8733444108637607,
+    0.043207324220182045
+   ],
+   "span_f1": [
+    0.6995670995670995,
+    0.02399377742086751
+   ],
+   "exact": [
+    0.8095238095238095,
+    0.041239304942116105
+   ]
+  },
+  "true:v1-4x256-random-distilled": {
+   "n": 63,
+   "type_acc": [
+    0.8677248677248677,
+    0.009164289987136948
+   ],
+   "type_f1": [
+    0.8631493506493506,
+    0.0200033005056224
+   ],
+   "span_f1": [
+    0.658610684417136,
+    0.05183231969039895
+   ],
+   "exact": [
+    0.7619047619047619,
+    0.031746031746031744
+   ]
+  },
+  "false:v1-4x256-random-distilled": {
+   "n": 42,
+   "type_acc": [
+    0.9126984126984127,
+    0.01374643498070539
+   ],
+   "type_f1": [
+    0.8487654320987654,
+    0.049824882975459076
+   ],
+   "span_f1": [
+    0.665980265980266,
+    0.03707040343061085
+   ],
+   "exact": [
+    0.7936507936507936,
+    0.02749286996141078
+   ]
+  },
+  "true:v2-4x768-random-supervised": {
+   "n": 63,
+   "type_acc": [
+    0.8941798941798942,
+    0.018328579974273833
+   ],
+   "type_f1": [
+    0.893510656010656,
+    0.016734093518705244
+   ],
+   "span_f1": [
+    0.6329642112020543,
+    0.031664548111413365
+   ],
+   "exact": [
+    0.7354497354497355,
+    0.024246432248443573
+   ]
+  },
+  "false:v2-4x768-random-supervised": {
+   "n": 42,
+   "type_acc": [
+    0.8809523809523809,
+    0.023809523809523836
+   ],
+   "type_f1": [
+    0.8866651194321917,
+    0.018988045949550936
+   ],
+   "span_f1": [
+    0.5960784313725491,
+    0.029367714111106252
+   ],
+   "exact": [
+    0.7698412698412698,
+    0.01374643498070539
+   ]
+  },
+  "true:v2-4x768-pretrained-supervised": {
+   "n": 63,
+   "type_acc": [
+    0.9365079365079365,
+    0.015873015873015872
+   ],
+   "type_f1": [
+    0.937021312021312,
+    0.018699842441387275
+   ],
+   "span_f1": [
+    0.8854036413298925,
+    0.03853481806831168
+   ],
+   "exact": [
+    0.9312169312169312,
+    0.018328579974273833
+   ]
+  },
+  "false:v2-4x768-pretrained-supervised": {
+   "n": 42,
+   "type_acc": [
+    0.9126984126984127,
+    0.01374643498070539
+   ],
+   "type_f1": [
+    0.9188375350140056,
+    0.01845558087973569
+   ],
+   "span_f1": [
+    0.7290448343079922,
+    0.10105008209187352
+   ],
+   "exact": [
+    0.8492063492063492,
+    0.05991932091484723
+   ]
+  },
+  "true:v2-4x768-pretrained-distilled": {
+   "n": 63,
+   "type_acc": [
+    0.9312169312169312,
+    0.009164289987136948
+   ],
+   "type_f1": [
+    0.9291916416916417,
+    0.016631936014857532
+   ],
+   "span_f1": [
+    0.8315774070822359,
+    0.023771300870123954
+   ],
+   "exact": [
+    0.8994708994708994,
+    0.009164289987136948
+   ]
+  },
+  "false:v2-4x768-pretrained-distilled": {
+   "n": 42,
+   "type_acc": [
+    0.9365079365079365,
+    0.013746434980705326
+   ],
+   "type_f1": [
+    0.9577923819100289,
+    0.011076335005655314
+   ],
+   "span_f1": [
+    0.8288288288288289,
+    0.03120812265889869
+   ],
+   "exact": [
+    0.8968253968253969,
+    0.02749286996141078
+   ]
+  }
+ },
+ "probe_accent": {
+  "true:final-teacher": {
+   "n": 49,
+   "type_acc": [
+    0.8979591836734694,
+    0.0
+   ],
+   "type_f1": [
+    0.9331049902478474,
+    0.0
+   ],
+   "span_f1": [
+    0.9855072463768115,
+    0.0
+   ],
+   "exact": [
+    0.9795918367346939,
+    0.0
+   ]
+  },
+  "false:final-teacher": {
+   "n": 32,
+   "type_acc": [
+    0.90625,
+    0.0
+   ],
+   "type_f1": [
+    0.9277056277056278,
+    0.0
+   ],
+   "span_f1": [
+    0.8181818181818182,
+    0.0
+   ],
+   "exact": [
+    0.84375,
+    0.0
+   ]
+  },
+  "true:v1-4x256-random-supervised": {
+   "n": 49,
+   "type_acc": [
+    0.7687074829931972,
+    0.047130634219561277
+   ],
+   "type_f1": [
+    0.7388850303136016,
+    0.05973174905004447
+   ],
+   "span_f1": [
+    0.5981481481481481,
+    0.06946296049448535
+   ],
+   "exact": [
+    0.6530612244897959,
+    0.08163265306122452
+   ]
+  },
+  "false:v1-4x256-random-supervised": {
+   "n": 32,
+   "type_acc": [
+    0.6770833333333334,
+    0.06505206248331664
+   ],
+   "type_f1": [
+    0.6821385404718738,
+    0.054140671976927415
+   ],
+   "span_f1": [
+    0.5136654558034942,
+    0.034769393818194674
+   ],
+   "exact": [
+    0.59375,
+    0.03125
+   ]
+  },
+  "true:v1-4x256-random-distilled": {
+   "n": 49,
+   "type_acc": [
+    0.7006802721088435,
+    0.031173984319427517
+   ],
+   "type_f1": [
+    0.6746202568051307,
+    0.027242859692153103
+   ],
+   "span_f1": [
+    0.6373482120514223,
+    0.019536807449746462
+   ],
+   "exact": [
+    0.7006802721088435,
+    0.011782658554890335
+   ]
+  },
+  "false:v1-4x256-random-distilled": {
+   "n": 32,
+   "type_acc": [
+    0.6666666666666666,
+    0.018042195912175804
+   ],
+   "type_f1": [
+    0.6692631079885981,
+    0.0036653566037402993
+   ],
+   "span_f1": [
+    0.6023651145602366,
+    0.029443583572863478
+   ],
+   "exact": [
+    0.6770833333333334,
+    0.018042195912175804
+   ]
+  },
+  "true:v2-4x768-random-supervised": {
+   "n": 49,
+   "type_acc": [
+    0.7142857142857143,
+    0.020408163265306145
+   ],
+   "type_f1": [
+    0.7034391626317091,
+    0.02044563659318753
+   ],
+   "span_f1": [
+    0.6069265836565285,
+    0.02663424389403054
+   ],
+   "exact": [
+    0.6530612244897959,
+    0.02040816326530609
+   ]
+  },
+  "false:v2-4x768-random-supervised": {
+   "n": 32,
+   "type_acc": [
+    0.65625,
+    0.03125
+   ],
+   "type_f1": [
+    0.6631908215241549,
+    0.023704794558060162
+   ],
+   "span_f1": [
+    0.569062720225511,
+    0.05021234374723358
+   ],
+   "exact": [
+    0.65625,
+    0.03125
+   ]
+  },
+  "true:v2-4x768-pretrained-supervised": {
+   "n": 49,
+   "type_acc": [
+    0.8367346938775511,
+    0.02040816326530609
+   ],
+   "type_f1": [
+    0.8337113369722066,
+    0.0224452542974623
+   ],
+   "span_f1": [
+    0.8142292490118577,
+    0.03301703316506368
+   ],
+   "exact": [
+    0.8571428571428571,
+    0.02040816326530609
+   ]
+  },
+  "false:v2-4x768-pretrained-supervised": {
+   "n": 32,
+   "type_acc": [
+    0.7708333333333334,
+    0.047735163489123336
+   ],
+   "type_f1": [
+    0.7845691345691346,
+    0.052351495295147814
+   ],
+   "span_f1": [
+    0.7562866326337682,
+    0.05101572389033658
+   ],
+   "exact": [
+    0.7916666666666666,
+    0.03608439182435161
+   ]
+  },
+  "true:v2-4x768-pretrained-distilled": {
+   "n": 49,
+   "type_acc": [
+    0.8435374149659864,
+    0.01178265855489027
+   ],
+   "type_f1": [
+    0.826152229413099,
+    0.02943994192455835
+   ],
+   "span_f1": [
+    0.7707837623476819,
+    0.015211564789362992
+   ],
+   "exact": [
+    0.8231292517006803,
+    0.011782658554890335
+   ]
+  },
+  "false:v2-4x768-pretrained-distilled": {
+   "n": 32,
+   "type_acc": [
+    0.78125,
+    0.03125
+   ],
+   "type_f1": [
+    0.7889801556468222,
+    0.034395789547200746
+   ],
+   "span_f1": [
+    0.7715023994093761,
+    0.016623595790620456
+   ],
+   "exact": [
+    0.8125,
+    0.0
+   ]
+  }
+ },
+ "direction": {
+  "final-teacher": {
+   "test_lend_as_borrow": [
+    0,
+    0.0
+   ],
+   "test_borrow_as_lend": [
+    0,
+    0.0
+   ]
+  },
+  "v1-4x256-random-supervised": {
+   "test_lend_as_borrow": [
+    2.6666666666666665,
+    0.5773502691896257
+   ],
+   "test_borrow_as_lend": [
+    0,
+    0.0
+   ]
+  },
+  "v1-4x256-random-distilled": {
+   "test_lend_as_borrow": [
+    2.3333333333333335,
+    1.5275252316519468
+   ],
+   "test_borrow_as_lend": [
+    0.3333333333333333,
+    0.5773502691896257
+   ]
+  },
+  "v2-4x768-random-supervised": {
+   "test_lend_as_borrow": [
+    0.3333333333333333,
+    0.5773502691896257
+   ],
+   "test_borrow_as_lend": [
+    0,
+    0.0
+   ]
+  },
+  "v2-4x768-pretrained-supervised": {
+   "test_lend_as_borrow": [
+    0.3333333333333333,
+    0.5773502691896257
+   ],
+   "test_borrow_as_lend": [
+    0,
+    0.0
+   ]
+  },
+  "v2-4x768-pretrained-distilled": {
+   "test_lend_as_borrow": [
+    0.3333333333333333,
+    0.5773502691896257
+   ],
+   "test_borrow_as_lend": [
+    0.3333333333333333,
+    0.5773502691896257
+   ]
+  }
+ },
+ "unseen_target_test": {
+  "final-teacher": {
+   "seen": {
+    "n": 36,
+    "span_exact": [
+     0.9444444444444444,
+     0.0
+    ]
+   },
+   "unseen": {
+    "n": 15,
+    "span_exact": [
+     0.8666666666666667,
+     0.0
+    ]
+   }
+  },
+  "v1-4x256-random-supervised": {
+   "seen": {
+    "n": 36,
+    "span_exact": [
+     0.7222222222222222,
+     0.02777777777777779
+    ]
+   },
+   "unseen": {
+    "n": 15,
+    "span_exact": [
+     0.37777777777777777,
+     0.10183501544346311
+    ]
+   }
+  },
+  "v1-4x256-random-distilled": {
+   "seen": {
+    "n": 36,
+    "span_exact": [
+     0.7222222222222222,
+     0.0
+    ]
+   },
+   "unseen": {
+    "n": 15,
+    "span_exact": [
+     0.4,
+     0.06666666666666668
+    ]
+   }
+  },
+  "v2-4x768-random-supervised": {
+   "seen": {
+    "n": 36,
+    "span_exact": [
+     0.7129629629629629,
+     0.06990587440065513
+    ]
+   },
+   "unseen": {
+    "n": 15,
+    "span_exact": [
+     0.35555555555555557,
+     0.10183501544346311
+    ]
+   }
+  },
+  "v2-4x768-pretrained-supervised": {
+   "seen": {
+    "n": 36,
+    "span_exact": [
+     0.9166666666666666,
+     0.048112522432468774
+    ]
+   },
+   "unseen": {
+    "n": 15,
+    "span_exact": [
+     0.6666666666666666,
+     0.06666666666666665
+    ]
+   }
+  },
+  "v2-4x768-pretrained-distilled": {
+   "seen": {
+    "n": 36,
+    "span_exact": [
+     0.8796296296296297,
+     0.04243125643477626
+    ]
+   },
+   "unseen": {
+    "n": 15,
+    "span_exact": [
+     0.7777777777777778,
+     0.10183501544346316
+    ]
+   }
+  }
+ },
+ "teacher_correct_lost_all_seeds": {
+  "test:v1-4x256-random-supervised": [
+   {
+    "text": "anh Long mượn 3 triệu sửa xe",
+    "gold_type": "lend",
+    "gold_target": "Long",
+    "pattern": null,
+    "student": [
+     [
+      "borrow",
+      "Long"
+     ],
+     [
+      "borrow",
+      "Long"
+     ],
+     [
+      "borrow",
+      "Long"
+     ]
+    ]
+   },
+   {
+    "text": "mua hoa qua biếu bà 200k",
+    "gold_type": "expense",
+    "gold_target": null,
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      "bà"
+     ],
+     [
+      "expense",
+      "bà"
+     ],
+     [
+      "expense",
+      "bà"
+     ]
+    ]
+   },
+   {
+    "text": "cho bạn Kiên mượn 1tr2 ck vcb",
+    "gold_type": "lend",
+    "gold_target": "Kiên",
+    "pattern": null,
+    "student": [
+     [
+      "lend",
+      "bạn Kiên"
+     ],
+     [
+      "lend",
+      "bạn Kiên"
+     ],
+     [
+      "lend",
+      "bạn Kiên"
+     ]
+    ]
+   },
+   {
+    "text": "qua sinh nhat chi Ha 350k",
+    "gold_type": "expense",
+    "gold_target": "Ha",
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      "chi"
+     ],
+     [
+      "expense",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "tra lai chi Mai 2tr",
+    "gold_type": "repayment_out",
+    "gold_target": "Mai",
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      "Mai"
+     ],
+     [
+      "expense",
+      "Mai"
+     ],
+     [
+      "expense",
+      "Mai"
+     ]
+    ]
+   },
+   {
+    "text": "nuoc mia 12k",
+    "gold_type": "expense",
+    "gold_target": null,
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      "mia"
+     ],
+     [
+      "expense",
+      "ia"
+     ],
+     [
+      "transfer",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "trả hết nợ Bình rồi 2 triệu",
+    "gold_type": "repayment_out",
+    "gold_target": "Bình",
+    "pattern": null,
+    "student": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "coopmart đồ dùng tuần 412k",
+    "gold_type": "expense",
+    "gold_target": "coopmart",
+    "pattern": null,
+    "student": [
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "starbucks 1 ly 89,000",
+    "gold_type": "expense",
+    "gold_target": "starbucks",
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      "st"
+     ],
+     [
+      "expense",
+      "st"
+     ]
+    ]
+   },
+   {
+    "text": "mừng thọ bà nội 1 triệu",
+    "gold_type": "expense",
+    "gold_target": "bà nội",
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      "thọ"
+     ],
+     [
+      "expense",
+      "thọ"
+     ],
+     [
+      "expense",
+      "thọ"
+     ]
+    ]
+   },
+   {
+    "text": "cho Lợi 1tr, hẹn cuối tháng trả",
+    "gold_type": "lend",
+    "gold_target": "Lợi",
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      "Lợi"
+     ]
+    ]
+   },
+   {
+    "text": "Phat muon tam 1tr",
+    "gold_type": "lend",
+    "gold_target": "Phat",
+    "pattern": null,
+    "student": [
+     [
+      "borrow",
+      "Phat"
+     ],
+     [
+      "borrow",
+      "Phat"
+     ],
+     [
+      "borrow",
+      "Ph"
+     ]
+    ]
+   },
+   {
+    "text": "co Thuy cho muon 1tr",
+    "gold_type": "borrow",
+    "gold_target": "Thuy",
+    "pattern": null,
+    "student": [
+     [
+      "borrow",
+      "Th"
+     ],
+     [
+      "borrow",
+      null
+     ],
+     [
+      "borrow",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "điện máy xanh hoàn tiền nồi cơm lỗi 890k",
+    "gold_type": "refund",
+    "gold_target": "điện máy xanh",
+    "pattern": null,
+    "student": [
+     [
+      "refund",
+      "điện"
+     ],
+     [
+      "refund",
+      "iện"
+     ],
+     [
+      "refund",
+      null
+     ]
+    ]
+   }
+  ],
+  "probe:v1-4x256-random-supervised": [
+   {
+    "text": "Tuấn cho vay 5 triệu, hẹn tháng sau trả",
+    "gold_type": "borrow",
+    "gold_target": "Tuấn",
+    "pattern": "lender_first_cho_muon",
+    "student": [
+     [
+      "lend",
+      "Tuấn"
+     ],
+     [
+      "lend",
+      "Tuấn"
+     ],
+     [
+      "lend",
+      "Tuấn"
+     ]
+    ]
+   },
+   {
+    "text": "anh Quan cho vay 15tr lam von",
+    "gold_type": "borrow",
+    "gold_target": "Quan",
+    "pattern": "lender_first_cho_muon",
+    "student": [
+     [
+      "borrow",
+      "anh Quan"
+     ],
+     [
+      "borrow",
+      "anh"
+     ],
+     [
+      "borrow",
+      "anh"
+     ]
+    ]
+   },
+   {
+    "text": "Phúc vay 700k mua điện thoại",
+    "gold_type": "lend",
+    "gold_target": "Phúc",
+    "pattern": "subject_first_muon",
+    "student": [
+     [
+      "borrow",
+      "Phúc"
+     ],
+     [
+      "borrow",
+      "Phúc"
+     ],
+     [
+      "borrow",
+      "Ph"
+     ]
+    ]
+   },
+   {
+    "text": "chi Nga vay 10 cu, cuoi nam tra",
+    "gold_type": "lend",
+    "gold_target": "Nga",
+    "pattern": "subject_first_muon",
+    "student": [
+     [
+      "borrow",
+      "chi Nga"
+     ],
+     [
+      "borrow",
+      "chi Nga"
+     ],
+     [
+      "borrow",
+      "chi"
+     ]
+    ]
+   },
+   {
+    "text": "bo me cho 5tr dong hoc",
+    "gold_type": "income",
+    "gold_target": "bo me",
+    "pattern": "family_gift_in",
+    "student": [
+     [
+      "transfer",
+      "me"
+     ],
+     [
+      "expense",
+      "me"
+     ],
+     [
+      "expense",
+      "me"
+     ]
+    ]
+   },
+   {
+    "text": "được cô Út cho 500k",
+    "gold_type": "income",
+    "gold_target": "cô Út",
+    "pattern": "family_gift_in",
+    "student": [
+     [
+      "income",
+      "Út"
+     ],
+     [
+      "income",
+      "Út"
+     ],
+     [
+      "expense",
+      "được"
+     ]
+    ]
+   },
+   {
+    "text": "cau cho 1tr mung sinh nhat",
+    "gold_type": "income",
+    "gold_target": "cau",
+    "pattern": "family_gift_in",
+    "student": [
+     [
+      "expense",
+      "cau"
+     ],
+     [
+      "expense",
+      "c"
+     ],
+     [
+      "expense",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "mừng tuổi ông bà 1 triệu",
+    "gold_type": "expense",
+    "gold_target": "ông bà",
+    "pattern": "gift_out",
+    "student": [
+     [
+      "expense",
+      "ông"
+     ],
+     [
+      "expense",
+      "ông"
+     ],
+     [
+      "expense",
+      "bà"
+     ]
+    ]
+   },
+   {
+    "text": "li xi be Su 50k",
+    "gold_type": "expense",
+    "gold_target": "Su",
+    "pattern": "gift_out",
+    "student": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      "be"
+     ],
+     [
+      "expense",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "phí bảo hiểm sức khỏe quý 3 1tr8",
+    "gold_type": "expense",
+    "gold_target": null,
+    "pattern": "insurance_premium",
+    "student": [
+     [
+      "expense",
+      "ph"
+     ],
+     [
+      "expense",
+      "bảo"
+     ],
+     [
+      "expense",
+      "phí"
+     ]
+    ]
+   },
+   {
+    "text": "bao hiem xe hoi nam nay 4tr9",
+    "gold_type": "expense",
+    "gold_target": null,
+    "pattern": "insurance_premium",
+    "student": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "prudential chi trả tiền mổ 12tr",
+    "gold_type": "refund",
+    "gold_target": "prudential",
+    "pattern": "insurance_payout",
+    "student": [
+     [
+      "repayment_in",
+      "pr"
+     ],
+     [
+      "refund",
+      "pr"
+     ],
+     [
+      "refund",
+      "pr"
+     ]
+    ]
+   },
+   {
+    "text": "nhận tiền bảo hiểm tai nạn 6tr",
+    "gold_type": "refund",
+    "gold_target": null,
+    "pattern": "insurance_payout",
+    "student": [
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      "bảo"
+     ],
+     [
+      "income",
+      "bảo"
+     ]
+    ]
+   },
+   {
+    "text": "được giải ba hội thao 800k",
+    "gold_type": "income",
+    "gold_target": null,
+    "pattern": "windfall",
+    "student": [
+     [
+      "income",
+      "ba"
+     ],
+     [
+      "income",
+      "ba"
+     ],
+     [
+      "income",
+      "ba"
+     ]
+    ]
+   },
+   {
+    "text": "tra no vay sinh vien ky 3 1tr",
+    "gold_type": "repayment_out",
+    "gold_target": null,
+    "pattern": "loan_installment",
+    "student": [
+     [
+      "repayment_out",
+      "vi"
+     ],
+     [
+      "repayment_out",
+      "vi"
+     ],
+     [
+      "repayment_out",
+      "vi"
+     ]
+    ]
+   },
+   {
+    "text": "vay mua nhà techcombank trả kỳ tháng 12 9tr5",
+    "gold_type": "repayment_out",
+    "gold_target": "techcombank",
+    "pattern": "loan_installment",
+    "student": [
+     [
+      "repayment_out",
+      "t"
+     ],
+     [
+      "repayment_out",
+      "t"
+     ],
+     [
+      "repayment_out",
+      "t"
+     ]
+    ]
+   },
+   {
+    "text": "tra goc lai khoan vay mb 5tr",
+    "gold_type": "repayment_out",
+    "gold_target": "mb",
+    "pattern": "loan_installment",
+    "student": [
+     [
+      "repayment_out",
+      "b"
+     ],
+     [
+      "repayment_out",
+      "b"
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "cho dì Hương mượn 2tr",
+    "gold_type": "lend",
+    "gold_target": "Hương",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "lend",
+      "dì Hương"
+     ],
+     [
+      "lend",
+      "dì Hương"
+     ],
+     [
+      "lend",
+      "dì"
+     ]
+    ]
+   },
+   {
+    "text": "bác Thành hoàn lại 1tr đã mượn",
+    "gold_type": "repayment_in",
+    "gold_target": "Thành",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "refund",
+      "b"
+     ],
+     [
+      "refund",
+      "b"
+     ],
+     [
+      "refund",
+      "b"
+     ]
+    ]
+   },
+   {
+    "text": "chú Bình gửi lại 500k tiền xăng",
+    "gold_type": "repayment_in",
+    "gold_target": "Bình",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "repayment_in",
+      "chú"
+     ],
+     [
+      "repayment_in",
+      "chú Bình"
+     ],
+     [
+      "repayment_in",
+      "chú"
+     ]
+    ]
+   },
+   {
+    "text": "trả dì Loan 1tr tiền mượn",
+    "gold_type": "repayment_out",
+    "gold_target": "Loan",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "repayment_out",
+      "dì"
+     ],
+     [
+      "repayment_out",
+      "dì"
+     ],
+     [
+      "repayment_out",
+      "dì"
+     ]
+    ]
+   },
+   {
+    "text": "co Nhung cho vay 20tr mo tiem",
+    "gold_type": "borrow",
+    "gold_target": "Nhung",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "borrow",
+      "co Nhung"
+     ],
+     [
+      "borrow",
+      "co Nhung"
+     ],
+     [
+      "borrow",
+      "ti"
+     ]
+    ]
+   }
+  ],
+  "test:v1-4x256-random-distilled": [
+   {
+    "text": "mua hoa qua biếu bà 200k",
+    "gold_type": "expense",
+    "gold_target": null,
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      "bà"
+     ],
+     [
+      "expense",
+      "bà"
+     ],
+     [
+      "expense",
+      "bà"
+     ]
+    ]
+   },
+   {
+    "text": "cho bạn Kiên mượn 1tr2 ck vcb",
+    "gold_type": "lend",
+    "gold_target": "Kiên",
+    "pattern": null,
+    "student": [
+     [
+      "lend",
+      "bạn Kiên"
+     ],
+     [
+      "lend",
+      null
+     ],
+     [
+      "lend",
+      "bạn Kiên"
+     ]
+    ]
+   },
+   {
+    "text": "qua sinh nhat chi Ha 350k",
+    "gold_type": "expense",
+    "gold_target": "Ha",
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "tra lai chi Mai 2tr",
+    "gold_type": "repayment_out",
+    "gold_target": "Mai",
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      "Mai"
+     ],
+     [
+      "expense",
+      "Mai"
+     ],
+     [
+      "expense",
+      "Mai"
+     ]
+    ]
+   },
+   {
+    "text": "vay tiêu dùng trả kỳ này 3tr4",
+    "gold_type": "repayment_out",
+    "gold_target": null,
+    "pattern": null,
+    "student": [
+     [
+      "repayment_out",
+      "dùng"
+     ],
+     [
+      "transfer",
+      null
+     ],
+     [
+      "transfer",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "trả hết nợ Bình rồi 2 triệu",
+    "gold_type": "repayment_out",
+    "gold_target": "Bình",
+    "pattern": null,
+    "student": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "coopmart đồ dùng tuần 412k",
+    "gold_type": "expense",
+    "gold_target": "coopmart",
+    "pattern": null,
+    "student": [
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "vay chú Hải 20tr mua xe",
+    "gold_type": "borrow",
+    "gold_target": "Hải",
+    "pattern": null,
+    "student": [
+     [
+      "borrow",
+      "chú"
+     ],
+     [
+      "borrow",
+      "chú"
+     ],
+     [
+      "borrow",
+      "chú"
+     ]
+    ]
+   },
+   {
+    "text": "starbucks 1 ly 89,000",
+    "gold_type": "expense",
+    "gold_target": "starbucks",
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "mừng thọ bà nội 1 triệu",
+    "gold_type": "expense",
+    "gold_target": "bà nội",
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      "thọ"
+     ],
+     [
+      "expense",
+      "thọ"
+     ],
+     [
+      "expense",
+      "thọ"
+     ]
+    ]
+   },
+   {
+    "text": "Thắng vay 5 củ, hẹn t10 trả",
+    "gold_type": "lend",
+    "gold_target": "Thắng",
+    "pattern": null,
+    "student": [
+     [
+      "borrow",
+      "Thắng"
+     ],
+     [
+      "borrow",
+      "Thắng"
+     ],
+     [
+      "lend",
+      "Th"
+     ]
+    ]
+   },
+   {
+    "text": "cho Lợi 1tr, hẹn cuối tháng trả",
+    "gold_type": "lend",
+    "gold_target": "Lợi",
+    "pattern": null,
+    "student": [
+     [
+      "repayment_in",
+      null
+     ],
+     [
+      "repayment_in",
+      null
+     ],
+     [
+      "expense",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "Phat muon tam 1tr",
+    "gold_type": "lend",
+    "gold_target": "Phat",
+    "pattern": null,
+    "student": [
+     [
+      "borrow",
+      "Phat"
+     ],
+     [
+      "borrow",
+      "Phat"
+     ],
+     [
+      "borrow",
+      "Phat"
+     ]
+    ]
+   },
+   {
+    "text": "co Thuy cho muon 1tr",
+    "gold_type": "borrow",
+    "gold_target": "Thuy",
+    "pattern": null,
+    "student": [
+     [
+      "borrow",
+      null
+     ],
+     [
+      "borrow",
+      "co Th"
+     ],
+     [
+      "borrow",
+      "Th"
+     ]
+    ]
+   },
+   {
+    "text": "điện máy xanh hoàn tiền nồi cơm lỗi 890k",
+    "gold_type": "refund",
+    "gold_target": "điện máy xanh",
+    "pattern": null,
+    "student": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      "iện"
+     ],
+     [
+      "refund",
+      null
+     ]
+    ]
+   }
+  ],
+  "probe:v1-4x256-random-distilled": [
+   {
+    "text": "Tuấn cho vay 5 triệu, hẹn tháng sau trả",
+    "gold_type": "borrow",
+    "gold_target": "Tuấn",
+    "pattern": "lender_first_cho_muon",
+    "student": [
+     [
+      "lend",
+      "Tuấn"
+     ],
+     [
+      "lend",
+      "Tuấn"
+     ],
+     [
+      "lend",
+      "Tuấn"
+     ]
+    ]
+   },
+   {
+    "text": "anh Quan cho vay 15tr lam von",
+    "gold_type": "borrow",
+    "gold_target": "Quan",
+    "pattern": "lender_first_cho_muon",
+    "student": [
+     [
+      "borrow",
+      "anh Quan"
+     ],
+     [
+      "borrow",
+      null
+     ],
+     [
+      "borrow",
+      "anh Quan"
+     ]
+    ]
+   },
+   {
+    "text": "sếp cho mượn 3tr trước",
+    "gold_type": "borrow",
+    "gold_target": "sếp",
+    "pattern": "lender_first_cho_muon",
+    "student": [
+     [
+      "borrow",
+      null
+     ],
+     [
+      "borrow",
+      null
+     ],
+     [
+      "borrow",
+      "ếp"
+     ]
+    ]
+   },
+   {
+    "text": "Phúc vay 700k mua điện thoại",
+    "gold_type": "lend",
+    "gold_target": "Phúc",
+    "pattern": "subject_first_muon",
+    "student": [
+     [
+      "borrow",
+      "úc"
+     ],
+     [
+      "borrow",
+      "Phúc"
+     ],
+     [
+      "borrow",
+      "Phúc"
+     ]
+    ]
+   },
+   {
+    "text": "chi Nga vay 10 cu, cuoi nam tra",
+    "gold_type": "lend",
+    "gold_target": "Nga",
+    "pattern": "subject_first_muon",
+    "student": [
+     [
+      "borrow",
+      "chi Nga"
+     ],
+     [
+      "borrow",
+      "chi"
+     ],
+     [
+      "borrow",
+      "chi Nga"
+     ]
+    ]
+   },
+   {
+    "text": "bo me cho 5tr dong hoc",
+    "gold_type": "income",
+    "gold_target": "bo me",
+    "pattern": "family_gift_in",
+    "student": [
+     [
+      "transfer",
+      "me"
+     ],
+     [
+      "transfer",
+      "me"
+     ],
+     [
+      "transfer",
+      "me"
+     ]
+    ]
+   },
+   {
+    "text": "được cô Út cho 500k",
+    "gold_type": "income",
+    "gold_target": "cô Út",
+    "pattern": "family_gift_in",
+    "student": [
+     [
+      "income",
+      "Út"
+     ],
+     [
+      "income",
+      "Út"
+     ],
+     [
+      "expense",
+      "Út"
+     ]
+    ]
+   },
+   {
+    "text": "cau cho 1tr mung sinh nhat",
+    "gold_type": "income",
+    "gold_target": "cau",
+    "pattern": "family_gift_in",
+    "student": [
+     [
+      "expense",
+      "cau"
+     ],
+     [
+      "expense",
+      "cau"
+     ],
+     [
+      "expense",
+      "cau"
+     ]
+    ]
+   },
+   {
+    "text": "mừng tuổi ông bà 1 triệu",
+    "gold_type": "expense",
+    "gold_target": "ông bà",
+    "pattern": "gift_out",
+    "student": [
+     [
+      "expense",
+      "ông"
+     ],
+     [
+      "expense",
+      "bà"
+     ],
+     [
+      "expense",
+      "ông"
+     ]
+    ]
+   },
+   {
+    "text": "li xi be Su 50k",
+    "gold_type": "expense",
+    "gold_target": "Su",
+    "pattern": "gift_out",
+    "student": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "bao hiem xe hoi nam nay 4tr9",
+    "gold_type": "expense",
+    "gold_target": null,
+    "pattern": "insurance_premium",
+    "student": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "prudential chi trả tiền mổ 12tr",
+    "gold_type": "refund",
+    "gold_target": "prudential",
+    "pattern": "insurance_payout",
+    "student": [
+     [
+      "repayment_in",
+      null
+     ],
+     [
+      "repayment_in",
+      "prud"
+     ],
+     [
+      "refund",
+      "pr"
+     ]
+    ]
+   },
+   {
+    "text": "nhận tiền bảo hiểm tai nạn 6tr",
+    "gold_type": "refund",
+    "gold_target": null,
+    "pattern": "insurance_payout",
+    "student": [
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ],
+     [
+      "expense",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "được giải ba hội thao 800k",
+    "gold_type": "income",
+    "gold_target": null,
+    "pattern": "windfall",
+    "student": [
+     [
+      "income",
+      "ba"
+     ],
+     [
+      "income",
+      "ba"
+     ],
+     [
+      "income",
+      "ba"
+     ]
+    ]
+   },
+   {
+    "text": "vay mua nhà techcombank trả kỳ tháng 12 9tr5",
+    "gold_type": "repayment_out",
+    "gold_target": "techcombank",
+    "pattern": "loan_installment",
+    "student": [
+     [
+      "repayment_out",
+      "t"
+     ],
+     [
+      "repayment_out",
+      "t"
+     ],
+     [
+      "repayment_out",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "cho dì Hương mượn 2tr",
+    "gold_type": "lend",
+    "gold_target": "Hương",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "lend",
+      "dì"
+     ],
+     [
+      "lend",
+      "dì"
+     ],
+     [
+      "lend",
+      "dì Hương"
+     ]
+    ]
+   },
+   {
+    "text": "bác Thành hoàn lại 1tr đã mượn",
+    "gold_type": "repayment_in",
+    "gold_target": "Thành",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "refund",
+      "b"
+     ],
+     [
+      "refund",
+      "bác Thành"
+     ],
+     [
+      "refund",
+      "bác Thành"
+     ]
+    ]
+   },
+   {
+    "text": "chú Bình gửi lại 500k tiền xăng",
+    "gold_type": "repayment_in",
+    "gold_target": "Bình",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "repayment_in",
+      "chú"
+     ],
+     [
+      "repayment_in",
+      "chú Bình"
+     ],
+     [
+      "repayment_in",
+      "chú"
+     ]
+    ]
+   },
+   {
+    "text": "trả dì Loan 1tr tiền mượn",
+    "gold_type": "repayment_out",
+    "gold_target": "Loan",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "lend",
+      "dì"
+     ],
+     [
+      "lend",
+      "dì"
+     ],
+     [
+      "repayment_out",
+      "dì"
+     ]
+    ]
+   }
+  ],
+  "test:v2-4x768-random-supervised": [
+   {
+    "text": "mua hoa qua biếu bà 200k",
+    "gold_type": "expense",
+    "gold_target": null,
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      "bà"
+     ],
+     [
+      "expense",
+      "bà"
+     ],
+     [
+      "expense",
+      "bà"
+     ]
+    ]
+   },
+   {
+    "text": "cho bạn Kiên mượn 1tr2 ck vcb",
+    "gold_type": "lend",
+    "gold_target": "Kiên",
+    "pattern": null,
+    "student": [
+     [
+      "lend",
+      "bạn Kiên"
+     ],
+     [
+      "lend",
+      "bạn Kiên"
+     ],
+     [
+      "lend",
+      "bạn Kiên"
+     ]
+    ]
+   },
+   {
+    "text": "hạt cho chó 420.000đ",
+    "gold_type": "expense",
+    "gold_target": null,
+    "pattern": null,
+    "student": [
+     [
+      "borrow",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "qua sinh nhat chi Ha 350k",
+    "gold_type": "expense",
+    "gold_target": "Ha",
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      "chi"
+     ],
+     [
+      "expense",
+      "chi"
+     ]
+    ]
+   },
+   {
+    "text": "mua rau thit cho 120k",
+    "gold_type": "expense",
+    "gold_target": null,
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      "it"
+     ],
+     [
+      "expense",
+      "it"
+     ],
+     [
+      "expense",
+      "it"
+     ]
+    ]
+   },
+   {
+    "text": "tra lai chi Mai 2tr",
+    "gold_type": "repayment_out",
+    "gold_target": "Mai",
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      "Mai"
+     ],
+     [
+      "expense",
+      "Mai"
+     ],
+     [
+      "expense",
+      "Mai"
+     ]
+    ]
+   },
+   {
+    "text": "cuoc internet viettel 180k",
+    "gold_type": "expense",
+    "gold_target": "viettel",
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      "ett"
+     ],
+     [
+      "expense",
+      "viett"
+     ],
+     [
+      "expense",
+      "viett"
+     ]
+    ]
+   },
+   {
+    "text": "coopmart đồ dùng tuần 412k",
+    "gold_type": "expense",
+    "gold_target": "coopmart",
+    "pattern": null,
+    "student": [
+     [
+      "income",
+      "coopmart"
+     ],
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      "op"
+     ]
+    ]
+   },
+   {
+    "text": "vay chú Hải 20tr mua xe",
+    "gold_type": "borrow",
+    "gold_target": "Hải",
+    "pattern": null,
+    "student": [
+     [
+      "borrow",
+      "chú Hải"
+     ],
+     [
+      "borrow",
+      "chú Hải"
+     ],
+     [
+      "borrow",
+      "chú"
+     ]
+    ]
+   },
+   {
+    "text": "starbucks 1 ly 89,000",
+    "gold_type": "expense",
+    "gold_target": "starbucks",
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "spotify refund 59k",
+    "gold_type": "refund",
+    "gold_target": "spotify",
+    "pattern": null,
+    "student": [
+     [
+      "expense",
+      "spotify"
+     ],
+     [
+      "expense",
+      "spotify"
+     ],
+     [
+      "expense",
+      "spotify"
+     ]
+    ]
+   },
+   {
+    "text": "co Thuy cho muon 1tr",
+    "gold_type": "borrow",
+    "gold_target": "Thuy",
+    "pattern": null,
+    "student": [
+     [
+      "borrow",
+      null
+     ],
+     [
+      "borrow",
+      "Th"
+     ],
+     [
+      "borrow",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "điện máy xanh hoàn tiền nồi cơm lỗi 890k",
+    "gold_type": "refund",
+    "gold_target": "điện máy xanh",
+    "pattern": null,
+    "student": [
+     [
+      "refund",
+      "iện"
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ]
+   }
+  ],
+  "probe:v2-4x768-random-supervised": [
+   {
+    "text": "Tuấn cho vay 5 triệu, hẹn tháng sau trả",
+    "gold_type": "borrow",
+    "gold_target": "Tuấn",
+    "pattern": "lender_first_cho_muon",
+    "student": [
+     [
+      "lend",
+      "Tuấn"
+     ],
+     [
+      "lend",
+      "Tuấn"
+     ],
+     [
+      "lend",
+      "Tuấn"
+     ]
+    ]
+   },
+   {
+    "text": "anh Quan cho vay 15tr lam von",
+    "gold_type": "borrow",
+    "gold_target": "Quan",
+    "pattern": "lender_first_cho_muon",
+    "student": [
+     [
+      "borrow",
+      "anh Quan"
+     ],
+     [
+      "borrow",
+      "anh Quan"
+     ],
+     [
+      "borrow",
+      "anh Quan"
+     ]
+    ]
+   },
+   {
+    "text": "me cho muon 1tr5 tra tien dien",
+    "gold_type": "borrow",
+    "gold_target": "me",
+    "pattern": "lender_first_cho_muon",
+    "student": [
+     [
+      "lend",
+      "me"
+     ],
+     [
+      "lend",
+      "me"
+     ],
+     [
+      "lend",
+      "me"
+     ]
+    ]
+   },
+   {
+    "text": "Vinh cho minh vay 800k tien nha",
+    "gold_type": "borrow",
+    "gold_target": "Vinh",
+    "pattern": "lender_first_cho_muon",
+    "student": [
+     [
+      "lend",
+      "Vinh"
+     ],
+     [
+      "lend",
+      "Vinh"
+     ],
+     [
+      "lend",
+      "Vinh"
+     ]
+    ]
+   },
+   {
+    "text": "chị Mai mượn 2tr đóng tiền nhà",
+    "gold_type": "lend",
+    "gold_target": "Mai",
+    "pattern": "subject_first_muon",
+    "student": [
+     [
+      "repayment_in",
+      "Mai"
+     ],
+     [
+      "repayment_in",
+      "Mai"
+     ],
+     [
+      "repayment_in",
+      "Mai"
+     ]
+    ]
+   },
+   {
+    "text": "Phúc vay 700k mua điện thoại",
+    "gold_type": "lend",
+    "gold_target": "Phúc",
+    "pattern": "subject_first_muon",
+    "student": [
+     [
+      "borrow",
+      "Phúc"
+     ],
+     [
+      "expense",
+      "Phúc"
+     ],
+     [
+      "lend",
+      "Ph"
+     ]
+    ]
+   },
+   {
+    "text": "chi Nga vay 10 cu, cuoi nam tra",
+    "gold_type": "lend",
+    "gold_target": "Nga",
+    "pattern": "subject_first_muon",
+    "student": [
+     [
+      "borrow",
+      "chi"
+     ],
+     [
+      "borrow",
+      "chi Nga"
+     ],
+     [
+      "borrow",
+      "chi"
+     ]
+    ]
+   },
+   {
+    "text": "ông nội cho 1 triệu mua sách",
+    "gold_type": "income",
+    "gold_target": "ông nội",
+    "pattern": "family_gift_in",
+    "student": [
+     [
+      "borrow",
+      "ông nội"
+     ],
+     [
+      "borrow",
+      "ông nội"
+     ],
+     [
+      "borrow",
+      "ông nội"
+     ]
+    ]
+   },
+   {
+    "text": "bo me cho 5tr dong hoc",
+    "gold_type": "income",
+    "gold_target": "bo me",
+    "pattern": "family_gift_in",
+    "student": [
+     [
+      "borrow",
+      "me"
+     ],
+     [
+      "borrow",
+      "me"
+     ],
+     [
+      "transfer",
+      "me"
+     ]
+    ]
+   },
+   {
+    "text": "mừng tuổi ông bà 1 triệu",
+    "gold_type": "expense",
+    "gold_target": "ông bà",
+    "pattern": "gift_out",
+    "student": [
+     [
+      "expense",
+      "bà"
+     ],
+     [
+      "expense",
+      "ông"
+     ],
+     [
+      "expense",
+      "ông"
+     ]
+    ]
+   },
+   {
+    "text": "gửi ba 3 triệu biếu tết",
+    "gold_type": "expense",
+    "gold_target": "ba",
+    "pattern": "gift_out",
+    "student": [
+     [
+      "transfer",
+      null
+     ],
+     [
+      "transfer",
+      null
+     ],
+     [
+      "transfer",
+      "ba"
+     ]
+    ]
+   },
+   {
+    "text": "li xi be Su 50k",
+    "gold_type": "expense",
+    "gold_target": "Su",
+    "pattern": "gift_out",
+    "student": [
+     [
+      "expense",
+      "be"
+     ],
+     [
+      "expense",
+      "be"
+     ],
+     [
+      "expense",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "đóng bảo hiểm xe máy 66k",
+    "gold_type": "expense",
+    "gold_target": null,
+    "pattern": "insurance_premium",
+    "student": [
+     [
+      "expense",
+      "bảo"
+     ],
+     [
+      "expense",
+      "bảo"
+     ],
+     [
+      "expense",
+      "bảo"
+     ]
+    ]
+   },
+   {
+    "text": "phí bảo hiểm sức khỏe quý 3 1tr8",
+    "gold_type": "expense",
+    "gold_target": null,
+    "pattern": "insurance_premium",
+    "student": [
+     [
+      "expense",
+      "ph"
+     ],
+     [
+      "expense",
+      "ph"
+     ],
+     [
+      "refund",
+      "ph"
+     ]
+    ]
+   },
+   {
+    "text": "gia hạn bảo hiểm ô tô 5tr2",
+    "gold_type": "expense",
+    "gold_target": null,
+    "pattern": "insurance_premium",
+    "student": [
+     [
+      "expense",
+      "bảo"
+     ],
+     [
+      "expense",
+      "bảo"
+     ],
+     [
+      "expense",
+      "bảo"
+     ]
+    ]
+   },
+   {
+    "text": "bao hiem xe hoi nam nay 4tr9",
+    "gold_type": "expense",
+    "gold_target": null,
+    "pattern": "insurance_premium",
+    "student": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "prudential chi trả tiền mổ 12tr",
+    "gold_type": "refund",
+    "gold_target": "prudential",
+    "pattern": "insurance_payout",
+    "student": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "repayment_in",
+      "pr"
+     ],
+     [
+      "refund",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "nhận tiền bảo hiểm tai nạn 6tr",
+    "gold_type": "refund",
+    "gold_target": null,
+    "pattern": "insurance_payout",
+    "student": [
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "tiền bảo hiểm nằm viện về 2tr8",
+    "gold_type": "refund",
+    "gold_target": null,
+    "pattern": "insurance_payout",
+    "student": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "trung vietlott 10tr",
+    "gold_type": "income",
+    "gold_target": "vietlott",
+    "pattern": "windfall",
+    "student": [
+     [
+      "income",
+      "viet"
+     ],
+     [
+      "income",
+      "vi"
+     ],
+     [
+      "income",
+      "viet"
+     ]
+    ]
+   },
+   {
+    "text": "được giải ba hội thao 800k",
+    "gold_type": "income",
+    "gold_target": null,
+    "pattern": "windfall",
+    "student": [
+     [
+      "expense",
+      "ba"
+     ],
+     [
+      "income",
+      "ba"
+     ],
+     [
+      "income",
+      "ba"
+     ]
+    ]
+   },
+   {
+    "text": "tra no vay sinh vien ky 3 1tr",
+    "gold_type": "repayment_out",
+    "gold_target": null,
+    "pattern": "loan_installment",
+    "student": [
+     [
+      "repayment_out",
+      "vi"
+     ],
+     [
+      "repayment_out",
+      "vi"
+     ],
+     [
+      "repayment_out",
+      "vi"
+     ]
+    ]
+   },
+   {
+    "text": "vay mua nhà techcombank trả kỳ tháng 12 9tr5",
+    "gold_type": "repayment_out",
+    "gold_target": "techcombank",
+    "pattern": "loan_installment",
+    "student": [
+     [
+      "repayment_out",
+      "t"
+     ],
+     [
+      "repayment_out",
+      "t"
+     ],
+     [
+      "repayment_out",
+      "ech"
+     ]
+    ]
+   },
+   {
+    "text": "tra goc lai khoan vay mb 5tr",
+    "gold_type": "repayment_out",
+    "gold_target": "mb",
+    "pattern": "loan_installment",
+    "student": [
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      null
+     ],
+     [
+      "repayment_out",
+      "m"
+     ]
+    ]
+   },
+   {
+    "text": "cho dì Hương mượn 2tr",
+    "gold_type": "lend",
+    "gold_target": "Hương",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "lend",
+      "dì Hương"
+     ],
+     [
+      "lend",
+      "dì"
+     ],
+     [
+      "lend",
+      "dì"
+     ]
+    ]
+   },
+   {
+    "text": "bác Thành hoàn lại 1tr đã mượn",
+    "gold_type": "repayment_in",
+    "gold_target": "Thành",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "refund",
+      "bác Thành"
+     ],
+     [
+      "refund",
+      "bác"
+     ],
+     [
+      "refund",
+      "bác Thành"
+     ]
+    ]
+   },
+   {
+    "text": "chú Bình gửi lại 500k tiền xăng",
+    "gold_type": "repayment_in",
+    "gold_target": "Bình",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "repayment_in",
+      "chú"
+     ],
+     [
+      "repayment_in",
+      "chú"
+     ],
+     [
+      "repayment_in",
+      "chú"
+     ]
+    ]
+   },
+   {
+    "text": "trả dì Loan 1tr tiền mượn",
+    "gold_type": "repayment_out",
+    "gold_target": "Loan",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "repayment_out",
+      "dì"
+     ],
+     [
+      "repayment_out",
+      "dì"
+     ],
+     [
+      "repayment_out",
+      "dì"
+     ]
+    ]
+   }
+  ],
+  "test:v2-4x768-pretrained-supervised": [
+   {
+    "text": "coopmart đồ dùng tuần 412k",
+    "gold_type": "expense",
+    "gold_target": "coopmart",
+    "pattern": null,
+    "student": [
+     [
+      "income",
+      "opmart"
+     ],
+     [
+      "repayment_out",
+      "coopmart"
+     ],
+     [
+      "income",
+      "coopmart"
+     ]
+    ]
+   },
+   {
+    "text": "co Thuy cho muon 1tr",
+    "gold_type": "borrow",
+    "gold_target": "Thuy",
+    "pattern": null,
+    "student": [
+     [
+      "borrow",
+      "uy"
+     ],
+     [
+      "borrow",
+      "uy"
+     ],
+     [
+      "borrow",
+      "uy"
+     ]
+    ]
+   },
+   {
+    "text": "điện máy xanh hoàn tiền nồi cơm lỗi 890k",
+    "gold_type": "refund",
+    "gold_target": "điện máy xanh",
+    "pattern": null,
+    "student": [
+     [
+      "refund",
+      "máy xanh"
+     ],
+     [
+      "refund",
+      "máy xanh"
+     ],
+     [
+      "refund",
+      "máy xanh"
+     ]
+    ]
+   }
+  ],
+  "probe:v2-4x768-pretrained-supervised": [
+   {
+    "text": "bo me cho 5tr dong hoc",
+    "gold_type": "income",
+    "gold_target": "bo me",
+    "pattern": "family_gift_in",
+    "student": [
+     [
+      "income",
+      "me"
+     ],
+     [
+      "transfer",
+      "me"
+     ],
+     [
+      "transfer",
+      "me"
+     ]
+    ]
+   },
+   {
+    "text": "mừng tuổi ông bà 1 triệu",
+    "gold_type": "expense",
+    "gold_target": "ông bà",
+    "pattern": "gift_out",
+    "student": [
+     [
+      "expense",
+      "ông"
+     ],
+     [
+      "expense",
+      "bà"
+     ],
+     [
+      "expense",
+      "ông"
+     ]
+    ]
+   },
+   {
+    "text": "gửi ba 3 triệu biếu tết",
+    "gold_type": "expense",
+    "gold_target": "ba",
+    "pattern": "gift_out",
+    "student": [
+     [
+      "transfer",
+      "ba"
+     ],
+     [
+      "transfer",
+      null
+     ],
+     [
+      "transfer",
+      "ba"
+     ]
+    ]
+   },
+   {
+    "text": "li xi be Su 50k",
+    "gold_type": "expense",
+    "gold_target": "Su",
+    "pattern": "gift_out",
+    "student": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "bao hiem xe hoi nam nay 4tr9",
+    "gold_type": "expense",
+    "gold_target": null,
+    "pattern": "insurance_premium",
+    "student": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "nhận tiền bảo hiểm tai nạn 6tr",
+    "gold_type": "refund",
+    "gold_target": null,
+    "pattern": "insurance_payout",
+    "student": [
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "tiền bảo hiểm nằm viện về 2tr8",
+    "gold_type": "refund",
+    "gold_target": null,
+    "pattern": "insurance_payout",
+    "student": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "minigame shopee trúng 100k",
+    "gold_type": "income",
+    "gold_target": "shopee",
+    "pattern": "windfall",
+    "student": [
+     [
+      "income",
+      "min"
+     ],
+     [
+      "income",
+      "min"
+     ],
+     [
+      "income",
+      "minig"
+     ]
+    ]
+   },
+   {
+    "text": "bác Thành hoàn lại 1tr đã mượn",
+    "gold_type": "repayment_in",
+    "gold_target": "Thành",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "refund",
+      "Thành"
+     ],
+     [
+      "refund",
+      "Thành"
+     ],
+     [
+      "refund",
+      "Thành"
+     ]
+    ]
+   },
+   {
+    "text": "chú Bình gửi lại 500k tiền xăng",
+    "gold_type": "repayment_in",
+    "gold_target": "Bình",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "repayment_in",
+      "chú Bình"
+     ],
+     [
+      "repayment_in",
+      "chú"
+     ],
+     [
+      "repayment_in",
+      "chú"
+     ]
+    ]
+   }
+  ],
+  "test:v2-4x768-pretrained-distilled": [
+   {
+    "text": "vay tiêu dùng trả kỳ này 3tr4",
+    "gold_type": "repayment_out",
+    "gold_target": null,
+    "pattern": null,
+    "student": [
+     [
+      "repayment_out",
+      "tiêu"
+     ],
+     [
+      "repayment_out",
+      "tiêu"
+     ],
+     [
+      "borrow",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "coopmart đồ dùng tuần 412k",
+    "gold_type": "expense",
+    "gold_target": "coopmart",
+    "pattern": null,
+    "student": [
+     [
+      "income",
+      "coopmart"
+     ],
+     [
+      "income",
+      "coopmart"
+     ],
+     [
+      "income",
+      "coopmart"
+     ]
+    ]
+   },
+   {
+    "text": "vay chú Hải 20tr mua xe",
+    "gold_type": "borrow",
+    "gold_target": "Hải",
+    "pattern": null,
+    "student": [
+     [
+      "borrow",
+      "chú Hải"
+     ],
+     [
+      "borrow",
+      "chú"
+     ],
+     [
+      "borrow",
+      "chú"
+     ]
+    ]
+   },
+   {
+    "text": "điện máy xanh hoàn tiền nồi cơm lỗi 890k",
+    "gold_type": "refund",
+    "gold_target": "điện máy xanh",
+    "pattern": null,
+    "student": [
+     [
+      "refund",
+      "máy xanh"
+     ],
+     [
+      "refund",
+      "xanh"
+     ],
+     [
+      "refund",
+      "máy xanh"
+     ]
+    ]
+   }
+  ],
+  "probe:v2-4x768-pretrained-distilled": [
+   {
+    "text": "anh Quan cho vay 15tr lam von",
+    "gold_type": "borrow",
+    "gold_target": "Quan",
+    "pattern": "lender_first_cho_muon",
+    "student": [
+     [
+      "borrow",
+      "anh Quan"
+     ],
+     [
+      "borrow",
+      "anh"
+     ],
+     [
+      "borrow",
+      "anh Quan"
+     ]
+    ]
+   },
+   {
+    "text": "bo me cho 5tr dong hoc",
+    "gold_type": "income",
+    "gold_target": "bo me",
+    "pattern": "family_gift_in",
+    "student": [
+     [
+      "expense",
+      "me"
+     ],
+     [
+      "income",
+      "bo"
+     ],
+     [
+      "transfer",
+      "me"
+     ]
+    ]
+   },
+   {
+    "text": "mừng tuổi ông bà 1 triệu",
+    "gold_type": "expense",
+    "gold_target": "ông bà",
+    "pattern": "gift_out",
+    "student": [
+     [
+      "expense",
+      "bà"
+     ],
+     [
+      "expense",
+      "ông"
+     ],
+     [
+      "expense",
+      "ông"
+     ]
+    ]
+   },
+   {
+    "text": "gửi ba 3 triệu biếu tết",
+    "gold_type": "expense",
+    "gold_target": "ba",
+    "pattern": "gift_out",
+    "student": [
+     [
+      "transfer",
+      "ba"
+     ],
+     [
+      "transfer",
+      null
+     ],
+     [
+      "transfer",
+      "ba"
+     ]
+    ]
+   },
+   {
+    "text": "li xi be Su 50k",
+    "gold_type": "expense",
+    "gold_target": "Su",
+    "pattern": "gift_out",
+    "student": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "bao hiem xe hoi nam nay 4tr9",
+    "gold_type": "expense",
+    "gold_target": null,
+    "pattern": "insurance_premium",
+    "student": [
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ],
+     [
+      "refund",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "nhận tiền bảo hiểm tai nạn 6tr",
+    "gold_type": "refund",
+    "gold_target": null,
+    "pattern": "insurance_payout",
+    "student": [
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ],
+     [
+      "income",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "tiền bảo hiểm nằm viện về 2tr8",
+    "gold_type": "refund",
+    "gold_target": null,
+    "pattern": "insurance_payout",
+    "student": [
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ],
+     [
+      "expense",
+      null
+     ]
+    ]
+   },
+   {
+    "text": "cho dì Hương mượn 2tr",
+    "gold_type": "lend",
+    "gold_target": "Hương",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "lend",
+      "dì"
+     ],
+     [
+      "lend",
+      "dì"
+     ],
+     [
+      "lend",
+      "dì"
+     ]
+    ]
+   },
+   {
+    "text": "bác Thành hoàn lại 1tr đã mượn",
+    "gold_type": "repayment_in",
+    "gold_target": "Thành",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "refund",
+      "Thành"
+     ],
+     [
+      "refund",
+      "Thành"
+     ],
+     [
+      "refund",
+      "ác"
+     ]
+    ]
+   },
+   {
+    "text": "chú Bình gửi lại 500k tiền xăng",
+    "gold_type": "repayment_in",
+    "gold_target": "Bình",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "repayment_in",
+      "chú Bình"
+     ],
+     [
+      "repayment_in",
+      "chú Bình"
+     ],
+     [
+      "repayment_in",
+      "chú Bình"
+     ]
+    ]
+   },
+   {
+    "text": "trả dì Loan 1tr tiền mượn",
+    "gold_type": "repayment_out",
+    "gold_target": "Loan",
+    "pattern": "title_name_span",
+    "student": [
+     [
+      "repayment_out",
+      "dì"
+     ],
+     [
+      "repayment_out",
+      "dì"
+     ],
+     [
+      "repayment_out",
+      "dì"
+     ]
+    ]
+   }
+  ]
+ },
+ "retention_vs_final_teacher": {
+  "v1-4x256-random-supervised": {
+   "test:type macro-F1": 1.0012999439670953,
+   "test:span F1": 0.689251043710075,
+   "test:type+span joint": 0.8185185185185186,
+   "probe:type macro-F1": 0.7482831686136602,
+   "probe:span F1": 0.6140273318131756,
+   "probe:type+span joint": 0.5686274509803921
+  },
+  "v1-4x256-random-distilled": {
+   "test:type macro-F1": 0.9832956376229429,
+   "test:span F1": 0.7043719347565165,
+   "test:type+span joint": 0.8222222222222222,
+   "probe:type macro-F1": 0.699677658269693,
+   "probe:span F1": 0.6781213496809827,
+   "probe:type+span joint": 0.5882352941176471
+  },
+  "v2-4x768-random-supervised": {
+   "test:type macro-F1": 1.0052218201313898,
+   "test:span F1": 0.6595968810717955,
+   "test:type+span joint": 0.7925925925925926,
+   "probe:type macro-F1": 0.7110423387113376,
+   "probe:span F1": 0.6438493198576151,
+   "probe:type+span joint": 0.5196078431372548
+  },
+  "v2-4x768-pretrained-supervised": {
+   "test:type macro-F1": 1.0473232323947999,
+   "test:span F1": 0.8826185520050424,
+   "test:type+span joint": 0.9851851851851853,
+   "probe:type macro-F1": 0.8562374248408506,
+   "probe:span F1": 0.8605389450891786,
+   "probe:type+span joint": 0.7941176470588235
+  },
+  "v2-4x768-pretrained-distilled": {
+   "test:type macro-F1": 1.0597388971546082,
+   "test:span F1": 0.8836671602629049,
+   "test:type+span joint": 0.9851851851851853,
+   "probe:type macro-F1": 0.8483305077637888,
+   "probe:span F1": 0.8378478128478128,
+   "probe:type+span joint": 0.7941176470588235
+  }
+ },
+ "paired_by_seed": {
+  "pretrained_minus_random_4x768_supervised": {
+   "test:type accuracy": [
+    0.02857142857142858,
+    0.04761904761904767,
+    0.03809523809523818
+   ],
+   "test:type macro-F1": [
+    0.018388171516550256,
+    0.05538321031835702,
+    0.03812829817643126
+   ],
+   "test:span F1": [
+    0.16138763197586725,
+    0.23581223100790716,
+    0.23172124904798186
+   ],
+   "test:span exact": [
+    0.12380952380952381,
+    0.17142857142857137,
+    0.1523809523809524
+   ],
+   "test:type+span joint": [
+    0.1428571428571429,
+    0.19047619047619047,
+    0.16190476190476188
+   ],
+   "probe:type accuracy": [
+    0.09876543209876543,
+    0.09876543209876543,
+    0.16049382716049376
+   ],
+   "probe:type macro-F1": [
+    0.08758230564953229,
+    0.13269662992381248,
+    0.18398761349071924
+   ],
+   "probe:span F1": [
+    0.1785714285714286,
+    0.2610263977701264,
+    0.1586956521739129
+   ],
+   "probe:span exact": [
+    0.16049382716049376,
+    0.2222222222222222,
+    0.14814814814814814
+   ],
+   "probe:type+span joint": [
+    0.18518518518518517,
+    0.24691358024691357,
+    0.25925925925925924
+   ]
+  },
+  "distilled_minus_supervised_4x768_pretrained": {
+   "test:type accuracy": [
+    0.01904761904761898,
+    0.0,
+    0.0
+   ],
+   "test:type macro-F1": [
+    0.022689452124936005,
+    0.004529748502271724,
+    0.005779904131043456
+   ],
+   "test:span F1": [
+    0.05769230769230782,
+    -0.016273693943597012,
+    -0.038461538461538436
+   ],
+   "test:span exact": [
+    0.02857142857142858,
+    -0.01904761904761898,
+    -0.00952380952380949
+   ],
+   "test:type+span joint": [
+    0.03809523809523807,
+    -0.02857142857142858,
+    -0.00952380952380949
+   ],
+   "probe:type accuracy": [
+    -0.012345679012345623,
+    0.061728395061728336,
+    -0.024691358024691357
+   ],
+   "probe:type macro-F1": [
+    -0.022422302254234916,
+    0.04672742639531147,
+    -0.04632034632034632
+   ],
+   "probe:span F1": [
+    -0.02879665379665386,
+    -0.04061172472387431,
+    0.00675675675675691
+   ],
+   "probe:span exact": [
+    -0.012345679012345623,
+    -0.03703703703703709,
+    0.012345679012345623
+   ],
+   "probe:type+span joint": [
+    -0.012345679012345623,
+    0.012345679012345734,
+    0.0
+   ]
+  },
+  "random_4x768_minus_random_4x256_supervised": {
+   "test:type accuracy": [
+    0.0,
+    -0.03809523809523818,
+    0.03809523809523807
+   ],
+   "test:type macro-F1": [
+    0.018489892004323272,
+    -0.04301961904851581,
+    0.034953526727750206
+   ],
+   "test:span F1": [
+    -0.05215686274509812,
+    -0.04810996563573888,
+    0.016642089740888988
+   ],
+   "test:span exact": [
+    -0.02857142857142858,
+    -0.01904761904761898,
+    -0.009523809523809601
+   ],
+   "test:type+span joint": [
+    -0.03809523809523818,
+    -0.04761904761904756,
+    0.01904761904761898
+   ],
+   "probe:type accuracy": [
+    0.03703703703703698,
+    -0.09876543209876543,
+    -0.061728395061728336
+   ],
+   "probe:type macro-F1": [
+    0.04995285028491869,
+    -0.09145066250617861,
+    -0.06219179732561264
+   ],
+   "probe:span F1": [
+    0.004310344827586188,
+    0.0,
+    0.07803001154290123
+   ],
+   "probe:span exact": [
+    0.012345679012345734,
+    -0.012345679012345623,
+    0.07407407407407407
+   ],
+   "probe:type+span joint": [
+    0.037037037037037035,
+    -0.09876543209876543,
+    -0.06172839506172839
+   ]
+  }
+ },
+ "size": {
+  "param_count": 45666059,
+  "param_groups": {
+   "other_embeddings": 2304,
+   "position_embeddings": 1574400,
+   "word_embeddings": 15729408,
+   "transformer_layers": 28351488,
+   "heads": 8459
+  },
+  "checkpoint_safetensors_mb": 182.672796,
+  "export": "experiments/distillation-v2/export-4x768-pretrained-supervised-seed1.json",
+  "export_checkpoint": "models/distillation-v2/supervised/student-4x768-pretrained/seed1 (seed 1 fixed in advance; size is architecture-dependent)",
+  "onnx_fp32": {
+   "path": "models/distillation-v2-onnx/student-4x768-pretrained-supervised-seed1/model.onnx",
+   "exporter": "dynamo",
+   "opset_requested": 17,
+   "errors": {},
+   "size_mb": 182.718861,
+   "parity": {
+    "samples": 50,
+    "atol": 0.0001,
+    "max_abs_diff_type_logits": 1.8358230590820312e-05,
+    "max_abs_diff_tag_logits": 2.384185791015625e-05,
+    "max_abs_diff_single_note": 2.765655517578125e-05,
+    "max_abs_diff": 2.765655517578125e-05,
+    "passed": true
+   }
+  },
+  "onnx_int8": {
+   "path": "models/distillation-v2-onnx/student-4x768-pretrained-supervised-seed1/model.int8.onnx",
+   "fp32_size_mb": 182.718861,
+   "int8_size_mb": 45.856637,
+   "size_ratio": 0.25096827305638686,
+   "agreement": {
+    "samples": 50,
+    "type_agreement": 1.0,
+    "tag_agreement": 0.9940711462450593,
+    "tag_tokens": 506,
+    "max_abs_diff_type_logits": 1.4792027473449707
+   }
+  },
+  "latency": {
+   "threads_1": {
+    "torch_fp32": {
+     "runs": 200,
+     "warmup": 20,
+     "texts": 50,
+     "tokenization": {
+      "p50_ms": 0.08562544826418161,
+      "p95_ms": 0.10704109445214272,
+      "mean_ms": 0.08719704113900661
+     },
+     "inference": {
+      "p50_ms": 3.729291958734393,
+      "p95_ms": 4.17100009508431,
+      "mean_ms": 3.7772744393441826
+     },
+     "total": {
+      "p50_ms": 3.8143955171108246,
+      "p95_ms": 4.272541031241417,
+      "mean_ms": 3.8644714804831892
+     }
+    },
+    "onnx_fp32": {
+     "runs": 200,
+     "warmup": 20,
+     "texts": 50,
+     "tokenization": {
+      "p50_ms": 0.07268739864230156,
+      "p95_ms": 0.09754090569913387,
+      "mean_ms": 0.07606958970427513
+     },
+     "inference": {
+      "p50_ms": 2.6009789435192943,
+      "p95_ms": 2.8873328119516373,
+      "mean_ms": 2.624229771317914
+     },
+     "total": {
+      "p50_ms": 2.676937961950898,
+      "p95_ms": 2.958625089377165,
+      "mean_ms": 2.7002993610221893
+     }
+    },
+    "onnx_int8": {
+     "runs": 200,
+     "warmup": 20,
+     "texts": 50,
+     "tokenization": {
+      "p50_ms": 0.053582945838570595,
+      "p95_ms": 0.09200000204145908,
+      "mean_ms": 0.0584212364628911
+     },
+     "inference": {
+      "p50_ms": 1.4186454936861992,
+      "p95_ms": 1.8020421266555786,
+      "mean_ms": 1.41552543384023
+     },
+     "total": {
+      "p50_ms": 1.4714580029249191,
+      "p95_ms": 1.8925420008599758,
+      "mean_ms": 1.4739466703031212
+     }
+    }
+   },
+   "threads_default": {
+    "torch_fp32": {
+     "runs": 200,
+     "warmup": 20,
+     "texts": 50,
+     "tokenization": {
+      "p50_ms": 0.10066700633615255,
+      "p95_ms": 0.12333388440310955,
+      "mean_ms": 0.10149562382139266
+     },
+     "inference": {
+      "p50_ms": 4.4957289937883615,
+      "p95_ms": 5.006958032026887,
+      "mean_ms": 4.549666857346892
+     },
+     "total": {
+      "p50_ms": 4.59691695868969,
+      "p95_ms": 5.122000118717551,
+      "mean_ms": 4.651162481168285
+     }
+    },
+    "onnx_fp32": {
+     "runs": 200,
+     "warmup": 20,
+     "texts": 50,
+     "tokenization": {
+      "p50_ms": 0.058020930737257004,
+      "p95_ms": 0.13087503612041473,
+      "mean_ms": 0.07010939414612949
+     },
+     "inference": {
+      "p50_ms": 1.4454994816333055,
+      "p95_ms": 2.3132089991122484,
+      "mean_ms": 1.564121424453333
+     },
+     "total": {
+      "p50_ms": 1.5031665097922087,
+      "p95_ms": 2.39324988797307,
+      "mean_ms": 1.6342308185994625
+     }
+    },
+    "onnx_int8": {
+     "runs": 200,
+     "warmup": 20,
+     "texts": 50,
+     "tokenization": {
+      "p50_ms": 0.04931259900331497,
+      "p95_ms": 0.10683294385671616,
+      "mean_ms": 0.05898646079003811
+     },
+     "inference": {
+      "p50_ms": 0.9346454171463847,
+      "p95_ms": 1.268124906346202,
+      "mean_ms": 0.96247848123312
+     },
+     "total": {
+      "p50_ms": 0.992082990705967,
+      "p95_ms": 1.3217499945312738,
+      "mean_ms": 1.021464942023158
+     }
+    }
+   },
+   "torch_threads_default": 8
+  },
+  "post_export_metrics": {
+   "model.onnx:test": {
+    "type_acc": 0.9238095238095239,
+    "type_f1": 0.9260079231054463,
+    "span_f1": 0.7692307692307692,
+    "exact": 0.8666666666666667,
+    "joint": 0.8095238095238095,
+    "agree_with_torch": 1.0
+   },
+   "model.int8.onnx:test": {
+    "type_acc": 0.9238095238095239,
+    "type_f1": 0.9260079231054463,
+    "span_f1": 0.7999999999999999,
+    "exact": 0.8761904761904762,
+    "joint": 0.8285714285714286,
+    "agree_with_torch": 0.9619047619047619
+   },
+   "model.onnx:probe": {
+    "type_acc": 0.8148148148148148,
+    "type_f1": 0.7742430305455514,
+    "span_f1": 0.8035714285714286,
+    "exact": 0.8395061728395061,
+    "joint": 0.6666666666666666,
+    "agree_with_torch": 1.0
+   },
+   "model.int8.onnx:probe": {
+    "type_acc": 0.8024691358024691,
+    "type_f1": 0.7484026944110977,
+    "span_f1": 0.8108108108108109,
+    "exact": 0.8395061728395061,
+    "joint": 0.654320987654321,
+    "agree_with_torch": 0.9753086419753086
+   }
+  },
+  "train_sec_per_epoch_mps_3_concurrent_runs": 19.5
+ },
+ "conclusion": "A"
+}

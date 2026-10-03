@@ -1,0 +1,26 @@
+# Environment
+.venv/
+__pycache__/
+*.py[cod]
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+
+# Local model artifacts (see models/README.md)
+models/*
+!models/README.md
+
+# OS
+.DS_Store
+
+# Playground frontend
+playground/node_modules/
+playground/dist/
+
+# Release pipeline output (scripts/release.py, scripts/publish.py)
+dist/
+
+# Local agent/tool state
+.remember/
+.gidi-v2-overnight-done

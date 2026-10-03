@@ -1,0 +1,106 @@
+{
+  "checkpoint": "models/distillation-v2/supervised/student-4x768-pretrained/seed2",
+  "out": "models/compression-v1/positions/student-4x768-pretrained/seed2",
+  "max_length": 32,
+  "rows_before": 2050,
+  "rows_after": 34,
+  "position_indexing": {
+    "file": "/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/transformers/models/roberta/modeling_roberta.py",
+    "transformers_version": "5.17.0",
+    "function": "RobertaEmbeddings.create_position_ids_from_input_ids",
+    "function_first_line": 141,
+    "logic": [
+      {
+        "line": 153,
+        "code": "mask = input_ids.ne(padding_idx).int()"
+      },
+      {
+        "line": 154,
+        "code": "incremental_indices = (torch.cumsum(mask, dim=1).type_as(mask) + past_key_values_length) * mask"
+      },
+      {
+        "line": 155,
+        "code": "return incremental_indices.long() + padding_idx"
+      }
+    ],
+    "rule": "non-pad tokens: padding_idx + cumsum(non_pad_mask); pad slots: padding_idx",
+    "specials_count_toward_max_length": {
+      "length": 32,
+      "first": 0,
+      "last": 2
+    },
+    "rows_needed": 34,
+    "max_index_possible": 33,
+    "max_index_in_data": 22,
+    "splits": {
+      "train": {
+        "n": 723,
+        "max_tokens_incl_specials": 21,
+        "n_at_max_length": 0,
+        "n_truncated": 0,
+        "max_position_index": 22
+      },
+      "test": {
+        "n": 105,
+        "max_tokens_incl_specials": 16,
+        "n_at_max_length": 0,
+        "n_truncated": 0,
+        "max_position_index": 17
+      },
+      "probe": {
+        "n": 81,
+        "max_tokens_incl_specials": 16,
+        "n_at_max_length": 0,
+        "n_truncated": 0,
+        "max_position_index": 17
+      }
+    }
+  },
+  "splits": {
+    "train": {
+      "n": 723,
+      "tokenization_identical": true,
+      "type_logits_max_abs_diff": 0.0,
+      "tag_logits_max_abs_diff": 0.0,
+      "logits_bitwise_equal": true,
+      "types_identical": true,
+      "spans_identical": true,
+      "n_type_mismatch": 0,
+      "n_span_mismatch": 0
+    },
+    "test": {
+      "n": 105,
+      "tokenization_identical": true,
+      "type_logits_max_abs_diff": 0.0,
+      "tag_logits_max_abs_diff": 0.0,
+      "logits_bitwise_equal": true,
+      "types_identical": true,
+      "spans_identical": true,
+      "n_type_mismatch": 0,
+      "n_span_mismatch": 0
+    },
+    "probe": {
+      "n": 81,
+      "tokenization_identical": true,
+      "type_logits_max_abs_diff": 0.0,
+      "tag_logits_max_abs_diff": 0.0,
+      "logits_bitwise_equal": true,
+      "types_identical": true,
+      "spans_identical": true,
+      "n_type_mismatch": 0,
+      "n_span_mismatch": 0
+    }
+  },
+  "params_before": 45666059,
+  "params_after": 44117771,
+  "params_saved": 1548288,
+  "fp32_safetensors_mb_before": 182.672796,
+  "fp32_safetensors_mb_after": 176.479628,
+  "fp32_safetensors_mb_saved": 6.193168000000014,
+  "n_texts_verified": 909,
+  "all_identical": true,
+  "environment": {
+    "torch": "2.14.0",
+    "transformers": "5.17.0"
+  }
+}

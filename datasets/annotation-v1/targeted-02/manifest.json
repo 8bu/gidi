@@ -1,0 +1,205 @@
+{
+  "name": "targeted-annotation-v1-02",
+  "annotation_version": "annotation-v1",
+  "role": "training augmentation (not yet merged)",
+  "merged_into_baseline": false,
+  "source": "synthetic-targeted; generated from probe-v1 gap descriptions only",
+  "id_prefix": "targeted-annotation-v1-02-",
+  "total": 112,
+  "status_counts": {
+    "complete": 112
+  },
+  "review": {
+    "ai_accepted": 106,
+    "human_reviewed": 6,
+    "escalated_pending_human": 0,
+    "human_proposals_accepted_unchanged": 6
+  },
+  "accented_counts": {
+    "accented": 55,
+    "unaccented": 57
+  },
+  "groups": {
+    "total": 78,
+    "minimal_pair_groups": 34,
+    "pair_groups_with_type_flip": 34,
+    "singles": 44,
+    "note": "`group` (in notes.jsonl/provenance.jsonl) must be kept as one unit by any future split"
+  },
+  "blocks": {
+    "A": {
+      "n": 28,
+      "accented": 14,
+      "unaccented": 14,
+      "types": {
+        "borrow": 20,
+        "lend": 8
+      },
+      "pair_groups": 8,
+      "auto_accepted": 27,
+      "escalated": 1
+    },
+    "B": {
+      "n": 14,
+      "accented": 7,
+      "unaccented": 7,
+      "types": {
+        "lend": 10,
+        "borrow": 4
+      },
+      "pair_groups": 4,
+      "auto_accepted": 13,
+      "escalated": 1
+    },
+    "C": {
+      "n": 28,
+      "accented": 14,
+      "unaccented": 14,
+      "types": {
+        "income": 14,
+        "expense": 14
+      },
+      "pair_groups": 10,
+      "auto_accepted": 28,
+      "escalated": 0
+    },
+    "D": {
+      "n": 16,
+      "accented": 8,
+      "unaccented": 8,
+      "types": {
+        "refund": 10,
+        "expense": 6
+      },
+      "pair_groups": 6,
+      "auto_accepted": 16,
+      "escalated": 0
+    },
+    "E": {
+      "n": 15,
+      "accented": 7,
+      "unaccented": 8,
+      "types": {
+        "income": 12,
+        "expense": 3
+      },
+      "pair_groups": 3,
+      "auto_accepted": 11,
+      "escalated": 4
+    },
+    "F": {
+      "n": 11,
+      "accented": 5,
+      "unaccented": 6,
+      "types": {
+        "repayment_out": 8,
+        "borrow": 3
+      },
+      "pair_groups": 3,
+      "auto_accepted": 11,
+      "escalated": 0
+    }
+  },
+  "patterns": {
+    "lender_first_cho_muon": {
+      "n": 28,
+      "accented": 14,
+      "types": {
+        "borrow": 20,
+        "lend": 8
+      }
+    },
+    "subject_first_muon": {
+      "n": 14,
+      "accented": 7,
+      "types": {
+        "lend": 10,
+        "borrow": 4
+      }
+    },
+    "family_gift_in": {
+      "n": 14,
+      "accented": 7,
+      "types": {
+        "income": 14
+      }
+    },
+    "gift_out": {
+      "n": 14,
+      "accented": 7,
+      "types": {
+        "expense": 14
+      }
+    },
+    "insurance_premium": {
+      "n": 6,
+      "accented": 3,
+      "types": {
+        "expense": 6
+      }
+    },
+    "insurance_payout": {
+      "n": 10,
+      "accented": 5,
+      "types": {
+        "refund": 10
+      }
+    },
+    "windfall": {
+      "n": 15,
+      "accented": 7,
+      "types": {
+        "income": 12,
+        "expense": 3
+      }
+    },
+    "loan_installment": {
+      "n": 11,
+      "accented": 5,
+      "types": {
+        "repayment_out": 8,
+        "borrow": 3
+      }
+    },
+    "title_name_span": {
+      "n": 36,
+      "accented": 18,
+      "types": {
+        "borrow": 14,
+        "lend": 11,
+        "income": 6,
+        "expense": 5
+      }
+    }
+  },
+  "excluded_sources": [
+    "datasets/probe-v1 (evaluation-only)",
+    "datasets/annotation-v1/splits/validation.jsonl",
+    "datasets/annotation-v1/splits/test.jsonl"
+  ],
+  "similarity_check": {
+    "script": "scripts/check_note_similarity.py",
+    "eval_refs": 296,
+    "train_refs": 548,
+    "eval_exact_bag_skeleton_matches": 0,
+    "max_eval_similarity": 0.848
+  },
+  "files": {
+    "notes.jsonl": "43d9f948e2d7afe8f206e6910aee70a6db7cf3ea9412f2880128c1a37e27d5f0",
+    "queue.jsonl": "f238134b39a63a054ded9a2bc7d805f61e3ebc22ab55979d826286de9d9f8f4e",
+    "labels.jsonl": "46dbb2fd19a70f8e3fa8403b77e1cfbba4feb82dc000b6b1aea6493690c22fdb",
+    "provenance.jsonl": "70a569a5ea251e21ce317ee786997a03a9db8042a76bd3e808449138b81b4a7d",
+    "recheck.jsonl": "b9745791593fc3e0b5613332b6ae797815d381ca5d5f276297d2108a70eb43f1",
+    "proposals.jsonl": "05b862b51f11e9d6eb75a2c51d5bb2b2d3ae8186b977dbd556ce470961aefdad",
+    "human-labels.jsonl": "785ff4db122fd7601bf2fd7187ac9ff840964967032223855d4c8c5415091d2e"
+  },
+  "type_counts": {
+    "expense": 23,
+    "income": 26,
+    "borrow": 27,
+    "lend": 18,
+    "repayment_out": 8,
+    "refund": 10
+  },
+  "trainable": 112
+}

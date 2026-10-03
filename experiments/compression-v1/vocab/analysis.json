@@ -1,0 +1,2874 @@
+{
+  "tokenizer_dir": "models/distillation-v2/supervised/student-4x768-pretrained/seed1",
+  "notes": {
+    "train": 723,
+    "test": 105,
+    "probe": 81
+  },
+  "max_length": 32,
+  "vocab": {
+    "size": 20481,
+    "merges": 20266,
+    "single_byte_base_tokens": 210,
+    "missing_byte_values": 46,
+    "orphans_not_produced_by_a_merge": 0
+  },
+  "usage_truncated_at_32": {
+    "vocab_size": 20481,
+    "distinct_ids": {
+      "train": 1071,
+      "test": 400,
+      "probe": 313,
+      "union": 1153
+    },
+    "unused_share_of_vocab": {
+      "train": 0.9477076314633075,
+      "test": 0.9804697036277525,
+      "probe": 0.9847175430887164,
+      "union": 0.9437039207069967
+    },
+    "count_histogram_buckets": {
+      "train": {
+        "1": 387,
+        "2-4": 388,
+        "5-9": 159,
+        "10-99": 131,
+        "100+": 6
+      },
+      "test": {
+        "1": 254,
+        "2-4": 116,
+        "5-9": 19,
+        "10-99": 9,
+        "100+": 2
+      },
+      "probe": {
+        "1": 193,
+        "2-4": 89,
+        "5-9": 21,
+        "10-99": 10,
+        "100+": 0
+      },
+      "union": {
+        "1": 386,
+        "2-4": 409,
+        "5-9": 191,
+        "10-99": 160,
+        "100+": 7
+      }
+    },
+    "tokens_total": {
+      "train": 7609,
+      "test": 1066,
+      "probe": 861
+    },
+    "top30_train": [
+      {
+        "id": 0,
+        "token": "<s>",
+        "count": 723
+      },
+      {
+        "id": 2,
+        "token": "</s>",
+        "count": 723
+      },
+      {
+        "id": 78,
+        "token": "k",
+        "count": 360
+      },
+      {
+        "id": 1002,
+        "token": "tr",
+        "count": 315
+      },
+      {
+        "id": 298,
+        "token": " 1",
+        "count": 136
+      },
+      {
+        "id": 216,
+        "token": " t",
+        "count": 111
+      },
+      {
+        "id": 315,
+        "token": " 2",
+        "count": 85
+      },
+      {
+        "id": 70,
+        "token": "c",
+        "count": 70
+      },
+      {
+        "id": 3011,
+        "token": "ien",
+        "count": 61
+      },
+      {
+        "id": 337,
+        "token": " cho",
+        "count": 60
+      },
+      {
+        "id": 772,
+        "token": " tiền",
+        "count": 57
+      },
+      {
+        "id": 69,
+        "token": "b",
+        "count": 56
+      },
+      {
+        "id": 470,
+        "token": " 3",
+        "count": 54
+      },
+      {
+        "id": 353,
+        "token": "on",
+        "count": 53
+      },
+      {
+        "id": 7499,
+        "token": "cho",
+        "count": 49
+      },
+      {
+        "id": 15,
+        "token": ",",
+        "count": 48
+      },
+      {
+        "id": 24,
+        "token": "5",
+        "count": 40
+      },
+      {
+        "id": 2834,
+        "token": " 500",
+        "count": 39
+      },
+      {
+        "id": 17,
+        "token": ".",
+        "count": 39
+      },
+      {
+        "id": 4187,
+        "token": " mượn",
+        "count": 39
+      },
+      {
+        "id": 10460,
+        "token": "mua",
+        "count": 38
+      },
+      {
+        "id": 1955,
+        "token": " vay",
+        "count": 37
+      },
+      {
+        "id": 1220,
+        "token": " trả",
+        "count": 34
+      },
+      {
+        "id": 784,
+        "token": " xe",
+        "count": 34
+      },
+      {
+        "id": 354,
+        "token": "ay",
+        "count": 34
+      },
+      {
+        "id": 735,
+        "token": " mu",
+        "count": 33
+      },
+      {
+        "id": 87,
+        "token": "t",
+        "count": 33
+      },
+      {
+        "id": 504,
+        "token": " tháng",
+        "count": 32
+      },
+      {
+        "id": 80,
+        "token": "m",
+        "count": 31
+      },
+      {
+        "id": 733,
+        "token": "000",
+        "count": 31
+      }
+    ],
+    "top30_union": [
+      {
+        "id": 0,
+        "token": "<s>",
+        "count": 909
+      },
+      {
+        "id": 2,
+        "token": "</s>",
+        "count": 909
+      },
+      {
+        "id": 78,
+        "token": "k",
+        "count": 444
+      },
+      {
+        "id": 1002,
+        "token": "tr",
+        "count": 406
+      },
+      {
+        "id": 298,
+        "token": " 1",
+        "count": 171
+      },
+      {
+        "id": 216,
+        "token": " t",
+        "count": 139
+      },
+      {
+        "id": 315,
+        "token": " 2",
+        "count": 108
+      },
+      {
+        "id": 337,
+        "token": " cho",
+        "count": 86
+      },
+      {
+        "id": 70,
+        "token": "c",
+        "count": 83
+      },
+      {
+        "id": 3011,
+        "token": "ien",
+        "count": 80
+      },
+      {
+        "id": 69,
+        "token": "b",
+        "count": 77
+      },
+      {
+        "id": 470,
+        "token": " 3",
+        "count": 74
+      },
+      {
+        "id": 772,
+        "token": " tiền",
+        "count": 71
+      },
+      {
+        "id": 353,
+        "token": "on",
+        "count": 64
+      },
+      {
+        "id": 15,
+        "token": ",",
+        "count": 57
+      },
+      {
+        "id": 1955,
+        "token": " vay",
+        "count": 56
+      },
+      {
+        "id": 7499,
+        "token": "cho",
+        "count": 55
+      },
+      {
+        "id": 4187,
+        "token": " mượn",
+        "count": 54
+      },
+      {
+        "id": 2834,
+        "token": " 500",
+        "count": 51
+      },
+      {
+        "id": 24,
+        "token": "5",
+        "count": 49
+      },
+      {
+        "id": 1220,
+        "token": " trả",
+        "count": 47
+      },
+      {
+        "id": 784,
+        "token": " xe",
+        "count": 46
+      },
+      {
+        "id": 10460,
+        "token": "mua",
+        "count": 45
+      },
+      {
+        "id": 504,
+        "token": " tháng",
+        "count": 44
+      },
+      {
+        "id": 354,
+        "token": "ay",
+        "count": 44
+      },
+      {
+        "id": 17,
+        "token": ".",
+        "count": 41
+      },
+      {
+        "id": 735,
+        "token": " mu",
+        "count": 41
+      },
+      {
+        "id": 74,
+        "token": "g",
+        "count": 39
+      },
+      {
+        "id": 87,
+        "token": "t",
+        "count": 39
+      },
+      {
+        "id": 913,
+        "token": " triệu",
+        "count": 38
+      }
+    ],
+    "unseen_in_train": {
+      "test": {
+        "distinct_tokens": 56,
+        "occurrences": 61,
+        "token_share_of_split": 0.05722326454033771,
+        "notes_with_unseen_token": 43,
+        "notes": 105,
+        "tokens": [
+          {
+            "id": 607,
+            "token": "Th",
+            "count": 2
+          },
+          {
+            "id": 968,
+            "token": " dùng",
+            "count": 2
+          },
+          {
+            "id": 1189,
+            "token": " đá",
+            "count": 2
+          },
+          {
+            "id": 1764,
+            "token": " xanh",
+            "count": 2
+          },
+          {
+            "id": 1935,
+            "token": " quý",
+            "count": 2
+          },
+          {
+            "id": 47,
+            "token": "L",
+            "count": 1
+          },
+          {
+            "id": 49,
+            "token": "N",
+            "count": 1
+          },
+          {
+            "id": 250,
+            "token": " ng",
+            "count": 1
+          },
+          {
+            "id": 256,
+            "token": "ủ",
+            "count": 1
+          },
+          {
+            "id": 281,
+            "token": "í",
+            "count": 1
+          },
+          {
+            "id": 307,
+            "token": "ở",
+            "count": 1
+          },
+          {
+            "id": 319,
+            "token": "iện",
+            "count": 1
+          },
+          {
+            "id": 331,
+            "token": " Th",
+            "count": 1
+          },
+          {
+            "id": 443,
+            "token": "ộc",
+            "count": 1
+          },
+          {
+            "id": 675,
+            "token": "ro",
+            "count": 1
+          },
+          {
+            "id": 755,
+            "token": "ắng",
+            "count": 1
+          },
+          {
+            "id": 860,
+            "token": " giao",
+            "count": 1
+          },
+          {
+            "id": 1130,
+            "token": " Bình",
+            "count": 1
+          },
+          {
+            "id": 1153,
+            "token": "ữa",
+            "count": 1
+          },
+          {
+            "id": 1457,
+            "token": " thiếu",
+            "count": 1
+          },
+          {
+            "id": 1514,
+            "token": "st",
+            "count": 1
+          },
+          {
+            "id": 1690,
+            "token": " thái",
+            "count": 1
+          },
+          {
+            "id": 1825,
+            "token": " Vũ",
+            "count": 1
+          },
+          {
+            "id": 1956,
+            "token": " Phương",
+            "count": 1
+          },
+          {
+            "id": 1971,
+            "token": " Bảo",
+            "count": 1
+          },
+          {
+            "id": 2010,
+            "token": "òi",
+            "count": 1
+          },
+          {
+            "id": 2017,
+            "token": " thao",
+            "count": 1
+          },
+          {
+            "id": 2081,
+            "token": "oan",
+            "count": 1
+          },
+          {
+            "id": 2175,
+            "token": " Lâm",
+            "count": 1
+          },
+          {
+            "id": 2229,
+            "token": "ate",
+            "count": 1
+          },
+          {
+            "id": 2264,
+            "token": "25",
+            "count": 1
+          },
+          {
+            "id": 2496,
+            "token": " quảng",
+            "count": 1
+          },
+          {
+            "id": 2661,
+            "token": " đậu",
+            "count": 1
+          },
+          {
+            "id": 2749,
+            "token": " hè",
+            "count": 1
+          },
+          {
+            "id": 2930,
+            "token": " chó",
+            "count": 1
+          },
+          {
+            "id": 3022,
+            "token": "arb",
+            "count": 1
+          },
+          {
+            "id": 3506,
+            "token": "95",
+            "count": 1
+          },
+          {
+            "id": 3598,
+            "token": "da",
+            "count": 1
+          },
+          {
+            "id": 3615,
+            "token": " cơm",
+            "count": 1
+          },
+          {
+            "id": 3947,
+            "token": "49",
+            "count": 1
+          },
+          {
+            "id": 3970,
+            "token": " Kiên",
+            "count": 1
+          },
+          {
+            "id": 4062,
+            "token": " Lợi",
+            "count": 1
+          },
+          {
+            "id": 4124,
+            "token": "omm",
+            "count": 1
+          },
+          {
+            "id": 4600,
+            "token": "uck",
+            "count": 1
+          },
+          {
+            "id": 5704,
+            "token": "pi",
+            "count": 1
+          },
+          {
+            "id": 6116,
+            "token": " nồi",
+            "count": 1
+          },
+          {
+            "id": 6602,
+            "token": " vỉa",
+            "count": 1
+          },
+          {
+            "id": 6608,
+            "token": " chay",
+            "count": 1
+          },
+          {
+            "id": 6891,
+            "token": " rể",
+            "count": 1
+          },
+          {
+            "id": 7265,
+            "token": " Ha",
+            "count": 1
+          },
+          {
+            "id": 7528,
+            "token": " day",
+            "count": 1
+          },
+          {
+            "id": 10214,
+            "token": " bún",
+            "count": 1
+          },
+          {
+            "id": 10922,
+            "token": " 230",
+            "count": 1
+          },
+          {
+            "id": 16195,
+            "token": " 850",
+            "count": 1
+          },
+          {
+            "id": 18260,
+            "token": "mart",
+            "count": 1
+          },
+          {
+            "id": 19905,
+            "token": " tiếu",
+            "count": 1
+          }
+        ]
+      },
+      "probe": {
+        "distinct_tokens": 31,
+        "occurrences": 34,
+        "token_share_of_split": 0.03948896631823461,
+        "notes_with_unseen_token": 27,
+        "notes": 81,
+        "tokens": [
+          {
+            "id": 281,
+            "token": "í",
+            "count": 2
+          },
+          {
+            "id": 1767,
+            "token": "ud",
+            "count": 2
+          },
+          {
+            "id": 19906,
+            "token": "ential",
+            "count": 2
+          },
+          {
+            "id": 250,
+            "token": " ng",
+            "count": 1
+          },
+          {
+            "id": 561,
+            "token": "úc",
+            "count": 1
+          },
+          {
+            "id": 629,
+            "token": " hội",
+            "count": 1
+          },
+          {
+            "id": 646,
+            "token": " thế",
+            "count": 1
+          },
+          {
+            "id": 1130,
+            "token": " Bình",
+            "count": 1
+          },
+          {
+            "id": 1243,
+            "token": " Thành",
+            "count": 1
+          },
+          {
+            "id": 1393,
+            "token": " Nga",
+            "count": 1
+          },
+          {
+            "id": 1396,
+            "token": "úi",
+            "count": 1
+          },
+          {
+            "id": 1420,
+            "token": " nạn",
+            "count": 1
+          },
+          {
+            "id": 1433,
+            "token": "ếp",
+            "count": 1
+          },
+          {
+            "id": 1787,
+            "token": " can",
+            "count": 1
+          },
+          {
+            "id": 1935,
+            "token": " quý",
+            "count": 1
+          },
+          {
+            "id": 2017,
+            "token": " thao",
+            "count": 1
+          },
+          {
+            "id": 2588,
+            "token": " Hương",
+            "count": 1
+          },
+          {
+            "id": 2612,
+            "token": " mái",
+            "count": 1
+          },
+          {
+            "id": 3248,
+            "token": "ech",
+            "count": 1
+          },
+          {
+            "id": 3302,
+            "token": " Quan",
+            "count": 1
+          },
+          {
+            "id": 3597,
+            "token": " lô",
+            "count": 1
+          },
+          {
+            "id": 4143,
+            "token": " Su",
+            "count": 1
+          },
+          {
+            "id": 4163,
+            "token": " bi",
+            "count": 1
+          },
+          {
+            "id": 6442,
+            "token": " 66",
+            "count": 1
+          },
+          {
+            "id": 6497,
+            "token": " Nhung",
+            "count": 1
+          },
+          {
+            "id": 7114,
+            "token": " vặt",
+            "count": 1
+          },
+          {
+            "id": 7753,
+            "token": "min",
+            "count": 1
+          },
+          {
+            "id": 7961,
+            "token": "combank",
+            "count": 1
+          },
+          {
+            "id": 8429,
+            "token": " mo",
+            "count": 1
+          },
+          {
+            "id": 8940,
+            "token": "pr",
+            "count": 1
+          },
+          {
+            "id": 17464,
+            "token": "kho",
+            "count": 1
+          }
+        ]
+      },
+      "in_both_test_and_probe": [
+        " Bình",
+        " ng",
+        " quý",
+        " thao",
+        "í"
+      ]
+    }
+  },
+  "categories": {
+    "ascii_letters": {
+      "vocab_tokens": 9530,
+      "examples": [
+        " t",
+        " van",
+        " natri",
+        " Fin",
+        " only",
+        "No",
+        " hun",
+        "come"
+      ],
+      "distinct_used": {
+        "train": 474,
+        "test": 174,
+        "probe": 150,
+        "union": 507
+      },
+      "occurrences": {
+        "train": 2831,
+        "test": 378,
+        "probe": 336
+      }
+    },
+    "ascii_letters_with_punct": {
+      "vocab_tokens": 1047,
+      "examples": [
+        "-t",
+        " \"x",
+        " \\over",
+        " {a",
+        "vinmec/",
+        " NN-",
+        "-kho",
+        " \"We"
+      ],
+      "distinct_used": {
+        "train": 0,
+        "test": 0,
+        "probe": 0,
+        "union": 0
+      },
+      "occurrences": {
+        "train": 0,
+        "test": 0,
+        "probe": 0
+      }
+    },
+    "ascii_punct_symbols": {
+      "vocab_tokens": 231,
+      "examples": [
+        ".\n",
+        " *",
+        "]]",
+        ",...\n",
+        "__",
+        ")(",
+        ";\\;",
+        ".......\n"
+      ],
+      "distinct_used": {
+        "train": 1,
+        "test": 0,
+        "probe": 0,
+        "union": 1
+      },
+      "occurrences": {
+        "train": 7,
+        "test": 0,
+        "probe": 0
+      }
+    },
+    "base_byte": {
+      "vocab_tokens": 210,
+      "examples": [
+        "!",
+        ";",
+        "U",
+        "o",
+        "\\xab",
+        "\\xc8",
+        "\\xe2",
+        "\\x86"
+      ],
+      "distinct_used": {
+        "train": 41,
+        "test": 29,
+        "probe": 24,
+        "union": 43
+      },
+      "occurrences": {
+        "train": 1015,
+        "test": 145,
+        "probe": 85
+      }
+    },
+    "digits_numeric": {
+      "vocab_tokens": 1498,
+      "examples": [
+        " 1",
+        " 39",
+        "[2",
+        " T2",
+        "-27",
+        "000m2",
+        "108",
+        "km2"
+      ],
+      "distinct_used": {
+        "train": 139,
+        "test": 50,
+        "probe": 27,
+        "union": 145
+      },
+      "occurrences": {
+        "train": 873,
+        "test": 125,
+        "probe": 89
+      }
+    },
+    "non_latin_script": {
+      "vocab_tokens": 58,
+      "examples": [
+        "а",
+        "с",
+        "α",
+        "й",
+        "ь",
+        " α",
+        "г",
+        "م"
+      ],
+      "distinct_used": {
+        "train": 0,
+        "test": 0,
+        "probe": 0,
+        "union": 0
+      },
+      "occurrences": {
+        "train": 0,
+        "test": 0,
+        "probe": 0
+      }
+    },
+    "other_symbols": {
+      "vocab_tokens": 75,
+      "examples": [
+        " ",
+        " km²",
+        " ​​",
+        "□",
+        "�",
+        " −",
+        "≥",
+        "「"
+      ],
+      "distinct_used": {
+        "train": 0,
+        "test": 0,
+        "probe": 0,
+        "union": 0
+      },
+      "occurrences": {
+        "train": 0,
+        "test": 0,
+        "probe": 0
+      }
+    },
+    "partial_byte": {
+      "vocab_tokens": 172,
+      "examples": [
+        "\\xe1\\xbb",
+        " k\\xe1\\xbb",
+        "\\xabng",
+        "\\x9bn",
+        "\\xe3\\x80",
+        "\\xe6\\x9d",
+        "\\xe5\\xb1",
+        "\\xe9\\x81"
+      ],
+      "distinct_used": {
+        "train": 0,
+        "test": 0,
+        "probe": 0,
+        "union": 0
+      },
+      "occurrences": {
+        "train": 0,
+        "test": 0,
+        "probe": 0
+      }
+    },
+    "special": {
+      "vocab_tokens": 5,
+      "examples": [
+        "<s>",
+        "<pad>",
+        "</s>",
+        "<unk>",
+        "<mask>"
+      ],
+      "distinct_used": {
+        "train": 2,
+        "test": 2,
+        "probe": 2,
+        "union": 2
+      },
+      "occurrences": {
+        "train": 1446,
+        "test": 210,
+        "probe": 162
+      }
+    },
+    "vietnamese_latin": {
+      "vocab_tokens": 7655,
+      "examples": [
+        " đ",
+        " sư",
+        " hiến",
+        " cóc",
+        " Biết",
+        "/đ",
+        " România",
+        " Dã"
+      ],
+      "distinct_used": {
+        "train": 414,
+        "test": 145,
+        "probe": 110,
+        "union": 455
+      },
+      "occurrences": {
+        "train": 1437,
+        "test": 208,
+        "probe": 189
+      }
+    }
+  },
+  "usage_untruncated": {
+    "vocab_size": 20481,
+    "distinct_ids": {
+      "train": 1071,
+      "test": 400,
+      "probe": 313,
+      "union": 1153
+    },
+    "unused_share_of_vocab": {
+      "train": 0.9477076314633075,
+      "test": 0.9804697036277525,
+      "probe": 0.9847175430887164,
+      "union": 0.9437039207069967
+    },
+    "count_histogram_buckets": {
+      "train": {
+        "1": 387,
+        "2-4": 388,
+        "5-9": 159,
+        "10-99": 131,
+        "100+": 6
+      },
+      "test": {
+        "1": 254,
+        "2-4": 116,
+        "5-9": 19,
+        "10-99": 9,
+        "100+": 2
+      },
+      "probe": {
+        "1": 193,
+        "2-4": 89,
+        "5-9": 21,
+        "10-99": 10,
+        "100+": 0
+      },
+      "union": {
+        "1": 386,
+        "2-4": 409,
+        "5-9": 191,
+        "10-99": 160,
+        "100+": 7
+      }
+    },
+    "tokens_total": {
+      "train": 7609,
+      "test": 1066,
+      "probe": 861
+    },
+    "top30_train": [
+      {
+        "id": 0,
+        "token": "<s>",
+        "count": 723
+      },
+      {
+        "id": 2,
+        "token": "</s>",
+        "count": 723
+      },
+      {
+        "id": 78,
+        "token": "k",
+        "count": 360
+      },
+      {
+        "id": 1002,
+        "token": "tr",
+        "count": 315
+      },
+      {
+        "id": 298,
+        "token": " 1",
+        "count": 136
+      },
+      {
+        "id": 216,
+        "token": " t",
+        "count": 111
+      },
+      {
+        "id": 315,
+        "token": " 2",
+        "count": 85
+      },
+      {
+        "id": 70,
+        "token": "c",
+        "count": 70
+      },
+      {
+        "id": 3011,
+        "token": "ien",
+        "count": 61
+      },
+      {
+        "id": 337,
+        "token": " cho",
+        "count": 60
+      },
+      {
+        "id": 772,
+        "token": " tiền",
+        "count": 57
+      },
+      {
+        "id": 69,
+        "token": "b",
+        "count": 56
+      },
+      {
+        "id": 470,
+        "token": " 3",
+        "count": 54
+      },
+      {
+        "id": 353,
+        "token": "on",
+        "count": 53
+      },
+      {
+        "id": 7499,
+        "token": "cho",
+        "count": 49
+      },
+      {
+        "id": 15,
+        "token": ",",
+        "count": 48
+      },
+      {
+        "id": 24,
+        "token": "5",
+        "count": 40
+      },
+      {
+        "id": 2834,
+        "token": " 500",
+        "count": 39
+      },
+      {
+        "id": 17,
+        "token": ".",
+        "count": 39
+      },
+      {
+        "id": 4187,
+        "token": " mượn",
+        "count": 39
+      },
+      {
+        "id": 10460,
+        "token": "mua",
+        "count": 38
+      },
+      {
+        "id": 1955,
+        "token": " vay",
+        "count": 37
+      },
+      {
+        "id": 1220,
+        "token": " trả",
+        "count": 34
+      },
+      {
+        "id": 784,
+        "token": " xe",
+        "count": 34
+      },
+      {
+        "id": 354,
+        "token": "ay",
+        "count": 34
+      },
+      {
+        "id": 735,
+        "token": " mu",
+        "count": 33
+      },
+      {
+        "id": 87,
+        "token": "t",
+        "count": 33
+      },
+      {
+        "id": 504,
+        "token": " tháng",
+        "count": 32
+      },
+      {
+        "id": 80,
+        "token": "m",
+        "count": 31
+      },
+      {
+        "id": 733,
+        "token": "000",
+        "count": 31
+      }
+    ],
+    "top30_union": [
+      {
+        "id": 0,
+        "token": "<s>",
+        "count": 909
+      },
+      {
+        "id": 2,
+        "token": "</s>",
+        "count": 909
+      },
+      {
+        "id": 78,
+        "token": "k",
+        "count": 444
+      },
+      {
+        "id": 1002,
+        "token": "tr",
+        "count": 406
+      },
+      {
+        "id": 298,
+        "token": " 1",
+        "count": 171
+      },
+      {
+        "id": 216,
+        "token": " t",
+        "count": 139
+      },
+      {
+        "id": 315,
+        "token": " 2",
+        "count": 108
+      },
+      {
+        "id": 337,
+        "token": " cho",
+        "count": 86
+      },
+      {
+        "id": 70,
+        "token": "c",
+        "count": 83
+      },
+      {
+        "id": 3011,
+        "token": "ien",
+        "count": 80
+      },
+      {
+        "id": 69,
+        "token": "b",
+        "count": 77
+      },
+      {
+        "id": 470,
+        "token": " 3",
+        "count": 74
+      },
+      {
+        "id": 772,
+        "token": " tiền",
+        "count": 71
+      },
+      {
+        "id": 353,
+        "token": "on",
+        "count": 64
+      },
+      {
+        "id": 15,
+        "token": ",",
+        "count": 57
+      },
+      {
+        "id": 1955,
+        "token": " vay",
+        "count": 56
+      },
+      {
+        "id": 7499,
+        "token": "cho",
+        "count": 55
+      },
+      {
+        "id": 4187,
+        "token": " mượn",
+        "count": 54
+      },
+      {
+        "id": 2834,
+        "token": " 500",
+        "count": 51
+      },
+      {
+        "id": 24,
+        "token": "5",
+        "count": 49
+      },
+      {
+        "id": 1220,
+        "token": " trả",
+        "count": 47
+      },
+      {
+        "id": 784,
+        "token": " xe",
+        "count": 46
+      },
+      {
+        "id": 10460,
+        "token": "mua",
+        "count": 45
+      },
+      {
+        "id": 504,
+        "token": " tháng",
+        "count": 44
+      },
+      {
+        "id": 354,
+        "token": "ay",
+        "count": 44
+      },
+      {
+        "id": 17,
+        "token": ".",
+        "count": 41
+      },
+      {
+        "id": 735,
+        "token": " mu",
+        "count": 41
+      },
+      {
+        "id": 74,
+        "token": "g",
+        "count": 39
+      },
+      {
+        "id": 87,
+        "token": "t",
+        "count": 39
+      },
+      {
+        "id": 913,
+        "token": " triệu",
+        "count": 38
+      }
+    ],
+    "unseen_in_train": {
+      "test": {
+        "distinct_tokens": 56,
+        "occurrences": 61,
+        "token_share_of_split": 0.05722326454033771,
+        "notes_with_unseen_token": 43,
+        "notes": 105,
+        "tokens": [
+          {
+            "id": 607,
+            "token": "Th",
+            "count": 2
+          },
+          {
+            "id": 968,
+            "token": " dùng",
+            "count": 2
+          },
+          {
+            "id": 1189,
+            "token": " đá",
+            "count": 2
+          },
+          {
+            "id": 1764,
+            "token": " xanh",
+            "count": 2
+          },
+          {
+            "id": 1935,
+            "token": " quý",
+            "count": 2
+          },
+          {
+            "id": 47,
+            "token": "L",
+            "count": 1
+          },
+          {
+            "id": 49,
+            "token": "N",
+            "count": 1
+          },
+          {
+            "id": 250,
+            "token": " ng",
+            "count": 1
+          },
+          {
+            "id": 256,
+            "token": "ủ",
+            "count": 1
+          },
+          {
+            "id": 281,
+            "token": "í",
+            "count": 1
+          },
+          {
+            "id": 307,
+            "token": "ở",
+            "count": 1
+          },
+          {
+            "id": 319,
+            "token": "iện",
+            "count": 1
+          },
+          {
+            "id": 331,
+            "token": " Th",
+            "count": 1
+          },
+          {
+            "id": 443,
+            "token": "ộc",
+            "count": 1
+          },
+          {
+            "id": 675,
+            "token": "ro",
+            "count": 1
+          },
+          {
+            "id": 755,
+            "token": "ắng",
+            "count": 1
+          },
+          {
+            "id": 860,
+            "token": " giao",
+            "count": 1
+          },
+          {
+            "id": 1130,
+            "token": " Bình",
+            "count": 1
+          },
+          {
+            "id": 1153,
+            "token": "ữa",
+            "count": 1
+          },
+          {
+            "id": 1457,
+            "token": " thiếu",
+            "count": 1
+          },
+          {
+            "id": 1514,
+            "token": "st",
+            "count": 1
+          },
+          {
+            "id": 1690,
+            "token": " thái",
+            "count": 1
+          },
+          {
+            "id": 1825,
+            "token": " Vũ",
+            "count": 1
+          },
+          {
+            "id": 1956,
+            "token": " Phương",
+            "count": 1
+          },
+          {
+            "id": 1971,
+            "token": " Bảo",
+            "count": 1
+          },
+          {
+            "id": 2010,
+            "token": "òi",
+            "count": 1
+          },
+          {
+            "id": 2017,
+            "token": " thao",
+            "count": 1
+          },
+          {
+            "id": 2081,
+            "token": "oan",
+            "count": 1
+          },
+          {
+            "id": 2175,
+            "token": " Lâm",
+            "count": 1
+          },
+          {
+            "id": 2229,
+            "token": "ate",
+            "count": 1
+          },
+          {
+            "id": 2264,
+            "token": "25",
+            "count": 1
+          },
+          {
+            "id": 2496,
+            "token": " quảng",
+            "count": 1
+          },
+          {
+            "id": 2661,
+            "token": " đậu",
+            "count": 1
+          },
+          {
+            "id": 2749,
+            "token": " hè",
+            "count": 1
+          },
+          {
+            "id": 2930,
+            "token": " chó",
+            "count": 1
+          },
+          {
+            "id": 3022,
+            "token": "arb",
+            "count": 1
+          },
+          {
+            "id": 3506,
+            "token": "95",
+            "count": 1
+          },
+          {
+            "id": 3598,
+            "token": "da",
+            "count": 1
+          },
+          {
+            "id": 3615,
+            "token": " cơm",
+            "count": 1
+          },
+          {
+            "id": 3947,
+            "token": "49",
+            "count": 1
+          },
+          {
+            "id": 3970,
+            "token": " Kiên",
+            "count": 1
+          },
+          {
+            "id": 4062,
+            "token": " Lợi",
+            "count": 1
+          },
+          {
+            "id": 4124,
+            "token": "omm",
+            "count": 1
+          },
+          {
+            "id": 4600,
+            "token": "uck",
+            "count": 1
+          },
+          {
+            "id": 5704,
+            "token": "pi",
+            "count": 1
+          },
+          {
+            "id": 6116,
+            "token": " nồi",
+            "count": 1
+          },
+          {
+            "id": 6602,
+            "token": " vỉa",
+            "count": 1
+          },
+          {
+            "id": 6608,
+            "token": " chay",
+            "count": 1
+          },
+          {
+            "id": 6891,
+            "token": " rể",
+            "count": 1
+          },
+          {
+            "id": 7265,
+            "token": " Ha",
+            "count": 1
+          },
+          {
+            "id": 7528,
+            "token": " day",
+            "count": 1
+          },
+          {
+            "id": 10214,
+            "token": " bún",
+            "count": 1
+          },
+          {
+            "id": 10922,
+            "token": " 230",
+            "count": 1
+          },
+          {
+            "id": 16195,
+            "token": " 850",
+            "count": 1
+          },
+          {
+            "id": 18260,
+            "token": "mart",
+            "count": 1
+          },
+          {
+            "id": 19905,
+            "token": " tiếu",
+            "count": 1
+          }
+        ]
+      },
+      "probe": {
+        "distinct_tokens": 31,
+        "occurrences": 34,
+        "token_share_of_split": 0.03948896631823461,
+        "notes_with_unseen_token": 27,
+        "notes": 81,
+        "tokens": [
+          {
+            "id": 281,
+            "token": "í",
+            "count": 2
+          },
+          {
+            "id": 1767,
+            "token": "ud",
+            "count": 2
+          },
+          {
+            "id": 19906,
+            "token": "ential",
+            "count": 2
+          },
+          {
+            "id": 250,
+            "token": " ng",
+            "count": 1
+          },
+          {
+            "id": 561,
+            "token": "úc",
+            "count": 1
+          },
+          {
+            "id": 629,
+            "token": " hội",
+            "count": 1
+          },
+          {
+            "id": 646,
+            "token": " thế",
+            "count": 1
+          },
+          {
+            "id": 1130,
+            "token": " Bình",
+            "count": 1
+          },
+          {
+            "id": 1243,
+            "token": " Thành",
+            "count": 1
+          },
+          {
+            "id": 1393,
+            "token": " Nga",
+            "count": 1
+          },
+          {
+            "id": 1396,
+            "token": "úi",
+            "count": 1
+          },
+          {
+            "id": 1420,
+            "token": " nạn",
+            "count": 1
+          },
+          {
+            "id": 1433,
+            "token": "ếp",
+            "count": 1
+          },
+          {
+            "id": 1787,
+            "token": " can",
+            "count": 1
+          },
+          {
+            "id": 1935,
+            "token": " quý",
+            "count": 1
+          },
+          {
+            "id": 2017,
+            "token": " thao",
+            "count": 1
+          },
+          {
+            "id": 2588,
+            "token": " Hương",
+            "count": 1
+          },
+          {
+            "id": 2612,
+            "token": " mái",
+            "count": 1
+          },
+          {
+            "id": 3248,
+            "token": "ech",
+            "count": 1
+          },
+          {
+            "id": 3302,
+            "token": " Quan",
+            "count": 1
+          },
+          {
+            "id": 3597,
+            "token": " lô",
+            "count": 1
+          },
+          {
+            "id": 4143,
+            "token": " Su",
+            "count": 1
+          },
+          {
+            "id": 4163,
+            "token": " bi",
+            "count": 1
+          },
+          {
+            "id": 6442,
+            "token": " 66",
+            "count": 1
+          },
+          {
+            "id": 6497,
+            "token": " Nhung",
+            "count": 1
+          },
+          {
+            "id": 7114,
+            "token": " vặt",
+            "count": 1
+          },
+          {
+            "id": 7753,
+            "token": "min",
+            "count": 1
+          },
+          {
+            "id": 7961,
+            "token": "combank",
+            "count": 1
+          },
+          {
+            "id": 8429,
+            "token": " mo",
+            "count": 1
+          },
+          {
+            "id": 8940,
+            "token": "pr",
+            "count": 1
+          },
+          {
+            "id": 17464,
+            "token": "kho",
+            "count": 1
+          }
+        ]
+      },
+      "in_both_test_and_probe": [
+        " Bình",
+        " ng",
+        " quý",
+        " thao",
+        "í"
+      ]
+    }
+  },
+  "slices": {
+    "train": {
+      "all": {
+        "notes": 723,
+        "mean_content_tokens_per_note": 8.524204702627939,
+        "max_content_tokens": 19,
+        "notes_truncated_at_32": 0,
+        "words": 4163,
+        "tokens_per_word": 1.480182560653375,
+        "fraction_words_split_into_2plus_pieces": 0.39058371366802785,
+        "chars_per_token": 2.897128022067175
+      },
+      "accented": {
+        "notes": 419,
+        "mean_content_tokens_per_note": 8.16706443914081,
+        "max_content_tokens": 18,
+        "notes_truncated_at_32": 0,
+        "words": 2442,
+        "tokens_per_word": 1.4013104013104014,
+        "fraction_words_split_into_2plus_pieces": 0.3095823095823096,
+        "chars_per_token": 3.0575686732904734
+      },
+      "unaccented": {
+        "notes": 304,
+        "mean_content_tokens_per_note": 9.016447368421053,
+        "max_content_tokens": 19,
+        "notes_truncated_at_32": 0,
+        "words": 1721,
+        "tokens_per_word": 1.5920976176641488,
+        "fraction_words_split_into_2plus_pieces": 0.505520046484602,
+        "chars_per_token": 2.6968259759211968
+      }
+    },
+    "test": {
+      "all": {
+        "notes": 105,
+        "mean_content_tokens_per_note": 8.152380952380952,
+        "max_content_tokens": 14,
+        "notes_truncated_at_32": 0,
+        "words": 573,
+        "tokens_per_word": 1.493891797556719,
+        "fraction_words_split_into_2plus_pieces": 0.40663176265270506,
+        "chars_per_token": 2.857476635514019
+      },
+      "accented": {
+        "notes": 63,
+        "mean_content_tokens_per_note": 7.825396825396825,
+        "max_content_tokens": 12,
+        "notes_truncated_at_32": 0,
+        "words": 349,
+        "tokens_per_word": 1.4126074498567336,
+        "fraction_words_split_into_2plus_pieces": 0.32951289398280803,
+        "chars_per_token": 3.0
+      },
+      "unaccented": {
+        "notes": 42,
+        "mean_content_tokens_per_note": 8.642857142857142,
+        "max_content_tokens": 14,
+        "notes_truncated_at_32": 0,
+        "words": 224,
+        "tokens_per_word": 1.6205357142857142,
+        "fraction_words_split_into_2plus_pieces": 0.5267857142857143,
+        "chars_per_token": 2.6639118457300275
+      }
+    },
+    "probe": {
+      "all": {
+        "notes": 81,
+        "mean_content_tokens_per_note": 8.62962962962963,
+        "max_content_tokens": 14,
+        "notes_truncated_at_32": 0,
+        "words": 504,
+        "tokens_per_word": 1.3869047619047619,
+        "fraction_words_split_into_2plus_pieces": 0.3333333333333333,
+        "chars_per_token": 3.051502145922747
+      },
+      "accented": {
+        "notes": 49,
+        "mean_content_tokens_per_note": 8.020408163265307,
+        "max_content_tokens": 14,
+        "notes_truncated_at_32": 0,
+        "words": 298,
+        "tokens_per_word": 1.3187919463087248,
+        "fraction_words_split_into_2plus_pieces": 0.2751677852348993,
+        "chars_per_token": 3.2213740458015265
+      },
+      "unaccented": {
+        "notes": 32,
+        "mean_content_tokens_per_note": 9.5625,
+        "max_content_tokens": 14,
+        "notes_truncated_at_32": 0,
+        "words": 206,
+        "tokens_per_word": 1.4854368932038835,
+        "fraction_words_split_into_2plus_pieces": 0.4174757281553398,
+        "chars_per_token": 2.8333333333333335
+      }
+    }
+  },
+  "numbers": {
+    "by_class": {
+      "N <word> (2 triệu, 200 nghìn, 2 củ)": {
+        "occurrences": 59,
+        "mean_pieces": 2.0,
+        "max_pieces": 2,
+        "examples": [
+          {
+            "text": "1 triệu",
+            "pieces": [
+              " 1",
+              " triệu"
+            ]
+          },
+          {
+            "text": "10 triệu",
+            "pieces": [
+              " 10",
+              " triệu"
+            ]
+          },
+          {
+            "text": "150 nghìn",
+            "pieces": [
+              " 150",
+              " nghìn"
+            ]
+          },
+          {
+            "text": "2 củ",
+            "pieces": [
+              " 2",
+              " củ"
+            ]
+          },
+          {
+            "text": "2 triệu",
+            "pieces": [
+              " 2",
+              " triệu"
+            ]
+          },
+          {
+            "text": "200 nghìn",
+            "pieces": [
+              " 200",
+              " nghìn"
+            ]
+          }
+        ]
+      },
+      "Nk (45k, 500k)": {
+        "occurrences": 414,
+        "mean_pieces": 2.0434782608695654,
+        "max_pieces": 3,
+        "examples": [
+          {
+            "text": "259k",
+            "pieces": [
+              " 25",
+              "9",
+              "k"
+            ]
+          },
+          {
+            "text": "412k",
+            "pieces": [
+              " 4",
+              "12",
+              "k"
+            ]
+          },
+          {
+            "text": "560k",
+            "pieces": [
+              " 5",
+              "60",
+              "k"
+            ]
+          },
+          {
+            "text": "612k",
+            "pieces": [
+              " 6",
+              "12",
+              "k"
+            ]
+          },
+          {
+            "text": "620k",
+            "pieces": [
+              " 6",
+              "20",
+              "k"
+            ]
+          },
+          {
+            "text": "649k",
+            "pieces": [
+              " 6",
+              "49",
+              "k"
+            ]
+          }
+        ]
+      },
+      "NtrM (1tr2, 3tr4, 15tr)": {
+        "occurrences": 367,
+        "mean_pieces": 2.4986376021798367,
+        "max_pieces": 4,
+        "examples": [
+          {
+            "text": "1,2tr",
+            "pieces": [
+              " 1",
+              ",",
+              "2",
+              "tr"
+            ]
+          },
+          {
+            "text": "1,5tr",
+            "pieces": [
+              " 1",
+              ",",
+              "5",
+              "tr"
+            ]
+          },
+          {
+            "text": "1,7tr",
+            "pieces": [
+              " 1",
+              ",",
+              "7",
+              "tr"
+            ]
+          },
+          {
+            "text": "1,8tr",
+            "pieces": [
+              " 1",
+              ",",
+              "8",
+              "tr"
+            ]
+          },
+          {
+            "text": "1.5tr",
+            "pieces": [
+              " 1",
+              ".",
+              "5",
+              "tr"
+            ]
+          },
+          {
+            "text": "1tr640",
+            "pieces": [
+              " 1",
+              "tr",
+              "6",
+              "40"
+            ]
+          }
+        ]
+      },
+      "grouped (89,000, 1.500.000)": {
+        "occurrences": 36,
+        "mean_pieces": 3.6666666666666665,
+        "max_pieces": 5,
+        "examples": [
+          {
+            "text": "1.250.000",
+            "pieces": [
+              " 1",
+              ".",
+              "250",
+              ".",
+              "000"
+            ]
+          },
+          {
+            "text": "1.450.000",
+            "pieces": [
+              " 1",
+              ".",
+              "450",
+              ".",
+              "000"
+            ]
+          },
+          {
+            "text": "1.850.000",
+            "pieces": [
+              " 1",
+              ".",
+              "850",
+              ".",
+              "000"
+            ]
+          },
+          {
+            "text": "12,500,000",
+            "pieces": [
+              " 12",
+              ",",
+              "500",
+              ",",
+              "000"
+            ]
+          },
+          {
+            "text": "3,000,000",
+            "pieces": [
+              " 3",
+              ",",
+              "000",
+              ",",
+              "000"
+            ]
+          },
+          {
+            "text": "3.000.000",
+            "pieces": [
+              " 3",
+              ".",
+              "000",
+              ".",
+              "000"
+            ]
+          }
+        ]
+      }
+    },
+    "probe_in_neutral_note": {
+      "500k": [
+        " 500",
+        "k"
+      ],
+      "1tr2": [
+        " 1",
+        "tr",
+        "2"
+      ],
+      "3tr4": [
+        " 3",
+        "tr",
+        "4"
+      ],
+      "89,000": [
+        " 89",
+        ",",
+        "000"
+      ],
+      "1.5tr": [
+        " 1",
+        ".",
+        "5",
+        "tr"
+      ],
+      "2 triệu": [
+        " 2",
+        " triệu"
+      ],
+      "45k": [
+        " 45",
+        "k"
+      ],
+      "1tr5": [
+        " 1",
+        "tr",
+        "5"
+      ],
+      "200 nghìn": [
+        " 200",
+        " nghìn"
+      ],
+      "2 củ": [
+        " 2",
+        " củ"
+      ],
+      "1,5tr": [
+        " 1",
+        ",",
+        "5",
+        "tr"
+      ],
+      "12tr": [
+        " 12",
+        "tr"
+      ],
+      "1.500.000": [
+        " 1",
+        ".",
+        "500",
+        ".",
+        "000"
+      ],
+      "50K": [
+        " 50",
+        "K"
+      ],
+      "15tr": [
+        " 15",
+        "tr"
+      ],
+      "500đ": [
+        " 500",
+        "đ"
+      ]
+    },
+    "first_example_in_data": {
+      "500k": {
+        "split": "train",
+        "note": "rút 500k tiền mặt đi chợ",
+        "pieces": [
+          " 500",
+          "k"
+        ]
+      },
+      "1tr2": {
+        "split": "train",
+        "note": "khám răng 1tr2",
+        "pieces": [
+          " 1",
+          "tr",
+          "2"
+        ]
+      },
+      "3tr4": {
+        "split": "test",
+        "note": "vay tiêu dùng trả kỳ này 3tr4",
+        "pieces": [
+          " 3",
+          "tr",
+          "4"
+        ]
+      },
+      "89,000": {
+        "split": "test",
+        "note": "starbucks 1 ly 89,000",
+        "pieces": [
+          " 89",
+          ",",
+          "000"
+        ]
+      },
+      "1.5tr": {
+        "split": "train",
+        "note": "Ngân vay tao 1.5tr, mai mốt gửi lại",
+        "pieces": [
+          " 1",
+          ".",
+          "5",
+          "tr"
+        ]
+      },
+      "2 triệu": {
+        "split": "train",
+        "note": "trả bớt nợ bố 2 triệu",
+        "pieces": [
+          " 2",
+          " triệu"
+        ]
+      }
+    }
+  },
+  "targets": {
+    "heuristic": "person = the word before the target (or the target's first word) is a title/kinship word ['anh', 'chị', 'chi', 'em', 'cô', 'co', 'chú', 'chu', 'bác', 'bac', 'dì', 'di', 'ông', 'ong', 'bà', 'ba', 'bạn', 'ban', 'mợ', 'mo', 'cậu', 'cau', 'dượng', 'duong'], OR every target word is capitalized (not ALL-CAPS), <=4 words, no digits, and the note type is not expense/refund; everything else = merchant_brand_other. Types are used only to label analysis rows.",
+    "splits": {
+      "train": {
+        "n_notes": 723,
+        "n_targets": 395,
+        "all": {
+          "n": 395,
+          "mean_pieces": 1.9746835443037976,
+          "max_pieces": 6,
+          "mean_pieces_per_word": 1.4744801512287335,
+          "piece_histogram": {
+            "1": 158,
+            "2": 130,
+            "3": 72,
+            "4": 30,
+            "5": 4,
+            "6": 1
+          }
+        },
+        "person": {
+          "n": 205,
+          "mean_pieces": 1.5219512195121951,
+          "max_pieces": 6,
+          "mean_pieces_per_word": 1.1142857142857143,
+          "piece_histogram": {
+            "1": 125,
+            "2": 60,
+            "3": 15,
+            "4": 4,
+            "6": 1
+          }
+        },
+        "merchant_brand_other": {
+          "n": 190,
+          "mean_pieces": 2.463157894736842,
+          "max_pieces": 5,
+          "mean_pieces_per_word": 1.8795180722891567,
+          "piece_histogram": {
+            "1": 33,
+            "2": 70,
+            "3": 57,
+            "4": 26,
+            "5": 4
+          }
+        }
+      },
+      "test": {
+        "n_notes": 105,
+        "n_targets": 51,
+        "all": {
+          "n": 51,
+          "mean_pieces": 2.1372549019607843,
+          "max_pieces": 5,
+          "mean_pieces_per_word": 1.7301587301587302,
+          "piece_histogram": {
+            "1": 17,
+            "2": 19,
+            "3": 8,
+            "4": 5,
+            "5": 2
+          }
+        },
+        "person": {
+          "n": 26,
+          "mean_pieces": 1.4615384615384615,
+          "max_pieces": 3,
+          "mean_pieces_per_word": 1.2666666666666666,
+          "piece_histogram": {
+            "1": 15,
+            "2": 10,
+            "3": 1
+          }
+        },
+        "merchant_brand_other": {
+          "n": 25,
+          "mean_pieces": 2.84,
+          "max_pieces": 5,
+          "mean_pieces_per_word": 2.1515151515151514,
+          "piece_histogram": {
+            "1": 2,
+            "2": 9,
+            "3": 7,
+            "4": 5,
+            "5": 2
+          }
+        },
+        "unseen_targets": {
+          "n": 23,
+          "share_of_targets": 0.45098039215686275,
+          "n_case_insensitive": 23,
+          "mean_pieces": 2.347826086956522,
+          "n_with_token_unseen_in_train": 17,
+          "n_person": 13,
+          "examples": [
+            {
+              "text": "bách hoá xanh",
+              "person": false,
+              "pieces": [
+                "b",
+                "ách",
+                " ho",
+                "á",
+                " xanh"
+              ],
+              "n_pieces": 5,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            },
+            {
+              "text": "shopeefood",
+              "person": false,
+              "pieces": [
+                "sh",
+                "op",
+                "ee",
+                "f",
+                "ood"
+              ],
+              "n_pieces": 5,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": false
+            },
+            {
+              "text": "starbucks",
+              "person": false,
+              "pieces": [
+                "st",
+                "arb",
+                "uck",
+                "s"
+              ],
+              "n_pieces": 4,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            },
+            {
+              "text": "bảo việt",
+              "person": false,
+              "pieces": [
+                "b",
+                "ảo",
+                " việt"
+              ],
+              "n_pieces": 3,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": false
+            },
+            {
+              "text": "coopmart",
+              "person": false,
+              "pieces": [
+                "co",
+                "op",
+                "mart"
+              ],
+              "n_pieces": 3,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            },
+            {
+              "text": "dì Tư",
+              "person": true,
+              "pieces": [
+                "d",
+                "ì",
+                " Tư"
+              ],
+              "n_pieces": 3,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": false
+            },
+            {
+              "text": "lazda",
+              "person": false,
+              "pieces": [
+                "l",
+                "az",
+                "da"
+              ],
+              "n_pieces": 3,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            },
+            {
+              "text": "Nhi",
+              "person": true,
+              "pieces": [
+                "N",
+                "hi"
+              ],
+              "n_pieces": 2,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            },
+            {
+              "text": "Toan",
+              "person": true,
+              "pieces": [
+                "T",
+                "oan"
+              ],
+              "n_pieces": 2,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            },
+            {
+              "text": "vib",
+              "person": false,
+              "pieces": [
+                " vi",
+                "b"
+              ],
+              "n_pieces": 2,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": false
+            },
+            {
+              "text": "Bình",
+              "person": true,
+              "pieces": [
+                " Bình"
+              ],
+              "n_pieces": 1,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            },
+            {
+              "text": "Bảo",
+              "person": true,
+              "pieces": [
+                " Bảo"
+              ],
+              "n_pieces": 1,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            },
+            {
+              "text": "Ha",
+              "person": true,
+              "pieces": [
+                " Ha"
+              ],
+              "n_pieces": 1,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            },
+            {
+              "text": "Kiên",
+              "person": true,
+              "pieces": [
+                " Kiên"
+              ],
+              "n_pieces": 1,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            },
+            {
+              "text": "Lợi",
+              "person": true,
+              "pieces": [
+                " Lợi"
+              ],
+              "n_pieces": 1,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            }
+          ]
+        }
+      },
+      "probe": {
+        "n_notes": 81,
+        "n_targets": 55,
+        "all": {
+          "n": 55,
+          "mean_pieces": 1.690909090909091,
+          "max_pieces": 4,
+          "mean_pieces_per_word": 1.2916666666666667,
+          "piece_histogram": {
+            "1": 28,
+            "2": 18,
+            "3": 7,
+            "4": 2
+          }
+        },
+        "person": {
+          "n": 37,
+          "mean_pieces": 1.5135135135135136,
+          "max_pieces": 4,
+          "mean_pieces_per_word": 1.0980392156862746,
+          "piece_histogram": {
+            "1": 22,
+            "2": 12,
+            "3": 2,
+            "4": 1
+          }
+        },
+        "merchant_brand_other": {
+          "n": 18,
+          "mean_pieces": 2.0555555555555554,
+          "max_pieces": 4,
+          "mean_pieces_per_word": 1.7619047619047619,
+          "piece_histogram": {
+            "1": 6,
+            "2": 6,
+            "3": 5,
+            "4": 1
+          }
+        },
+        "unseen_targets": {
+          "n": 22,
+          "share_of_targets": 0.4,
+          "n_case_insensitive": 22,
+          "mean_pieces": 2.090909090909091,
+          "n_with_token_unseen_in_train": 11,
+          "n_person": 13,
+          "examples": [
+            {
+              "text": "ban cung lop",
+              "person": true,
+              "pieces": [
+                "ban",
+                " cung",
+                " lo",
+                "p"
+              ],
+              "n_pieces": 4,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": false
+            },
+            {
+              "text": "bảo việt",
+              "person": false,
+              "pieces": [
+                "b",
+                "ảo",
+                " việt"
+              ],
+              "n_pieces": 3,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": false
+            },
+            {
+              "text": "ong ngoai",
+              "person": true,
+              "pieces": [
+                " ong",
+                " ngo",
+                "ai"
+              ],
+              "n_pieces": 3,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": false
+            },
+            {
+              "text": "prudential",
+              "person": false,
+              "pieces": [
+                " pr",
+                "ud",
+                "ential"
+              ],
+              "n_pieces": 3,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            },
+            {
+              "text": "prudential",
+              "person": false,
+              "pieces": [
+                "pr",
+                "ud",
+                "ential"
+              ],
+              "n_pieces": 3,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            },
+            {
+              "text": "techcombank",
+              "person": false,
+              "pieces": [
+                " t",
+                "ech",
+                "combank"
+              ],
+              "n_pieces": 3,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            },
+            {
+              "text": "anh trai",
+              "person": true,
+              "pieces": [
+                "anh",
+                " trai"
+              ],
+              "n_pieces": 2,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": false
+            },
+            {
+              "text": "bo me",
+              "person": false,
+              "pieces": [
+                "bo",
+                " me"
+              ],
+              "n_pieces": 2,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": false
+            },
+            {
+              "text": "cau",
+              "person": true,
+              "pieces": [
+                "c",
+                "au"
+              ],
+              "n_pieces": 2,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": false
+            },
+            {
+              "text": "chi hai",
+              "person": true,
+              "pieces": [
+                "chi",
+                " hai"
+              ],
+              "n_pieces": 2,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": false
+            },
+            {
+              "text": "tamo",
+              "person": false,
+              "pieces": [
+                " tam",
+                "o"
+              ],
+              "n_pieces": 2,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": false
+            },
+            {
+              "text": "ông bà",
+              "person": true,
+              "pieces": [
+                " ông",
+                " bà"
+              ],
+              "n_pieces": 2,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": false
+            },
+            {
+              "text": "Nga",
+              "person": true,
+              "pieces": [
+                " Nga"
+              ],
+              "n_pieces": 1,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            },
+            {
+              "text": "Quan",
+              "person": true,
+              "pieces": [
+                " Quan"
+              ],
+              "n_pieces": 1,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            },
+            {
+              "text": "Su",
+              "person": false,
+              "pieces": [
+                " Su"
+              ],
+              "n_pieces": 1,
+              "unseen_string": true,
+              "unseen_string_ci": true,
+              "has_token_unseen_in_train": true
+            }
+          ]
+        }
+      }
+    }
+  }
+}

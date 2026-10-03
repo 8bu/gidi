@@ -1,0 +1,278 @@
+{
+ "model": "compression-v1 initial model: pretrained BamiBERT 4x768 + pos34 + vocab",
+ "vocab_spec": "models/compression-v1/vocab/B-rank-8000",
+ "layer_map": {
+  "0": 2,
+  "1": 5,
+  "2": 8,
+  "3": 11
+ },
+ "scored_on": {
+  "split": "datasets/annotation-v1/distillation-v1/train.jsonl",
+  "sha256": "fc18d15e4ff83e7406754001498c5416711f7bc2d4c5681e47157f407115593a",
+  "n_notes": 723,
+  "n_tokens": 7609
+ },
+ "budget": {
+  "total": 34791947,
+  "groups": {
+   "embeddings": {
+    "params": 6430464,
+    "share": 0.18482621854994202
+   },
+   "attention": {
+    "params": 9449472,
+    "share": 0.2715994020110458
+   },
+   "ffn": {
+    "params": 18889728,
+    "share": 0.5429339151384658
+   },
+   "layer_norms": {
+    "params": 13824,
+    "share": 0.00039733332543878615
+   },
+   "heads": {
+    "params": 8459,
+    "share": 0.00024313097510754428
+   }
+  }
+ },
+ "params_per_neuron_per_layer": 1537,
+ "int8_estimate": {
+  "base_int8_bytes": 34966389,
+  "bytes_per_removed_param": 1.0056643235092282
+ },
+ "widths": {
+  "2816": {
+   "ffn_kept_share": 0.9166666666666666,
+   "params_removed": 1573888,
+   "params_after": 33218059,
+   "est_int8_mb": 33.38358598920071
+  },
+  "2560": {
+   "ffn_kept_share": 0.8333333333333334,
+   "params_removed": 3147776,
+   "params_after": 31644171,
+   "est_int8_mb": 31.800782978401415
+  },
+  "2304": {
+   "ffn_kept_share": 0.75,
+   "params_removed": 4721664,
+   "params_after": 30070283,
+   "est_int8_mb": 30.217979967602123
+  },
+  "2048": {
+   "ffn_kept_share": 0.6666666666666666,
+   "params_removed": 6295552,
+   "params_after": 28496395,
+   "est_int8_mb": 28.63517695680283
+  },
+  "1792": {
+   "ffn_kept_share": 0.5833333333333334,
+   "params_removed": 7869440,
+   "params_after": 26922507,
+   "est_int8_mb": 27.05237394600354
+  },
+  "1536": {
+   "ffn_kept_share": 0.5,
+   "params_removed": 9443328,
+   "params_after": 25348619,
+   "est_int8_mb": 25.469570935204246
+  }
+ },
+ "criteria": {
+  "activation": {
+   "2816": {
+    "removed_energy_per_layer": [
+     0.048222357632321584,
+     0.0426982666330624,
+     0.029605284375081906,
+     0.07084694617495961
+    ],
+    "removed_energy_mean": 0.04784321370385637
+   },
+   "2560": {
+    "removed_energy_per_layer": [
+     0.09916516878606567,
+     0.13578093068878094,
+     0.07728259468712205,
+     0.14719580776521385
+    ],
+    "removed_energy_mean": 0.11485612548179563
+   },
+   "2304": {
+    "removed_energy_per_layer": [
+     0.1625294813932685,
+     0.18315366074903164,
+     0.12042960673932182,
+     0.2290728214517363
+    ],
+    "removed_energy_mean": 0.17379639258333957
+   },
+   "2048": {
+    "removed_energy_per_layer": [
+     0.21806663542341734,
+     0.23190578982442647,
+     0.14943660691986393,
+     0.30523768125540307
+    ],
+    "removed_energy_mean": 0.22616167835577772
+   },
+   "1792": {
+    "removed_energy_per_layer": [
+     0.26404870801470964,
+     0.2587502134111486,
+     0.17180147035675447,
+     0.3698476304160835
+    ],
+    "removed_energy_mean": 0.26611200554967407
+   },
+   "1536": {
+    "removed_energy_per_layer": [
+     0.30981541341173396,
+     0.2836191780994609,
+     0.19716658160589562,
+     0.40611738518741447
+    ],
+    "removed_energy_mean": 0.29917963957612626
+   }
+  },
+  "combined": {
+   "2816": {
+    "removed_energy_per_layer": [
+     0.034739859464205644,
+     0.030269786511306383,
+     0.023790323668008848,
+     0.06272780591472234
+    ],
+    "removed_energy_mean": 0.0378819438895608
+   },
+   "2560": {
+    "removed_energy_per_layer": [
+     0.07377805912290263,
+     0.07767517048090494,
+     0.06446972760248987,
+     0.13869793355574359
+    ],
+    "removed_energy_mean": 0.08865522269051025
+   },
+   "2304": {
+    "removed_energy_per_layer": [
+     0.124996706175665,
+     0.1310382261226336,
+     0.10511065316056345,
+     0.21393250156423543
+    ],
+    "removed_energy_mean": 0.14376952175577437
+   },
+   "2048": {
+    "removed_energy_per_layer": [
+     0.16549004766615236,
+     0.18913725773312978,
+     0.14263298954432171,
+     0.2731538362776583
+    ],
+    "removed_energy_mean": 0.19260353280531556
+   },
+   "1792": {
+    "removed_energy_per_layer": [
+     0.21948405213308445,
+     0.2614501270762939,
+     0.179754970619075,
+     0.34703758920504174
+    ],
+    "removed_energy_mean": 0.2519316847583738
+   },
+   "1536": {
+    "removed_energy_per_layer": [
+     0.28700102196808447,
+     0.3402213777039642,
+     0.20913896566444065,
+     0.39455023531889166
+    ],
+    "removed_energy_mean": 0.30772790016384527
+   }
+  },
+  "magnitude": {
+   "2816": {
+    "removed_energy_per_layer": [
+     0.11869810351828709,
+     0.0905882393745941,
+     0.07226740656237199,
+     0.199503877496064
+    ],
+    "removed_energy_mean": 0.12026440673782929
+   },
+   "2560": {
+    "removed_energy_per_layer": [
+     0.22075731588807393,
+     0.19800080486490343,
+     0.1335138553270397,
+     0.3094221026003962
+    ],
+    "removed_energy_mean": 0.21542351967010331
+   },
+   "2304": {
+    "removed_energy_per_layer": [
+     0.3174682238995945,
+     0.301694693003541,
+     0.1822010464707821,
+     0.4071573498571809
+    ],
+    "removed_energy_mean": 0.30213032830777464
+   },
+   "2048": {
+    "removed_energy_per_layer": [
+     0.3881525394025965,
+     0.39296488984259104,
+     0.23235165504027105,
+     0.4889642269320374
+    ],
+    "removed_energy_mean": 0.375608327804374
+   },
+   "1792": {
+    "removed_energy_per_layer": [
+     0.46721551794058147,
+     0.48138627853281607,
+     0.27968798693966357,
+     0.5737987905843364
+    ],
+    "removed_energy_mean": 0.4505221434993494
+   },
+   "1536": {
+    "removed_energy_per_layer": [
+     0.5380731590926506,
+     0.5634303789259257,
+     0.32375157730319454,
+     0.635977078904856
+    ],
+    "removed_energy_mean": 0.5153080485566567
+   }
+  }
+ },
+ "overlap_kept_sets": {
+  "K2816:magnitude~activation": 0.9142400568181818,
+  "K2816:magnitude~combined": 0.9216974431818182,
+  "K2816:activation~combined": 0.9756747159090909,
+  "K2560:magnitude~activation": 0.8142578125,
+  "K2560:magnitude~combined": 0.83642578125,
+  "K2560:activation~combined": 0.9443359375,
+  "K2304:magnitude~activation": 0.6965060763888888,
+  "K2304:magnitude~combined": 0.7485894097222222,
+  "K2304:activation~combined": 0.9044053819444444,
+  "K2048:magnitude~activation": 0.5648193359375,
+  "K2048:magnitude~combined": 0.6669921875,
+  "K2048:activation~combined": 0.857666015625,
+  "K1792:magnitude~activation": 0.4326171875,
+  "K1792:magnitude~combined": 0.5926339285714286,
+  "K1792:activation~combined": 0.8049665178571429,
+  "K1536:magnitude~activation": 0.3185221354166667,
+  "K1536:magnitude~combined": 0.52197265625,
+  "K1536:activation~combined": 0.7576497395833334
+ },
+ "chosen": {
+  "criterion": "combined",
+  "k": 2304
+ }
+}

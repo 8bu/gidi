@@ -1,0 +1,4471 @@
+{
+  "experiment": "value-span-v4-nonlinear-head",
+  "protocol": {
+    "path": "experiments/value-span-v4-nonlinear-head/protocol.json",
+    "sha256": "2f2d6041c2d306b9c06eedf17e6ea60e2cdc622488754ec919f7d0ec327797a6"
+  },
+  "sets": {
+    "test": {
+      "n": 143,
+      "path": "/Users/8bu/Projects/gidi/datasets/annotation-v2/training-v1/test.jsonl",
+      "sha256": "acaca8d767828e48954e91871886ac191a45110af695af7df7573a9c0be6f91d"
+    },
+    "test-v1": {
+      "n": 105,
+      "path": "/Users/8bu/Projects/gidi/datasets/annotation-v2/training-v1/test.jsonl",
+      "filter": "source_batch != targeted-value-01"
+    },
+    "test-targeted": {
+      "n": 38,
+      "path": "/Users/8bu/Projects/gidi/datasets/annotation-v2/training-v1/test.jsonl",
+      "filter": "source_batch == targeted-value-01"
+    },
+    "probe": {
+      "n": 81,
+      "path": "/Users/8bu/Projects/gidi/datasets/annotation-v2/training-v1/probe-v1-eval-only.jsonl",
+      "sha256": "638aeff00243f20af2dbeb2b340da0142631566057aef57d75005b75aedece87"
+    },
+    "validation": {
+      "n": 149,
+      "path": "/Users/8bu/Projects/gidi/datasets/annotation-v2/training-v1/validation.jsonl",
+      "sha256": "eef077c97a519dc532112683f3ab35daeaa6e55187c3c2fb01f53a0ee37f629c"
+    },
+    "train": {
+      "path": "/Users/8bu/Projects/gidi/datasets/annotation-v2/training-v1/train.jsonl",
+      "n": 895,
+      "sha256": "0a03db64238e6f202918a30e3727178c437045ce4703d38f14a7dda9883589e5"
+    }
+  },
+  "checkpoints": {
+    "base": "/Users/8bu/Projects/gidi/models/compression-v3/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2048/seed1",
+    "base_model_safetensors_sha256": "bfb2195aad55dee1593bc9c017016c00b3f077674650657fb056c1cdfc930556",
+    "value_head": {
+      "1": {
+        "path": "models/value-span-v4-nonlinear-head/seed1",
+        "epochs": 40,
+        "model_sha256": "d2956295bac1488b790d2e5f7b7524ea1dcd97a375cd998a604c11a70ed38776",
+        "frozen_state_sha256": "705488d3c2e70709811eff74bca96061372aa2ce37cac5efe1b318198dadc72c"
+      },
+      "2": {
+        "path": "models/value-span-v4-nonlinear-head/seed2",
+        "epochs": 40,
+        "model_sha256": "c8cb102b2cdfecc119a7584d15861aa4966aa7da23fa17a7be6955c32cfe1aa9",
+        "frozen_state_sha256": "705488d3c2e70709811eff74bca96061372aa2ce37cac5efe1b318198dadc72c"
+      },
+      "3": {
+        "path": "models/value-span-v4-nonlinear-head/seed3",
+        "epochs": 40,
+        "model_sha256": "6e82ab81a4533a78e3e0b51b8a6458943a6b3c5f4f221acc334a64102b546a13",
+        "frozen_state_sha256": "705488d3c2e70709811eff74bca96061372aa2ce37cac5efe1b318198dadc72c"
+      }
+    }
+  },
+  "verdict": {
+    "verdict": "B",
+    "meaning": "invariance passes, value quality fails: stop; no deeper head or unfreezing",
+    "seeds": [
+      1,
+      2,
+      3
+    ],
+    "export_seed": 1,
+    "invariance": {
+      "pass": true,
+      "total_mismatches": 0,
+      "max_abs_diff_type_logits": 0.0,
+      "max_abs_diff_target_logits": 0.0,
+      "ok": true,
+      "file": "invariance.json"
+    },
+    "value_quality": {
+      "pass": false,
+      "failed": [
+        "test_value_exact[mean]",
+        "test_value_exact_human[mean]",
+        "test_multi_number_exact[mean]",
+        "test_slice_floor[mean]",
+        "test_value_exact[seed1]",
+        "test_value_exact_human[seed1]",
+        "test_multi_number_exact[seed1]",
+        "test_slice_floor[seed1]"
+      ],
+      "criteria": [
+        {
+          "id": "test_value_exact",
+          "scope": "mean",
+          "metric": "test value exact (complete labels)",
+          "value": 0.8633093525179856,
+          "comparison": ">=",
+          "threshold": 0.95,
+          "pass": false,
+          "n": 139
+        },
+        {
+          "id": "test_value_exact_human",
+          "scope": "mean",
+          "metric": "test value exact (human-provenance labels)",
+          "value": 0.75,
+          "comparison": ">=",
+          "threshold": 0.9,
+          "pass": false,
+          "n": 12
+        },
+        {
+          "id": "test_value_present_accuracy",
+          "scope": "mean",
+          "metric": "test value present/null accuracy",
+          "value": 1.0,
+          "comparison": ">=",
+          "threshold": 0.97,
+          "pass": true,
+          "n": 139
+        },
+        {
+          "id": "test_multi_number_exact",
+          "scope": "mean",
+          "metric": "multi_number test slice value exact",
+          "value": 0.7272727272727272,
+          "comparison": ">=",
+          "threshold": 0.9,
+          "pass": false,
+          "n": 22
+        },
+        {
+          "id": "test_slice_floor",
+          "scope": "mean",
+          "metric": "lowest value exact over test value slices with n >= 5",
+          "value": 0.5,
+          "comparison": ">=",
+          "threshold": 0.8,
+          "pass": false,
+          "slices": {
+            "explicit_unit": {
+              "n": 113,
+              "exact": 0.887905604719764
+            },
+            "bare_number": {
+              "n": 6,
+              "exact": 0.5
+            },
+            "multi_number": {
+              "n": 22,
+              "exact": 0.7272727272727272
+            },
+            "slang": {
+              "n": 10,
+              "exact": 0.6666666666666666
+            },
+            "unaccented": {
+              "n": 50,
+              "exact": 0.8666666666666667
+            },
+            "unseen_span": {
+              "n": 37,
+              "exact": 0.7297297297297297
+            },
+            "long_multi_token": {
+              "n": 63,
+              "exact": 0.8201058201058201
+            },
+            "no_amount": {
+              "n": 0,
+              "exact": null
+            }
+          },
+          "slices_below_threshold": [
+            "bare_number",
+            "multi_number",
+            "slang",
+            "unseen_span"
+          ]
+        },
+        {
+          "id": "test_value_exact",
+          "scope": "seed1",
+          "metric": "test value exact (complete labels)",
+          "value": 0.8633093525179856,
+          "comparison": ">=",
+          "threshold": 0.95,
+          "pass": false,
+          "n": 139
+        },
+        {
+          "id": "test_value_exact_human",
+          "scope": "seed1",
+          "metric": "test value exact (human-provenance labels)",
+          "value": 0.75,
+          "comparison": ">=",
+          "threshold": 0.9,
+          "pass": false,
+          "n": 12
+        },
+        {
+          "id": "test_value_present_accuracy",
+          "scope": "seed1",
+          "metric": "test value present/null accuracy",
+          "value": 1.0,
+          "comparison": ">=",
+          "threshold": 0.97,
+          "pass": true,
+          "n": 139
+        },
+        {
+          "id": "test_multi_number_exact",
+          "scope": "seed1",
+          "metric": "multi_number test slice value exact",
+          "value": 0.7272727272727273,
+          "comparison": ">=",
+          "threshold": 0.9,
+          "pass": false,
+          "n": 22
+        },
+        {
+          "id": "test_slice_floor",
+          "scope": "seed1",
+          "metric": "lowest value exact over test value slices with n >= 5",
+          "value": 0.5,
+          "comparison": ">=",
+          "threshold": 0.8,
+          "pass": false,
+          "slices": {
+            "explicit_unit": {
+              "n": 113,
+              "exact": 0.8938053097345132
+            },
+            "bare_number": {
+              "n": 6,
+              "exact": 0.5
+            },
+            "multi_number": {
+              "n": 22,
+              "exact": 0.7272727272727273
+            },
+            "slang": {
+              "n": 10,
+              "exact": 0.6
+            },
+            "unaccented": {
+              "n": 50,
+              "exact": 0.88
+            },
+            "unseen_span": {
+              "n": 37,
+              "exact": 0.7297297297297297
+            },
+            "long_multi_token": {
+              "n": 63,
+              "exact": 0.8095238095238095
+            },
+            "no_amount": {
+              "n": 0,
+              "exact": null
+            }
+          },
+          "slices_below_threshold": [
+            "bare_number",
+            "multi_number",
+            "slang",
+            "unseen_span"
+          ]
+        }
+      ]
+    }
+  },
+  "invariance": {
+    "total_mismatches": 0,
+    "max_abs_diff_type_logits": 0.0,
+    "max_abs_diff_target_logits": 0.0,
+    "ok": true,
+    "checks": {
+      "base_sha_matches_protocol": true,
+      "frozen_state_hashes_equal_base": true
+    }
+  },
+  "results": {
+    "test": {
+      "n": 143,
+      "type_accuracy": {
+        "per_seed": {
+          "1": 0.9440559440559441,
+          "2": 0.9440559440559441,
+          "3": 0.9440559440559441
+        },
+        "mean": 0.9440559440559441,
+        "std": 0.0
+      },
+      "type_macro_f1": {
+        "per_seed": {
+          "1": 0.9538537575660961,
+          "2": 0.9538537575660961,
+          "3": 0.9538537575660961
+        },
+        "mean": 0.9538537575660961,
+        "std": 0.0
+      },
+      "target_f1": {
+        "per_seed": {
+          "1": 0.8345323741007195,
+          "2": 0.8345323741007195,
+          "3": 0.8345323741007195
+        },
+        "mean": 0.8345323741007195,
+        "std": 0.0
+      },
+      "target_exact": {
+        "per_seed": {
+          "1": 0.9020979020979021,
+          "2": 0.9020979020979021,
+          "3": 0.9020979020979021
+        },
+        "mean": 0.9020979020979021,
+        "std": 0.0
+      },
+      "type_target_joint": {
+        "per_seed": {
+          "1": 0.8601398601398601,
+          "2": 0.8601398601398601,
+          "3": 0.8601398601398601
+        },
+        "mean": 0.8601398601398601,
+        "std": 0.0
+      },
+      "value": {
+        "n": 139,
+        "exact": {
+          "per_seed": {
+            "1": 0.8633093525179856,
+            "2": 0.8633093525179856,
+            "3": 0.8633093525179856
+          },
+          "mean": 0.8633093525179856,
+          "std": 0.0
+        },
+        "span_f1": {
+          "per_seed": {
+            "1": 0.8633093525179856,
+            "2": 0.8633093525179856,
+            "3": 0.8633093525179856
+          },
+          "mean": 0.8633093525179856,
+          "std": 0.0
+        },
+        "span_precision": {
+          "per_seed": {
+            "1": 0.8633093525179856,
+            "2": 0.8633093525179856,
+            "3": 0.8633093525179856
+          },
+          "mean": 0.8633093525179856,
+          "std": 0.0
+        },
+        "span_recall": {
+          "per_seed": {
+            "1": 0.8633093525179856,
+            "2": 0.8633093525179856,
+            "3": 0.8633093525179856
+          },
+          "mean": 0.8633093525179856,
+          "std": 0.0
+        },
+        "token_f1": {
+          "per_seed": {
+            "1": 0.9608763693270735,
+            "2": 0.9608763693270735,
+            "3": 0.9608763693270735
+          },
+          "mean": 0.9608763693270735,
+          "std": 0.0
+        },
+        "present_accuracy": {
+          "per_seed": {
+            "1": 1.0,
+            "2": 1.0,
+            "3": 1.0
+          },
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "full_joint": {
+          "per_seed": {
+            "1": 0.7338129496402878,
+            "2": 0.7338129496402878,
+            "3": 0.7338129496402878
+          },
+          "mean": 0.7338129496402878,
+          "std": 0.0
+        },
+        "human_n": 12,
+        "human_exact": {
+          "per_seed": {
+            "1": 0.75,
+            "2": 0.75,
+            "3": 0.75
+          },
+          "mean": 0.75,
+          "std": 0.0
+        }
+      }
+    },
+    "test-v1": {
+      "n": 105,
+      "type_accuracy": {
+        "per_seed": {
+          "1": 0.9523809523809523,
+          "2": 0.9523809523809523,
+          "3": 0.9523809523809523
+        },
+        "mean": 0.9523809523809522,
+        "std": 0.0
+      },
+      "type_macro_f1": {
+        "per_seed": {
+          "1": 0.962629263775274,
+          "2": 0.962629263775274,
+          "3": 0.962629263775274
+        },
+        "mean": 0.9626292637752739,
+        "std": 0.0
+      },
+      "target_f1": {
+        "per_seed": {
+          "1": 0.8076923076923077,
+          "2": 0.8076923076923077,
+          "3": 0.8076923076923077
+        },
+        "mean": 0.8076923076923078,
+        "std": 0.0
+      },
+      "target_exact": {
+        "per_seed": {
+          "1": 0.8857142857142857,
+          "2": 0.8857142857142857,
+          "3": 0.8857142857142857
+        },
+        "mean": 0.8857142857142857,
+        "std": 0.0
+      },
+      "type_target_joint": {
+        "per_seed": {
+          "1": 0.8476190476190476,
+          "2": 0.8476190476190476,
+          "3": 0.8476190476190476
+        },
+        "mean": 0.8476190476190476,
+        "std": 0.0
+      },
+      "value": {
+        "n": 105,
+        "exact": {
+          "per_seed": {
+            "1": 0.9142857142857143,
+            "2": 0.9047619047619048,
+            "3": 0.9047619047619048
+          },
+          "mean": 0.9079365079365079,
+          "std": 0.00549857399228213
+        },
+        "span_f1": {
+          "per_seed": {
+            "1": 0.9142857142857143,
+            "2": 0.9047619047619048,
+            "3": 0.9047619047619048
+          },
+          "mean": 0.9079365079365079,
+          "std": 0.00549857399228213
+        },
+        "span_precision": {
+          "per_seed": {
+            "1": 0.9142857142857143,
+            "2": 0.9047619047619048,
+            "3": 0.9047619047619048
+          },
+          "mean": 0.9079365079365079,
+          "std": 0.00549857399228213
+        },
+        "span_recall": {
+          "per_seed": {
+            "1": 0.9142857142857143,
+            "2": 0.9047619047619048,
+            "3": 0.9047619047619048
+          },
+          "mean": 0.9079365079365079,
+          "std": 0.00549857399228213
+        },
+        "token_f1": {
+          "per_seed": {
+            "1": 0.9767441860465118,
+            "2": 0.9745762711864406,
+            "3": 0.9745762711864406
+          },
+          "mean": 0.975298909473131,
+          "std": 0.0012516462280422822
+        },
+        "present_accuracy": {
+          "per_seed": {
+            "1": 1.0,
+            "2": 1.0,
+            "3": 1.0
+          },
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "full_joint": {
+          "per_seed": {
+            "1": 0.7714285714285715,
+            "2": 0.7619047619047619,
+            "3": 0.7619047619047619
+          },
+          "mean": 0.765079365079365,
+          "std": 0.0054985739922821944
+        },
+        "human_n": 7,
+        "human_exact": {
+          "per_seed": {
+            "1": 0.7142857142857143,
+            "2": 0.7142857142857143,
+            "3": 0.7142857142857143
+          },
+          "mean": 0.7142857142857143,
+          "std": 0.0
+        }
+      }
+    },
+    "test-targeted": {
+      "n": 38,
+      "type_accuracy": {
+        "per_seed": {
+          "1": 0.9210526315789473,
+          "2": 0.9210526315789473,
+          "3": 0.9210526315789473
+        },
+        "mean": 0.9210526315789473,
+        "std": 0.0
+      },
+      "type_macro_f1": {
+        "per_seed": {
+          "1": 0.9349206349206349,
+          "2": 0.9349206349206349,
+          "3": 0.9349206349206349
+        },
+        "mean": 0.9349206349206348,
+        "std": 0.0
+      },
+      "target_f1": {
+        "per_seed": {
+          "1": 0.9142857142857143,
+          "2": 0.9142857142857143,
+          "3": 0.9142857142857143
+        },
+        "mean": 0.9142857142857143,
+        "std": 0.0
+      },
+      "target_exact": {
+        "per_seed": {
+          "1": 0.9473684210526315,
+          "2": 0.9473684210526315,
+          "3": 0.9473684210526315
+        },
+        "mean": 0.9473684210526315,
+        "std": 0.0
+      },
+      "type_target_joint": {
+        "per_seed": {
+          "1": 0.8947368421052632,
+          "2": 0.8947368421052632,
+          "3": 0.8947368421052632
+        },
+        "mean": 0.8947368421052632,
+        "std": 0.0
+      },
+      "value": {
+        "n": 34,
+        "exact": {
+          "per_seed": {
+            "1": 0.7058823529411765,
+            "2": 0.7352941176470589,
+            "3": 0.7352941176470589
+          },
+          "mean": 0.7254901960784315,
+          "std": 0.016980890270283114
+        },
+        "span_f1": {
+          "per_seed": {
+            "1": 0.7058823529411765,
+            "2": 0.735294117647059,
+            "3": 0.735294117647059
+          },
+          "mean": 0.7254901960784315,
+          "std": 0.01698089027028318
+        },
+        "span_precision": {
+          "per_seed": {
+            "1": 0.7058823529411765,
+            "2": 0.7352941176470589,
+            "3": 0.7352941176470589
+          },
+          "mean": 0.7254901960784315,
+          "std": 0.016980890270283114
+        },
+        "span_recall": {
+          "per_seed": {
+            "1": 0.7058823529411765,
+            "2": 0.7352941176470589,
+            "3": 0.7352941176470589
+          },
+          "mean": 0.7254901960784315,
+          "std": 0.016980890270283114
+        },
+        "token_f1": {
+          "per_seed": {
+            "1": 0.9156626506024096,
+            "2": 0.9221556886227544,
+            "3": 0.9221556886227544
+          },
+          "mean": 0.9199913426159728,
+          "std": 0.0037487572489045703
+        },
+        "present_accuracy": {
+          "per_seed": {
+            "1": 1.0,
+            "2": 1.0,
+            "3": 1.0
+          },
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "full_joint": {
+          "per_seed": {
+            "1": 0.6176470588235294,
+            "2": 0.6470588235294118,
+            "3": 0.6470588235294118
+          },
+          "mean": 0.6372549019607844,
+          "std": 0.016980890270283114
+        },
+        "human_n": 5,
+        "human_exact": {
+          "per_seed": {
+            "1": 0.8,
+            "2": 0.8,
+            "3": 0.8
+          },
+          "mean": 0.8000000000000002,
+          "std": 0.0
+        }
+      }
+    },
+    "probe": {
+      "n": 81,
+      "type_accuracy": {
+        "per_seed": {
+          "1": 0.7777777777777778,
+          "2": 0.7777777777777778,
+          "3": 0.7777777777777778
+        },
+        "mean": 0.7777777777777778,
+        "std": 0.0
+      },
+      "type_macro_f1": {
+        "per_seed": {
+          "1": 0.7580047403576816,
+          "2": 0.7580047403576816,
+          "3": 0.7580047403576816
+        },
+        "mean": 0.7580047403576816,
+        "std": 0.0
+      },
+      "target_f1": {
+        "per_seed": {
+          "1": 0.7818181818181819,
+          "2": 0.7818181818181819,
+          "3": 0.7818181818181819
+        },
+        "mean": 0.7818181818181819,
+        "std": 0.0
+      },
+      "target_exact": {
+        "per_seed": {
+          "1": 0.8148148148148148,
+          "2": 0.8148148148148148,
+          "3": 0.8148148148148148
+        },
+        "mean": 0.8148148148148148,
+        "std": 0.0
+      },
+      "type_target_joint": {
+        "per_seed": {
+          "1": 0.6049382716049383,
+          "2": 0.6049382716049383,
+          "3": 0.6049382716049383
+        },
+        "mean": 0.6049382716049383,
+        "std": 0.0
+      },
+      "value": {
+        "n": 81,
+        "exact": {
+          "per_seed": {
+            "1": 0.8888888888888888,
+            "2": 0.9012345679012346,
+            "3": 0.8765432098765432
+          },
+          "mean": 0.8888888888888888,
+          "std": 0.012345679012345678
+        },
+        "span_f1": {
+          "per_seed": {
+            "1": 0.8888888888888888,
+            "2": 0.9012345679012346,
+            "3": 0.8765432098765432
+          },
+          "mean": 0.8888888888888888,
+          "std": 0.012345679012345678
+        },
+        "span_precision": {
+          "per_seed": {
+            "1": 0.8888888888888888,
+            "2": 0.9012345679012346,
+            "3": 0.8765432098765432
+          },
+          "mean": 0.8888888888888888,
+          "std": 0.012345679012345678
+        },
+        "span_recall": {
+          "per_seed": {
+            "1": 0.8888888888888888,
+            "2": 0.9012345679012346,
+            "3": 0.8765432098765432
+          },
+          "mean": 0.8888888888888888,
+          "std": 0.012345679012345678
+        },
+        "token_f1": {
+          "per_seed": {
+            "1": 0.9659090909090908,
+            "2": 0.9686609686609686,
+            "3": 0.9629629629629629
+          },
+          "mean": 0.9658443408443408,
+          "std": 0.0028495546427100235
+        },
+        "present_accuracy": {
+          "per_seed": {
+            "1": 1.0,
+            "2": 1.0,
+            "3": 1.0
+          },
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "full_joint": {
+          "per_seed": {
+            "1": 0.5432098765432098,
+            "2": 0.5555555555555556,
+            "3": 0.5308641975308642
+          },
+          "mean": 0.54320987654321,
+          "std": 0.012345679012345678
+        },
+        "human_n": 5,
+        "human_exact": {
+          "per_seed": {
+            "1": 1.0,
+            "2": 1.0,
+            "3": 1.0
+          },
+          "mean": 1.0,
+          "std": 0.0
+        }
+      }
+    },
+    "validation": {
+      "n": 149,
+      "type_accuracy": {
+        "per_seed": {
+          "1": 0.9731543624161074,
+          "2": 0.9731543624161074,
+          "3": 0.9731543624161074
+        },
+        "mean": 0.9731543624161074,
+        "std": 0.0
+      },
+      "type_macro_f1": {
+        "per_seed": {
+          "1": 0.9658398646976322,
+          "2": 0.9658398646976322,
+          "3": 0.9658398646976322
+        },
+        "mean": 0.9658398646976322,
+        "std": 0.0
+      },
+      "target_f1": {
+        "per_seed": {
+          "1": 0.987012987012987,
+          "2": 0.987012987012987,
+          "3": 0.987012987012987
+        },
+        "mean": 0.987012987012987,
+        "std": 0.0
+      },
+      "target_exact": {
+        "per_seed": {
+          "1": 0.9932885906040269,
+          "2": 0.9932885906040269,
+          "3": 0.9932885906040269
+        },
+        "mean": 0.9932885906040269,
+        "std": 0.0
+      },
+      "type_target_joint": {
+        "per_seed": {
+          "1": 0.9731543624161074,
+          "2": 0.9731543624161074,
+          "3": 0.9731543624161074
+        },
+        "mean": 0.9731543624161074,
+        "std": 0.0
+      },
+      "value": {
+        "n": 146,
+        "exact": {
+          "per_seed": {
+            "1": 0.9178082191780822,
+            "2": 0.9178082191780822,
+            "3": 0.9315068493150684
+          },
+          "mean": 0.9223744292237442,
+          "std": 0.007908907797118128
+        },
+        "span_f1": {
+          "per_seed": {
+            "1": 0.9204152249134949,
+            "2": 0.9204152249134949,
+            "3": 0.9342560553633218
+          },
+          "mean": 0.9250288350634372,
+          "std": 0.007991007186015512
+        },
+        "span_precision": {
+          "per_seed": {
+            "1": 0.9172413793103448,
+            "2": 0.9172413793103448,
+            "3": 0.9310344827586207
+          },
+          "mean": 0.9218390804597701,
+          "std": 0.00796345198882244
+        },
+        "span_recall": {
+          "per_seed": {
+            "1": 0.9236111111111112,
+            "2": 0.9236111111111112,
+            "3": 0.9375
+          },
+          "mean": 0.9282407407407408,
+          "std": 0.008018753738744774
+        },
+        "token_f1": {
+          "per_seed": {
+            "1": 0.9717682020802378,
+            "2": 0.9717682020802378,
+            "3": 0.9777777777777777
+          },
+          "mean": 0.9737713939794178,
+          "std": 0.0034696301466900967
+        },
+        "present_accuracy": {
+          "per_seed": {
+            "1": 0.9931506849315068,
+            "2": 0.9931506849315068,
+            "3": 0.9931506849315068
+          },
+          "mean": 0.9931506849315067,
+          "std": 0.0
+        },
+        "full_joint": {
+          "per_seed": {
+            "1": 0.8904109589041096,
+            "2": 0.8904109589041096,
+            "3": 0.9041095890410958
+          },
+          "mean": 0.8949771689497718,
+          "std": 0.007908907797118128
+        },
+        "human_n": 18,
+        "human_exact": {
+          "per_seed": {
+            "1": 0.7222222222222222,
+            "2": 0.7222222222222222,
+            "3": 0.7777777777777778
+          },
+          "mean": 0.7407407407407408,
+          "std": 0.03207501495497923
+        }
+      }
+    }
+  },
+  "value_slices": {
+    "test": {
+      "explicit_unit": {
+        "n": 113,
+        "exact_per_seed": {
+          "1": 0.8938053097345132,
+          "2": 0.8849557522123894,
+          "3": 0.8849557522123894
+        },
+        "exact_mean": 0.887905604719764,
+        "exact_std": 0.005109294417607251
+      },
+      "bare_number": {
+        "n": 6,
+        "exact_per_seed": {
+          "1": 0.5,
+          "2": 0.5,
+          "3": 0.5
+        },
+        "exact_mean": 0.5,
+        "exact_std": 0.0
+      },
+      "multi_number": {
+        "n": 22,
+        "exact_per_seed": {
+          "1": 0.7272727272727273,
+          "2": 0.7272727272727273,
+          "3": 0.7272727272727273
+        },
+        "exact_mean": 0.7272727272727272,
+        "exact_std": 0.0
+      },
+      "slang": {
+        "n": 10,
+        "exact_per_seed": {
+          "1": 0.6,
+          "2": 0.7,
+          "3": 0.7
+        },
+        "exact_mean": 0.6666666666666666,
+        "exact_std": 0.05773502691896256
+      },
+      "unaccented": {
+        "n": 50,
+        "exact_per_seed": {
+          "1": 0.88,
+          "2": 0.86,
+          "3": 0.86
+        },
+        "exact_mean": 0.8666666666666667,
+        "exact_std": 0.011547005383792526
+      },
+      "unseen_span": {
+        "n": 37,
+        "exact_per_seed": {
+          "1": 0.7297297297297297,
+          "2": 0.7297297297297297,
+          "3": 0.7297297297297297
+        },
+        "exact_mean": 0.7297297297297297,
+        "exact_std": 0.0
+      },
+      "long_multi_token": {
+        "n": 63,
+        "exact_per_seed": {
+          "1": 0.8095238095238095,
+          "2": 0.8253968253968254,
+          "3": 0.8253968253968254
+        },
+        "exact_mean": 0.8201058201058201,
+        "exact_std": 0.009164289987136885
+      },
+      "no_amount": {
+        "n": 0,
+        "exact_per_seed": {
+          "1": null,
+          "2": null,
+          "3": null
+        },
+        "exact_mean": null,
+        "exact_std": null
+      }
+    },
+    "test_human_only": {
+      "explicit_unit": {
+        "n": 7,
+        "exact_per_seed": {
+          "1": 0.7142857142857143,
+          "2": 0.7142857142857143,
+          "3": 0.7142857142857143
+        },
+        "exact_mean": 0.7142857142857143,
+        "exact_std": 0.0
+      },
+      "bare_number": {
+        "n": 1,
+        "exact_per_seed": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "exact_mean": 1.0,
+        "exact_std": 0.0
+      },
+      "multi_number": {
+        "n": 3,
+        "exact_per_seed": {
+          "1": 0.6666666666666666,
+          "2": 0.6666666666666666,
+          "3": 0.6666666666666666
+        },
+        "exact_mean": 0.6666666666666666,
+        "exact_std": 0.0
+      },
+      "slang": {
+        "n": 2,
+        "exact_per_seed": {
+          "1": 0.5,
+          "2": 0.5,
+          "3": 0.5
+        },
+        "exact_mean": 0.5,
+        "exact_std": 0.0
+      },
+      "unaccented": {
+        "n": 5,
+        "exact_per_seed": {
+          "1": 0.4,
+          "2": 0.4,
+          "3": 0.4
+        },
+        "exact_mean": 0.4000000000000001,
+        "exact_std": 0.0
+      },
+      "unseen_span": {
+        "n": 3,
+        "exact_per_seed": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "exact_mean": 1.0,
+        "exact_std": 0.0
+      },
+      "long_multi_token": {
+        "n": 10,
+        "exact_per_seed": {
+          "1": 0.8,
+          "2": 0.8,
+          "3": 0.8
+        },
+        "exact_mean": 0.8000000000000002,
+        "exact_std": 0.0
+      },
+      "no_amount": {
+        "n": 0,
+        "exact_per_seed": {
+          "1": null,
+          "2": null,
+          "3": null
+        },
+        "exact_mean": null,
+        "exact_std": null
+      }
+    },
+    "probe": {
+      "explicit_unit": {
+        "n": 78,
+        "exact_per_seed": {
+          "1": 0.8974358974358975,
+          "2": 0.9102564102564102,
+          "3": 0.8846153846153846
+        },
+        "exact_mean": 0.8974358974358975,
+        "exact_std": 0.01282051282051283
+      },
+      "bare_number": {
+        "n": 0,
+        "exact_per_seed": {
+          "1": null,
+          "2": null,
+          "3": null
+        },
+        "exact_mean": null,
+        "exact_std": null
+      },
+      "multi_number": {
+        "n": 8,
+        "exact_per_seed": {
+          "1": 0.75,
+          "2": 0.75,
+          "3": 0.75
+        },
+        "exact_mean": 0.75,
+        "exact_std": 0.0
+      },
+      "slang": {
+        "n": 3,
+        "exact_per_seed": {
+          "1": 0.6666666666666666,
+          "2": 0.6666666666666666,
+          "3": 0.6666666666666666
+        },
+        "exact_mean": 0.6666666666666666,
+        "exact_std": 0.0
+      },
+      "unaccented": {
+        "n": 32,
+        "exact_per_seed": {
+          "1": 0.90625,
+          "2": 0.90625,
+          "3": 0.875
+        },
+        "exact_mean": 0.8958333333333334,
+        "exact_std": 0.018042195912175804
+      },
+      "unseen_span": {
+        "n": 6,
+        "exact_per_seed": {
+          "1": 0.6666666666666666,
+          "2": 0.6666666666666666,
+          "3": 0.6666666666666666
+        },
+        "exact_mean": 0.6666666666666666,
+        "exact_std": 0.0
+      },
+      "long_multi_token": {
+        "n": 26,
+        "exact_per_seed": {
+          "1": 0.8076923076923077,
+          "2": 0.8076923076923077,
+          "3": 0.8076923076923077
+        },
+        "exact_mean": 0.8076923076923078,
+        "exact_std": 0.0
+      },
+      "no_amount": {
+        "n": 0,
+        "exact_per_seed": {
+          "1": null,
+          "2": null,
+          "3": null
+        },
+        "exact_mean": null,
+        "exact_std": null
+      }
+    },
+    "probe_human_only": {
+      "explicit_unit": {
+        "n": 4,
+        "exact_per_seed": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "exact_mean": 1.0,
+        "exact_std": 0.0
+      },
+      "bare_number": {
+        "n": 0,
+        "exact_per_seed": {
+          "1": null,
+          "2": null,
+          "3": null
+        },
+        "exact_mean": null,
+        "exact_std": null
+      },
+      "multi_number": {
+        "n": 1,
+        "exact_per_seed": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "exact_mean": 1.0,
+        "exact_std": 0.0
+      },
+      "slang": {
+        "n": 1,
+        "exact_per_seed": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "exact_mean": 1.0,
+        "exact_std": 0.0
+      },
+      "unaccented": {
+        "n": 4,
+        "exact_per_seed": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "exact_mean": 1.0,
+        "exact_std": 0.0
+      },
+      "unseen_span": {
+        "n": 1,
+        "exact_per_seed": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "exact_mean": 1.0,
+        "exact_std": 0.0
+      },
+      "long_multi_token": {
+        "n": 4,
+        "exact_per_seed": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "exact_mean": 1.0,
+        "exact_std": 0.0
+      },
+      "no_amount": {
+        "n": 0,
+        "exact_per_seed": {
+          "1": null,
+          "2": null,
+          "3": null
+        },
+        "exact_mean": null,
+        "exact_std": null
+      }
+    }
+  },
+  "slice_definitions": {
+    "explicit_unit": "propose_value category",
+    "bare_number": "propose_value category",
+    "multi_number": "propose_value category",
+    "slang": "propose_value category (xi, chai, lit, cu, ty)",
+    "unaccented": "record accented == false",
+    "unseen_span": "gold value text (exact string) not among the complete train values",
+    "long_multi_token": "gold value covers > 2 model tokens or contains a space",
+    "no_amount": "complete record with value null",
+    "scope": "value_status == complete; *_human_only: value_provenance == human"
+  },
+  "multi_number": {
+    "errors_file": "experiments/value-span-v4-nonlinear-head/multi-number-errors.jsonl",
+    "n_errors": {
+      "seed1": {
+        "test": 6,
+        "probe": 2
+      },
+      "seed2": {
+        "test": 6,
+        "probe": 2
+      },
+      "seed3": {
+        "test": 6,
+        "probe": 2
+      }
+    },
+    "n_notes": {
+      "test": 22,
+      "probe": 8
+    }
+  },
+  "value_errors": {
+    "file": "experiments/value-span-v4-nonlinear-head/value-errors.jsonl",
+    "counts": {
+      "test": {
+        "wrong_number_selection": {
+          "1": 1,
+          "2": 1,
+          "3": 1
+        },
+        "boundary_truncation": {
+          "1": 15,
+          "2": 15,
+          "3": 15
+        },
+        "left_overrun": {
+          "1": 1,
+          "2": 1,
+          "3": 1
+        },
+        "right_overrun_date_time": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "right_overrun_punctuation": {
+          "1": 2,
+          "2": 2,
+          "3": 2
+        },
+        "right_overrun_other": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "partial_overlap": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "missed_value": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "spurious_value": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "probe": {
+        "wrong_number_selection": {
+          "1": 1,
+          "2": 1,
+          "3": 1
+        },
+        "boundary_truncation": {
+          "1": 6,
+          "2": 6,
+          "3": 7
+        },
+        "left_overrun": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "right_overrun_date_time": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "right_overrun_punctuation": {
+          "1": 1,
+          "2": 1,
+          "3": 1
+        },
+        "right_overrun_other": {
+          "1": 1,
+          "2": 0,
+          "3": 1
+        },
+        "partial_overlap": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "missed_value": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "spurious_value": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      }
+    }
+  },
+  "tracked_notes": {
+    "cho a Nam vay 1 triệu 20/10": {
+      "seed1": [
+        {
+          "set": "test",
+          "gold_value": {
+            "text": "1 triệu",
+            "start": 14,
+            "end": 21
+          },
+          "pred_value": {
+            "text": "1 triệu",
+            "start": 14,
+            "end": 21
+          },
+          "value_ok": true,
+          "category": null
+        }
+      ],
+      "seed2": [
+        {
+          "set": "test",
+          "gold_value": {
+            "text": "1 triệu",
+            "start": 14,
+            "end": 21
+          },
+          "pred_value": {
+            "text": "1 triệu",
+            "start": 14,
+            "end": 21
+          },
+          "value_ok": true,
+          "category": null
+        }
+      ],
+      "seed3": [
+        {
+          "set": "test",
+          "gold_value": {
+            "text": "1 triệu",
+            "start": 14,
+            "end": 21
+          },
+          "pred_value": {
+            "text": "1 triệu",
+            "start": 14,
+            "end": 21
+          },
+          "value_ok": true,
+          "category": null
+        }
+      ]
+    },
+    "Thắng vay 5 củ, hẹn t10 trả": {
+      "seed1": [
+        {
+          "set": "test",
+          "gold_value": {
+            "text": "5 củ",
+            "start": 10,
+            "end": 14
+          },
+          "pred_value": {
+            "text": "5 củ,",
+            "start": 10,
+            "end": 15
+          },
+          "value_ok": false,
+          "category": "right_overrun_punctuation"
+        }
+      ],
+      "seed2": [
+        {
+          "set": "test",
+          "gold_value": {
+            "text": "5 củ",
+            "start": 10,
+            "end": 14
+          },
+          "pred_value": {
+            "text": "5 củ,",
+            "start": 10,
+            "end": 15
+          },
+          "value_ok": false,
+          "category": "right_overrun_punctuation"
+        }
+      ],
+      "seed3": [
+        {
+          "set": "test",
+          "gold_value": {
+            "text": "5 củ",
+            "start": 10,
+            "end": 14
+          },
+          "pred_value": {
+            "text": "5 củ,",
+            "start": 10,
+            "end": 15
+          },
+          "value_ok": false,
+          "category": "right_overrun_punctuation"
+        }
+      ]
+    }
+  },
+  "per_seed": {
+    "1": {
+      "test": {
+        "n": 143,
+        "type_accuracy": 0.9440559440559441,
+        "type_macro_f1": 0.9538537575660961,
+        "target_f1": 0.8345323741007195,
+        "target_exact": 0.9020979020979021,
+        "type_target_joint": 0.8601398601398601,
+        "counts": {
+          "n": 143,
+          "type_correct": 135,
+          "target_correct": 129,
+          "joint_correct": 123
+        },
+        "value": {
+          "n": 139,
+          "exact": 0.8633093525179856,
+          "present_accuracy": 1.0,
+          "span_precision": 0.8633093525179856,
+          "span_recall": 0.8633093525179856,
+          "span_f1": 0.8633093525179856,
+          "full_joint": 0.7338129496402878,
+          "n_errors": 19,
+          "token_f1": 0.9608763693270735,
+          "human": {
+            "n": 12,
+            "exact": 0.75,
+            "present_accuracy": 1.0,
+            "span_precision": 0.75,
+            "span_recall": 0.75,
+            "span_f1": 0.75,
+            "full_joint": 0.5833333333333334,
+            "n_errors": 3
+          }
+        },
+        "value_slices": {
+          "explicit_unit": {
+            "n": 113,
+            "exact": 0.8938053097345132,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8938053097345132,
+            "span_recall": 0.8938053097345132,
+            "span_f1": 0.8938053097345132,
+            "full_joint": 0.7610619469026548,
+            "n_errors": 12
+          },
+          "bare_number": {
+            "n": 6,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.5,
+            "n_errors": 3
+          },
+          "multi_number": {
+            "n": 22,
+            "exact": 0.7272727272727273,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7272727272727273,
+            "span_recall": 0.7272727272727273,
+            "span_f1": 0.7272727272727273,
+            "full_joint": 0.5909090909090909,
+            "n_errors": 6
+          },
+          "slang": {
+            "n": 10,
+            "exact": 0.6,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6,
+            "span_recall": 0.6,
+            "span_f1": 0.6,
+            "full_joint": 0.5,
+            "n_errors": 4
+          },
+          "unaccented": {
+            "n": 50,
+            "exact": 0.88,
+            "present_accuracy": 1.0,
+            "span_precision": 0.88,
+            "span_recall": 0.88,
+            "span_f1": 0.88,
+            "full_joint": 0.72,
+            "n_errors": 6
+          },
+          "unseen_span": {
+            "n": 37,
+            "exact": 0.7297297297297297,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7297297297297297,
+            "span_recall": 0.7297297297297297,
+            "span_f1": 0.7297297297297297,
+            "full_joint": 0.5405405405405406,
+            "n_errors": 10
+          },
+          "long_multi_token": {
+            "n": 63,
+            "exact": 0.8095238095238095,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8095238095238095,
+            "span_recall": 0.8095238095238095,
+            "span_f1": 0.8095238095238095,
+            "full_joint": 0.6507936507936508,
+            "n_errors": 12
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        },
+        "value_slices_human": {
+          "explicit_unit": {
+            "n": 7,
+            "exact": 0.7142857142857143,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7142857142857143,
+            "span_recall": 0.7142857142857143,
+            "span_f1": 0.7142857142857143,
+            "full_joint": 0.42857142857142855,
+            "n_errors": 2
+          },
+          "bare_number": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 3,
+            "exact": 0.6666666666666666,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6666666666666666,
+            "span_recall": 0.6666666666666666,
+            "span_f1": 0.6666666666666666,
+            "full_joint": 0.3333333333333333,
+            "n_errors": 1
+          },
+          "slang": {
+            "n": 2,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.5,
+            "n_errors": 1
+          },
+          "unaccented": {
+            "n": 5,
+            "exact": 0.4,
+            "present_accuracy": 1.0,
+            "span_precision": 0.4,
+            "span_recall": 0.4,
+            "span_f1": 0.4000000000000001,
+            "full_joint": 0.0,
+            "n_errors": 3
+          },
+          "unseen_span": {
+            "n": 3,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "long_multi_token": {
+            "n": 10,
+            "exact": 0.8,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8,
+            "span_recall": 0.8,
+            "span_f1": 0.8000000000000002,
+            "full_joint": 0.6,
+            "n_errors": 2
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        }
+      },
+      "test-v1": {
+        "n": 105,
+        "type_accuracy": 0.9523809523809523,
+        "type_macro_f1": 0.962629263775274,
+        "target_f1": 0.8076923076923077,
+        "target_exact": 0.8857142857142857,
+        "type_target_joint": 0.8476190476190476,
+        "counts": {
+          "n": 105,
+          "type_correct": 100,
+          "target_correct": 93,
+          "joint_correct": 89
+        },
+        "value": {
+          "n": 105,
+          "exact": 0.9142857142857143,
+          "present_accuracy": 1.0,
+          "span_precision": 0.9142857142857143,
+          "span_recall": 0.9142857142857143,
+          "span_f1": 0.9142857142857143,
+          "full_joint": 0.7714285714285715,
+          "n_errors": 9,
+          "token_f1": 0.9767441860465118,
+          "human": {
+            "n": 7,
+            "exact": 0.7142857142857143,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7142857142857143,
+            "span_recall": 0.7142857142857143,
+            "span_f1": 0.7142857142857143,
+            "full_joint": 0.42857142857142855,
+            "n_errors": 2
+          }
+        },
+        "value_slices": {
+          "explicit_unit": {
+            "n": 99,
+            "exact": 0.9292929292929293,
+            "present_accuracy": 1.0,
+            "span_precision": 0.9292929292929293,
+            "span_recall": 0.9292929292929293,
+            "span_f1": 0.9292929292929293,
+            "full_joint": 0.7878787878787878,
+            "n_errors": 7
+          },
+          "bare_number": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 11,
+            "exact": 0.8181818181818182,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8181818181818182,
+            "span_recall": 0.8181818181818182,
+            "span_f1": 0.8181818181818182,
+            "full_joint": 0.6363636363636364,
+            "n_errors": 2
+          },
+          "slang": {
+            "n": 3,
+            "exact": 0.3333333333333333,
+            "present_accuracy": 1.0,
+            "span_precision": 0.3333333333333333,
+            "span_recall": 0.3333333333333333,
+            "span_f1": 0.3333333333333333,
+            "full_joint": 0.3333333333333333,
+            "n_errors": 2
+          },
+          "unaccented": {
+            "n": 42,
+            "exact": 0.9285714285714286,
+            "present_accuracy": 1.0,
+            "span_precision": 0.9285714285714286,
+            "span_recall": 0.9285714285714286,
+            "span_f1": 0.9285714285714286,
+            "full_joint": 0.7619047619047619,
+            "n_errors": 3
+          },
+          "unseen_span": {
+            "n": 21,
+            "exact": 0.8571428571428571,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8571428571428571,
+            "span_recall": 0.8571428571428571,
+            "span_f1": 0.8571428571428571,
+            "full_joint": 0.5714285714285714,
+            "n_errors": 3
+          },
+          "long_multi_token": {
+            "n": 38,
+            "exact": 0.8421052631578947,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8421052631578947,
+            "span_recall": 0.8421052631578947,
+            "span_f1": 0.8421052631578947,
+            "full_joint": 0.631578947368421,
+            "n_errors": 6
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        },
+        "value_slices_human": {
+          "explicit_unit": {
+            "n": 5,
+            "exact": 0.8,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8,
+            "span_recall": 0.8,
+            "span_f1": 0.8000000000000002,
+            "full_joint": 0.4,
+            "n_errors": 1
+          },
+          "bare_number": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 3,
+            "exact": 0.6666666666666666,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6666666666666666,
+            "span_recall": 0.6666666666666666,
+            "span_f1": 0.6666666666666666,
+            "full_joint": 0.3333333333333333,
+            "n_errors": 1
+          },
+          "slang": {
+            "n": 1,
+            "exact": 0.0,
+            "present_accuracy": 1.0,
+            "span_precision": 0.0,
+            "span_recall": 0.0,
+            "span_f1": 0.0,
+            "full_joint": 0.0,
+            "n_errors": 1
+          },
+          "unaccented": {
+            "n": 4,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.0,
+            "n_errors": 2
+          },
+          "unseen_span": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "long_multi_token": {
+            "n": 6,
+            "exact": 0.8333333333333334,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8333333333333334,
+            "span_recall": 0.8333333333333334,
+            "span_f1": 0.8333333333333334,
+            "full_joint": 0.5,
+            "n_errors": 1
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        }
+      },
+      "test-targeted": {
+        "n": 38,
+        "type_accuracy": 0.9210526315789473,
+        "type_macro_f1": 0.9349206349206349,
+        "target_f1": 0.9142857142857143,
+        "target_exact": 0.9473684210526315,
+        "type_target_joint": 0.8947368421052632,
+        "counts": {
+          "n": 38,
+          "type_correct": 35,
+          "target_correct": 36,
+          "joint_correct": 34
+        },
+        "value": {
+          "n": 34,
+          "exact": 0.7058823529411765,
+          "present_accuracy": 1.0,
+          "span_precision": 0.7058823529411765,
+          "span_recall": 0.7058823529411765,
+          "span_f1": 0.7058823529411765,
+          "full_joint": 0.6176470588235294,
+          "n_errors": 10,
+          "token_f1": 0.9156626506024096,
+          "human": {
+            "n": 5,
+            "exact": 0.8,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8,
+            "span_recall": 0.8,
+            "span_f1": 0.8000000000000002,
+            "full_joint": 0.8,
+            "n_errors": 1
+          }
+        },
+        "value_slices": {
+          "explicit_unit": {
+            "n": 14,
+            "exact": 0.6428571428571429,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6428571428571429,
+            "span_recall": 0.6428571428571429,
+            "span_f1": 0.6428571428571429,
+            "full_joint": 0.5714285714285714,
+            "n_errors": 5
+          },
+          "bare_number": {
+            "n": 6,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.5,
+            "n_errors": 3
+          },
+          "multi_number": {
+            "n": 11,
+            "exact": 0.6363636363636364,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6363636363636364,
+            "span_recall": 0.6363636363636364,
+            "span_f1": 0.6363636363636364,
+            "full_joint": 0.5454545454545454,
+            "n_errors": 4
+          },
+          "slang": {
+            "n": 7,
+            "exact": 0.7142857142857143,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7142857142857143,
+            "span_recall": 0.7142857142857143,
+            "span_f1": 0.7142857142857143,
+            "full_joint": 0.5714285714285714,
+            "n_errors": 2
+          },
+          "unaccented": {
+            "n": 8,
+            "exact": 0.625,
+            "present_accuracy": 1.0,
+            "span_precision": 0.625,
+            "span_recall": 0.625,
+            "span_f1": 0.625,
+            "full_joint": 0.5,
+            "n_errors": 3
+          },
+          "unseen_span": {
+            "n": 16,
+            "exact": 0.5625,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5625,
+            "span_recall": 0.5625,
+            "span_f1": 0.5625,
+            "full_joint": 0.5,
+            "n_errors": 7
+          },
+          "long_multi_token": {
+            "n": 25,
+            "exact": 0.76,
+            "present_accuracy": 1.0,
+            "span_precision": 0.76,
+            "span_recall": 0.76,
+            "span_f1": 0.76,
+            "full_joint": 0.68,
+            "n_errors": 6
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        },
+        "value_slices_human": {
+          "explicit_unit": {
+            "n": 2,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.5,
+            "n_errors": 1
+          },
+          "bare_number": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          },
+          "slang": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "unaccented": {
+            "n": 1,
+            "exact": 0.0,
+            "present_accuracy": 1.0,
+            "span_precision": 0.0,
+            "span_recall": 0.0,
+            "span_f1": 0.0,
+            "full_joint": 0.0,
+            "n_errors": 1
+          },
+          "unseen_span": {
+            "n": 2,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "long_multi_token": {
+            "n": 4,
+            "exact": 0.75,
+            "present_accuracy": 1.0,
+            "span_precision": 0.75,
+            "span_recall": 0.75,
+            "span_f1": 0.75,
+            "full_joint": 0.75,
+            "n_errors": 1
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        }
+      },
+      "probe": {
+        "n": 81,
+        "type_accuracy": 0.7777777777777778,
+        "type_macro_f1": 0.7580047403576816,
+        "target_f1": 0.7818181818181819,
+        "target_exact": 0.8148148148148148,
+        "type_target_joint": 0.6049382716049383,
+        "counts": {
+          "n": 81,
+          "type_correct": 63,
+          "target_correct": 66,
+          "joint_correct": 49
+        },
+        "value": {
+          "n": 81,
+          "exact": 0.8888888888888888,
+          "present_accuracy": 1.0,
+          "span_precision": 0.8888888888888888,
+          "span_recall": 0.8888888888888888,
+          "span_f1": 0.8888888888888888,
+          "full_joint": 0.5432098765432098,
+          "n_errors": 9,
+          "token_f1": 0.9659090909090908,
+          "human": {
+            "n": 5,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 0.8,
+            "n_errors": 0
+          }
+        },
+        "value_slices": {
+          "explicit_unit": {
+            "n": 78,
+            "exact": 0.8974358974358975,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8974358974358975,
+            "span_recall": 0.8974358974358975,
+            "span_f1": 0.8974358974358975,
+            "full_joint": 0.5512820512820513,
+            "n_errors": 8
+          },
+          "bare_number": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 8,
+            "exact": 0.75,
+            "present_accuracy": 1.0,
+            "span_precision": 0.75,
+            "span_recall": 0.75,
+            "span_f1": 0.75,
+            "full_joint": 0.375,
+            "n_errors": 2
+          },
+          "slang": {
+            "n": 3,
+            "exact": 0.6666666666666666,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6666666666666666,
+            "span_recall": 0.6666666666666666,
+            "span_f1": 0.6666666666666666,
+            "full_joint": 0.3333333333333333,
+            "n_errors": 1
+          },
+          "unaccented": {
+            "n": 32,
+            "exact": 0.90625,
+            "present_accuracy": 1.0,
+            "span_precision": 0.90625,
+            "span_recall": 0.90625,
+            "span_f1": 0.90625,
+            "full_joint": 0.53125,
+            "n_errors": 3
+          },
+          "unseen_span": {
+            "n": 6,
+            "exact": 0.6666666666666666,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6666666666666666,
+            "span_recall": 0.6666666666666666,
+            "span_f1": 0.6666666666666666,
+            "full_joint": 0.3333333333333333,
+            "n_errors": 2
+          },
+          "long_multi_token": {
+            "n": 26,
+            "exact": 0.8076923076923077,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8076923076923077,
+            "span_recall": 0.8076923076923077,
+            "span_f1": 0.8076923076923077,
+            "full_joint": 0.34615384615384615,
+            "n_errors": 5
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        },
+        "value_slices_human": {
+          "explicit_unit": {
+            "n": 4,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 0.75,
+            "n_errors": 0
+          },
+          "bare_number": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "slang": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "unaccented": {
+            "n": 4,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 0.75,
+            "n_errors": 0
+          },
+          "unseen_span": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "long_multi_token": {
+            "n": 4,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        }
+      },
+      "validation": {
+        "n": 149,
+        "type_accuracy": 0.9731543624161074,
+        "type_macro_f1": 0.9658398646976322,
+        "target_f1": 0.987012987012987,
+        "target_exact": 0.9932885906040269,
+        "type_target_joint": 0.9731543624161074,
+        "counts": {
+          "n": 149,
+          "type_correct": 145,
+          "target_correct": 148,
+          "joint_correct": 145
+        },
+        "value": {
+          "n": 146,
+          "exact": 0.9178082191780822,
+          "present_accuracy": 0.9931506849315068,
+          "span_precision": 0.9172413793103448,
+          "span_recall": 0.9236111111111112,
+          "span_f1": 0.9204152249134949,
+          "full_joint": 0.8904109589041096,
+          "n_errors": 12,
+          "token_f1": 0.9717682020802378,
+          "human": {
+            "n": 18,
+            "exact": 0.7222222222222222,
+            "present_accuracy": 0.9444444444444444,
+            "span_precision": 0.7058823529411765,
+            "span_recall": 0.75,
+            "span_f1": 0.7272727272727272,
+            "full_joint": 0.7222222222222222,
+            "n_errors": 5
+          }
+        },
+        "value_slices": {
+          "explicit_unit": {
+            "n": 124,
+            "exact": 0.9193548387096774,
+            "present_accuracy": 1.0,
+            "span_precision": 0.9193548387096774,
+            "span_recall": 0.9193548387096774,
+            "span_f1": 0.9193548387096774,
+            "full_joint": 0.8951612903225806,
+            "n_errors": 10
+          },
+          "bare_number": {
+            "n": 5,
+            "exact": 0.8,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8,
+            "span_recall": 0.8,
+            "span_f1": 0.8000000000000002,
+            "full_joint": 0.8,
+            "n_errors": 1
+          },
+          "multi_number": {
+            "n": 21,
+            "exact": 0.8095238095238095,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8095238095238095,
+            "span_recall": 0.8095238095238095,
+            "span_f1": 0.8095238095238095,
+            "full_joint": 0.7619047619047619,
+            "n_errors": 4
+          },
+          "slang": {
+            "n": 3,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "unaccented": {
+            "n": 61,
+            "exact": 0.8688524590163934,
+            "present_accuracy": 0.9836065573770492,
+            "span_precision": 0.8666666666666667,
+            "span_recall": 0.8813559322033898,
+            "span_f1": 0.8739495798319329,
+            "full_joint": 0.819672131147541,
+            "n_errors": 8
+          },
+          "unseen_span": {
+            "n": 18,
+            "exact": 0.8333333333333334,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8333333333333334,
+            "span_recall": 0.8333333333333334,
+            "span_f1": 0.8333333333333334,
+            "full_joint": 0.7222222222222222,
+            "n_errors": 3
+          },
+          "long_multi_token": {
+            "n": 57,
+            "exact": 0.9122807017543859,
+            "present_accuracy": 1.0,
+            "span_precision": 0.9122807017543859,
+            "span_recall": 0.9122807017543859,
+            "span_f1": 0.9122807017543859,
+            "full_joint": 0.8421052631578947,
+            "n_errors": 5
+          },
+          "no_amount": {
+            "n": 2,
+            "exact": 0.5,
+            "present_accuracy": 0.5,
+            "span_precision": 0.0,
+            "span_recall": 0.0,
+            "span_f1": 0.0,
+            "full_joint": 0.5,
+            "n_errors": 1
+          }
+        },
+        "value_slices_human": {
+          "explicit_unit": {
+            "n": 14,
+            "exact": 0.7857142857142857,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7857142857142857,
+            "span_recall": 0.7857142857142857,
+            "span_f1": 0.7857142857142857,
+            "full_joint": 0.7857142857142857,
+            "n_errors": 3
+          },
+          "bare_number": {
+            "n": 1,
+            "exact": 0.0,
+            "present_accuracy": 1.0,
+            "span_precision": 0.0,
+            "span_recall": 0.0,
+            "span_f1": 0.0,
+            "full_joint": 0.0,
+            "n_errors": 1
+          },
+          "multi_number": {
+            "n": 8,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.5,
+            "n_errors": 4
+          },
+          "slang": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "unaccented": {
+            "n": 8,
+            "exact": 0.625,
+            "present_accuracy": 0.875,
+            "span_precision": 0.5714285714285714,
+            "span_recall": 0.6666666666666666,
+            "span_f1": 0.6153846153846153,
+            "full_joint": 0.625,
+            "n_errors": 3
+          },
+          "unseen_span": {
+            "n": 2,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "long_multi_token": {
+            "n": 6,
+            "exact": 0.8333333333333334,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8333333333333334,
+            "span_recall": 0.8333333333333334,
+            "span_f1": 0.8333333333333334,
+            "full_joint": 0.8333333333333334,
+            "n_errors": 1
+          },
+          "no_amount": {
+            "n": 2,
+            "exact": 0.5,
+            "present_accuracy": 0.5,
+            "span_precision": 0.0,
+            "span_recall": 0.0,
+            "span_f1": 0.0,
+            "full_joint": 0.5,
+            "n_errors": 1
+          }
+        }
+      }
+    },
+    "2": {
+      "test": {
+        "n": 143,
+        "type_accuracy": 0.9440559440559441,
+        "type_macro_f1": 0.9538537575660961,
+        "target_f1": 0.8345323741007195,
+        "target_exact": 0.9020979020979021,
+        "type_target_joint": 0.8601398601398601,
+        "counts": {
+          "n": 143,
+          "type_correct": 135,
+          "target_correct": 129,
+          "joint_correct": 123
+        },
+        "value": {
+          "n": 139,
+          "exact": 0.8633093525179856,
+          "present_accuracy": 1.0,
+          "span_precision": 0.8633093525179856,
+          "span_recall": 0.8633093525179856,
+          "span_f1": 0.8633093525179856,
+          "full_joint": 0.7338129496402878,
+          "n_errors": 19,
+          "token_f1": 0.9608763693270735,
+          "human": {
+            "n": 12,
+            "exact": 0.75,
+            "present_accuracy": 1.0,
+            "span_precision": 0.75,
+            "span_recall": 0.75,
+            "span_f1": 0.75,
+            "full_joint": 0.5833333333333334,
+            "n_errors": 3
+          }
+        },
+        "value_slices": {
+          "explicit_unit": {
+            "n": 113,
+            "exact": 0.8849557522123894,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8849557522123894,
+            "span_recall": 0.8849557522123894,
+            "span_f1": 0.8849557522123894,
+            "full_joint": 0.7522123893805309,
+            "n_errors": 13
+          },
+          "bare_number": {
+            "n": 6,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.5,
+            "n_errors": 3
+          },
+          "multi_number": {
+            "n": 22,
+            "exact": 0.7272727272727273,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7272727272727273,
+            "span_recall": 0.7272727272727273,
+            "span_f1": 0.7272727272727273,
+            "full_joint": 0.5909090909090909,
+            "n_errors": 6
+          },
+          "slang": {
+            "n": 10,
+            "exact": 0.7,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7,
+            "span_recall": 0.7,
+            "span_f1": 0.7,
+            "full_joint": 0.6,
+            "n_errors": 3
+          },
+          "unaccented": {
+            "n": 50,
+            "exact": 0.86,
+            "present_accuracy": 1.0,
+            "span_precision": 0.86,
+            "span_recall": 0.86,
+            "span_f1": 0.8599999999999999,
+            "full_joint": 0.7,
+            "n_errors": 7
+          },
+          "unseen_span": {
+            "n": 37,
+            "exact": 0.7297297297297297,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7297297297297297,
+            "span_recall": 0.7297297297297297,
+            "span_f1": 0.7297297297297297,
+            "full_joint": 0.5405405405405406,
+            "n_errors": 10
+          },
+          "long_multi_token": {
+            "n": 63,
+            "exact": 0.8253968253968254,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8253968253968254,
+            "span_recall": 0.8253968253968254,
+            "span_f1": 0.8253968253968254,
+            "full_joint": 0.6666666666666666,
+            "n_errors": 11
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        },
+        "value_slices_human": {
+          "explicit_unit": {
+            "n": 7,
+            "exact": 0.7142857142857143,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7142857142857143,
+            "span_recall": 0.7142857142857143,
+            "span_f1": 0.7142857142857143,
+            "full_joint": 0.42857142857142855,
+            "n_errors": 2
+          },
+          "bare_number": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 3,
+            "exact": 0.6666666666666666,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6666666666666666,
+            "span_recall": 0.6666666666666666,
+            "span_f1": 0.6666666666666666,
+            "full_joint": 0.3333333333333333,
+            "n_errors": 1
+          },
+          "slang": {
+            "n": 2,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.5,
+            "n_errors": 1
+          },
+          "unaccented": {
+            "n": 5,
+            "exact": 0.4,
+            "present_accuracy": 1.0,
+            "span_precision": 0.4,
+            "span_recall": 0.4,
+            "span_f1": 0.4000000000000001,
+            "full_joint": 0.0,
+            "n_errors": 3
+          },
+          "unseen_span": {
+            "n": 3,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "long_multi_token": {
+            "n": 10,
+            "exact": 0.8,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8,
+            "span_recall": 0.8,
+            "span_f1": 0.8000000000000002,
+            "full_joint": 0.6,
+            "n_errors": 2
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        }
+      },
+      "test-v1": {
+        "n": 105,
+        "type_accuracy": 0.9523809523809523,
+        "type_macro_f1": 0.962629263775274,
+        "target_f1": 0.8076923076923077,
+        "target_exact": 0.8857142857142857,
+        "type_target_joint": 0.8476190476190476,
+        "counts": {
+          "n": 105,
+          "type_correct": 100,
+          "target_correct": 93,
+          "joint_correct": 89
+        },
+        "value": {
+          "n": 105,
+          "exact": 0.9047619047619048,
+          "present_accuracy": 1.0,
+          "span_precision": 0.9047619047619048,
+          "span_recall": 0.9047619047619048,
+          "span_f1": 0.9047619047619048,
+          "full_joint": 0.7619047619047619,
+          "n_errors": 10,
+          "token_f1": 0.9745762711864406,
+          "human": {
+            "n": 7,
+            "exact": 0.7142857142857143,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7142857142857143,
+            "span_recall": 0.7142857142857143,
+            "span_f1": 0.7142857142857143,
+            "full_joint": 0.42857142857142855,
+            "n_errors": 2
+          }
+        },
+        "value_slices": {
+          "explicit_unit": {
+            "n": 99,
+            "exact": 0.9191919191919192,
+            "present_accuracy": 1.0,
+            "span_precision": 0.9191919191919192,
+            "span_recall": 0.9191919191919192,
+            "span_f1": 0.9191919191919192,
+            "full_joint": 0.7777777777777778,
+            "n_errors": 8
+          },
+          "bare_number": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 11,
+            "exact": 0.8181818181818182,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8181818181818182,
+            "span_recall": 0.8181818181818182,
+            "span_f1": 0.8181818181818182,
+            "full_joint": 0.6363636363636364,
+            "n_errors": 2
+          },
+          "slang": {
+            "n": 3,
+            "exact": 0.3333333333333333,
+            "present_accuracy": 1.0,
+            "span_precision": 0.3333333333333333,
+            "span_recall": 0.3333333333333333,
+            "span_f1": 0.3333333333333333,
+            "full_joint": 0.3333333333333333,
+            "n_errors": 2
+          },
+          "unaccented": {
+            "n": 42,
+            "exact": 0.9047619047619048,
+            "present_accuracy": 1.0,
+            "span_precision": 0.9047619047619048,
+            "span_recall": 0.9047619047619048,
+            "span_f1": 0.9047619047619048,
+            "full_joint": 0.7380952380952381,
+            "n_errors": 4
+          },
+          "unseen_span": {
+            "n": 21,
+            "exact": 0.8571428571428571,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8571428571428571,
+            "span_recall": 0.8571428571428571,
+            "span_f1": 0.8571428571428571,
+            "full_joint": 0.5714285714285714,
+            "n_errors": 3
+          },
+          "long_multi_token": {
+            "n": 38,
+            "exact": 0.8421052631578947,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8421052631578947,
+            "span_recall": 0.8421052631578947,
+            "span_f1": 0.8421052631578947,
+            "full_joint": 0.631578947368421,
+            "n_errors": 6
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        },
+        "value_slices_human": {
+          "explicit_unit": {
+            "n": 5,
+            "exact": 0.8,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8,
+            "span_recall": 0.8,
+            "span_f1": 0.8000000000000002,
+            "full_joint": 0.4,
+            "n_errors": 1
+          },
+          "bare_number": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 3,
+            "exact": 0.6666666666666666,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6666666666666666,
+            "span_recall": 0.6666666666666666,
+            "span_f1": 0.6666666666666666,
+            "full_joint": 0.3333333333333333,
+            "n_errors": 1
+          },
+          "slang": {
+            "n": 1,
+            "exact": 0.0,
+            "present_accuracy": 1.0,
+            "span_precision": 0.0,
+            "span_recall": 0.0,
+            "span_f1": 0.0,
+            "full_joint": 0.0,
+            "n_errors": 1
+          },
+          "unaccented": {
+            "n": 4,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.0,
+            "n_errors": 2
+          },
+          "unseen_span": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "long_multi_token": {
+            "n": 6,
+            "exact": 0.8333333333333334,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8333333333333334,
+            "span_recall": 0.8333333333333334,
+            "span_f1": 0.8333333333333334,
+            "full_joint": 0.5,
+            "n_errors": 1
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        }
+      },
+      "test-targeted": {
+        "n": 38,
+        "type_accuracy": 0.9210526315789473,
+        "type_macro_f1": 0.9349206349206349,
+        "target_f1": 0.9142857142857143,
+        "target_exact": 0.9473684210526315,
+        "type_target_joint": 0.8947368421052632,
+        "counts": {
+          "n": 38,
+          "type_correct": 35,
+          "target_correct": 36,
+          "joint_correct": 34
+        },
+        "value": {
+          "n": 34,
+          "exact": 0.7352941176470589,
+          "present_accuracy": 1.0,
+          "span_precision": 0.7352941176470589,
+          "span_recall": 0.7352941176470589,
+          "span_f1": 0.735294117647059,
+          "full_joint": 0.6470588235294118,
+          "n_errors": 9,
+          "token_f1": 0.9221556886227544,
+          "human": {
+            "n": 5,
+            "exact": 0.8,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8,
+            "span_recall": 0.8,
+            "span_f1": 0.8000000000000002,
+            "full_joint": 0.8,
+            "n_errors": 1
+          }
+        },
+        "value_slices": {
+          "explicit_unit": {
+            "n": 14,
+            "exact": 0.6428571428571429,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6428571428571429,
+            "span_recall": 0.6428571428571429,
+            "span_f1": 0.6428571428571429,
+            "full_joint": 0.5714285714285714,
+            "n_errors": 5
+          },
+          "bare_number": {
+            "n": 6,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.5,
+            "n_errors": 3
+          },
+          "multi_number": {
+            "n": 11,
+            "exact": 0.6363636363636364,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6363636363636364,
+            "span_recall": 0.6363636363636364,
+            "span_f1": 0.6363636363636364,
+            "full_joint": 0.5454545454545454,
+            "n_errors": 4
+          },
+          "slang": {
+            "n": 7,
+            "exact": 0.8571428571428571,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8571428571428571,
+            "span_recall": 0.8571428571428571,
+            "span_f1": 0.8571428571428571,
+            "full_joint": 0.7142857142857143,
+            "n_errors": 1
+          },
+          "unaccented": {
+            "n": 8,
+            "exact": 0.625,
+            "present_accuracy": 1.0,
+            "span_precision": 0.625,
+            "span_recall": 0.625,
+            "span_f1": 0.625,
+            "full_joint": 0.5,
+            "n_errors": 3
+          },
+          "unseen_span": {
+            "n": 16,
+            "exact": 0.5625,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5625,
+            "span_recall": 0.5625,
+            "span_f1": 0.5625,
+            "full_joint": 0.5,
+            "n_errors": 7
+          },
+          "long_multi_token": {
+            "n": 25,
+            "exact": 0.8,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8,
+            "span_recall": 0.8,
+            "span_f1": 0.8000000000000002,
+            "full_joint": 0.72,
+            "n_errors": 5
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        },
+        "value_slices_human": {
+          "explicit_unit": {
+            "n": 2,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.5,
+            "n_errors": 1
+          },
+          "bare_number": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          },
+          "slang": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "unaccented": {
+            "n": 1,
+            "exact": 0.0,
+            "present_accuracy": 1.0,
+            "span_precision": 0.0,
+            "span_recall": 0.0,
+            "span_f1": 0.0,
+            "full_joint": 0.0,
+            "n_errors": 1
+          },
+          "unseen_span": {
+            "n": 2,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "long_multi_token": {
+            "n": 4,
+            "exact": 0.75,
+            "present_accuracy": 1.0,
+            "span_precision": 0.75,
+            "span_recall": 0.75,
+            "span_f1": 0.75,
+            "full_joint": 0.75,
+            "n_errors": 1
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        }
+      },
+      "probe": {
+        "n": 81,
+        "type_accuracy": 0.7777777777777778,
+        "type_macro_f1": 0.7580047403576816,
+        "target_f1": 0.7818181818181819,
+        "target_exact": 0.8148148148148148,
+        "type_target_joint": 0.6049382716049383,
+        "counts": {
+          "n": 81,
+          "type_correct": 63,
+          "target_correct": 66,
+          "joint_correct": 49
+        },
+        "value": {
+          "n": 81,
+          "exact": 0.9012345679012346,
+          "present_accuracy": 1.0,
+          "span_precision": 0.9012345679012346,
+          "span_recall": 0.9012345679012346,
+          "span_f1": 0.9012345679012346,
+          "full_joint": 0.5555555555555556,
+          "n_errors": 8,
+          "token_f1": 0.9686609686609686,
+          "human": {
+            "n": 5,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 0.8,
+            "n_errors": 0
+          }
+        },
+        "value_slices": {
+          "explicit_unit": {
+            "n": 78,
+            "exact": 0.9102564102564102,
+            "present_accuracy": 1.0,
+            "span_precision": 0.9102564102564102,
+            "span_recall": 0.9102564102564102,
+            "span_f1": 0.9102564102564102,
+            "full_joint": 0.5641025641025641,
+            "n_errors": 7
+          },
+          "bare_number": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 8,
+            "exact": 0.75,
+            "present_accuracy": 1.0,
+            "span_precision": 0.75,
+            "span_recall": 0.75,
+            "span_f1": 0.75,
+            "full_joint": 0.375,
+            "n_errors": 2
+          },
+          "slang": {
+            "n": 3,
+            "exact": 0.6666666666666666,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6666666666666666,
+            "span_recall": 0.6666666666666666,
+            "span_f1": 0.6666666666666666,
+            "full_joint": 0.3333333333333333,
+            "n_errors": 1
+          },
+          "unaccented": {
+            "n": 32,
+            "exact": 0.90625,
+            "present_accuracy": 1.0,
+            "span_precision": 0.90625,
+            "span_recall": 0.90625,
+            "span_f1": 0.90625,
+            "full_joint": 0.53125,
+            "n_errors": 3
+          },
+          "unseen_span": {
+            "n": 6,
+            "exact": 0.6666666666666666,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6666666666666666,
+            "span_recall": 0.6666666666666666,
+            "span_f1": 0.6666666666666666,
+            "full_joint": 0.3333333333333333,
+            "n_errors": 2
+          },
+          "long_multi_token": {
+            "n": 26,
+            "exact": 0.8076923076923077,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8076923076923077,
+            "span_recall": 0.8076923076923077,
+            "span_f1": 0.8076923076923077,
+            "full_joint": 0.34615384615384615,
+            "n_errors": 5
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        },
+        "value_slices_human": {
+          "explicit_unit": {
+            "n": 4,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 0.75,
+            "n_errors": 0
+          },
+          "bare_number": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "slang": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "unaccented": {
+            "n": 4,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 0.75,
+            "n_errors": 0
+          },
+          "unseen_span": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "long_multi_token": {
+            "n": 4,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        }
+      },
+      "validation": {
+        "n": 149,
+        "type_accuracy": 0.9731543624161074,
+        "type_macro_f1": 0.9658398646976322,
+        "target_f1": 0.987012987012987,
+        "target_exact": 0.9932885906040269,
+        "type_target_joint": 0.9731543624161074,
+        "counts": {
+          "n": 149,
+          "type_correct": 145,
+          "target_correct": 148,
+          "joint_correct": 145
+        },
+        "value": {
+          "n": 146,
+          "exact": 0.9178082191780822,
+          "present_accuracy": 0.9931506849315068,
+          "span_precision": 0.9172413793103448,
+          "span_recall": 0.9236111111111112,
+          "span_f1": 0.9204152249134949,
+          "full_joint": 0.8904109589041096,
+          "n_errors": 12,
+          "token_f1": 0.9717682020802378,
+          "human": {
+            "n": 18,
+            "exact": 0.7222222222222222,
+            "present_accuracy": 0.9444444444444444,
+            "span_precision": 0.7058823529411765,
+            "span_recall": 0.75,
+            "span_f1": 0.7272727272727272,
+            "full_joint": 0.7222222222222222,
+            "n_errors": 5
+          }
+        },
+        "value_slices": {
+          "explicit_unit": {
+            "n": 124,
+            "exact": 0.9193548387096774,
+            "present_accuracy": 1.0,
+            "span_precision": 0.9193548387096774,
+            "span_recall": 0.9193548387096774,
+            "span_f1": 0.9193548387096774,
+            "full_joint": 0.8951612903225806,
+            "n_errors": 10
+          },
+          "bare_number": {
+            "n": 5,
+            "exact": 0.8,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8,
+            "span_recall": 0.8,
+            "span_f1": 0.8000000000000002,
+            "full_joint": 0.8,
+            "n_errors": 1
+          },
+          "multi_number": {
+            "n": 21,
+            "exact": 0.7619047619047619,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7619047619047619,
+            "span_recall": 0.7619047619047619,
+            "span_f1": 0.7619047619047619,
+            "full_joint": 0.7142857142857143,
+            "n_errors": 5
+          },
+          "slang": {
+            "n": 3,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "unaccented": {
+            "n": 61,
+            "exact": 0.8852459016393442,
+            "present_accuracy": 0.9836065573770492,
+            "span_precision": 0.8833333333333333,
+            "span_recall": 0.8983050847457628,
+            "span_f1": 0.8907563025210085,
+            "full_joint": 0.8360655737704918,
+            "n_errors": 7
+          },
+          "unseen_span": {
+            "n": 18,
+            "exact": 0.8333333333333334,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8333333333333334,
+            "span_recall": 0.8333333333333334,
+            "span_f1": 0.8333333333333334,
+            "full_joint": 0.7222222222222222,
+            "n_errors": 3
+          },
+          "long_multi_token": {
+            "n": 57,
+            "exact": 0.9122807017543859,
+            "present_accuracy": 1.0,
+            "span_precision": 0.9122807017543859,
+            "span_recall": 0.9122807017543859,
+            "span_f1": 0.9122807017543859,
+            "full_joint": 0.8421052631578947,
+            "n_errors": 5
+          },
+          "no_amount": {
+            "n": 2,
+            "exact": 0.5,
+            "present_accuracy": 0.5,
+            "span_precision": 0.0,
+            "span_recall": 0.0,
+            "span_f1": 0.0,
+            "full_joint": 0.5,
+            "n_errors": 1
+          }
+        },
+        "value_slices_human": {
+          "explicit_unit": {
+            "n": 14,
+            "exact": 0.7857142857142857,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7857142857142857,
+            "span_recall": 0.7857142857142857,
+            "span_f1": 0.7857142857142857,
+            "full_joint": 0.7857142857142857,
+            "n_errors": 3
+          },
+          "bare_number": {
+            "n": 1,
+            "exact": 0.0,
+            "present_accuracy": 1.0,
+            "span_precision": 0.0,
+            "span_recall": 0.0,
+            "span_f1": 0.0,
+            "full_joint": 0.0,
+            "n_errors": 1
+          },
+          "multi_number": {
+            "n": 8,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.5,
+            "n_errors": 4
+          },
+          "slang": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "unaccented": {
+            "n": 8,
+            "exact": 0.625,
+            "present_accuracy": 0.875,
+            "span_precision": 0.5714285714285714,
+            "span_recall": 0.6666666666666666,
+            "span_f1": 0.6153846153846153,
+            "full_joint": 0.625,
+            "n_errors": 3
+          },
+          "unseen_span": {
+            "n": 2,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "long_multi_token": {
+            "n": 6,
+            "exact": 0.8333333333333334,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8333333333333334,
+            "span_recall": 0.8333333333333334,
+            "span_f1": 0.8333333333333334,
+            "full_joint": 0.8333333333333334,
+            "n_errors": 1
+          },
+          "no_amount": {
+            "n": 2,
+            "exact": 0.5,
+            "present_accuracy": 0.5,
+            "span_precision": 0.0,
+            "span_recall": 0.0,
+            "span_f1": 0.0,
+            "full_joint": 0.5,
+            "n_errors": 1
+          }
+        }
+      }
+    },
+    "3": {
+      "test": {
+        "n": 143,
+        "type_accuracy": 0.9440559440559441,
+        "type_macro_f1": 0.9538537575660961,
+        "target_f1": 0.8345323741007195,
+        "target_exact": 0.9020979020979021,
+        "type_target_joint": 0.8601398601398601,
+        "counts": {
+          "n": 143,
+          "type_correct": 135,
+          "target_correct": 129,
+          "joint_correct": 123
+        },
+        "value": {
+          "n": 139,
+          "exact": 0.8633093525179856,
+          "present_accuracy": 1.0,
+          "span_precision": 0.8633093525179856,
+          "span_recall": 0.8633093525179856,
+          "span_f1": 0.8633093525179856,
+          "full_joint": 0.7338129496402878,
+          "n_errors": 19,
+          "token_f1": 0.9608763693270735,
+          "human": {
+            "n": 12,
+            "exact": 0.75,
+            "present_accuracy": 1.0,
+            "span_precision": 0.75,
+            "span_recall": 0.75,
+            "span_f1": 0.75,
+            "full_joint": 0.5833333333333334,
+            "n_errors": 3
+          }
+        },
+        "value_slices": {
+          "explicit_unit": {
+            "n": 113,
+            "exact": 0.8849557522123894,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8849557522123894,
+            "span_recall": 0.8849557522123894,
+            "span_f1": 0.8849557522123894,
+            "full_joint": 0.7522123893805309,
+            "n_errors": 13
+          },
+          "bare_number": {
+            "n": 6,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.5,
+            "n_errors": 3
+          },
+          "multi_number": {
+            "n": 22,
+            "exact": 0.7272727272727273,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7272727272727273,
+            "span_recall": 0.7272727272727273,
+            "span_f1": 0.7272727272727273,
+            "full_joint": 0.5909090909090909,
+            "n_errors": 6
+          },
+          "slang": {
+            "n": 10,
+            "exact": 0.7,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7,
+            "span_recall": 0.7,
+            "span_f1": 0.7,
+            "full_joint": 0.6,
+            "n_errors": 3
+          },
+          "unaccented": {
+            "n": 50,
+            "exact": 0.86,
+            "present_accuracy": 1.0,
+            "span_precision": 0.86,
+            "span_recall": 0.86,
+            "span_f1": 0.8599999999999999,
+            "full_joint": 0.7,
+            "n_errors": 7
+          },
+          "unseen_span": {
+            "n": 37,
+            "exact": 0.7297297297297297,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7297297297297297,
+            "span_recall": 0.7297297297297297,
+            "span_f1": 0.7297297297297297,
+            "full_joint": 0.5405405405405406,
+            "n_errors": 10
+          },
+          "long_multi_token": {
+            "n": 63,
+            "exact": 0.8253968253968254,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8253968253968254,
+            "span_recall": 0.8253968253968254,
+            "span_f1": 0.8253968253968254,
+            "full_joint": 0.6666666666666666,
+            "n_errors": 11
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        },
+        "value_slices_human": {
+          "explicit_unit": {
+            "n": 7,
+            "exact": 0.7142857142857143,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7142857142857143,
+            "span_recall": 0.7142857142857143,
+            "span_f1": 0.7142857142857143,
+            "full_joint": 0.42857142857142855,
+            "n_errors": 2
+          },
+          "bare_number": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 3,
+            "exact": 0.6666666666666666,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6666666666666666,
+            "span_recall": 0.6666666666666666,
+            "span_f1": 0.6666666666666666,
+            "full_joint": 0.3333333333333333,
+            "n_errors": 1
+          },
+          "slang": {
+            "n": 2,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.5,
+            "n_errors": 1
+          },
+          "unaccented": {
+            "n": 5,
+            "exact": 0.4,
+            "present_accuracy": 1.0,
+            "span_precision": 0.4,
+            "span_recall": 0.4,
+            "span_f1": 0.4000000000000001,
+            "full_joint": 0.0,
+            "n_errors": 3
+          },
+          "unseen_span": {
+            "n": 3,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "long_multi_token": {
+            "n": 10,
+            "exact": 0.8,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8,
+            "span_recall": 0.8,
+            "span_f1": 0.8000000000000002,
+            "full_joint": 0.6,
+            "n_errors": 2
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        }
+      },
+      "test-v1": {
+        "n": 105,
+        "type_accuracy": 0.9523809523809523,
+        "type_macro_f1": 0.962629263775274,
+        "target_f1": 0.8076923076923077,
+        "target_exact": 0.8857142857142857,
+        "type_target_joint": 0.8476190476190476,
+        "counts": {
+          "n": 105,
+          "type_correct": 100,
+          "target_correct": 93,
+          "joint_correct": 89
+        },
+        "value": {
+          "n": 105,
+          "exact": 0.9047619047619048,
+          "present_accuracy": 1.0,
+          "span_precision": 0.9047619047619048,
+          "span_recall": 0.9047619047619048,
+          "span_f1": 0.9047619047619048,
+          "full_joint": 0.7619047619047619,
+          "n_errors": 10,
+          "token_f1": 0.9745762711864406,
+          "human": {
+            "n": 7,
+            "exact": 0.7142857142857143,
+            "present_accuracy": 1.0,
+            "span_precision": 0.7142857142857143,
+            "span_recall": 0.7142857142857143,
+            "span_f1": 0.7142857142857143,
+            "full_joint": 0.42857142857142855,
+            "n_errors": 2
+          }
+        },
+        "value_slices": {
+          "explicit_unit": {
+            "n": 99,
+            "exact": 0.9191919191919192,
+            "present_accuracy": 1.0,
+            "span_precision": 0.9191919191919192,
+            "span_recall": 0.9191919191919192,
+            "span_f1": 0.9191919191919192,
+            "full_joint": 0.7777777777777778,
+            "n_errors": 8
+          },
+          "bare_number": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 11,
+            "exact": 0.8181818181818182,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8181818181818182,
+            "span_recall": 0.8181818181818182,
+            "span_f1": 0.8181818181818182,
+            "full_joint": 0.6363636363636364,
+            "n_errors": 2
+          },
+          "slang": {
+            "n": 3,
+            "exact": 0.3333333333333333,
+            "present_accuracy": 1.0,
+            "span_precision": 0.3333333333333333,
+            "span_recall": 0.3333333333333333,
+            "span_f1": 0.3333333333333333,
+            "full_joint": 0.3333333333333333,
+            "n_errors": 2
+          },
+          "unaccented": {
+            "n": 42,
+            "exact": 0.9047619047619048,
+            "present_accuracy": 1.0,
+            "span_precision": 0.9047619047619048,
+            "span_recall": 0.9047619047619048,
+            "span_f1": 0.9047619047619048,
+            "full_joint": 0.7380952380952381,
+            "n_errors": 4
+          },
+          "unseen_span": {
+            "n": 21,
+            "exact": 0.8571428571428571,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8571428571428571,
+            "span_recall": 0.8571428571428571,
+            "span_f1": 0.8571428571428571,
+            "full_joint": 0.5714285714285714,
+            "n_errors": 3
+          },
+          "long_multi_token": {
+            "n": 38,
+            "exact": 0.8421052631578947,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8421052631578947,
+            "span_recall": 0.8421052631578947,
+            "span_f1": 0.8421052631578947,
+            "full_joint": 0.631578947368421,
+            "n_errors": 6
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        },
+        "value_slices_human": {
+          "explicit_unit": {
+            "n": 5,
+            "exact": 0.8,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8,
+            "span_recall": 0.8,
+            "span_f1": 0.8000000000000002,
+            "full_joint": 0.4,
+            "n_errors": 1
+          },
+          "bare_number": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 3,
+            "exact": 0.6666666666666666,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6666666666666666,
+            "span_recall": 0.6666666666666666,
+            "span_f1": 0.6666666666666666,
+            "full_joint": 0.3333333333333333,
+            "n_errors": 1
+          },
+          "slang": {
+            "n": 1,
+            "exact": 0.0,
+            "present_accuracy": 1.0,
+            "span_precision": 0.0,
+            "span_recall": 0.0,
+            "span_f1": 0.0,
+            "full_joint": 0.0,
+            "n_errors": 1
+          },
+          "unaccented": {
+            "n": 4,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.0,
+            "n_errors": 2
+          },
+          "unseen_span": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "long_multi_token": {
+            "n": 6,
+            "exact": 0.8333333333333334,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8333333333333334,
+            "span_recall": 0.8333333333333334,
+            "span_f1": 0.8333333333333334,
+            "full_joint": 0.5,
+            "n_errors": 1
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        }
+      },
+      "test-targeted": {
+        "n": 38,
+        "type_accuracy": 0.9210526315789473,
+        "type_macro_f1": 0.9349206349206349,
+        "target_f1": 0.9142857142857143,
+        "target_exact": 0.9473684210526315,
+        "type_target_joint": 0.8947368421052632,
+        "counts": {
+          "n": 38,
+          "type_correct": 35,
+          "target_correct": 36,
+          "joint_correct": 34
+        },
+        "value": {
+          "n": 34,
+          "exact": 0.7352941176470589,
+          "present_accuracy": 1.0,
+          "span_precision": 0.7352941176470589,
+          "span_recall": 0.7352941176470589,
+          "span_f1": 0.735294117647059,
+          "full_joint": 0.6470588235294118,
+          "n_errors": 9,
+          "token_f1": 0.9221556886227544,
+          "human": {
+            "n": 5,
+            "exact": 0.8,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8,
+            "span_recall": 0.8,
+            "span_f1": 0.8000000000000002,
+            "full_joint": 0.8,
+            "n_errors": 1
+          }
+        },
+        "value_slices": {
+          "explicit_unit": {
+            "n": 14,
+            "exact": 0.6428571428571429,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6428571428571429,
+            "span_recall": 0.6428571428571429,
+            "span_f1": 0.6428571428571429,
+            "full_joint": 0.5714285714285714,
+            "n_errors": 5
+          },
+          "bare_number": {
+            "n": 6,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.5,
+            "n_errors": 3
+          },
+          "multi_number": {
+            "n": 11,
+            "exact": 0.6363636363636364,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6363636363636364,
+            "span_recall": 0.6363636363636364,
+            "span_f1": 0.6363636363636364,
+            "full_joint": 0.5454545454545454,
+            "n_errors": 4
+          },
+          "slang": {
+            "n": 7,
+            "exact": 0.8571428571428571,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8571428571428571,
+            "span_recall": 0.8571428571428571,
+            "span_f1": 0.8571428571428571,
+            "full_joint": 0.7142857142857143,
+            "n_errors": 1
+          },
+          "unaccented": {
+            "n": 8,
+            "exact": 0.625,
+            "present_accuracy": 1.0,
+            "span_precision": 0.625,
+            "span_recall": 0.625,
+            "span_f1": 0.625,
+            "full_joint": 0.5,
+            "n_errors": 3
+          },
+          "unseen_span": {
+            "n": 16,
+            "exact": 0.5625,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5625,
+            "span_recall": 0.5625,
+            "span_f1": 0.5625,
+            "full_joint": 0.5,
+            "n_errors": 7
+          },
+          "long_multi_token": {
+            "n": 25,
+            "exact": 0.8,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8,
+            "span_recall": 0.8,
+            "span_f1": 0.8000000000000002,
+            "full_joint": 0.72,
+            "n_errors": 5
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        },
+        "value_slices_human": {
+          "explicit_unit": {
+            "n": 2,
+            "exact": 0.5,
+            "present_accuracy": 1.0,
+            "span_precision": 0.5,
+            "span_recall": 0.5,
+            "span_f1": 0.5,
+            "full_joint": 0.5,
+            "n_errors": 1
+          },
+          "bare_number": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          },
+          "slang": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "unaccented": {
+            "n": 1,
+            "exact": 0.0,
+            "present_accuracy": 1.0,
+            "span_precision": 0.0,
+            "span_recall": 0.0,
+            "span_f1": 0.0,
+            "full_joint": 0.0,
+            "n_errors": 1
+          },
+          "unseen_span": {
+            "n": 2,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "long_multi_token": {
+            "n": 4,
+            "exact": 0.75,
+            "present_accuracy": 1.0,
+            "span_precision": 0.75,
+            "span_recall": 0.75,
+            "span_f1": 0.75,
+            "full_joint": 0.75,
+            "n_errors": 1
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        }
+      },
+      "probe": {
+        "n": 81,
+        "type_accuracy": 0.7777777777777778,
+        "type_macro_f1": 0.7580047403576816,
+        "target_f1": 0.7818181818181819,
+        "target_exact": 0.8148148148148148,
+        "type_target_joint": 0.6049382716049383,
+        "counts": {
+          "n": 81,
+          "type_correct": 63,
+          "target_correct": 66,
+          "joint_correct": 49
+        },
+        "value": {
+          "n": 81,
+          "exact": 0.8765432098765432,
+          "present_accuracy": 1.0,
+          "span_precision": 0.8765432098765432,
+          "span_recall": 0.8765432098765432,
+          "span_f1": 0.8765432098765432,
+          "full_joint": 0.5308641975308642,
+          "n_errors": 10,
+          "token_f1": 0.9629629629629629,
+          "human": {
+            "n": 5,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 0.8,
+            "n_errors": 0
+          }
+        },
+        "value_slices": {
+          "explicit_unit": {
+            "n": 78,
+            "exact": 0.8846153846153846,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8846153846153846,
+            "span_recall": 0.8846153846153846,
+            "span_f1": 0.8846153846153846,
+            "full_joint": 0.5384615384615384,
+            "n_errors": 9
+          },
+          "bare_number": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 8,
+            "exact": 0.75,
+            "present_accuracy": 1.0,
+            "span_precision": 0.75,
+            "span_recall": 0.75,
+            "span_f1": 0.75,
+            "full_joint": 0.375,
+            "n_errors": 2
+          },
+          "slang": {
+            "n": 3,
+            "exact": 0.6666666666666666,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6666666666666666,
+            "span_recall": 0.6666666666666666,
+            "span_f1": 0.6666666666666666,
+            "full_joint": 0.3333333333333333,
+            "n_errors": 1
+          },
+          "unaccented": {
+            "n": 32,
+            "exact": 0.875,
+            "present_accuracy": 1.0,
+            "span_precision": 0.875,
+            "span_recall": 0.875,
+            "span_f1": 0.875,
+            "full_joint": 0.5,
+            "n_errors": 4
+          },
+          "unseen_span": {
+            "n": 6,
+            "exact": 0.6666666666666666,
+            "present_accuracy": 1.0,
+            "span_precision": 0.6666666666666666,
+            "span_recall": 0.6666666666666666,
+            "span_f1": 0.6666666666666666,
+            "full_joint": 0.3333333333333333,
+            "n_errors": 2
+          },
+          "long_multi_token": {
+            "n": 26,
+            "exact": 0.8076923076923077,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8076923076923077,
+            "span_recall": 0.8076923076923077,
+            "span_f1": 0.8076923076923077,
+            "full_joint": 0.34615384615384615,
+            "n_errors": 5
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        },
+        "value_slices_human": {
+          "explicit_unit": {
+            "n": 4,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 0.75,
+            "n_errors": 0
+          },
+          "bare_number": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          },
+          "multi_number": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "slang": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "unaccented": {
+            "n": 4,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 0.75,
+            "n_errors": 0
+          },
+          "unseen_span": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "long_multi_token": {
+            "n": 4,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "no_amount": {
+            "n": 0,
+            "exact": null,
+            "present_accuracy": null,
+            "span_precision": null,
+            "span_recall": null,
+            "span_f1": null,
+            "full_joint": null,
+            "n_errors": 0
+          }
+        }
+      },
+      "validation": {
+        "n": 149,
+        "type_accuracy": 0.9731543624161074,
+        "type_macro_f1": 0.9658398646976322,
+        "target_f1": 0.987012987012987,
+        "target_exact": 0.9932885906040269,
+        "type_target_joint": 0.9731543624161074,
+        "counts": {
+          "n": 149,
+          "type_correct": 145,
+          "target_correct": 148,
+          "joint_correct": 145
+        },
+        "value": {
+          "n": 146,
+          "exact": 0.9315068493150684,
+          "present_accuracy": 0.9931506849315068,
+          "span_precision": 0.9310344827586207,
+          "span_recall": 0.9375,
+          "span_f1": 0.9342560553633218,
+          "full_joint": 0.9041095890410958,
+          "n_errors": 10,
+          "token_f1": 0.9777777777777777,
+          "human": {
+            "n": 18,
+            "exact": 0.7777777777777778,
+            "present_accuracy": 0.9444444444444444,
+            "span_precision": 0.7647058823529411,
+            "span_recall": 0.8125,
+            "span_f1": 0.787878787878788,
+            "full_joint": 0.7777777777777778,
+            "n_errors": 4
+          }
+        },
+        "value_slices": {
+          "explicit_unit": {
+            "n": 124,
+            "exact": 0.9354838709677419,
+            "present_accuracy": 1.0,
+            "span_precision": 0.9354838709677419,
+            "span_recall": 0.9354838709677419,
+            "span_f1": 0.9354838709677419,
+            "full_joint": 0.9112903225806451,
+            "n_errors": 8
+          },
+          "bare_number": {
+            "n": 5,
+            "exact": 0.8,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8,
+            "span_recall": 0.8,
+            "span_f1": 0.8000000000000002,
+            "full_joint": 0.8,
+            "n_errors": 1
+          },
+          "multi_number": {
+            "n": 21,
+            "exact": 0.8571428571428571,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8571428571428571,
+            "span_recall": 0.8571428571428571,
+            "span_f1": 0.8571428571428571,
+            "full_joint": 0.8095238095238095,
+            "n_errors": 3
+          },
+          "slang": {
+            "n": 3,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "unaccented": {
+            "n": 61,
+            "exact": 0.8852459016393442,
+            "present_accuracy": 0.9836065573770492,
+            "span_precision": 0.8833333333333333,
+            "span_recall": 0.8983050847457628,
+            "span_f1": 0.8907563025210085,
+            "full_joint": 0.8360655737704918,
+            "n_errors": 7
+          },
+          "unseen_span": {
+            "n": 18,
+            "exact": 0.8333333333333334,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8333333333333334,
+            "span_recall": 0.8333333333333334,
+            "span_f1": 0.8333333333333334,
+            "full_joint": 0.7222222222222222,
+            "n_errors": 3
+          },
+          "long_multi_token": {
+            "n": 57,
+            "exact": 0.9298245614035088,
+            "present_accuracy": 1.0,
+            "span_precision": 0.9298245614035088,
+            "span_recall": 0.9298245614035088,
+            "span_f1": 0.9298245614035088,
+            "full_joint": 0.8596491228070176,
+            "n_errors": 4
+          },
+          "no_amount": {
+            "n": 2,
+            "exact": 0.5,
+            "present_accuracy": 0.5,
+            "span_precision": 0.0,
+            "span_recall": 0.0,
+            "span_f1": 0.0,
+            "full_joint": 0.5,
+            "n_errors": 1
+          }
+        },
+        "value_slices_human": {
+          "explicit_unit": {
+            "n": 14,
+            "exact": 0.8571428571428571,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8571428571428571,
+            "span_recall": 0.8571428571428571,
+            "span_f1": 0.8571428571428571,
+            "full_joint": 0.8571428571428571,
+            "n_errors": 2
+          },
+          "bare_number": {
+            "n": 1,
+            "exact": 0.0,
+            "present_accuracy": 1.0,
+            "span_precision": 0.0,
+            "span_recall": 0.0,
+            "span_f1": 0.0,
+            "full_joint": 0.0,
+            "n_errors": 1
+          },
+          "multi_number": {
+            "n": 8,
+            "exact": 0.625,
+            "present_accuracy": 1.0,
+            "span_precision": 0.625,
+            "span_recall": 0.625,
+            "span_f1": 0.625,
+            "full_joint": 0.625,
+            "n_errors": 3
+          },
+          "slang": {
+            "n": 1,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "unaccented": {
+            "n": 8,
+            "exact": 0.625,
+            "present_accuracy": 0.875,
+            "span_precision": 0.5714285714285714,
+            "span_recall": 0.6666666666666666,
+            "span_f1": 0.6153846153846153,
+            "full_joint": 0.625,
+            "n_errors": 3
+          },
+          "unseen_span": {
+            "n": 2,
+            "exact": 1.0,
+            "present_accuracy": 1.0,
+            "span_precision": 1.0,
+            "span_recall": 1.0,
+            "span_f1": 1.0,
+            "full_joint": 1.0,
+            "n_errors": 0
+          },
+          "long_multi_token": {
+            "n": 6,
+            "exact": 0.8333333333333334,
+            "present_accuracy": 1.0,
+            "span_precision": 0.8333333333333334,
+            "span_recall": 0.8333333333333334,
+            "span_f1": 0.8333333333333334,
+            "full_joint": 0.8333333333333334,
+            "n_errors": 1
+          },
+          "no_amount": {
+            "n": 2,
+            "exact": 0.5,
+            "present_accuracy": 0.5,
+            "span_precision": 0.0,
+            "span_recall": 0.0,
+            "span_f1": 0.0,
+            "full_joint": 0.5,
+            "n_errors": 1
+          }
+        }
+      }
+    }
+  },
+  "monitoring_only": [
+    "validation"
+  ]
+}

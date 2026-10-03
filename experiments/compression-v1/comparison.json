@@ -1,0 +1,5814 @@
+{
+ "experiment": "compression-v1",
+ "protocol": "experiments/compression-v1/protocol.json",
+ "protocol_sha256": "b23e0f9eaf663b2c200bf0637f0cbf77fb7d20faec672047595488b5e147791f",
+ "baseline": {
+  "checkpoints": "models/distillation-v2/supervised/student-4x768-pretrained/seed{1,2,3}",
+  "model_sha256": {
+   "seed1": "ecce8554f4a03c449de101aaa1957508cfaa9e3138e8f73955b647724267c3e0",
+   "seed2": "8a6cfec537bb6697f6d3a75bfbee639b816f43cf8569a31cdfa9c0df32fe5774",
+   "seed3": "ecee61667abee0c2135f2a0e316109ace3658c39d480e71ffbe4289b3e4309b8"
+  },
+  "tokenizer_sha256": "746cc4a588fb974f8a2d5316ec25940791d9ef1521f72b5294bc18474ea71491"
+ },
+ "position_truncation": {
+  "rows_before": 2050,
+  "rows_after": 34,
+  "rule": "max_length + pad_id + 1; RoBERTa position ids = pad_id + cumsum(non-pad mask), pads use pad_id",
+  "verify": [
+   {
+    "checkpoint": "models/distillation-v2/supervised/student-4x768-pretrained/seed1",
+    "out": "models/compression-v1/positions/student-4x768-pretrained/seed1",
+    "max_length": 32,
+    "rows_before": 2050,
+    "rows_after": 34,
+    "splits": {
+     "train": {
+      "n": 723,
+      "tokenization_identical": true,
+      "type_logits_max_abs_diff": 0.0,
+      "tag_logits_max_abs_diff": 0.0,
+      "logits_bitwise_equal": true,
+      "types_identical": true,
+      "spans_identical": true,
+      "n_type_mismatch": 0,
+      "n_span_mismatch": 0
+     },
+     "test": {
+      "n": 105,
+      "tokenization_identical": true,
+      "type_logits_max_abs_diff": 0.0,
+      "tag_logits_max_abs_diff": 0.0,
+      "logits_bitwise_equal": true,
+      "types_identical": true,
+      "spans_identical": true,
+      "n_type_mismatch": 0,
+      "n_span_mismatch": 0
+     },
+     "probe": {
+      "n": 81,
+      "tokenization_identical": true,
+      "type_logits_max_abs_diff": 0.0,
+      "tag_logits_max_abs_diff": 0.0,
+      "logits_bitwise_equal": true,
+      "types_identical": true,
+      "spans_identical": true,
+      "n_type_mismatch": 0,
+      "n_span_mismatch": 0
+     }
+    },
+    "params_before": 45666059,
+    "params_after": 44117771,
+    "params_saved": 1548288,
+    "fp32_safetensors_mb_before": 182.672796,
+    "fp32_safetensors_mb_after": 176.479628,
+    "fp32_safetensors_mb_saved": 6.193168000000014,
+    "n_texts_verified": 909,
+    "all_identical": true,
+    "environment": {
+     "torch": "2.14.0",
+     "transformers": "5.17.0"
+    }
+   },
+   {
+    "checkpoint": "models/distillation-v2/supervised/student-4x768-pretrained/seed2",
+    "out": "models/compression-v1/positions/student-4x768-pretrained/seed2",
+    "max_length": 32,
+    "rows_before": 2050,
+    "rows_after": 34,
+    "splits": {
+     "train": {
+      "n": 723,
+      "tokenization_identical": true,
+      "type_logits_max_abs_diff": 0.0,
+      "tag_logits_max_abs_diff": 0.0,
+      "logits_bitwise_equal": true,
+      "types_identical": true,
+      "spans_identical": true,
+      "n_type_mismatch": 0,
+      "n_span_mismatch": 0
+     },
+     "test": {
+      "n": 105,
+      "tokenization_identical": true,
+      "type_logits_max_abs_diff": 0.0,
+      "tag_logits_max_abs_diff": 0.0,
+      "logits_bitwise_equal": true,
+      "types_identical": true,
+      "spans_identical": true,
+      "n_type_mismatch": 0,
+      "n_span_mismatch": 0
+     },
+     "probe": {
+      "n": 81,
+      "tokenization_identical": true,
+      "type_logits_max_abs_diff": 0.0,
+      "tag_logits_max_abs_diff": 0.0,
+      "logits_bitwise_equal": true,
+      "types_identical": true,
+      "spans_identical": true,
+      "n_type_mismatch": 0,
+      "n_span_mismatch": 0
+     }
+    },
+    "params_before": 45666059,
+    "params_after": 44117771,
+    "params_saved": 1548288,
+    "fp32_safetensors_mb_before": 182.672796,
+    "fp32_safetensors_mb_after": 176.479628,
+    "fp32_safetensors_mb_saved": 6.193168000000014,
+    "n_texts_verified": 909,
+    "all_identical": true,
+    "environment": {
+     "torch": "2.14.0",
+     "transformers": "5.17.0"
+    }
+   },
+   {
+    "checkpoint": "models/distillation-v2/supervised/student-4x768-pretrained/seed3",
+    "out": "models/compression-v1/positions/student-4x768-pretrained/seed3",
+    "max_length": 32,
+    "rows_before": 2050,
+    "rows_after": 34,
+    "splits": {
+     "train": {
+      "n": 723,
+      "tokenization_identical": true,
+      "type_logits_max_abs_diff": 0.0,
+      "tag_logits_max_abs_diff": 0.0,
+      "logits_bitwise_equal": true,
+      "types_identical": true,
+      "spans_identical": true,
+      "n_type_mismatch": 0,
+      "n_span_mismatch": 0
+     },
+     "test": {
+      "n": 105,
+      "tokenization_identical": true,
+      "type_logits_max_abs_diff": 0.0,
+      "tag_logits_max_abs_diff": 0.0,
+      "logits_bitwise_equal": true,
+      "types_identical": true,
+      "spans_identical": true,
+      "n_type_mismatch": 0,
+      "n_span_mismatch": 0
+     },
+     "probe": {
+      "n": 81,
+      "tokenization_identical": true,
+      "type_logits_max_abs_diff": 0.0,
+      "tag_logits_max_abs_diff": 0.0,
+      "logits_bitwise_equal": true,
+      "types_identical": true,
+      "spans_identical": true,
+      "n_type_mismatch": 0,
+      "n_span_mismatch": 0
+     }
+    },
+    "params_before": 45666059,
+    "params_after": 44117771,
+    "params_saved": 1548288,
+    "fp32_safetensors_mb_before": 182.672796,
+    "fp32_safetensors_mb_after": 176.479628,
+    "fp32_safetensors_mb_saved": 6.193168000000014,
+    "n_texts_verified": 909,
+    "all_identical": true,
+    "environment": {
+     "torch": "2.14.0",
+     "transformers": "5.17.0"
+    }
+   }
+  ],
+  "position_indexing": {
+   "file": "/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/transformers/models/roberta/modeling_roberta.py",
+   "transformers_version": "5.17.0",
+   "function": "RobertaEmbeddings.create_position_ids_from_input_ids",
+   "function_first_line": 141,
+   "logic": [
+    {
+     "line": 153,
+     "code": "mask = input_ids.ne(padding_idx).int()"
+    },
+    {
+     "line": 154,
+     "code": "incremental_indices = (torch.cumsum(mask, dim=1).type_as(mask) + past_key_values_length) * mask"
+    },
+    {
+     "line": 155,
+     "code": "return incremental_indices.long() + padding_idx"
+    }
+   ],
+   "rule": "non-pad tokens: padding_idx + cumsum(non_pad_mask); pad slots: padding_idx",
+   "specials_count_toward_max_length": {
+    "length": 32,
+    "first": 0,
+    "last": 2
+   },
+   "rows_needed": 34,
+   "max_index_possible": 33,
+   "max_index_in_data": 22,
+   "splits": {
+    "train": {
+     "n": 723,
+     "max_tokens_incl_specials": 21,
+     "n_at_max_length": 0,
+     "n_truncated": 0,
+     "max_position_index": 22
+    },
+    "test": {
+     "n": 105,
+     "max_tokens_incl_specials": 16,
+     "n_at_max_length": 0,
+     "n_truncated": 0,
+     "max_position_index": 17
+    },
+    "probe": {
+     "n": 81,
+     "max_tokens_incl_specials": 16,
+     "n_at_max_length": 0,
+     "n_truncated": 0,
+     "max_position_index": 17
+    }
+   }
+  },
+  "checkpoints": "models/compression-v1/positions/student-4x768-pretrained/seed{1,2,3}"
+ },
+ "vocab_analysis": {
+  "vocab": {
+   "size": 20481,
+   "merges": 20266,
+   "single_byte_base_tokens": 210,
+   "missing_byte_values": 46,
+   "orphans_not_produced_by_a_merge": 0
+  },
+  "usage_truncated_at_32": {
+   "vocab_size": 20481,
+   "distinct_ids": {
+    "train": 1071,
+    "test": 400,
+    "probe": 313,
+    "union": 1153
+   },
+   "unused_share_of_vocab": {
+    "train": 0.9477076314633075,
+    "test": 0.9804697036277525,
+    "probe": 0.9847175430887164,
+    "union": 0.9437039207069967
+   },
+   "count_histogram_buckets": {
+    "train": {
+     "1": 387,
+     "2-4": 388,
+     "5-9": 159,
+     "10-99": 131,
+     "100+": 6
+    },
+    "test": {
+     "1": 254,
+     "2-4": 116,
+     "5-9": 19,
+     "10-99": 9,
+     "100+": 2
+    },
+    "probe": {
+     "1": 193,
+     "2-4": 89,
+     "5-9": 21,
+     "10-99": 10,
+     "100+": 0
+    },
+    "union": {
+     "1": 386,
+     "2-4": 409,
+     "5-9": 191,
+     "10-99": 160,
+     "100+": 7
+    }
+   },
+   "tokens_total": {
+    "train": 7609,
+    "test": 1066,
+    "probe": 861
+   },
+   "top30_train": [
+    {
+     "id": 0,
+     "token": "<s>",
+     "count": 723
+    },
+    {
+     "id": 2,
+     "token": "</s>",
+     "count": 723
+    },
+    {
+     "id": 78,
+     "token": "k",
+     "count": 360
+    },
+    {
+     "id": 1002,
+     "token": "tr",
+     "count": 315
+    },
+    {
+     "id": 298,
+     "token": " 1",
+     "count": 136
+    },
+    {
+     "id": 216,
+     "token": " t",
+     "count": 111
+    },
+    {
+     "id": 315,
+     "token": " 2",
+     "count": 85
+    },
+    {
+     "id": 70,
+     "token": "c",
+     "count": 70
+    },
+    {
+     "id": 3011,
+     "token": "ien",
+     "count": 61
+    },
+    {
+     "id": 337,
+     "token": " cho",
+     "count": 60
+    },
+    {
+     "id": 772,
+     "token": " tiền",
+     "count": 57
+    },
+    {
+     "id": 69,
+     "token": "b",
+     "count": 56
+    },
+    {
+     "id": 470,
+     "token": " 3",
+     "count": 54
+    },
+    {
+     "id": 353,
+     "token": "on",
+     "count": 53
+    },
+    {
+     "id": 7499,
+     "token": "cho",
+     "count": 49
+    },
+    {
+     "id": 15,
+     "token": ",",
+     "count": 48
+    },
+    {
+     "id": 24,
+     "token": "5",
+     "count": 40
+    },
+    {
+     "id": 2834,
+     "token": " 500",
+     "count": 39
+    },
+    {
+     "id": 17,
+     "token": ".",
+     "count": 39
+    },
+    {
+     "id": 4187,
+     "token": " mượn",
+     "count": 39
+    },
+    {
+     "id": 10460,
+     "token": "mua",
+     "count": 38
+    },
+    {
+     "id": 1955,
+     "token": " vay",
+     "count": 37
+    },
+    {
+     "id": 1220,
+     "token": " trả",
+     "count": 34
+    },
+    {
+     "id": 784,
+     "token": " xe",
+     "count": 34
+    },
+    {
+     "id": 354,
+     "token": "ay",
+     "count": 34
+    },
+    {
+     "id": 735,
+     "token": " mu",
+     "count": 33
+    },
+    {
+     "id": 87,
+     "token": "t",
+     "count": 33
+    },
+    {
+     "id": 504,
+     "token": " tháng",
+     "count": 32
+    },
+    {
+     "id": 80,
+     "token": "m",
+     "count": 31
+    },
+    {
+     "id": 733,
+     "token": "000",
+     "count": 31
+    }
+   ],
+   "top30_union": [
+    {
+     "id": 0,
+     "token": "<s>",
+     "count": 909
+    },
+    {
+     "id": 2,
+     "token": "</s>",
+     "count": 909
+    },
+    {
+     "id": 78,
+     "token": "k",
+     "count": 444
+    },
+    {
+     "id": 1002,
+     "token": "tr",
+     "count": 406
+    },
+    {
+     "id": 298,
+     "token": " 1",
+     "count": 171
+    },
+    {
+     "id": 216,
+     "token": " t",
+     "count": 139
+    },
+    {
+     "id": 315,
+     "token": " 2",
+     "count": 108
+    },
+    {
+     "id": 337,
+     "token": " cho",
+     "count": 86
+    },
+    {
+     "id": 70,
+     "token": "c",
+     "count": 83
+    },
+    {
+     "id": 3011,
+     "token": "ien",
+     "count": 80
+    },
+    {
+     "id": 69,
+     "token": "b",
+     "count": 77
+    },
+    {
+     "id": 470,
+     "token": " 3",
+     "count": 74
+    },
+    {
+     "id": 772,
+     "token": " tiền",
+     "count": 71
+    },
+    {
+     "id": 353,
+     "token": "on",
+     "count": 64
+    },
+    {
+     "id": 15,
+     "token": ",",
+     "count": 57
+    },
+    {
+     "id": 1955,
+     "token": " vay",
+     "count": 56
+    },
+    {
+     "id": 7499,
+     "token": "cho",
+     "count": 55
+    },
+    {
+     "id": 4187,
+     "token": " mượn",
+     "count": 54
+    },
+    {
+     "id": 2834,
+     "token": " 500",
+     "count": 51
+    },
+    {
+     "id": 24,
+     "token": "5",
+     "count": 49
+    },
+    {
+     "id": 1220,
+     "token": " trả",
+     "count": 47
+    },
+    {
+     "id": 784,
+     "token": " xe",
+     "count": 46
+    },
+    {
+     "id": 10460,
+     "token": "mua",
+     "count": 45
+    },
+    {
+     "id": 504,
+     "token": " tháng",
+     "count": 44
+    },
+    {
+     "id": 354,
+     "token": "ay",
+     "count": 44
+    },
+    {
+     "id": 17,
+     "token": ".",
+     "count": 41
+    },
+    {
+     "id": 735,
+     "token": " mu",
+     "count": 41
+    },
+    {
+     "id": 74,
+     "token": "g",
+     "count": 39
+    },
+    {
+     "id": 87,
+     "token": "t",
+     "count": 39
+    },
+    {
+     "id": 913,
+     "token": " triệu",
+     "count": 38
+    }
+   ],
+   "unseen_in_train": {
+    "test": {
+     "distinct_tokens": 56,
+     "occurrences": 61,
+     "token_share_of_split": 0.05722326454033771,
+     "notes_with_unseen_token": 43,
+     "notes": 105,
+     "tokens": [
+      {
+       "id": 607,
+       "token": "Th",
+       "count": 2
+      },
+      {
+       "id": 968,
+       "token": " dùng",
+       "count": 2
+      },
+      {
+       "id": 1189,
+       "token": " đá",
+       "count": 2
+      },
+      {
+       "id": 1764,
+       "token": " xanh",
+       "count": 2
+      },
+      {
+       "id": 1935,
+       "token": " quý",
+       "count": 2
+      },
+      {
+       "id": 47,
+       "token": "L",
+       "count": 1
+      },
+      {
+       "id": 49,
+       "token": "N",
+       "count": 1
+      },
+      {
+       "id": 250,
+       "token": " ng",
+       "count": 1
+      },
+      {
+       "id": 256,
+       "token": "ủ",
+       "count": 1
+      },
+      {
+       "id": 281,
+       "token": "í",
+       "count": 1
+      },
+      {
+       "id": 307,
+       "token": "ở",
+       "count": 1
+      },
+      {
+       "id": 319,
+       "token": "iện",
+       "count": 1
+      },
+      {
+       "id": 331,
+       "token": " Th",
+       "count": 1
+      },
+      {
+       "id": 443,
+       "token": "ộc",
+       "count": 1
+      },
+      {
+       "id": 675,
+       "token": "ro",
+       "count": 1
+      },
+      {
+       "id": 755,
+       "token": "ắng",
+       "count": 1
+      },
+      {
+       "id": 860,
+       "token": " giao",
+       "count": 1
+      },
+      {
+       "id": 1130,
+       "token": " Bình",
+       "count": 1
+      },
+      {
+       "id": 1153,
+       "token": "ữa",
+       "count": 1
+      },
+      {
+       "id": 1457,
+       "token": " thiếu",
+       "count": 1
+      },
+      {
+       "id": 1514,
+       "token": "st",
+       "count": 1
+      },
+      {
+       "id": 1690,
+       "token": " thái",
+       "count": 1
+      },
+      {
+       "id": 1825,
+       "token": " Vũ",
+       "count": 1
+      },
+      {
+       "id": 1956,
+       "token": " Phương",
+       "count": 1
+      },
+      {
+       "id": 1971,
+       "token": " Bảo",
+       "count": 1
+      },
+      {
+       "id": 2010,
+       "token": "òi",
+       "count": 1
+      },
+      {
+       "id": 2017,
+       "token": " thao",
+       "count": 1
+      },
+      {
+       "id": 2081,
+       "token": "oan",
+       "count": 1
+      },
+      {
+       "id": 2175,
+       "token": " Lâm",
+       "count": 1
+      },
+      {
+       "id": 2229,
+       "token": "ate",
+       "count": 1
+      },
+      {
+       "id": 2264,
+       "token": "25",
+       "count": 1
+      },
+      {
+       "id": 2496,
+       "token": " quảng",
+       "count": 1
+      },
+      {
+       "id": 2661,
+       "token": " đậu",
+       "count": 1
+      },
+      {
+       "id": 2749,
+       "token": " hè",
+       "count": 1
+      },
+      {
+       "id": 2930,
+       "token": " chó",
+       "count": 1
+      },
+      {
+       "id": 3022,
+       "token": "arb",
+       "count": 1
+      },
+      {
+       "id": 3506,
+       "token": "95",
+       "count": 1
+      },
+      {
+       "id": 3598,
+       "token": "da",
+       "count": 1
+      },
+      {
+       "id": 3615,
+       "token": " cơm",
+       "count": 1
+      },
+      {
+       "id": 3947,
+       "token": "49",
+       "count": 1
+      },
+      {
+       "id": 3970,
+       "token": " Kiên",
+       "count": 1
+      },
+      {
+       "id": 4062,
+       "token": " Lợi",
+       "count": 1
+      },
+      {
+       "id": 4124,
+       "token": "omm",
+       "count": 1
+      },
+      {
+       "id": 4600,
+       "token": "uck",
+       "count": 1
+      },
+      {
+       "id": 5704,
+       "token": "pi",
+       "count": 1
+      },
+      {
+       "id": 6116,
+       "token": " nồi",
+       "count": 1
+      },
+      {
+       "id": 6602,
+       "token": " vỉa",
+       "count": 1
+      },
+      {
+       "id": 6608,
+       "token": " chay",
+       "count": 1
+      },
+      {
+       "id": 6891,
+       "token": " rể",
+       "count": 1
+      },
+      {
+       "id": 7265,
+       "token": " Ha",
+       "count": 1
+      },
+      {
+       "id": 7528,
+       "token": " day",
+       "count": 1
+      },
+      {
+       "id": 10214,
+       "token": " bún",
+       "count": 1
+      },
+      {
+       "id": 10922,
+       "token": " 230",
+       "count": 1
+      },
+      {
+       "id": 16195,
+       "token": " 850",
+       "count": 1
+      },
+      {
+       "id": 18260,
+       "token": "mart",
+       "count": 1
+      },
+      {
+       "id": 19905,
+       "token": " tiếu",
+       "count": 1
+      }
+     ]
+    },
+    "probe": {
+     "distinct_tokens": 31,
+     "occurrences": 34,
+     "token_share_of_split": 0.03948896631823461,
+     "notes_with_unseen_token": 27,
+     "notes": 81,
+     "tokens": [
+      {
+       "id": 281,
+       "token": "í",
+       "count": 2
+      },
+      {
+       "id": 1767,
+       "token": "ud",
+       "count": 2
+      },
+      {
+       "id": 19906,
+       "token": "ential",
+       "count": 2
+      },
+      {
+       "id": 250,
+       "token": " ng",
+       "count": 1
+      },
+      {
+       "id": 561,
+       "token": "úc",
+       "count": 1
+      },
+      {
+       "id": 629,
+       "token": " hội",
+       "count": 1
+      },
+      {
+       "id": 646,
+       "token": " thế",
+       "count": 1
+      },
+      {
+       "id": 1130,
+       "token": " Bình",
+       "count": 1
+      },
+      {
+       "id": 1243,
+       "token": " Thành",
+       "count": 1
+      },
+      {
+       "id": 1393,
+       "token": " Nga",
+       "count": 1
+      },
+      {
+       "id": 1396,
+       "token": "úi",
+       "count": 1
+      },
+      {
+       "id": 1420,
+       "token": " nạn",
+       "count": 1
+      },
+      {
+       "id": 1433,
+       "token": "ếp",
+       "count": 1
+      },
+      {
+       "id": 1787,
+       "token": " can",
+       "count": 1
+      },
+      {
+       "id": 1935,
+       "token": " quý",
+       "count": 1
+      },
+      {
+       "id": 2017,
+       "token": " thao",
+       "count": 1
+      },
+      {
+       "id": 2588,
+       "token": " Hương",
+       "count": 1
+      },
+      {
+       "id": 2612,
+       "token": " mái",
+       "count": 1
+      },
+      {
+       "id": 3248,
+       "token": "ech",
+       "count": 1
+      },
+      {
+       "id": 3302,
+       "token": " Quan",
+       "count": 1
+      },
+      {
+       "id": 3597,
+       "token": " lô",
+       "count": 1
+      },
+      {
+       "id": 4143,
+       "token": " Su",
+       "count": 1
+      },
+      {
+       "id": 4163,
+       "token": " bi",
+       "count": 1
+      },
+      {
+       "id": 6442,
+       "token": " 66",
+       "count": 1
+      },
+      {
+       "id": 6497,
+       "token": " Nhung",
+       "count": 1
+      },
+      {
+       "id": 7114,
+       "token": " vặt",
+       "count": 1
+      },
+      {
+       "id": 7753,
+       "token": "min",
+       "count": 1
+      },
+      {
+       "id": 7961,
+       "token": "combank",
+       "count": 1
+      },
+      {
+       "id": 8429,
+       "token": " mo",
+       "count": 1
+      },
+      {
+       "id": 8940,
+       "token": "pr",
+       "count": 1
+      },
+      {
+       "id": 17464,
+       "token": "kho",
+       "count": 1
+      }
+     ]
+    },
+    "in_both_test_and_probe": [
+     " Bình",
+     " ng",
+     " quý",
+     " thao",
+     "í"
+    ]
+   }
+  },
+  "slices": {
+   "train": {
+    "all": {
+     "notes": 723,
+     "mean_content_tokens_per_note": 8.524204702627939,
+     "max_content_tokens": 19,
+     "notes_truncated_at_32": 0,
+     "words": 4163,
+     "tokens_per_word": 1.480182560653375,
+     "fraction_words_split_into_2plus_pieces": 0.39058371366802785,
+     "chars_per_token": 2.897128022067175
+    },
+    "accented": {
+     "notes": 419,
+     "mean_content_tokens_per_note": 8.16706443914081,
+     "max_content_tokens": 18,
+     "notes_truncated_at_32": 0,
+     "words": 2442,
+     "tokens_per_word": 1.4013104013104014,
+     "fraction_words_split_into_2plus_pieces": 0.3095823095823096,
+     "chars_per_token": 3.0575686732904734
+    },
+    "unaccented": {
+     "notes": 304,
+     "mean_content_tokens_per_note": 9.016447368421053,
+     "max_content_tokens": 19,
+     "notes_truncated_at_32": 0,
+     "words": 1721,
+     "tokens_per_word": 1.5920976176641488,
+     "fraction_words_split_into_2plus_pieces": 0.505520046484602,
+     "chars_per_token": 2.6968259759211968
+    }
+   },
+   "test": {
+    "all": {
+     "notes": 105,
+     "mean_content_tokens_per_note": 8.152380952380952,
+     "max_content_tokens": 14,
+     "notes_truncated_at_32": 0,
+     "words": 573,
+     "tokens_per_word": 1.493891797556719,
+     "fraction_words_split_into_2plus_pieces": 0.40663176265270506,
+     "chars_per_token": 2.857476635514019
+    },
+    "accented": {
+     "notes": 63,
+     "mean_content_tokens_per_note": 7.825396825396825,
+     "max_content_tokens": 12,
+     "notes_truncated_at_32": 0,
+     "words": 349,
+     "tokens_per_word": 1.4126074498567336,
+     "fraction_words_split_into_2plus_pieces": 0.32951289398280803,
+     "chars_per_token": 3.0
+    },
+    "unaccented": {
+     "notes": 42,
+     "mean_content_tokens_per_note": 8.642857142857142,
+     "max_content_tokens": 14,
+     "notes_truncated_at_32": 0,
+     "words": 224,
+     "tokens_per_word": 1.6205357142857142,
+     "fraction_words_split_into_2plus_pieces": 0.5267857142857143,
+     "chars_per_token": 2.6639118457300275
+    }
+   },
+   "probe": {
+    "all": {
+     "notes": 81,
+     "mean_content_tokens_per_note": 8.62962962962963,
+     "max_content_tokens": 14,
+     "notes_truncated_at_32": 0,
+     "words": 504,
+     "tokens_per_word": 1.3869047619047619,
+     "fraction_words_split_into_2plus_pieces": 0.3333333333333333,
+     "chars_per_token": 3.051502145922747
+    },
+    "accented": {
+     "notes": 49,
+     "mean_content_tokens_per_note": 8.020408163265307,
+     "max_content_tokens": 14,
+     "notes_truncated_at_32": 0,
+     "words": 298,
+     "tokens_per_word": 1.3187919463087248,
+     "fraction_words_split_into_2plus_pieces": 0.2751677852348993,
+     "chars_per_token": 3.2213740458015265
+    },
+    "unaccented": {
+     "notes": 32,
+     "mean_content_tokens_per_note": 9.5625,
+     "max_content_tokens": 14,
+     "notes_truncated_at_32": 0,
+     "words": 206,
+     "tokens_per_word": 1.4854368932038835,
+     "fraction_words_split_into_2plus_pieces": 0.4174757281553398,
+     "chars_per_token": 2.8333333333333335
+    }
+   }
+  },
+  "numbers": {
+   "by_class": {
+    "N <word> (2 triệu, 200 nghìn, 2 củ)": {
+     "occurrences": 59,
+     "mean_pieces": 2.0,
+     "max_pieces": 2,
+     "examples": [
+      {
+       "text": "1 triệu",
+       "pieces": [
+        " 1",
+        " triệu"
+       ]
+      },
+      {
+       "text": "10 triệu",
+       "pieces": [
+        " 10",
+        " triệu"
+       ]
+      },
+      {
+       "text": "150 nghìn",
+       "pieces": [
+        " 150",
+        " nghìn"
+       ]
+      },
+      {
+       "text": "2 củ",
+       "pieces": [
+        " 2",
+        " củ"
+       ]
+      },
+      {
+       "text": "2 triệu",
+       "pieces": [
+        " 2",
+        " triệu"
+       ]
+      },
+      {
+       "text": "200 nghìn",
+       "pieces": [
+        " 200",
+        " nghìn"
+       ]
+      }
+     ]
+    },
+    "Nk (45k, 500k)": {
+     "occurrences": 414,
+     "mean_pieces": 2.0434782608695654,
+     "max_pieces": 3,
+     "examples": [
+      {
+       "text": "259k",
+       "pieces": [
+        " 25",
+        "9",
+        "k"
+       ]
+      },
+      {
+       "text": "412k",
+       "pieces": [
+        " 4",
+        "12",
+        "k"
+       ]
+      },
+      {
+       "text": "560k",
+       "pieces": [
+        " 5",
+        "60",
+        "k"
+       ]
+      },
+      {
+       "text": "612k",
+       "pieces": [
+        " 6",
+        "12",
+        "k"
+       ]
+      },
+      {
+       "text": "620k",
+       "pieces": [
+        " 6",
+        "20",
+        "k"
+       ]
+      },
+      {
+       "text": "649k",
+       "pieces": [
+        " 6",
+        "49",
+        "k"
+       ]
+      }
+     ]
+    },
+    "NtrM (1tr2, 3tr4, 15tr)": {
+     "occurrences": 367,
+     "mean_pieces": 2.4986376021798367,
+     "max_pieces": 4,
+     "examples": [
+      {
+       "text": "1,2tr",
+       "pieces": [
+        " 1",
+        ",",
+        "2",
+        "tr"
+       ]
+      },
+      {
+       "text": "1,5tr",
+       "pieces": [
+        " 1",
+        ",",
+        "5",
+        "tr"
+       ]
+      },
+      {
+       "text": "1,7tr",
+       "pieces": [
+        " 1",
+        ",",
+        "7",
+        "tr"
+       ]
+      },
+      {
+       "text": "1,8tr",
+       "pieces": [
+        " 1",
+        ",",
+        "8",
+        "tr"
+       ]
+      },
+      {
+       "text": "1.5tr",
+       "pieces": [
+        " 1",
+        ".",
+        "5",
+        "tr"
+       ]
+      },
+      {
+       "text": "1tr640",
+       "pieces": [
+        " 1",
+        "tr",
+        "6",
+        "40"
+       ]
+      }
+     ]
+    },
+    "grouped (89,000, 1.500.000)": {
+     "occurrences": 36,
+     "mean_pieces": 3.6666666666666665,
+     "max_pieces": 5,
+     "examples": [
+      {
+       "text": "1.250.000",
+       "pieces": [
+        " 1",
+        ".",
+        "250",
+        ".",
+        "000"
+       ]
+      },
+      {
+       "text": "1.450.000",
+       "pieces": [
+        " 1",
+        ".",
+        "450",
+        ".",
+        "000"
+       ]
+      },
+      {
+       "text": "1.850.000",
+       "pieces": [
+        " 1",
+        ".",
+        "850",
+        ".",
+        "000"
+       ]
+      },
+      {
+       "text": "12,500,000",
+       "pieces": [
+        " 12",
+        ",",
+        "500",
+        ",",
+        "000"
+       ]
+      },
+      {
+       "text": "3,000,000",
+       "pieces": [
+        " 3",
+        ",",
+        "000",
+        ",",
+        "000"
+       ]
+      },
+      {
+       "text": "3.000.000",
+       "pieces": [
+        " 3",
+        ".",
+        "000",
+        ".",
+        "000"
+       ]
+      }
+     ]
+    }
+   },
+   "probe_in_neutral_note": {
+    "500k": [
+     " 500",
+     "k"
+    ],
+    "1tr2": [
+     " 1",
+     "tr",
+     "2"
+    ],
+    "3tr4": [
+     " 3",
+     "tr",
+     "4"
+    ],
+    "89,000": [
+     " 89",
+     ",",
+     "000"
+    ],
+    "1.5tr": [
+     " 1",
+     ".",
+     "5",
+     "tr"
+    ],
+    "2 triệu": [
+     " 2",
+     " triệu"
+    ],
+    "45k": [
+     " 45",
+     "k"
+    ],
+    "1tr5": [
+     " 1",
+     "tr",
+     "5"
+    ],
+    "200 nghìn": [
+     " 200",
+     " nghìn"
+    ],
+    "2 củ": [
+     " 2",
+     " củ"
+    ],
+    "1,5tr": [
+     " 1",
+     ",",
+     "5",
+     "tr"
+    ],
+    "12tr": [
+     " 12",
+     "tr"
+    ],
+    "1.500.000": [
+     " 1",
+     ".",
+     "500",
+     ".",
+     "000"
+    ],
+    "50K": [
+     " 50",
+     "K"
+    ],
+    "15tr": [
+     " 15",
+     "tr"
+    ],
+    "500đ": [
+     " 500",
+     "đ"
+    ]
+   },
+   "first_example_in_data": {
+    "500k": {
+     "split": "train",
+     "note": "rút 500k tiền mặt đi chợ",
+     "pieces": [
+      " 500",
+      "k"
+     ]
+    },
+    "1tr2": {
+     "split": "train",
+     "note": "khám răng 1tr2",
+     "pieces": [
+      " 1",
+      "tr",
+      "2"
+     ]
+    },
+    "3tr4": {
+     "split": "test",
+     "note": "vay tiêu dùng trả kỳ này 3tr4",
+     "pieces": [
+      " 3",
+      "tr",
+      "4"
+     ]
+    },
+    "89,000": {
+     "split": "test",
+     "note": "starbucks 1 ly 89,000",
+     "pieces": [
+      " 89",
+      ",",
+      "000"
+     ]
+    },
+    "1.5tr": {
+     "split": "train",
+     "note": "Ngân vay tao 1.5tr, mai mốt gửi lại",
+     "pieces": [
+      " 1",
+      ".",
+      "5",
+      "tr"
+     ]
+    },
+    "2 triệu": {
+     "split": "train",
+     "note": "trả bớt nợ bố 2 triệu",
+     "pieces": [
+      " 2",
+      " triệu"
+     ]
+    }
+   }
+  },
+  "targets": {
+   "heuristic": "person = the word before the target (or the target's first word) is a title/kinship word ['anh', 'chị', 'chi', 'em', 'cô', 'co', 'chú', 'chu', 'bác', 'bac', 'dì', 'di', 'ông', 'ong', 'bà', 'ba', 'bạn', 'ban', 'mợ', 'mo', 'cậu', 'cau', 'dượng', 'duong'], OR every target word is capitalized (not ALL-CAPS), <=4 words, no digits, and the note type is not expense/refund; everything else = merchant_brand_other. Types are used only to label analysis rows.",
+   "splits": {
+    "train": {
+     "n_notes": 723,
+     "n_targets": 395,
+     "all": {
+      "n": 395,
+      "mean_pieces": 1.9746835443037976,
+      "max_pieces": 6,
+      "mean_pieces_per_word": 1.4744801512287335,
+      "piece_histogram": {
+       "1": 158,
+       "2": 130,
+       "3": 72,
+       "4": 30,
+       "5": 4,
+       "6": 1
+      }
+     },
+     "person": {
+      "n": 205,
+      "mean_pieces": 1.5219512195121951,
+      "max_pieces": 6,
+      "mean_pieces_per_word": 1.1142857142857143,
+      "piece_histogram": {
+       "1": 125,
+       "2": 60,
+       "3": 15,
+       "4": 4,
+       "6": 1
+      }
+     },
+     "merchant_brand_other": {
+      "n": 190,
+      "mean_pieces": 2.463157894736842,
+      "max_pieces": 5,
+      "mean_pieces_per_word": 1.8795180722891567,
+      "piece_histogram": {
+       "1": 33,
+       "2": 70,
+       "3": 57,
+       "4": 26,
+       "5": 4
+      }
+     }
+    },
+    "test": {
+     "n_notes": 105,
+     "n_targets": 51,
+     "all": {
+      "n": 51,
+      "mean_pieces": 2.1372549019607843,
+      "max_pieces": 5,
+      "mean_pieces_per_word": 1.7301587301587302,
+      "piece_histogram": {
+       "1": 17,
+       "2": 19,
+       "3": 8,
+       "4": 5,
+       "5": 2
+      }
+     },
+     "person": {
+      "n": 26,
+      "mean_pieces": 1.4615384615384615,
+      "max_pieces": 3,
+      "mean_pieces_per_word": 1.2666666666666666,
+      "piece_histogram": {
+       "1": 15,
+       "2": 10,
+       "3": 1
+      }
+     },
+     "merchant_brand_other": {
+      "n": 25,
+      "mean_pieces": 2.84,
+      "max_pieces": 5,
+      "mean_pieces_per_word": 2.1515151515151514,
+      "piece_histogram": {
+       "1": 2,
+       "2": 9,
+       "3": 7,
+       "4": 5,
+       "5": 2
+      }
+     },
+     "unseen_targets": {
+      "n": 23,
+      "share_of_targets": 0.45098039215686275,
+      "n_case_insensitive": 23,
+      "mean_pieces": 2.347826086956522,
+      "n_with_token_unseen_in_train": 17,
+      "n_person": 13,
+      "examples": [
+       {
+        "text": "bách hoá xanh",
+        "person": false,
+        "pieces": [
+         "b",
+         "ách",
+         " ho",
+         "á",
+         " xanh"
+        ],
+        "n_pieces": 5,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       },
+       {
+        "text": "shopeefood",
+        "person": false,
+        "pieces": [
+         "sh",
+         "op",
+         "ee",
+         "f",
+         "ood"
+        ],
+        "n_pieces": 5,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": false
+       },
+       {
+        "text": "starbucks",
+        "person": false,
+        "pieces": [
+         "st",
+         "arb",
+         "uck",
+         "s"
+        ],
+        "n_pieces": 4,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       },
+       {
+        "text": "bảo việt",
+        "person": false,
+        "pieces": [
+         "b",
+         "ảo",
+         " việt"
+        ],
+        "n_pieces": 3,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": false
+       },
+       {
+        "text": "coopmart",
+        "person": false,
+        "pieces": [
+         "co",
+         "op",
+         "mart"
+        ],
+        "n_pieces": 3,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       },
+       {
+        "text": "dì Tư",
+        "person": true,
+        "pieces": [
+         "d",
+         "ì",
+         " Tư"
+        ],
+        "n_pieces": 3,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": false
+       },
+       {
+        "text": "lazda",
+        "person": false,
+        "pieces": [
+         "l",
+         "az",
+         "da"
+        ],
+        "n_pieces": 3,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       },
+       {
+        "text": "Nhi",
+        "person": true,
+        "pieces": [
+         "N",
+         "hi"
+        ],
+        "n_pieces": 2,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       },
+       {
+        "text": "Toan",
+        "person": true,
+        "pieces": [
+         "T",
+         "oan"
+        ],
+        "n_pieces": 2,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       },
+       {
+        "text": "vib",
+        "person": false,
+        "pieces": [
+         " vi",
+         "b"
+        ],
+        "n_pieces": 2,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": false
+       },
+       {
+        "text": "Bình",
+        "person": true,
+        "pieces": [
+         " Bình"
+        ],
+        "n_pieces": 1,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       },
+       {
+        "text": "Bảo",
+        "person": true,
+        "pieces": [
+         " Bảo"
+        ],
+        "n_pieces": 1,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       },
+       {
+        "text": "Ha",
+        "person": true,
+        "pieces": [
+         " Ha"
+        ],
+        "n_pieces": 1,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       },
+       {
+        "text": "Kiên",
+        "person": true,
+        "pieces": [
+         " Kiên"
+        ],
+        "n_pieces": 1,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       },
+       {
+        "text": "Lợi",
+        "person": true,
+        "pieces": [
+         " Lợi"
+        ],
+        "n_pieces": 1,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       }
+      ]
+     }
+    },
+    "probe": {
+     "n_notes": 81,
+     "n_targets": 55,
+     "all": {
+      "n": 55,
+      "mean_pieces": 1.690909090909091,
+      "max_pieces": 4,
+      "mean_pieces_per_word": 1.2916666666666667,
+      "piece_histogram": {
+       "1": 28,
+       "2": 18,
+       "3": 7,
+       "4": 2
+      }
+     },
+     "person": {
+      "n": 37,
+      "mean_pieces": 1.5135135135135136,
+      "max_pieces": 4,
+      "mean_pieces_per_word": 1.0980392156862746,
+      "piece_histogram": {
+       "1": 22,
+       "2": 12,
+       "3": 2,
+       "4": 1
+      }
+     },
+     "merchant_brand_other": {
+      "n": 18,
+      "mean_pieces": 2.0555555555555554,
+      "max_pieces": 4,
+      "mean_pieces_per_word": 1.7619047619047619,
+      "piece_histogram": {
+       "1": 6,
+       "2": 6,
+       "3": 5,
+       "4": 1
+      }
+     },
+     "unseen_targets": {
+      "n": 22,
+      "share_of_targets": 0.4,
+      "n_case_insensitive": 22,
+      "mean_pieces": 2.090909090909091,
+      "n_with_token_unseen_in_train": 11,
+      "n_person": 13,
+      "examples": [
+       {
+        "text": "ban cung lop",
+        "person": true,
+        "pieces": [
+         "ban",
+         " cung",
+         " lo",
+         "p"
+        ],
+        "n_pieces": 4,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": false
+       },
+       {
+        "text": "bảo việt",
+        "person": false,
+        "pieces": [
+         "b",
+         "ảo",
+         " việt"
+        ],
+        "n_pieces": 3,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": false
+       },
+       {
+        "text": "ong ngoai",
+        "person": true,
+        "pieces": [
+         " ong",
+         " ngo",
+         "ai"
+        ],
+        "n_pieces": 3,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": false
+       },
+       {
+        "text": "prudential",
+        "person": false,
+        "pieces": [
+         " pr",
+         "ud",
+         "ential"
+        ],
+        "n_pieces": 3,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       },
+       {
+        "text": "prudential",
+        "person": false,
+        "pieces": [
+         "pr",
+         "ud",
+         "ential"
+        ],
+        "n_pieces": 3,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       },
+       {
+        "text": "techcombank",
+        "person": false,
+        "pieces": [
+         " t",
+         "ech",
+         "combank"
+        ],
+        "n_pieces": 3,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       },
+       {
+        "text": "anh trai",
+        "person": true,
+        "pieces": [
+         "anh",
+         " trai"
+        ],
+        "n_pieces": 2,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": false
+       },
+       {
+        "text": "bo me",
+        "person": false,
+        "pieces": [
+         "bo",
+         " me"
+        ],
+        "n_pieces": 2,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": false
+       },
+       {
+        "text": "cau",
+        "person": true,
+        "pieces": [
+         "c",
+         "au"
+        ],
+        "n_pieces": 2,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": false
+       },
+       {
+        "text": "chi hai",
+        "person": true,
+        "pieces": [
+         "chi",
+         " hai"
+        ],
+        "n_pieces": 2,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": false
+       },
+       {
+        "text": "tamo",
+        "person": false,
+        "pieces": [
+         " tam",
+         "o"
+        ],
+        "n_pieces": 2,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": false
+       },
+       {
+        "text": "ông bà",
+        "person": true,
+        "pieces": [
+         " ông",
+         " bà"
+        ],
+        "n_pieces": 2,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": false
+       },
+       {
+        "text": "Nga",
+        "person": true,
+        "pieces": [
+         " Nga"
+        ],
+        "n_pieces": 1,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       },
+       {
+        "text": "Quan",
+        "person": true,
+        "pieces": [
+         " Quan"
+        ],
+        "n_pieces": 1,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       },
+       {
+        "text": "Su",
+        "person": false,
+        "pieces": [
+         " Su"
+        ],
+        "n_pieces": 1,
+        "unseen_string": true,
+        "unseen_string_ci": true,
+        "has_token_unseen_in_train": true
+       }
+      ]
+     }
+    }
+   }
+  }
+ },
+ "vocab_policies": {
+  "A-conservative": {
+   "vocab_rows": 20240,
+   "embedding_params": 15544320,
+   "total_params_with_34_positions": 43932683,
+   "est_int8_mb_with_34_positions": 44.123261,
+   "kept_by_category": {
+    "ascii_letters": 9530,
+    "ascii_letters_with_punct": 1047,
+    "ascii_punct_symbols": 190,
+    "base_byte": 210,
+    "digits_numeric": 1498,
+    "other_symbols": 26,
+    "partial_byte": 79,
+    "special": 5,
+    "vietnamese_latin": 7655
+   },
+   "tokenization": {
+    "train": {
+     "notes_unchanged_fraction": 1.0,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "truncation_increase": 0
+    },
+    "test": {
+     "notes_unchanged_fraction": 1.0,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "truncation_increase": 0
+    },
+    "probe": {
+     "notes_unchanged_fraction": 1.0,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "truncation_increase": 0
+    }
+   }
+  },
+  "B-rank-12000": {
+   "vocab_rows": 12215,
+   "embedding_params": 9381120,
+   "total_params_with_34_positions": 37769483,
+   "est_int8_mb_with_34_positions": 37.960061,
+   "kept_by_category": {
+    "ascii_letters": 5088,
+    "ascii_letters_with_punct": 509,
+    "ascii_punct_symbols": 126,
+    "base_byte": 210,
+    "digits_numeric": 815,
+    "other_symbols": 17,
+    "partial_byte": 71,
+    "special": 5,
+    "vietnamese_latin": 5374
+   },
+   "tokenization": {
+    "train": {
+     "notes_unchanged_fraction": 1.0,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "truncation_increase": 0
+    },
+    "test": {
+     "notes_unchanged_fraction": 0.9714285714285714,
+     "target_spans_unchanged_fraction": 0.9803921568627451,
+     "mean_token_count_ratio": 1.0027898027898028,
+     "truncation_increase": 0
+    },
+    "probe": {
+     "notes_unchanged_fraction": 0.9629629629629629,
+     "target_spans_unchanged_fraction": 0.9636363636363636,
+     "mean_token_count_ratio": 1.0030329752551974,
+     "truncation_increase": 0
+    }
+   }
+  },
+  "B-rank-10000": {
+   "vocab_rows": 10279,
+   "embedding_params": 7894272,
+   "total_params_with_34_positions": 36282635,
+   "est_int8_mb_with_34_positions": 36.473213,
+   "kept_by_category": {
+    "ascii_letters": 4068,
+    "ascii_letters_with_punct": 390,
+    "ascii_punct_symbols": 114,
+    "base_byte": 210,
+    "digits_numeric": 688,
+    "other_symbols": 16,
+    "partial_byte": 69,
+    "special": 5,
+    "vietnamese_latin": 4719
+   },
+   "tokenization": {
+    "train": {
+     "notes_unchanged_fraction": 1.0,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "truncation_increase": 0
+    },
+    "test": {
+     "notes_unchanged_fraction": 0.9523809523809523,
+     "target_spans_unchanged_fraction": 0.9803921568627451,
+     "mean_token_count_ratio": 1.0046945646945646,
+     "truncation_increase": 0
+    },
+    "probe": {
+     "notes_unchanged_fraction": 0.9629629629629629,
+     "target_spans_unchanged_fraction": 0.9636363636363636,
+     "mean_token_count_ratio": 1.0030329752551974,
+     "truncation_increase": 0
+    }
+   }
+  },
+  "B-rank-8000": {
+   "vocab_rows": 8338,
+   "embedding_params": 6403584,
+   "total_params_with_34_positions": 34791947,
+   "est_int8_mb_with_34_positions": 34.982525,
+   "kept_by_category": {
+    "ascii_letters": 3069,
+    "ascii_letters_with_punct": 297,
+    "ascii_punct_symbols": 100,
+    "base_byte": 210,
+    "digits_numeric": 553,
+    "other_symbols": 14,
+    "partial_byte": 67,
+    "special": 5,
+    "vietnamese_latin": 4023
+   },
+   "tokenization": {
+    "train": {
+     "notes_unchanged_fraction": 1.0,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "truncation_increase": 0
+    },
+    "test": {
+     "notes_unchanged_fraction": 0.9523809523809523,
+     "target_spans_unchanged_fraction": 0.9803921568627451,
+     "mean_token_count_ratio": 1.0046945646945646,
+     "truncation_increase": 0
+    },
+    "probe": {
+     "notes_unchanged_fraction": 0.9506172839506173,
+     "target_spans_unchanged_fraction": 0.9636363636363636,
+     "mean_token_count_ratio": 1.005277644166533,
+     "truncation_increase": 0
+    }
+   }
+  },
+  "B-rank-6000": {
+   "vocab_rows": 6428,
+   "embedding_params": 4936704,
+   "total_params_with_34_positions": 33325067,
+   "est_int8_mb_with_34_positions": 33.515645,
+   "kept_by_category": {
+    "ascii_letters": 2149,
+    "ascii_letters_with_punct": 192,
+    "ascii_punct_symbols": 81,
+    "base_byte": 210,
+    "digits_numeric": 450,
+    "other_symbols": 9,
+    "partial_byte": 66,
+    "special": 5,
+    "vietnamese_latin": 3266
+   },
+   "tokenization": {
+    "train": {
+     "notes_unchanged_fraction": 1.0,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "truncation_increase": 0
+    },
+    "test": {
+     "notes_unchanged_fraction": 0.9047619047619048,
+     "target_spans_unchanged_fraction": 0.9411764705882353,
+     "mean_token_count_ratio": 1.0094949494949494,
+     "truncation_increase": 0
+    },
+    "probe": {
+     "notes_unchanged_fraction": 0.9012345679012346,
+     "target_spans_unchanged_fraction": 0.9272727272727272,
+     "mean_token_count_ratio": 1.0111839292394849,
+     "truncation_increase": 0
+    }
+   }
+  },
+  "B-rank-4000": {
+   "vocab_rows": 4565,
+   "embedding_params": 3505920,
+   "total_params_with_34_positions": 31894283,
+   "est_int8_mb_with_34_positions": 32.084861,
+   "kept_by_category": {
+    "ascii_letters": 1374,
+    "ascii_letters_with_punct": 103,
+    "ascii_punct_symbols": 57,
+    "base_byte": 210,
+    "digits_numeric": 308,
+    "other_symbols": 4,
+    "partial_byte": 59,
+    "special": 5,
+    "vietnamese_latin": 2445
+   },
+   "tokenization": {
+    "train": {
+     "notes_unchanged_fraction": 1.0,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "truncation_increase": 0
+    },
+    "test": {
+     "notes_unchanged_fraction": 0.8761904761904762,
+     "target_spans_unchanged_fraction": 0.9215686274509803,
+     "mean_token_count_ratio": 1.0129650243935957,
+     "truncation_increase": 0
+    },
+    "probe": {
+     "notes_unchanged_fraction": 0.9012345679012346,
+     "target_spans_unchanged_fraction": 0.9272727272727272,
+     "mean_token_count_ratio": 1.0111839292394849,
+     "truncation_increase": 0
+    }
+   }
+  },
+  "C-aggressive": {
+   "vocab_rows": 2774,
+   "embedding_params": 2130432,
+   "total_params_with_34_positions": 30518795,
+   "est_int8_mb_with_34_positions": 30.709373,
+   "kept_by_category": {
+    "ascii_letters": 780,
+    "ascii_letters_with_punct": 19,
+    "ascii_punct_symbols": 40,
+    "base_byte": 210,
+    "digits_numeric": 185,
+    "other_symbols": 6,
+    "partial_byte": 44,
+    "special": 5,
+    "vietnamese_latin": 1485
+   },
+   "tokenization": {
+    "train": {
+     "notes_unchanged_fraction": 1.0,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "truncation_increase": 0
+    },
+    "test": {
+     "notes_unchanged_fraction": 0.7904761904761904,
+     "target_spans_unchanged_fraction": 0.8431372549019608,
+     "mean_token_count_ratio": 1.0238532631389774,
+     "truncation_increase": 0
+    },
+    "probe": {
+     "notes_unchanged_fraction": 0.8271604938271605,
+     "target_spans_unchanged_fraction": 0.8727272727272727,
+     "mean_token_count_ratio": 1.0212054406498852,
+     "truncation_increase": 0
+    }
+   }
+  },
+  "T-only": {
+   "vocab_rows": 1545,
+   "embedding_params": 1186560,
+   "total_params_with_34_positions": 29574923,
+   "est_int8_mb_with_34_positions": 29.765501,
+   "kept_by_category": {
+    "ascii_letters": 562,
+    "ascii_punct_symbols": 1,
+    "base_byte": 210,
+    "digits_numeric": 150,
+    "partial_byte": 25,
+    "special": 5,
+    "vietnamese_latin": 592
+   },
+   "tokenization": {
+    "train": {
+     "notes_unchanged_fraction": 1.0,
+     "target_spans_unchanged_fraction": 1.0,
+     "mean_token_count_ratio": 1.0,
+     "truncation_increase": 0
+    },
+    "test": {
+     "notes_unchanged_fraction": 0.6857142857142857,
+     "target_spans_unchanged_fraction": 0.7058823529411765,
+     "mean_token_count_ratio": 1.04466859859717,
+     "truncation_increase": 0
+    },
+    "probe": {
+     "notes_unchanged_fraction": 0.7160493827160493,
+     "target_spans_unchanged_fraction": 0.8181818181818182,
+     "mean_token_count_ratio": 1.036689699189699,
+     "truncation_increase": 0
+    }
+   }
+  }
+ },
+ "vocab_zero_training": {
+  "baseline": {
+   "per_seed": {
+    "seed1": {
+     "train": {
+      "type_macro_f1": 1.0,
+      "type_accuracy": 1.0,
+      "span_f1": 1.0,
+      "span_exact": 1.0,
+      "joint": 1.0,
+      "joint_accented": 1.0,
+      "joint_unaccented": 1.0
+     },
+     "test": {
+      "type_macro_f1": 0.9260079231054463,
+      "type_accuracy": 0.9238095238095239,
+      "span_f1": 0.7692307692307692,
+      "span_exact": 0.8666666666666667,
+      "joint": 0.8095238095238095,
+      "joint_accented": 0.8571428571428571,
+      "joint_unaccented": 0.7380952380952381
+     },
+     "probe": {
+      "type_macro_f1": 0.7742430305455514,
+      "type_accuracy": 0.8148148148148148,
+      "span_f1": 0.8035714285714286,
+      "span_exact": 0.8395061728395061,
+      "joint": 0.6666666666666666,
+      "joint_accented": 0.6938775510204082,
+      "joint_unaccented": 0.625
+     }
+    },
+    "seed2": {
+     "train": {
+      "type_macro_f1": 1.0,
+      "type_accuracy": 1.0,
+      "span_f1": 1.0,
+      "span_exact": 1.0,
+      "joint": 1.0,
+      "joint_accented": 1.0,
+      "joint_unaccented": 1.0
+     },
+     "test": {
+      "type_macro_f1": 0.9357325605680868,
+      "type_accuracy": 0.9333333333333333,
+      "span_f1": 0.854368932038835,
+      "span_exact": 0.9142857142857143,
+      "joint": 0.8666666666666667,
+      "joint_accented": 0.9047619047619048,
+      "joint_unaccented": 0.8095238095238095
+     },
+     "probe": {
+      "type_macro_f1": 0.7754540366102232,
+      "type_accuracy": 0.7777777777777778,
+      "span_f1": 0.8224299065420562,
+      "span_exact": 0.8518518518518519,
+      "joint": 0.6666666666666666,
+      "joint_accented": 0.7142857142857143,
+      "joint_unaccented": 0.59375
+     }
+    },
+    "seed3": {
+     "train": {
+      "type_macro_f1": 1.0,
+      "type_accuracy": 1.0,
+      "span_f1": 1.0,
+      "span_exact": 1.0,
+      "joint": 1.0,
+      "joint_accented": 1.0,
+      "joint_unaccented": 1.0
+     },
+     "test": {
+      "type_macro_f1": 0.9218985505750212,
+      "type_accuracy": 0.9238095238095239,
+      "span_f1": 0.8653846153846154,
+      "span_exact": 0.9142857142857143,
+      "joint": 0.8571428571428571,
+      "joint_accented": 0.873015873015873,
+      "joint_unaccented": 0.8333333333333334
+     },
+     "probe": {
+      "type_macro_f1": 0.8343240326433604,
+      "type_accuracy": 0.8395061728395061,
+      "span_f1": 0.7499999999999999,
+      "span_exact": 0.8024691358024691,
+      "joint": 0.6666666666666666,
+      "joint_accented": 0.6938775510204082,
+      "joint_unaccented": 0.625
+     }
+    }
+   },
+   "summary": {
+    "train": {
+     "type_macro_f1": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "type_accuracy": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "span_f1": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "span_exact": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "joint": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "joint_accented": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "joint_unaccented": {
+      "mean": 1.0,
+      "std": 0.0
+     }
+    },
+    "test": {
+     "type_macro_f1": {
+      "mean": 0.9278796780828514,
+      "std": 0.0058007216874937486
+     },
+     "type_accuracy": {
+      "mean": 0.9269841269841269,
+      "std": 0.004489566864676477
+     },
+     "span_f1": {
+      "mean": 0.8296614388847399,
+      "std": 0.04296693066389645
+     },
+     "span_exact": {
+      "mean": 0.8984126984126984,
+      "std": 0.022447834323382435
+     },
+     "joint": {
+      "mean": 0.8444444444444444,
+      "std": 0.024996850393688284
+     },
+     "joint_accented": {
+      "mean": 0.8783068783068783,
+      "std": 0.019797129030549972
+     },
+     "joint_unaccented": {
+      "mean": 0.7936507936507936,
+      "std": 0.04046840883803797
+     }
+    },
+    "probe": {
+     "type_macro_f1": {
+      "mean": 0.7946736999330449,
+      "std": 0.02804137772353799
+     },
+     "type_accuracy": {
+      "mean": 0.8106995884773663,
+      "std": 0.02536795885995461
+     },
+     "span_f1": {
+      "mean": 0.7920004450378282,
+      "std": 0.03068048875505832
+     },
+     "span_exact": {
+      "mean": 0.831275720164609,
+      "std": 0.020983619397501162
+     },
+     "joint": {
+      "mean": 0.6666666666666666,
+      "std": 0.0
+     },
+     "joint_accented": {
+      "mean": 0.7006802721088435,
+      "std": 0.00962050042430678
+     },
+     "joint_unaccented": {
+      "mean": 0.6145833333333334,
+      "std": 0.01473139127471974
+     }
+    }
+   }
+  },
+  "notes": "metrics: mean/pstd over seeds"
+ },
+ "vocab_oov_probe": {
+  "strings": [
+   {
+    "string": "Highlands",
+    "in_test_or_probe_text": false,
+    "original": [
+     " High",
+     "lands"
+    ],
+    "A-conservative": [
+     " High",
+     "lands"
+    ],
+    "B-rank-12000": [
+     " High",
+     "lands"
+    ],
+    "B-rank-10000": [
+     " High",
+     "lands"
+    ],
+    "B-rank-8000": [
+     " H",
+     "igh",
+     "lands"
+    ],
+    "B-rank-6000": [
+     " H",
+     "igh",
+     "lands"
+    ],
+    "B-rank-4000": [
+     " H",
+     "igh",
+     "lands"
+    ],
+    "C-aggressive": [
+     " H",
+     "igh",
+     "lands"
+    ],
+    "T-only": [
+     " H",
+     "igh",
+     "lands"
+    ]
+   },
+   {
+    "string": "Phúc Long",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Phúc",
+     " Long"
+    ],
+    "A-conservative": [
+     " Phúc",
+     " Long"
+    ],
+    "B-rank-12000": [
+     " Phúc",
+     " Long"
+    ],
+    "B-rank-10000": [
+     " Phúc",
+     " Long"
+    ],
+    "B-rank-8000": [
+     " Phúc",
+     " Long"
+    ],
+    "B-rank-6000": [
+     " Phúc",
+     " Long"
+    ],
+    "B-rank-4000": [
+     " Phúc",
+     " Long"
+    ],
+    "C-aggressive": [
+     " Phúc",
+     " Long"
+    ],
+    "T-only": [
+     " Phúc",
+     " Long"
+    ]
+   },
+   {
+    "string": "Bách Hóa Xanh",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Bách",
+     " Hóa",
+     " Xanh"
+    ],
+    "A-conservative": [
+     " Bách",
+     " Hóa",
+     " Xanh"
+    ],
+    "B-rank-12000": [
+     " Bách",
+     " Hóa",
+     " Xanh"
+    ],
+    "B-rank-10000": [
+     " Bách",
+     " Hóa",
+     " Xanh"
+    ],
+    "B-rank-8000": [
+     " Bách",
+     " Hóa",
+     " Xanh"
+    ],
+    "B-rank-6000": [
+     " B",
+     "ách",
+     " Hóa",
+     " X",
+     "anh"
+    ],
+    "B-rank-4000": [
+     " B",
+     "ách",
+     " Hóa",
+     " X",
+     "anh"
+    ],
+    "C-aggressive": [
+     " B",
+     "ách",
+     " H",
+     "óa",
+     " X",
+     "anh"
+    ],
+    "T-only": [
+     " B",
+     "ách",
+     " H",
+     "óa",
+     " X",
+     "anh"
+    ]
+   },
+   {
+    "string": "Grab",
+    "in_test_or_probe_text": true,
+    "original": [
+     " Grab"
+    ],
+    "A-conservative": [
+     " Grab"
+    ],
+    "B-rank-12000": [
+     " Grab"
+    ],
+    "B-rank-10000": [
+     " Grab"
+    ],
+    "B-rank-8000": [
+     " Gr",
+     "ab"
+    ],
+    "B-rank-6000": [
+     " Gr",
+     "ab"
+    ],
+    "B-rank-4000": [
+     " Gr",
+     "ab"
+    ],
+    "C-aggressive": [
+     " G",
+     "r",
+     "ab"
+    ],
+    "T-only": [
+     " G",
+     "r",
+     "ab"
+    ]
+   },
+   {
+    "string": "Momo",
+    "in_test_or_probe_text": true,
+    "original": [
+     " M",
+     "omo"
+    ],
+    "A-conservative": [
+     " M",
+     "omo"
+    ],
+    "B-rank-12000": [
+     " M",
+     "omo"
+    ],
+    "B-rank-10000": [
+     " M",
+     "omo"
+    ],
+    "B-rank-8000": [
+     " M",
+     "omo"
+    ],
+    "B-rank-6000": [
+     " M",
+     "omo"
+    ],
+    "B-rank-4000": [
+     " M",
+     "omo"
+    ],
+    "C-aggressive": [
+     " M",
+     "omo"
+    ],
+    "T-only": [
+     " M",
+     "omo"
+    ]
+   },
+   {
+    "string": "Tiki",
+    "in_test_or_probe_text": true,
+    "original": [
+     " T",
+     "iki"
+    ],
+    "A-conservative": [
+     " T",
+     "iki"
+    ],
+    "B-rank-12000": [
+     " T",
+     "iki"
+    ],
+    "B-rank-10000": [
+     " T",
+     "iki"
+    ],
+    "B-rank-8000": [
+     " T",
+     "iki"
+    ],
+    "B-rank-6000": [
+     " T",
+     "iki"
+    ],
+    "B-rank-4000": [
+     " T",
+     "iki"
+    ],
+    "C-aggressive": [
+     " T",
+     "iki"
+    ],
+    "T-only": [
+     " T",
+     "iki"
+    ]
+   },
+   {
+    "string": "Lazada",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Laz",
+     "ada"
+    ],
+    "A-conservative": [
+     " Laz",
+     "ada"
+    ],
+    "B-rank-12000": [
+     " L",
+     "az",
+     "ada"
+    ],
+    "B-rank-10000": [
+     " L",
+     "az",
+     "ada"
+    ],
+    "B-rank-8000": [
+     " L",
+     "az",
+     "ada"
+    ],
+    "B-rank-6000": [
+     " L",
+     "az",
+     "ada"
+    ],
+    "B-rank-4000": [
+     " L",
+     "az",
+     "ada"
+    ],
+    "C-aggressive": [
+     " L",
+     "az",
+     "ada"
+    ],
+    "T-only": [
+     " L",
+     "az",
+     "ada"
+    ]
+   },
+   {
+    "string": "Circle K",
+    "in_test_or_probe_text": false,
+    "original": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "A-conservative": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "B-rank-12000": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "B-rank-10000": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "B-rank-8000": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "B-rank-6000": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "B-rank-4000": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "C-aggressive": [
+     " C",
+     "ircle",
+     " K"
+    ],
+    "T-only": [
+     " C",
+     "ircle",
+     " K"
+    ]
+   },
+   {
+    "string": "Thế Giới Di Động",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Thế",
+     " Giới",
+     " Di",
+     " Động"
+    ],
+    "A-conservative": [
+     " Thế",
+     " Giới",
+     " Di",
+     " Động"
+    ],
+    "B-rank-12000": [
+     " Thế",
+     " Giới",
+     " Di",
+     " Động"
+    ],
+    "B-rank-10000": [
+     " Thế",
+     " Giới",
+     " Di",
+     " Động"
+    ],
+    "B-rank-8000": [
+     " Thế",
+     " Giới",
+     " Di",
+     " Động"
+    ],
+    "B-rank-6000": [
+     " Thế",
+     " Giới",
+     " Di",
+     " Động"
+    ],
+    "B-rank-4000": [
+     " Thế",
+     " Gi\\xe1\\xbb",
+     "\\x9bi",
+     " Di",
+     " Đ",
+     "ộng"
+    ],
+    "C-aggressive": [
+     " Thế",
+     " G",
+     "i\\xe1\\xbb",
+     "\\x9bi",
+     " D",
+     "i",
+     " Đ",
+     "ộng"
+    ],
+    "T-only": [
+     " Th",
+     "ế",
+     " G",
+     "i\\xe1\\xbb",
+     "\\x9bi",
+     " D",
+     "i",
+     " \\xc4",
+     "\\x90",
+     "ộ",
+     "ng"
+    ]
+   },
+   {
+    "string": "GS25",
+    "in_test_or_probe_text": false,
+    "original": [
+     " GS",
+     "25"
+    ],
+    "A-conservative": [
+     " GS",
+     "25"
+    ],
+    "B-rank-12000": [
+     " GS",
+     "25"
+    ],
+    "B-rank-10000": [
+     " GS",
+     "25"
+    ],
+    "B-rank-8000": [
+     " GS",
+     "25"
+    ],
+    "B-rank-6000": [
+     " GS",
+     "25"
+    ],
+    "B-rank-4000": [
+     " G",
+     "S",
+     "25"
+    ],
+    "C-aggressive": [
+     " G",
+     "S",
+     "2",
+     "5"
+    ],
+    "T-only": [
+     " G",
+     "S",
+     "2",
+     "5"
+    ]
+   },
+   {
+    "string": "Winmart",
+    "in_test_or_probe_text": false,
+    "original": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "A-conservative": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "B-rank-12000": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "B-rank-10000": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "B-rank-8000": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "B-rank-6000": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "B-rank-4000": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "C-aggressive": [
+     " W",
+     "inm",
+     "art"
+    ],
+    "T-only": [
+     "W",
+     "inm",
+     "art"
+    ]
+   },
+   {
+    "string": "The Coffee House",
+    "in_test_or_probe_text": false,
+    "original": [
+     " The",
+     " Co",
+     "ffee",
+     " House"
+    ],
+    "A-conservative": [
+     " The",
+     " Co",
+     "ffee",
+     " House"
+    ],
+    "B-rank-12000": [
+     " The",
+     " Co",
+     "ff",
+     "ee",
+     " House"
+    ],
+    "B-rank-10000": [
+     " The",
+     " Co",
+     "ff",
+     "ee",
+     " Ho",
+     "use"
+    ],
+    "B-rank-8000": [
+     " The",
+     " Co",
+     "ff",
+     "ee",
+     " Ho",
+     "use"
+    ],
+    "B-rank-6000": [
+     " The",
+     " Co",
+     "ff",
+     "ee",
+     " Ho",
+     "use"
+    ],
+    "B-rank-4000": [
+     " The",
+     " Co",
+     "ff",
+     "ee",
+     " Ho",
+     "use"
+    ],
+    "C-aggressive": [
+     " Th",
+     "e",
+     " C",
+     "o",
+     "ff",
+     "ee",
+     " H",
+     "o",
+     "us",
+     "e"
+    ],
+    "T-only": [
+     " Th",
+     "e",
+     " C",
+     "o",
+     "f",
+     "f",
+     "ee",
+     " H",
+     "ou",
+     "s",
+     "e"
+    ]
+   },
+   {
+    "string": "Trung Nguyên",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Trung",
+     " Nguyên"
+    ],
+    "A-conservative": [
+     " Trung",
+     " Nguyên"
+    ],
+    "B-rank-12000": [
+     " Trung",
+     " Nguyên"
+    ],
+    "B-rank-10000": [
+     " Trung",
+     " Nguyên"
+    ],
+    "B-rank-8000": [
+     " Trung",
+     " Nguyên"
+    ],
+    "B-rank-6000": [
+     " Trung",
+     " Nguyên"
+    ],
+    "B-rank-4000": [
+     " Trung",
+     " Nguyên"
+    ],
+    "C-aggressive": [
+     " Trung",
+     " Nguyên"
+    ],
+    "T-only": [
+     " T",
+     "r",
+     "ung",
+     " Ng",
+     "uy",
+     "ên"
+    ]
+   },
+   {
+    "string": "Gong Cha",
+    "in_test_or_probe_text": false,
+    "original": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "A-conservative": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "B-rank-12000": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "B-rank-10000": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "B-rank-8000": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "B-rank-6000": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "B-rank-4000": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "C-aggressive": [
+     " G",
+     "ong",
+     " Cha"
+    ],
+    "T-only": [
+     " G",
+     "ong",
+     " Cha"
+    ]
+   },
+   {
+    "string": "KFC",
+    "in_test_or_probe_text": false,
+    "original": [
+     " K",
+     "FC"
+    ],
+    "A-conservative": [
+     " K",
+     "FC"
+    ],
+    "B-rank-12000": [
+     " K",
+     "FC"
+    ],
+    "B-rank-10000": [
+     " K",
+     "FC"
+    ],
+    "B-rank-8000": [
+     " K",
+     "FC"
+    ],
+    "B-rank-6000": [
+     " K",
+     "F",
+     "C"
+    ],
+    "B-rank-4000": [
+     " K",
+     "F",
+     "C"
+    ],
+    "C-aggressive": [
+     " K",
+     "F",
+     "C"
+    ],
+    "T-only": [
+     " K",
+     "F",
+     "C"
+    ]
+   },
+   {
+    "string": "Jollibee",
+    "in_test_or_probe_text": false,
+    "original": [
+     " J",
+     "oll",
+     "ib",
+     "ee"
+    ],
+    "A-conservative": [
+     " J",
+     "oll",
+     "ib",
+     "ee"
+    ],
+    "B-rank-12000": [
+     " J",
+     "oll",
+     "ib",
+     "ee"
+    ],
+    "B-rank-10000": [
+     " J",
+     "oll",
+     "ib",
+     "ee"
+    ],
+    "B-rank-8000": [
+     " J",
+     "oll",
+     "ib",
+     "ee"
+    ],
+    "B-rank-6000": [
+     " J",
+     "oll",
+     "ib",
+     "ee"
+    ],
+    "B-rank-4000": [
+     " J",
+     "oll",
+     "ib",
+     "ee"
+    ],
+    "C-aggressive": [
+     " J",
+     "ol",
+     "l",
+     "ib",
+     "ee"
+    ],
+    "T-only": [
+     "J",
+     "o",
+     "l",
+     "li",
+     "b",
+     "ee"
+    ]
+   },
+   {
+    "string": "Shopee",
+    "in_test_or_probe_text": true,
+    "original": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "A-conservative": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "B-rank-12000": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "B-rank-10000": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "B-rank-8000": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "B-rank-6000": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "B-rank-4000": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "C-aggressive": [
+     " Sh",
+     "op",
+     "ee"
+    ],
+    "T-only": [
+     " S",
+     "h",
+     "op",
+     "ee"
+    ]
+   },
+   {
+    "string": "Xanh SM",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Xanh",
+     " SM"
+    ],
+    "A-conservative": [
+     " Xanh",
+     " SM"
+    ],
+    "B-rank-12000": [
+     " Xanh",
+     " SM"
+    ],
+    "B-rank-10000": [
+     " Xanh",
+     " S",
+     "M"
+    ],
+    "B-rank-8000": [
+     " Xanh",
+     " S",
+     "M"
+    ],
+    "B-rank-6000": [
+     " X",
+     "anh",
+     " S",
+     "M"
+    ],
+    "B-rank-4000": [
+     " X",
+     "anh",
+     " S",
+     "M"
+    ],
+    "C-aggressive": [
+     " X",
+     "anh",
+     " S",
+     "M"
+    ],
+    "T-only": [
+     " X",
+     "anh",
+     " S",
+     "M"
+    ]
+   },
+   {
+    "string": "Nguyễn Văn Hùng",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "A-conservative": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "B-rank-12000": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "B-rank-10000": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "B-rank-8000": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "B-rank-6000": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "B-rank-4000": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "C-aggressive": [
+     " Nguyễn",
+     " Văn",
+     " Hùng"
+    ],
+    "T-only": [
+     " Ng",
+     "uy\\xe1\\xbb",
+     "\\x85",
+     "n",
+     " V",
+     "ăn",
+     " Hùng"
+    ]
+   },
+   {
+    "string": "Trần Thị Lan",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "A-conservative": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "B-rank-12000": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "B-rank-10000": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "B-rank-8000": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "B-rank-6000": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "B-rank-4000": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "C-aggressive": [
+     " Trần",
+     " Thị",
+     " Lan"
+    ],
+    "T-only": [
+     " T",
+     "r",
+     "ần",
+     " Th",
+     "ị",
+     " Lan"
+    ]
+   },
+   {
+    "string": "Phạm Quỳnh Anh",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Phạm",
+     " Quỳnh",
+     " Anh"
+    ],
+    "A-conservative": [
+     " Phạm",
+     " Quỳnh",
+     " Anh"
+    ],
+    "B-rank-12000": [
+     " Phạm",
+     " Quỳnh",
+     " Anh"
+    ],
+    "B-rank-10000": [
+     " Phạm",
+     " Quỳnh",
+     " Anh"
+    ],
+    "B-rank-8000": [
+     " Phạm",
+     " Quỳnh",
+     " Anh"
+    ],
+    "B-rank-6000": [
+     " Phạm",
+     " Quỳnh",
+     " Anh"
+    ],
+    "B-rank-4000": [
+     " Phạm",
+     " Quỳnh",
+     " Anh"
+    ],
+    "C-aggressive": [
+     " Phạm",
+     " Qu",
+     "ỳ",
+     "nh",
+     " Anh"
+    ],
+    "T-only": [
+     " Ph",
+     "ạm",
+     " Qu",
+     "\\xe1\\xbb",
+     "\\xb3",
+     "nh",
+     "A",
+     "nh"
+    ]
+   },
+   {
+    "string": "Đặng Thuỳ Dương",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Đặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "A-conservative": [
+     " Đặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "B-rank-12000": [
+     " Đặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "B-rank-10000": [
+     " Đặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "B-rank-8000": [
+     " Đặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "B-rank-6000": [
+     " Đặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "B-rank-4000": [
+     " Đặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "C-aggressive": [
+     " Đ",
+     "ặng",
+     " Thu",
+     "ỳ",
+     " Dương"
+    ],
+    "T-only": [
+     " \\xc4",
+     "\\x90",
+     "ặng",
+     " Thu",
+     "\\xe1\\xbb",
+     "\\xb3",
+     " D",
+     "ương"
+    ]
+   },
+   {
+    "string": "Khôi",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Khôi"
+    ],
+    "A-conservative": [
+     " Khôi"
+    ],
+    "B-rank-12000": [
+     " Khôi"
+    ],
+    "B-rank-10000": [
+     " Khôi"
+    ],
+    "B-rank-8000": [
+     " Khôi"
+    ],
+    "B-rank-6000": [
+     " Khôi"
+    ],
+    "B-rank-4000": [
+     " Khôi"
+    ],
+    "C-aggressive": [
+     " Khôi"
+    ],
+    "T-only": [
+     " Khôi"
+    ]
+   },
+   {
+    "string": "Uyên",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Uyên"
+    ],
+    "A-conservative": [
+     " Uyên"
+    ],
+    "B-rank-12000": [
+     " Uyên"
+    ],
+    "B-rank-10000": [
+     " Uyên"
+    ],
+    "B-rank-8000": [
+     " Uyên"
+    ],
+    "B-rank-6000": [
+     " Uy",
+     "ên"
+    ],
+    "B-rank-4000": [
+     " Uy",
+     "ên"
+    ],
+    "C-aggressive": [
+     " U",
+     "y",
+     "ên"
+    ],
+    "T-only": [
+     "U",
+     "y",
+     "ên"
+    ]
+   },
+   {
+    "string": "Thịnh",
+    "in_test_or_probe_text": false,
+    "original": [
+     " Thịnh"
+    ],
+    "A-conservative": [
+     " Thịnh"
+    ],
+    "B-rank-12000": [
+     " Thịnh"
+    ],
+    "B-rank-10000": [
+     " Thịnh"
+    ],
+    "B-rank-8000": [
+     " Thịnh"
+    ],
+    "B-rank-6000": [
+     " Thịnh"
+    ],
+    "B-rank-4000": [
+     " Thị",
+     "nh"
+    ],
+    "C-aggressive": [
+     " Thị",
+     "nh"
+    ],
+    "T-only": [
+     " Th",
+     "ị",
+     "nh"
+    ]
+   },
+   {
+    "string": "highlands coffee",
+    "in_test_or_probe_text": false,
+    "original": [
+     " high",
+     "lands",
+     " co",
+     "ffee"
+    ],
+    "A-conservative": [
+     " high",
+     "lands",
+     " co",
+     "ffee"
+    ],
+    "B-rank-12000": [
+     " high",
+     "lands",
+     " co",
+     "ff",
+     "ee"
+    ],
+    "B-rank-10000": [
+     " high",
+     "lands",
+     " co",
+     "ff",
+     "ee"
+    ],
+    "B-rank-8000": [
+     " high",
+     "lands",
+     " co",
+     "ff",
+     "ee"
+    ],
+    "B-rank-6000": [
+     " high",
+     "lands",
+     " co",
+     "ff",
+     "ee"
+    ],
+    "B-rank-4000": [
+     " high",
+     "lands",
+     " co",
+     "ff",
+     "ee"
+    ],
+    "C-aggressive": [
+     " high",
+     "lands",
+     " c",
+     "o",
+     "ff",
+     "ee"
+    ],
+    "T-only": [
+     " high",
+     "lands",
+     " c",
+     "o",
+     "f",
+     "f",
+     "ee"
+    ]
+   },
+   {
+    "string": "phuc long",
+    "in_test_or_probe_text": false,
+    "original": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "A-conservative": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "B-rank-12000": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "B-rank-10000": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "B-rank-8000": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "B-rank-6000": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "B-rank-4000": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "C-aggressive": [
+     " ph",
+     "uc",
+     " long"
+    ],
+    "T-only": [
+     " ph",
+     "uc",
+     " long"
+    ]
+   },
+   {
+    "string": "bach hoa xanh",
+    "in_test_or_probe_text": false,
+    "original": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "A-conservative": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "B-rank-12000": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "B-rank-10000": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "B-rank-8000": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "B-rank-6000": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "B-rank-4000": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "C-aggressive": [
+     " ba",
+     "ch",
+     " hoa",
+     " xanh"
+    ],
+    "T-only": [
+     " ba",
+     "ch",
+     " hoa",
+     " x",
+     "anh"
+    ]
+   },
+   {
+    "string": "the gioi di dong",
+    "in_test_or_probe_text": false,
+    "original": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "A-conservative": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "B-rank-12000": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "B-rank-10000": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "B-rank-8000": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "B-rank-6000": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "B-rank-4000": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "C-aggressive": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ],
+    "T-only": [
+     " the",
+     " gi",
+     "oi",
+     " di",
+     " dong"
+    ]
+   },
+   {
+    "string": "nguyen van hung",
+    "in_test_or_probe_text": false,
+    "original": [
+     " nguy",
+     "en",
+     " van",
+     " hung"
+    ],
+    "A-conservative": [
+     " nguy",
+     "en",
+     " van",
+     " hung"
+    ],
+    "B-rank-12000": [
+     " nguy",
+     "en",
+     " van",
+     " hung"
+    ],
+    "B-rank-10000": [
+     " nguy",
+     "en",
+     " van",
+     " hung"
+    ],
+    "B-rank-8000": [
+     " nguy",
+     "en",
+     " van",
+     " hung"
+    ],
+    "B-rank-6000": [
+     " nguy",
+     "en",
+     " van",
+     " hung"
+    ],
+    "B-rank-4000": [
+     " nguy",
+     "en",
+     " van",
+     " h",
+     "ung"
+    ],
+    "C-aggressive": [
+     " nguy",
+     "en",
+     " van",
+     " h",
+     "ung"
+    ],
+    "T-only": [
+     " ng",
+     "uyen",
+     " van",
+     " h",
+     "ung"
+    ]
+   },
+   {
+    "string": "tran thi lan",
+    "in_test_or_probe_text": false,
+    "original": [
+     " tr",
+     "an",
+     " thi",
+     " lan"
+    ],
+    "A-conservative": [
+     " tr",
+     "an",
+     " thi",
+     " lan"
+    ],
+    "B-rank-12000": [
+     " tr",
+     "an",
+     " thi",
+     " lan"
+    ],
+    "B-rank-10000": [
+     " tr",
+     "an",
+     " thi",
+     " lan"
+    ],
+    "B-rank-8000": [
+     " tr",
+     "an",
+     " thi",
+     " lan"
+    ],
+    "B-rank-6000": [
+     " tr",
+     "an",
+     " thi",
+     " lan"
+    ],
+    "B-rank-4000": [
+     " tr",
+     "an",
+     " thi",
+     " lan"
+    ],
+    "C-aggressive": [
+     " tr",
+     "an",
+     " thi",
+     " l",
+     "an"
+    ],
+    "T-only": [
+     " tr",
+     "an",
+     " thi",
+     " l",
+     "an"
+    ]
+   },
+   {
+    "string": "co Huong",
+    "in_test_or_probe_text": false,
+    "original": [
+     " co",
+     " Hu",
+     "ong"
+    ],
+    "A-conservative": [
+     " co",
+     " Hu",
+     "ong"
+    ],
+    "B-rank-12000": [
+     " co",
+     " Hu",
+     "ong"
+    ],
+    "B-rank-10000": [
+     " co",
+     " Hu",
+     "ong"
+    ],
+    "B-rank-8000": [
+     " co",
+     " Hu",
+     "ong"
+    ],
+    "B-rank-6000": [
+     " co",
+     " Hu",
+     "ong"
+    ],
+    "B-rank-4000": [
+     " co",
+     " Hu",
+     "ong"
+    ],
+    "C-aggressive": [
+     " c",
+     "o",
+     " Hu",
+     "ong"
+    ],
+    "T-only": [
+     " c",
+     "o",
+     " H",
+     "uong"
+    ]
+   },
+   {
+    "string": "2tr35",
+    "in_test_or_probe_text": false,
+    "original": [
+     " 2",
+     "tr",
+     "35"
+    ],
+    "A-conservative": [
+     " 2",
+     "tr",
+     "35"
+    ],
+    "B-rank-12000": [
+     " 2",
+     "tr",
+     "35"
+    ],
+    "B-rank-10000": [
+     " 2",
+     "tr",
+     "35"
+    ],
+    "B-rank-8000": [
+     " 2",
+     "tr",
+     "35"
+    ],
+    "B-rank-6000": [
+     " 2",
+     "tr",
+     "35"
+    ],
+    "B-rank-4000": [
+     " 2",
+     "tr",
+     "35"
+    ],
+    "C-aggressive": [
+     " 2",
+     "tr",
+     "3",
+     "5"
+    ],
+    "T-only": [
+     " 2",
+     "tr",
+     "3",
+     "5"
+    ]
+   },
+   {
+    "string": "7tr8",
+    "in_test_or_probe_text": false,
+    "original": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "A-conservative": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "B-rank-12000": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "B-rank-10000": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "B-rank-8000": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "B-rank-6000": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "B-rank-4000": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "C-aggressive": [
+     " 7",
+     "tr",
+     "8"
+    ],
+    "T-only": [
+     " 7",
+     "tr",
+     "8"
+    ]
+   },
+   {
+    "string": "250k",
+    "in_test_or_probe_text": true,
+    "original": [
+     " 250",
+     "k"
+    ],
+    "A-conservative": [
+     " 250",
+     "k"
+    ],
+    "B-rank-12000": [
+     " 250",
+     "k"
+    ],
+    "B-rank-10000": [
+     " 250",
+     "k"
+    ],
+    "B-rank-8000": [
+     " 250",
+     "k"
+    ],
+    "B-rank-6000": [
+     " 250",
+     "k"
+    ],
+    "B-rank-4000": [
+     " 250",
+     "k"
+    ],
+    "C-aggressive": [
+     " 250",
+     "k"
+    ],
+    "T-only": [
+     " 250",
+     "k"
+    ]
+   },
+   {
+    "string": "1.25tr",
+    "in_test_or_probe_text": false,
+    "original": [
+     " 1",
+     ".",
+     "25",
+     "tr"
+    ],
+    "A-conservative": [
+     " 1",
+     ".",
+     "25",
+     "tr"
+    ],
+    "B-rank-12000": [
+     " 1",
+     ".",
+     "25",
+     "tr"
+    ],
+    "B-rank-10000": [
+     " 1",
+     ".",
+     "25",
+     "tr"
+    ],
+    "B-rank-8000": [
+     " 1",
+     ".",
+     "25",
+     "tr"
+    ],
+    "B-rank-6000": [
+     " 1",
+     ".",
+     "25",
+     "tr"
+    ],
+    "B-rank-4000": [
+     " 1",
+     ".",
+     "25",
+     "tr"
+    ],
+    "C-aggressive": [
+     " 1",
+     ".",
+     "2",
+     "5",
+     "tr"
+    ],
+    "T-only": [
+     " 1",
+     ".",
+     "2",
+     "5",
+     "tr"
+    ]
+   },
+   {
+    "string": "12,500,000",
+    "in_test_or_probe_text": false,
+    "original": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "A-conservative": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "B-rank-12000": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "B-rank-10000": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "B-rank-8000": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "B-rank-6000": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "B-rank-4000": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "C-aggressive": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ],
+    "T-only": [
+     " 12",
+     ",",
+     "500",
+     ",",
+     "000"
+    ]
+   },
+   {
+    "string": "3 triệu rưỡi",
+    "in_test_or_probe_text": false,
+    "original": [
+     " 3",
+     " triệu",
+     " rưỡi"
+    ],
+    "A-conservative": [
+     " 3",
+     " triệu",
+     " rưỡi"
+    ],
+    "B-rank-12000": [
+     " 3",
+     " triệu",
+     " rưỡi"
+    ],
+    "B-rank-10000": [
+     " 3",
+     " triệu",
+     " rưỡi"
+    ],
+    "B-rank-8000": [
+     " 3",
+     " triệu",
+     " r",
+     "ưỡi"
+    ],
+    "B-rank-6000": [
+     " 3",
+     " triệu",
+     " r",
+     "ưỡi"
+    ],
+    "B-rank-4000": [
+     " 3",
+     " triệu",
+     " r",
+     "ưỡi"
+    ],
+    "C-aggressive": [
+     " 3",
+     " triệu",
+     " r",
+     "ư\\xe1\\xbb",
+     "\\xa1",
+     "i"
+    ],
+    "T-only": [
+     " 3",
+     " triệu",
+     " r",
+     "ư\\xe1\\xbb",
+     "\\xa1",
+     "i"
+    ]
+   },
+   {
+    "string": "70 ngàn",
+    "in_test_or_probe_text": false,
+    "original": [
+     " 70",
+     " ngàn"
+    ],
+    "A-conservative": [
+     " 70",
+     " ngàn"
+    ],
+    "B-rank-12000": [
+     " 70",
+     " ngàn"
+    ],
+    "B-rank-10000": [
+     " 70",
+     " ngàn"
+    ],
+    "B-rank-8000": [
+     " 70",
+     " ngàn"
+    ],
+    "B-rank-6000": [
+     " 70",
+     " ngàn"
+    ],
+    "B-rank-4000": [
+     " 70",
+     " ngàn"
+    ],
+    "C-aggressive": [
+     " 70",
+     " ng",
+     "àn"
+    ],
+    "T-only": [
+     " 70",
+     " ng",
+     "àn"
+    ]
+   },
+   {
+    "string": "1tỷ2",
+    "in_test_or_probe_text": false,
+    "original": [
+     " 1",
+     "tỷ",
+     "2"
+    ],
+    "A-conservative": [
+     " 1",
+     "tỷ",
+     "2"
+    ],
+    "B-rank-12000": [
+     " 1",
+     "t",
+     "ỷ",
+     "2"
+    ],
+    "B-rank-10000": [
+     " 1",
+     "t",
+     "ỷ",
+     "2"
+    ],
+    "B-rank-8000": [
+     " 1",
+     "t",
+     "ỷ",
+     "2"
+    ],
+    "B-rank-6000": [
+     " 1",
+     "t",
+     "ỷ",
+     "2"
+    ],
+    "B-rank-4000": [
+     " 1",
+     "t",
+     "ỷ",
+     "2"
+    ],
+    "C-aggressive": [
+     " 1",
+     "t",
+     "\\xe1\\xbb",
+     "\\xb7",
+     "2"
+    ],
+    "T-only": [
+     " 1",
+     "t",
+     "\\xe1\\xbb",
+     "\\xb7",
+     "2"
+    ]
+   }
+  ],
+  "summary": {
+   "A-conservative": {
+    "changed": 0,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 2.85
+   },
+   "B-rank-12000": {
+    "changed": 4,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 2.95
+   },
+   "B-rank-10000": {
+    "changed": 5,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 3.0
+   },
+   "B-rank-8000": {
+    "changed": 8,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 3.075
+   },
+   "B-rank-6000": {
+    "changed": 11,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 3.2
+   },
+   "B-rank-4000": {
+    "changed": 15,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 3.325
+   },
+   "C-aggressive": {
+    "changed": 23,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 3.9
+   },
+   "T-only": {
+    "changed": 29,
+    "of": 40,
+    "mean_pieces_original": 2.85,
+    "mean_pieces_pruned": 4.55
+   }
+  }
+ },
+ "chosen_policy": {
+  "name": "B-rank-8000",
+  "spec": "models/compression-v1/vocab/B-rank-8000",
+  "vocab_map_sha256": "da3f4357262e0379a6167107effd7c1ff5e5b8f8a1f99e87f2a44bb736ea3f68",
+  "rows": 8338,
+  "removed": 12143,
+  "merges_kept": 8123,
+  "embedding_copy": "all 8,338 kept rows copied exactly from the trained/pretrained rows (old id order preserved); specials keep ids 0-3, <mask> last"
+ },
+ "trained": {
+  "checkpoints": "models/compression-v1/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000/seed{1,2,3}",
+  "runs": "experiments/compression-v1/runs/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000/seed{1,2,3}",
+  "fit": "all 3 seeds: in-sample validation type F1 1.000, span F1 1.000 at epoch 40"
+ },
+ "metrics": {
+  "baseline-4x768:test": {
+   "type accuracy": [
+    0.926984126984127,
+    0.00549857399228213
+   ],
+   "type macro-F1": [
+    0.9278796780828514,
+    0.007104404137127932
+   ],
+   "span F1": [
+    0.8296614388847399,
+    0.05262352797004518
+   ],
+   "span exact": [
+    0.8984126984126984,
+    0.027492869961410718
+   ],
+   "type+span joint": [
+    0.8444444444444444,
+    0.03061476432061255
+   ],
+   "false_span_null_gold": [
+    2.6666666666666665,
+    0.5773502691896257
+   ],
+   "missed_span": [
+    1,
+    0.0
+   ],
+   "wrong_span": [
+    7,
+    2.6457513110645907
+   ],
+   "subword_fragment_spans": [
+    4.333333333333333,
+    2.516611478423583
+   ]
+  },
+  "baseline-4x768:probe": {
+   "type accuracy": [
+    0.8106995884773662,
+    0.031069277511402232
+   ],
+   "type macro-F1": [
+    0.794673699933045,
+    0.034343533553657504
+   ],
+   "span F1": [
+    0.7920004450378282,
+    0.037575771254545
+   ],
+   "span exact": [
+    0.831275720164609,
+    0.025699580240322616
+   ],
+   "type+span joint": [
+    0.6666666666666666,
+    0.0
+   ],
+   "false_span_null_gold": [
+    2.3333333333333335,
+    1.1547005383792515
+   ],
+   "missed_span": [
+    2,
+    1.7320508075688772
+   ],
+   "wrong_span": [
+    9.333333333333334,
+    2.516611478423583
+   ],
+   "subword_fragment_spans": [
+    6.333333333333333,
+    2.516611478423583
+   ]
+  },
+  "pos32-vocabB8000-4x768:test": {
+   "type accuracy": [
+    0.9333333333333333,
+    0.00952380952380949
+   ],
+   "type macro-F1": [
+    0.9354345245163743,
+    0.009281173017622844
+   ],
+   "span F1": [
+    0.8424819517052528,
+    0.03062802340674641
+   ],
+   "span exact": [
+    0.9047619047619048,
+    0.016495721976846456
+   ],
+   "type+span joint": [
+    0.8539682539682539,
+    0.030614764320612574
+   ],
+   "false_span_null_gold": [
+    2.6666666666666665,
+    0.5773502691896257
+   ],
+   "missed_span": [
+    1,
+    0.0
+   ],
+   "wrong_span": [
+    6.333333333333333,
+    1.5275252316519468
+   ],
+   "subword_fragment_spans": [
+    4,
+    2.0
+   ]
+  },
+  "pos32-vocabB8000-4x768:probe": {
+   "type accuracy": [
+    0.8189300411522634,
+    0.037716672386467816
+   ],
+   "type macro-F1": [
+    0.812959462706228,
+    0.03587277250115438
+   ],
+   "span F1": [
+    0.7831893643214397,
+    0.033967024589357735
+   ],
+   "span exact": [
+    0.8148148148148148,
+    0.021383343303319504
+   ],
+   "type+span joint": [
+    0.654320987654321,
+    0.012345679012345678
+   ],
+   "false_span_null_gold": [
+    2.6666666666666665,
+    0.5773502691896257
+   ],
+   "missed_span": [
+    3.6666666666666665,
+    2.0816659994661326
+   ],
+   "wrong_span": [
+    8.666666666666666,
+    2.516611478423583
+   ],
+   "subword_fragment_spans": [
+    6.333333333333333,
+    2.0816659994661326
+   ]
+  }
+ },
+ "per_seed": {
+  "baseline-4x768:test": [
+   {
+    "type accuracy": 0.9238095238095239,
+    "type macro-F1": 0.9260079231054463,
+    "span F1": 0.7692307692307692,
+    "span exact": 0.8666666666666667,
+    "type+span joint": 0.8095238095238095,
+    "false_span_null_gold": 3,
+    "missed_span": 1,
+    "wrong_span": 10,
+    "subword_fragment_spans": 7
+   },
+   {
+    "type accuracy": 0.9333333333333333,
+    "type macro-F1": 0.9357325605680868,
+    "span F1": 0.854368932038835,
+    "span exact": 0.9142857142857143,
+    "type+span joint": 0.8666666666666667,
+    "false_span_null_gold": 2,
+    "missed_span": 1,
+    "wrong_span": 6,
+    "subword_fragment_spans": 4
+   },
+   {
+    "type accuracy": 0.9238095238095239,
+    "type macro-F1": 0.9218985505750212,
+    "span F1": 0.8653846153846154,
+    "span exact": 0.9142857142857143,
+    "type+span joint": 0.8571428571428571,
+    "false_span_null_gold": 3,
+    "missed_span": 1,
+    "wrong_span": 5,
+    "subword_fragment_spans": 2
+   }
+  ],
+  "baseline-4x768:probe": [
+   {
+    "type accuracy": 0.8148148148148148,
+    "type macro-F1": 0.7742430305455514,
+    "span F1": 0.8035714285714286,
+    "span exact": 0.8395061728395061,
+    "type+span joint": 0.6666666666666666,
+    "false_span_null_gold": 3,
+    "missed_span": 1,
+    "wrong_span": 9,
+    "subword_fragment_spans": 6
+   },
+   {
+    "type accuracy": 0.7777777777777778,
+    "type macro-F1": 0.7754540366102232,
+    "span F1": 0.8224299065420562,
+    "span exact": 0.8518518518518519,
+    "type+span joint": 0.6666666666666666,
+    "false_span_null_gold": 1,
+    "missed_span": 4,
+    "wrong_span": 7,
+    "subword_fragment_spans": 4
+   },
+   {
+    "type accuracy": 0.8395061728395061,
+    "type macro-F1": 0.8343240326433604,
+    "span F1": 0.7499999999999999,
+    "span exact": 0.8024691358024691,
+    "type+span joint": 0.6666666666666666,
+    "false_span_null_gold": 3,
+    "missed_span": 1,
+    "wrong_span": 12,
+    "subword_fragment_spans": 9
+   }
+  ],
+  "pos32-vocabB8000-4x768:test": [
+   {
+    "type accuracy": 0.9238095238095239,
+    "type macro-F1": 0.9260079231054463,
+    "span F1": 0.8076923076923077,
+    "span exact": 0.8857142857142857,
+    "type+span joint": 0.819047619047619,
+    "false_span_null_gold": 3,
+    "missed_span": 1,
+    "wrong_span": 8,
+    "subword_fragment_spans": 6
+   },
+   {
+    "type accuracy": 0.9333333333333333,
+    "type macro-F1": 0.9357325605680868,
+    "span F1": 0.854368932038835,
+    "span exact": 0.9142857142857143,
+    "type+span joint": 0.8666666666666667,
+    "false_span_null_gold": 2,
+    "missed_span": 1,
+    "wrong_span": 6,
+    "subword_fragment_spans": 4
+   },
+   {
+    "type accuracy": 0.9428571428571428,
+    "type macro-F1": 0.9445630898755899,
+    "span F1": 0.8653846153846154,
+    "span exact": 0.9142857142857143,
+    "type+span joint": 0.8761904761904762,
+    "false_span_null_gold": 3,
+    "missed_span": 1,
+    "wrong_span": 5,
+    "subword_fragment_spans": 2
+   }
+  ],
+  "pos32-vocabB8000-4x768:probe": [
+   {
+    "type accuracy": 0.8271604938271605,
+    "type macro-F1": 0.8146997929606625,
+    "span F1": 0.7927927927927927,
+    "span exact": 0.8271604938271605,
+    "type+span joint": 0.6666666666666666,
+    "false_span_null_gold": 3,
+    "missed_span": 2,
+    "wrong_span": 9,
+    "subword_fragment_spans": 7
+   },
+   {
+    "type accuracy": 0.7777777777777778,
+    "type macro-F1": 0.7762482004295971,
+    "span F1": 0.8113207547169811,
+    "span exact": 0.8271604938271605,
+    "type+span joint": 0.6419753086419753,
+    "false_span_null_gold": 2,
+    "missed_span": 6,
+    "wrong_span": 6,
+    "subword_fragment_spans": 4
+   },
+   {
+    "type accuracy": 0.8518518518518519,
+    "type macro-F1": 0.8479303947284242,
+    "span F1": 0.7454545454545455,
+    "span exact": 0.7901234567901234,
+    "type+span joint": 0.654320987654321,
+    "false_span_null_gold": 3,
+    "missed_span": 3,
+    "wrong_span": 11,
+    "subword_fragment_spans": 8
+   }
+  ]
+ },
+ "paired_pruned_minus_baseline": {
+  "test:type macro-F1": [
+   0.0,
+   0.0,
+   0.022664539300568665
+  ],
+  "test:span F1": [
+   0.03846153846153855,
+   0.0,
+   0.0
+  ],
+  "test:span exact": [
+   0.01904761904761898,
+   0.0,
+   0.0
+  ],
+  "test:type+span joint": [
+   0.00952380952380949,
+   0.0,
+   0.01904761904761909
+  ],
+  "probe:type macro-F1": [
+   0.04045676241511109,
+   0.0007941638193739164,
+   0.013606362085063828
+  ],
+  "probe:span F1": [
+   -0.010778635778635914,
+   -0.011109151825075103,
+   -0.004545454545454408
+  ],
+  "probe:span exact": [
+   -0.012345679012345623,
+   -0.024691358024691357,
+   -0.012345679012345734
+  ],
+  "probe:type+span joint": [
+   0.0,
+   -0.024691358024691357,
+   -0.012345679012345623
+  ]
+ },
+ "probe_patterns": {
+  "family_gift_in": {
+   "n": 9,
+   "baseline-4x768": {
+    "success": [
+     0.6666666666666666,
+     0.1924500897298753
+    ],
+    "type_acc": [
+     0.7037037037037037,
+     0.23129622216290363
+    ],
+    "span_exact": [
+     0.8888888888888888,
+     0.0
+    ],
+    "per_seed": [
+     0.7777777777777778,
+     0.4444444444444444,
+     0.7777777777777778
+    ]
+   },
+   "pos32-vocabB8000-4x768": {
+    "success": [
+     0.6666666666666666,
+     0.1924500897298753
+    ],
+    "type_acc": [
+     0.6666666666666666,
+     0.1924500897298753
+    ],
+    "span_exact": [
+     0.8888888888888888,
+     0.0
+    ],
+    "per_seed": [
+     0.7777777777777778,
+     0.4444444444444444,
+     0.7777777777777778
+    ]
+   }
+  },
+  "gift_out": {
+   "n": 9,
+   "baseline-4x768": {
+    "success": [
+     0.5555555555555556,
+     0.0
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.0
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.5555555555555556,
+     0.5555555555555556
+    ]
+   },
+   "pos32-vocabB8000-4x768": {
+    "success": [
+     0.5555555555555556,
+     0.0
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.0
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.5555555555555556,
+     0.5555555555555556
+    ]
+   }
+  },
+  "insurance_payout": {
+   "n": 9,
+   "baseline-4x768": {
+    "success": [
+     0.6296296296296297,
+     0.12830005981991682
+    ],
+    "type_acc": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.8888888888888888,
+     0.1111111111111111
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.7777777777777778,
+     0.5555555555555556
+    ]
+   },
+   "pos32-vocabB8000-4x768": {
+    "success": [
+     0.5185185185185185,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.7777777777777778,
+     0.0
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.5555555555555556,
+     0.4444444444444444
+    ]
+   }
+  },
+  "insurance_premium": {
+   "n": 9,
+   "baseline-4x768": {
+    "success": [
+     0.5185185185185185,
+     0.12830005981991682
+    ],
+    "type_acc": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "span_exact": [
+     0.6666666666666666,
+     0.1111111111111111
+    ],
+    "per_seed": [
+     0.4444444444444444,
+     0.6666666666666666,
+     0.4444444444444444
+    ]
+   },
+   "pos32-vocabB8000-4x768": {
+    "success": [
+     0.5185185185185185,
+     0.12830005981991682
+    ],
+    "type_acc": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "span_exact": [
+     0.6666666666666666,
+     0.1111111111111111
+    ],
+    "per_seed": [
+     0.4444444444444444,
+     0.6666666666666666,
+     0.4444444444444444
+    ]
+   }
+  },
+  "lender_first_cho_muon": {
+   "n": 9,
+   "baseline-4x768": {
+    "success": [
+     0.7777777777777778,
+     0.1111111111111111
+    ],
+    "type_acc": [
+     0.8518518518518519,
+     0.12830005981991682
+    ],
+    "span_exact": [
+     0.9259259259259259,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.7777777777777778,
+     0.6666666666666666,
+     0.8888888888888888
+    ]
+   },
+   "pos32-vocabB8000-4x768": {
+    "success": [
+     0.7777777777777778,
+     0.1111111111111111
+    ],
+    "type_acc": [
+     0.8518518518518519,
+     0.12830005981991682
+    ],
+    "span_exact": [
+     0.9259259259259259,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.7777777777777778,
+     0.6666666666666666,
+     0.8888888888888888
+    ]
+   }
+  },
+  "loan_installment": {
+   "n": 9,
+   "baseline-4x768": {
+    "success": [
+     0.5185185185185185,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.6666666666666666,
+     0.0
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.4444444444444444,
+     0.5555555555555556
+    ]
+   },
+   "pos32-vocabB8000-4x768": {
+    "success": [
+     0.5185185185185185,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.5555555555555556,
+     0.4444444444444444,
+     0.5555555555555556
+    ]
+   }
+  },
+  "subject_first_muon": {
+   "n": 9,
+   "baseline-4x768": {
+    "success": [
+     0.8888888888888888,
+     0.0
+    ],
+    "type_acc": [
+     0.9259259259259259,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.9629629629629629,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.8888888888888888,
+     0.8888888888888888,
+     0.8888888888888888
+    ]
+   },
+   "pos32-vocabB8000-4x768": {
+    "success": [
+     0.8888888888888888,
+     0.0
+    ],
+    "type_acc": [
+     0.9259259259259259,
+     0.06415002990995845
+    ],
+    "span_exact": [
+     0.9629629629629629,
+     0.06415002990995845
+    ],
+    "per_seed": [
+     0.8888888888888888,
+     0.8888888888888888,
+     0.8888888888888888
+    ]
+   }
+  },
+  "title_name_span": {
+   "n": 9,
+   "baseline-4x768": {
+    "success": [
+     0.7037037037037037,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.8148148148148148,
+     0.06415002990995838
+    ],
+    "per_seed": [
+     0.6666666666666666,
+     0.7777777777777778,
+     0.6666666666666666
+    ]
+   },
+   "pos32-vocabB8000-4x768": {
+    "success": [
+     0.7037037037037037,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.8148148148148148,
+     0.06415002990995838
+    ],
+    "per_seed": [
+     0.6666666666666666,
+     0.7777777777777778,
+     0.6666666666666666
+    ]
+   }
+  },
+  "windfall": {
+   "n": 9,
+   "baseline-4x768": {
+    "success": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "per_seed": [
+     0.7777777777777778,
+     0.7777777777777778,
+     0.6666666666666666
+    ]
+   },
+   "pos32-vocabB8000-4x768": {
+    "success": [
+     0.7407407407407407,
+     0.06415002990995845
+    ],
+    "type_acc": [
+     0.8888888888888888,
+     0.0
+    ],
+    "span_exact": [
+     0.8518518518518519,
+     0.06415002990995838
+    ],
+    "per_seed": [
+     0.7777777777777778,
+     0.7777777777777778,
+     0.6666666666666666
+    ]
+   }
+  }
+ },
+ "accent": {
+  "test:accented:baseline-4x768": {
+   "n": 63,
+   "type_acc": [
+    0.9365079365079365,
+    0.015873015873015872
+   ],
+   "span_f1": [
+    0.8854036413298925,
+    0.03853481806831168
+   ],
+   "exact": [
+    0.9312169312169312,
+    0.018328579974273833
+   ]
+  },
+  "test:unaccented:baseline-4x768": {
+   "n": 42,
+   "type_acc": [
+    0.9126984126984127,
+    0.01374643498070539
+   ],
+   "span_f1": [
+    0.7290448343079922,
+    0.10105008209187352
+   ],
+   "exact": [
+    0.8492063492063492,
+    0.05991932091484723
+   ]
+  },
+  "probe:accented:baseline-4x768": {
+   "n": 49,
+   "type_acc": [
+    0.8367346938775511,
+    0.02040816326530609
+   ],
+   "span_f1": [
+    0.8142292490118577,
+    0.03301703316506368
+   ],
+   "exact": [
+    0.8571428571428571,
+    0.02040816326530609
+   ]
+  },
+  "probe:unaccented:baseline-4x768": {
+   "n": 32,
+   "type_acc": [
+    0.7708333333333334,
+    0.047735163489123336
+   ],
+   "span_f1": [
+    0.7562866326337682,
+    0.05101572389033658
+   ],
+   "exact": [
+    0.7916666666666666,
+    0.03608439182435161
+   ]
+  },
+  "test:accented:pos32-vocabB8000-4x768": {
+   "n": 63,
+   "type_acc": [
+    0.9417989417989417,
+    0.018328579974273833
+   ],
+   "span_f1": [
+    0.8955046514309025,
+    0.025928210898659085
+   ],
+   "exact": [
+    0.9365079365079365,
+    0.015873015873015872
+   ]
+  },
+  "test:unaccented:pos32-vocabB8000-4x768": {
+   "n": 42,
+   "type_acc": [
+    0.9206349206349207,
+    0.01374643498070539
+   ],
+   "span_f1": [
+    0.746588693957115,
+    0.07748997742807393
+   ],
+   "exact": [
+    0.8571428571428571,
+    0.047619047619047616
+   ]
+  },
+  "probe:accented:pos32-vocabB8000-4x768": {
+   "n": 49,
+   "type_acc": [
+    0.8435374149659863,
+    0.023565317109780607
+   ],
+   "span_f1": [
+    0.7965309200603319,
+    0.033097725237965746
+   ],
+   "exact": [
+    0.8367346938775511,
+    0.02040816326530609
+   ]
+  },
+  "probe:unaccented:pos32-vocabB8000-4x768": {
+   "n": 32,
+   "type_acc": [
+    0.78125,
+    0.0625
+   ],
+   "span_f1": [
+    0.7618237311941226,
+    0.041484426568254205
+   ],
+   "exact": [
+    0.78125,
+    0.03125
+   ]
+  }
+ },
+ "unseen_target": {
+  "test:baseline-4x768": {
+   "seen": {
+    "n": 36,
+    "span_exact": [
+     0.9166666666666666,
+     0.048112522432468774
+    ]
+   },
+   "unseen": {
+    "n": 15,
+    "span_exact": [
+     0.6666666666666666,
+     0.06666666666666665
+    ]
+   }
+  },
+  "probe:baseline-4x768": {
+   "seen": {
+    "n": 41,
+    "span_exact": [
+     0.8211382113821138,
+     0.037256712967120624
+    ]
+   },
+   "unseen": {
+    "n": 14,
+    "span_exact": [
+     0.7142857142857143,
+     0.0
+    ]
+   }
+  },
+  "test:pos32-vocabB8000-4x768": {
+   "seen": {
+    "n": 36,
+    "span_exact": [
+     0.9259259259259259,
+     0.03207501495497923
+    ]
+   },
+   "unseen": {
+    "n": 15,
+    "span_exact": [
+     0.6888888888888889,
+     0.03849001794597504
+    ]
+   }
+  },
+  "probe:pos32-vocabB8000-4x768": {
+   "seen": {
+    "n": 41,
+    "span_exact": [
+     0.8211382113821138,
+     0.037256712967120624
+    ]
+   },
+   "unseen": {
+    "n": 14,
+    "span_exact": [
+     0.6428571428571429,
+     0.0
+    ]
+   }
+  }
+ },
+ "notes_flipped_on_all_seeds": {
+  "test": {
+   "lost_all_seeds": [],
+   "gained_all_seeds": []
+  },
+  "probe": {
+   "lost_all_seeds": [],
+   "gained_all_seeds": []
+  }
+ },
+ "size_latency": {
+  "original-4x768": {
+   "param_count": 45666059,
+   "checkpoint_safetensors_mb": 182.672796,
+   "onnx_fp32_mb": 182.718861,
+   "onnx_int8_mb": 45.856637,
+   "int8_agreement_50_notes": {
+    "samples": 50,
+    "type_agreement": 1.0,
+    "tag_agreement": 0.9940711462450593,
+    "tag_tokens": 506,
+    "max_abs_diff_type_logits": 1.4792027473449707
+   },
+   "latency_1thread_ms": {
+    "torch_fp32": {
+     "p50": 4.051374504342675,
+     "p95": 4.562334157526493
+    },
+    "onnx_fp32": {
+     "p50": 2.730104490183294,
+     "p95": 3.08429216966033
+    },
+    "onnx_int8": {
+     "p50": 1.4995415695011616,
+     "p95": 1.8523328471928835
+    }
+   },
+   "export_report": "experiments/compression-v1/positions/export-baseline-seed1.json"
+  },
+  "pos32-4x768": {
+   "param_count": 44117771,
+   "checkpoint_safetensors_mb": 176.479628,
+   "onnx_fp32_mb": 176.509572,
+   "onnx_int8_mb": 44.292214,
+   "int8_agreement_50_notes": {
+    "samples": 50,
+    "type_agreement": 1.0,
+    "tag_agreement": 0.9940711462450593,
+    "tag_tokens": 506,
+    "max_abs_diff_type_logits": 1.4792027473449707
+   },
+   "latency_1thread_ms": {
+    "torch_fp32": {
+     "p50": 3.739438019692898,
+     "p95": 4.136916948482394
+    },
+    "onnx_fp32": {
+     "p50": 2.4757495848461986,
+     "p95": 2.9938749503344297
+    },
+    "onnx_int8": {
+     "p50": 1.4063124544918537,
+     "p95": 1.7507500015199184
+    }
+   },
+   "export_report": "experiments/compression-v1/positions/export-pos32-seed1.json"
+  },
+  "pos32-vocabB8000-4x768": {
+   "param_count": 34791947,
+   "checkpoint_safetensors_mb": 139.176292,
+   "onnx_fp32_mb": 139.206274,
+   "onnx_int8_mb": 34.966389,
+   "int8_agreement_50_notes": {
+    "samples": 50,
+    "type_agreement": 1.0,
+    "tag_agreement": 1.0,
+    "tag_tokens": 507,
+    "max_abs_diff_type_logits": 1.2066354751586914
+   },
+   "latency_1thread_ms": {
+    "torch_fp32": {
+     "p50": 4.118791548535228,
+     "p95": 4.442542092874646
+    },
+    "onnx_fp32": {
+     "p50": 2.9009791323915124,
+     "p95": 3.293291898444295
+    },
+    "onnx_int8": {
+     "p50": 1.5678125200793147,
+     "p95": 1.9533750601112843
+    }
+   },
+   "export_report": "experiments/compression-v1/export-pos32-vocabB8000-seed1.json"
+  },
+  "note": "seed 1 of each; latency is CPU batch-1, 1 thread, this Mac; ~0.1 ms run-to-run noise"
+ },
+ "quantization_seed1": {
+  "original-4x768": {
+   "test": {
+    "torch": {
+     "type_accuracy": 0.9238095238095239,
+     "type_macro_f1": 0.9260079231054463,
+     "span_f1": 0.7692307692307692,
+     "span_exact": 0.8666666666666667,
+     "joint": 0.8095238095238095
+    },
+    "fp32": {
+     "type_accuracy": 0.9238095238095239,
+     "type_macro_f1": 0.9260079231054463,
+     "span_f1": 0.7692307692307692,
+     "span_exact": 0.8666666666666667,
+     "joint": 0.8095238095238095
+    },
+    "int8": {
+     "type_accuracy": 0.9238095238095239,
+     "type_macro_f1": 0.9260079231054463,
+     "span_f1": 0.7999999999999999,
+     "span_exact": 0.8761904761904762,
+     "joint": 0.8285714285714286
+    }
+   },
+   "probe": {
+    "torch": {
+     "type_accuracy": 0.8148148148148148,
+     "type_macro_f1": 0.7742430305455514,
+     "span_f1": 0.8035714285714286,
+     "span_exact": 0.8395061728395061,
+     "joint": 0.6666666666666666
+    },
+    "fp32": {
+     "type_accuracy": 0.8148148148148148,
+     "type_macro_f1": 0.7742430305455514,
+     "span_f1": 0.8035714285714286,
+     "span_exact": 0.8395061728395061,
+     "joint": 0.6666666666666666
+    },
+    "int8": {
+     "type_accuracy": 0.8024691358024691,
+     "type_macro_f1": 0.7388788848872883,
+     "span_f1": 0.8108108108108109,
+     "span_exact": 0.8395061728395061,
+     "joint": 0.654320987654321
+    }
+   }
+  },
+  "pos32-4x768": {
+   "test": {
+    "torch": {
+     "type_accuracy": 0.9238095238095239,
+     "type_macro_f1": 0.9260079231054463,
+     "span_f1": 0.7692307692307692,
+     "span_exact": 0.8666666666666667,
+     "joint": 0.8095238095238095
+    },
+    "fp32": {
+     "type_accuracy": 0.9238095238095239,
+     "type_macro_f1": 0.9260079231054463,
+     "span_f1": 0.7692307692307692,
+     "span_exact": 0.8666666666666667,
+     "joint": 0.8095238095238095
+    },
+    "int8": {
+     "type_accuracy": 0.9238095238095239,
+     "type_macro_f1": 0.9260079231054463,
+     "span_f1": 0.7999999999999999,
+     "span_exact": 0.8761904761904762,
+     "joint": 0.8285714285714286
+    }
+   },
+   "probe": {
+    "torch": {
+     "type_accuracy": 0.8148148148148148,
+     "type_macro_f1": 0.7742430305455514,
+     "span_f1": 0.8035714285714286,
+     "span_exact": 0.8395061728395061,
+     "joint": 0.6666666666666666
+    },
+    "fp32": {
+     "type_accuracy": 0.8148148148148148,
+     "type_macro_f1": 0.7742430305455514,
+     "span_f1": 0.8035714285714286,
+     "span_exact": 0.8395061728395061,
+     "joint": 0.6666666666666666
+    },
+    "int8": {
+     "type_accuracy": 0.8024691358024691,
+     "type_macro_f1": 0.7388788848872883,
+     "span_f1": 0.8108108108108109,
+     "span_exact": 0.8395061728395061,
+     "joint": 0.654320987654321
+    }
+   }
+  },
+  "pos32-vocabB8000-4x768": {
+   "test": {
+    "torch": {
+     "type_accuracy": 0.9238095238095239,
+     "type_macro_f1": 0.9260079231054463,
+     "span_f1": 0.8076923076923077,
+     "span_exact": 0.8857142857142857,
+     "joint": 0.819047619047619
+    },
+    "fp32": {
+     "type_accuracy": 0.9238095238095239,
+     "type_macro_f1": 0.9260079231054463,
+     "span_f1": 0.8076923076923077,
+     "span_exact": 0.8857142857142857,
+     "joint": 0.819047619047619
+    },
+    "int8": {
+     "type_accuracy": 0.9238095238095239,
+     "type_macro_f1": 0.9260079231054463,
+     "span_f1": 0.8076923076923077,
+     "span_exact": 0.8857142857142857,
+     "joint": 0.819047619047619
+    }
+   },
+   "probe": {
+    "torch": {
+     "type_accuracy": 0.8271604938271605,
+     "type_macro_f1": 0.8146997929606625,
+     "span_f1": 0.7927927927927927,
+     "span_exact": 0.8271604938271605,
+     "joint": 0.6666666666666666
+    },
+    "fp32": {
+     "type_accuracy": 0.8271604938271605,
+     "type_macro_f1": 0.8146997929606625,
+     "span_f1": 0.7927927927927927,
+     "span_exact": 0.8271604938271605,
+     "joint": 0.6666666666666666
+    },
+    "int8": {
+     "type_accuracy": 0.8395061728395061,
+     "type_macro_f1": 0.8228363809291832,
+     "span_f1": 0.8073394495412846,
+     "span_exact": 0.8271604938271605,
+     "joint": 0.6666666666666666
+    }
+   }
+  }
+ },
+ "depth_estimates_int8_mb": {
+  "per_768_layer_params": 7087872,
+  "4x768": 34.97,
+  "3x768": 27.9,
+  "2x768": 20.8,
+  "method": "measured 4x768 pos32+B-rank-8000 INT8 minus ~1 byte per removed layer parameter"
+ },
+ "conclusion": "B"
+}

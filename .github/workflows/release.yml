@@ -1,0 +1,78 @@
+name: release
+
+# Builds and verifies a release directory. Never publishes. All logic lives in
+# scripts/release.py; this file only orchestrates it. See docs/releasing.md.
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: "Release version (MAJOR.MINOR.PATCH[-prerelease]; MAJOR must match the model's vN)"
+        required: true
+        type: string
+      model_version:
+        description: "Model version"
+        required: false
+        default: gidi-finance-v2
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ inputs.model_version }}-${{ inputs.release_version }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    # Model binaries are gitignored, so this runs on a runner that provides them.
+    # Their bytes are pinned by the committed spec (releases/<model>.json), so the
+    # runner cannot substitute different models.
+    runs-on: [self-hosted, gidi-models]
+    timeout-minutes: 60
+    env:
+      MODEL_VERSION: ${{ inputs.model_version }}
+      RELEASE_VERSION: ${{ inputs.release_version }}
+    steps:
+      - name: Checkout exact commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Link models from runner
+        run: |
+          : "${GIDI_MODELS_DIR:?GIDI_MODELS_DIR must be set on the runner}"
+          test -d "$GIDI_MODELS_DIR" || { echo "GIDI_MODELS_DIR is not a directory: $GIDI_MODELS_DIR" >&2; exit 1; }
+          mkdir -p models
+          for src in "$GIDI_MODELS_DIR"/*; do
+            name="$(basename "$src")"
+            [ "$name" = README.md ] && continue
+            ln -sfn "$src" "models/$name"
+          done
+
+      - name: Build release
+        run: uv run python scripts/release.py build --model "$MODEL_VERSION" --version "$RELEASE_VERSION"
+
+      - name: Verify release
+        run: uv run python scripts/release.py verify --release "dist/releases/$MODEL_VERSION/$RELEASE_VERSION"
+
+      - name: Check build reproducibility
+        run: uv run python scripts/release.py build --model "$MODEL_VERSION" --version "$RELEASE_VERSION" --check
+
+      - name: Check archive reproducibility
+        run: uv run python scripts/release.py package --release "dist/releases/$MODEL_VERSION/$RELEASE_VERSION" --check
+
+      - name: Upload release
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ inputs.model_version }}-${{ inputs.release_version }}
+          path: dist/releases/${{ inputs.model_version }}/${{ inputs.release_version }}
+          if-no-files-found: error
+          retention-days: 90

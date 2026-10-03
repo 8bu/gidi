@@ -1,0 +1,7 @@
+{"id":"probe-v1-471ec841e6cd","annotation_status":"complete","type":"income","target":{"text":"bo me","start":0,"end":5}}
+{"id":"probe-v1-5f9010f79258","annotation_status":"complete","type":"expense","target":{"text":"ông bà","start":10,"end":16}}
+{"id":"probe-v1-1ca03a56b8ac","annotation_status":"complete","type":"expense","target":{"text":"mẹ","start":4,"end":6}}
+{"id":"probe-v1-732afc3f5f6e","annotation_status":"complete","type":"expense","target":{"text":"em gai","start":4,"end":10}}
+{"id":"probe-v1-e118c8b4f87b","annotation_status":"complete","type":"expense","target":null}
+{"id":"probe-v1-0e4ff440b1e4","annotation_status":"complete","type":"income","target":null}
+{"id":"probe-v1-88eca19af17e","annotation_status":"complete","type":"repayment_out","target":{"text":"ngan hang","start":4,"end":13}}

@@ -1,0 +1,176 @@
+{"id": "targeted-value-01-bbd5fb542ba0", "annotation_status": "complete", "type": "lend", "target": {"text": "Thúy", "start": 7, "end": 11}}
+{"id": "targeted-value-01-b78ded035e9b", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-12a2f5a6edb5", "annotation_status": "complete", "type": "lend", "target": {"text": "Quân", "start": 4, "end": 8}}
+{"id": "targeted-value-01-a529a0f234e5", "annotation_status": "complete", "type": "refund", "target": null}
+{"id": "targeted-value-01-0819fc6cefda", "annotation_status": "complete", "type": "expense", "target": {"text": "Hà", "start": 15, "end": 17}}
+{"id": "targeted-value-01-382760f9700c", "annotation_status": "complete", "type": "lend", "target": {"text": "Tu", "start": 8, "end": 10}}
+{"id": "targeted-value-01-98e585209dfb", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-e06640e8258c", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "fe credit", "start": 0, "end": 9}}
+{"id": "targeted-value-01-9cb5b820d4eb", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "targeted-value-01-c3836603affe", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-ba2824c04fb9", "annotation_status": "complete", "type": "refund", "target": null}
+{"id": "targeted-value-01-e4e99d88f164", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "targeted-value-01-af08c546f8fb", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-4ddc182943dd", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-31e8fc938dad", "annotation_status": "complete", "type": "income", "target": {"text": "bà nội", "start": 0, "end": 6}}
+{"id": "targeted-value-01-c9e8b3867e3f", "annotation_status": "complete", "type": "borrow", "target": {"text": "chu Chin", "start": 4, "end": 12}}
+{"id": "targeted-value-01-378938c18430", "annotation_status": "complete", "type": "refund", "target": {"text": "lazada", "start": 0, "end": 6}}
+{"id": "targeted-value-01-512870fbc890", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Tuấn", "start": 0, "end": 4}}
+{"id": "targeted-value-01-458d5f621cf6", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Dung", "start": 0, "end": 4}}
+{"id": "targeted-value-01-29bfe97f76cc", "annotation_status": "complete", "type": "refund", "target": {"text": "shopee", "start": 9, "end": 15}}
+{"id": "targeted-value-01-27dadb7ab8d4", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-80755833dc44", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "hd saison", "start": 10, "end": 19}}
+{"id": "targeted-value-01-c7524a97fa30", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-9f93a911c295", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Khang", "start": 0, "end": 5}}
+{"id": "targeted-value-01-9d8bfa59c7e1", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "targeted-value-01-194f954c8855", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-8826ce50d0a4", "annotation_status": "complete", "type": "expense", "target": {"text": "prudential", "start": 9, "end": 19}}
+{"id": "targeted-value-01-1e8482c1ec69", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-8bbaab0e9106", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-0865471e434c", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Thao", "start": 0, "end": 4}}
+{"id": "targeted-value-01-8c75ae9bcc43", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-845e04e0b1be", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-afc91cd4791c", "annotation_status": "complete", "type": "borrow", "target": {"text": "dì Út", "start": 0, "end": 5}}
+{"id": "targeted-value-01-b5ca7569eaf4", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "Phát", "start": 15, "end": 19}}
+{"id": "targeted-value-01-b4bcb164787e", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Việt", "start": 0, "end": 4}}
+{"id": "targeted-value-01-dda1e4e1f079", "annotation_status": "complete", "type": "refund", "target": null}
+{"id": "targeted-value-01-29c114a1fcd6", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-0adaf99e6a78", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "targeted-value-01-98d61b7756b2", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Nam", "start": 0, "end": 3}}
+{"id": "targeted-value-01-6da2aa073d18", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-ddfba75e09bf", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "targeted-value-01-86f0b002603f", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "spaylater", "start": 11, "end": 20}}
+{"id": "targeted-value-01-c65a45185056", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-586dabbee4f5", "annotation_status": "complete", "type": "income", "target": {"text": "bác Bảy", "start": 0, "end": 7}}
+{"id": "targeted-value-01-41a3dfc74bd6", "annotation_status": "complete", "type": "expense", "target": {"text": "grab", "start": 0, "end": 4}}
+{"id": "targeted-value-01-d617f0594d5b", "annotation_status": "complete", "type": "expense", "target": {"text": "highlands", "start": 0, "end": 9}}
+{"id": "targeted-value-01-b476013047fa", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Long", "start": 0, "end": 4}}
+{"id": "targeted-value-01-4cd290103d2d", "annotation_status": "complete", "type": "lend", "target": {"text": "dì Út", "start": 4, "end": 9}}
+{"id": "targeted-value-01-bf4c2213dbbb", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-2536ae4f867b", "annotation_status": "complete", "type": "borrow", "target": {"text": "me", "start": 5, "end": 7}}
+{"id": "targeted-value-01-fbd6cf50aaf4", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "targeted-value-01-92dc0ab370c2", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Sỹ", "start": 0, "end": 2}}
+{"id": "targeted-value-01-44b1112116c5", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "Long", "start": 12, "end": 16}}
+{"id": "targeted-value-01-742f4e822f79", "annotation_status": "complete", "type": "borrow", "target": {"text": "Lộc", "start": 5, "end": 8}}
+{"id": "targeted-value-01-96c755453a53", "annotation_status": "complete", "type": "income", "target": {"text": "Ha", "start": 4, "end": 6}}
+{"id": "targeted-value-01-d331a0fdc0d5", "annotation_status": "complete", "type": "expense", "target": {"text": "cgv", "start": 5, "end": 8}}
+{"id": "targeted-value-01-66b0e18cc197", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-1300320bec7a", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Nam", "start": 0, "end": 3}}
+{"id": "targeted-value-01-f96cac92dc0c", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-5c08c83861ab", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-66be4cd1efd9", "annotation_status": "complete", "type": "refund", "target": {"text": "shopee", "start": 0, "end": 6}}
+{"id": "targeted-value-01-e9093fac24ed", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "Dung", "start": 8, "end": 12}}
+{"id": "targeted-value-01-dfc552ac8afd", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-4a28e744b5c8", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "targeted-value-01-eea1c9cf22b0", "annotation_status": "complete", "type": "lend", "target": {"text": "Phat", "start": 4, "end": 8}}
+{"id": "targeted-value-01-7992de187985", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Thành", "start": 4, "end": 9}}
+{"id": "targeted-value-01-8216b762bced", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "targeted-value-01-a83feaa4d54c", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "bạn cùng phòng", "start": 0, "end": 14}}
+{"id": "targeted-value-01-db9255492319", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "targeted-value-01-099cc687edde", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-4ef73d077e80", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-2703d3c99030", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "Mai", "start": 11, "end": 14}}
+{"id": "targeted-value-01-a632b05652ca", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "targeted-value-01-6a046488975a", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-6e917bbf84a7", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-e5d3f8cc379f", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "mẹ", "start": 8, "end": 10}}
+{"id": "targeted-value-01-b7ec4ef1dbc9", "annotation_status": "complete", "type": "refund", "target": {"text": "manulife", "start": 0, "end": 8}}
+{"id": "targeted-value-01-539d38cca2e8", "annotation_status": "complete", "type": "lend", "target": {"text": "Quang", "start": 4, "end": 9}}
+{"id": "targeted-value-01-5dff16acb3fa", "annotation_status": "complete", "type": "borrow", "target": {"text": "Loan", "start": 4, "end": 8}}
+{"id": "targeted-value-01-8fdd508a8c0a", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-1e24536773bd", "annotation_status": "complete", "type": "lend", "target": {"text": "Mai", "start": 4, "end": 7}}
+{"id": "targeted-value-01-0f6fa09197bb", "annotation_status": "complete", "type": "lend", "target": {"text": "Tin", "start": 4, "end": 7}}
+{"id": "targeted-value-01-801492af3128", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-d3b920351238", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "targeted-value-01-68cf9ccb2011", "annotation_status": "complete", "type": "borrow", "target": {"text": "cậu Năm", "start": 0, "end": 7}}
+{"id": "targeted-value-01-e277100159cd", "annotation_status": "complete", "type": "borrow", "target": {"text": "Son", "start": 5, "end": 8}}
+{"id": "targeted-value-01-2d59118461c9", "annotation_status": "complete", "type": "lend", "target": {"text": "Trang", "start": 4, "end": 9}}
+{"id": "targeted-value-01-620e4ae5ce0c", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-e2b330453e4c", "annotation_status": "complete", "type": "borrow", "target": {"text": "Tú", "start": 8, "end": 10}}
+{"id": "targeted-value-01-a887e32dcbc2", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "home credit", "start": 0, "end": 11}}
+{"id": "targeted-value-01-61c416cf0261", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "targeted-value-01-d605f750b0f8", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Mai", "start": 0, "end": 3}}
+{"id": "targeted-value-01-d398f4aa81de", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Bình", "start": 0, "end": 4}}
+{"id": "targeted-value-01-5cbdb2cb30e4", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-a33244e9553f", "annotation_status": "complete", "type": "refund", "target": {"text": "lazada", "start": 0, "end": 6}}
+{"id": "targeted-value-01-c6071a7e75af", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Vân", "start": 0, "end": 3}}
+{"id": "targeted-value-01-e0b50a2df0e8", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "Hung", "start": 14, "end": 18}}
+{"id": "targeted-value-01-c3915e9cb224", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "targeted-value-01-da47e691ab1e", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Lan", "start": 0, "end": 3}}
+{"id": "targeted-value-01-d837f7e77544", "annotation_status": "complete", "type": "borrow", "target": {"text": "mẹ", "start": 4, "end": 6}}
+{"id": "targeted-value-01-70a6b872aaf8", "annotation_status": "complete", "type": "borrow", "target": {"text": "Loan", "start": 4, "end": 8}}
+{"id": "targeted-value-01-7fd25fcbf9ed", "annotation_status": "complete", "type": "income", "target": {"text": "cty", "start": 0, "end": 3}}
+{"id": "targeted-value-01-62d05e88fa0f", "annotation_status": "complete", "type": "borrow", "target": null}
+{"id": "targeted-value-01-c761f46cd8af", "annotation_status": "complete", "type": "borrow", "target": {"text": "Vy", "start": 9, "end": 11}}
+{"id": "targeted-value-01-a013cf1c83f3", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "Dat", "start": 12, "end": 15}}
+{"id": "targeted-value-01-92de2d4dae24", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-6e0188d114a8", "annotation_status": "complete", "type": "lend", "target": {"text": "Hieu", "start": 4, "end": 8}}
+{"id": "targeted-value-01-61e0ac516b8c", "annotation_status": "complete", "type": "refund", "target": {"text": "tiki", "start": 0, "end": 4}}
+{"id": "targeted-value-01-80653630b7e7", "annotation_status": "complete", "type": "lend", "target": {"text": "Bảo", "start": 8, "end": 11}}
+{"id": "targeted-value-01-f7b327d20712", "annotation_status": "complete", "type": "borrow", "target": {"text": "mẹ", "start": 5, "end": 7}}
+{"id": "targeted-value-01-7a51a8274dbc", "annotation_status": "complete", "type": "lend", "target": {"text": "Hậu", "start": 4, "end": 7}}
+{"id": "targeted-value-01-06e9c7dcac0f", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Hạnh", "start": 0, "end": 4}}
+{"id": "targeted-value-01-19b8bbb1141d", "annotation_status": "complete", "type": "borrow", "target": {"text": "Bảo", "start": 4, "end": 7}}
+{"id": "targeted-value-01-3e734565fc32", "annotation_status": "complete", "type": "lend", "target": {"text": "Hoa", "start": 4, "end": 7}}
+{"id": "targeted-value-01-cacee894b7dd", "annotation_status": "complete", "type": "lend", "target": {"text": "bác Sáu", "start": 4, "end": 11}}
+{"id": "targeted-value-01-e05db0dd5fc8", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "em trai", "start": 0, "end": 7}}
+{"id": "targeted-value-01-7e103817f2fd", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Hiền", "start": 4, "end": 8}}
+{"id": "targeted-value-01-709695279724", "annotation_status": "complete", "type": "borrow", "target": {"text": "cô Hai", "start": 0, "end": 6}}
+{"id": "targeted-value-01-509ccb343d01", "annotation_status": "complete", "type": "expense", "target": {"text": "Phúc", "start": 5, "end": 9}}
+{"id": "targeted-value-01-28f5cec75266", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-5ca7e4274fbb", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-e013550b405e", "annotation_status": "complete", "type": "borrow", "target": {"text": "mẹ", "start": 5, "end": 7}}
+{"id": "targeted-value-01-6a6bfecfdeea", "annotation_status": "complete", "type": "borrow", "target": {"text": "Tu", "start": 4, "end": 6}}
+{"id": "targeted-value-01-6aa5cd032742", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-5dbaf7944806", "annotation_status": "complete", "type": "borrow", "target": {"text": "Hoa", "start": 5, "end": 8}}
+{"id": "targeted-value-01-6f0d662f08dd", "annotation_status": "complete", "type": "lend", "target": {"text": "Tuấn", "start": 4, "end": 8}}
+{"id": "targeted-value-01-bfeacbb2fbfb", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Lan", "start": 0, "end": 3}}
+{"id": "targeted-value-01-0a8ee75f739d", "annotation_status": "complete", "type": "borrow", "target": {"text": "chi Hai", "start": 5, "end": 12}}
+{"id": "targeted-value-01-f4ae00c478a2", "annotation_status": "complete", "type": "borrow", "target": {"text": "Khoa", "start": 9, "end": 13}}
+{"id": "targeted-value-01-bde20b11eb96", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "targeted-value-01-6fcb49c1ad29", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "targeted-value-01-2036c6bbebb8", "annotation_status": "complete", "type": "borrow", "target": {"text": "ba Sau", "start": 4, "end": 10}}
+{"id": "targeted-value-01-da253628bfbf", "annotation_status": "complete", "type": "lend", "target": {"text": "Luc", "start": 4, "end": 7}}
+{"id": "targeted-value-01-07d516e369b2", "annotation_status": "complete", "type": "refund", "target": {"text": "tiki", "start": 0, "end": 4}}
+{"id": "targeted-value-01-96bfa2aa029b", "annotation_status": "complete", "type": "refund", "target": {"text": "momo", "start": 9, "end": 13}}
+{"id": "targeted-value-01-52536d96b855", "annotation_status": "complete", "type": "borrow", "target": {"text": "Tin", "start": 5, "end": 8}}
+{"id": "targeted-value-01-b2d8507f805f", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-2bcf5f97171b", "annotation_status": "complete", "type": "expense", "target": {"text": "ba", "start": 5, "end": 7}}
+{"id": "targeted-value-01-486db5b9e6eb", "annotation_status": "complete", "type": "refund", "target": {"text": "pti", "start": 0, "end": 3}}
+{"id": "targeted-value-01-395113699788", "annotation_status": "complete", "type": "lend", "target": {"text": "em", "start": 4, "end": 6}}
+{"id": "targeted-value-01-a19671d3d0c5", "annotation_status": "complete", "type": "refund", "target": {"text": "shopee", "start": 4, "end": 10}}
+{"id": "targeted-value-01-3cbbdd67dc66", "annotation_status": "complete", "type": "income", "target": {"text": "khách", "start": 0, "end": 5}}
+{"id": "targeted-value-01-a5e5f3ca444a", "annotation_status": "complete", "type": "refund", "target": {"text": "traveloka", "start": 0, "end": 9}}
+{"id": "targeted-value-01-9b4d6a250316", "annotation_status": "complete", "type": "lend", "target": {"text": "mẹ", "start": 4, "end": 6}}
+{"id": "targeted-value-01-65c7e8f9a132", "annotation_status": "complete", "type": "lend", "target": {"text": "Loan", "start": 8, "end": 12}}
+{"id": "targeted-value-01-c2e0b54f4d89", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-3e4cd7d3d367", "annotation_status": "complete", "type": "refund", "target": null}
+{"id": "targeted-value-01-2c64b790437b", "annotation_status": "complete", "type": "income", "target": {"text": "cty", "start": 0, "end": 3}}
+{"id": "targeted-value-01-5569733899e7", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "Huy", "start": 7, "end": 10}}
+{"id": "targeted-value-01-045120eb2e9f", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Nam", "start": 0, "end": 3}}
+{"id": "targeted-value-01-8f102b95e5e6", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Bảo", "start": 0, "end": 3}}
+{"id": "targeted-value-01-da5af9231d24", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "targeted-value-01-e9489951a533", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "targeted-value-01-116689624ae3", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "targeted-value-01-475389233b2f", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Quân", "start": 0, "end": 4}}
+{"id": "targeted-value-01-10cbc3edf2a1", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-a71b932eb444", "annotation_status": "complete", "type": "borrow", "target": {"text": "Trang", "start": 5, "end": 10}}
+{"id": "targeted-value-01-02fda9e48de1", "annotation_status": "complete", "type": "refund", "target": null}
+{"id": "targeted-value-01-2e231bbe960e", "annotation_status": "complete", "type": "refund", "target": {"text": "grab", "start": 0, "end": 4}}
+{"id": "targeted-value-01-c20bf2d378f1", "annotation_status": "complete", "type": "borrow", "target": {"text": "shinhan", "start": 14, "end": 21}}
+{"id": "targeted-value-01-ce72dc73edf2", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-1708c13f90d3", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "targeted-value-01-ca9472bbf2f2", "annotation_status": "complete", "type": "refund", "target": {"text": "tiki", "start": 10, "end": 14}}
+{"id": "targeted-value-01-10d61a5e5388", "annotation_status": "complete", "type": "income", "target": {"text": "me", "start": 0, "end": 2}}
+{"id": "targeted-value-01-2e6bbb6b984b", "annotation_status": "complete", "type": "refund", "target": null}
+{"id": "targeted-value-01-1a78f8378c8c", "annotation_status": "complete", "type": "refund", "target": {"text": "shopee", "start": 4, "end": 10}}
+{"id": "targeted-value-01-af6a6607f4af", "annotation_status": "complete", "type": "borrow", "target": {"text": "bác Sáu", "start": 0, "end": 7}}
+{"id": "targeted-value-01-402131c66132", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "targeted-value-01-d022b4b8269a", "annotation_status": "complete", "type": "borrow", "target": {"text": "chú hai", "start": 5, "end": 12}}
+{"id": "targeted-value-01-de4b002a2896", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "Sỹ", "start": 11, "end": 13}}
+{"id": "targeted-value-01-7e202affe122", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "Hà", "start": 8, "end": 10}}
+{"id": "targeted-value-01-8098578d488b", "annotation_status": "complete", "type": "expense", "target": {"text": "grab", "start": 0, "end": 4}}
+{"id": "targeted-value-01-58626a155c55", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Phat", "start": 0, "end": 4}}
+{"id": "targeted-value-01-ff6a6d331ab0", "annotation_status": "complete", "type": "income", "target": {"text": "khách", "start": 0, "end": 5}}
+{"id": "targeted-value-01-2954200ac16a", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "targeted-value-01-2875d9d57e67", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "Phuc", "start": 9, "end": 13}}

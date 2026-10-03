@@ -1,0 +1,138 @@
+{
+  "annotation_version": "annotation-v1",
+  "frozen": true,
+  "records": {
+    "total": 763,
+    "by_status": {
+      "complete": 716,
+      "skipped": 23,
+      "uncertain": 24
+    },
+    "trainable": 716
+  },
+  "types": {
+    "expense": 216,
+    "income": 69,
+    "borrow": 61,
+    "lend": 60,
+    "repayment_in": 53,
+    "repayment_out": 71,
+    "transfer": 131,
+    "refund": 55
+  },
+  "accent": {
+    "overall": {
+      "accented": 427,
+      "unaccented": 289
+    },
+    "by_type": {
+      "expense": {
+        "accented": 128,
+        "unaccented": 88
+      },
+      "income": {
+        "accented": 38,
+        "unaccented": 31
+      },
+      "borrow": {
+        "accented": 40,
+        "unaccented": 21
+      },
+      "lend": {
+        "accented": 37,
+        "unaccented": 23
+      },
+      "repayment_in": {
+        "accented": 29,
+        "unaccented": 24
+      },
+      "repayment_out": {
+        "accented": 43,
+        "unaccented": 28
+      },
+      "transfer": {
+        "accented": 80,
+        "unaccented": 51
+      },
+      "refund": {
+        "accented": 32,
+        "unaccented": 23
+      }
+    }
+  },
+  "annotators": {
+    "human_reviewed": 206,
+    "ai_accepted": 557
+  },
+  "source_batches": {
+    "baseline-01": {
+      "records": 600,
+      "by_status": {
+        "complete": 577,
+        "skipped": 23
+      },
+      "trainable": 577,
+      "human_reviewed": 191,
+      "ai_accepted": 409,
+      "types": {
+        "expense": 215,
+        "income": 69,
+        "borrow": 40,
+        "lend": 40,
+        "repayment_in": 8,
+        "repayment_out": 64,
+        "transfer": 126,
+        "refund": 15
+      },
+      "accent": {
+        "accented": 347,
+        "unaccented": 230
+      }
+    },
+    "targeted-annotation-v1-01": {
+      "records": 163,
+      "by_status": {
+        "complete": 139,
+        "uncertain": 24
+      },
+      "trainable": 139,
+      "human_reviewed": 15,
+      "ai_accepted": 148,
+      "types": {
+        "expense": 1,
+        "income": 0,
+        "borrow": 21,
+        "lend": 20,
+        "repayment_in": 45,
+        "repayment_out": 7,
+        "transfer": 5,
+        "refund": 40
+      },
+      "accent": {
+        "accented": 80,
+        "unaccented": 59
+      }
+    }
+  },
+  "sha256": {
+    "combined": {
+      "combined/queue.jsonl": "2eb50f01567c7571b7d4b847cf0f34fd53b0e199b11cc612fed6bcfdc7a06550",
+      "combined/labels.jsonl": "cdb09af17d45f06ecd60ca5812ea679f959cc297a6bf87d0fb76e74dae24ac3a",
+      "combined/provenance.jsonl": "3b2237bd6807ec1d8c44fbdb749a38ea8def97c96882a7fec8f4c1b8f3ffaeb2"
+    },
+    "sources": {
+      "datasets/annotation-v1/queue.jsonl": "51d43de7f6116698515e53e11554e978742f6d5008cb9259354475f37b1c38e8",
+      "datasets/annotation-v1/labels.jsonl": "7b11840a2dc1456af2081d10eb4bbb1cd453fd2077f959bf523ff43ba38247ae",
+      "datasets/annotation-v1/provenance.jsonl": "6cf2ad97b782d81ea0521d28f8d93a7ca2d8b76d8b629f03e52a8a6a44e1d778",
+      "datasets/annotation-v1/targeted-01/queue.jsonl": "515d8788fc4681f8b7d8c9a14205b6fcbc9e3c591a89ac20a251731825c91fc7",
+      "datasets/annotation-v1/targeted-01/labels.jsonl": "ad62e1f7d92a9a05e1871a408e34a4eebff3984b973250f50de41659f0a1021e",
+      "datasets/annotation-v1/targeted-01/provenance.jsonl": "82b08a707826ba8e576cd79c49993243f23e0d04dab534e24178cb65077cda25"
+    },
+    "config": {
+      "configs/annotation-v1.yaml": "a5b2d99a20a94007a7724a0335e70bbc857c1f9c2736ca081e135c8eecde9bfe"
+    },
+    "docs": {
+      "docs/annotation-v1.md": "a0115f673b733b9f6c1008ab198e668ff858b8cdf247ded21638c0f2559fa23c"
+    }
+  }
+}

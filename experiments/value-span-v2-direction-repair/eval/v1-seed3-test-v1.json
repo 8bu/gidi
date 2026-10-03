@@ -1,0 +1,275 @@
+{
+  "backend": {
+    "version": "v1",
+    "seed": 3,
+    "checkpoint": "/Users/8bu/Projects/gidi/models/compression-v3/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2048/seed3",
+    "model_sha256": "ed7971eb9a4bc83d04540559395cfd9db17303a14d71f0aa0ba54cf63bb2e138",
+    "epochs": 40
+  },
+  "set": "test-v1",
+  "monitoring_only": false,
+  "records": {
+    "n": 105,
+    "path": "datasets/annotation-v2/training-v2-direction-repair/test.jsonl",
+    "filter": "source_batch != targeted-value-01"
+  },
+  "train": {
+    "path": "datasets/annotation-v2/training-v2-direction-repair/train.jsonl",
+    "n": 903,
+    "sha256": "2e2d02e453e4d89a52b8ebf48b4b9761c868dea38d71ba2b80c96e390c178d7b"
+  },
+  "summary": {
+    "n": 105,
+    "type_accuracy": 0.9142857142857143,
+    "type_macro_f1": 0.9268598143598143,
+    "target_f1": 0.8761904761904761,
+    "target_exact": 0.9047619047619048,
+    "type_target_joint": 0.8476190476190476,
+    "counts": {
+      "n": 105,
+      "type_correct": 96,
+      "target_correct": 95,
+      "joint_correct": 89
+    },
+    "regression_slices": {
+      "lender_first": {
+        "n": 1,
+        "type_correct": 1,
+        "target_correct": 1,
+        "joint_correct": 1
+      },
+      "title_name": {
+        "n": 12,
+        "type_correct": 11,
+        "target_correct": 12,
+        "joint_correct": 11
+      },
+      "insurance": {
+        "n": 2,
+        "type_correct": 2,
+        "target_correct": 2,
+        "joint_correct": 2
+      },
+      "loan_installment": {
+        "n": 4,
+        "type_correct": 3,
+        "target_correct": 3,
+        "joint_correct": 3
+      },
+      "unaccented": {
+        "n": 42,
+        "type_correct": 37,
+        "target_correct": 38,
+        "joint_correct": 35
+      }
+    }
+  },
+  "metrics": {
+    "n": 105,
+    "overall": {
+      "type": {
+        "n": 105,
+        "accuracy": 0.9142857142857143,
+        "macro_f1": 0.9268598143598143,
+        "macro_f1_all_classes": 0.9268598143598143,
+        "per_class": {
+          "expense": {
+            "precision": 0.9032258064516129,
+            "recall": 0.875,
+            "f1": 0.8888888888888888,
+            "support": 32,
+            "n_pred": 31
+          },
+          "income": {
+            "precision": 0.8181818181818182,
+            "recall": 0.8181818181818182,
+            "f1": 0.8181818181818182,
+            "support": 11,
+            "n_pred": 11
+          },
+          "borrow": {
+            "precision": 0.8181818181818182,
+            "recall": 1.0,
+            "f1": 0.9,
+            "support": 9,
+            "n_pred": 11
+          },
+          "lend": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 9,
+            "n_pred": 9
+          },
+          "repayment_in": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 8,
+            "n_pred": 8
+          },
+          "repayment_out": {
+            "precision": 1.0,
+            "recall": 0.8,
+            "f1": 0.888888888888889,
+            "support": 10,
+            "n_pred": 8
+          },
+          "transfer": {
+            "precision": 0.8947368421052632,
+            "recall": 0.9444444444444444,
+            "f1": 0.918918918918919,
+            "support": 18,
+            "n_pred": 19
+          },
+          "refund": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 8,
+            "n_pred": 8
+          }
+        },
+        "labels": [
+          "expense",
+          "income",
+          "borrow",
+          "lend",
+          "repayment_in",
+          "repayment_out",
+          "transfer",
+          "refund"
+        ],
+        "confusion_matrix": [
+          [
+            28,
+            2,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            9,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            9,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            9,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            0,
+            8,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            17,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            8
+          ]
+        ]
+      },
+      "target": {
+        "n": 105,
+        "exact_match": 0.9047619047619048,
+        "precision": 0.8518518518518519,
+        "recall": 0.9019607843137255,
+        "f1": 0.8761904761904761,
+        "tp": 46,
+        "n_pred": 54,
+        "n_gold": 51,
+        "gold_target": {
+          "n": 51,
+          "exact_match": 0.9019607843137255,
+          "precision": 0.9387755102040817,
+          "recall": 0.9019607843137255,
+          "f1": 0.92,
+          "tp": 46,
+          "n_pred": 49,
+          "n_gold": 51
+        },
+        "gold_null": {
+          "n": 54,
+          "null_accuracy": 0.9074074074074074,
+          "false_span_rate": 0.09259259259259259,
+          "n_false_span": 5
+        },
+        "token": {
+          "precision": 0.9523809523809523,
+          "recall": 0.9090909090909091,
+          "f1": 0.9302325581395349,
+          "tp": 100,
+          "n_pred": 105,
+          "n_gold": 110
+        },
+        "char": {
+          "precision": 0.9459459459459459,
+          "recall": 0.8974358974358975,
+          "f1": 0.9210526315789475,
+          "tp": 245,
+          "n_pred": 259,
+          "n_gold": 273
+        }
+      },
+      "type_target_joint": 0.8476190476190476
+    },
+    "alignment": {
+      "truncated": 0,
+      "target_span_truncated": 0
+    }
+  }
+}

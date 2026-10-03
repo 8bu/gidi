@@ -1,0 +1,138 @@
+{
+  "name": "value-queue-v1",
+  "annotation_version": "annotation-v2",
+  "rule_version": "value-span-rules-v1",
+  "seed": "value-span-v1",
+  "review_seed": "annotation-v2:existing-value-review",
+  "inputs": {
+    "datasets/annotation-v1/distillation-v1/train.jsonl": "fc18d15e4ff83e7406754001498c5416711f7bc2d4c5681e47157f407115593a",
+    "datasets/annotation-v1/splits/validation.jsonl": "5c8039978a84943db4ffa44524a65200ff5022ce06092e128ffbbe8fbff8df87",
+    "datasets/annotation-v1/splits/test.jsonl": "13fc3de4b7be58a689124c31477a14cf7cbb3d82e09a8c4276174f0825c775d0",
+    "datasets/probe-v1/notes.jsonl": "6ffc9017bf8a153fe42741f20788b47e35ddd6213afb5479ac25e32d26c31797",
+    "datasets/probe-v1/labels.jsonl": "7baa5aff2e2a5be2b2261bb8c9a4f9b607005f67ec766e61a5b4b2726d5ee264"
+  },
+  "counts": {
+    "in_scope": 909,
+    "by_split": {
+      "train": 613,
+      "validation": 110,
+      "test": 105,
+      "probe": 81
+    },
+    "by_source": {
+      "compression-v3-train": 613,
+      "frozen-validation": 110,
+      "frozen-test": 105,
+      "probe-v1": 81
+    },
+    "by_source_batch": {
+      "baseline-01": 577,
+      "targeted-annotation-v1-01": 139,
+      "targeted-annotation-v1-02": 112,
+      "probe-v1": 81
+    },
+    "auto_accepted": 782,
+    "needs_review": 127,
+    "review_queue": 46,
+    "review_queue_by_group": {
+      "must_review": 14,
+      "hard_sample": 17,
+      "clean_audit": 15
+    },
+    "review_queue_by_stratum": {
+      "split_share": 3,
+      "number_words": 3,
+      "bare_number": 2,
+      "cu_collision": 3,
+      "no_candidate": 2,
+      "multiple_money_candidates": 1,
+      "multi_number_period_or_ordinal": 3,
+      "multi_number_weekday": 2,
+      "multi_number_percent": 1,
+      "slang_cu": 3,
+      "multi_number_attached_unit": 3,
+      "multi_number_date_or_time": 2,
+      "multi_number_quantity": 3,
+      "clean": 15
+    },
+    "unsampled_flagged": 96,
+    "proposal_types": {
+      "amount": 907,
+      "no_amount": 2
+    },
+    "proposal_statuses": {
+      "complete": 908,
+      "uncertain": 1
+    }
+  },
+  "review": {
+    "name": "existing-value-review",
+    "strata": {
+      "multi_number_period_or_ordinal": {
+        "population": 58,
+        "sample": 3,
+        "unsampled": 55
+      },
+      "multi_number_quantity": {
+        "population": 19,
+        "sample": 3,
+        "unsampled": 16
+      },
+      "multi_number_date_or_time": {
+        "population": 4,
+        "sample": 2,
+        "unsampled": 2
+      },
+      "multi_number_attached_unit": {
+        "population": 10,
+        "sample": 3,
+        "unsampled": 7
+      },
+      "multi_number_weekday": {
+        "population": 2,
+        "sample": 2,
+        "unsampled": 0
+      },
+      "multi_number_percent": {
+        "population": 1,
+        "sample": 1,
+        "unsampled": 0
+      },
+      "slang_cu": {
+        "population": 19,
+        "sample": 3,
+        "unsampled": 16
+      },
+      "clean": {
+        "population": 782
+      }
+    },
+    "audit_sample": 15,
+    "sampling": {
+      "per_stratum": "all if population <= 2, 2 if < 6, else 3; spread over accents and v1 type",
+      "clean_audit": "spread over v1 type, accents, span unit form, target present/null, split",
+      "draw": "greedy least-represented-feature pick, ties by sha256(seed:salt:id)"
+    },
+    "escalation_rule": {
+      "error": "the human value label differs from the proposal (span, or present versus null) or the human annotation_status is not 'complete'",
+      "sampled_stratum": "any error in a sampled stratum -> that stratum is expanded to full review (the scorer writes value-escalation-queue.jsonl)",
+      "clean_audit": {
+        "max_errors_to_accept": 1,
+        "accept": "0-1 errors in the audit sample -> the auto-accepted clean set stands",
+        "expand": ">=2 errors -> stop; the clean auto-accepted population is reviewed in stages of 50 records (value-escalation-queue.jsonl)"
+      },
+      "must_review": "errors do not trigger escalation (expected); they are reported",
+      "unsampled": "unsampled flagged records keep their rule proposal (status pending-stratum-check); they train only when the scorer marks their stratum passed, and are never human labels"
+    },
+    "unsampled_status": "pending-stratum-check",
+    "report": "experiments/value-span-v1/existing-value-review-plan.md"
+  },
+  "human_labels": "value-labels.jsonl is written only by Quet and is never touched here",
+  "files": {
+    "value-queue.jsonl": "524e5de2f724e9376e4408dd3efd5d80d27ddbcaf723467ae8670f419bdf4080",
+    "value-proposals.jsonl": "1cdc79532183ba5a241f62cde7cb91b2b8197654f5196c9f0713df71278b4ac1",
+    "value-auto-labels.jsonl": "6d25f3e66e475cdc5907abf73c7419571add342e3e4b782af28946c623abb22c",
+    "value-review-queue.jsonl": "0696ab306de086bfc5d9ff092700e69f5dc292f6699a49587fb77b9581f69154",
+    "value-review-provenance.jsonl": "88ad666d68358c8060b90b2a49d5912980c008be0ddcd739644f75b151af4a01"
+  }
+}

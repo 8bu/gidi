@@ -1,0 +1,23 @@
+{
+  "arm": "supervised",
+  "variant": "student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2304",
+  "seed": 2,
+  "kd": {
+    "temperature": 2.0,
+    "alpha_hard": 1.0,
+    "type_weight": 1.0,
+    "span_weight": 1.0
+  },
+  "final_epoch": 40,
+  "test_type_macro_f1": 0.9300885108141618,
+  "test_span_f1": 0.7692307692307692,
+  "param_count": 30070283,
+  "param_bytes_fp32": 120281132,
+  "steps": 3640,
+  "device": "mps",
+  "wall_time_sec": 251.72744220797904,
+  "train_time_sec": 250.15422395756468,
+  "sec_per_epoch": 6.253855598939117,
+  "train_examples_per_sec": 115.6086814864493,
+  "checkpoint_path": "models/compression-v4/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2304/seed2"
+}

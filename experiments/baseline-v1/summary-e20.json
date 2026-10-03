@@ -1,0 +1,1335 @@
+{
+  "runs_dir": "experiments/baseline-v1/runs-e20",
+  "selection": "mean of validation type macro-F1 and validation span F1",
+  "runs": {
+    "complete": [
+      {
+        "model": "bamibert",
+        "lr": 5e-05,
+        "seed": 1,
+        "dir": "experiments/baseline-v1/runs-e20/bamibert/lr5e-05-seed1"
+      },
+      {
+        "model": "bamibert",
+        "lr": 5e-05,
+        "seed": 2,
+        "dir": "experiments/baseline-v1/runs-e20/bamibert/lr5e-05-seed2"
+      },
+      {
+        "model": "bamibert",
+        "lr": 5e-05,
+        "seed": 3,
+        "dir": "experiments/baseline-v1/runs-e20/bamibert/lr5e-05-seed3"
+      },
+      {
+        "model": "multilingual-minilm-l12-h384",
+        "lr": 5e-05,
+        "seed": 1,
+        "dir": "experiments/baseline-v1/runs-e20/multilingual-minilm-l12-h384/lr5e-05-seed1"
+      },
+      {
+        "model": "multilingual-minilm-l12-h384",
+        "lr": 5e-05,
+        "seed": 2,
+        "dir": "experiments/baseline-v1/runs-e20/multilingual-minilm-l12-h384/lr5e-05-seed2"
+      },
+      {
+        "model": "multilingual-minilm-l12-h384",
+        "lr": 5e-05,
+        "seed": 3,
+        "dir": "experiments/baseline-v1/runs-e20/multilingual-minilm-l12-h384/lr5e-05-seed3"
+      }
+    ],
+    "incomplete": []
+  },
+  "configs": [
+    {
+      "model": "bamibert",
+      "model_name": "Qualcomm-AI-Research/BamiBERT",
+      "lr": 5e-05,
+      "n_seeds": 3,
+      "seeds": [
+        1,
+        2,
+        3
+      ],
+      "per_seed": [
+        {
+          "seed": 1,
+          "best_epoch": 9,
+          "epochs_run": 12,
+          "val_score": 0.8542195522418272
+        },
+        {
+          "seed": 2,
+          "best_epoch": 19,
+          "epochs_run": 20,
+          "val_score": 0.8737495919231796
+        },
+        {
+          "seed": 3,
+          "best_epoch": 10,
+          "epochs_run": 13,
+          "val_score": 0.861013345288451
+        }
+      ],
+      "val_score": {
+        "n": 3,
+        "mean": 0.8629941631511526,
+        "std": 0.009914552034393578,
+        "min": 0.8542195522418272,
+        "max": 0.8737495919231796
+      },
+      "wall_time_sec": {
+        "n": 3,
+        "mean": 202.52754797243202,
+        "std": 55.47820445521779,
+        "min": 166.33881325018592,
+        "max": 266.3997787500266
+      },
+      "sec_per_epoch": {
+        "n": 3,
+        "mean": 13.356599353318915,
+        "std": 0.2695289218817794,
+        "min": 13.142861451965292,
+        "max": 13.659383902850095
+      },
+      "param_count": 102369035,
+      "split_n": {
+        "validation": {
+          "n": 110,
+          "n_gold_target": 54,
+          "n_gold_null": 56
+        },
+        "test": {
+          "n": 105,
+          "n_gold_target": 51,
+          "n_gold_null": 54
+        }
+      },
+      "validation": {
+        "type_accuracy": {
+          "n": 3,
+          "mean": 0.8696969696969696,
+          "std": 0.022878286167487098,
+          "min": 0.8454545454545455,
+          "max": 0.8909090909090909
+        },
+        "type_macro_f1": {
+          "n": 3,
+          "mean": 0.8660082662906096,
+          "std": 0.018027116147077464,
+          "min": 0.8492994178496294,
+          "max": 0.8851138627454417
+        },
+        "span_f1": {
+          "n": 3,
+          "mean": 0.8599800600116957,
+          "std": 0.014104505934782253,
+          "min": 0.8448275862068966,
+          "max": 0.8727272727272727
+        },
+        "span_exact_match": {
+          "n": 3,
+          "mean": 0.8848484848484848,
+          "std": 0.013886593015017726,
+          "min": 0.8727272727272727,
+          "max": 0.9
+        },
+        "target_exact_match": {
+          "n": 3,
+          "mean": 0.8888888888888888,
+          "std": 0.018518518518518545,
+          "min": 0.8703703703703703,
+          "max": 0.9074074074074074
+        },
+        "null_accuracy": {
+          "n": 3,
+          "mean": 0.8809523809523809,
+          "std": 0.03717260713332379,
+          "min": 0.8392857142857143,
+          "max": 0.9107142857142857
+        },
+        "false_span_rate": {
+          "n": 3,
+          "mean": 0.11904761904761905,
+          "std": 0.03717260713332381,
+          "min": 0.08928571428571429,
+          "max": 0.16071428571428573
+        }
+      },
+      "test": {
+        "type_accuracy": {
+          "n": 3,
+          "mean": 0.8698412698412699,
+          "std": 0.019825390471106017,
+          "min": 0.8476190476190476,
+          "max": 0.8857142857142857
+        },
+        "type_macro_f1": {
+          "n": 3,
+          "mean": 0.8621631464048821,
+          "std": 0.018806797048374204,
+          "min": 0.8417370297401258,
+          "max": 0.8787618083670715
+        },
+        "span_f1": {
+          "n": 3,
+          "mean": 0.8760626166286544,
+          "std": 0.02596155282132351,
+          "min": 0.8571428571428571,
+          "max": 0.9056603773584905
+        },
+        "span_exact_match": {
+          "n": 3,
+          "mean": 0.9015873015873016,
+          "std": 0.03061476432061255,
+          "min": 0.8666666666666667,
+          "max": 0.9238095238095239
+        },
+        "target_exact_match": {
+          "n": 3,
+          "mean": 0.9215686274509803,
+          "std": 0.03396178054056623,
+          "min": 0.8823529411764706,
+          "max": 0.9411764705882353
+        },
+        "null_accuracy": {
+          "n": 3,
+          "mean": 0.882716049382716,
+          "std": 0.07709874072096788,
+          "min": 0.7962962962962963,
+          "max": 0.9444444444444444
+        },
+        "false_span_rate": {
+          "n": 3,
+          "mean": 0.11728395061728396,
+          "std": 0.07709874072096788,
+          "min": 0.05555555555555555,
+          "max": 0.2037037037037037
+        }
+      }
+    },
+    {
+      "model": "multilingual-minilm-l12-h384",
+      "model_name": "microsoft/Multilingual-MiniLM-L12-H384",
+      "lr": 5e-05,
+      "n_seeds": 3,
+      "seeds": [
+        1,
+        2,
+        3
+      ],
+      "per_seed": [
+        {
+          "seed": 1,
+          "best_epoch": 15,
+          "epochs_run": 18,
+          "val_score": 0.8435570075824865
+        },
+        {
+          "seed": 2,
+          "best_epoch": 14,
+          "epochs_run": 17,
+          "val_score": 0.8511300167840414
+        },
+        {
+          "seed": 3,
+          "best_epoch": 18,
+          "epochs_run": 20,
+          "val_score": 0.8696390771386593
+        }
+      ],
+      "val_score": {
+        "n": 3,
+        "mean": 0.8547753671683957,
+        "std": 0.013417713018685136,
+        "min": 0.8435570075824865,
+        "max": 0.8696390771386593
+      },
+      "wall_time_sec": {
+        "n": 3,
+        "mean": 283.3208103609116,
+        "std": 22.005481996151104,
+        "min": 262.8344238328282,
+        "max": 306.58215299993753
+      },
+      "sec_per_epoch": {
+        "n": 3,
+        "mean": 15.343346420095392,
+        "std": 0.11439630619757175,
+        "min": 15.228286854212637,
+        "max": 15.457067724601883
+      },
+      "param_count": 117510155,
+      "split_n": {
+        "validation": {
+          "n": 110,
+          "n_gold_target": 54,
+          "n_gold_null": 56
+        },
+        "test": {
+          "n": 105,
+          "n_gold_target": 51,
+          "n_gold_null": 54
+        }
+      },
+      "validation": {
+        "type_accuracy": {
+          "n": 3,
+          "mean": 0.8727272727272727,
+          "std": 0.009090909090909094,
+          "min": 0.8636363636363636,
+          "max": 0.8818181818181818
+        },
+        "type_macro_f1": {
+          "n": 3,
+          "mean": 0.8731410420286686,
+          "std": 0.00798750889345295,
+          "min": 0.864164795472845,
+          "max": 0.8794650701651688
+        },
+        "span_f1": {
+          "n": 3,
+          "mean": 0.8364096923081229,
+          "std": 0.024290065891074245,
+          "min": 0.8113207547169811,
+          "max": 0.8598130841121496
+        },
+        "span_exact_match": {
+          "n": 3,
+          "mean": 0.8696969696969696,
+          "std": 0.01892423635878302,
+          "min": 0.8545454545454545,
+          "max": 0.8909090909090909
+        },
+        "target_exact_match": {
+          "n": 3,
+          "mean": 0.8209876543209876,
+          "std": 0.02828750428985088,
+          "min": 0.7962962962962963,
+          "max": 0.8518518518518519
+        },
+        "null_accuracy": {
+          "n": 3,
+          "mean": 0.9166666666666666,
+          "std": 0.01030982623552906,
+          "min": 0.9107142857142857,
+          "max": 0.9285714285714286
+        },
+        "false_span_rate": {
+          "n": 3,
+          "mean": 0.08333333333333333,
+          "std": 0.010309826235529035,
+          "min": 0.07142857142857142,
+          "max": 0.08928571428571429
+        }
+      },
+      "test": {
+        "type_accuracy": {
+          "n": 3,
+          "mean": 0.8634920634920635,
+          "std": 0.014547859349066168,
+          "min": 0.8476190476190476,
+          "max": 0.8761904761904762
+        },
+        "type_macro_f1": {
+          "n": 3,
+          "mean": 0.843982463298867,
+          "std": 0.012952026796998556,
+          "min": 0.8350942460317461,
+          "max": 0.8588431305536568
+        },
+        "span_f1": {
+          "n": 3,
+          "mean": 0.8507936507936508,
+          "std": 0.021994295969128587,
+          "min": 0.838095238095238,
+          "max": 0.8761904761904761
+        },
+        "span_exact_match": {
+          "n": 3,
+          "mean": 0.8825396825396825,
+          "std": 0.019825390471106017,
+          "min": 0.8666666666666667,
+          "max": 0.9047619047619048
+        },
+        "target_exact_match": {
+          "n": 3,
+          "mean": 0.8758169934640523,
+          "std": 0.02264118702704413,
+          "min": 0.8627450980392157,
+          "max": 0.9019607843137255
+        },
+        "null_accuracy": {
+          "n": 3,
+          "mean": 0.8888888888888888,
+          "std": 0.018518518518518545,
+          "min": 0.8703703703703703,
+          "max": 0.9074074074074074
+        },
+        "false_span_rate": {
+          "n": 3,
+          "mean": 0.1111111111111111,
+          "std": 0.018518518518518517,
+          "min": 0.09259259259259259,
+          "max": 0.12962962962962962
+        }
+      }
+    }
+  ],
+  "best": {
+    "bamibert": {
+      "lr": 5e-05,
+      "n_seeds": 3,
+      "mean_val_score": {
+        "n": 3,
+        "mean": 0.8629941631511526,
+        "std": 0.009914552034393578,
+        "min": 0.8542195522418272,
+        "max": 0.8737495919231796
+      },
+      "seed_counts_differ_across_configs": false,
+      "best_run": {
+        "seed": 2,
+        "run_dir": "experiments/baseline-v1/runs-e20/bamibert/lr5e-05-seed2",
+        "val_score": 0.8737495919231796,
+        "checkpoint_path": "models/baseline-v1-e20/bamibert/lr5e-05-seed2",
+        "test": {
+          "type_accuracy": 0.8857142857142857,
+          "type_macro_f1": 0.8787618083670715,
+          "span_f1": 0.8653846153846154,
+          "span_exact_match": 0.9142857142857143,
+          "target_exact_match": 0.8823529411764706,
+          "null_accuracy": 0.9444444444444444,
+          "false_span_rate": 0.05555555555555555
+        }
+      },
+      "test_per_class": {
+        "expense": {
+          "precision": 0.9525396825396825,
+          "recall": 0.8229166666666666,
+          "f1": 0.8817770232031692,
+          "support": 32,
+          "n_pred": 27.666666666666668
+        },
+        "income": {
+          "precision": 0.8303872053872053,
+          "recall": 0.6969696969696969,
+          "f1": 0.7547049441786283,
+          "support": 11,
+          "n_pred": 9.333333333333334
+        },
+        "borrow": {
+          "precision": 0.8053872053872054,
+          "recall": 0.8888888888888888,
+          "f1": 0.8436647173489279,
+          "support": 9,
+          "n_pred": 10.0
+        },
+        "lend": {
+          "precision": 0.8000000000000002,
+          "recall": 0.8888888888888888,
+          "f1": 0.8421052631578948,
+          "support": 9,
+          "n_pred": 10.0
+        },
+        "repayment_in": {
+          "precision": 0.7609427609427609,
+          "recall": 0.9166666666666666,
+          "f1": 0.8297213622291023,
+          "support": 8,
+          "n_pred": 9.666666666666666
+        },
+        "repayment_out": {
+          "precision": 0.8833333333333333,
+          "recall": 0.9,
+          "f1": 0.8885167464114833,
+          "support": 10,
+          "n_pred": 10.333333333333334
+        },
+        "transfer": {
+          "precision": 0.8584415584415584,
+          "recall": 1.0,
+          "f1": 0.9234817813765183,
+          "support": 18,
+          "n_pred": 21.0
+        },
+        "refund": {
+          "precision": 1.0,
+          "recall": 0.875,
+          "f1": 0.9333333333333332,
+          "support": 8,
+          "n_pred": 7.0
+        }
+      },
+      "test_confusion_matrix": {
+        "labels": [
+          "expense",
+          "income",
+          "borrow",
+          "lend",
+          "repayment_in",
+          "repayment_out",
+          "transfer",
+          "refund"
+        ],
+        "note": "rows gold, columns predicted, summed over seeds",
+        "matrix": [
+          [
+            79,
+            5,
+            1,
+            1,
+            2,
+            1,
+            7,
+            0
+          ],
+          [
+            4,
+            23,
+            1,
+            2,
+            0,
+            1,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            24,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            24,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            22,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            3,
+            0,
+            0,
+            27,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            54,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            21
+          ]
+        ]
+      },
+      "test_slices": {
+        "accented": {
+          "false": {
+            "n": 42,
+            "n_runs": 3,
+            "type_accuracy": 0.8253968253968255,
+            "type_macro_f1": 0.8287443947483993,
+            "span_f1": 0.8990706911117695,
+            "span_exact_match": 0.9126984126984127
+          },
+          "true": {
+            "n": 63,
+            "n_runs": 3,
+            "type_accuracy": 0.8994708994708995,
+            "type_macro_f1": 0.8795881295881296,
+            "span_f1": 0.862987275083381,
+            "span_exact_match": 0.8941798941798941
+          }
+        },
+        "source_batch": {
+          "baseline-01": {
+            "n": 80,
+            "n_runs": 3,
+            "type_accuracy": 0.8708333333333332,
+            "type_macro_f1": 0.8595113186086586,
+            "span_f1": 0.8528496382198435,
+            "span_exact_match": 0.9041666666666667
+          },
+          "targeted-annotation-v1-01": {
+            "n": 25,
+            "n_runs": 3,
+            "type_accuracy": 0.8666666666666667,
+            "type_macro_f1": 0.8723962312197607,
+            "span_f1": 0.9078014184397163,
+            "span_exact_match": 0.8933333333333334
+          }
+        }
+      }
+    },
+    "multilingual-minilm-l12-h384": {
+      "lr": 5e-05,
+      "n_seeds": 3,
+      "mean_val_score": {
+        "n": 3,
+        "mean": 0.8547753671683957,
+        "std": 0.013417713018685136,
+        "min": 0.8435570075824865,
+        "max": 0.8696390771386593
+      },
+      "seed_counts_differ_across_configs": false,
+      "best_run": {
+        "seed": 3,
+        "run_dir": "experiments/baseline-v1/runs-e20/multilingual-minilm-l12-h384/lr5e-05-seed3",
+        "val_score": 0.8696390771386593,
+        "checkpoint_path": "models/baseline-v1-e20/multilingual-minilm-l12-h384/lr5e-05-seed3",
+        "test": {
+          "type_accuracy": 0.8666666666666667,
+          "type_macro_f1": 0.8350942460317461,
+          "span_f1": 0.8761904761904761,
+          "span_exact_match": 0.9047619047619048,
+          "target_exact_match": 0.9019607843137255,
+          "null_accuracy": 0.9074074074074074,
+          "false_span_rate": 0.09259259259259259
+        }
+      },
+      "test_per_class": {
+        "expense": {
+          "precision": 0.928046218487395,
+          "recall": 0.90625,
+          "f1": 0.915530303030303,
+          "support": 32,
+          "n_pred": 31.333333333333332
+        },
+        "income": {
+          "precision": 0.7851851851851852,
+          "recall": 0.7272727272727272,
+          "f1": 0.7525189786059352,
+          "support": 11,
+          "n_pred": 10.333333333333334
+        },
+        "borrow": {
+          "precision": 0.7070707070707071,
+          "recall": 0.8888888888888888,
+          "f1": 0.7873015873015873,
+          "support": 9,
+          "n_pred": 11.333333333333334
+        },
+        "lend": {
+          "precision": 0.8449735449735449,
+          "recall": 0.8148148148148149,
+          "f1": 0.8250487329434698,
+          "support": 9,
+          "n_pred": 8.666666666666666
+        },
+        "repayment_in": {
+          "precision": 0.8214285714285715,
+          "recall": 0.75,
+          "f1": 0.7833333333333332,
+          "support": 8,
+          "n_pred": 7.333333333333333
+        },
+        "repayment_out": {
+          "precision": 0.9333333333333332,
+          "recall": 0.9,
+          "f1": 0.9157894736842106,
+          "support": 10,
+          "n_pred": 9.666666666666666
+        },
+        "transfer": {
+          "precision": 0.89520697167756,
+          "recall": 0.9074074074074074,
+          "f1": 0.9002784739626845,
+          "support": 18,
+          "n_pred": 18.333333333333332
+        },
+        "refund": {
+          "precision": 0.8736772486772487,
+          "recall": 0.875,
+          "f1": 0.8720588235294118,
+          "support": 8,
+          "n_pred": 8.0
+        }
+      },
+      "test_confusion_matrix": {
+        "labels": [
+          "expense",
+          "income",
+          "borrow",
+          "lend",
+          "repayment_in",
+          "repayment_out",
+          "transfer",
+          "refund"
+        ],
+        "note": "rows gold, columns predicted, summed over seeds",
+        "matrix": [
+          [
+            87,
+            6,
+            1,
+            0,
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            3,
+            24,
+            0,
+            1,
+            1,
+            1,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            24,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            3,
+            22,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            3,
+            0,
+            18,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            3,
+            0,
+            0,
+            27,
+            0,
+            0
+          ],
+          [
+            4,
+            1,
+            0,
+            0,
+            0,
+            0,
+            49,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            21
+          ]
+        ]
+      },
+      "test_slices": {
+        "accented": {
+          "false": {
+            "n": 42,
+            "n_runs": 3,
+            "type_accuracy": 0.8492063492063492,
+            "type_macro_f1": 0.8196013953366895,
+            "span_f1": 0.9203413940256047,
+            "span_exact_match": 0.9365079365079364
+          },
+          "true": {
+            "n": 63,
+            "n_runs": 3,
+            "type_accuracy": 0.873015873015873,
+            "type_macro_f1": 0.8476520068625332,
+            "span_f1": 0.811969563944981,
+            "span_exact_match": 0.8465608465608465
+          }
+        },
+        "source_batch": {
+          "baseline-01": {
+            "n": 80,
+            "n_runs": 3,
+            "type_accuracy": 0.8791666666666668,
+            "type_macro_f1": 0.85440379658057,
+            "span_f1": 0.7864406779661017,
+            "span_exact_match": 0.8708333333333332
+          },
+          "targeted-annotation-v1-01": {
+            "n": 25,
+            "n_runs": 3,
+            "type_accuracy": 0.8133333333333334,
+            "type_macro_f1": 0.814605614973262,
+            "span_f1": 0.9339774557165862,
+            "span_exact_match": 0.9199999999999999
+          }
+        }
+      }
+    }
+  },
+  "failures": {
+    "per_model": {
+      "bamibert": {
+        "run_dir": "experiments/baseline-v1/runs-e20/bamibert/lr5e-05-seed2",
+        "n": 105,
+        "type_errors": [
+          {
+            "id": "baseline-01-dab0dcc75d1e",
+            "text": "mua giay the thao 1tr25",
+            "gold_type": "expense",
+            "pred_type": "transfer"
+          },
+          {
+            "id": "baseline-01-90a34dbd7ef8",
+            "text": "anh Long mượn 3 triệu sửa xe",
+            "gold_type": "lend",
+            "pred_type": "borrow"
+          },
+          {
+            "id": "baseline-01-ee03dc138256",
+            "text": "bố cho tiền tiêu 1 triệu",
+            "gold_type": "income",
+            "pred_type": "lend"
+          },
+          {
+            "id": "baseline-01-e8c066dd0681",
+            "text": "dong bao hiem nhan tho 1tr2",
+            "gold_type": "expense",
+            "pred_type": "repayment_in"
+          },
+          {
+            "id": "baseline-01-d7d840164a2e",
+            "text": "tien phong thang 11 3tr2",
+            "gold_type": "expense",
+            "pred_type": "transfer"
+          },
+          {
+            "id": "baseline-01-82f29c0ccb74",
+            "text": "vay tiêu dùng trả kỳ này 3tr4",
+            "gold_type": "repayment_out",
+            "pred_type": "borrow"
+          },
+          {
+            "id": "baseline-01-ebf8bca50f8d",
+            "text": "tien chay grab hom nay 450k",
+            "gold_type": "income",
+            "pred_type": "expense"
+          },
+          {
+            "id": "baseline-01-dbf5b4023040",
+            "text": "trúng vé số 200k",
+            "gold_type": "income",
+            "pred_type": "transfer"
+          },
+          {
+            "id": "baseline-01-56a7ee75454e",
+            "text": "gia han goi 4g 120k",
+            "gold_type": "expense",
+            "pred_type": "repayment_in"
+          },
+          {
+            "id": "baseline-01-d74a957149fd",
+            "text": "lì xì cháu 200k",
+            "gold_type": "expense",
+            "pred_type": "income"
+          },
+          {
+            "id": "targeted-annotation-v1-01-6bd81e618b99",
+            "text": "co Thuy cho muon 1tr",
+            "gold_type": "borrow",
+            "pred_type": "lend"
+          },
+          {
+            "id": "targeted-annotation-v1-01-81f1c9cec4b3",
+            "text": "bao hiem tra tien kham 850k",
+            "gold_type": "refund",
+            "pred_type": "repayment_in"
+          }
+        ],
+        "span_errors": [
+          {
+            "id": "baseline-01-2123a362f627",
+            "text": "ban may anh cu 6tr5",
+            "gold_span": null,
+            "pred_span": {
+              "text": "anh cu",
+              "start": 8,
+              "end": 14
+            }
+          },
+          {
+            "id": "baseline-01-56a7ee75454e",
+            "text": "gia han goi 4g 120k",
+            "gold_span": null,
+            "pred_span": {
+              "text": "han",
+              "start": 4,
+              "end": 7
+            }
+          },
+          {
+            "id": "baseline-01-30cd0e980666",
+            "text": "bách hoá xanh rau thịt 187k",
+            "gold_span": {
+              "text": "bách hoá xanh",
+              "start": 0,
+              "end": 13
+            },
+            "pred_span": null
+          },
+          {
+            "id": "baseline-01-304bfe5637ab",
+            "text": "cho a Nam vay 1 triệu 20/10",
+            "gold_span": {
+              "text": "Nam",
+              "start": 6,
+              "end": 9
+            },
+            "pred_span": {
+              "text": "a",
+              "start": 4,
+              "end": 5
+            }
+          },
+          {
+            "id": "baseline-01-e2f16245d7af",
+            "text": "vay chú Hải 20tr mua xe",
+            "gold_span": {
+              "text": "Hải",
+              "start": 8,
+              "end": 11
+            },
+            "pred_span": {
+              "text": "chú Hải",
+              "start": 4,
+              "end": 11
+            }
+          },
+          {
+            "id": "targeted-annotation-v1-01-6ddde33f35c6",
+            "text": "dì Tư gửi trả 3 triệu đã mượn",
+            "gold_span": {
+              "text": "dì Tư",
+              "start": 0,
+              "end": 5
+            },
+            "pred_span": {
+              "text": "Tư",
+              "start": 3,
+              "end": 5
+            }
+          },
+          {
+            "id": "targeted-annotation-v1-01-a07b6b6eb45c",
+            "text": "bảo việt bồi thường viện phí 2tr6",
+            "gold_span": {
+              "text": "bảo việt",
+              "start": 0,
+              "end": 8
+            },
+            "pred_span": {
+              "text": "bảo",
+              "start": 0,
+              "end": 3
+            }
+          },
+          {
+            "id": "targeted-annotation-v1-01-8b9aea00438d",
+            "text": "Thao tra lai 350k minh chi ho",
+            "gold_span": {
+              "text": "Thao",
+              "start": 0,
+              "end": 4
+            },
+            "pred_span": {
+              "text": "Th",
+              "start": 0,
+              "end": 2
+            }
+          },
+          {
+            "id": "targeted-annotation-v1-01-81f1c9cec4b3",
+            "text": "bao hiem tra tien kham 850k",
+            "gold_span": null,
+            "pred_span": {
+              "text": "bao",
+              "start": 0,
+              "end": 3
+            }
+          }
+        ]
+      },
+      "multilingual-minilm-l12-h384": {
+        "run_dir": "experiments/baseline-v1/runs-e20/multilingual-minilm-l12-h384/lr5e-05-seed3",
+        "n": 105,
+        "type_errors": [
+          {
+            "id": "baseline-01-2123a362f627",
+            "text": "ban may anh cu 6tr5",
+            "gold_type": "income",
+            "pred_type": "expense"
+          },
+          {
+            "id": "baseline-01-90a34dbd7ef8",
+            "text": "anh Long mượn 3 triệu sửa xe",
+            "gold_type": "lend",
+            "pred_type": "borrow"
+          },
+          {
+            "id": "baseline-01-ee03dc138256",
+            "text": "bố cho tiền tiêu 1 triệu",
+            "gold_type": "income",
+            "pred_type": "repayment_in"
+          },
+          {
+            "id": "baseline-01-cd356c06d417",
+            "text": "nạp ví grab 150k",
+            "gold_type": "transfer",
+            "pred_type": "expense"
+          },
+          {
+            "id": "baseline-01-e8c066dd0681",
+            "text": "dong bao hiem nhan tho 1tr2",
+            "gold_type": "expense",
+            "pred_type": "income"
+          },
+          {
+            "id": "baseline-01-2d74ae01e1f0",
+            "text": "Nam muon 150k tien grab",
+            "gold_type": "lend",
+            "pred_type": "borrow"
+          },
+          {
+            "id": "baseline-01-82f29c0ccb74",
+            "text": "vay tiêu dùng trả kỳ này 3tr4",
+            "gold_type": "repayment_out",
+            "pred_type": "borrow"
+          },
+          {
+            "id": "baseline-01-dbf5b4023040",
+            "text": "trúng vé số 200k",
+            "gold_type": "income",
+            "pred_type": "repayment_out"
+          },
+          {
+            "id": "baseline-01-d74a957149fd",
+            "text": "lì xì cháu 200k",
+            "gold_type": "expense",
+            "pred_type": "income"
+          },
+          {
+            "id": "targeted-annotation-v1-01-6b71966f3f06",
+            "text": "Thắng vay 5 củ, hẹn t10 trả",
+            "gold_type": "lend",
+            "pred_type": "repayment_in"
+          },
+          {
+            "id": "targeted-annotation-v1-01-7d1037648087",
+            "text": "roommate tra tien nha minh dong truoc 1tr5",
+            "gold_type": "repayment_in",
+            "pred_type": "refund"
+          },
+          {
+            "id": "targeted-annotation-v1-01-6bd81e618b99",
+            "text": "co Thuy cho muon 1tr",
+            "gold_type": "borrow",
+            "pred_type": "lend"
+          },
+          {
+            "id": "targeted-annotation-v1-01-81f1c9cec4b3",
+            "text": "bao hiem tra tien kham 850k",
+            "gold_type": "refund",
+            "pred_type": "transfer"
+          },
+          {
+            "id": "targeted-annotation-v1-01-9d98b78854de",
+            "text": "đòi được nợ thằng Lâm 400k",
+            "gold_type": "repayment_in",
+            "pred_type": "borrow"
+          }
+        ],
+        "span_errors": [
+          {
+            "id": "baseline-01-90a34dbd7ef8",
+            "text": "anh Long mượn 3 triệu sửa xe",
+            "gold_span": {
+              "text": "Long",
+              "start": 4,
+              "end": 8
+            },
+            "pred_span": {
+              "text": "anh",
+              "start": 0,
+              "end": 3
+            }
+          },
+          {
+            "id": "baseline-01-cd356c06d417",
+            "text": "nạp ví grab 150k",
+            "gold_span": null,
+            "pred_span": {
+              "text": "grab",
+              "start": 7,
+              "end": 11
+            }
+          },
+          {
+            "id": "baseline-01-e8c066dd0681",
+            "text": "dong bao hiem nhan tho 1tr2",
+            "gold_span": null,
+            "pred_span": {
+              "text": "dong",
+              "start": 0,
+              "end": 4
+            }
+          },
+          {
+            "id": "baseline-01-82f29c0ccb74",
+            "text": "vay tiêu dùng trả kỳ này 3tr4",
+            "gold_span": null,
+            "pred_span": {
+              "text": "tiêu dùng",
+              "start": 4,
+              "end": 13
+            }
+          },
+          {
+            "id": "baseline-01-ba4d9f58a5ff",
+            "text": "nuoc mia 12k",
+            "gold_span": null,
+            "pred_span": {
+              "text": "mia",
+              "start": 5,
+              "end": 8
+            }
+          },
+          {
+            "id": "baseline-01-30cd0e980666",
+            "text": "bách hoá xanh rau thịt 187k",
+            "gold_span": {
+              "text": "bách hoá xanh",
+              "start": 0,
+              "end": 13
+            },
+            "pred_span": null
+          },
+          {
+            "id": "baseline-01-e2f16245d7af",
+            "text": "vay chú Hải 20tr mua xe",
+            "gold_span": {
+              "text": "Hải",
+              "start": 8,
+              "end": 11
+            },
+            "pred_span": {
+              "text": "chú Hải",
+              "start": 4,
+              "end": 11
+            }
+          },
+          {
+            "id": "baseline-01-30d790f0205f",
+            "text": "mừng thọ bà nội 1 triệu",
+            "gold_span": {
+              "text": "bà nội",
+              "start": 9,
+              "end": 15
+            },
+            "pred_span": null
+          },
+          {
+            "id": "baseline-01-83a8de1156c4",
+            "text": "mở sổ tiết kiệm agribank 15tr",
+            "gold_span": null,
+            "pred_span": {
+              "text": "agribank",
+              "start": 16,
+              "end": 24
+            }
+          },
+          {
+            "id": "targeted-annotation-v1-01-4d06a6abdd9b",
+            "text": "điện máy xanh hoàn tiền nồi cơm lỗi 890k",
+            "gold_span": {
+              "text": "điện máy xanh",
+              "start": 0,
+              "end": 13
+            },
+            "pred_span": {
+              "text": "xanh",
+              "start": 9,
+              "end": 13
+            }
+          }
+        ]
+      }
+    },
+    "shared": {
+      "models": [
+        "bamibert",
+        "multilingual-minilm-l12-h384"
+      ],
+      "n_common": 105,
+      "n_unmatched": 0,
+      "type_errors": [
+        {
+          "id": "baseline-01-82f29c0ccb74",
+          "text": "vay tiêu dùng trả kỳ này 3tr4",
+          "gold_type": "repayment_out",
+          "pred_type": {
+            "bamibert": "borrow",
+            "multilingual-minilm-l12-h384": "borrow"
+          }
+        },
+        {
+          "id": "baseline-01-90a34dbd7ef8",
+          "text": "anh Long mượn 3 triệu sửa xe",
+          "gold_type": "lend",
+          "pred_type": {
+            "bamibert": "borrow",
+            "multilingual-minilm-l12-h384": "borrow"
+          }
+        },
+        {
+          "id": "baseline-01-d74a957149fd",
+          "text": "lì xì cháu 200k",
+          "gold_type": "expense",
+          "pred_type": {
+            "bamibert": "income",
+            "multilingual-minilm-l12-h384": "income"
+          }
+        },
+        {
+          "id": "baseline-01-dbf5b4023040",
+          "text": "trúng vé số 200k",
+          "gold_type": "income",
+          "pred_type": {
+            "bamibert": "transfer",
+            "multilingual-minilm-l12-h384": "repayment_out"
+          }
+        },
+        {
+          "id": "baseline-01-e8c066dd0681",
+          "text": "dong bao hiem nhan tho 1tr2",
+          "gold_type": "expense",
+          "pred_type": {
+            "bamibert": "repayment_in",
+            "multilingual-minilm-l12-h384": "income"
+          }
+        },
+        {
+          "id": "baseline-01-ee03dc138256",
+          "text": "bố cho tiền tiêu 1 triệu",
+          "gold_type": "income",
+          "pred_type": {
+            "bamibert": "lend",
+            "multilingual-minilm-l12-h384": "repayment_in"
+          }
+        },
+        {
+          "id": "targeted-annotation-v1-01-6bd81e618b99",
+          "text": "co Thuy cho muon 1tr",
+          "gold_type": "borrow",
+          "pred_type": {
+            "bamibert": "lend",
+            "multilingual-minilm-l12-h384": "lend"
+          }
+        },
+        {
+          "id": "targeted-annotation-v1-01-81f1c9cec4b3",
+          "text": "bao hiem tra tien kham 850k",
+          "gold_type": "refund",
+          "pred_type": {
+            "bamibert": "repayment_in",
+            "multilingual-minilm-l12-h384": "transfer"
+          }
+        }
+      ],
+      "span_errors": [
+        {
+          "id": "baseline-01-30cd0e980666",
+          "text": "bách hoá xanh rau thịt 187k",
+          "gold_span": {
+            "text": "bách hoá xanh",
+            "start": 0,
+            "end": 13
+          },
+          "pred_span": {
+            "bamibert": null,
+            "multilingual-minilm-l12-h384": null
+          }
+        },
+        {
+          "id": "baseline-01-e2f16245d7af",
+          "text": "vay chú Hải 20tr mua xe",
+          "gold_span": {
+            "text": "Hải",
+            "start": 8,
+            "end": 11
+          },
+          "pred_span": {
+            "bamibert": {
+              "text": "chú Hải",
+              "start": 4,
+              "end": 11
+            },
+            "multilingual-minilm-l12-h384": {
+              "text": "chú Hải",
+              "start": 4,
+              "end": 11
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,768 @@
+{
+  "title": "value-span data audit",
+  "status": "training data",
+  "mode": "training",
+  "training_dir": "datasets/annotation-v2/training-v1",
+  "totals": {
+    "records": 1158,
+    "trainable_records_excluding_probe": 1077,
+    "records_by_split": {
+      "train": 785,
+      "validation": 149,
+      "test": 143,
+      "probe": 81
+    },
+    "with_value_span": 1133,
+    "null_value_span": 25,
+    "states": {
+      "rule": 1039,
+      "human": 106,
+      "masked_uncertain": 13
+    },
+    "auto_proposed_spans": 1039,
+    "human_labelled_spans": 106,
+    "needing_review_or_masked": 13,
+    "multi_number_notes": 167,
+    "notes_by_category": {
+      "explicit_unit": 951,
+      "unaccented": 492,
+      "compact_unit": 169,
+      "multi_number": 167,
+      "context_excluded": 157,
+      "slang": 74,
+      "separator_format": 73,
+      "bare_number": 37,
+      "currency_suffix": 30,
+      "decimal_unit": 28,
+      "long_digits": 16,
+      "multiple_money_candidates": 13,
+      "no_candidate": 12,
+      "compound_amount": 8,
+      "number_words": 5,
+      "unusual_punctuation": 1
+    },
+    "accented_notes": 666,
+    "unaccented_notes": 492
+  },
+  "span_length_chars": {
+    "n": 1133,
+    "mean": 4.44,
+    "median": 4,
+    "p95": 8,
+    "max": 14,
+    "histogram": {
+      "2": 8,
+      "3": 306,
+      "4": 546,
+      "5": 65,
+      "6": 35,
+      "7": 81,
+      "8": 35,
+      "9": 45,
+      "10": 7,
+      "11": 2,
+      "12": 1,
+      "13": 1,
+      "14": 1
+    }
+  },
+  "patterns": {
+    "<num>k": 415,
+    "<num>tr": 211,
+    "<num>tr<num>": 168,
+    "<num> trieu": 49,
+    "<num>": 37,
+    "<dot3>": 33,
+    "<num> cu": 32,
+    "<dot3>đ": 25,
+    "<dec,>tr": 23,
+    "<num> nghin": 18,
+    "<long>": 15,
+    "<num> K": 14,
+    "<num> ngan": 14,
+    "<com3>": 11,
+    "<num> chai": 11,
+    "<num> xi": 11,
+    "<num> lit": 9,
+    "<num>K": 7,
+    "<dec.>tr": 5,
+    "<num> trieu <num>": 3,
+    "<num> ty": 3,
+    "<dot3> đ": 3,
+    "<num> cu ruoi": 3,
+    "<num> ty <num>": 3,
+    "<words> trieu": 2,
+    "<num> cu <num>": 2,
+    "nua cu": 2,
+    "<words> nghin": 1,
+    "<long>đ": 1,
+    "<num> chai ruoi": 1,
+    "<dot3> VND": 1
+  },
+  "patterns_by_note_accent": {
+    "accented": {
+      "<num>k": 224,
+      "<num>tr": 129,
+      "<num>tr<num>": 94,
+      "<num> trieu": 43,
+      "<dot3>": 24,
+      "<num> cu": 20,
+      "<num>": 19,
+      "<dot3>đ": 17,
+      "<num> nghin": 13,
+      "<dec,>tr": 11,
+      "<num> chai": 9,
+      "<num> K": 7,
+      "<long>": 7,
+      "<com3>": 6,
+      "<num> ngan": 6,
+      "<num> xi": 4,
+      "<num> lit": 4,
+      "<num>K": 3,
+      "<dec.>tr": 3,
+      "<words> trieu": 2,
+      "<num> ty": 2,
+      "<num> cu ruoi": 2,
+      "<dot3> đ": 2,
+      "<long>đ": 1,
+      "<num> cu <num>": 1,
+      "<num> chai ruoi": 1
+    },
+    "unaccented": {
+      "<num>k": 191,
+      "<num>tr": 82,
+      "<num>tr<num>": 74,
+      "<num>": 18,
+      "<num> cu": 12,
+      "<dec,>tr": 12,
+      "<dot3>": 9,
+      "<dot3>đ": 8,
+      "<long>": 8,
+      "<num> ngan": 8,
+      "<num> xi": 7,
+      "<num> K": 7,
+      "<num> trieu": 6,
+      "<num> nghin": 5,
+      "<com3>": 5,
+      "<num> lit": 5,
+      "<num>K": 4,
+      "<num> trieu <num>": 3,
+      "<num> ty <num>": 3,
+      "<dec.>tr": 2,
+      "<num> chai": 2,
+      "nua cu": 2,
+      "<words> nghin": 1,
+      "<dot3> đ": 1,
+      "<num> cu <num>": 1,
+      "<num> cu ruoi": 1,
+      "<dot3> VND": 1,
+      "<num> ty": 1
+    }
+  },
+  "patterns_by_split": {
+    "train": {
+      "<num>k": 283,
+      "<num>tr": 131,
+      "<num>tr<num>": 111,
+      "<num> trieu": 29,
+      "<num>": 26,
+      "<dot3>": 25,
+      "<num> cu": 23,
+      "<dot3>đ": 17,
+      "<dec,>tr": 16,
+      "<num> nghin": 15,
+      "<num> K": 12,
+      "<long>": 11,
+      "<com3>": 9,
+      "<num> xi": 9,
+      "<num> lit": 8,
+      "<num> chai": 8,
+      "<num> ngan": 7,
+      "<num>K": 4,
+      "<dec.>tr": 4,
+      "<num> cu ruoi": 3,
+      "<num> ty <num>": 3,
+      "<num> trieu <num>": 2,
+      "<num> ty": 2,
+      "<dot3> đ": 2,
+      "<num> cu <num>": 2,
+      "nua cu": 2,
+      "<words> trieu": 1,
+      "<words> nghin": 1,
+      "<long>đ": 1,
+      "<num> chai ruoi": 1,
+      "<dot3> VND": 1
+    },
+    "validation": {
+      "<num>k": 53,
+      "<num>tr": 29,
+      "<num>tr<num>": 20,
+      "<dot3>": 6,
+      "<dec,>tr": 5,
+      "<num>": 5,
+      "<num> ngan": 5,
+      "<num> trieu": 4,
+      "<dot3>đ": 4,
+      "<num> cu": 2,
+      "<num> nghin": 2,
+      "<num>K": 2,
+      "<long>": 2,
+      "<num> K": 2,
+      "<words> trieu": 1,
+      "<com3>": 1,
+      "<num> ty": 1
+    },
+    "test": {
+      "<num>k": 54,
+      "<num>tr": 21,
+      "<num>tr<num>": 20,
+      "<num> trieu": 10,
+      "<num>": 6,
+      "<num> cu": 4,
+      "<dot3>đ": 4,
+      "<num> chai": 3,
+      "<dec,>tr": 2,
+      "<long>": 2,
+      "<num> ngan": 2,
+      "<dot3>": 2,
+      "<num> xi": 2,
+      "<num>K": 1,
+      "<num> nghin": 1,
+      "<com3>": 1,
+      "<num> lit": 1,
+      "<num> trieu <num>": 1,
+      "<dec.>tr": 1,
+      "<dot3> đ": 1
+    },
+    "probe": {
+      "<num>tr": 30,
+      "<num>k": 25,
+      "<num>tr<num>": 17,
+      "<num> trieu": 6,
+      "<num> cu": 3
+    }
+  },
+  "seen_unseen_vs_train": {
+    "validation": {
+      "spans": 144,
+      "pattern_seen_in_train": 144,
+      "pattern_unseen_in_train": 0,
+      "unseen_patterns": {},
+      "exact_span_seen_in_train": 106,
+      "exact_span_unseen_in_train": 38
+    },
+    "test": {
+      "spans": 139,
+      "pattern_seen_in_train": 139,
+      "pattern_unseen_in_train": 0,
+      "unseen_patterns": {},
+      "exact_span_seen_in_train": 99,
+      "exact_span_unseen_in_train": 40
+    },
+    "probe": {
+      "spans": 81,
+      "pattern_seen_in_train": 81,
+      "pattern_unseen_in_train": 0,
+      "unseen_patterns": {},
+      "exact_span_seen_in_train": 75,
+      "exact_span_unseen_in_train": 6
+    }
+  },
+  "coverage": [
+    {
+      "form": "100",
+      "required": true,
+      "signatures": [
+        "<num>"
+      ],
+      "total": 37,
+      "n_train": 26,
+      "n_validation": 5,
+      "n_test": 6,
+      "n_probe": 0,
+      "note_accented": 19,
+      "note_unaccented": 18,
+      "span_with_diacritics": 0,
+      "examples": [
+        "500",
+        "500"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "50k",
+      "required": true,
+      "signatures": [
+        "<num>k"
+      ],
+      "total": 415,
+      "n_train": 283,
+      "n_validation": 53,
+      "n_test": 54,
+      "n_probe": 25,
+      "note_accented": 224,
+      "note_unaccented": 191,
+      "span_with_diacritics": 0,
+      "examples": [
+        "67k",
+        "59k"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "50K",
+      "required": false,
+      "signatures": [
+        "<num>K"
+      ],
+      "total": 7,
+      "n_train": 4,
+      "n_validation": 2,
+      "n_test": 1,
+      "n_probe": 0,
+      "note_accented": 3,
+      "note_unaccented": 4,
+      "span_with_diacritics": 0,
+      "examples": [
+        "45K",
+        "59K"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "50 K",
+      "required": true,
+      "signatures": [
+        "<num> K",
+        "<num> k"
+      ],
+      "total": 14,
+      "n_train": 12,
+      "n_validation": 2,
+      "n_test": 0,
+      "n_probe": 0,
+      "note_accented": 7,
+      "note_unaccented": 7,
+      "span_with_diacritics": 0,
+      "examples": [
+        "90 K",
+        "500 K"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "1tr",
+      "required": true,
+      "signatures": [
+        "<num>tr"
+      ],
+      "total": 211,
+      "n_train": 131,
+      "n_validation": 29,
+      "n_test": 21,
+      "n_probe": 30,
+      "note_accented": 129,
+      "note_unaccented": 82,
+      "span_with_diacritics": 0,
+      "examples": [
+        "4tr",
+        "2tr"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "1tr5",
+      "required": true,
+      "signatures": [
+        "<num>tr<num>"
+      ],
+      "total": 168,
+      "n_train": 111,
+      "n_validation": 20,
+      "n_test": 20,
+      "n_probe": 17,
+      "note_accented": 94,
+      "note_unaccented": 74,
+      "span_with_diacritics": 0,
+      "examples": [
+        "3tr1",
+        "1tr5"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "1.5tr",
+      "required": true,
+      "signatures": [
+        "<dec.>tr"
+      ],
+      "total": 5,
+      "n_train": 4,
+      "n_validation": 0,
+      "n_test": 1,
+      "n_probe": 0,
+      "note_accented": 3,
+      "note_unaccented": 2,
+      "span_with_diacritics": 0,
+      "examples": [
+        "4.2tr",
+        "1.5tr"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "1,5tr",
+      "required": true,
+      "signatures": [
+        "<dec,>tr"
+      ],
+      "total": 23,
+      "n_train": 16,
+      "n_validation": 5,
+      "n_test": 2,
+      "n_probe": 0,
+      "note_accented": 11,
+      "note_unaccented": 12,
+      "span_with_diacritics": 0,
+      "examples": [
+        "2,3tr",
+        "1,2tr"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "2 triệu",
+      "required": true,
+      "signatures": [
+        "<num> trieu"
+      ],
+      "total": 49,
+      "n_train": 29,
+      "n_validation": 4,
+      "n_test": 10,
+      "n_probe": 6,
+      "note_accented": 43,
+      "note_unaccented": 6,
+      "span_with_diacritics": 43,
+      "examples": [
+        "2 triệu",
+        "1 triệu"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "2 củ",
+      "required": true,
+      "signatures": [
+        "<num> cu"
+      ],
+      "total": 32,
+      "n_train": 23,
+      "n_validation": 2,
+      "n_test": 4,
+      "n_probe": 3,
+      "note_accented": 20,
+      "note_unaccented": 12,
+      "span_with_diacritics": 20,
+      "examples": [
+        "3 củ",
+        "3 cu"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "5 xị",
+      "required": true,
+      "signatures": [
+        "<num> xi"
+      ],
+      "total": 11,
+      "n_train": 9,
+      "n_validation": 0,
+      "n_test": 2,
+      "n_probe": 0,
+      "note_accented": 4,
+      "note_unaccented": 7,
+      "span_with_diacritics": 4,
+      "examples": [
+        "5 xi",
+        "6 xị"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "5 chai",
+      "required": true,
+      "signatures": [
+        "<num> chai"
+      ],
+      "total": 11,
+      "n_train": 8,
+      "n_validation": 0,
+      "n_test": 3,
+      "n_probe": 0,
+      "note_accented": 9,
+      "note_unaccented": 2,
+      "span_with_diacritics": 0,
+      "examples": [
+        "2 chai",
+        "2 chai"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "5 lít",
+      "required": true,
+      "signatures": [
+        "<num> lit"
+      ],
+      "total": 9,
+      "n_train": 8,
+      "n_validation": 0,
+      "n_test": 1,
+      "n_probe": 0,
+      "note_accented": 4,
+      "note_unaccented": 5,
+      "span_with_diacritics": 4,
+      "examples": [
+        "3 lit",
+        "3 lit"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "500 nghìn",
+      "required": true,
+      "signatures": [
+        "<num> nghin"
+      ],
+      "total": 18,
+      "n_train": 15,
+      "n_validation": 2,
+      "n_test": 1,
+      "n_probe": 0,
+      "note_accented": 13,
+      "note_unaccented": 5,
+      "span_with_diacritics": 13,
+      "examples": [
+        "50 nghìn",
+        "350 nghìn"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "500 ngàn",
+      "required": true,
+      "signatures": [
+        "<num> ngan"
+      ],
+      "total": 14,
+      "n_train": 7,
+      "n_validation": 5,
+      "n_test": 2,
+      "n_probe": 0,
+      "note_accented": 6,
+      "note_unaccented": 8,
+      "span_with_diacritics": 6,
+      "examples": [
+        "350 ngan",
+        "800 ngàn"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "1.500.000",
+      "required": true,
+      "signatures": [
+        "<dot3>"
+      ],
+      "total": 33,
+      "n_train": 25,
+      "n_validation": 6,
+      "n_test": 2,
+      "n_probe": 0,
+      "note_accented": 24,
+      "note_unaccented": 9,
+      "span_with_diacritics": 0,
+      "examples": [
+        "745.000",
+        "47.000"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "1500000",
+      "required": true,
+      "signatures": [
+        "<long>"
+      ],
+      "total": 15,
+      "n_train": 11,
+      "n_validation": 2,
+      "n_test": 2,
+      "n_probe": 0,
+      "note_accented": 7,
+      "note_unaccented": 8,
+      "span_with_diacritics": 0,
+      "examples": [
+        "1500000",
+        "2000000"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "80.000đ",
+      "required": false,
+      "signatures": [
+        "<dot3>đ"
+      ],
+      "total": 25,
+      "n_train": 17,
+      "n_validation": 4,
+      "n_test": 4,
+      "n_probe": 0,
+      "note_accented": 17,
+      "note_unaccented": 8,
+      "span_with_diacritics": 13,
+      "examples": [
+        "80.000đ",
+        "70.000đ"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "12,500,000",
+      "required": false,
+      "signatures": [
+        "<com3>"
+      ],
+      "total": 11,
+      "n_train": 9,
+      "n_validation": 1,
+      "n_test": 1,
+      "n_probe": 0,
+      "note_accented": 6,
+      "note_unaccented": 5,
+      "span_with_diacritics": 0,
+      "examples": [
+        "12,500,000",
+        "347,000"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "2 tỷ",
+      "required": false,
+      "signatures": [
+        "<num> ty"
+      ],
+      "total": 3,
+      "n_train": 2,
+      "n_validation": 1,
+      "n_test": 0,
+      "n_probe": 0,
+      "note_accented": 2,
+      "note_unaccented": 1,
+      "span_with_diacritics": 2,
+      "examples": [
+        "1 tỷ",
+        "2 tỷ"
+      ],
+      "status": "covered in train"
+    },
+    {
+      "form": "2 triệu rưỡi",
+      "required": false,
+      "signatures": [
+        "<num> trieu ruoi"
+      ],
+      "total": 0,
+      "n_train": 0,
+      "n_validation": 0,
+      "n_test": 0,
+      "n_probe": 0,
+      "note_accented": 0,
+      "note_unaccented": 0,
+      "span_with_diacritics": 0,
+      "examples": [],
+      "status": "ABSENT"
+    },
+    {
+      "form": "1 triệu 2",
+      "required": false,
+      "signatures": [
+        "<num> trieu <num>"
+      ],
+      "total": 3,
+      "n_train": 2,
+      "n_validation": 0,
+      "n_test": 1,
+      "n_probe": 0,
+      "note_accented": 0,
+      "note_unaccented": 3,
+      "span_with_diacritics": 0,
+      "examples": [
+        "1 trieu 5",
+        "1 trieu 2"
+      ],
+      "status": "covered in train"
+    }
+  ],
+  "tokens": {
+    "tokenizer": "models/gidi-finance-v1",
+    "max_length": 32,
+    "tokens_per_span": {
+      "n": 1133,
+      "mean": 2.39,
+      "median": 2,
+      "p95": 4,
+      "max": 7,
+      "histogram": {
+        "1": 35,
+        "2": 749,
+        "3": 260,
+        "4": 56,
+        "5": 28,
+        "6": 4,
+        "7": 1
+      }
+    },
+    "mean_tokens_by_pattern": {
+      "<com3>": 3.73,
+      "<dec,>tr": 4.0,
+      "<dec.>tr": 4.0,
+      "<dot3>": 4.45,
+      "<dot3> VND": 5.0,
+      "<dot3> đ": 5.33,
+      "<dot3>đ": 3.92,
+      "<long>": 3.0,
+      "<long>đ": 3.0,
+      "<num>": 1.05,
+      "<num> K": 2.0,
+      "<num> chai": 2.0,
+      "<num> chai ruoi": 4.0,
+      "<num> cu": 2.0,
+      "<num> cu <num>": 3.0,
+      "<num> cu ruoi": 4.0,
+      "<num> lit": 2.56,
+      "<num> ngan": 2.57,
+      "<num> nghin": 2.28,
+      "<num> trieu": 2.12,
+      "<num> trieu <num>": 4.0,
+      "<num> ty": 2.0,
+      "<num> ty <num>": 3.0,
+      "<num> xi": 2.36,
+      "<num>K": 2.0,
+      "<num>k": 2.05,
+      "<num>tr": 2.0,
+      "<num>tr<num>": 3.01,
+      "<words> nghin": 5.0,
+      "<words> trieu": 2.0,
+      "nua cu": 3.0
+    },
+    "notes_truncated_at_32": 0,
+    "spans_losing_tokens_to_truncation": 0,
+    "spans_with_token_boundary_mismatch": 0,
+    "boundary_mismatch_examples": []
+  }
+}

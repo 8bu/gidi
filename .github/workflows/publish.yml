@@ -1,0 +1,99 @@
+name: publish
+
+# Publishes an already-built release (artifact of a `release` workflow run).
+# Never builds, exports, quantizes or trains. All logic lives in scripts/publish.py.
+# See docs/releasing.md.
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_run_id:
+        description: "Run ID of the release workflow run that produced the release artifact"
+        required: true
+        type: string
+      model_version:
+        description: "Model version"
+        required: false
+        default: gidi-finance-v2
+        type: string
+      release_version:
+        description: "Release version (as built by the release run)"
+        required: true
+        type: string
+      providers:
+        description: "Provider to publish to"
+        required: true
+        default: all
+        type: choice
+        options:
+          - huggingface
+          - github
+          - kaggle
+          - all
+      dry_run:
+        description: "Plan and stage only; contact no provider"
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: publish-${{ inputs.model_version }}-${{ inputs.release_version }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      MODEL_VERSION: ${{ inputs.model_version }}
+      RELEASE_VERSION: ${{ inputs.release_version }}
+      PROVIDERS: ${{ inputs.providers }}
+      DRY_RUN: ${{ inputs.dry_run }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Download release artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: release-${{ inputs.model_version }}-${{ inputs.release_version }}
+          path: dist/releases/${{ inputs.model_version }}/${{ inputs.release_version }}
+          run-id: ${{ inputs.release_run_id }}
+          github-token: ${{ github.token }}
+
+      - name: Publish
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          args=()
+          if [ "$DRY_RUN" = "true" ]; then
+            args+=(--dry-run)
+          else
+            args+=(--confirm-publish)
+          fi
+          uv run python scripts/publish.py "$PROVIDERS" \
+            --release "dist/releases/$MODEL_VERSION/$RELEASE_VERSION" \
+            ${args[@]+"${args[@]}"}
+
+      - name: Upload receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: publication-receipts-${{ inputs.model_version }}-${{ inputs.release_version }}-${{ github.run_id }}
+          path: dist/publications
+          if-no-files-found: warn

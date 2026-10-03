@@ -1,0 +1,21 @@
+{
+  "experiment": "compression-v3",
+  "declared_before_training": true,
+  "question": "Does keeping 4 layers and shrinking each FFN (structured neuron pruning) get the compression-v1 student near/below 30 MB INT8 while preserving the span behaviour 3x768 lost?",
+  "starting_point": "compression-v1 initial model: pretrained BamiBERT 4x768 (layers 0-based 2,5,8,11), position table 34 rows, vocabulary B-rank-8000; same seeded fresh heads",
+  "chosen_width": 2048,
+  "chosen_criterion": "combined",
+  "criterion_definition": "score_j = mean |gelu(W1[j]·x + b1[j])| over the non-pad tokens of the 723 training notes x ||W2[:, j]||_2, per layer; keep the 2048 highest (ties to lower index), uniform across layers",
+  "neuron_map": "models/compression-v3/ffn/combined-K2048/ffn_map.json (kept indices per layer, exact row/column copies of W1, b1, W2; b2, attention, layer norms, embeddings, heads untouched)",
+  "rationale": "Estimated INT8 sizes (measured 34.97 MB base minus removed params x 1.0057 bytes/param measured in compression-v2): 2560 -> 31.8 MB, 2304 -> 30.2 MB, 2048 -> 28.6 MB, 1792 -> 27.1 MB. 2048 is the largest width inside the 28-30 MB target band and keeps 2/3 of every FFN; 2304 misses the band, 1792 removes over 40%. Criterion chosen on the training-only proxy: share of FFN-output energy on training tokens carried by the removed neurons at K=2048 is 0.193 for combined vs 0.226 activation and 0.376 magnitude. No held-out data was used for width or criterion.",
+  "seed_independence": "the pretrained encoder (and therefore the neuron map) does not depend on the seed; heads are built before pruning, so each seed's heads are bit-identical to compression-v1's.",
+  "training": "compression-v1 supervised recipe unchanged: encoder lr 5e-5, head lr 1e-3, batch 8, 40 epochs, warmup 0.1, weight decay 0.01, dropout 0.1, max grad norm 1.0, last epoch kept; same 723 training notes; seeds 1,2,3; no KD; no sweep.",
+  "selection": "none on held-out data; test and probe-v1 are evaluation only.",
+  "comparisons": {
+    "A": "canonical teacher",
+    "B": "compression-v1 4x768 pos34 + B-rank-8000",
+    "C": "compression-v2 3x768 pos34 + B-rank-8000",
+    "D": "compression-v3 4x768 FFN 2048 pos34 + B-rank-8000"
+  },
+  "main_comparison": "D vs B (quality), D vs C (span boundaries)"
+}

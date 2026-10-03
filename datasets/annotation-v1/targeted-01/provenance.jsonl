@@ -1,0 +1,163 @@
+{"id":"targeted-annotation-v1-01-62e250adf9c6","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-9b8bdc05488f","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.5,"settled_by":"edge row 1"}
+{"id":"targeted-annotation-v1-01-565ed2fb3326","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.5,"settled_by":"edge row 5"}
+{"id":"targeted-annotation-v1-01-6b71966f3f06","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.92,"review_confidence":0.9}
+{"id":"targeted-annotation-v1-01-477af5542d30","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-df6029d5beec","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-2bdb46bbee94","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.5,"settled_by":"edge row 1"}
+{"id":"targeted-annotation-v1-01-39a7045672ea","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-c3b27ce9ae78","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.9,"review_confidence":0.88}
+{"id":"targeted-annotation-v1-01-42aef85ba4cb","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.85,"review_confidence":0.5,"settled_by":"edge row 27 / repayment_in evidence rule"}
+{"id":"targeted-annotation-v1-01-56f907766505","annotator":"human","reviewed":"ai-proposal","proposal_confidence":0.7,"proposal_kept":true,"origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01"}
+{"id":"targeted-annotation-v1-01-de5a32c060ec","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.88}
+{"id":"targeted-annotation-v1-01-649aa2ce6809","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.92,"review_confidence":0.85}
+{"id":"targeted-annotation-v1-01-5b89e8677c73","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-6ddde33f35c6","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-567c315344db","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-38ce17a93a13","annotator":"human","reviewed":"ai-proposal","proposal_confidence":0.85,"proposal_kept":true,"origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01"}
+{"id":"targeted-annotation-v1-01-f2e9396ff58d","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.97,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-12681c4c5543","annotator":"human","reviewed":"ai-proposal","proposal_confidence":0.72,"proposal_kept":true,"origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01"}
+{"id":"targeted-annotation-v1-01-a07b6b6eb45c","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-12aff90931a1","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.9,"review_confidence":0.85}
+{"id":"targeted-annotation-v1-01-b1cafcd91e80","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-6929d7eb6cde","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-84622e5a18da","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.92,"review_confidence":0.92}
+{"id":"targeted-annotation-v1-01-e93559ab7d22","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-77e8b73b5a1a","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.9,"review_confidence":0.88}
+{"id":"targeted-annotation-v1-01-94faabf61933","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.9}
+{"id":"targeted-annotation-v1-01-b905ee419bca","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-2123e0493a3e","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.97,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-cf81f8019195","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-8e510f0c909b","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.5,"settled_by":"edge row 27 / repayment_in evidence rule"}
+{"id":"targeted-annotation-v1-01-f4f7872ea319","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.92}
+{"id":"targeted-annotation-v1-01-43de7a19db10","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.5,"settled_by":"edge row 9"}
+{"id":"targeted-annotation-v1-01-6a266c1e72d5","annotator":"human","reviewed":"ai-proposal","proposal_confidence":0.85,"proposal_kept":true,"origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01"}
+{"id":"targeted-annotation-v1-01-e13a074f95ce","annotator":"human","reviewed":"ai-proposal","proposal_confidence":0.8,"proposal_kept":true,"origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01"}
+{"id":"targeted-annotation-v1-01-0c8842810466","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-14585595ed52","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.5,"settled_by":"edge row 9"}
+{"id":"targeted-annotation-v1-01-a9b98b07c2ec","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-01b90eba86eb","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.5,"settled_by":"edge row 5"}
+{"id":"targeted-annotation-v1-01-ed5f06e8f11a","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-3153450dd384","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.9,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-739722c10c6d","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.9,"review_confidence":0.85}
+{"id":"targeted-annotation-v1-01-626c184c2e27","annotator":"human","reviewed":"ai-proposal","proposal_confidence":0.8,"proposal_kept":true,"origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01"}
+{"id":"targeted-annotation-v1-01-7f69d10ccac2","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-a64f0c5514e6","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-840d03025b97","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-8b423e671b26","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-5026c2507378","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-89980a1e50a3","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.85}
+{"id":"targeted-annotation-v1-01-ada56a291022","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-1e750596c3c4","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-e2450e838572","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-94f1d8f8a603","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-b24c6a87277e","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-bcb30833633f","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-461c379c7e7e","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.88}
+{"id":"targeted-annotation-v1-01-2e8d38cf6a18","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.5,"settled_by":"edge row 1"}
+{"id":"targeted-annotation-v1-01-6b58830b35cb","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-6bba62a2c043","annotator":"human","reviewed":"ai-proposal","proposal_confidence":0.6,"proposal_kept":false,"origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","recheck":"recheck-02"}
+{"id":"targeted-annotation-v1-01-e1c32e5a12ab","annotator":"human","reviewed":"ai-proposal","proposal_confidence":0.8,"proposal_kept":true,"origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01"}
+{"id":"targeted-annotation-v1-01-aec9b2eb6bed","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-cc8c50502b1e","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.92,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-f491de98c508","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.92,"review_confidence":0.88}
+{"id":"targeted-annotation-v1-01-dfb2984f1554","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-caf5970b61b3","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.5,"settled_by":"edge row 9"}
+{"id":"targeted-annotation-v1-01-18c5d8f73427","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-86a1d00f5a29","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-1f5526cc0d6f","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.9,"review_confidence":0.85}
+{"id":"targeted-annotation-v1-01-a14ac2e07a88","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-d63cb2a54b54","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.5,"settled_by":"edge row 27 / repayment_in evidence rule"}
+{"id":"targeted-annotation-v1-01-449cf31eb5b9","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.92,"review_confidence":0.85}
+{"id":"targeted-annotation-v1-01-1d247aecdecf","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-e38a300f673d","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.88}
+{"id":"targeted-annotation-v1-01-b7ad5e8caeeb","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.5,"settled_by":"edge row 1"}
+{"id":"targeted-annotation-v1-01-f47b5768e090","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-f76d0b858a29","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.97,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-67bce97caab8","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-69c8749dcb85","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.5,"settled_by":"edge row 1"}
+{"id":"targeted-annotation-v1-01-d038547aa79a","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-50aaa020e8f2","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-bb80749d05e4","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-f6c9da29169b","annotator":"human","reviewed":"ai-proposal","proposal_confidence":0.5,"proposal_kept":false,"origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01"}
+{"id":"targeted-annotation-v1-01-2e1e398f2e16","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.92,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-29254f99f21d","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.92,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-8b9aea00438d","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.92,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-8a2ae1870545","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-0f3e144cbcb1","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.8}
+{"id":"targeted-annotation-v1-01-7fb4eedb38da","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-552a72c4cc43","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-bb1567dee653","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-d0de2032c670","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.5,"settled_by":"edge row 9"}
+{"id":"targeted-annotation-v1-01-b716c52e376d","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-aad336761d3d","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.5,"settled_by":"edge row 5"}
+{"id":"targeted-annotation-v1-01-13baa014c8fa","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-a6f095c4447e","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-f65d54c745fa","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-1dbfba8a25c5","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.9,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-ecc365be5953","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.5,"settled_by":"edge row 27 / repayment_in evidence rule"}
+{"id":"targeted-annotation-v1-01-a6c620e7de75","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-c2089103466c","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-95e3e3addb57","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-86d31eab999f","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-0213e96be9c0","annotator":"human","reviewed":"ai-proposal","proposal_confidence":0.8,"proposal_kept":true,"origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01"}
+{"id":"targeted-annotation-v1-01-d15af31a2e75","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-7b06da87f618","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-688288088e88","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.5,"settled_by":"edge row 27 / repayment_in evidence rule"}
+{"id":"targeted-annotation-v1-01-ceb3a7185b19","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.97,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-996fea9ebaec","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-55b6ac7b711d","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-f1c001187279","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-8c87a35c5ae4","annotator":"human","reviewed":"ai-proposal","proposal_confidence":0.6,"proposal_kept":false,"origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","recheck":"recheck-02"}
+{"id":"targeted-annotation-v1-01-af19c277cfcb","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.85}
+{"id":"targeted-annotation-v1-01-f56bb0a25e64","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.88}
+{"id":"targeted-annotation-v1-01-2cda1d910520","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-ad2a499af4f4","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.85,"review_confidence":0.5,"settled_by":"edge row 27 / repayment_in evidence rule"}
+{"id":"targeted-annotation-v1-01-b0ec9dfac78c","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-b7fe9d507f99","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-bd1024efc92d","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.5,"settled_by":"edge row 14"}
+{"id":"targeted-annotation-v1-01-7d1037648087","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.92,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-6bd81e618b99","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-b97776ee55a7","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-889630a3f40c","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-35299bba21dc","annotator":"human","reviewed":"ai-proposal","proposal_confidence":0.8,"proposal_kept":true,"origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01"}
+{"id":"targeted-annotation-v1-01-81f1c9cec4b3","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.92,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-5511db7fa41d","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.85}
+{"id":"targeted-annotation-v1-01-1f4fa2ee9993","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-cb9e010fcde6","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.97,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-4bdda63023c1","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.85,"review_confidence":0.5,"settled_by":"edge row 27 / repayment_in evidence rule"}
+{"id":"targeted-annotation-v1-01-38792e4d923d","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-74f7d92f5ea2","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.5,"settled_by":"edge row 27 / repayment_in evidence rule"}
+{"id":"targeted-annotation-v1-01-7d969cbfc6ac","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.9,"review_confidence":0.85}
+{"id":"targeted-annotation-v1-01-19d2e3a9b0d5","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-f1a0c1f8f95f","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-f030130ba1d6","annotator":"human","reviewed":"ai-proposal","proposal_confidence":0.6,"proposal_kept":true,"origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01"}
+{"id":"targeted-annotation-v1-01-e403d7df5ad0","annotator":"human","reviewed":"ai-proposal","proposal_confidence":0.8,"proposal_kept":true,"origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01"}
+{"id":"targeted-annotation-v1-01-f97dce29f408","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-672ff4340e2b","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.92,"review_confidence":0.88}
+{"id":"targeted-annotation-v1-01-952f105851cc","annotator":"human","reviewed":"ai-proposal","proposal_confidence":0.5,"proposal_kept":false,"origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01"}
+{"id":"targeted-annotation-v1-01-71d5e9dc1c17","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.5,"settled_by":"refund table `cty gửi 780k`"}
+{"id":"targeted-annotation-v1-01-e9f840de6895","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.97,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-7243124c94e5","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.85}
+{"id":"targeted-annotation-v1-01-96249badd4d9","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-9ef345e000c2","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-8b5804d4944f","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-bd0d6d97d68e","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-a204758d9d4e","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-a30685052497","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.92,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-d864f618f583","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-3a5cb370e770","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.5,"settled_by":"edge row 27 / repayment_in evidence rule"}
+{"id":"targeted-annotation-v1-01-35e47af585b3","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.97,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-e154f63cb75f","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.92,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-b32a35e194dc","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-c29271668522","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.9}
+{"id":"targeted-annotation-v1-01-263e0a003d5e","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-9e8d9fea52b7","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-ca107a51a983","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.5,"settled_by":"edge row 27 / repayment_in evidence rule"}
+{"id":"targeted-annotation-v1-01-4d06a6abdd9b","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-ed01eac7c566","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.97,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-958092f67255","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.97,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-7f35bfd9fab5","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.93,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-9d98b78854de","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.95,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-fae0f4173362","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.96,"review_confidence":0.95}
+{"id":"targeted-annotation-v1-01-7fe2b9e197ab","annotator":"ai","origin":"synthetic-targeted","source_batch":"targeted-annotation-v1-01","confidence":0.97,"review_confidence":0.95}

@@ -1,0 +1,46 @@
+{"id":"baseline-01-84912823d92c","annotation_status":"complete","type":"amount","target":{"text":"320k","start":33,"end":37}}
+{"id":"baseline-01-fa5f5ec98141","annotation_status":"complete","type":"amount","target":{"text":"hai tram nghin","start":0,"end":14}}
+{"id":"baseline-01-ba7c2e8825dc","annotation_status":"complete","type":"amount","target":{"text":"1tr2","start":12,"end":16}}
+{"id":"baseline-01-b323f8915a79","annotation_status":"complete","type":"amount","target":{"text":"500","start":13,"end":16}}
+{"id":"targeted-annotation-v1-02-77b7f8dc3cd1","annotation_status":"complete","type":"amount","target":{"text":"8 củ","start":16,"end":20}}
+{"id":"baseline-01-f6c7168683c4","annotation_status":"complete","type":"no_amount","target":null}
+{"id":"baseline-01-ba8e9a28c7bb","annotation_status":"complete","type":"amount","target":{"text":"3 cu","start":20,"end":24}}
+{"id":"baseline-01-d658d723da0b","annotation_status":"complete","type":"amount","target":{"text":"500","start":4,"end":7}}
+{"id":"baseline-01-696464d659c5","annotation_status":"complete","type":"amount","target":{"text":"180k","start":25,"end":29}}
+{"id":"baseline-01-289f8839b96a","annotation_status":"complete","type":"amount","target":{"text":"hai triệu","start":27,"end":36}}
+{"id":"baseline-01-bea282ff517b","annotation_status":"complete","type":"amount","target":{"text":"bốn triệu","start":18,"end":27}}
+{"id":"baseline-01-255e6d920a34","annotation_status":"uncertain","type":"amount","target":null,"note":"several amounts (89k, 15k); the transaction amount is unclear"}
+{"id":"baseline-01-2e1787eca59d","annotation_status":"complete","type":"no_amount","target":null}
+{"id":"baseline-01-324ef45f361c","annotation_status":"complete","type":"amount","target":{"text":"3 cu","start":13,"end":17}}
+{"id":"baseline-01-d7d840164a2e","annotation_status":"complete","type":"amount","target":{"text":"3tr2","start":20,"end":24}}
+{"id":"targeted-annotation-v1-02-66ff4e082c7b","annotation_status":"complete","type":"amount","target":{"text":"300k","start":14,"end":18}}
+{"id":"targeted-annotation-v1-01-5b89e8677c73","annotation_status":"complete","type":"amount","target":{"text":"3tr","start":14,"end":17}}
+{"id":"baseline-01-628139f813bd","annotation_status":"complete","type":"amount","target":{"text":"3 củ","start":15,"end":19}}
+{"id":"baseline-01-25388aa4b37c","annotation_status":"complete","type":"amount","target":{"text":"700k","start":24,"end":28}}
+{"id":"probe-v1-251907cc9b56","annotation_status":"complete","type":"amount","target":{"text":"7tr6","start":37,"end":41}}
+{"id":"targeted-annotation-v1-02-6c5e5f94f774","annotation_status":"complete","type":"amount","target":{"text":"4 củ","start":17,"end":21}}
+{"id":"baseline-01-4cb1fa8a1a45","annotation_status":"complete","type":"amount","target":{"text":"18tr5","start":20,"end":25}}
+{"id":"probe-v1-26da30e8b087","annotation_status":"complete","type":"amount","target":{"text":"5 cu","start":14,"end":18}}
+{"id":"baseline-01-56a7ee75454e","annotation_status":"complete","type":"amount","target":{"text":"120k","start":15,"end":19}}
+{"id":"baseline-01-304bfe5637ab","annotation_status":"complete","type":"amount","target":{"text":"1 triệu","start":14,"end":21}}
+{"id":"baseline-01-9e017ecd0a9b","annotation_status":"complete","type":"amount","target":{"text":"180k","start":21,"end":25}}
+{"id":"baseline-01-15b438d8e091","annotation_status":"complete","type":"amount","target":{"text":"7tr2","start":15,"end":19}}
+{"id":"baseline-01-ce97d487edba","annotation_status":"complete","type":"amount","target":{"text":"500k","start":17,"end":21}}
+{"id":"targeted-annotation-v1-02-9de55e9e1450","annotation_status":"complete","type":"amount","target":{"text":"300k","start":18,"end":22}}
+{"id":"baseline-01-3fca7834ba04","annotation_status":"complete","type":"amount","target":{"text":"10tr","start":18,"end":22}}
+{"id":"targeted-annotation-v1-02-ca3de082fd7e","annotation_status":"complete","type":"amount","target":{"text":"300k","start":18,"end":22}}
+{"id":"baseline-01-16b7e2c80e79","annotation_status":"complete","type":"amount","target":{"text":"12,500,000","start":9,"end":19}}
+{"id":"baseline-01-2627bc241d6d","annotation_status":"complete","type":"amount","target":{"text":"420.000đ","start":12,"end":20}}
+{"id":"baseline-01-27db89c74fcb","annotation_status":"complete","type":"amount","target":{"text":"1,5tr","start":25,"end":30}}
+{"id":"baseline-01-385d471309b4","annotation_status":"complete","type":"amount","target":{"text":"700 nghìn","start":11,"end":20}}
+{"id":"probe-v1-931b7bb2d6c9","annotation_status":"complete","type":"amount","target":{"text":"300k","start":22,"end":26}}
+{"id":"targeted-annotation-v1-01-c29271668522","annotation_status":"complete","type":"amount","target":{"text":"99K","start":24,"end":27}}
+{"id":"baseline-01-3ade82662461","annotation_status":"complete","type":"amount","target":{"text":"300.000","start":12,"end":19}}
+{"id":"baseline-01-172a304c1c82","annotation_status":"complete","type":"amount","target":{"text":"120k","start":9,"end":13}}
+{"id":"probe-v1-49168ea5445e","annotation_status":"complete","type":"amount","target":{"text":"2 triệu","start":12,"end":19}}
+{"id":"targeted-annotation-v1-02-ba3bc53d6e46","annotation_status":"complete","type":"amount","target":{"text":"1.5tr","start":13,"end":18}}
+{"id":"baseline-01-b5cbe7ed12a5","annotation_status":"complete","type":"amount","target":{"text":"6tr","start":25,"end":28}}
+{"id":"probe-v1-6d13d8fd2993","annotation_status":"complete","type":"amount","target":{"text":"3tr5","start":23,"end":27}}
+{"id":"baseline-01-3b15ae81ca06","annotation_status":"complete","type":"amount","target":{"text":"2 triệu","start":20,"end":27}}
+{"id":"targeted-annotation-v1-01-7d1037648087","annotation_status":"complete","type":"amount","target":{"text":"1tr5","start":38,"end":42}}
+{"id":"targeted-annotation-v1-01-a30685052497","annotation_status":"complete","type":"amount","target":{"text":"2tr","start":11,"end":14}}

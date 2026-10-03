@@ -1,0 +1,160 @@
+{
+  "name": "distillation-v1",
+  "purpose": "first distillation experiment: final teacher (targeted-v2 recipe) -> student",
+  "teacher_reference_recipe": {
+    "name": "targeted-v2",
+    "model": "Qualcomm-AI-Research/BamiBERT",
+    "data_dir": "datasets/annotation-v1/training-v2",
+    "data_manifest_sha256": "afb54a03b118352b55b94cd389a0f10d3ee93f7a3e5dd1991de4a66ca5ce457f",
+    "train_jsonl_sha256": "d9d0b6d5eb01b2fa426beb1f60b4b3708d43242146046de5430a3daa856dc866",
+    "runs": [
+      {
+        "seed": 1,
+        "run_config": "experiments/targeted-v2/runs/bamibert/lr5e-05-seed1/config.json",
+        "run_config_sha256": "fd5f29ada2f9f757a151cd660391d72f734decf946f7561ee2fef227fbf70b48",
+        "checkpoint": "models/targeted-v2/bamibert/lr5e-05-seed1",
+        "model_safetensors_sha256": "352a0de54005689ad2433c3f681d7e59dcd39b3b5a1f436ed351884c1525235a",
+        "best_epoch": 9
+      },
+      {
+        "seed": 2,
+        "run_config": "experiments/targeted-v2/runs/bamibert/lr5e-05-seed2/config.json",
+        "run_config_sha256": "91f0160ee1c7774ed32344324c71af3e05ea5d9a166888666b4100e08218d5ba",
+        "checkpoint": "models/targeted-v2/bamibert/lr5e-05-seed2",
+        "model_safetensors_sha256": "a1b990fe3b701845051df1d7a1bfef8a1dfc18c264f4694a378cfd0ae5c58118",
+        "best_epoch": 14
+      },
+      {
+        "seed": 3,
+        "run_config": "experiments/targeted-v2/runs/bamibert/lr5e-05-seed3/config.json",
+        "run_config_sha256": "d53079c4c14fd130db8eb67ea3f8c096ffc346e823d9547ff81412602c6984c5",
+        "checkpoint": "models/targeted-v2/bamibert/lr5e-05-seed3",
+        "model_safetensors_sha256": "5ebf502a9b63b4aec1cfea65df8d3ba59210c5f56622fd0de842f3410581f577",
+        "best_epoch": 13
+      }
+    ],
+    "best_epochs": [
+      9,
+      14,
+      13
+    ],
+    "hyperparameters": {
+      "lr": 5e-05,
+      "head_lr": 0.001,
+      "epochs": 20,
+      "patience": 3,
+      "max_length": 32,
+      "batch_size": 8,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.01,
+      "dropout": 0.1,
+      "max_grad_norm": 1.0,
+      "device": "mps"
+    }
+  },
+  "tokenizer": {
+    "hub_id": "Qualcomm-AI-Research/BamiBERT",
+    "snapshot_revision": "57bc1340debbe4e348ec549047a763caebe4a977",
+    "snapshot_tokenizer_json_sha256": "183448efae14b63980e4000b292eee87a60459e2fd8190d5969691512cdb5fe6",
+    "teacher_checkpoint_tokenizer_json_sha256": "746cc4a588fb974f8a2d5316ec25940791d9ef1521f72b5294bc18474ea71491",
+    "vocab_size": 20481,
+    "tokenizer_vocab_len": 20481,
+    "fast_tokenizer_class": "TokenizersBackend",
+    "is_fast": true,
+    "max_length": 32,
+    "checkpoint_vs_snapshot_input_ids_identical": {
+      "texts": 938,
+      "identical": true,
+      "note": "checkpoint tokenizer.json is re-serialised by save_pretrained (different bytes); compared on train+validation+test texts at max_length 32"
+    }
+  },
+  "architecture": {
+    "model_type": "roberta",
+    "num_hidden_layers": 12,
+    "hidden_size": 768,
+    "num_attention_heads": 12,
+    "intermediate_size": 3072,
+    "vocab_size": 20481,
+    "max_position_embeddings": 2050,
+    "param_count": 102369035,
+    "heads": "GidiMultiTaskModel: masked-mean pooled type head (8 TYPES) + per-token BIO tag head (3 TAGS: O, B-TARGET, I-TARGET)",
+    "loss": "CE(type) + CE(tags, ignore_index=-100)"
+  },
+  "final_teacher": {
+    "data_dir": "datasets/annotation-v1/distillation-v1",
+    "data_manifest_sha256": "271d6357a7be907f66b32a5348fe21af75ba7d1ccd3263f5d860d97f6e07b312",
+    "train_jsonl_sha256": "fc18d15e4ff83e7406754001498c5416711f7bc2d4c5681e47157f407115593a",
+    "training_config": {
+      "model": "Qualcomm-AI-Research/BamiBERT",
+      "lr": 5e-05,
+      "seed": 1,
+      "head_lr": 0.001,
+      "epochs": 20,
+      "stop_epoch": 13,
+      "patience": 3,
+      "max_length": 32,
+      "batch_size": 8,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.01,
+      "dropout": 0.1,
+      "max_grad_norm": 1.0,
+      "splits_dir": "datasets/annotation-v1/distillation-v1",
+      "out_dir": "experiments/distillation-v1/teacher-run",
+      "weights_dir": "models/distillation-v1/teacher",
+      "device": "mps",
+      "resolved_device": "mps",
+      "param_count": 102369035,
+      "split_sizes": {
+        "train": 723,
+        "validation": 110,
+        "test": 105
+      },
+      "steps_per_epoch": 91,
+      "total_steps": 1820
+    },
+    "duration_rule": "stop epoch = median of the targeted-v2 seeds' best_epoch (9, 14, 13 -> 13); LR schedule horizon unchanged at 20 epochs; seed 1 (first seed of the recipe); weights of the LAST trained epoch kept; no test, probe or validation-based selection (validation is in-sample and logged only; patience is inert in fixed-epoch mode)",
+    "run_dir": "experiments/distillation-v1/teacher-run/bamibert/lr5e-05-seed1",
+    "checkpoint": "models/distillation-v1/teacher/bamibert/lr5e-05-seed1",
+    "model_safetensors_sha256": "3838de12468629e1d80bbb848b2a70f060e87b03e4812212360c6cd47f72c1bc",
+    "epochs_run": 13,
+    "steps": 1183,
+    "env": {
+      "python": "3.12.13",
+      "torch": "2.14.0",
+      "transformers": "5.17.0",
+      "platform": "macOS-26.5.2-arm64-arm-64bit"
+    }
+  },
+  "frozen_evaluation_hashes": {
+    "datasets/annotation-v1/splits/validation.jsonl": "5c8039978a84943db4ffa44524a65200ff5022ce06092e128ffbbe8fbff8df87",
+    "datasets/annotation-v1/splits/test.jsonl": "13fc3de4b7be58a689124c31477a14cf7cbb3d82e09a8c4276174f0825c775d0",
+    "datasets/probe-v1/README.md": "760733e60087ad15148721378becea186b9b44ed571bf64a59341066adf7fac1",
+    "datasets/probe-v1/human-labels.jsonl": "0567ac7cd10db80da063582144707d50d41a87fe5d459ba9aa9ecebbfa4ea0a9",
+    "datasets/probe-v1/labels.jsonl": "7baa5aff2e2a5be2b2261bb8c9a4f9b607005f67ec766e61a5b4b2726d5ee264",
+    "datasets/probe-v1/manifest.json": "214bc0f5064105a7a39bcf692d3dbef3c5ea1d5dc127305e5abcf532803c45c4",
+    "datasets/probe-v1/notes.jsonl": "6ffc9017bf8a153fe42741f20788b47e35ddd6213afb5479ac25e32d26c31797",
+    "datasets/probe-v1/proposals.jsonl": "2ac749def91c0cf34c1107c47cbf724f286c90ec59c8bb33d379eec86adb052c",
+    "datasets/probe-v1/provenance.jsonl": "b927658409c8b55e5596a57c8f376fd32612d5e2ac44575dde2063a2d230d333",
+    "datasets/probe-v1/queue.jsonl": "ea3d3f118d211b98a65dd06be6a06c6d7fd6bbe076c9ad9b375d448f24d60451",
+    "datasets/probe-v1/recheck.jsonl": "b7f4b0fb910059c345467aacea908241e41950edf98622c98831d9fd2feff1b2"
+  },
+  "excluded_from_training": [
+    {
+      "path": "datasets/annotation-v1/splits/test.jsonl",
+      "reason": "frozen held-out test split: evaluation-only"
+    },
+    {
+      "path": "datasets/probe-v1/",
+      "reason": "diagnostic probe set: evaluation-only, never trained on or augmented from"
+    },
+    {
+      "path": "datasets/annotation-v1/targeted-03/",
+      "reason": "targeted-03 batch: experiment artifact rejected as teacher data"
+    },
+    {
+      "path": "datasets/annotation-v1/training-v3/",
+      "reason": "training-v3 (frozen train + targeted-02 + targeted-03): rejected as teacher"
+    }
+  ],
+  "guard": "gidi.distillation.guard"
+}
