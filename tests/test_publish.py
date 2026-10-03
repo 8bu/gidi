@@ -331,7 +331,7 @@ def test_huggingface_dry_run_stages_release_files_except_archives_and_fp32(fake,
         assert path.stat().st_ino != original.stat().st_ino
     receipt = read_receipt(receipts[0])
     assert {f["path"] for f in receipt["files"]} == expected
-    assert "huggingface" in output and "repo_id: 8bu/gidi-finance\n" in output
+    assert "huggingface" in output and "repo_id: x8bu/gidi-finance\n" in output
     assert f"tag: {MODEL}-{VERSION}" in output
     assert "README.md from the release" in output
     assert_no_provider_calls(world)
@@ -646,14 +646,14 @@ def test_huggingface_execute_creates_repo_uploads_staging_and_tags(fake, world, 
     assert [name for name, _ in api.calls] == ["create_repo", "upload_folder", "create_tag"]
     create, upload, tag = (kwargs for _, kwargs in api.calls)
     assert create == {
-        "repo_id": "8bu/gidi-finance",
+        "repo_id": "x8bu/gidi-finance",
         "repo_type": "model",
         "private": True,
         "exist_ok": True,
     }
     staging = tmp_path / "staging" / "huggingface" / MODEL / VERSION
     assert Path(upload["folder_path"]) == staging
-    assert upload["repo_id"] == "8bu/gidi-finance" and upload["repo_type"] == "model"
+    assert upload["repo_id"] == "x8bu/gidi-finance" and upload["repo_type"] == "model"
     assert api.uploaded == sorted(n for n in release_files(fake) if hf_uploads(n))
     assert tag["tag"] == f"{MODEL}-{VERSION}" and tag["revision"] == "a" * 40
     assert world.runner.calls == []
