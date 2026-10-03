@@ -221,7 +221,7 @@ def make_fake_project(
             "checkpoint_sha256": PIN_CHECKPOINT,
         },
         "files": files,
-        "readme_template": f"releases/templates/{MODEL}.README.md",
+        "readmes": {"README.md": f"releases/templates/{MODEL}.README.md"},
         "variants": {
             "int8": {
                 "members": {"model.int8.onnx": "model/int8/model.int8.onnx", **common},

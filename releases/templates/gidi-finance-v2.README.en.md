@@ -1,17 +1,6 @@
----
-language: vi
-library_name: onnx
-license: apache-2.0
-pipeline_tag: text-classification
-tags:
-  - onnx
-  - vietnamese
-  - personal-finance
-  - token-classification
-  - on-device
----
-
 # {model_version} {release_version}
+
+[Tiếng Việt](README.md) · **English**
 
 A tiny on-device model for short Vietnamese personal-finance notes such as `mượn chú hai 5 xị`.
 For one note it predicts:

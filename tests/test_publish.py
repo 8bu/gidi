@@ -161,7 +161,7 @@ def _make_fake_release(tmp_path: Path) -> Fake:
             "checkpoint_sha256": _sha(b"checkpoint"),
         },
         "files": files,
-        "readme_template": "releases/templates/fake.README.md",
+        "readmes": {"README.md": "releases/templates/fake.README.md"},
         "variants": {
             "int8": {
                 "members": {"model.int8.onnx": "model/int8/model.int8.onnx", **common_members},

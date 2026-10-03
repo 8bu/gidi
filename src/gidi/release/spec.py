@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Any
 
 from gidi.inference.bundle import sha256_file
-from gidi.release.manifest import ARCHIVES_DIR, ReleaseError, safe_relative_path
+from gidi.release.manifest import ARCHIVES_DIR, README_FILE, ReleaseError, safe_relative_path
 
 SPEC_FORMAT = 1
 # Names a variant member may map to besides a spec file: both are generated at build time.
@@ -33,7 +33,7 @@ _SPEC_KEYS = {
     "source",
     "bundle_check",
     "files",
-    "readme_template",
+    "readmes",
     "variants",
     "smoke",
 }
@@ -99,7 +99,7 @@ class ReleaseSpec:
     checkpoint_sha256: str
     bundle_check: dict[str, str] | None
     files: tuple[SpecFile, ...]
-    readme_template: str
+    readmes: dict[str, str]  # release path (README.md first) -> template path
     variants: tuple[Variant, ...]
     smoke: tuple[SmokeCase, ...]
 
@@ -165,11 +165,27 @@ def _parse_files(raw: Any) -> tuple[SpecFile, ...]:
     return tuple(files)
 
 
-def _parse_variants(raw: Any, files: tuple[SpecFile, ...]) -> tuple[Variant, ...]:
+def _parse_readmes(raw: Any) -> dict[str, str]:
+    """``{release path: template}``; ``README.md`` (the default card) is required."""
+    raw = _object(raw, "readmes")
+    if README_FILE not in raw:
+        raise ReleaseError(f"spec readmes must include {README_FILE}")
+    readmes: dict[str, str] = {}
+    for path, template in raw.items():
+        path = safe_relative_path(path, "spec readmes path")
+        if "/" in path or not path.endswith(".md"):
+            raise ReleaseError(f"spec readmes path {path!r} must be a top-level .md file")
+        readmes[path] = safe_relative_path(template, f"spec readmes.{path}")
+    return readmes
+
+
+def _parse_variants(
+    raw: Any, files: tuple[SpecFile, ...], readmes: dict[str, str]
+) -> tuple[Variant, ...]:
     raw = _object(raw, "variants")
     if not raw:
         raise ReleaseError("spec variants must not be empty")
-    valid_targets = {item.path for item in files} | set(GENERATED_MEMBER_TARGETS)
+    valid_targets = {item.path for item in files} | set(GENERATED_MEMBER_TARGETS) | set(readmes)
     variants = []
     for name, block in raw.items():
         _string(name, "variant name")
@@ -237,6 +253,9 @@ def load_spec(path: str | Path) -> ReleaseSpec:
     if not isinstance(seed, int) or isinstance(seed, bool):
         raise ReleaseError("spec source.seed must be an integer")
     files = _parse_files(data["files"])
+    readmes = _parse_readmes(data["readmes"])
+    if set(readmes) & {item.path for item in files}:
+        raise ReleaseError("spec readmes paths collide with spec files")
     return ReleaseSpec(
         path=path,
         sha256=sha256_file(path),
@@ -250,7 +269,7 @@ def load_spec(path: str | Path) -> ReleaseSpec:
         checkpoint_sha256=_sha(source.get("checkpoint_sha256"), "source.checkpoint_sha256"),
         bundle_check=bundle_check,
         files=files,
-        readme_template=safe_relative_path(data["readme_template"], "spec readme_template"),
-        variants=_parse_variants(data["variants"], files),
+        readmes=readmes,
+        variants=_parse_variants(data["variants"], files, readmes),
         smoke=_parse_smoke(data["smoke"]),
     )

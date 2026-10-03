@@ -250,6 +250,29 @@ def test_readme_must_declare_the_license_when_a_license_file_ships():
     assert any("license" in p for p in readme_front_matter_problems(bare, license_file=True))
 
 
+def test_secondary_readme_is_rendered_listed_archived_and_verified(tmp_path):
+    project = make_fake_project(tmp_path)
+    (project.root / "releases" / "templates" / "en.md").write_text(
+        "# {model_version} {release_version} (English)\n", encoding="utf-8"
+    )
+
+    def add_english(data):
+        data["readmes"]["README.en.md"] = "releases/templates/en.md"
+        for variant in data["variants"].values():
+            variant["members"]["README.en.md"] = "README.en.md"
+
+    project.spec_path = project.edit_spec(add_english)
+    release = project.build("1.0.0")
+
+    assert (release / "README.en.md").read_text(encoding="utf-8") == f"# {MODEL} 1.0.0 (English)\n"
+    kinds = {item["path"]: item["kind"] for item in load_manifest(release)["artifacts"]}
+    assert kinds["README.en.md"] == "readme"
+    for archive in (release / "archives").iterdir():
+        with tarfile.open(archive) as tar:
+            assert any(name.endswith("/README.en.md") for name in tar.getnames())
+    assert verify_release(release, spec=project.spec, root=project.root, smoke=False).ok
+
+
 # --- build inputs and immutability ----------------------------------------------------------
 
 

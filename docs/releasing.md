@@ -162,3 +162,6 @@ non-archive files must always match.
 - The GitHub release is created as a draft.
 - License: Apache-2.0 (`releases/licenses/Apache-2.0.txt`, shipped as `LICENSE`; the README
   front matter declares `license: apache-2.0`).
+- The model card is bilingual. `README.md` is Vietnamese (the default, and the Hugging Face card),
+  written to the STV standard (TVKTĐGH/KHMT); `README.en.md` is the English secondary. The spec
+  key `readmes` maps each release path to its template under `releases/templates/`.

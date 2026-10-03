@@ -289,33 +289,36 @@ def _assemble(
     runtime = runtime_from_config(config)
     requirements = bundle["runtime_requirements"]
 
-    try:
-        template = (root / spec.readme_template).read_text(encoding="utf-8")
-    except OSError as error:
-        raise ReleaseError(
-            f"cannot read README template {spec.readme_template}: {error}"
-        ) from error
-    readme = render_readme(template, _readme_values(spec, version, config, requirements))
-    problems = readme_front_matter_problems(
-        readme, license_file=any(item.kind == "license" for item in spec.files)
-    )
-    if problems:
-        raise ReleaseError("; ".join(problems))
-    (tmp / README_FILE).write_text(readme, encoding="utf-8")
+    values = _readme_values(spec, version, config, requirements)
+    readme_artifacts = []
+    for path, template_path in spec.readmes.items():
+        try:
+            template = (root / template_path).read_text(encoding="utf-8")
+        except OSError as error:
+            raise ReleaseError(f"cannot read README template {template_path}: {error}") from error
+        readme = render_readme(template, values)
+        if path == README_FILE:
+            problems = readme_front_matter_problems(
+                readme, license_file=any(item.kind == "license" for item in spec.files)
+            )
+            if problems:
+                raise ReleaseError("; ".join(problems))
+        readme_path = tmp / path
+        readme_path.write_text(readme, encoding="utf-8")
+        readme_artifacts.append(
+            {
+                "path": path,
+                "kind": "readme",
+                "sha256": sha256_file(readme_path),
+                "size_bytes": readme_path.stat().st_size,
+            }
+        )
 
     artifacts = [
         {"path": item.path, "kind": item.kind, "sha256": item.sha256, "size_bytes": item.size_bytes}
         for item in spec.files
     ]
-    readme_path = tmp / README_FILE
-    artifacts.append(
-        {
-            "path": README_FILE,
-            "kind": "readme",
-            "sha256": sha256_file(readme_path),
-            "size_bytes": readme_path.stat().st_size,
-        }
-    )
+    artifacts.extend(readme_artifacts)
     artifacts.sort(key=lambda item: item["path"])
     archives = [
         {

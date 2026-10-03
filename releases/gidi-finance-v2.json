@@ -74,7 +74,10 @@
       "size_bytes": 11358
     }
   ],
-  "readme_template": "releases/templates/gidi-finance-v2.README.md",
+  "readmes": {
+    "README.md": "releases/templates/gidi-finance-v2.README.vi.md",
+    "README.en.md": "releases/templates/gidi-finance-v2.README.en.md"
+  },
   "variants": {
     "int8": {
       "members": {
@@ -84,6 +87,7 @@
         "tokenizer_config.json": "tokenizer/tokenizer_config.json",
         "vocab_map.json": "tokenizer/vocab_map.json",
         "README.md": "README.md",
+        "README.en.md": "README.en.md",
         "LICENSE": "LICENSE",
         "release-manifest.json": "manifest.json"
       },
@@ -97,6 +101,7 @@
         "tokenizer_config.json": "tokenizer/tokenizer_config.json",
         "vocab_map.json": "tokenizer/vocab_map.json",
         "README.md": "README.md",
+        "README.en.md": "README.en.md",
         "LICENSE": "LICENSE",
         "release-manifest.json": "manifest.json"
       },
