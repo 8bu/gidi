@@ -156,7 +156,7 @@ non-archive files must always match.
 - Publish never rebuilds, exports, quantizes or trains, and never modifies the release. It
   verifies the release, snapshots it, and fails if the snapshot changes.
 - The Hugging Face repo (`x8bu/gidi-finance`, one repo for all model versions, one tag per
-  release such as `gidi-finance-v2-2.0.0`) defaults to private (`private: true`) and gets the
+  release such as `gidi-finance-v2-2.0.0`) is public (`private: false`) and gets the
   INT8 build only (`exclude_kinds: ["onnx-fp32"]`). The FP32 reference ships as the `-fp32`
   archive on the GitHub release.
 - The GitHub release is created as a draft.

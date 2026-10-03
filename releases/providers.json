@@ -2,7 +2,7 @@
   "huggingface": {
     "repo_id": "x8bu/gidi-finance",
     "repo_type": "model",
-    "private": true,
+    "private": false,
     "tag": "{model_version}-{release_version}",
     "exclude_kinds": ["onnx-fp32"]
   },

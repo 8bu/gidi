@@ -648,7 +648,7 @@ def test_huggingface_execute_creates_repo_uploads_staging_and_tags(fake, world, 
     assert create == {
         "repo_id": "x8bu/gidi-finance",
         "repo_type": "model",
-        "private": True,
+        "private": False,
         "exist_ok": True,
     }
     staging = tmp_path / "staging" / "huggingface" / MODEL / VERSION
