@@ -159,7 +159,7 @@ non-archive files must always match.
   release such as `gidi-finance-v2-2.0.0`) is public (`private: false`) and gets the
   INT8 build only (`exclude_kinds: ["onnx-fp32"]`). The FP32 reference ships as the `-fp32`
   archive on the GitHub release.
-- The GitHub release is created as a draft.
+- The GitHub release is published directly, not as a draft (`draft: false`).
 - License: Apache-2.0 (`releases/licenses/Apache-2.0.txt`, shipped as `LICENSE`; the README
   front matter declares `license: apache-2.0`).
 - The model card is bilingual. `README.md` is Vietnamese (the default, and the Hugging Face card),

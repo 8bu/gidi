@@ -360,7 +360,7 @@ def test_github_dry_run_plans_two_archives_checksums_manifest_and_notes(fake, wo
     receipt = read_receipt(receipts[0])
     assert receipt["target"]["tag"] == f"{MODEL}-{VERSION}"
     command = next(a for a in receipt["actions"] if a.startswith("gh release create"))
-    assert "--draft" in command and "--repo 8bu/gidi" in command
+    assert "--draft" not in command and "--repo 8bu/gidi" in command
     assert f"--title '{MODEL} {VERSION}'" in command and "--notes-file" in command
     assert "gh release create" in output and "release-notes.md" in output
     assert_no_provider_calls(world)
@@ -689,7 +689,7 @@ def test_github_execute_runs_gh_release_create_with_staged_assets(
     assert flags[:2] == ["--repo", "8bu/gidi"]
     assert flags[flags.index("--title") + 1] == f"{MODEL} {VERSION}"
     assert Path(flags[flags.index("--notes-file") + 1]) == staging / "release-notes.md"
-    assert "--draft" in flags
+    assert "--draft" not in flags
     receipt = read_receipt(receipts[0])
     assert receipt["dry_run"] is False
     assert receipt["remote"]["url"] == "https://github.com/8bu/gidi/releases/tag/x"
