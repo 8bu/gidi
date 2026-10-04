@@ -344,9 +344,12 @@ v1 path. The set is never merged into training.
 Batch 1 was labelled in quet-web (project `gidi-hv01-test`, collaborator `nhi`). An audit against
 the annotation-v1 rules flagged 44 notes (debt-state notes not skipped, wrong types, missing or
 wrong targets, statuses); values had no findings. `recheck-01-queue.jsonl` holds those 44 queue
-rows unchanged except `review_group: "recheck"`, pushed without proposals as quet-web project
-`gidi-hv01-recheck-01`. The relabelled notes replace the originals with
-`quet web pull --project gidi-hv01-recheck-01 --user nhi --labels <labels.jsonl>`.
+rows unchanged except `review_group: "recheck"`, pushed as quet-web project `gidi-hv01-recheck-01`.
+By the user's explicit choice, it carries **LLM proposals** (`recheck-01-proposals.jsonl`, made by
+the Gidi agent from the audit; `reason` starts with "Đề xuất từ LLM"), shown with `show_proposals`
+on. This is an exception to the no-prefill rule: the 44 rechecked labels are LLM-assisted and the
+phase-3 report must say so and give results with and without them. The relabelled notes replace
+the originals with `quet web pull --project gidi-hv01-recheck-01 --user nhi --labels <labels.jsonl>`.
 
 The set has two batches. **Batch 1** is the 150-note queue above, labelled now. **Batch 2** comes
 later: new notes written only for the short strata in `manifest.json` (about 71 notes: bare
