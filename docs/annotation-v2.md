@@ -21,9 +21,12 @@ training records, model output). Turning a span into a number stays deterministi
 the model and outside this contract.
 
 Machine-readable contract: [`configs/annotation-v2.yaml`](../configs/annotation-v2.yaml)
-(type/target sections copied verbatim from v1, plus a `value:` section). Quet schema for the value
-pass: [`configs/annotation-v2-value.quet.yaml`](../configs/annotation-v2-value.quet.yaml).
-Validators and the rule proposer: `src/gidi/annotation/value_span.py`.
+(type/target sections copied verbatim from v1, plus a `value:` section). Quet schemas: the
+combined pass (type + target + value, Quet multi-span)
+[`configs/annotation-v2.quet.yaml`](../configs/annotation-v2.quet.yaml) and the value-only pass
+[`configs/annotation-v2-value.quet.yaml`](../configs/annotation-v2-value.quet.yaml).
+Validators and the rule proposer: `src/gidi/annotation/value_span.py`,
+`src/gidi/annotation/combined.py`.
 
 ## The span convention
 
@@ -62,6 +65,32 @@ states no amount (`thưởng tết 2 tháng lương`) is `no_amount`.
 
 Span mechanics are the same as v1 targets: Python code-point offsets into the NFC note,
 `text[start:end] == span.text`, no leading or trailing whitespace.
+
+## Combined pass (Quet multi-span)
+
+Quet 0.2.8 can label several named span fields in one pass. The combined schema
+[`configs/annotation-v2.quet.yaml`](../configs/annotation-v2.quet.yaml) has the eight v1 types, the
+three statuses (`uncertain` may concern the type, the target or the value; it needs a note) and two
+spans in UI order: `target` (the v1 counterparty rule, null for `transfer`) and `value` (the span
+convention above, null when the note states no amount, with its own `complete` / `uncertain`
+status). Tab switches the active span, `n` nulls it, `c` cycles the value status. A label line:
+
+```json
+{"id": "baseline-01-…", "annotation_status": "complete", "type": "expense",
+ "target": {"text": "highlands", "start": 8, "end": 17},
+ "value": {"text": "45k", "start": 18, "end": 21},
+ "span_status": {"value": "complete"}, "note": "optional"}
+```
+
+`skipped` saves a null type, target and value and no `span_status`. Gidi validates a file with
+`gidi.annotation.combined` (type and target through the v1 validator, the value through the same
+span mechanics as above; `span_status.value: uncertain` needs a `note`; unknown fields are
+errors); the script picks it when `--config` is a multi-span schema:
+
+```sh
+uv run python scripts/validate_annotations.py LABELS.jsonl \
+  --config configs/annotation-v2.quet.yaml --queue QUEUE.jsonl
+```
 
 ## Value pass labels (Quet)
 
@@ -259,13 +288,16 @@ and merges its entry into `experiments/value-span-v1/review-score.json` (and wri
 
 ### Independent human validation set (human-value-01)
 
-`datasets/annotation-v2/human-value-01/` is a held-out, human-labelled value-span set for the final
-V7-vs-V8 comparison. It uses the value pass above unchanged (same Quet schema, same span
-convention), so it lives under annotation-v2; nothing in the taxonomy changes. Quet fields map
-to the requested ones as: value span = `target` `{text, start, end}` (code-point offsets into the
-note), value present = type `amount` vs `no_amount`, uncertain = status `uncertain`, annotation
-note = `note`. No model, value parser, rule proposer or LLM is involved in sampling or labelling:
-there are no proposals, no prefill, and the queue holds no value field (never pass `--proposals`).
+`datasets/annotation-v2/human-value-01/` is a held-out, human-labelled set for the final
+V7-vs-V8 value-span comparison. It uses the **combined pass** (above): one Quet pass labels the
+transaction type, the target span and the value span of each note, with annotation-v1 semantics
+for type and target and the span convention above for the value, so it lives under annotation-v2;
+nothing in the taxonomy changes. Fields: type, target `{text, start, end}` or null, value
+`{text, start, end}` or null (code-point offsets into the note), `span_status.value`
+(`complete` / `uncertain`), status, note. The other human-labelled value schema
+(`annotation-v2-value.quet.yaml`, value only) is not used here. No model, value parser, rule
+proposer or LLM is involved in sampling or labelling: there are no proposals, no prefill, and the
+queue holds no label field (never pass `--proposals`).
 
 `scripts/build_human_value_queue.py` (stdlib only, fixed seed `human-value-01:v1`, `--check`
 reproduces byte for byte) builds it in three steps:
@@ -296,14 +328,18 @@ is written only by Quet.
 ```sh
 uv run python scripts/build_human_value_queue.py          # once; --check verifies
 quet annotate datasets/annotation-v2/human-value-01/review-queue.jsonl \
-  --schema configs/annotation-v2-value.quet.yaml \
+  --schema configs/annotation-v2.quet.yaml \
   --out datasets/annotation-v2/human-value-01/labels.jsonl
+uv run python scripts/validate_annotations.py datasets/annotation-v2/human-value-01/labels.jsonl \
+  --config configs/annotation-v2.quet.yaml \
+  --queue datasets/annotation-v2/human-value-01/review-queue.jsonl
 ```
 
 Phases: (1) this build and the human pass (`phase-1-awaiting-annotation`); (2) a second human pass
-over every `uncertain`, multi-number and `no_amount` note plus a random sample of the rest;
-(3) freeze the labels with hashes and stats, then run V7 and V8 once each. The set is never
-merged into training.
+over every `uncertain` (status or value status), multi-number and null-value note plus a random
+sample of the rest; (3) freeze the labels with hashes and stats, then run V7 and V8 once each:
+compare V7 vs V8 on the value span and also report the human type/target accuracy of the shared
+v1 path. The set is never merged into training.
 
 The set has two batches. **Batch 1** is the 150-note queue above, labelled now. **Batch 2** comes
 later: new notes written only for the short strata in `manifest.json` (about 71 notes: bare

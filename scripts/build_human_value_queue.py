@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-r"""Build the independent human-labelled value-span validation queue ``human-value-01`` (phase 1).
+r"""Build the independent human-labelled validation queue ``human-value-01`` (phase 1).
 
 Usage:
     uv run python scripts/build_human_value_queue.py [--root R] [--out-dir D] [--check]
@@ -48,9 +48,11 @@ Writes into ``--out-dir`` (``datasets/annotation-v2/human-value-01``):
 
 * ``review-queue.jsonl``  Quet queue ``{id, text, strata, review_group}`` (shuffled by seed);
 * ``candidate-provenance.jsonl``  per queued note: source, prior usage (NOT given to Quet);
-* ``manifest.json``  inputs + sha256, seed, exclusion/strata/prior-usage counts, phases.
+* ``manifest.json``  inputs + sha256, seed, exclusion/strata/prior-usage counts, the Quet schema
+  (``configs/annotation-v2.quet.yaml``) and its sha256, label fields, phases.
 
 ``annotation-guide.md`` is hand-written in the same directory and hashed into the manifest.
+The human pass is ONE combined Quet pass (type + target span + value span, Quet multi-span);
 ``labels.jsonl`` is written only by Quet. ``--check`` rebuilds in memory and compares the files
 on disk byte for byte.
 """
@@ -107,6 +109,8 @@ ANNOTATION_V1_QUEUE = Path("datasets/annotation-v1/queue.jsonl")
 ANNOTATION_V1_LABELS = Path("datasets/annotation-v1/labels.jsonl")
 V1_ENCODER_TRAIN = Path("datasets/annotation-v1/distillation-v1/train.jsonl")
 GUIDE_FILE = "annotation-guide.md"
+QUET_SCHEMA = Path("configs/annotation-v2.quet.yaml")
+LABEL_FIELDS = ["id", "annotation_status", "type", "target", "value", "span_status", "note"]
 QUEUE_FILE = "review-queue.jsonl"
 PROVENANCE_FILE = "candidate-provenance.jsonl"
 MANIFEST_FILE = "manifest.json"
@@ -137,18 +141,21 @@ PHASES = [
     {
         "phase": "phase-1-awaiting-annotation",
         "what": "this build: candidate pool, dedup, stratification, queue, guide. A human labels "
-        "the queue in Quet (labels.jsonl is created by Quet only).",
+        "type, target and value of the queue in one combined Quet pass (labels.jsonl is created "
+        "by Quet only).",
     },
     {
         "phase": "phase-2-second-pass",
-        "what": "second human pass over every note that is uncertain, multi_number or null "
-        "(no_amount) plus a random sample of the remaining notes; disagreements are resolved "
-        "and the resolution recorded.",
+        "what": "second human pass over every note that is uncertain (status or value status), "
+        "multi_number or has a null value plus a random sample of the remaining notes; "
+        "disagreements are resolved and the resolution recorded.",
     },
     {
         "phase": "phase-3-freeze-and-run",
         "what": "freeze the labels with sha256 and stats, then run V7 and V8 each exactly once "
-        "on the frozen set; no labelling or rule changes after the first model run.",
+        "on the frozen set: compare V7 vs V8 on the value span, and also report the human "
+        "type/target accuracy of the shared v1 path. No labelling or rule changes after the "
+        "first model run.",
     },
 ]
 
@@ -828,7 +835,8 @@ def build(root: Path, out_dir: Path) -> dict[str, bytes]:
     manifest = {
         "name": NAME,
         "annotation_version": "annotation-v2",
-        "role": "independent human-labelled value-span validation set (V7 vs V8 comparison)",
+        "role": "independent human-labelled validation set (type, target and value in one Quet "
+        "pass; V7-vs-V8 value comparison)",
         "phase": PHASES[0]["phase"],
         "seed": SEED,
         "selection": {
@@ -868,16 +876,25 @@ def build(root: Path, out_dir: Path) -> dict[str, bytes]:
         },
         "queue_sha256": hashlib.sha256(queue_bytes).hexdigest(),
         "planned_phases": PHASES,
+        "quet_schema": {"path": str(QUET_SCHEMA), "sha256": sha256_file(root / QUET_SCHEMA)},
         "quet_command": (
-            f"quet annotate {out_dir / QUEUE_FILE} --schema configs/annotation-v2-value.quet.yaml "
+            f"quet annotate {out_dir / QUEUE_FILE} --schema {QUET_SCHEMA} "
             f"--out {out_dir / 'labels.jsonl'}"
         ),
+        "label_fields": LABEL_FIELDS,
         "field_mapping": {
-            "value_span": "Quet `target` {text, start, end} (code-point offsets)",
-            "value_present": "type `amount` vs `no_amount`",
-            "uncertain": "status `uncertain` (a `note` is required)",
-            "annotation_note": "Quet `note`",
+            "type": "Quet `type` (annotation-v1 taxonomy, docs/annotation-v1.md)",
+            "target": "Quet span `target` {text, start, end} or null (annotation-v1 target rule)",
+            "value": "Quet span `value` {text, start, end} or null: the minimal amount expression",
+            "span_status": "Quet `span_status` {value: complete | uncertain} (value span only)",
+            "annotation_status": "Quet status `complete` / `uncertain` / `skipped`",
+            "annotation_note": "Quet `note` (required for an uncertain status or value)",
+            "offsets": "code points into the NFC note, text == note[start:end]",
         },
+        "validate_command": (
+            f"uv run python scripts/validate_annotations.py {out_dir / 'labels.jsonl'} "
+            f"--config {QUET_SCHEMA} --queue {out_dir / QUEUE_FILE}"
+        ),
     }
     return {
         QUEUE_FILE: queue_bytes,

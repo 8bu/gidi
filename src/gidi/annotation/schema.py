@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import json
 import unicodedata
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -156,9 +157,15 @@ def load_texts_by_id(path: str | Path) -> dict[str, str]:
 
 
 def validate_file(
-    path: str | Path, texts: dict[str, str], config: AnnotationConfig
+    path: str | Path,
+    texts: dict[str, str],
+    config: Any,
+    validator: Callable[[Any, str | None, Any], list[str]] = validate_annotation,
 ) -> AnnotationReport:
-    """Validate an annotation JSONL file against the texts of the records it references."""
+    """Validate an annotation JSONL file against the texts of the records it references.
+
+    ``validator(record, text, config)`` checks one record (default: the v1 contract).
+    """
     path = Path(path)
     report = AnnotationReport(path=path)
     first_line: dict[str, int] = {}
@@ -187,7 +194,7 @@ def validate_file(
                 )
             elif record_id:
                 first_line[record_id] = lineno
-            for message in validate_annotation(record, text, config):
+            for message in validator(record, text, config):
                 report.errors.append(Issue(lineno, record_id, message))
             if isinstance(record, dict):
                 status = str(record.get("annotation_status"))

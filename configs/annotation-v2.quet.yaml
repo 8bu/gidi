@@ -1,0 +1,74 @@
+# Quet schema for the COMBINED annotation-v2 pass (Quet >= 0.2.8, several span fields): one pass
+# labels the transaction type, the target (counterparty) span and the value (amount) span of each
+# note. Semantics are exactly annotation-v1 (type + target: docs/annotation-v1.md,
+# configs/annotation-v1.yaml) plus the value span convention (docs/annotation-v2.md, "The span
+# convention"); this is annotation-v2, not a new annotation version. Gidi validates the labels
+# with gidi.annotation.combined (scripts/validate_annotations.py --config this file).
+#
+# Keys in the annotator: Tab / Shift+Tab switch the active span (target, value), `x` selects text
+# for it, `n` nulls it, `c` cycles the status of the value span (complete / uncertain).
+#
+#   quet annotate datasets/annotation-v2/human-value-01/review-queue.jsonl \
+#     --schema configs/annotation-v2.quet.yaml \
+#     --out datasets/annotation-v2/human-value-01/labels.jsonl
+version: annotation-v2
+
+types:
+  expense: Money leaves the user with no expectation of principal repayment.
+  income: >-
+    Money received as salary, freelance/client payment, gift, sale proceeds, rewards, or other
+    ordinary incoming money that is neither borrowing, debt repayment, nor refund.
+  borrow: The user receives loan principal and now owes another party.
+  lend: The user gives loan principal to another party and expects repayment.
+  repayment_in: >-
+    Another party repays money they previously owed the user (needs evidence of a prior debt;
+    a bare "Nam trả 500k" is uncertain).
+  repayment_out: >-
+    The user repays money they previously owed another party, including payments on an existing
+    financed balance or liability (installments, BNPL, credit-card balance).
+  transfer: >-
+    Movement between the user's own accounts, wallets, cash holdings, or savings, including
+    conversion into investment/store-of-value assets the user still owns (fund certificates,
+    gold held as savings, foreign currency). No economic income or expense occurs.
+    vi-VN heuristic: precious metals/gems bought by quantity or purity (chỉ, lượng, phân, g,
+    carat, 9999, 24K) are transfer ("mua nhẫn PNJ nửa chỉ") unless the note states a use, gift,
+    ceremony, or fashion purpose, which overrides ("mua nhẫn vàng 1 chỉ tặng vợ" -> expense).
+    A returned refundable deposit is transfer ("chủ nhà trả cọc 5tr", "lấy lại tiền cọc 2tr");
+    paying a deposit is transfer only when the note establishes it stays refundable.
+  refund: >-
+    Money returned to the user as reversal, reimbursement, rebate, or spending-linked cashback of
+    an earlier expense.
+
+statuses:
+  complete: Type, target (or explicit null target) and value are confidently determined.
+  uncertain: >-
+    The text does not establish the type, the target or the value; never forced. Gidi requires a
+    note saying what is unclear.
+  skipped: >-
+    Not a usable finance note, a valid finance note outside the transaction-event taxonomy, or
+    not worth labelling. Type, target and value are all saved as null.
+
+# Marking one of these saves a null type and null for every span.
+null_label_statuses: [skipped]
+
+# YAML order is the order in the annotator. Offsets are code points into the NFC note.
+spans:
+  target:
+    description: >-
+      Minimal explicit expression for the external financial counterparty: a named
+      merchant/service/platform ("highlands", "shopee"), a person, or a kinship/role noun that is
+      the only identifier (mẹ, khách, cty, chủ nhà, sếp), without a kinship/title prefix before a
+      proper name (anh/chị/bé). Never items, dishes, activities, bill names ("cơm gà", "tiền
+      nhà"), companions (với/cùng), beneficiaries (cho bé) or a payment app/bank used only as the
+      channel. No counterparty named -> null (n). Several plausible counterparties -> status
+      uncertain. Always null for transfer.
+    null_for_types: [transfer]
+  value:
+    description: >-
+      The monetary amount: the minimal full amount expression, the number plus the unit, slang or
+      currency marker attached to it ("50k", "1tr5", "2 triệu", "5 xị", "80.000đ", "100",
+      "bốn triệu"). Exclude quantities, item counts, months/periods/ordinals, dates, times,
+      percentages, identifiers, approximators (tầm, khoảng) and /tháng. Never normalise the text.
+      The note states no amount -> null (n). Several amounts and none clearly the transaction
+      amount -> status uncertain on this span, with a note.
+    statuses: [complete, uncertain]

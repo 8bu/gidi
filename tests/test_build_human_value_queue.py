@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -41,6 +42,8 @@ def make_tree(root: Path, pool: list[tuple[str, str, str]], train: list[str], pr
     write_jsonl(root / hv.ANNOTATION_V1_QUEUE, [])
     write_jsonl(root / hv.ANNOTATION_V1_LABELS, [])
     (root / "datasets/annotation-v2/targeted-value-01").mkdir(parents=True, exist_ok=True)
+    (root / hv.QUET_SCHEMA).parent.mkdir(parents=True, exist_ok=True)
+    (root / hv.QUET_SCHEMA).write_text("version: stub\n", "utf-8")
 
 
 @pytest.fixture
@@ -87,6 +90,16 @@ def test_exclusion_dedup_and_approval(tmp_path, small_limits):
     assert all(set(r) == {"id", "text", "strata", "review_group"} for r in queue)
     assert all(r["review_group"] == "primary" for r in queue)
     assert hv.build(tmp_path, OUT_DIR) == files
+
+    # the combined pass: the manifest pins the Quet schema and the label fields
+    assert manifest["quet_schema"] == {
+        "path": "configs/annotation-v2.quet.yaml",
+        "sha256": hashlib.sha256(b"version: stub\n").hexdigest(),
+    }
+    assert "--schema configs/annotation-v2.quet.yaml" in manifest["quet_command"]
+    assert manifest["label_fields"] == [
+        "id", "annotation_status", "type", "target", "value", "span_status", "note",
+    ]  # fmt: skip
 
 
 def test_surface_strata_separate_context_numbers_from_amounts():
