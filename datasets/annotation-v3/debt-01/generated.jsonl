@@ -1,0 +1,69 @@
+{"text": "nợ chú Tám 2tr chưa trả", "type": "borrow", "annotation_status": "complete", "target": "chú Tám", "value": "2tr", "reason": "Đề xuất từ LLM: Mình nợ chú Tám, chưa trả; 'chú Tám' là tên theo thứ tự nên giữ nguyên."}
+{"text": "còn nợ cô Lan 450k", "type": "borrow", "annotation_status": "complete", "target": "Lan", "value": "450k", "reason": "Đề xuất từ LLM: Mình còn nợ cô Lan; bỏ tiền tố 'cô' trước tên riêng."}
+{"text": "no ba noi 1tr2 tien thuoc", "type": "borrow", "annotation_status": "complete", "target": "ba noi", "value": "1tr2", "reason": "Đề xuất từ LLM: Mình nợ bà nội; 'tiền thuốc' là tên khoản nên không phải đối tác."}
+{"text": "con no sep 500k ung luong", "type": "borrow", "annotation_status": "complete", "target": "sep", "value": "500k", "reason": "Đề xuất từ LLM: Mình còn nợ sếp khoản ứng lương; 'sếp' là danh từ vai trò duy nhất."}
+{"text": "nợ cty 3tr tạm ứng", "type": "borrow", "annotation_status": "complete", "target": "cty", "value": "3tr", "reason": "Đề xuất từ LLM: Mình nợ công ty khoản tạm ứng."}
+{"text": "chưa trả anh Việt 600k tiền cafe", "type": "borrow", "annotation_status": "complete", "target": "Việt", "value": "600k", "reason": "Đề xuất từ LLM: Chủ ngữ ngầm là mình: mình chưa trả anh Việt."}
+{"text": "nợ chủ trọ tiền điện 280k", "type": "borrow", "annotation_status": "complete", "target": "chủ trọ", "value": "280k", "reason": "Đề xuất từ LLM: Mình nợ chủ trọ; 'tiền điện' là tên hóa đơn."}
+{"text": "no tien nuoc thang nay 150k chu nha", "type": "borrow", "annotation_status": "complete", "target": "chu nha", "value": "150k", "reason": "Đề xuất từ LLM: Mình nợ chủ nhà tiền nước; 'tiền nước' không phải đối tác."}
+{"text": "nợ bạn Thảo 90k trà sữa", "type": "borrow", "annotation_status": "complete", "target": "Thảo", "value": "90k", "reason": "Đề xuất từ LLM: Mình nợ bạn Thảo; bỏ 'bạn' trước tên riêng."}
+{"text": "mình còn nợ Dũng 1tr", "type": "borrow", "annotation_status": "complete", "target": "Dũng", "value": "1tr", "reason": "Đề xuất từ LLM: 'Mình còn nợ Dũng' nói rõ mình là người nợ."}
+{"text": "t còn nợ bà Hai 700k", "type": "borrow", "annotation_status": "complete", "target": "bà Hai", "value": "700k", "reason": "Đề xuất từ LLM: 't' là mình, nợ bà Hai; 'Hai' là thứ tự nên giữ cả 'bà Hai'."}
+{"text": "em còn nợ chị Ngân 2 triệu", "type": "borrow", "annotation_status": "complete", "target": "Ngân", "value": "2 triệu", "reason": "Đề xuất từ LLM: Người viết (em) nợ chị Ngân; bỏ 'chị'."}
+{"text": "còn thiếu anh Phát 350k", "type": "borrow", "annotation_status": "complete", "target": "Phát", "value": "350k", "reason": "Đề xuất từ LLM: Mình còn thiếu tiền anh Phát."}
+{"text": "no Huy 5 xi tu hom tet", "type": "borrow", "annotation_status": "complete", "target": "Huy", "value": "5 xi", "reason": "Đề xuất từ LLM: Mình nợ Huy từ dịp tết; '5 xi' là số tiền."}
+{"text": "nợ mẹ 5tr chưa trả", "type": "borrow", "annotation_status": "complete", "target": "mẹ", "value": "5tr", "reason": "Đề xuất từ LLM: Mình nợ mẹ; 'mẹ' là danh từ quan hệ duy nhất."}
+{"text": "nợ bố 800k hứa t7 trả", "type": "borrow", "annotation_status": "complete", "target": "bố", "value": "800k", "reason": "Đề xuất từ LLM: Mình nợ bố và hứa trả; chưa có tiền chuyển."}
+{"text": "hứa cuối tháng trả Thu 500k", "type": "borrow", "annotation_status": "complete", "target": "Thu", "value": "500k", "reason": "Đề xuất từ LLM: Mình hứa trả Thu, tức mình đang nợ Thu."}
+{"text": "còn nợ nhà thuốc 120k", "type": "borrow", "annotation_status": "complete", "target": "nhà thuốc", "value": "120k", "reason": "Đề xuất từ LLM: Mình nợ nhà thuốc; danh từ tổ chức là đối tác duy nhất."}
+{"text": "chua tra bac Tu 1tr5 muon hom tet", "type": "borrow", "annotation_status": "complete", "target": "bac Tu", "value": "1tr5", "reason": "Đề xuất từ LLM: Mình chưa trả bác Tư; 'bác Tư' là thứ tự nên giữ nguyên."}
+{"text": "còn nợ đồng nghiệp 200k tiền cơm", "type": "borrow", "annotation_status": "complete", "target": "đồng nghiệp", "value": "200k", "reason": "Đề xuất từ LLM: Mình nợ đồng nghiệp; vai trò là tên duy nhất."}
+{"text": "nợ bạn cùng phòng 150k", "type": "borrow", "annotation_status": "complete", "target": "bạn cùng phòng", "value": "150k", "reason": "Đề xuất từ LLM: Mình nợ bạn cùng phòng; vai trò là tên duy nhất."}
+{"text": "nợ anh Tâm 2 củ", "type": "borrow", "annotation_status": "complete", "target": "Tâm", "value": "2 củ", "reason": "Đề xuất từ LLM: Mình nợ anh Tâm; '2 củ' là số tiền."}
+{"text": "còn nợ chú Hải 12tr", "type": "borrow", "annotation_status": "complete", "target": "Hải", "value": "12tr", "reason": "Đề xuất từ LLM: Mình còn nợ chú Hải; bỏ 'chú' trước tên riêng."}
+{"text": "mình nợ Quỳnh tiền vé 240k", "type": "borrow", "annotation_status": "complete", "target": "Quỳnh", "value": "240k", "reason": "Đề xuất từ LLM: Mình nợ Quỳnh; 'tiền vé' là tên khoản."}
+{"text": "nợ em Trang 70k tiền gửi xe", "type": "borrow", "annotation_status": "complete", "target": "Trang", "value": "70k", "reason": "Đề xuất từ LLM: Mình nợ em Trang; bỏ 'em' trước tên."}
+{"text": "còn nợ dì Út 3tr chưa có tiền trả", "type": "borrow", "annotation_status": "complete", "target": "dì Út", "value": "3tr", "reason": "Đề xuất từ LLM: Mình còn nợ dì Út; 'Út' là thứ tự nên giữ 'dì Út'."}
+{"text": "nợ sếp 1tr5 chưa trả", "type": "borrow", "annotation_status": "complete", "target": "sếp", "value": "1tr5", "reason": "Đề xuất từ LLM: Mình nợ sếp, chưa trả."}
+{"text": "còn nợ Phương tiền cafe", "type": "borrow", "annotation_status": "complete", "target": "Phương", "value": null, "reason": "Đề xuất từ LLM: Mình còn nợ Phương; không nêu số tiền."}
+{"text": "chưa trả Bảo tiền ăn tối qua", "type": "borrow", "annotation_status": "complete", "target": "Bảo", "value": null, "reason": "Đề xuất từ LLM: Mình chưa trả Bảo; không nêu số tiền."}
+{"text": "còn nợ chủ trọ 1 tháng tiền nhà", "type": "borrow", "annotation_status": "complete", "target": "chủ trọ", "value": null, "reason": "Đề xuất từ LLM: Mình nợ chủ trọ; '1 tháng' là kỳ hạn, không phải số tiền."}
+{"text": "nợ cô giáo 200k tiền quỹ lớp", "type": "borrow", "annotation_status": "complete", "target": "cô giáo", "value": "200k", "reason": "Đề xuất từ LLM: Mình nợ cô giáo; vai trò là tên duy nhất."}
+{"text": "chưa gửi lại Hằng 250k", "type": "borrow", "annotation_status": "complete", "target": "Hằng", "value": "250k", "reason": "Đề xuất từ LLM: Mình chưa gửi lại tiền cho Hằng, tức đang nợ Hằng."}
+{"text": "Bình chưa trả 400k", "type": "lend", "annotation_status": "complete", "target": "Bình", "value": "400k", "reason": "Đề xuất từ LLM: Bình chưa trả mình; người khác nợ mình."}
+{"text": "Thắng còn thiếu mình 600k tiền nhậu", "type": "lend", "annotation_status": "complete", "target": "Thắng", "value": "600k", "reason": "Đề xuất từ LLM: Thắng còn thiếu mình."}
+{"text": "Linh nợ mình 120k tiền trà sữa", "type": "lend", "annotation_status": "complete", "target": "Linh", "value": "120k", "reason": "Đề xuất từ LLM: Linh nợ mình."}
+{"text": "cậu Sáu còn nợ 5tr", "type": "lend", "annotation_status": "complete", "target": "cậu Sáu", "value": "5tr", "reason": "Đề xuất từ LLM: Cậu Sáu nợ (mình ngầm là chủ nợ); 'Sáu' là thứ tự nên giữ 'cậu Sáu'."}
+{"text": "bạn Hạnh hứa cuối tháng trả 1tr", "type": "lend", "annotation_status": "complete", "target": "Hạnh", "value": "1tr", "reason": "Đề xuất từ LLM: Bạn Hạnh hứa trả mình; bỏ 'bạn' trước tên."}
+{"text": "Dat chua tra 300k tien com", "type": "lend", "annotation_status": "complete", "target": "Dat", "value": "300k", "reason": "Đề xuất từ LLM: Đạt chưa trả mình."}
+{"text": "thằng Tuấn nợ t 200k", "type": "lend", "annotation_status": "complete", "target": "Tuấn", "value": "200k", "reason": "Đề xuất từ LLM: Tuấn nợ 't' (mình); bỏ 'thằng' trước tên."}
+{"text": "khách còn nợ 1tr2 chưa thanh toán", "type": "lend", "annotation_status": "complete", "target": "khách", "value": "1tr2", "reason": "Đề xuất từ LLM: Khách còn nợ mình; 'khách' là đối tác duy nhất."}
+{"text": "em Mai còn thiếu 250k", "type": "lend", "annotation_status": "complete", "target": "Mai", "value": "250k", "reason": "Đề xuất từ LLM: Em Mai còn thiếu mình; bỏ 'em'."}
+{"text": "anh Phong nợ mình 2tr hẹn t6 trả", "type": "lend", "annotation_status": "complete", "target": "Phong", "value": "2tr", "reason": "Đề xuất từ LLM: Anh Phong nợ mình, hẹn trả."}
+{"text": "Hùng hẹn đầu tháng trả 500k", "type": "lend", "annotation_status": "complete", "target": "Hùng", "value": "500k", "reason": "Đề xuất từ LLM: Hùng hẹn trả mình, tức Hùng đang nợ."}
+{"text": "Trang chưa gửi lại 350k", "type": "lend", "annotation_status": "complete", "target": "Trang", "value": "350k", "reason": "Đề xuất từ LLM: Trang chưa gửi lại cho mình."}
+{"text": "con Vy no t 150k tien ve", "type": "lend", "annotation_status": "complete", "target": "Vy", "value": "150k", "reason": "Đề xuất từ LLM: Vy nợ 't' (mình); 'con' là tiền tố."}
+{"text": "bạn cùng phòng nợ 400k tiền điện", "type": "lend", "annotation_status": "complete", "target": "bạn cùng phòng", "value": "400k", "reason": "Đề xuất từ LLM: Bạn cùng phòng nợ mình."}
+{"text": "đồng nghiệp Long nợ 100k ăn trưa", "type": "lend", "annotation_status": "complete", "target": "Long", "value": "100k", "reason": "Đề xuất từ LLM: Long nợ mình; bỏ 'đồng nghiệp' trước tên."}
+{"text": "Phát còn nợ 3 triệu từ tết", "type": "lend", "annotation_status": "complete", "target": "Phát", "value": "3 triệu", "reason": "Đề xuất từ LLM: Phát còn nợ mình từ tết."}
+{"text": "Quỳnh chưa đưa lại 80k", "type": "lend", "annotation_status": "complete", "target": "Quỳnh", "value": "80k", "reason": "Đề xuất từ LLM: Quỳnh chưa đưa lại mình."}
+{"text": "chị Hà thiếu mình 900k", "type": "lend", "annotation_status": "complete", "target": "Hà", "value": "900k", "reason": "Đề xuất từ LLM: Chị Hà thiếu mình."}
+{"text": "Duy nợ 2 củ chưa trả", "type": "lend", "annotation_status": "complete", "target": "Duy", "value": "2 củ", "reason": "Đề xuất từ LLM: Duy nợ mình, chưa trả."}
+{"text": "cô Thảo chưa trả tiền mượn 1tr", "type": "lend", "annotation_status": "complete", "target": "Thảo", "value": "1tr", "reason": "Đề xuất từ LLM: Cô Thảo chưa trả mình; bỏ 'cô'."}
+{"text": "Tín hẹn tuần sau trả 450k", "type": "lend", "annotation_status": "complete", "target": "Tín", "value": "450k", "reason": "Đề xuất từ LLM: Tín hẹn trả mình, tức Tín đang nợ."}
+{"text": "Khang chua tra tien com 60k", "type": "lend", "annotation_status": "complete", "target": "Khang", "value": "60k", "reason": "Đề xuất từ LLM: Khang chưa trả mình."}
+{"text": "bạn Sơn còn nợ 1tr8 tiền vé", "type": "lend", "annotation_status": "complete", "target": "Sơn", "value": "1tr8", "reason": "Đề xuất từ LLM: Bạn Sơn còn nợ mình."}
+{"text": "cậu Út nợ mình 10tr", "type": "lend", "annotation_status": "complete", "target": "cậu Út", "value": "10tr", "reason": "Đề xuất từ LLM: Cậu Út nợ mình; 'Út' là thứ tự nên giữ 'cậu Út'."}
+{"text": "Nhi còn nợ 20k", "type": "lend", "annotation_status": "complete", "target": "Nhi", "value": "20k", "reason": "Đề xuất từ LLM: Nhi còn nợ mình."}
+{"text": "Hằng nợ tiền cafe 45k chưa gửi", "type": "lend", "annotation_status": "complete", "target": "Hằng", "value": "45k", "reason": "Đề xuất từ LLM: Hằng nợ mình, chưa gửi."}
+{"text": "Sang chưa trả lại tiền mình", "type": "lend", "annotation_status": "complete", "target": "Sang", "value": null, "reason": "Đề xuất từ LLM: Sang chưa trả mình; không nêu số tiền."}
+{"text": "Lộc quên trả mình tiền xăng", "type": "lend", "annotation_status": "complete", "target": "Lộc", "value": null, "reason": "Đề xuất từ LLM: Lộc quên trả mình; không nêu số tiền."}
+{"text": "đồng nghiệp còn nợ 250k chưa trả", "type": "lend", "annotation_status": "complete", "target": "đồng nghiệp", "value": "250k", "reason": "Đề xuất từ LLM: Đồng nghiệp nợ mình; vai trò là tên duy nhất."}
+{"text": "ông Bảy hứa tháng sau trả 5tr", "type": "lend", "annotation_status": "complete", "target": "ông Bảy", "value": "5tr", "reason": "Đề xuất từ LLM: Ông Bảy hứa trả mình; 'Bảy' là thứ tự nên giữ 'ông Bảy'."}
+{"text": "anh rể còn nợ 3tr", "type": "lend", "annotation_status": "complete", "target": "anh rể", "value": "3tr", "reason": "Đề xuất từ LLM: Anh rể nợ mình; 'anh rể' là danh từ quan hệ duy nhất."}
+{"text": "còn nợ 500k", "type": null, "annotation_status": "uncertain", "target": null, "value": "500k", "note": "Không rõ ai nợ ai và không nêu đối tác.", "reason": "Đề xuất từ LLM: Không rõ ai nợ ai và không nêu đối tác."}
+{"text": "tiền nợ Lan 1tr5", "type": null, "annotation_status": "uncertain", "target": "Lan", "value": "1tr5", "note": "Không rõ mình nợ Lan hay Lan nợ mình.", "reason": "Đề xuất từ LLM: Không rõ mình nợ Lan hay Lan nợ mình."}
+{"text": "nợ nhau với Bảo 150k", "type": null, "annotation_status": "uncertain", "target": "Bảo", "value": "150k", "note": "Hai bên nợ nhau, không rõ chiều nợ.", "reason": "Đề xuất từ LLM: Hai bên nợ nhau, không rõ chiều nợ."}
+{"text": "Hương 700k chưa trả", "type": null, "annotation_status": "uncertain", "target": "Hương", "value": "700k", "note": "Không rõ Hương chưa trả mình hay mình chưa trả Hương.", "reason": "Đề xuất từ LLM: Không rõ Hương chưa trả mình hay mình chưa trả Hương."}
+{"text": "công nợ Minh 2tr", "type": null, "annotation_status": "uncertain", "target": "Minh", "value": "2tr", "note": "'Công nợ' không nói chiều nợ.", "reason": "Đề xuất từ LLM: 'Công nợ' không nói chiều nợ."}
+{"text": "nợ cũ Tâm 3tr chưa thanh toán", "type": null, "annotation_status": "uncertain", "target": "Tâm", "value": "3tr", "note": "Không rõ ai là người chưa thanh toán.", "reason": "Đề xuất từ LLM: Không rõ ai là người chưa thanh toán."}

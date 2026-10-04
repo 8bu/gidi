@@ -1,0 +1,14 @@
+{"id": "baseline-01-efb9ecbae1cf", "annotation_status": "complete", "type": "borrow", "target": "Nam", "value": "300k", "reason": "Đề xuất từ LLM: 'con no Nam' = còn nợ Nam: mình nợ Nam; 'tien an' là tên khoản."}
+{"id": "baseline-01-8c7ad02a53e9", "annotation_status": "complete", "type": "borrow", "target": "Long", "value": "300k", "reason": "Đề xuất từ LLM: 'con no a Long' = mình còn nợ anh Long; bỏ 'a' trước tên."}
+{"id": "baseline-01-240955c6a910", "annotation_status": "complete", "type": "borrow", "target": "Mai", "value": "700k", "reason": "Đề xuất từ LLM: Mình còn nợ chị Mai; bỏ 'chị' trước tên."}
+{"id": "baseline-01-8b1e2e4839da", "annotation_status": "complete", "type": "borrow", "target": "Nam", "value": "200k", "reason": "Đề xuất từ LLM: Mình còn nợ Nam; 'tiền vé' là tên khoản."}
+{"id": "baseline-01-ba950489d8ac", "annotation_status": "complete", "type": "lend", "target": "Hoa", "value": "350k", "reason": "Đề xuất từ LLM: Hoa còn nợ mình."}
+{"id": "baseline-01-f02cbad5353a", "annotation_status": "complete", "type": "lend", "target": "Quân", "value": "300k", "reason": "Đề xuất từ LLM: Quân còn nợ mình."}
+{"id": "baseline-01-15b7396caff1", "annotation_status": "complete", "type": "lend", "target": "Tuấn", "value": "400k", "reason": "Đề xuất từ LLM: Tuấn còn nợ mình."}
+{"id": "baseline-01-ea434d53fdf8", "annotation_status": "complete", "type": "lend", "target": "Hải", "value": "700k", "reason": "Đề xuất từ LLM: Hải còn nợ mình."}
+{"id": "baseline-01-16a09cea4b0a", "annotation_status": "complete", "type": "borrow", "target": "Minh", "value": "800k", "reason": "Đề xuất từ LLM: 'con no anh Minh' = mình còn nợ anh Minh; bỏ 'anh'."}
+{"id": "baseline-01-0f13fe604cc2", "annotation_status": "complete", "type": "lend", "target": "Khoa", "value": "700k", "reason": "Đề xuất từ LLM: Khoa còn nợ mình."}
+{"id": "baseline-01-72bf3d2375f8", "annotation_status": "complete", "type": "lend", "target": "Quang", "value": "400k", "reason": "Đề xuất từ LLM: Quang còn nợ mình."}
+{"id": "baseline-01-92c9354530b1", "annotation_status": "complete", "type": "lend", "target": "Long", "value": "350k", "reason": "Đề xuất từ LLM: Long còn thiếu mình."}
+{"id": "baseline-01-d3b31e5d51cd", "annotation_status": "complete", "type": "lend", "target": "Khoa", "value": "250k", "reason": "Đề xuất từ LLM: Khoa còn nợ mình."}
+{"id": "baseline-01-3d32706e9ed3", "annotation_status": "complete", "type": "lend", "target": "Khánh", "value": "250k", "reason": "Đề xuất từ LLM: Khánh còn nợ mình."}

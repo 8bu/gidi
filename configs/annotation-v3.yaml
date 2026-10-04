@@ -1,0 +1,134 @@
+# Gidi annotation-v3 = annotation-v2 (type + target + value span) with ONE taxonomy change: a
+# DEBT-ONLY note ("còn nợ Hùng 300k", "Hoa còn nợ mình 350k") is borrow when the user owes and
+# lend when the other party owes the user, instead of skipped (annotation-v1/v2).
+# Human-readable guide: docs/annotation-v3.md. Validators: gidi.annotation.schema (type/target,
+# same rules as v1) and gidi.annotation.value_span (the `value:` section below).
+# Everything else below is a verbatim copy of configs/annotation-v2.yaml so this file is
+# self-contained; changing anything here is a new annotation version, not an edit.
+
+version: annotation-v3
+extends: annotation-v2
+
+# Canonical transaction taxonomy. There is deliberately no "other": notes whose type cannot be
+# determined from the text get annotation_status "uncertain". annotation-v3 change: a DEBT-ONLY
+# note (it states an existing debt, no money moves now) is no longer skipped; it is borrow when
+# the user owes and lend when the other party owes the user. Target = the counterparty by the
+# usual v1 rules (kinship prefix dropped before a proper name, a role noun kept when it is the
+# only name, bill names never targets -> null); value = the usual value span, null if no amount.
+# A debt-only note whose direction is unclear is uncertain with a note.
+types:
+  expense: Money leaves the user with no expectation of principal repayment.
+  income: >-
+    Money received as salary, freelance/client payment, gift, sale proceeds, rewards, or other
+    ordinary incoming money that is neither borrowing, debt repayment, nor refund.
+  borrow: >-
+    The user receives loan principal and now owes another party. annotation-v3: also a
+    DEBT-ONLY note in which the user owes the other party ("còn nợ Hùng 300k", "nợ chủ trọ
+    tiền điện 280k", "chưa trả anh Việt 600k", "nợ sếp 1tr5"); no money moves now.
+  lend: >-
+    The user gives loan principal to another party and expects repayment. annotation-v3: also a
+    DEBT-ONLY note in which the other party owes the user ("Hoa còn nợ mình 350k", "Phúc chưa
+    trả 1tr5", "Nam hứa t6 trả 800k"); no money moves now. If the direction of a debt-only note
+    is unclear the note is uncertain with a note, never forced.
+  # Requires evidence of a prior debt/obligation (trả nợ, trả lại, trả tiền mượn, money the user
+  # fronted); a bare "Nam trả 500k" is uncertain, "khách trả 5tr tiền web" is income.
+  repayment_in: Another party repays money they previously owed the user.
+  repayment_out: >-
+    The user repays money they previously owed another party, including payments on an existing
+    financed balance or liability (installments, BNPL, credit-card balance).
+  transfer: >-
+    Movement between the user's own accounts, wallets, cash holdings, or savings, including
+    conversion into investment/store-of-value assets the user still owns (fund certificates,
+    gold held as savings, foreign currency). No economic income or expense occurs.
+    vi-VN heuristic: precious metals/gems bought by quantity or purity (chỉ, lượng, phân, g,
+    carat, 9999, 24K) are transfer ("mua nhẫn PNJ nửa chỉ") unless the note states a use, gift,
+    ceremony, or fashion purpose, which overrides ("mua nhẫn vàng 1 chỉ tặng vợ" -> expense).
+    A returned refundable deposit is transfer ("chủ nhà trả cọc 5tr", "lấy lại tiền cọc 2tr");
+    paying a deposit is transfer only when the note establishes it stays refundable.
+  refund: >-
+    Money returned to the user as reversal, reimbursement, rebate, or spending-linked cashback of
+    an earlier expense.
+
+# Target = minimal explicit expression identifying the external financial counterparty.
+# Named merchants/services/platforms are targets when they are the counterparty ("highlands",
+# "shopee hoàn"). Items, dishes, activities and bill names are never targets ("cơm gà",
+# "đổ xăng", "tiền nhà"). Companions ("với"/"vs"/"cùng") and beneficiaries of a purchase
+# ("mua vở cho bé") are not targets; payment apps/wallets/banks used only as the channel are not
+# targets. A kinship/title prefix before a proper name is excluded (anh/chị/chi/bé/…); a kinship
+# or role noun that is the only identifier is kept (mẹ, khách, cty, chủ nhà, sếp), and so is a
+# generic business/organisation noun that is the only expression of the counterparty
+# ("nhà thuốc hoàn 120k" -> "nhà thuốc", "ngân hàng hoàn phí" -> "ngân hàng"), but not when it
+# only names an item or fee ("tiền thuốc", "phí ngân hàng" -> null). Several
+# plausible counterparties -> uncertain. The user may be the implied recipient when natural
+# ("chị Linh trả nợ 1tr" -> repayment_in), but an ambiguous direction stays uncertain.
+# The validator checks structure and span mechanics; semantic rules live in docs/annotation-v1.md.
+# Types whose target must be null: transfers move money between the user's own holdings.
+null_target_types: [transfer]
+
+statuses:
+  complete: Type (and target, or explicit null target) confidently determined from the text.
+  uncertain: The text does not establish the type or the target; never forced. Requires a note.
+  skipped: >-
+    Not a usable finance note, a valid finance note outside the transaction-event taxonomy, or
+    the annotator chose not to label it. A debt-only note is NOT skipped any more (annotation-v3):
+    it is borrow or lend, see those types. Type and target must both be null.
+
+# Only these statuses may enter the initial training split.
+trainable_statuses: [complete]
+
+# These statuses must carry a non-empty `note` explaining the ambiguity.
+note_required_statuses: [uncertain]
+
+# These statuses must have `type: null` and `target: null`.
+null_label_statuses: [skipped]
+
+queue:
+  # The debt-only relabel batch (scripts/build_debt_relabel_queue.py); the other queue/value keys
+  # of annotation-v2 are unchanged and keep their annotation-v2 file locations.
+  corpus: datasets/annotation-v3/debt-01/queue.jsonl
+  out: datasets/annotation-v3/debt-01/queue.jsonl
+  size: null
+  seed: debt-01:v1
+  review_status: approved
+
+# ---------------------------------------------------------------------------------------------
+# Value span (new in annotation-v2). The value is labelled in a SEPARATE Quet pass whose single
+# span field `target` IS the value span (schema: configs/annotation-v2-value.quet.yaml). Gidi
+# merges the two label files into training records with the fields
+#   value: {text, start, end} | null   value_status: complete | uncertain
+#   value_provenance: human | rule
+# Selection only: no numeric normalization ("5 xị" -> 500000 is out of scope; never stored).
+# ---------------------------------------------------------------------------------------------
+value:
+  quet_schema: configs/annotation-v2-value.quet.yaml
+  types:
+    amount: The note states a monetary amount; `target` is its value span.
+    no_amount: The note states no amount. `target` must be null.
+  null_target_types: [no_amount]
+  statuses:
+    complete: The value span (or the absence of any amount) is confidently determined.
+    uncertain: >-
+      More than one money amount and none is clearly the transaction amount, or the amount cannot
+      be delimited. Never forced. Requires a note. The record trains with the value loss masked.
+    skipped: Not worth labelling. Treated as uncertain (masked) when merged.
+  note_required_statuses: [uncertain]
+  null_label_statuses: [skipped]
+  trainable_statuses: [complete]
+  # Merged record provenance: `human` (Quet value pass) beats `rule` (value_span proposer).
+  provenances: [human, rule]
+  # Model head labels (token tagging), in class-id order.
+  tags: [O, B-VALUE, I-VALUE]
+  rules:
+    version: value-span-rules-v1
+    seed: value-span-v1
+    # Fixed-seed stratified sample of rule-accepted records added to the human review queue so
+    # proposer precision can be measured.
+    audit_sample_size: 40
+  files:
+    dir: datasets/annotation-v2
+    queue: value-queue.jsonl
+    proposals: value-proposals.jsonl
+    auto_labels: value-auto-labels.jsonl
+    review_queue: value-review-queue.jsonl
+    human_labels: value-labels.jsonl
+    manifest: value-manifest.json

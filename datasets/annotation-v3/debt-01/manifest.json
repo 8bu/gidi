@@ -1,0 +1,93 @@
+{
+  "name": "debt-01",
+  "annotation_version": "annotation-v3",
+  "role": "re-label of debt-only notes under the annotation-v3 rule: borrow when the user owes, lend when the other party owes the user (annotation-v1/v2 labelled them skipped)",
+  "seed": "debt-01:v1",
+  "schema": "configs/annotation-v3.quet.yaml",
+  "schema_sha256": "21f5e53be17230a8a6bf6ecc48b2d3ea5a5e2269a9cbe1194977e7d30b2c5743",
+  "contract": "configs/annotation-v3.yaml",
+  "contract_sha256": "e8986e1a66acf856f6b3b9e1d793a330126ca82b580bf995137e19bf0d3e636d",
+  "guide": "docs/annotation-v3.md",
+  "guide_sha256": "a67381430484da46d0c5ed6af8b0c52552d0ff450826e328435179fd5eb3ab02",
+  "counts": {
+    "queue": 83,
+    "old_v1_skipped": 14,
+    "new_generated": 69,
+    "generated_written": 69,
+    "generated_dropped": 0,
+    "proposals": 83,
+    "proposal_type": {
+      "borrow": 37,
+      "lend": 40,
+      "null": 6
+    },
+    "proposal_status": {
+      "complete": 77,
+      "uncertain": 6
+    },
+    "proposal_value_null": 5,
+    "proposal_target_null": 1,
+    "source": {
+      "annotation-v1-skipped": 14,
+      "debt-01-generated": 69
+    }
+  },
+  "leakage": {
+    "rules": {
+      "exact": "NFC + strip + lowercase",
+      "folded": "NFC, lowercase, accents stripped, digits masked, whitespace collapsed",
+      "sequence": "difflib ratio of folded texts >= 0.9",
+      "token": "folded token Jaccard >= 0.8 (>= 4 tokens)",
+      "char3": "folded char-3-gram Jaccard >= 0.8",
+      "source": "scripts/build_human_value_queue.py"
+    },
+    "group_order": [
+      "human-value-01",
+      "test-split",
+      "probe-v1",
+      "v1-skipped-kept",
+      "existing-corpus",
+      "earlier-generated"
+    ],
+    "reference_texts": {
+      "human-value-01": 150,
+      "test-split": 143,
+      "probe-v1": 81,
+      "v1-skipped-kept": 14,
+      "existing-corpus": 1626
+    },
+    "dropped_by_group": {},
+    "dropped_by_rule": {},
+    "dropped": []
+  },
+  "excluded_human_value_01_ids": [
+    "baseline-01-1f8b559fe3c3",
+    "baseline-01-3f29fa04ff7a",
+    "baseline-01-3f8d7d6f6fac",
+    "baseline-01-43b46e772c2b",
+    "baseline-01-4a30fae51dfa",
+    "baseline-01-5facc59b6ce4",
+    "baseline-01-6b471f45cc33",
+    "baseline-01-790ca645bdb7",
+    "baseline-01-eff9d5387a64"
+  ],
+  "excluded_note": "the 9 annotation-v1 skipped notes inside the frozen held-out set datasets/annotation-v2/human-value-01: never relabelled, never trained on",
+  "labelling_instruction": {
+    "skipped": "in this pass `skipped` means 'reject this note': it is not a debt-only note after all and is dropped from the batch",
+    "uncertain": "debt-only note whose direction (who owes whom) is unclear; needs a note",
+    "proposals": "advisory (LLM) suggestions; only the reviewer's decision counts"
+  },
+  "quet_web": {
+    "project": "gidi-annotation-v3-debt-01",
+    "name": "gidi annotation-v3 · debt-only notes (83)",
+    "collaborator": "8bu",
+    "show_proposals": true
+  },
+  "files_sha256": {
+    "generated.jsonl": "1b5774ef88db4b2142339d63a29343211192d8f2c2c838154c0d4ea96ba933e0",
+    "v1-skipped-relabel.jsonl": "13f4d31b10c25a798675268eebd726a44eb30c72969c3bf183304957b93746da",
+    "queue.jsonl": "66026afc2bb01060902776b5ed53e14323e8a3f4c8478f0cf46ad5e1bcfce54b",
+    "proposals.jsonl": "1915ea4be6497b96086147a7d70ec89db4df89bdd248bc8793ea9fb95e215326",
+    "provenance.jsonl": "c14c62a2d83e4ca3edfb532a93d451f6d1e45f6ec56d434c62475c798c27b2d9"
+  }
+}
