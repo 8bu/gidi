@@ -1,0 +1,150 @@
+{"id":"baseline-01-37a5dafba00f","annotation_status":"complete","type":"expense","target":{"text":"vietjet","start":11,"end":18},"value":{"text":"2tr9","start":23,"end":27},"span_status":{"value":"complete"}}
+{"id":"baseline-01-c3f385126089","annotation_status":"complete","type":"income","target":null,"value":{"text":"6tr","start":24,"end":27},"span_status":{"value":"complete"}}
+{"id":"baseline-01-63a6a7bb054f","annotation_status":"uncertain","type":"expense","target":null,"value":{"text":"1tr","start":22,"end":25},"span_status":{"value":"complete"},"note":"Hụi là hình thức góp, không phải đối tác; loại (expense/transfer) chưa rõ"}
+{"id":"baseline-01-94bf7544d8b0","annotation_status":"complete","type":"expense","target":{"text":"fahasa","start":17,"end":23},"value":{"text":"215.000","start":9,"end":16},"span_status":{"value":"complete"}}
+{"id":"baseline-01-b60ff1da67c3","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"5tr","start":18,"end":21},"span_status":{"value":"complete"}}
+{"id":"baseline-01-a74b152d7abb","annotation_status":"skipped","type":null,"target":null,"value":null}
+{"id":"baseline-01-932842926220","annotation_status":"complete","type":"expense","target":null,"value":{"text":"400.000","start":10,"end":17},"span_status":{"value":"complete"}}
+{"id":"baseline-01-6bdae11c88c7","annotation_status":"complete","type":"repayment_out","target":null,"value":{"text":"3tr","start":20,"end":23},"span_status":{"value":"complete"}}
+{"id":"baseline-01-3a8d71af9433","annotation_status":"complete","type":"expense","target":null,"value":{"text":"30k","start":15,"end":18},"span_status":{"value":"complete"}}
+{"id":"baseline-01-9874e9359de7","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"420k","start":30,"end":34},"span_status":{"value":"complete"}}
+{"id":"baseline-01-c6f1f2cad163","annotation_status":"complete","type":"income","target":null,"value":{"text":"730k","start":16,"end":20},"span_status":{"value":"complete"}}
+{"id":"baseline-01-b65fb421eb37","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"5tr","start":18,"end":21},"span_status":{"value":"complete"}}
+{"id":"baseline-01-0706f2d42bba","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"năm triệu","start":26,"end":35},"span_status":{"value":"complete"}}
+{"id":"baseline-01-4378b025cf3e","annotation_status":"complete","type":"refund","target":{"text":"lazada","start":14,"end":20},"value":{"text":"189.000đ","start":21,"end":29},"span_status":{"value":"complete"}}
+{"id":"baseline-01-6cc17e42ff62","annotation_status":"complete","type":"expense","target":null,"value":{"text":"340k","start":12,"end":16},"span_status":{"value":"complete"}}
+{"id":"baseline-01-08126fa63696","annotation_status":"complete","type":"repayment_out","target":{"text":"hsbc","start":15,"end":19},"value":{"text":"7,2tr","start":20,"end":25},"span_status":{"value":"complete"}}
+{"id":"baseline-01-bfd895a9e78f","annotation_status":"complete","type":"repayment_out","target":null,"value":{"text":"2tr3","start":25,"end":29},"span_status":{"value":"complete"}}
+{"id":"baseline-01-00e7ccfcb8c2","annotation_status":"complete","type":"expense","target":{"text":"be","start":0,"end":2},"value":{"text":"42.000","start":14,"end":20},"span_status":{"value":"complete"}}
+{"id":"baseline-01-e230c530923c","annotation_status":"complete","type":"expense","target":{"text":"xanh sm","start":5,"end":12},"value":{"text":"210k","start":24,"end":28},"span_status":{"value":"complete"}}
+{"id":"baseline-01-b5b53434ac31","annotation_status":"complete","type":"repayment_out","target":{"text":"fe credit","start":13,"end":22},"value":{"text":"1tr1","start":31,"end":35},"span_status":{"value":"complete"}}
+{"id":"baseline-01-52f73c2f4e37","annotation_status":"complete","type":"income","target":null,"value":{"text":"4tr","start":24,"end":27},"span_status":{"value":"complete"}}
+{"id":"baseline-01-305ce952be9d","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"3tr","start":32,"end":35},"span_status":{"value":"complete"}}
+{"id":"baseline-01-31887b0387a2","annotation_status":"complete","type":"borrow","target":{"text":"anh họ","start":4,"end":10},"value":{"text":"10 triệu","start":11,"end":19},"span_status":{"value":"complete"}}
+{"id":"baseline-01-ce1c614de15c","annotation_status":"complete","type":"lend","target":{"text":"Sơn","start":8,"end":11},"value":{"text":"5tr","start":16,"end":19},"span_status":{"value":"complete"}}
+{"id":"baseline-01-3dc942db42c0","annotation_status":"complete","type":"income","target":null,"value":{"text":"12 trieu","start":9,"end":17},"span_status":{"value":"complete"}}
+{"id":"baseline-01-467ba3ba5c0b","annotation_status":"complete","type":"repayment_out","target":null,"value":{"text":"2tr3","start":17,"end":21},"span_status":{"value":"complete"}}
+{"id":"baseline-01-5f344af5b961","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"4,5tr","start":20,"end":25},"span_status":{"value":"complete"}}
+{"id":"baseline-01-32d4f5a1a0c5","annotation_status":"skipped","type":null,"target":null,"value":null}
+{"id":"baseline-01-323732012449","annotation_status":"complete","type":"expense","target":{"text":"tiki","start":0,"end":4},"value":{"text":"1tr3","start":18,"end":22},"span_status":{"value":"complete"}}
+{"id":"baseline-01-4d57a0c59919","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"100k","start":12,"end":16},"span_status":{"value":"complete"}}
+{"id":"baseline-01-cc7314f47e72","annotation_status":"complete","type":"lend","target":{"text":"Thu","start":8,"end":11},"value":{"text":"1tr5","start":17,"end":21},"span_status":{"value":"complete"}}
+{"id":"baseline-01-34fe3f428758","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"1tr","start":23,"end":26},"span_status":{"value":"complete"}}
+{"id":"baseline-01-0564b63cc451","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"1tr5","start":22,"end":26},"span_status":{"value":"complete"}}
+{"id":"baseline-01-b7f1f97772ee","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"200k","start":27,"end":31},"span_status":{"value":"complete"}}
+{"id":"baseline-01-94b4a287f26a","annotation_status":"complete","type":"expense","target":null,"value":{"text":"300 nghìn","start":17,"end":26},"span_status":{"value":"complete"}}
+{"id":"baseline-01-46fe0242d00e","annotation_status":"complete","type":"income","target":null,"value":{"text":"18tr2","start":15,"end":20},"span_status":{"value":"complete"}}
+{"id":"baseline-01-aa9e7786331f","annotation_status":"complete","type":"repayment_out","target":{"text":"vpbank","start":13,"end":19},"value":{"text":"3tr9","start":28,"end":32},"span_status":{"value":"complete"}}
+{"id":"baseline-01-d61f1f99e199","annotation_status":"complete","type":"refund","target":{"text":"shopee","start":15,"end":21},"value":{"text":"129k","start":22,"end":26},"span_status":{"value":"complete"}}
+{"id":"baseline-01-7e29a5077048","annotation_status":"complete","type":"income","target":null,"value":{"text":"1tr05","start":17,"end":22},"span_status":{"value":"complete"}}
+{"id":"baseline-01-4516aad6ae1b","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"250k","start":13,"end":17},"span_status":{"value":"complete"}}
+{"id":"baseline-01-c6b5de5b84d5","annotation_status":"complete","type":"income","target":null,"value":{"text":"900k","start":18,"end":22},"span_status":{"value":"complete"}}
+{"id":"baseline-01-759e2835dee9","annotation_status":"complete","type":"lend","target":{"text":"cậu Ba","start":4,"end":10},"value":{"text":"năm triệu","start":16,"end":25},"span_status":{"value":"complete"}}
+{"id":"baseline-01-6f0bd0329441","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"5tr","start":18,"end":21},"span_status":{"value":"complete"}}
+{"id":"baseline-01-8c07c9e24fe1","annotation_status":"complete","type":"expense","target":{"text":"bach hoa xanh","start":0,"end":13},"value":{"text":"87k","start":24,"end":27},"span_status":{"value":"complete"}}
+{"id":"baseline-01-9b9ed3e42fe7","annotation_status":"complete","type":"repayment_in","target":{"text":"Thảo","start":4,"end":8},"value":{"text":"250k","start":25,"end":29},"span_status":{"value":"complete"}}
+{"id":"baseline-01-790ca645bdb7","annotation_status":"skipped","type":null,"target":null,"value":null}
+{"id":"baseline-01-2b408c67ed6c","annotation_status":"complete","type":"lend","target":{"text":"Long","start":0,"end":4},"value":{"text":"1tr5","start":9,"end":13},"span_status":{"value":"complete"}}
+{"id":"baseline-01-700806422166","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"3tr","start":18,"end":21},"span_status":{"value":"complete"}}
+{"id":"baseline-01-931c4dfc296d","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"10tr","start":7,"end":11},"span_status":{"value":"complete"}}
+{"id":"baseline-01-43b46e772c2b","annotation_status":"skipped","type":null,"target":null,"value":null}
+{"id":"baseline-01-bfd8c34ba4fa","annotation_status":"complete","type":"income","target":null,"value":{"text":"2tr","start":14,"end":17},"span_status":{"value":"complete"}}
+{"id":"baseline-01-f800a58fb404","annotation_status":"complete","type":"borrow","target":{"text":"mẹ","start":5,"end":7},"value":{"text":"3 triệu","start":8,"end":15},"span_status":{"value":"complete"}}
+{"id":"baseline-01-54e02ec5ac38","annotation_status":"complete","type":"lend","target":{"text":"co Ut","start":4,"end":9},"value":{"text":"3tr","start":15,"end":18},"span_status":{"value":"complete"}}
+{"id":"baseline-01-536aae9840c3","annotation_status":"complete","type":"borrow","target":{"text":"mẹ","start":5,"end":7},"value":{"text":"1tr5","start":8,"end":12},"span_status":{"value":"complete"}}
+{"id":"baseline-01-1bdd14fd4a79","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"1tr","start":21,"end":24},"span_status":{"value":"complete"}}
+{"id":"baseline-01-c77dbe7d5398","annotation_status":"complete","type":"lend","target":{"text":"Phương","start":0,"end":6},"value":{"text":"300k","start":11,"end":15},"span_status":{"value":"complete"}}
+{"id":"baseline-01-e1889be5d444","annotation_status":"complete","type":"expense","target":{"text":"icloud","start":0,"end":6},"value":{"text":"19k","start":12,"end":15},"span_status":{"value":"complete"}}
+{"id":"baseline-01-bbba32c0b2c6","annotation_status":"skipped","type":null,"target":null,"value":null}
+{"id":"baseline-01-63898873977c","annotation_status":"complete","type":"expense","target":null,"value":{"text":"25k","start":23,"end":26},"span_status":{"value":"complete"}}
+{"id":"baseline-01-1ec5c9725834","annotation_status":"complete","type":"refund","target":{"text":"cty","start":0,"end":3},"value":{"text":"600k","start":25,"end":29},"span_status":{"value":"complete"}}
+{"id":"baseline-01-599bddeab7d1","annotation_status":"complete","type":"lend","target":{"text":"Vy","start":8,"end":10},"value":{"text":"hai trieu","start":16,"end":25},"span_status":{"value":"complete"}}
+{"id":"baseline-01-cdeada71521b","annotation_status":"complete","type":"repayment_in","target":{"text":"Trang","start":0,"end":5},"value":{"text":"400k","start":24,"end":28},"span_status":{"value":"complete"}}
+{"id":"baseline-01-29c62a2f9c8a","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"8tr","start":38,"end":41},"span_status":{"value":"complete"}}
+{"id":"baseline-01-061b12b22c9c","annotation_status":"complete","type":"lend","target":{"text":"Hải","start":4,"end":7},"value":{"text":"1tr","start":13,"end":16},"span_status":{"value":"complete"}}
+{"id":"baseline-01-1cb4f48d5b2d","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"1tr5","start":23,"end":27},"span_status":{"value":"complete"}}
+{"id":"baseline-01-47d182d112a4","annotation_status":"complete","type":"repayment_out","target":{"text":"Bình","start":12,"end":16},"value":{"text":"2 triệu","start":23,"end":30},"span_status":{"value":"complete"}}
+{"id":"baseline-01-01dc3bd3ac0b","annotation_status":"complete","type":"repayment_in","target":{"text":"Duy","start":0,"end":3},"value":{"text":"700k","start":12,"end":16},"span_status":{"value":"complete"}}
+{"id":"baseline-01-f58264804919","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"1tr","start":16,"end":19},"span_status":{"value":"complete"}}
+{"id":"baseline-01-a47726e73e28","annotation_status":"complete","type":"repayment_out","target":{"text":"vpbank","start":11,"end":17},"value":{"text":"1tr2","start":28,"end":32},"span_status":{"value":"complete"}}
+{"id":"baseline-01-221db6fcb24b","annotation_status":"complete","type":"repayment_out","target":{"text":"Dũng","start":15,"end":19},"value":{"text":"1tr","start":20,"end":23},"span_status":{"value":"complete"}}
+{"id":"baseline-01-78ba9b7f7dfb","annotation_status":"complete","type":"lend","target":{"text":"Khoa","start":6,"end":10},"value":{"text":"800 nghin","start":16,"end":25},"span_status":{"value":"complete"}}
+{"id":"baseline-01-a7d96a2ae6f2","annotation_status":"complete","type":"borrow","target":{"text":"Quang","start":4,"end":9},"value":{"text":"1tr5","start":18,"end":22},"span_status":{"value":"complete"}}
+{"id":"baseline-01-f49345e33c47","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"520k","start":23,"end":27},"span_status":{"value":"complete"}}
+{"id":"baseline-01-ce5a7b178c63","annotation_status":"complete","type":"borrow","target":{"text":"anh trai","start":5,"end":13},"value":{"text":"3tr","start":14,"end":17},"span_status":{"value":"complete"}}
+{"id":"baseline-01-c37d82986829","annotation_status":"complete","type":"repayment_in","target":{"text":"Long","start":0,"end":4},"value":{"text":"150k","start":25,"end":29},"span_status":{"value":"complete"}}
+{"id":"baseline-01-b2c3a42408f0","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"50tr","start":16,"end":20},"span_status":{"value":"complete"}}
+{"id":"baseline-01-36067775309d","annotation_status":"complete","type":"income","target":null,"value":{"text":"12tr","start":16,"end":20},"span_status":{"value":"complete"}}
+{"id":"baseline-01-840204843309","annotation_status":"complete","type":"repayment_out","target":{"text":"home credit","start":4,"end":15},"value":{"text":"1.450.000đ","start":16,"end":26},"span_status":{"value":"complete"}}
+{"id":"baseline-01-2cb1b078e8a9","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"4tr","start":13,"end":16},"span_status":{"value":"complete"}}
+{"id":"baseline-01-6167ab25ef7c","annotation_status":"complete","type":"borrow","target":{"text":"Lan","start":8,"end":11},"value":{"text":"1 trieu","start":12,"end":19},"span_status":{"value":"complete"}}
+{"id":"baseline-01-0b7c97342e0a","annotation_status":"complete","type":"borrow","target":{"text":"chị hai","start":5,"end":12},"value":{"text":"4tr","start":13,"end":16},"span_status":{"value":"complete"}}
+{"id":"baseline-01-79ef1ca54d34","annotation_status":"skipped","type":null,"target":null,"value":null}
+{"id":"baseline-01-8f2636385f28","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"800k","start":22,"end":26},"span_status":{"value":"complete"}}
+{"id":"baseline-01-d3cbf60ba4d3","annotation_status":"complete","type":"lend","target":{"text":"Quang","start":8,"end":13},"value":{"text":"2tr","start":19,"end":22},"span_status":{"value":"complete"}}
+{"id":"baseline-01-cac93b50bab8","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"4tr","start":10,"end":13},"span_status":{"value":"complete"}}
+{"id":"baseline-01-69aed151bc18","annotation_status":"complete","type":"lend","target":{"text":"Diệu","start":8,"end":12},"value":{"text":"3tr","start":17,"end":20},"span_status":{"value":"complete"}}
+{"id":"baseline-01-57756a8a0034","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"1tr8","start":20,"end":24},"span_status":{"value":"complete"}}
+{"id":"baseline-01-5facc59b6ce4","annotation_status":"skipped","type":null,"target":null,"value":null}
+{"id":"baseline-01-9cbf3e661f54","annotation_status":"skipped","type":null,"target":null,"value":null}
+{"id":"baseline-01-60a88b884cbb","annotation_status":"complete","type":"expense","target":{"text":"go! big c","start":0,"end":9},"value":{"text":"1tr1","start":19,"end":23},"span_status":{"value":"complete"}}
+{"id":"baseline-01-ac4242ec07a8","annotation_status":"complete","type":"expense","target":null,"value":{"text":"1tr1","start":19,"end":23},"span_status":{"value":"complete"}}
+{"id":"baseline-01-eff9d5387a64","annotation_status":"skipped","type":null,"target":null,"value":null}
+{"id":"baseline-01-b46d1f5b671c","annotation_status":"complete","type":"income","target":null,"value":{"text":"2tr2","start":23,"end":27},"span_status":{"value":"complete"}}
+{"id":"baseline-01-a9d85abe1aa8","annotation_status":"complete","type":"income","target":null,"value":{"text":"2tr8","start":13,"end":17},"span_status":{"value":"complete"}}
+{"id":"baseline-01-340ecb1c9d1a","annotation_status":"complete","type":"expense","target":null,"value":{"text":"485.000đ","start":12,"end":20},"span_status":{"value":"complete"}}
+{"id":"baseline-01-103d22749e3e","annotation_status":"complete","type":"expense","target":null,"value":{"text":"250.000d","start":16,"end":24},"span_status":{"value":"complete"}}
+{"id":"baseline-01-fe064fda0ec1","annotation_status":"complete","type":"income","target":null,"value":{"text":"1tr8","start":19,"end":23},"span_status":{"value":"complete"}}
+{"id": "baseline-01-3f29fa04ff7a", "annotation_status": "uncertain", "type": null, "target": null, "value": {"text": "3tr", "start": 32, "end": 35}, "span_status": {"value": "complete"}, "note": "Chiều tiền không rõ: mình trả bác Sáu, hay bác Sáu trả mình (user decision)."}
+{"id":"baseline-01-1f8b559fe3c3","annotation_status":"skipped","type":null,"target":null,"value":null}
+{"id":"baseline-01-b4843fb2a505","annotation_status":"complete","type":"expense","target":{"text":"nike","start":9,"end":13},"value":{"text":"1tr8","start":14,"end":18},"span_status":{"value":"complete"}}
+{"id":"baseline-01-88f7aa5f91c5","annotation_status":"complete","type":"income","target":null,"value":{"text":"1tr8","start":18,"end":22},"span_status":{"value":"complete"}}
+{"id":"baseline-01-8c6efc9e88a9","annotation_status":"complete","type":"repayment_out","target":{"text":"fe credit","start":0,"end":9},"value":{"text":"1tr350","start":17,"end":23},"span_status":{"value":"complete"}}
+{"id":"baseline-01-4ec73881ec67","annotation_status":"complete","type":"borrow","target":{"text":"Hoa","start":8,"end":11},"value":{"text":"1tr5","start":12,"end":16},"span_status":{"value":"complete"}}
+{"id":"baseline-01-edd9dcfa8d4c","annotation_status":"complete","type":"income","target":null,"value":{"text":"7tr","start":13,"end":16},"span_status":{"value":"complete"}}
+{"id":"baseline-01-ba582f76355e","annotation_status":"complete","type":"expense","target":null,"value":{"text":"389.000đ","start":16,"end":24},"span_status":{"value":"complete"}}
+{"id":"baseline-01-8deb6e7536ee","annotation_status":"complete","type":"lend","target":{"text":"bạn phòng","start":4,"end":13},"value":{"text":"600k","start":19,"end":23},"span_status":{"value":"complete"}}
+{"id":"baseline-01-d29310396c31","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"1tr1","start":16,"end":20},"span_status":{"value":"complete"}}
+{"id":"baseline-01-4a30fae51dfa","annotation_status":"skipped","type":null,"target":null,"value":null}
+{"id":"baseline-01-4ddd3440798f","annotation_status":"complete","type":"expense","target":{"text":"bach hoa xanh","start":18,"end":31},"value":{"text":"96k","start":32,"end":35},"span_status":{"value":"complete"}}
+{"id":"baseline-01-d03008899f8d","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"5tr","start":18,"end":21},"span_status":{"value":"complete"}}
+{"id":"baseline-01-398b27553bce","annotation_status":"complete","type":"repayment_out","target":{"text":"vpbank","start":15,"end":21},"value":{"text":"3tr4","start":22,"end":26},"span_status":{"value":"complete"}}
+{"id":"baseline-01-90a58b7a9057","annotation_status":"complete","type":"expense","target":{"text":"Hoa","start":10,"end":13},"value":{"text":"1 triệu","start":14,"end":21},"span_status":{"value":"complete"}}
+{"id":"baseline-01-b270741cd005","annotation_status":"complete","type":"lend","target":{"text":"Vy","start":23,"end":25},"value":{"text":"250k","start":26,"end":30},"span_status":{"value":"complete"}}
+{"id":"baseline-01-b31353143734","annotation_status":"complete","type":"repayment_out","target":{"text":"Hoa","start":7,"end":10},"value":{"text":"120k","start":29,"end":33},"span_status":{"value":"complete"}}
+{"id":"baseline-01-8b3d23b7f2c4","annotation_status":"complete","type":"expense","target":null,"value":{"text":"70k","start":20,"end":23},"span_status":{"value":"complete"}}
+{"id":"baseline-01-8696e5e3978f","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"1tr","start":4,"end":7},"span_status":{"value":"complete"}}
+{"id":"baseline-01-73d3b3309ede","annotation_status":"complete","type":"expense","target":null,"value":{"text":"4tr2","start":25,"end":29},"span_status":{"value":"complete"}}
+{"id":"baseline-01-0c55e0ef2432","annotation_status":"complete","type":"expense","target":{"text":"udemy","start":16,"end":21},"value":{"text":"249k","start":22,"end":26},"span_status":{"value":"complete"}}
+{"id":"baseline-01-be7b6aa62c7d","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"2 triệu rưỡi","start":12,"end":24},"span_status":{"value":"complete"}}
+{"id":"baseline-01-04650ca0c139","annotation_status":"complete","type":"borrow","target":{"text":"chị dâu","start":4,"end":11},"value":{"text":"5tr","start":12,"end":15},"span_status":{"value":"complete"}}
+{"id":"baseline-01-c94bbed64a2e","annotation_status":"complete","type":"lend","target":{"text":"Bình","start":3,"end":7},"value":{"text":"500k","start":13,"end":17},"span_status":{"value":"complete"}}
+{"id":"baseline-01-844f7b8dd50f","annotation_status":"complete","type":"expense","target":null,"value":{"text":"2tr8","start":19,"end":23},"span_status":{"value":"complete"}}
+{"id":"baseline-01-2873fb699392","annotation_status":"complete","type":"expense","target":{"text":"shopeefood","start":0,"end":10},"value":{"text":"96k","start":24,"end":27},"span_status":{"value":"complete"}}
+{"id":"baseline-01-c0384b99d0dd","annotation_status":"complete","type":"income","target":null,"value":{"text":"1tr2","start":24,"end":28},"span_status":{"value":"complete"}}
+{"id":"baseline-01-afdc5bc92175","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"700k","start":26,"end":30},"span_status":{"value":"complete"}}
+{"id":"baseline-01-991487b7d067","annotation_status":"complete","type":"repayment_out","target":{"text":"Duy","start":15,"end":18},"value":{"text":"500","start":19,"end":22},"span_status":{"value":"complete"}}
+{"id":"baseline-01-f620761860a6","annotation_status":"complete","type":"income","target":null,"value":{"text":"5 củ","start":11,"end":15},"span_status":{"value":"complete"}}
+{"id":"baseline-01-7e3a72be918e","annotation_status":"complete","type":"income","target":null,"value":{"text":"5 triệu","start":13,"end":20},"span_status":{"value":"complete"}}
+{"id":"baseline-01-8cba9d0ef664","annotation_status":"complete","type":"borrow","target":{"text":"chị hai","start":5,"end":12},"value":{"text":"3 triệu","start":13,"end":20},"span_status":{"value":"complete"}}
+{"id":"baseline-01-3f8d7d6f6fac","annotation_status":"skipped","type":null,"target":null,"value":null}
+{"id":"baseline-01-ef797ef83475","annotation_status":"complete","type":"expense","target":null,"value":{"text":"250k","start":27,"end":31},"span_status":{"value":"complete"}}
+{"id":"baseline-01-cf2ba1577f31","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"10tr","start":18,"end":22},"span_status":{"value":"complete"}}
+{"id":"baseline-01-151a602c1732","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"200k","start":23,"end":27},"span_status":{"value":"complete"}}
+{"id":"baseline-01-e2ae27699c93","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"2 triệu","start":17,"end":24},"span_status":{"value":"complete"}}
+{"id":"baseline-01-087161711b70","annotation_status":"complete","type":"income","target":{"text":"mẹ","start":5,"end":7},"value":{"text":"1 triệu","start":12,"end":19},"span_status":{"value":"complete"}}
+{"id":"baseline-01-34ad2ef3d672","annotation_status":"complete","type":"income","target":null,"value":{"text":"12 củ","start":15,"end":20},"span_status":{"value":"complete"}}
+{"id":"baseline-01-08ba8df8cb73","annotation_status":"complete","type":"lend","target":{"text":"Loan","start":4,"end":8},"value":{"text":"2 trieu","start":14,"end":21},"span_status":{"value":"complete"}}
+{"id":"baseline-01-894e99390df3","annotation_status":"complete","type":"borrow","target":{"text":"bạn cùng phòng","start":5,"end":19},"value":{"text":"200k","start":20,"end":24},"span_status":{"value":"complete"}}
+{"id":"baseline-01-ac672ddf47fa","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"2tr","start":18,"end":21},"span_status":{"value":"complete"}}
+{"id":"baseline-01-1927a709916e","annotation_status":"complete","type":"repayment_out","target":{"text":"home credit","start":0,"end":11},"value":{"text":"890k","start":17,"end":21},"span_status":{"value":"complete"}}
+{"id":"baseline-01-aea2790b8e27","annotation_status":"complete","type":"expense","target":null,"value":{"text":"150 nghìn","start":13,"end":22},"span_status":{"value":"complete"}}
+{"id":"baseline-01-c4a7321afebf","annotation_status":"complete","type":"expense","target":null,"value":{"text":"45.000","start":17,"end":23},"span_status":{"value":"complete"}}
+{"id":"baseline-01-6e2fdec4cb11","annotation_status":"complete","type":"lend","target":{"text":"bố","start":4,"end":6},"value":{"text":"5 triệu","start":11,"end":18},"span_status":{"value":"complete"}}
+{"id":"baseline-01-59454ce4374c","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"1tr","start":8,"end":11},"span_status":{"value":"complete"}}
+{"id":"baseline-01-f7e218418018","annotation_status":"complete","type":"income","target":{"text":"khach","start":0,"end":5},"value":{"text":"8tr","start":19,"end":22},"span_status":{"value":"complete"}}
+{"id":"baseline-01-31b18db50983","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"3 triệu","start":13,"end":20},"span_status":{"value":"complete"}}
+{"id":"baseline-01-6b471f45cc33","annotation_status":"skipped","type":null,"target":null,"value":null}
+{"id":"baseline-01-0e7dabdf569a","annotation_status":"complete","type":"income","target":{"text":"mẹ","start":5,"end":7},"value":{"text":"1 củ","start":12,"end":16},"span_status":{"value":"complete"}}
+{"id":"baseline-01-4b8052a1d00e","annotation_status":"uncertain","type":"repayment_in","target":{"text":"Minh","start":0,"end":4},"value":{"text":"250k","start":22,"end":26},"span_status":{"value":"complete"},"note":"Unclear if Minh paid for the hotpot or Minh owed the hotpot and repaid"}
+{"id":"baseline-01-385f5bdfd82f","annotation_status":"complete","type":"expense","target":null,"value":{"text":"70.000đ","start":15,"end":22},"span_status":{"value":"complete"}}

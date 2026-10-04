@@ -350,6 +350,8 @@ the Gidi agent from the audit; `reason` starts with "Đề xuất từ LLM"), sh
 on. This is an exception to the no-prefill rule: the 44 rechecked labels are LLM-assisted and the
 phase-3 report must say so and give results with and without them. The relabelled notes replace
 the originals with `quet web pull --project gidi-hv01-recheck-01 --user nhi --labels <labels.jsonl>`.
+`labels.jsonl` = nhi's 150 labels with the 44 rechecked ones merged in, plus one user decision:
+`trả tiền bác Sáu mượn lần trước 3tr` is `uncertain` (direction unclear), not nhi's `skipped`.
 
 The set has two batches. **Batch 1** is the 150-note queue above, labelled now. **Batch 2** comes
 later: new notes written only for the short strata in `manifest.json` (about 71 notes: bare
