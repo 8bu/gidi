@@ -305,6 +305,12 @@ over every `uncertain`, multi-number and `no_amount` note plus a random sample o
 (3) freeze the labels with hashes and stats, then run V7 and V8 once each. The set is never
 merged into training.
 
+The set has two batches. **Batch 1** is the 150-note queue above, labelled now. **Batch 2** comes
+later: new notes written only for the short strata in `manifest.json` (about 71 notes: bare
+number, multi-number, quantity, unusual whitespace/punctuation, installment, null, date), with no
+proposals. The user Quet-approves them before they are labelled, and they go through the same
+phases. Batch 2 uses its own directory and never changes the files of batch 1.
+
 ## Data audit
 
 `scripts/audit_value_spans.py` writes `experiments/value-span-v1/data-audit.{json,md}`: counts,
