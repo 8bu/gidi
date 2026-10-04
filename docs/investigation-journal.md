@@ -1,10 +1,10 @@
 # Gidi Model Investigation Journal
 
-_Last updated: 2026-10-04_
+_Last updated: 2026-10-05_
 
 This is a compact investigation journal for the Gidi finance-note model work. It records the decisions, experiments, and what each experiment taught us. It is intentionally not a full lab report.
 
-**Current status:** `gidi-finance-v2` (`models/gidi-finance-v2/`, §25) remains the **current release**. It packages the accepted value-span-v7 dual encoder: path A is gidi-finance-v1, unchanged, for type/target; path B is a fine-tuned encoder clone + MLP + CRF for the value span. 58.1 MB INT8 bundle, 3.5 ms p50 CPU. Known limitation: `cho a Nam vay 1 triệu 20/10` → `1 triệu 20/10`. `gidi-finance-v1` stays frozen and intact. Internal experiment **V8** (a deterministic value parser replacing path B, §26) is **under evaluation**: its first held-out run passed the pre-declared gates, but the labels are not independent of the rule proposer, so it needs a follow-up before anything is decided. V8 is an internal name, not a release; `gidi-finance-v3` would only be a candidate name if V8 is validated. No compression or distillation. A retrain of encoder 1 on the annotation-v3 debt rule (§27) fixed debt-only notes but missed the frozen-test bound (type macro-F1 -0.044): REJECT, `gidi-finance-v1` stays the encoder.
+**Current status:** `gidi-finance-v2` (`models/gidi-finance-v2/`, §25) remains the **current release**. It packages the accepted value-span-v7 dual encoder: path A is gidi-finance-v1, unchanged, for type/target; path B is a fine-tuned encoder clone + MLP + CRF for the value span. 58.1 MB INT8 bundle, 3.5 ms p50 CPU. Known limitation: `cho a Nam vay 1 triệu 20/10` → `1 triệu 20/10`. `gidi-finance-v1` stays frozen and intact. Internal experiment **V8** (a deterministic value parser replacing path B, §26) is **under evaluation**: its first held-out run passed the pre-declared gates, but the labels are not independent of the rule proposer, so it needs a follow-up before anything is decided. V8 is an internal name, not a release; `gidi-finance-v3` would only be a candidate name if V8 is validated. No compression or distillation. A retrain of encoder 1 on the annotation-v3 debt rule (§27) fixed debt-only notes but missed the frozen-test bound (type macro-F1 -0.044): REJECT. A second try with 103 LLM-composed contrast notes and 3 seeds (§28) fixed the four regression notes but still missed the bound (seed 1: -0.035; mean -0.022): REJECT. `gidi-finance-v1` stays the encoder.
 
 Detailed metrics live in each `experiments/*/report.md`; this journal keeps only the reasoning trail (question → experiment → result → decision → next direction). History is append-only: later findings are added chronologically, earlier conclusions are not rewritten. Update policy: see `AGENTS.md`.
 
@@ -792,6 +792,27 @@ Result:
 Decision: `gidi-finance-v1` stays the encoder; no release. Nothing here changes V8's status.
 
 Next: needs a user decision. Options are more seeds of the same recipe (to separate noise from a real regression) or a rebalanced debt-01 mix; either is a new experiment.
+
+---
+
+## 28. Annotation-v3-retrain-v2: contrast notes against the debt-word confusion (REJECT by the declared rule)
+
+Details: `experiments/annotation-v3-retrain-v2/report.md`, `results.json`; data `datasets/annotation-v3/contrast-01/` (103 notes) and `training-v2/` (905 = training-v1 + contrast-01); builders `scripts/build_contrast_01.py`, `scripts/build_annotation_v3_training_v2.py`.
+
+Question: §27 lost four frozen-test notes (`tra lai chi Mai`, `Nhi ck tra lai`, `đòi được nợ thằng Lâm`, `de rieng tien sua xe`). Hypothesis: 79 debt-only notes taught the model to read `nợ/trả` as "a debt state". Inspection of training-v1: repayment_in 45 (15 with `nợ/no`), refund 57 (0), transfer 113 (0), expense 207 (0) against borrow/lend 227 (211 with a debt word). Fix with the data we have plus new LLM-composed notes (user-approved, `provenance.annotator: llm`): repayment_out 30, repayment_in 30, refund 15, transfer 18, expense-with-a-trả-word 10, written from the annotation-v1/v3 rules, 41% unaccented, 0 validation errors, near-duplicate gate against the frozen test / probe-v1 / human-value-01 / corpus (19 of 146 candidates dropped, 24 over quota). No new evaluation set.
+
+Setup: the §27 recipe unchanged on 905 notes, seeds 1, 2, 3, INT8. Candidate rule fixed before scoring: seed 1 unless it fails the gate while the mean passes; gate = frozen-test type macro-F1 drop <= 0.01, target exact drop <= 0.02, human-value-01 debt slice end-to-end >= 0.8.
+
+Result:
+
+- The four regression notes have the right type on all three seeds. Debt slice end-to-end 12/13 on every seed (first retrain 11/13). probe-v1 type macro-F1 0.754 -> 0.822 (mean); human-value-01 end-to-end 0.7415 -> 0.84.
+- Frozen test type macro-F1 (old 0.956): seed 1 0.922, seed 2 0.935, seed 3 0.946, mean 0.934 +- 0.012. Drops 0.035 / 0.021 / 0.010; target exact drops 0.019 / 0.019 / -0.010. Seed 1 and the mean fail the type bound: **REJECT**. Seed 3 misses it by 0.0004, but the rule picks seed 1 and nothing was re-selected.
+- Remaining test errors moved: `vay home credit giai ngan 15tr` (borrow -> repayment_out) on all seeds, `ck cho Vũ mượn 700k` (lend -> borrow) on two. [INFERENCE] contrast notes with `vay <lender>` repayments may cause the first. Not ablated.
+- Context: the old data has a 3-seed mean of 0.943 +- 0.018 on this test (compression-v3); the deployed seed 1 (0.956) is its best-looking seed, so the gate compares against a lucky draw. The rule was not changed.
+
+Decision: `gidi-finance-v1` stays the encoder; no release, no deployment.
+
+Next: needs a user decision. Options: re-state the bound against the old 3-seed mean (a rule change, to be declared before any rescoring on new data), or write contrast notes for the remaining `vay`/`ứng`/`cho mượn` confusions and re-run (a new experiment).
 
 ---
 

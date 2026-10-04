@@ -1,0 +1,146 @@
+{"text": "tra no anh Dung 2tr", "type": "repayment_out", "target": "Dung", "value": "2tr", "cue": "tra-no"}
+{"text": "tra no bac Sau 5 cu", "type": "repayment_out", "target": "bac Sau", "value": "5 cu", "cue": "tra-no"}
+{"text": "trả lại mẹ 1tr5 tiền chợ", "type": "repayment_out", "target": "mẹ", "value": "1tr5", "cue": "tra-lai"}
+{"text": "trả tiền mượn thằng Khoa 700k", "type": "repayment_out", "target": "Khoa", "value": "700k", "cue": "tra-tien-muon"}
+{"text": "tra tien muon ba 2tr", "type": "repayment_out", "target": "ba", "value": "2tr", "cue": "tra-tien-muon"}
+{"text": "tra gop iphone thang 6 2tr8", "type": "repayment_out", "target": null, "value": "2tr8", "cue": "tra-gop"}
+{"text": "tra gop xe wave thang 3 1tr2", "type": "repayment_out", "target": null, "value": "1tr2", "cue": "tra-gop"}
+{"text": "trả góp tivi kỳ 5 900k", "type": "repayment_out", "target": null, "value": "900k", "cue": "tra-gop"}
+{"text": "góp tủ lạnh fe credit 1tr4", "type": "repayment_out", "target": "fe credit", "value": "1tr4", "cue": "tra-gop"}
+{"text": "thanh toán thẻ techcombank 4tr5", "type": "repayment_out", "target": "techcombank", "value": "4tr5", "cue": "thanh-toan-the"}
+{"text": "thanh toan the tpbank 2tr6", "type": "repayment_out", "target": "tpbank", "value": "2tr6", "cue": "thanh-toan-the"}
+{"text": "tat toan the vib 5tr", "type": "repayment_out", "target": "vib", "value": "5tr", "cue": "thanh-toan-the"}
+{"text": "thanh toán dư nợ thẻ shinhan 2tr9", "type": "repayment_out", "target": "shinhan", "value": "2tr9", "cue": "thanh-toan-the"}
+{"text": "trả nợ spaylater tháng này 640k", "type": "repayment_out", "target": "spaylater", "value": "640k", "cue": "bnpl"}
+{"text": "mcredit ky nay 1tr3", "type": "repayment_out", "target": "mcredit", "value": "1tr3", "cue": "bnpl"}
+{"text": "trả bớt nợ cô Hạnh 1tr", "type": "repayment_out", "target": "Hạnh", "value": "1tr", "cue": "tra-no"}
+{"text": "trả nợ vay ngân hàng tháng này 8tr", "type": "repayment_out", "target": "ngân hàng", "value": "8tr", "cue": "tra-no"}
+{"text": "trả lại sếp tiền ứng 2tr", "type": "repayment_out", "target": "sếp", "value": "2tr", "cue": "tra-lai"}
+{"text": "tra lai cau Ut 4 cu", "type": "repayment_out", "target": "cau Ut", "value": "4 cu", "cue": "tra-lai"}
+{"text": "trả lại bạn Linh 250k tiền vé hôm qua", "type": "repayment_out", "target": "Linh", "value": "250k", "cue": "tra-lai"}
+{"text": "trả nợ chủ nhà 3tr", "type": "repayment_out", "target": "chủ nhà", "value": "3tr", "cue": "tra-no"}
+{"text": "tra lai Hung 400k tien nhau", "type": "repayment_out", "target": "Hung", "value": "400k", "cue": "tra-lai"}
+{"text": "tra no chi hai 2tr", "type": "repayment_out", "target": "chi hai", "value": "2tr", "cue": "tra-no"}
+{"text": "trả vay fe credit tháng này 1tr6", "type": "repayment_out", "target": "fe credit", "value": "1tr6", "cue": "bnpl"}
+{"text": "trả nợ thẻ 2tr", "type": "repayment_out", "target": null, "value": "2tr", "cue": "thanh-toan-the"}
+{"text": "trả góp laptop mỗi tháng 1tr8", "type": "repayment_out", "target": null, "value": "1tr8", "cue": "tra-gop"}
+{"text": "cuoi thang tra lai vo 3tr", "type": "repayment_out", "target": "vo", "value": "3tr", "cue": "tra-lai"}
+{"text": "trả mẹ 2tr tiền mượn đóng học", "type": "repayment_out", "target": "mẹ", "value": "2tr", "cue": "tra-tien-muon"}
+{"text": "chuyển khoản trả nợ anh Quân 1tr8", "type": "repayment_out", "target": "Quân", "value": "1tr8", "cue": "tra-no"}
+{"text": "ck tra no thg Tuan 750k", "type": "repayment_out", "target": "Tuan", "value": "750k", "cue": "tra-no"}
+{"text": "tra het no chu Hai 10 cu", "type": "repayment_out", "target": "chu Hai", "value": "10 cu", "cue": "tra-no"}
+{"text": "trả nợ tiền ăn cho Hậu 130k", "type": "repayment_out", "target": "Hậu", "value": "130k", "cue": "tra-no"}
+{"text": "trả hết spaylater 1tr9", "type": "repayment_out", "target": "spaylater", "value": "1tr9", "cue": "bnpl"}
+{"text": "tất toán khoản vay home credit 7tr", "type": "repayment_out", "target": "home credit", "value": "7tr", "cue": "bnpl"}
+{"text": "tra gop 0% dien thoai ky 3 1tr7", "type": "repayment_out", "target": null, "value": "1tr7", "cue": "tra-gop"}
+{"text": "trả lại 300k cho cô Út", "type": "repayment_out", "target": "cô Út", "value": "300k", "cue": "tra-lai"}
+{"text": "mình trả lại thằng Duy tiền xăng 150k", "type": "repayment_out", "target": "Duy", "value": "150k", "cue": "tra-lai"}
+{"text": "tra lai ong Bay 1 trieu", "type": "repayment_out", "target": "ong Bay", "value": "1 trieu", "cue": "tra-lai"}
+{"text": "tra tien muon lan truoc cho Nhan 500k", "type": "repayment_out", "target": "Nhan", "value": "500k", "cue": "tra-tien-muon"}
+{"text": "thanh toan the tin dung sacombank 3tr7", "type": "repayment_out", "target": "sacombank", "value": "3tr7", "cue": "thanh-toan-the"}
+{"text": "dong tien tra gop dien thoai 1tr5", "type": "repayment_out", "target": null, "value": "1tr5", "cue": "tra-gop"}
+{"text": "trả nợ cho Sang hôm nay 900k", "type": "repayment_out", "target": "Sang", "value": "900k", "cue": "tra-no"}
+{"text": "trả lại tiền mượn cho Vy 200k", "type": "repayment_out", "target": "Vy", "value": "200k", "cue": "tra-tien-muon"}
+{"text": "trả nợ anh Lực 6 cu", "type": "repayment_out", "target": "Lực", "value": "6 cu", "cue": "tra-no"}
+{"text": "Hanh tra no roi 1tr2", "type": "repayment_in", "target": "Hanh", "value": "1tr2", "cue": "x-tra-no"}
+{"text": "anh Kiệt ck trả tiền mượn 2tr", "type": "repayment_in", "target": "Kiệt", "value": "2tr", "cue": "x-tra-tien-muon"}
+{"text": "thằng Tuấn gửi lại 300k tiền ăn", "type": "repayment_in", "target": "Tuấn", "value": "300k", "cue": "x-gui-lai"}
+{"text": "thu hoi duoc no tu anh Tin 2tr5", "type": "repayment_in", "target": "Tin", "value": "2tr5", "cue": "doi-no"}
+{"text": "Hiếu mới trả khoản nợ cũ 1tr5", "type": "repayment_in", "target": "Hiếu", "value": "1tr5", "cue": "x-tra-no"}
+{"text": "đòi được 700k Cường nợ từ tháng trước", "type": "repayment_in", "target": "Cường", "value": "700k", "cue": "doi-no"}
+{"text": "bạn Mi chuyển trả tiền mượn sạc 150k", "type": "repayment_in", "target": "Mi", "value": "150k", "cue": "x-tra-tien-muon"}
+{"text": "em Bao tra tien minh ung ho 450k", "type": "repayment_in", "target": "Bao", "value": "450k", "cue": "ung-ho"}
+{"text": "Phát trả lại tiền vé mình mua hộ 380k", "type": "repayment_in", "target": "Phát", "value": "380k", "cue": "ung-ho"}
+{"text": "ông Sáu trả nợ 5tr", "type": "repayment_in", "target": "ông Sáu", "value": "5tr", "cue": "x-tra-no"}
+{"text": "nhan lai 1tr tu Dat tien cho muon tuan truoc", "type": "repayment_in", "target": "Dat", "value": "1tr", "cue": "nhan-lai"}
+{"text": "nhan lai tien cho muon tu Hoa 2tr", "type": "repayment_in", "target": "Hoa", "value": "2tr", "cue": "nhan-lai"}
+{"text": "dc Khang tra no 800k", "type": "repayment_in", "target": "Khang", "value": "800k", "cue": "x-tra-no"}
+{"text": "Linh vừa trả nợ 4tr rồi", "type": "repayment_in", "target": "Linh", "value": "4tr", "cue": "x-tra-no"}
+{"text": "anh Hải hoàn lại 600k mình ứng tiền taxi", "type": "repayment_in", "target": "Hải", "value": "600k", "cue": "ung-ho"}
+{"text": "Bình chuyển lại phần tiền điện mình đóng trước 420k", "type": "repayment_in", "target": "Bình", "value": "420k", "cue": "ung-ho"}
+{"text": "co Ut tra lai 1tr tien muon", "type": "repayment_in", "target": "co Ut", "value": "1tr", "cue": "x-tra-lai"}
+{"text": "chú Ba trả nợ 3tr", "type": "repayment_in", "target": "chú Ba", "value": "3tr", "cue": "x-tra-no"}
+{"text": "bố trả lại 5tr tiền cho mượn", "type": "repayment_in", "target": "bố", "value": "5tr", "cue": "x-tra-lai"}
+{"text": "ban Hung tra no 1tr roi", "type": "repayment_in", "target": "Hung", "value": "1tr", "cue": "x-tra-no"}
+{"text": "Trang tra no 2 cu roi nha", "type": "repayment_in", "target": "Trang", "value": "2 cu", "cue": "x-tra-no"}
+{"text": "thu no chi Ngoc 3tr", "type": "repayment_in", "target": "Ngoc", "value": "3tr", "cue": "doi-no"}
+{"text": "lay lai duoc 800k Sang muon hom truoc", "type": "repayment_in", "target": "Sang", "value": "800k", "cue": "nhan-lai"}
+{"text": "anh Kiên ck lại 1tr2 tiền mượn", "type": "repayment_in", "target": "Kiên", "value": "1tr2", "cue": "x-tra-tien-muon"}
+{"text": "Mỹ trả đủ nợ 2tr5 rồi", "type": "repayment_in", "target": "Mỹ", "value": "2tr5", "cue": "x-tra-no"}
+{"text": "em Phương gửi lại tiền mượn đóng học 2tr", "type": "repayment_in", "target": "Phương", "value": "2tr", "cue": "x-gui-lai"}
+{"text": "bac Ut tra no 6 cu", "type": "repayment_in", "target": "bac Ut", "value": "6 cu", "cue": "x-tra-no"}
+{"text": "Sơn ck lại 900k, tất toán nợ", "type": "repayment_in", "target": "Sơn", "value": "900k", "cue": "x-tra-no"}
+{"text": "Hiền ck trả tiền mượn đợt trước 3tr", "type": "repayment_in", "target": "Hiền", "value": "3tr", "cue": "x-tra-tien-muon"}
+{"text": "Long chuyen tra no 500k", "type": "repayment_in", "target": "Long", "value": "500k", "cue": "x-tra-no"}
+{"text": "chi Hoa tra not no 1tr", "type": "repayment_in", "target": "Hoa", "value": "1tr", "cue": "x-tra-no"}
+{"text": "nhận tiền trả nợ từ Thiện 2tr", "type": "repayment_in", "target": "Thiện", "value": "2tr", "cue": "nhan-lai"}
+{"text": "Bảo trả lại 120k tiền cf mình trả hộ", "type": "repayment_in", "target": "Bảo", "value": "120k", "cue": "ung-ho"}
+{"text": "chuyển khoản: Dương trả lại tiền gas 140k", "type": "repayment_in", "target": "Dương", "value": "140k", "cue": "x-tra-lai"}
+{"text": "Hang chuyen khoan tra lai 250k tien ve", "type": "repayment_in", "target": "Hang", "value": "250k", "cue": "x-tra-lai"}
+{"text": "Tân trả lại tiền cafe hôm qua 90k", "type": "repayment_in", "target": "Tân", "value": "90k", "cue": "x-tra-lai"}
+{"text": "thằng Kha tra lai tien thue xe 600k", "type": "repayment_in", "target": "Kha", "value": "600k", "cue": "x-tra-lai"}
+{"text": "anh Nghia gui lai tien muon 5tr", "type": "repayment_in", "target": "Nghia", "value": "5tr", "cue": "x-gui-lai"}
+{"text": "bà Năm trả lại tiền vay 4tr", "type": "repayment_in", "target": "bà Năm", "value": "4tr", "cue": "x-tra-lai"}
+{"text": "Giang đã trả nợ 700k", "type": "repayment_in", "target": "Giang", "value": "700k", "cue": "x-tra-no"}
+{"text": "Tú chuyển trả nợ 1tr3 rồi nha", "type": "repayment_in", "target": "Tú", "value": "1tr3", "cue": "x-tra-no"}
+{"text": "thu lai tien cho Loc vay 2tr", "type": "repayment_in", "target": "Loc", "value": "2tr", "cue": "doi-no"}
+{"text": "Thủy trả nợ 1tr5 tiền nhà hôm trước", "type": "repayment_in", "target": "Thủy", "value": "1tr5", "cue": "x-tra-no"}
+{"text": "shop hoan tien don giay 320k", "type": "refund", "target": "shop", "value": "320k", "cue": "hoan-tien"}
+{"text": "tiki hoàn tiền đơn sách 145k", "type": "refund", "target": "tiki", "value": "145k", "cue": "hoan-tien"}
+{"text": "lazada hoan tien don loi 230k", "type": "refund", "target": "lazada", "value": "230k", "cue": "hoan-tien"}
+{"text": "hoàn tiền vé máy bay bamboo 1tr8", "type": "refund", "target": "bamboo", "value": "1tr8", "cue": "hoan-tien"}
+{"text": "grab hoan tien chuyen huy 48k", "type": "refund", "target": "grab", "value": "48k", "cue": "hoan-tien"}
+{"text": "tiktok shop hoàn 99k", "type": "refund", "target": "tiktok shop", "value": "99k", "cue": "hoan-tien"}
+{"text": "nhận hoàn tiền sữa bé 410k", "type": "refund", "target": null, "value": "410k", "cue": "hoan-tien"}
+{"text": "traveloka hoàn tiền khách sạn 1tr2", "type": "refund", "target": "traveloka", "value": "1tr2", "cue": "hoan-tien"}
+{"text": "cua hang hoan tien op lung 90k", "type": "refund", "target": "cua hang", "value": "90k", "cue": "hoan-tien"}
+{"text": "hoan tien don hang shopee bi huy 270k", "type": "refund", "target": "shopee", "value": "270k", "cue": "hoan-tien"}
+{"text": "vexere hoàn tiền vé xe 250k", "type": "refund", "target": "vexere", "value": "250k", "cue": "hoan-tien"}
+{"text": "nhà hàng hoàn tiền món lên sai 85k", "type": "refund", "target": "nhà hàng", "value": "85k", "cue": "hoan-tien"}
+{"text": "apple hoan tien ung dung 49k", "type": "refund", "target": "apple", "value": "49k", "cue": "hoan-tien"}
+{"text": "be hoàn tiền chuyến bị huỷ 36k", "type": "refund", "target": "be", "value": "36k", "cue": "hoan-tien"}
+{"text": "shop trả lại tiền do hết hàng 199k", "type": "refund", "target": "shop", "value": "199k", "cue": "shop-tra-lai"}
+{"text": "sendo hoàn tiền đơn trả hàng 175k", "type": "refund", "target": "sendo", "value": "175k", "cue": "hoan-tien"}
+{"text": "bao hiem chi tra tien kham 850k", "type": "refund", "target": null, "value": "850k", "cue": "chi-tra"}
+{"text": "shopeepay cashback 18k", "type": "refund", "target": "shopeepay", "value": "18k", "cue": "cashback"}
+{"text": "hoàn tiền điện thoại lỗi đổi trả 2tr1", "type": "refund", "target": null, "value": "2tr1", "cue": "hoan-tien"}
+{"text": "cgv hoàn tiền vé phim 90k", "type": "refund", "target": "cgv", "value": "90k", "cue": "hoan-tien"}
+{"text": "duoc hoan tien phi chuyen khoan 11k", "type": "refund", "target": null, "value": "11k", "cue": "hoan-tien"}
+{"text": "de rieng 2tr dong hoc phi", "type": "transfer", "target": null, "value": "2tr", "cue": "de-rieng"}
+{"text": "tách 2tr ra ví riêng", "type": "transfer", "target": null, "value": "2tr", "cue": "de-rieng"}
+{"text": "dồn 1tr vào hũ tiết kiệm", "type": "transfer", "target": null, "value": "1tr", "cue": "de-danh"}
+{"text": "de danh 600k di du lich", "type": "transfer", "target": null, "value": "600k", "cue": "de-danh"}
+{"text": "gửi tiết kiệm 5tr kỳ hạn 6 tháng", "type": "transfer", "target": null, "value": "5tr", "cue": "tiet-kiem"}
+{"text": "rút 2tr ở cây atm vcb", "type": "transfer", "target": null, "value": "2tr", "cue": "rut"}
+{"text": "rút 3 củ từ tk lương", "type": "transfer", "target": null, "value": "3 củ", "cue": "rut"}
+{"text": "chuyen 4tr tu tk luong sang tk tiet kiem", "type": "transfer", "target": null, "value": "4tr", "cue": "giua-tk"}
+{"text": "ck 2tr tu vcb sang momo", "type": "transfer", "target": null, "value": "2tr", "cue": "giua-tk"}
+{"text": "nạp tiền vào ví momo 500k", "type": "transfer", "target": null, "value": "500k", "cue": "giua-tk"}
+{"text": "gom 2tr vào quỹ khẩn cấp", "type": "transfer", "target": null, "value": "2tr", "cue": "de-danh"}
+{"text": "de danh 300k cho quy du lich", "type": "transfer", "target": null, "value": "300k", "cue": "de-danh"}
+{"text": "chuyen 5tr tu mb sang tpbank", "type": "transfer", "target": null, "value": "5tr", "cue": "giua-tk"}
+{"text": "rút tiết kiệm 10tr", "type": "transfer", "target": null, "value": "10tr", "cue": "rut"}
+{"text": "rút quỹ dự phòng 2tr", "type": "transfer", "target": null, "value": "2tr", "cue": "rut"}
+{"text": "de rieng tien dien nuoc 1tr2", "type": "transfer", "target": null, "value": "1tr2", "cue": "de-rieng"}
+{"text": "để riêng tiền thuê nhà tháng sau 4tr5", "type": "transfer", "target": null, "value": "4tr5", "cue": "de-rieng"}
+{"text": "danh rieng 700k tien dam cuoi", "type": "transfer", "target": null, "value": "700k", "cue": "de-rieng"}
+{"text": "de rieng tien bao hiem nam nay 2tr", "type": "transfer", "target": null, "value": "2tr", "cue": "de-rieng"}
+{"text": "rut 1tr tu the atm de chi tuan nay", "type": "transfer", "target": null, "value": "1tr", "cue": "rut"}
+{"text": "bỏ 200k vào heo đất", "type": "transfer", "target": null, "value": "200k", "cue": "de-danh"}
+{"text": "chuyển từ vcb qua mb 3 triệu", "type": "transfer", "target": null, "value": "3 triệu", "cue": "giua-tk"}
+{"text": "tien de rieng cho con 1tr5", "type": "transfer", "target": null, "value": "1tr5", "cue": "de-rieng"}
+{"text": "chuyển 2tr từ quỹ du lịch về ví chính", "type": "transfer", "target": null, "value": "2tr", "cue": "giua-tk"}
+{"text": "tra tien dien thang nay 640k", "type": "expense", "target": null, "value": "640k", "cue": "tra-bill"}
+{"text": "tra tien nuoc 180k", "type": "expense", "target": null, "value": "180k", "cue": "tra-bill"}
+{"text": "trả tiền ăn cho cả nhóm 850k", "type": "expense", "target": null, "value": "850k", "cue": "tra-an"}
+{"text": "tra tien net thang 10 220k", "type": "expense", "target": null, "value": "220k", "cue": "tra-bill"}
+{"text": "trả tiền phòng trọ tháng 11 2tr8", "type": "expense", "target": null, "value": "2tr8", "cue": "tra-bill"}
+{"text": "tra tien grab 95k", "type": "expense", "target": "grab", "value": "95k", "cue": "tra-merchant"}
+{"text": "tra tien hoc phi cho be 3tr5", "type": "expense", "target": null, "value": "3tr5", "cue": "tra-bill"}
+{"text": "trả tiền gửi xe tháng 150k", "type": "expense", "target": null, "value": "150k", "cue": "tra-bill"}
+{"text": "tra tien kfc 180k", "type": "expense", "target": "kfc", "value": "180k", "cue": "tra-merchant"}
+{"text": "trả tiền thuê xe máy đà lạt 300k", "type": "expense", "target": null, "value": "300k", "cue": "tra-bill"}
+{"text": "trả tiền sửa máy lạnh 600k", "type": "expense", "target": null, "value": "600k", "cue": "tra-bill"}
+{"text": "tra phi ship 25k", "type": "expense", "target": null, "value": "25k", "cue": "tra-bill"}
+{"text": "trả tiền khám răng 700k", "type": "expense", "target": null, "value": "700k", "cue": "tra-bill"}
+{"text": "trả cước điện thoại tháng này 200k", "type": "expense", "target": null, "value": "200k", "cue": "tra-bill"}

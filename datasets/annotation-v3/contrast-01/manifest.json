@@ -1,0 +1,331 @@
+{
+  "name": "contrast-01",
+  "annotation_version": "annotation-v3",
+  "role": "LLM-composed contrast notes: debt words (nợ / trả / hoàn / để riêng) in repayment_out / repayment_in / refund / transfer / expense notes that are not debt-only",
+  "annotator": "llm",
+  "annotator_note": "labels are LLM-made (user-approved), not human labels; provenance.jsonl marks every note `annotator: llm`",
+  "schema": "configs/annotation-v3.quet.yaml",
+  "schema_sha256": "21f5e53be17230a8a6bf6ecc48b2d3ea5a5e2269a9cbe1194977e7d30b2c5743",
+  "contract": "configs/annotation-v3.yaml",
+  "contract_sha256": "e8986e1a66acf856f6b3b9e1d793a330126ca82b580bf995137e19bf0d3e636d",
+  "counts": {
+    "candidates": 146,
+    "kept": 103,
+    "dropped": 43,
+    "type": {
+      "expense": 10,
+      "refund": 15,
+      "repayment_in": 30,
+      "repayment_out": 30,
+      "transfer": 18
+    },
+    "quota": {
+      "repayment_out": 30,
+      "repayment_in": 30,
+      "refund": 15,
+      "transfer": 18,
+      "expense": 10
+    },
+    "cue": {
+      "bnpl": 4,
+      "cashback": 1,
+      "de-danh": 4,
+      "de-rieng": 5,
+      "doi-no": 4,
+      "giua-tk": 4,
+      "hoan-tien": 13,
+      "nhan-lai": 4,
+      "rut": 4,
+      "shop-tra-lai": 1,
+      "thanh-toan-the": 4,
+      "tiet-kiem": 1,
+      "tra-an": 1,
+      "tra-bill": 7,
+      "tra-gop": 5,
+      "tra-lai": 6,
+      "tra-merchant": 2,
+      "tra-no": 7,
+      "tra-tien-muon": 4,
+      "ung-ho": 5,
+      "x-gui-lai": 3,
+      "x-tra-lai": 5,
+      "x-tra-no": 5,
+      "x-tra-tien-muon": 4
+    },
+    "target_null": 33,
+    "value_null": 0,
+    "accented": 61,
+    "unaccented": 42,
+    "unaccented_share": 0.4078
+  },
+  "leakage": {
+    "rules": {
+      "exact": "NFC + strip + lowercase",
+      "folded": "NFC, lowercase, accents stripped, digits masked, whitespace collapsed",
+      "sequence": "difflib ratio of folded texts >= 0.9",
+      "token": "folded token Jaccard >= 0.8 (>= 4 tokens)",
+      "char3": "folded char-3-gram Jaccard >= 0.8",
+      "source": "scripts/build_human_value_queue.py (via build_debt_relabel_queue.py)"
+    },
+    "group_order": [
+      "human-value-01",
+      "test-split",
+      "probe-v1",
+      "v1-skipped-kept",
+      "existing-corpus",
+      "earlier-generated",
+      "regression-notes",
+      "over-quota"
+    ],
+    "reference_texts": {
+      "human-value-01": 150,
+      "test-split": 143,
+      "probe-v1": 81,
+      "v1-skipped-kept": 0,
+      "existing-corpus": 1695
+    },
+    "dropped_by_group": {
+      "existing-corpus": 12,
+      "human-value-01": 5,
+      "over-quota": 24,
+      "probe-v1": 1,
+      "test-split": 1
+    },
+    "dropped_by_rule": {
+      "expense": 2,
+      "refund": 1,
+      "repayment_in": 12,
+      "repayment_out": 5,
+      "sequence": 10,
+      "token": 9,
+      "transfer": 4
+    },
+    "dropped": [
+      {
+        "text": "tra no anh Dung 2tr",
+        "group": "human-value-01",
+        "rule": "sequence"
+      },
+      {
+        "text": "tra gop xe wave thang 3 1tr2",
+        "group": "existing-corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "thanh toan the tpbank 2tr6",
+        "group": "human-value-01",
+        "rule": "sequence"
+      },
+      {
+        "text": "mcredit ky nay 1tr3",
+        "group": "human-value-01",
+        "rule": "sequence"
+      },
+      {
+        "text": "trả nợ vay ngân hàng tháng này 8tr",
+        "group": "probe-v1",
+        "rule": "token"
+      },
+      {
+        "text": "tra no chi hai 2tr",
+        "group": "existing-corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "trả mẹ 2tr tiền mượn đóng học",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "tra gop 0% dien thoai ky 3 1tr7",
+        "group": "existing-corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "thanh toan the tin dung sacombank 3tr7",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "chi Hoa tra not no 1tr",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "lazada hoan tien don loi 230k",
+        "group": "human-value-01",
+        "rule": "token"
+      },
+      {
+        "text": "hoàn tiền vé máy bay bamboo 1tr8",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "grab hoan tien chuyen huy 48k",
+        "group": "existing-corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "be hoàn tiền chuyến bị huỷ 36k",
+        "group": "existing-corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "bao hiem chi tra tien kham 850k",
+        "group": "test-split",
+        "rule": "sequence"
+      },
+      {
+        "text": "nạp tiền vào ví momo 500k",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "chuyển từ vcb qua mb 3 triệu",
+        "group": "human-value-01",
+        "rule": "token"
+      },
+      {
+        "text": "tra tien dien thang nay 640k",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "trả tiền phòng trọ tháng 11 2tr8",
+        "group": "existing-corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "trả lại 300k cho cô Út",
+        "group": "over-quota",
+        "rule": "repayment_out"
+      },
+      {
+        "text": "mình trả lại thằng Duy tiền xăng 150k",
+        "group": "over-quota",
+        "rule": "repayment_out"
+      },
+      {
+        "text": "tra lai ong Bay 1 trieu",
+        "group": "over-quota",
+        "rule": "repayment_out"
+      },
+      {
+        "text": "trả nợ cho Sang hôm nay 900k",
+        "group": "over-quota",
+        "rule": "repayment_out"
+      },
+      {
+        "text": "trả nợ anh Lực 6 cu",
+        "group": "over-quota",
+        "rule": "repayment_out"
+      },
+      {
+        "text": "chú Ba trả nợ 3tr",
+        "group": "over-quota",
+        "rule": "repayment_in"
+      },
+      {
+        "text": "ban Hung tra no 1tr roi",
+        "group": "over-quota",
+        "rule": "repayment_in"
+      },
+      {
+        "text": "Trang tra no 2 cu roi nha",
+        "group": "over-quota",
+        "rule": "repayment_in"
+      },
+      {
+        "text": "Mỹ trả đủ nợ 2tr5 rồi",
+        "group": "over-quota",
+        "rule": "repayment_in"
+      },
+      {
+        "text": "bac Ut tra no 6 cu",
+        "group": "over-quota",
+        "rule": "repayment_in"
+      },
+      {
+        "text": "Sơn ck lại 900k, tất toán nợ",
+        "group": "over-quota",
+        "rule": "repayment_in"
+      },
+      {
+        "text": "Long chuyen tra no 500k",
+        "group": "over-quota",
+        "rule": "repayment_in"
+      },
+      {
+        "text": "thằng Kha tra lai tien thue xe 600k",
+        "group": "over-quota",
+        "rule": "repayment_in"
+      },
+      {
+        "text": "bà Năm trả lại tiền vay 4tr",
+        "group": "over-quota",
+        "rule": "repayment_in"
+      },
+      {
+        "text": "Giang đã trả nợ 700k",
+        "group": "over-quota",
+        "rule": "repayment_in"
+      },
+      {
+        "text": "Tú chuyển trả nợ 1tr3 rồi nha",
+        "group": "over-quota",
+        "rule": "repayment_in"
+      },
+      {
+        "text": "Thủy trả nợ 1tr5 tiền nhà hôm trước",
+        "group": "over-quota",
+        "rule": "repayment_in"
+      },
+      {
+        "text": "duoc hoan tien phi chuyen khoan 11k",
+        "group": "over-quota",
+        "rule": "refund"
+      },
+      {
+        "text": "de rieng tien bao hiem nam nay 2tr",
+        "group": "over-quota",
+        "rule": "transfer"
+      },
+      {
+        "text": "rut 1tr tu the atm de chi tuan nay",
+        "group": "over-quota",
+        "rule": "transfer"
+      },
+      {
+        "text": "bỏ 200k vào heo đất",
+        "group": "over-quota",
+        "rule": "transfer"
+      },
+      {
+        "text": "tien de rieng cho con 1tr5",
+        "group": "over-quota",
+        "rule": "transfer"
+      },
+      {
+        "text": "trả tiền khám răng 700k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "trả cước điện thoại tháng này 200k",
+        "group": "over-quota",
+        "rule": "expense"
+      }
+    ],
+    "regression_notes": {
+      "rule": "folded difflib ratio >= 0.75: dropped",
+      "max_ratio_kept": 0.7027
+    }
+  },
+  "files_sha256": {
+    "queue.jsonl": "72e66849cf80363bc2ca9c2c8d0b948dbda61e004faed75a38838fb1a02dfd4d",
+    "labels.jsonl": "a520ca76b6afee350c7eef9ca67fd4bc581d00df82ee217ccf2090084f9e3a5c",
+    "provenance.jsonl": "f8ebdbe02e31b4b6f9b5710d73c9b0a7e42ac6a8ac9ed7c41eab83ad36ab5750",
+    "source.jsonl": "fb90fd4b47a12f88600443ad121eb61864b5ef512a3285c9a3c82a2398393bdd"
+  }
+}

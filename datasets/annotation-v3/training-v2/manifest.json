@@ -1,0 +1,100 @@
+{
+  "name": "training-v2",
+  "annotation_version": "annotation-v3",
+  "purpose": "encoder-1 retrain set v2: training-v1 train (802, byte-identical) plus the LLM-composed contrast-01 notes (debt words in repayment / refund / transfer / expense notes); validation is in-sample, the frozen test split, probe-v1 and human-value-01 stay held out",
+  "counts": {
+    "training_v1_train": 802,
+    "contrast_01_complete": 103,
+    "train": 905
+  },
+  "type_counts": {
+    "expense": 217,
+    "income": 84,
+    "borrow": 116,
+    "lend": 111,
+    "repayment_in": 75,
+    "repayment_out": 99,
+    "transfer": 131,
+    "refund": 72
+  },
+  "type_counts_by_source": {
+    "training_v1_train": {
+      "expense": 207,
+      "income": 84,
+      "borrow": 116,
+      "lend": 111,
+      "repayment_in": 45,
+      "repayment_out": 69,
+      "transfer": 113,
+      "refund": 57
+    },
+    "contrast_01": {
+      "expense": 10,
+      "income": 0,
+      "borrow": 0,
+      "lend": 0,
+      "repayment_in": 30,
+      "repayment_out": 30,
+      "transfer": 18,
+      "refund": 15
+    }
+  },
+  "source_counts": {
+    "baseline-01": 497,
+    "targeted-annotation-v1-01": 114,
+    "targeted-annotation-v1-02": 112,
+    "debt-01": 79,
+    "contrast-01": 103
+  },
+  "annotator_counts": {
+    "human": 256,
+    "ai": 546,
+    "llm": 103
+  },
+  "contrast_01_dropped_by_group": {
+    "existing-corpus": 12,
+    "human-value-01": 5,
+    "over-quota": 24,
+    "probe-v1": 1,
+    "test-split": 1
+  },
+  "excluded_human_value_01_ids": [
+    "baseline-01-1f8b559fe3c3",
+    "baseline-01-3f29fa04ff7a",
+    "baseline-01-3f8d7d6f6fac",
+    "baseline-01-43b46e772c2b",
+    "baseline-01-4a30fae51dfa",
+    "baseline-01-5facc59b6ce4",
+    "baseline-01-6b471f45cc33",
+    "baseline-01-790ca645bdb7",
+    "baseline-01-eff9d5387a64"
+  ],
+  "leakage_gate": {
+    "sets": {
+      "frozen test": 105,
+      "probe-v1": 81,
+      "human-value-01": 150
+    },
+    "rule": "no id, no verbatim or NFC+strip+lowercase text of any train record in a set; no contrast-01 note is a near duplicate (exact, folded, sequence >= 0.9, token, char3: scripts/build_human_value_queue.py) of any note of a set",
+    "result": "pass"
+  },
+  "inputs_sha256": {
+    "datasets/annotation-v3/training-v1/train.jsonl": "b8b2303c1fc2aa2839a2e026522184e1f345fcde420dc43755d591b7bbf96e86",
+    "datasets/annotation-v3/training-v1/manifest.json": "f2945152f926ab97ecd8e5b31fd692f99ff640d3598ca935cc109e1619bc0d10",
+    "datasets/annotation-v3/contrast-01/queue.jsonl": "72e66849cf80363bc2ca9c2c8d0b948dbda61e004faed75a38838fb1a02dfd4d",
+    "datasets/annotation-v3/contrast-01/labels.jsonl": "a520ca76b6afee350c7eef9ca67fd4bc581d00df82ee217ccf2090084f9e3a5c",
+    "datasets/annotation-v3/contrast-01/provenance.jsonl": "f8ebdbe02e31b4b6f9b5710d73c9b0a7e42ac6a8ac9ed7c41eab83ad36ab5750",
+    "datasets/annotation-v3/contrast-01/manifest.json": "f1151ba13839f34b45bc30380f26d4c44b047bb4b0e2d8a4f22142d013b99d70",
+    "datasets/annotation-v1/splits/validation.jsonl": "5c8039978a84943db4ffa44524a65200ff5022ce06092e128ffbbe8fbff8df87",
+    "datasets/annotation-v1/splits/test.jsonl": "13fc3de4b7be58a689124c31477a14cf7cbb3d82e09a8c4276174f0825c775d0",
+    "datasets/annotation-v3/debt-01/manifest.json": "6034c0326b362fa6f0c6a83f47249f9150310f6a4ef0e46bbdc79eb24eb36422",
+    "datasets/annotation-v2/human-value-01/labels.jsonl": "2a79ec30952a00c9f52018d652eaa7e2399ec068a6dcc796a82f8fa8ccd66ed1",
+    "datasets/annotation-v2/human-value-01/review-queue.jsonl": "362cf8ca58c265d51e3ac12706de66fd6c4fb5111a82c5390d4aef92f13b6a28",
+    "datasets/annotation-v2/human-value-01/freeze.json": "c54967dee43fb2fbea177804d93670421b8f55b4435466a79542cd5058e96d9e",
+    "datasets/probe-v1/notes.jsonl": "6ffc9017bf8a153fe42741f20788b47e35ddd6213afb5479ac25e32d26c31797"
+  },
+  "outputs_sha256": {
+    "train.jsonl": "fe851fd1a7905ffe6fab65398167a4adc762cbe8f1f3066e4e70f9e83cd3b24d"
+  },
+  "evaluation_sets": "validation.jsonl (in-sample, logging only) and test.jsonl are symlinks to the frozen annotation-v1 splits"
+}

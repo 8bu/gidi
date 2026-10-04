@@ -50,7 +50,12 @@ from typing import Any
 NAME = "debt-01"
 SEED = "debt-01:v1"
 DEFAULT_OUT_DIR = Path("datasets/annotation-v3/debt-01")
-DERIVED_DIR = Path("datasets/annotation-v3/training-v1")  # built from this batch
+# Sets built from this batch (they hold its texts) or derived from it: not leakage references.
+DERIVED_DIRS = (
+    Path("datasets/annotation-v3/training-v1"),
+    Path("datasets/annotation-v3/contrast-01"),
+    Path("datasets/annotation-v3/training-v2"),
+)
 SCHEMA = Path("configs/annotation-v3.quet.yaml")
 CONTRACT = Path("configs/annotation-v3.yaml")
 DOC = Path("docs/annotation-v3.md")
@@ -148,7 +153,7 @@ def load_reference_groups(root: Path, out_dir: Path, v1_kept: list[str]) -> dict
             claimed.add(str((root / rel).resolve()))
     groups["v1-skipped-kept"] = list(v1_kept)
     # The batch itself and the training set derived from it (it holds this batch's texts).
-    own = {out_dir.resolve(), (root / DERIVED_DIR).resolve()}
+    own = {out_dir.resolve(), *((root / p).resolve() for p in DERIVED_DIRS)}
     for top in CORPUS_DIRS:
         for path in sorted((root / top).rglob("*.jsonl")):
             resolved = path.resolve()
