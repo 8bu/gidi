@@ -1,0 +1,44 @@
+{"id": "baseline-01-c3f385126089", "text": "nhan tien freelance web 6tr", "strata": ["unaccented"], "review_group": "recheck"}
+{"id": "baseline-01-63a6a7bb054f", "text": "no tien hui thang nay 1tr", "strata": ["unaccented"], "review_group": "recheck"}
+{"id": "baseline-01-b60ff1da67c3", "text": "để dành tiền cưới 5tr", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-a74b152d7abb", "text": "Quang còn nợ mình 1tr", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-932842926220", "text": "khám răng 400.000", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-6bdae11c88c7", "text": "trả nốt tiền laptop 3tr", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-bfd895a9e78f", "text": "đóng tiền trả góp laptop 2tr3", "strata": ["slang_compact_money"], "review_group": "recheck"}
+{"id": "baseline-01-31887b0387a2", "text": "vay anh họ 10 triệu", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-32d4f5a1a0c5", "text": "con no chi Thao 300k", "strata": ["unaccented"], "review_group": "recheck"}
+{"id": "baseline-01-94b4a287f26a", "text": "quà sinh nhật Vy 300 nghìn", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-759e2835dee9", "text": "cho cậu Ba mượn năm triệu", "strata": ["null_no_number_ambiguous"], "review_group": "recheck"}
+{"id": "baseline-01-790ca645bdb7", "text": "con no Duc 300k chua tra", "strata": ["unaccented"], "review_group": "recheck"}
+{"id": "baseline-01-f800a58fb404", "text": "mượn mẹ 3 triệu sửa xe", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-54e02ec5ac38", "text": "cho co Ut muon 3tr", "strata": ["unaccented"], "review_group": "recheck"}
+{"id": "baseline-01-536aae9840c3", "text": "mượn mẹ 1tr5 hôm 12/11", "strata": ["multi_number", "date_month_year_amount", "slang_compact_money"], "review_group": "recheck"}
+{"id": "baseline-01-bbba32c0b2c6", "text": "no tien dien thang truoc 400k", "strata": ["unaccented"], "review_group": "recheck"}
+{"id": "baseline-01-1ec5c9725834", "text": "cty thanh toan tien xang 600k", "strata": ["unaccented"], "review_group": "recheck"}
+{"id": "baseline-01-ce5a7b178c63", "text": "muon anh trai 3tr dong hoc phi", "strata": ["unaccented"], "review_group": "recheck"}
+{"id": "baseline-01-840204843309", "text": "trả home credit 1.450.000đ", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-79ef1ca54d34", "text": "no tien nha chu tro 1tr5 chua tra", "strata": ["slang_compact_money", "unaccented", "long_noisy"], "review_group": "recheck"}
+{"id": "baseline-01-5facc59b6ce4", "text": "no tien an cua Vy 90k chua tra", "strata": ["unaccented", "long_noisy"], "review_group": "recheck"}
+{"id": "baseline-01-9cbf3e661f54", "text": "nợ tiền ăn Hương 85k chưa trả", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-60a88b884cbb", "text": "go! big c siêu thị 1tr1", "strata": ["slang_compact_money", "unusual_whitespace_punct"], "review_group": "recheck"}
+{"id": "baseline-01-eff9d5387a64", "text": "no tien tro chu nha 1tr5 chua dua", "strata": ["slang_compact_money", "unaccented", "long_noisy"], "review_group": "recheck"}
+{"id": "baseline-01-3f29fa04ff7a", "text": "trả tiền bác Sáu mượn lần trước 3tr", "strata": ["long_noisy"], "review_group": "recheck"}
+{"id": "baseline-01-1f8b559fe3c3", "text": "no anh Khoa 300 chua tra", "strata": ["bare_number", "unaccented"], "review_group": "recheck"}
+{"id": "baseline-01-8c6efc9e88a9", "text": "fe credit ky nay 1tr350", "strata": ["slang_compact_money", "unaccented"], "review_group": "recheck"}
+{"id": "baseline-01-8deb6e7536ee", "text": "cho bạn phòng mượn 600k tiền nhà", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-4ddd3440798f", "text": "sua tuoi banh keo bach hoa xanh 96k", "strata": ["long_noisy"], "review_group": "recheck"}
+{"id": "baseline-01-398b27553bce", "text": "thanh toan the vpbank 3tr4", "strata": ["slang_compact_money", "unaccented"], "review_group": "recheck"}
+{"id": "baseline-01-0c55e0ef2432", "text": "khoa hoc online udemy 249k", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-04650ca0c139", "text": "vay chị dâu 5tr sửa nhà", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-c94bbed64a2e", "text": "em Bình mượn 500k đóng học", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-844f7b8dd50f", "text": "tiền phòng trọ t11 2tr8", "strata": ["multi_number", "date_month_year_amount", "slang_compact_money"], "review_group": "recheck"}
+{"id": "baseline-01-2873fb699392", "text": "shopeefood tra sua 2 ly 96k", "strata": ["multi_number", "quantity_amount", "unaccented"], "review_group": "recheck"}
+{"id": "baseline-01-8cba9d0ef664", "text": "mượn chị hai 3 triệu", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-087161711b70", "text": "được mẹ cho 1 triệu", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-08ba8df8cb73", "text": "chi Loan muon 2 trieu", "strata": ["unaccented"], "review_group": "recheck"}
+{"id": "baseline-01-894e99390df3", "text": "mượn bạn cùng phòng 200k đổ xăng", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-1927a709916e", "text": "home credit ky 5 890k", "strata": ["multi_number", "installment_index_amount"], "review_group": "recheck"}
+{"id": "baseline-01-6e2fdec4cb11", "text": "cho bố vay 5 triệu sửa nhà", "strata": ["general"], "review_group": "recheck"}
+{"id": "baseline-01-f7e218418018", "text": "khach tra tien web 8tr", "strata": ["unaccented"], "review_group": "recheck"}
+{"id": "baseline-01-0e7dabdf569a", "text": "được mẹ cho 1 củ", "strata": ["slang_compact_money"], "review_group": "recheck"}
+{"id": "baseline-01-4b8052a1d00e", "text": "Minh trả tiền bữa lẩu 250k", "strata": ["general"], "review_group": "recheck"}
