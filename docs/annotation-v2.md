@@ -358,6 +358,13 @@ label (16), every multi-number note, and 15 more notes by `sha256("human-value-0
 `review-02-proposals.jsonl` shows the current human labels (no model output). quet-web project
 `gidi-hv01-review-02`, reviewer `8bu` (the user); merge with `quet web pull --labels`.
 
+The user's second review changed 7 labels and set one rule for this set: **a debt-only note**
+("còn nợ Hùng 300k", "Phúc chưa trả 1tr5") **is `borrow` when the user owes and `lend` when the
+other party owes**, not `skipped` as in annotation-v1. All 10 debt-only notes follow it. This
+differs from the annotation-v1 meaning that V7/V8's type head learned, so the phase-3 report gives
+type/target results with and without these 10 notes. A taxonomy-wide change needs a new
+annotation version.
+
 The set has two batches. **Batch 1** is the 150-note queue above, labelled now. **Batch 2** comes
 later: new notes written only for the short strata in `manifest.json` (about 71 notes: bare
 number, multi-number, quantity, unusual whitespace/punctuation, installment, null, date), with no
