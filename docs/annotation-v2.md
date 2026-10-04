@@ -353,6 +353,11 @@ the originals with `quet web pull --project gidi-hv01-recheck-01 --user nhi --la
 `labels.jsonl` = nhi's 150 labels with the 44 rechecked ones merged in, plus one user decision:
 `trả tiền bác Sáu mượn lần trước 3tr` is `uncertain` (direction unclear), not nhi's `skipped`.
 
+Second review (phase 2): `review-02-queue.jsonl` (49 notes) = every non-complete or no-amount
+label (16), every multi-number note, and 15 more notes by `sha256("human-value-01:review-02:<id>")`.
+`review-02-proposals.jsonl` shows the current human labels (no model output). quet-web project
+`gidi-hv01-review-02`, reviewer `8bu` (the user); merge with `quet web pull --labels`.
+
 The set has two batches. **Batch 1** is the 150-note queue above, labelled now. **Batch 2** comes
 later: new notes written only for the short strata in `manifest.json` (about 71 notes: bare
 number, multi-number, quantity, unusual whitespace/punctuation, installment, null, date), with no
