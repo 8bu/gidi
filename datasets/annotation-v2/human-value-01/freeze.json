@@ -1,0 +1,41 @@
+{
+  "set": "human-value-01",
+  "batch": 1,
+  "phase": "phase-2-frozen",
+  "frozen_at": "2026-10-04",
+  "schema": "configs/annotation-v2.quet.yaml",
+  "files": {
+    "review-queue.jsonl": "362cf8ca58c265d51e3ac12706de66fd6c4fb5111a82c5390d4aef92f13b6a28",
+    "labels.jsonl": "2a79ec30952a00c9f52018d652eaa7e2399ec068a6dcc796a82f8fa8ccd66ed1",
+    "annotation-guide.md": "dff00d7c5005caf6abc5dacff9aa75a0c2194806bf019bc04ca797a475d26010",
+    "manifest.json": "85fb34d6b6c56a157317086a9415d855a04289e76ca4d3b0f33f1969a024846f"
+  },
+  "schema_sha256": "78781caf048841f975961b6a363689f4ebf148c6722aec9b0d0bf2620381501e",
+  "stats": {
+    "labels": 150,
+    "status": {
+      "complete": 147,
+      "uncertain": 3
+    },
+    "type": {
+      "expense": 30,
+      "income": 21,
+      "transfer": 35,
+      "lend": 20,
+      "repayment_out": 15,
+      "refund": 3,
+      "borrow": 20,
+      "repayment_in": 5,
+      "None": 1
+    },
+    "value_null": 1,
+    "target_null": 75
+  },
+  "rule_amendment": "debt-only notes are borrow/lend, not skipped (see docs/annotation-v2.md)",
+  "labellers": {
+    "first_pass": "nhi (quet-web)",
+    "recheck_44": "nhi with LLM proposals",
+    "second_review_49": "user (8bu)"
+  },
+  "never_train": true
+}
