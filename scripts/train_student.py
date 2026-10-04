@@ -53,6 +53,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--ffn-map", default=None, help="FFN neuron map dir (models/compression-v3/ffn/X)"
     )
+    parser.add_argument(
+        "--retokenize",
+        action="store_true",
+        help="encode the notes with the pruned tokenizer, not remapped cache ids (supervised only)",
+    )
     parser.add_argument("--temperature", type=float, default=kd.temperature)
     parser.add_argument("--alpha-hard", type=float, default=kd.alpha_hard)
     parser.add_argument("--type-weight", type=float, default=kd.type_weight)
@@ -96,6 +101,7 @@ def main(argv: list[str] | None = None) -> int:
             truncate_positions=args.truncate_positions,
             vocab_spec=args.vocab_spec,
             ffn_map=args.ffn_map,
+            retokenize=args.retokenize,
             seed=seed,
             kd=kd,
             lr=args.lr,

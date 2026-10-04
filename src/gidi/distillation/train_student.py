@@ -59,7 +59,14 @@ from gidi.distillation.student import (
     build_student,
     copy_pretrained_encoder,
 )
-from gidi.distillation.targets import MANIFEST_FILE, load_targets, sha256_file, verify_encoding
+from gidi.distillation.targets import (
+    MANIFEST_FILE,
+    TeacherTargets,
+    load_targets,
+    padded_encoding,
+    sha256_file,
+    verify_encoding,
+)
 from gidi.modeling.checkpoint import save_checkpoint
 from gidi.modeling.model import GidiMultiTaskModel
 from gidi.modeling.preprocessing import TYPES
@@ -116,6 +123,9 @@ class StudentTrainConfig:
     truncate_positions: bool = False
     vocab_spec: str | None = None  # models/compression-v1/vocab/<policy>/
     ffn_map: str | None = None  # compression-v3: models/compression-v3/ffn/<policy>/
+    # annotation-v3 retrain: encode the training notes with the pruned student tokenizer instead
+    # of remapping cached old-vocabulary ids (needed when a note uses a token the spec dropped).
+    retokenize: bool = False
 
 
 def effective_kd(cfg: StudentTrainConfig) -> KDConfig:
@@ -233,6 +243,29 @@ def _nonempty(path: Path) -> bool:
     return path.exists() and any(path.iterdir())
 
 
+def retokenized_targets(
+    targets: TeacherTargets, records: list[dict[str, Any]], tokenizer: Any, max_length: int
+) -> TeacherTargets:
+    """``targets`` with inputs and labels re-encoded by ``tokenizer`` (cache rows checked).
+
+    The cache rows must be the ``records`` (id, text, type, target); tensors and offsets are
+    replaced by the padded encoding of the student tokenizer. Teacher logits are kept unchanged.
+    """
+    if len(records) != len(targets):
+        raise ValueError(f"{len(records)} records but the target cache has {len(targets)} rows")
+    data = prepare(tokenizer, records, max_length)
+    ids, mask, tags, offsets = padded_encoding(data, max_length, int(tokenizer.pad_token_id))
+    index = [{**row, "offsets": offs} for row, offs in zip(targets.index, offsets, strict=True)]
+    return replace(
+        targets,
+        input_ids=ids,
+        attention_mask=mask,
+        tag_labels=tags,
+        type_ids=data.type_ids,
+        index=index,
+    )
+
+
 def train_student(cfg: StudentTrainConfig) -> dict[str, Any]:
     """Train one (arm, seed) run end to end; returns the ``checkpoint.json`` payload."""
     kd = effective_kd(cfg)
@@ -267,10 +300,20 @@ def train_student(cfg: StudentTrainConfig) -> dict[str, Any]:
     test_records = load_split(splits_dir / "test.jsonl")  # evaluation only, not guarded
     assert_distillation_trainable([*train_records, *val_records])
     if cfg.vocab_spec:
-        # Pruned vocabulary: the cached old ids are remapped; verify_encoding then proves the
-        # pruned tokenizer encodes every training note to exactly the remapped ids.
         tokenizer, kept_old_ids = load_vocab_spec(cfg.vocab_spec)
-        targets = replace(targets, input_ids=remap_ids(targets.input_ids, kept_old_ids))
+        if cfg.retokenize:
+            # Notes may use tokens the pruned vocabulary dropped, so the cached old ids cannot
+            # be remapped; the inputs and labels are encoded with the pruned tokenizer, which is
+            # the deployed one. The teacher logits are not used (supervised arm only).
+            if cfg.arm != "supervised":
+                raise ValueError("retokenize needs the supervised arm (teacher logits unusable)")
+            targets = retokenized_targets(targets, train_records, tokenizer, cfg.max_length)
+        else:
+            # Pruned vocabulary: the cached old ids are remapped; verify_encoding then proves the
+            # pruned tokenizer encodes every training note to exactly the remapped ids.
+            targets = replace(targets, input_ids=remap_ids(targets.input_ids, kept_old_ids))
+    elif cfg.retokenize:
+        raise ValueError("retokenize applies to a pruned vocabulary (--vocab-spec)")
     else:
         tokenizer, kept_old_ids = load_tokenizer(cfg.tokenizer_name), None
     reencoded = verify_encoding(targets, train_records, tokenizer, cfg.max_length)

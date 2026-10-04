@@ -1,0 +1,2879 @@
+{
+ "experiment": "annotation-v3-retrain",
+ "smoke": false,
+ "old_model": {
+  "path": "/Users/8bu/Projects/gidi/models/gidi-finance-v1/model.int8.onnx",
+  "sha256": "a31caa5764c5ba99c44d4575da4695ce44232b836edb6d99b775558869dfc411"
+ },
+ "new_model": {
+  "path": "/Users/8bu/Projects/gidi/experiments/annotation-v3-retrain/onnx/model.int8.onnx",
+  "sha256": "aede21a6b95d709e6511bc3b8904887d3880e55816648a05a9ca7d42b67e5a0b"
+ },
+ "v7_model": {
+  "path": "/Users/8bu/Projects/gidi/models/gidi-finance-v2/model.int8.onnx",
+  "sha256": "bc7945c3a7ff1d43648b65fe4fcae1ca3ca3c21dc23dccd61aa750f19881994e"
+ },
+ "systems": {
+  "v7": "models/gidi-finance-v2 INT8: encoder + its own value head (CRF)",
+  "v8_old": "models/gidi-finance-v1 INT8 encoder + gidi.value_parser.parse_value",
+  "v8_new": "retrained INT8 encoder + gidi.value_parser.parse_value"
+ },
+ "sets": {
+  "test": 105,
+  "probe": 81,
+  "human": 147
+ },
+ "human_value_01": {
+  "uncertain_excluded": 3,
+  "complete": 147
+ },
+ "debt_only_ids": [
+  "baseline-01-1f8b559fe3c3",
+  "baseline-01-32d4f5a1a0c5",
+  "baseline-01-3f8d7d6f6fac",
+  "baseline-01-43b46e772c2b",
+  "baseline-01-4a30fae51dfa",
+  "baseline-01-5facc59b6ce4",
+  "baseline-01-6b471f45cc33",
+  "baseline-01-790ca645bdb7",
+  "baseline-01-79ef1ca54d34",
+  "baseline-01-9cbf3e661f54",
+  "baseline-01-a74b152d7abb",
+  "baseline-01-bbba32c0b2c6",
+  "baseline-01-eff9d5387a64"
+ ],
+ "metrics": {
+  "test": {
+   "old": {
+    "n": 105,
+    "type_accuracy": 0.9428571428571428,
+    "type_macro_f1": 0.9563291899357473,
+    "target_exact": 0.8857142857142857,
+    "span_f1": 0.8076923076923077,
+    "per_class_f1": {
+     "expense": 0.9180327868852458,
+     "income": 0.8571428571428572,
+     "borrow": 1.0,
+     "lend": 1.0,
+     "repayment_in": 1.0,
+     "repayment_out": 0.9523809523809523,
+     "transfer": 0.923076923076923,
+     "refund": 1.0
+    },
+    "confusion_matrix": [
+     [
+      28,
+      1,
+      0,
+      0,
+      0,
+      1,
+      2,
+      0
+     ],
+     [
+      1,
+      9,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      0,
+      9,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      9,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      8,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      10,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      18,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      8
+     ]
+    ]
+   },
+   "new": {
+    "n": 105,
+    "type_accuracy": 0.9047619047619048,
+    "type_macro_f1": 0.9118579648765407,
+    "target_exact": 0.8952380952380953,
+    "span_f1": 0.8301886792452831,
+    "per_class_f1": {
+     "expense": 0.8888888888888888,
+     "income": 0.8181818181818182,
+     "borrow": 1.0,
+     "lend": 0.9473684210526316,
+     "repayment_in": 0.8571428571428571,
+     "repayment_out": 0.9473684210526316,
+     "transfer": 0.8947368421052632,
+     "refund": 0.9411764705882353
+    },
+    "confusion_matrix": [
+     [
+      28,
+      2,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0
+     ],
+     [
+      1,
+      9,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      0,
+      9,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      9,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      1,
+      6,
+      0,
+      0,
+      1
+     ],
+     [
+      1,
+      0,
+      0,
+      0,
+      0,
+      9,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      17,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      8
+     ]
+    ]
+   }
+  },
+  "probe": {
+   "old": {
+    "n": 81,
+    "type_accuracy": 0.7777777777777778,
+    "type_macro_f1": 0.7543417366946779,
+    "target_exact": 0.8148148148148148,
+    "span_f1": 0.7818181818181819,
+    "per_class_f1": {
+     "expense": 0.823529411764706,
+     "income": 0.823529411764706,
+     "borrow": 0.6666666666666666,
+     "lend": 0.8,
+     "repayment_in": 0.5,
+     "repayment_out": 0.888888888888889,
+     "transfer": 0.0,
+     "refund": 0.7777777777777778
+    },
+    "confusion_matrix": [
+     [
+      14,
+      1,
+      0,
+      0,
+      0,
+      0,
+      2,
+      1
+     ],
+     [
+      1,
+      14,
+      2,
+      0,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      9,
+      4,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      1,
+      10,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      0,
+      2,
+      0,
+      0,
+      8,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      7
+     ]
+    ]
+   },
+   "new": {
+    "n": 81,
+    "type_accuracy": 0.8148148148148148,
+    "type_macro_f1": 0.7795518207282913,
+    "target_exact": 0.8148148148148148,
+    "span_f1": 0.7889908256880734,
+    "per_class_f1": {
+     "expense": 0.8484848484848485,
+     "income": 0.8888888888888888,
+     "borrow": 0.8000000000000002,
+     "lend": 0.8181818181818182,
+     "repayment_in": 0.5,
+     "repayment_out": 0.8235294117647058,
+     "transfer": 0.0,
+     "refund": 0.7777777777777778
+    },
+    "confusion_matrix": [
+     [
+      14,
+      1,
+      0,
+      0,
+      0,
+      0,
+      2,
+      1
+     ],
+     [
+      0,
+      16,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      12,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      2,
+      9,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      0,
+      2,
+      1,
+      0,
+      7,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      7
+     ]
+    ]
+   }
+  },
+  "human": {
+   "all_complete": {
+    "v7": {
+     "n": 147,
+     "type_accuracy": 0.8435374149659864,
+     "type_macro_f1": 0.8048667830902553,
+     "target_exact": 0.8367346938775511,
+     "span_f1": 0.7534246575342465,
+     "per_class_f1": {
+      "expense": 0.847457627118644,
+      "income": 0.8500000000000001,
+      "borrow": 0.7499999999999999,
+      "lend": 0.8571428571428571,
+      "repayment_in": 0.4444444444444445,
+      "repayment_out": 0.8749999999999999,
+      "transfer": 0.9577464788732395,
+      "refund": 0.8571428571428571
+     },
+     "confusion_matrix": [
+      [
+       25,
+       1,
+       0,
+       0,
+       0,
+       1,
+       2,
+       0
+      ],
+      [
+       2,
+       17,
+       0,
+       0,
+       1,
+       0,
+       0,
+       1
+      ],
+      [
+       2,
+       1,
+       12,
+       0,
+       5,
+       0,
+       0,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       15,
+       3,
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       4,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       1,
+       14,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       34,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       3
+      ]
+     ],
+     "value_exact": 0.9863945578231292,
+     "type_target_exact": 0.7414965986394558,
+     "end_to_end_exact": 0.7346938775510204
+    },
+    "v8_old": {
+     "n": 147,
+     "type_accuracy": 0.8435374149659864,
+     "type_macro_f1": 0.8048667830902553,
+     "target_exact": 0.8367346938775511,
+     "span_f1": 0.7534246575342465,
+     "per_class_f1": {
+      "expense": 0.847457627118644,
+      "income": 0.8500000000000001,
+      "borrow": 0.7499999999999999,
+      "lend": 0.8571428571428571,
+      "repayment_in": 0.4444444444444445,
+      "repayment_out": 0.8749999999999999,
+      "transfer": 0.9577464788732395,
+      "refund": 0.8571428571428571
+     },
+     "confusion_matrix": [
+      [
+       25,
+       1,
+       0,
+       0,
+       0,
+       1,
+       2,
+       0
+      ],
+      [
+       2,
+       17,
+       0,
+       0,
+       1,
+       0,
+       0,
+       1
+      ],
+      [
+       2,
+       1,
+       12,
+       0,
+       5,
+       0,
+       0,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       15,
+       3,
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       4,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       1,
+       14,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       34,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       3
+      ]
+     ],
+     "value_exact": 1.0,
+     "type_target_exact": 0.7414965986394558,
+     "end_to_end_exact": 0.7414965986394558
+    },
+    "v8_new": {
+     "n": 147,
+     "type_accuracy": 0.9319727891156463,
+     "type_macro_f1": 0.9097205331593409,
+     "target_exact": 0.8639455782312925,
+     "span_f1": 0.794701986754967,
+     "per_class_f1": {
+      "expense": 0.912280701754386,
+      "income": 0.9,
+      "borrow": 1.0,
+      "lend": 0.9473684210526316,
+      "repayment_in": 0.8,
+      "repayment_out": 0.9032258064516129,
+      "transfer": 0.9577464788732395,
+      "refund": 0.8571428571428571
+     },
+     "confusion_matrix": [
+      [
+       26,
+       1,
+       0,
+       0,
+       0,
+       0,
+       2,
+       0
+      ],
+      [
+       1,
+       18,
+       0,
+       0,
+       1,
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       0,
+       20,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       18,
+       0,
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       4,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       1,
+       14,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       34,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       3
+      ]
+     ],
+     "value_exact": 1.0,
+     "type_target_exact": 0.8231292517006803,
+     "end_to_end_exact": 0.8231292517006803
+    }
+   },
+   "debt_only": {
+    "v7": {
+     "n": 13,
+     "type_accuracy": 0.07692307692307693,
+     "type_macro_f1": 0.09999999999999999,
+     "target_exact": 0.5384615384615384,
+     "span_f1": 0.5714285714285715,
+     "per_class_f1": {
+      "expense": 0.0,
+      "income": 0.0,
+      "borrow": 0.19999999999999998,
+      "lend": 0.0,
+      "repayment_in": 0.0,
+      "repayment_out": 0.0,
+      "transfer": 0.0,
+      "refund": 0.0
+     },
+     "confusion_matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       2,
+       1,
+       1,
+       0,
+       5,
+       0,
+       0,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0,
+       3,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ],
+     "value_exact": 0.9230769230769231,
+     "type_target_exact": 0.0,
+     "end_to_end_exact": 0.0
+    },
+    "v8_old": {
+     "n": 13,
+     "type_accuracy": 0.07692307692307693,
+     "type_macro_f1": 0.09999999999999999,
+     "target_exact": 0.5384615384615384,
+     "span_f1": 0.5714285714285715,
+     "per_class_f1": {
+      "expense": 0.0,
+      "income": 0.0,
+      "borrow": 0.19999999999999998,
+      "lend": 0.0,
+      "repayment_in": 0.0,
+      "repayment_out": 0.0,
+      "transfer": 0.0,
+      "refund": 0.0
+     },
+     "confusion_matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       2,
+       1,
+       1,
+       0,
+       5,
+       0,
+       0,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0,
+       3,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ],
+     "value_exact": 1.0,
+     "type_target_exact": 0.0,
+     "end_to_end_exact": 0.0
+    },
+    "v8_new": {
+     "n": 13,
+     "type_accuracy": 0.9230769230769231,
+     "type_macro_f1": 0.9285714285714286,
+     "target_exact": 0.8461538461538461,
+     "span_f1": 0.8333333333333334,
+     "per_class_f1": {
+      "expense": 0.0,
+      "income": 0.0,
+      "borrow": 1.0,
+      "lend": 0.8571428571428571,
+      "repayment_in": 0.0,
+      "repayment_out": 0.0,
+      "transfer": 0.0,
+      "refund": 0.0
+     },
+     "confusion_matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       9,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       3,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ],
+     "value_exact": 1.0,
+     "type_target_exact": 0.8461538461538461,
+     "end_to_end_exact": 0.8461538461538461
+    }
+   },
+   "debt_only_v1_skipped": {
+    "v7": {
+     "n": 8,
+     "type_accuracy": 0.125,
+     "type_macro_f1": 0.16666666666666669,
+     "target_exact": 0.5,
+     "span_f1": 0.5714285714285715,
+     "per_class_f1": {
+      "expense": 0.0,
+      "income": 0.0,
+      "borrow": 0.33333333333333337,
+      "lend": 0.0,
+      "repayment_in": 0.0,
+      "repayment_out": 0.0,
+      "transfer": 0.0,
+      "refund": 0.0
+     },
+     "confusion_matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       2,
+       0,
+       1,
+       0,
+       2,
+       0,
+       0,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0,
+       2,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ],
+     "value_exact": 0.875,
+     "type_target_exact": 0.0,
+     "end_to_end_exact": 0.0
+    },
+    "v8_old": {
+     "n": 8,
+     "type_accuracy": 0.125,
+     "type_macro_f1": 0.16666666666666669,
+     "target_exact": 0.5,
+     "span_f1": 0.5714285714285715,
+     "per_class_f1": {
+      "expense": 0.0,
+      "income": 0.0,
+      "borrow": 0.33333333333333337,
+      "lend": 0.0,
+      "repayment_in": 0.0,
+      "repayment_out": 0.0,
+      "transfer": 0.0,
+      "refund": 0.0
+     },
+     "confusion_matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       2,
+       0,
+       1,
+       0,
+       2,
+       0,
+       0,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0,
+       2,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ],
+     "value_exact": 1.0,
+     "type_target_exact": 0.0,
+     "end_to_end_exact": 0.0
+    },
+    "v8_new": {
+     "n": 8,
+     "type_accuracy": 0.875,
+     "type_macro_f1": 0.9,
+     "target_exact": 0.875,
+     "span_f1": 0.875,
+     "per_class_f1": {
+      "expense": 0.0,
+      "income": 0.0,
+      "borrow": 1.0,
+      "lend": 0.8,
+      "repayment_in": 0.0,
+      "repayment_out": 0.0,
+      "transfer": 0.0,
+      "refund": 0.0
+     },
+     "confusion_matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       5,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       2,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ],
+     "value_exact": 1.0,
+     "type_target_exact": 0.875,
+     "end_to_end_exact": 0.875
+    }
+   },
+   "non_debt": {
+    "v7": {
+     "n": 134,
+     "type_accuracy": 0.917910447761194,
+     "type_macro_f1": 0.9027854107689978,
+     "target_exact": 0.8656716417910447,
+     "span_f1": 0.7839999999999999,
+     "per_class_f1": {
+      "expense": 0.8928571428571429,
+      "income": 0.8717948717948718,
+      "borrow": 1.0,
+      "lend": 0.967741935483871,
+      "repayment_in": 0.8,
+      "repayment_out": 0.8749999999999999,
+      "transfer": 0.9577464788732395,
+      "refund": 0.8571428571428571
+     },
+     "confusion_matrix": [
+      [
+       25,
+       1,
+       0,
+       0,
+       0,
+       1,
+       2,
+       0
+      ],
+      [
+       2,
+       17,
+       0,
+       0,
+       1,
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       0,
+       11,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       15,
+       0,
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       4,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       1,
+       14,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       34,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       3
+      ]
+     ],
+     "value_exact": 0.9925373134328358,
+     "type_target_exact": 0.8134328358208955,
+     "end_to_end_exact": 0.8059701492537313
+    },
+    "v8_old": {
+     "n": 134,
+     "type_accuracy": 0.917910447761194,
+     "type_macro_f1": 0.9027854107689978,
+     "target_exact": 0.8656716417910447,
+     "span_f1": 0.7839999999999999,
+     "per_class_f1": {
+      "expense": 0.8928571428571429,
+      "income": 0.8717948717948718,
+      "borrow": 1.0,
+      "lend": 0.967741935483871,
+      "repayment_in": 0.8,
+      "repayment_out": 0.8749999999999999,
+      "transfer": 0.9577464788732395,
+      "refund": 0.8571428571428571
+     },
+     "confusion_matrix": [
+      [
+       25,
+       1,
+       0,
+       0,
+       0,
+       1,
+       2,
+       0
+      ],
+      [
+       2,
+       17,
+       0,
+       0,
+       1,
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       0,
+       11,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       15,
+       0,
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       4,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       1,
+       14,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       34,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       3
+      ]
+     ],
+     "value_exact": 1.0,
+     "type_target_exact": 0.8134328358208955,
+     "end_to_end_exact": 0.8134328358208955
+    },
+    "v8_new": {
+     "n": 134,
+     "type_accuracy": 0.9328358208955224,
+     "type_macro_f1": 0.9143035633153761,
+     "target_exact": 0.8656716417910447,
+     "span_f1": 0.7874015748031495,
+     "per_class_f1": {
+      "expense": 0.9285714285714286,
+      "income": 0.9,
+      "borrow": 1.0,
+      "lend": 0.967741935483871,
+      "repayment_in": 0.8,
+      "repayment_out": 0.9032258064516129,
+      "transfer": 0.9577464788732395,
+      "refund": 0.8571428571428571
+     },
+     "confusion_matrix": [
+      [
+       26,
+       1,
+       0,
+       0,
+       0,
+       0,
+       2,
+       0
+      ],
+      [
+       1,
+       18,
+       0,
+       0,
+       1,
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       0,
+       11,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       15,
+       0,
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       4,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       1,
+       14,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       34,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       3
+      ]
+     ],
+     "value_exact": 1.0,
+     "type_target_exact": 0.8208955223880597,
+     "end_to_end_exact": 0.8208955223880597
+    }
+   }
+  }
+ },
+ "diffs": {
+  "test": [
+   {
+    "id": "baseline-01-69c9cce877fb",
+    "text": "hủ tiếu tối qua 35k",
+    "gold_type": "expense",
+    "gold_target": null,
+    "old_type": "expense",
+    "old_target": null,
+    "new_type": "expense",
+    "new_target": "tiếu",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": false
+   },
+   {
+    "id": "baseline-01-b590dd3df660",
+    "text": "tra lai chi Mai 2tr",
+    "gold_type": "repayment_out",
+    "gold_target": "Mai",
+    "old_type": "repayment_out",
+    "old_target": "Mai",
+    "new_type": "expense",
+    "new_target": "Mai",
+    "old_type_ok": true,
+    "new_type_ok": false,
+    "old_target_ok": true,
+    "new_target_ok": true
+   },
+   {
+    "id": "baseline-01-82f29c0ccb74",
+    "text": "vay tiêu dùng trả kỳ này 3tr4",
+    "gold_type": "repayment_out",
+    "gold_target": null,
+    "old_type": "repayment_out",
+    "old_target": "tiêu",
+    "new_type": "repayment_out",
+    "new_target": null,
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": true
+   },
+   {
+    "id": "baseline-01-ebf8bca50f8d",
+    "text": "tien chay grab hom nay 450k",
+    "gold_type": "income",
+    "gold_target": "grab",
+    "old_type": "expense",
+    "old_target": null,
+    "new_type": "expense",
+    "new_target": "grab",
+    "old_type_ok": false,
+    "new_type_ok": false,
+    "old_target_ok": false,
+    "new_target_ok": true
+   },
+   {
+    "id": "baseline-01-07ca1f56011d",
+    "text": "de rieng tien sua xe 800k",
+    "gold_type": "transfer",
+    "gold_target": null,
+    "old_type": "transfer",
+    "old_target": null,
+    "new_type": "expense",
+    "new_target": null,
+    "old_type_ok": true,
+    "new_type_ok": false,
+    "old_target_ok": true,
+    "new_target_ok": true
+   },
+   {
+    "id": "baseline-01-30cd0e980666",
+    "text": "bách hoá xanh rau thịt 187k",
+    "gold_type": "expense",
+    "gold_target": "bách hoá xanh",
+    "old_type": "expense",
+    "old_target": "bách hoá",
+    "new_type": "expense",
+    "new_target": "bách",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": false
+   },
+   {
+    "id": "baseline-01-576ad560ebae",
+    "text": "coopmart đồ dùng tuần 412k",
+    "gold_type": "expense",
+    "gold_target": "coopmart",
+    "old_type": "repayment_out",
+    "old_target": "coopmart",
+    "new_type": "income",
+    "new_target": "coopmart",
+    "old_type_ok": false,
+    "new_type_ok": false,
+    "old_target_ok": true,
+    "new_target_ok": true
+   },
+   {
+    "id": "baseline-01-e2f16245d7af",
+    "text": "vay chú Hải 20tr mua xe",
+    "gold_type": "borrow",
+    "gold_target": "Hải",
+    "old_type": "borrow",
+    "old_target": "chú",
+    "new_type": "borrow",
+    "new_target": "chú Hải",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": false
+   },
+   {
+    "id": "baseline-01-92e6808256ca",
+    "text": "nhan tien viet bai 600 nghin",
+    "gold_type": "income",
+    "gold_target": null,
+    "old_type": "income",
+    "old_target": null,
+    "new_type": "income",
+    "new_target": "et",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": false
+   },
+   {
+    "id": "targeted-annotation-v1-01-a07b6b6eb45c",
+    "text": "bảo việt bồi thường viện phí 2tr6",
+    "gold_type": "refund",
+    "gold_target": "bảo việt",
+    "old_type": "refund",
+    "old_target": "ảo",
+    "new_type": "refund",
+    "new_target": "bảo",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": false
+   },
+   {
+    "id": "targeted-annotation-v1-01-84622e5a18da",
+    "text": "Nhi ck tra lai 120k tien sua",
+    "gold_type": "repayment_in",
+    "gold_target": "Nhi",
+    "old_type": "repayment_in",
+    "old_target": "Nhi",
+    "new_type": "refund",
+    "new_target": "Nhi",
+    "old_type_ok": true,
+    "new_type_ok": false,
+    "old_target_ok": true,
+    "new_target_ok": true
+   },
+   {
+    "id": "targeted-annotation-v1-01-2cda1d910520",
+    "text": "vay ngân hàng mua nhà giải ngân 800tr",
+    "gold_type": "borrow",
+    "gold_target": "ngân hàng",
+    "old_type": "borrow",
+    "old_target": "hàng",
+    "new_type": "borrow",
+    "new_target": "ngân",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": false
+   },
+   {
+    "id": "targeted-annotation-v1-01-7d1037648087",
+    "text": "roommate tra tien nha minh dong truoc 1tr5",
+    "gold_type": "repayment_in",
+    "gold_target": "roommate",
+    "old_type": "repayment_in",
+    "old_target": "ro",
+    "new_type": "repayment_in",
+    "new_target": "ommate",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": false
+   },
+   {
+    "id": "targeted-annotation-v1-01-6bd81e618b99",
+    "text": "co Thuy cho muon 1tr",
+    "gold_type": "borrow",
+    "gold_target": "Thuy",
+    "old_type": "borrow",
+    "old_target": "co Thuy",
+    "new_type": "borrow",
+    "new_target": "Thuy",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": true
+   },
+   {
+    "id": "targeted-annotation-v1-01-9d98b78854de",
+    "text": "đòi được nợ thằng Lâm 400k",
+    "gold_type": "repayment_in",
+    "gold_target": "Lâm",
+    "old_type": "repayment_in",
+    "old_target": "Lâm",
+    "new_type": "lend",
+    "new_target": "Lâm",
+    "old_type_ok": true,
+    "new_type_ok": false,
+    "old_target_ok": true,
+    "new_target_ok": true
+   }
+  ],
+  "probe": [
+   {
+    "id": "probe-v1-931b7bb2d6c9",
+    "text": "thg Khoa cho muon tam 300k an trua",
+    "gold_type": "borrow",
+    "gold_target": "Khoa",
+    "old_type": "lend",
+    "old_target": "Khoa",
+    "new_type": "borrow",
+    "new_target": "Khoa",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": true
+   },
+   {
+    "id": "probe-v1-3ed6ba9bbf3b",
+    "text": "me cho muon 1tr5 tra tien dien",
+    "gold_type": "borrow",
+    "gold_target": "me",
+    "old_type": "lend",
+    "old_target": "me",
+    "new_type": "borrow",
+    "new_target": "me",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": true
+   },
+   {
+    "id": "probe-v1-5b7b837cccab",
+    "text": "được cô Hà cho vay 4 củ",
+    "gold_type": "borrow",
+    "gold_target": "Hà",
+    "old_type": "lend",
+    "old_target": "Hà",
+    "new_type": "borrow",
+    "new_target": "Hà",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": true
+   },
+   {
+    "id": "probe-v1-72509f9383c4",
+    "text": "Phúc vay 700k mua điện thoại",
+    "gold_type": "lend",
+    "gold_target": "Phúc",
+    "old_type": "lend",
+    "old_target": "Phúc",
+    "new_type": "borrow",
+    "new_target": "Phúc",
+    "old_type_ok": true,
+    "new_type_ok": false,
+    "old_target_ok": true,
+    "new_target_ok": true
+   },
+   {
+    "id": "probe-v1-0bafb4ca6cdd",
+    "text": "ông nội cho 1 triệu mua sách",
+    "gold_type": "income",
+    "gold_target": "ông nội",
+    "old_type": "borrow",
+    "old_target": "ông nội",
+    "new_type": "income",
+    "new_target": "ông nội",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": true
+   },
+   {
+    "id": "probe-v1-565037cfc9f2",
+    "text": "được cô Út cho 500k",
+    "gold_type": "income",
+    "gold_target": "cô Út",
+    "old_type": "expense",
+    "old_target": "cô Út",
+    "new_type": "borrow",
+    "new_target": "cô Út",
+    "old_type_ok": false,
+    "new_type_ok": false,
+    "old_target_ok": true,
+    "new_target_ok": true
+   },
+   {
+    "id": "probe-v1-ee15ec3782f5",
+    "text": "dong bh y te cho con 700k",
+    "gold_type": "expense",
+    "gold_target": null,
+    "old_type": "expense",
+    "old_target": "dong",
+    "new_type": "expense",
+    "new_target": null,
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": true
+   },
+   {
+    "id": "probe-v1-f43b1d4ef0b7",
+    "text": "phí bh aia tháng 12 1tr1",
+    "gold_type": "expense",
+    "gold_target": "aia",
+    "old_type": "expense",
+    "old_target": "phí",
+    "new_type": "expense",
+    "new_target": null,
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": false
+   },
+   {
+    "id": "probe-v1-565127901313",
+    "text": "prudential chi trả tiền mổ 12tr",
+    "gold_type": "refund",
+    "gold_target": "prudential",
+    "old_type": "refund",
+    "old_target": "p",
+    "new_type": "refund",
+    "new_target": "pr",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": false
+   },
+   {
+    "id": "probe-v1-0fd9e0112e34",
+    "text": "bảo việt duyệt bồi thường 2tr4",
+    "gold_type": "refund",
+    "gold_target": "bảo việt",
+    "old_type": "refund",
+    "old_target": "ảo việt",
+    "new_type": "refund",
+    "new_target": "bảo việt",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": true
+   },
+   {
+    "id": "probe-v1-dec1ce82632b",
+    "text": "trung vietlott 10tr",
+    "gold_type": "income",
+    "gold_target": "vietlott",
+    "old_type": "income",
+    "old_target": "vietlott",
+    "new_type": "income",
+    "new_target": "etlott",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": false
+   },
+   {
+    "id": "probe-v1-fcb9b075334c",
+    "text": "quay số trúng 500k",
+    "gold_type": "income",
+    "gold_target": null,
+    "old_type": "borrow",
+    "old_target": null,
+    "new_type": "income",
+    "new_target": null,
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": true
+   },
+   {
+    "id": "probe-v1-9d6585d8d156",
+    "text": "được giải ba hội thao 800k",
+    "gold_type": "income",
+    "gold_target": null,
+    "old_type": "income",
+    "old_target": null,
+    "new_type": "income",
+    "new_target": "ba",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": false
+   },
+   {
+    "id": "probe-v1-1ad572c5d076",
+    "text": "khoan vay online tamo dong ky 2 900k",
+    "gold_type": "repayment_out",
+    "gold_target": "tamo",
+    "old_type": "repayment_out",
+    "old_target": null,
+    "new_type": "lend",
+    "new_target": null,
+    "old_type_ok": true,
+    "new_type_ok": false,
+    "old_target_ok": false,
+    "new_target_ok": false
+   },
+   {
+    "id": "probe-v1-a7c14a44be47",
+    "text": "chú Bình gửi lại 500k tiền xăng",
+    "gold_type": "repayment_in",
+    "gold_target": "Bình",
+    "old_type": "repayment_in",
+    "old_target": "chú Bình",
+    "new_type": "repayment_in",
+    "new_target": "chú",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": false
+   },
+   {
+    "id": "probe-v1-26da30e8b087",
+    "text": "muon chu Dung 5 cu",
+    "gold_type": "borrow",
+    "gold_target": "Dung",
+    "old_type": "borrow",
+    "old_target": "Dung",
+    "new_type": "borrow",
+    "new_target": "chu",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": false
+   },
+   {
+    "id": "probe-v1-c8abef2aa1e1",
+    "text": "trả dì Loan 1tr tiền mượn",
+    "gold_type": "repayment_out",
+    "gold_target": "Loan",
+    "old_type": "repayment_out",
+    "old_target": "dì",
+    "new_type": "repayment_out",
+    "new_target": "Loan",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": true
+   }
+  ],
+  "human": [
+   {
+    "id": "baseline-01-37a5dafba00f",
+    "text": "ve may bay vietjet tet 2tr9",
+    "gold_type": "expense",
+    "gold_target": "vietjet",
+    "old_type": "repayment_out",
+    "old_target": "vietjet",
+    "new_type": "expense",
+    "new_target": "vietjet",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": true,
+    "debt_only": false,
+    "gold_value": "2tr9"
+   },
+   {
+    "id": "baseline-01-a74b152d7abb",
+    "text": "Quang còn nợ mình 1tr",
+    "gold_type": "lend",
+    "gold_target": "Quang",
+    "old_type": "repayment_in",
+    "old_target": "Quang",
+    "new_type": "lend",
+    "new_target": "Quang",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": true,
+    "debt_only": true,
+    "gold_value": "1tr"
+   },
+   {
+    "id": "baseline-01-c6f1f2cad163",
+    "text": "phu cap an trua 730k",
+    "gold_type": "income",
+    "gold_target": null,
+    "old_type": "expense",
+    "old_target": "phu cap",
+    "new_type": "expense",
+    "new_target": "phu",
+    "old_type_ok": false,
+    "new_type_ok": false,
+    "old_target_ok": false,
+    "new_target_ok": false,
+    "debt_only": false,
+    "gold_value": "730k"
+   },
+   {
+    "id": "baseline-01-4378b025cf3e",
+    "text": "hoàn tiền đơn lazada 189.000đ",
+    "gold_type": "refund",
+    "gold_target": "lazada",
+    "old_type": "refund",
+    "old_target": "l",
+    "new_type": "refund",
+    "new_target": "lazada",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": true,
+    "debt_only": false,
+    "gold_value": "189.000đ"
+   },
+   {
+    "id": "baseline-01-08126fa63696",
+    "text": "thanh toán thẻ hsbc 7,2tr",
+    "gold_type": "repayment_out",
+    "gold_target": "hsbc",
+    "old_type": "repayment_out",
+    "old_target": "hsbc",
+    "new_type": "repayment_out",
+    "new_target": "hsb",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": false,
+    "debt_only": false,
+    "gold_value": "7,2tr"
+   },
+   {
+    "id": "baseline-01-e230c530923c",
+    "text": "taxi xanh sm ra san bay 210k",
+    "gold_type": "expense",
+    "gold_target": "xanh sm",
+    "old_type": "expense",
+    "old_target": "ta",
+    "new_type": "expense",
+    "new_target": "xi xanh sm",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": false,
+    "debt_only": false,
+    "gold_value": "210k"
+   },
+   {
+    "id": "baseline-01-32d4f5a1a0c5",
+    "text": "con no chi Thao 300k",
+    "gold_type": "borrow",
+    "gold_target": "Thao",
+    "old_type": "repayment_in",
+    "old_target": "con",
+    "new_type": "borrow",
+    "new_target": "Thao",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": true,
+    "debt_only": true,
+    "gold_value": "300k"
+   },
+   {
+    "id": "baseline-01-0564b63cc451",
+    "text": "rút tiền mặt ở vpbank 1tr5",
+    "gold_type": "transfer",
+    "gold_target": null,
+    "old_type": "transfer",
+    "old_target": null,
+    "new_type": "transfer",
+    "new_target": "vpbank",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": false,
+    "debt_only": false,
+    "gold_value": "1tr5"
+   },
+   {
+    "id": "baseline-01-c6b5de5b84d5",
+    "text": "tien viet bai seo 900k",
+    "gold_type": "income",
+    "gold_target": null,
+    "old_type": "expense",
+    "old_target": "viet",
+    "new_type": "income",
+    "new_target": "viet",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": false,
+    "debt_only": false,
+    "gold_value": "900k"
+   },
+   {
+    "id": "baseline-01-790ca645bdb7",
+    "text": "con no Duc 300k chua tra",
+    "gold_type": "borrow",
+    "gold_target": "Duc",
+    "old_type": "repayment_in",
+    "old_target": "con",
+    "new_type": "borrow",
+    "new_target": "Duc",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": true,
+    "debt_only": true,
+    "gold_value": "300k"
+   },
+   {
+    "id": "baseline-01-43b46e772c2b",
+    "text": "no tien nha ba chu 1 thang",
+    "gold_type": "borrow",
+    "gold_target": "ba chu",
+    "old_type": "expense",
+    "old_target": null,
+    "new_type": "borrow",
+    "new_target": "ba chu",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": true,
+    "debt_only": true,
+    "gold_value": null
+   },
+   {
+    "id": "baseline-01-54e02ec5ac38",
+    "text": "cho co Ut muon 3tr",
+    "gold_type": "lend",
+    "gold_target": "co Ut",
+    "old_type": "lend",
+    "old_target": "Ut",
+    "new_type": "lend",
+    "new_target": "co",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": false,
+    "debt_only": false,
+    "gold_value": "3tr"
+   },
+   {
+    "id": "baseline-01-e1889be5d444",
+    "text": "icloud 50gb 19k",
+    "gold_type": "expense",
+    "gold_target": "icloud",
+    "old_type": "expense",
+    "old_target": "icloud",
+    "new_type": "expense",
+    "new_target": "loud",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": false,
+    "debt_only": false,
+    "gold_value": "19k"
+   },
+   {
+    "id": "baseline-01-bbba32c0b2c6",
+    "text": "no tien dien thang truoc 400k",
+    "gold_type": "borrow",
+    "gold_target": null,
+    "old_type": "income",
+    "old_target": null,
+    "new_type": "borrow",
+    "new_target": null,
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": true,
+    "debt_only": true,
+    "gold_value": "400k"
+   },
+   {
+    "id": "baseline-01-79ef1ca54d34",
+    "text": "no tien nha chu tro 1tr5 chua tra",
+    "gold_type": "borrow",
+    "gold_target": "chu tro",
+    "old_type": "repayment_in",
+    "old_target": null,
+    "new_type": "borrow",
+    "new_target": "chu",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": false,
+    "debt_only": true,
+    "gold_value": "1tr5"
+   },
+   {
+    "id": "baseline-01-5facc59b6ce4",
+    "text": "no tien an cua Vy 90k chua tra",
+    "gold_type": "borrow",
+    "gold_target": "Vy",
+    "old_type": "repayment_in",
+    "old_target": "Vy",
+    "new_type": "borrow",
+    "new_target": "Vy",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": true,
+    "debt_only": true,
+    "gold_value": "90k"
+   },
+   {
+    "id": "baseline-01-9cbf3e661f54",
+    "text": "nợ tiền ăn Hương 85k chưa trả",
+    "gold_type": "borrow",
+    "gold_target": "Hương",
+    "old_type": "repayment_in",
+    "old_target": "Hương",
+    "new_type": "borrow",
+    "new_target": "Hương",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": true,
+    "debt_only": true,
+    "gold_value": "85k"
+   },
+   {
+    "id": "baseline-01-60a88b884cbb",
+    "text": "go! big c siêu thị 1tr1",
+    "gold_type": "expense",
+    "gold_target": "go! big c",
+    "old_type": "transfer",
+    "old_target": null,
+    "new_type": "transfer",
+    "new_target": "b",
+    "old_type_ok": false,
+    "new_type_ok": false,
+    "old_target_ok": false,
+    "new_target_ok": false,
+    "debt_only": false,
+    "gold_value": "1tr1"
+   },
+   {
+    "id": "baseline-01-eff9d5387a64",
+    "text": "no tien tro chu nha 1tr5 chua dua",
+    "gold_type": "borrow",
+    "gold_target": "chu nha",
+    "old_type": "borrow",
+    "old_target": null,
+    "new_type": "borrow",
+    "new_target": "chu nha",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": true,
+    "debt_only": true,
+    "gold_value": "1tr5"
+   },
+   {
+    "id": "baseline-01-1f8b559fe3c3",
+    "text": "no anh Khoa 300 chua tra",
+    "gold_type": "borrow",
+    "gold_target": "Khoa",
+    "old_type": "expense",
+    "old_target": "Khoa",
+    "new_type": "borrow",
+    "new_target": "Khoa",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": true,
+    "debt_only": true,
+    "gold_value": "300"
+   },
+   {
+    "id": "baseline-01-ba582f76355e",
+    "text": "pizza 4p tối t7 389.000đ",
+    "gold_type": "expense",
+    "gold_target": "pizza 4p",
+    "old_type": "income",
+    "old_target": "piz",
+    "new_type": "income",
+    "new_target": "iz",
+    "old_type_ok": false,
+    "new_type_ok": false,
+    "old_target_ok": false,
+    "new_target_ok": false,
+    "debt_only": false,
+    "gold_value": "389.000đ"
+   },
+   {
+    "id": "baseline-01-4a30fae51dfa",
+    "text": "Phúc chưa trả 1tr5 tháng trước",
+    "gold_type": "lend",
+    "gold_target": "Phúc",
+    "old_type": "repayment_in",
+    "old_target": "Phúc",
+    "new_type": "lend",
+    "new_target": "Phúc",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": true,
+    "debt_only": true,
+    "gold_value": "1tr5"
+   },
+   {
+    "id": "baseline-01-04650ca0c139",
+    "text": "vay chị dâu 5tr sửa nhà",
+    "gold_type": "borrow",
+    "gold_target": "chị dâu",
+    "old_type": "borrow",
+    "old_target": "chị",
+    "new_type": "borrow",
+    "new_target": "chị dâu",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": true,
+    "debt_only": false,
+    "gold_value": "5tr"
+   },
+   {
+    "id": "baseline-01-afdc5bc92175",
+    "text": "nạp ví momo trả tiền điện 700k",
+    "gold_type": "transfer",
+    "gold_target": null,
+    "old_type": "transfer",
+    "old_target": "m",
+    "new_type": "transfer",
+    "new_target": "momo",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": false,
+    "debt_only": false,
+    "gold_value": "700k"
+   },
+   {
+    "id": "baseline-01-3f8d7d6f6fac",
+    "text": "Nam hứa t6 trả 800k",
+    "gold_type": "lend",
+    "gold_target": "Nam",
+    "old_type": "repayment_in",
+    "old_target": "Nam",
+    "new_type": "lend",
+    "new_target": "Nam",
+    "old_type_ok": false,
+    "new_type_ok": true,
+    "old_target_ok": true,
+    "new_target_ok": true,
+    "debt_only": true,
+    "gold_value": "800k"
+   },
+   {
+    "id": "baseline-01-08ba8df8cb73",
+    "text": "chi Loan muon 2 trieu",
+    "gold_type": "lend",
+    "gold_target": "Loan",
+    "old_type": "lend",
+    "old_target": "chi",
+    "new_type": "lend",
+    "new_target": "Loan",
+    "old_type_ok": true,
+    "new_type_ok": true,
+    "old_target_ok": false,
+    "new_target_ok": true,
+    "debt_only": false,
+    "gold_value": "2 trieu"
+   },
+   {
+    "id": "baseline-01-6b471f45cc33",
+    "text": "Quang con thieu 250k tien ve",
+    "gold_type": "lend",
+    "gold_target": "Quang",
+    "old_type": "expense",
+    "old_target": "Qu",
+    "new_type": "expense",
+    "new_target": "Quang con",
+    "old_type_ok": false,
+    "new_type_ok": false,
+    "old_target_ok": false,
+    "new_target_ok": false,
+    "debt_only": true,
+    "gold_value": "250k"
+   }
+  ]
+ },
+ "human_value_by_stratum": {
+  "bare_number": {
+   "v7": {
+    "n": 2,
+    "exact": 1.0,
+    "k": 2
+   },
+   "v8_old": {
+    "n": 2,
+    "exact": 1.0,
+    "k": 2
+   },
+   "v8_new": {
+    "n": 2,
+    "exact": 1.0,
+    "k": 2
+   }
+  },
+  "date_month_year_amount": {
+   "v7": {
+    "n": 10,
+    "exact": 1.0,
+    "k": 10
+   },
+   "v8_old": {
+    "n": 10,
+    "exact": 1.0,
+    "k": 10
+   },
+   "v8_new": {
+    "n": 10,
+    "exact": 1.0,
+    "k": 10
+   }
+  },
+  "general": {
+   "v7": {
+    "n": 50,
+    "exact": 0.98,
+    "k": 49
+   },
+   "v8_old": {
+    "n": 50,
+    "exact": 1.0,
+    "k": 50
+   },
+   "v8_new": {
+    "n": 50,
+    "exact": 1.0,
+    "k": 50
+   }
+  },
+  "installment_index_amount": {
+   "v7": {
+    "n": 3,
+    "exact": 1.0,
+    "k": 3
+   },
+   "v8_old": {
+    "n": 3,
+    "exact": 1.0,
+    "k": 3
+   },
+   "v8_new": {
+    "n": 3,
+    "exact": 1.0,
+    "k": 3
+   }
+  },
+  "long_noisy": {
+   "v7": {
+    "n": 14,
+    "exact": 1.0,
+    "k": 14
+   },
+   "v8_old": {
+    "n": 14,
+    "exact": 1.0,
+    "k": 14
+   },
+   "v8_new": {
+    "n": 14,
+    "exact": 1.0,
+    "k": 14
+   }
+  },
+  "multi_number": {
+   "v7": {
+    "n": 19,
+    "exact": 1.0,
+    "k": 19
+   },
+   "v8_old": {
+    "n": 19,
+    "exact": 1.0,
+    "k": 19
+   },
+   "v8_new": {
+    "n": 19,
+    "exact": 1.0,
+    "k": 19
+   }
+  },
+  "null_no_number_ambiguous": {
+   "v7": {
+    "n": 4,
+    "exact": 0.75,
+    "k": 3
+   },
+   "v8_old": {
+    "n": 4,
+    "exact": 1.0,
+    "k": 4
+   },
+   "v8_new": {
+    "n": 4,
+    "exact": 1.0,
+    "k": 4
+   }
+  },
+  "null_value": {
+   "v7": {
+    "n": 1,
+    "exact": 0.0,
+    "k": 0
+   },
+   "v8_old": {
+    "n": 1,
+    "exact": 1.0,
+    "k": 1
+   },
+   "v8_new": {
+    "n": 1,
+    "exact": 1.0,
+    "k": 1
+   }
+  },
+  "quantity_amount": {
+   "v7": {
+    "n": 4,
+    "exact": 1.0,
+    "k": 4
+   },
+   "v8_old": {
+    "n": 4,
+    "exact": 1.0,
+    "k": 4
+   },
+   "v8_new": {
+    "n": 4,
+    "exact": 1.0,
+    "k": 4
+   }
+  },
+  "slang_compact_money": {
+   "v7": {
+    "n": 39,
+    "exact": 1.0,
+    "k": 39
+   },
+   "v8_old": {
+    "n": 39,
+    "exact": 1.0,
+    "k": 39
+   },
+   "v8_new": {
+    "n": 39,
+    "exact": 1.0,
+    "k": 39
+   }
+  },
+  "unaccented": {
+   "v7": {
+    "n": 53,
+    "exact": 0.9811320754716981,
+    "k": 52
+   },
+   "v8_old": {
+    "n": 53,
+    "exact": 1.0,
+    "k": 53
+   },
+   "v8_new": {
+    "n": 53,
+    "exact": 1.0,
+    "k": 53
+   }
+  },
+  "unusual_whitespace_punct": {
+   "v7": {
+    "n": 2,
+    "exact": 1.0,
+    "k": 2
+   },
+   "v8_old": {
+    "n": 2,
+    "exact": 1.0,
+    "k": 2
+   },
+   "v8_new": {
+    "n": 2,
+    "exact": 1.0,
+    "k": 2
+   }
+  }
+ },
+ "human_borrow_lend_confusion": {
+  "v7": {
+   "borrow": {
+    "borrow": 12,
+    "repayment_in": 5,
+    "expense": 2,
+    "income": 1
+   },
+   "lend": {
+    "repayment_in": 3,
+    "lend": 15,
+    "repayment_out": 1,
+    "expense": 1
+   }
+  },
+  "v8_old": {
+   "borrow": {
+    "borrow": 12,
+    "repayment_in": 5,
+    "expense": 2,
+    "income": 1
+   },
+   "lend": {
+    "repayment_in": 3,
+    "lend": 15,
+    "repayment_out": 1,
+    "expense": 1
+   }
+  },
+  "v8_new": {
+   "borrow": {
+    "borrow": 20
+   },
+   "lend": {
+    "lend": 18,
+    "repayment_out": 1,
+    "expense": 1
+   }
+  }
+ },
+ "human_borrow_lend_confusion_non_debt": {
+  "v7": {
+   "borrow": {
+    "borrow": 11
+   },
+   "lend": {
+    "lend": 15,
+    "repayment_out": 1
+   }
+  },
+  "v8_old": {
+   "borrow": {
+    "borrow": 11
+   },
+   "lend": {
+    "lend": 15,
+    "repayment_out": 1
+   }
+  },
+  "v8_new": {
+   "borrow": {
+    "borrow": 11
+   },
+   "lend": {
+    "lend": 15,
+    "repayment_out": 1
+   }
+  }
+ },
+ "latency_int8_ms": {
+  "old": {
+   "runs": 200,
+   "p50_ms": 1.3919577468186617,
+   "p95_ms": 1.7417077906429768,
+   "mean_ms": 1.3645472517237067
+  },
+  "new": {
+   "runs": 200,
+   "p50_ms": 1.3862710911780596,
+   "p95_ms": 1.7281672917306423,
+   "mean_ms": 1.3655452127568424
+  }
+ },
+ "size_bytes": {
+  "old_int8_onnx": 28658533,
+  "new_int8_onnx": 28658533,
+  "bundle_other_files": 629250,
+  "old_bundle": 29287783,
+  "new_bundle": 29287783
+ },
+ "environment": {
+  "python": "3.12.13",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "types": [
+   "expense",
+   "income",
+   "borrow",
+   "lend",
+   "repayment_in",
+   "repayment_out",
+   "transfer",
+   "refund"
+  ]
+ }
+}

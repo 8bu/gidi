@@ -1,10 +1,10 @@
 # Gidi Model Investigation Journal
 
-_Last updated: 2026-10-03_
+_Last updated: 2026-10-04_
 
 This is a compact investigation journal for the Gidi finance-note model work. It records the decisions, experiments, and what each experiment taught us. It is intentionally not a full lab report.
 
-**Current status:** `gidi-finance-v2` (`models/gidi-finance-v2/`, §25) remains the **current release**. It packages the accepted value-span-v7 dual encoder: path A is gidi-finance-v1, unchanged, for type/target; path B is a fine-tuned encoder clone + MLP + CRF for the value span. 58.1 MB INT8 bundle, 3.5 ms p50 CPU. Known limitation: `cho a Nam vay 1 triệu 20/10` → `1 triệu 20/10`. `gidi-finance-v1` stays frozen and intact. Internal experiment **V8** (a deterministic value parser replacing path B, §26) is **under evaluation**: its first held-out run passed the pre-declared gates, but the labels are not independent of the rule proposer, so it needs a follow-up before anything is decided. V8 is an internal name, not a release; `gidi-finance-v3` would only be a candidate name if V8 is validated. No compression or distillation.
+**Current status:** `gidi-finance-v2` (`models/gidi-finance-v2/`, §25) remains the **current release**. It packages the accepted value-span-v7 dual encoder: path A is gidi-finance-v1, unchanged, for type/target; path B is a fine-tuned encoder clone + MLP + CRF for the value span. 58.1 MB INT8 bundle, 3.5 ms p50 CPU. Known limitation: `cho a Nam vay 1 triệu 20/10` → `1 triệu 20/10`. `gidi-finance-v1` stays frozen and intact. Internal experiment **V8** (a deterministic value parser replacing path B, §26) is **under evaluation**: its first held-out run passed the pre-declared gates, but the labels are not independent of the rule proposer, so it needs a follow-up before anything is decided. V8 is an internal name, not a release; `gidi-finance-v3` would only be a candidate name if V8 is validated. No compression or distillation. A retrain of encoder 1 on the annotation-v3 debt rule (§27) fixed debt-only notes but missed the frozen-test bound (type macro-F1 -0.044): REJECT, `gidi-finance-v1` stays the encoder.
 
 Detailed metrics live in each `experiments/*/report.md`; this journal keeps only the reasoning trail (question → experiment → result → decision → next direction). History is append-only: later findings are added chronologically, earlier conclusions are not rewritten. Update policy: see `AGENTS.md`.
 
@@ -771,6 +771,27 @@ Decision: by the pre-declared rule the verdict is accept as a **candidate** for 
 V8 does not address target extraction quality. The production target error `mua sữa vinamilk hết 500k` → `v` was investigated separately: it is an existing gidi-finance-v1 target-model error (recorded in `tests/data/production-regressions.jsonl`, prod-0001, and in the known limitations of `docs/deployment.md`).
 
 Next: needs a user decision. The useful follow-up is a small, freshly written and independently labelled set (amount + date, quantities, classifier words, `m`/`1k5` forms) that the proposer never saw.
+
+---
+
+## 27. Annotation-v3-retrain: encoder 1 with debt-only notes as borrow/lend (REJECT by the declared rule)
+
+Details: `experiments/annotation-v3-retrain/report.md`, `results.json`; data `datasets/annotation-v3/training-v1/` (builder `scripts/build_annotation_v3_training.py`).
+
+Question: annotation-v3 labels a debt-only note (`còn nợ Hùng 300k`) borrow when the user owes and lend when the other party owes; v1/V7/V8 learned it as `skipped` (untrainable). Does retraining encoder 1 on the new labels fix those notes without hurting the rest? The user approved the retraining.
+
+Setup: the compression-v3 K2048 recipe unchanged, seed 1, on the 723 old notes + the 79 `complete` debt-01 human labels (802). Scored once on the frozen test, probe-v1 and human-value-01 (v3 gold; 13 debt-only notes): V7 (`gidi-finance-v2`) vs V8-old (v1 INT8 + parser) vs V8-new (retrained INT8 + the same parser).
+
+Result:
+
+- Debt-only slice (13): type accuracy 0.077 → 0.923, end-to-end exact 0/13 → 11/13; V7 and V8-old fail all 13 as expected. All 147 complete notes: end-to-end 0.741 → 0.823. Non-debt notes do not regress. probe-v1 type macro-F1 +0.025.
+- Frozen test: type macro-F1 0.956 → 0.912 (-0.044), accuracy -0.038 (4 more wrong notes), target exact +0.010. The drop breaks the declared bound (<= 0.01), so the verdict is **REJECT**. The regressions are repayment/transfer notes read as expense/refund/lend.
+- Single seed; the old recipe has a seed spread of about 0.018 on this test, so part of the gap may be noise, but this was not measured and nothing was tuned or selected.
+- Code note: 11 new debt notes use 8 BPE tokens that the B-rank-8000 vocabulary spec had dropped, so the trainer gained an opt-in `--retokenize` (encode with the pruned tokenizer instead of remapping cached ids). Architecture, vocabulary and tokenizer are unchanged.
+
+Decision: `gidi-finance-v1` stays the encoder; no release. Nothing here changes V8's status.
+
+Next: needs a user decision. Options are more seeds of the same recipe (to separate noise from a real regression) or a rebalanced debt-01 mix; either is a new experiment.
 
 ---
 

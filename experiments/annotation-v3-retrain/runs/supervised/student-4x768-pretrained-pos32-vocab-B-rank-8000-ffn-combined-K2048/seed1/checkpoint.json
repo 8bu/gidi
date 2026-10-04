@@ -1,0 +1,23 @@
+{
+  "arm": "supervised",
+  "variant": "student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2048",
+  "seed": 1,
+  "kd": {
+    "temperature": 2.0,
+    "alpha_hard": 1.0,
+    "type_weight": 1.0,
+    "span_weight": 1.0
+  },
+  "final_epoch": 40,
+  "test_type_macro_f1": 0.9170508633671366,
+  "test_span_f1": 0.8148148148148149,
+  "param_count": 28496395,
+  "param_bytes_fp32": 113985580,
+  "steps": 4040,
+  "device": "mps",
+  "wall_time_sec": 273.3884637081064,
+  "train_time_sec": 271.6212028344162,
+  "sec_per_epoch": 6.790530070860404,
+  "train_examples_per_sec": 118.10565473254452,
+  "checkpoint_path": "experiments/annotation-v3-retrain/weights/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2048/seed1"
+}

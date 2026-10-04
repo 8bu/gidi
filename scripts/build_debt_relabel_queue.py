@@ -50,6 +50,7 @@ from typing import Any
 NAME = "debt-01"
 SEED = "debt-01:v1"
 DEFAULT_OUT_DIR = Path("datasets/annotation-v3/debt-01")
+DERIVED_DIR = Path("datasets/annotation-v3/training-v1")  # built from this batch
 SCHEMA = Path("configs/annotation-v3.quet.yaml")
 CONTRACT = Path("configs/annotation-v3.yaml")
 DOC = Path("docs/annotation-v3.md")
@@ -146,11 +147,14 @@ def load_reference_groups(root: Path, out_dir: Path, v1_kept: list[str]) -> dict
             groups[name] += _texts(root / rel)
             claimed.add(str((root / rel).resolve()))
     groups["v1-skipped-kept"] = list(v1_kept)
-    own = out_dir.resolve()
+    # The batch itself and the training set derived from it (it holds this batch's texts).
+    own = {out_dir.resolve(), (root / DERIVED_DIR).resolve()}
     for top in CORPUS_DIRS:
         for path in sorted((root / top).rglob("*.jsonl")):
             resolved = path.resolve()
-            if str(resolved) in claimed or own in resolved.parents:
+            if str(resolved) in claimed or own & set(path.absolute().parents) | own & set(
+                resolved.parents
+            ):
                 continue
             groups["existing-corpus"] += _texts(path)
     return groups
