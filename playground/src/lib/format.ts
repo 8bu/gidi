@@ -8,7 +8,7 @@ export const spanLabel = (span: Span | null | undefined) =>
 
 export const ms = (value: number) => `${value.toFixed(value < 10 ? 2 : 1)} ms`
 
-/** `gidi-finance-v2` -> `Gidi Finance v2` */
+/** `gidi-finance-v3` -> `Gidi Finance v3` */
 export function displayName(modelVersion: string) {
   return modelVersion
     .split("-")

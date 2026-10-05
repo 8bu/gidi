@@ -19,14 +19,14 @@ converting it to a number stays deterministic code.
 
 ## Status
 
-- **`gidi-finance-v2`** is the current testable candidate. It is the value-span-v7 dual
-  encoder: the frozen v1 path gives type and target, a second fine-tuned path with a CRF gives
-  the value span. 58.1 MB INT8 ONNX, about 3.5 ms p50 on one CPU thread. Release 2.0.3 is
+- **`gidi-finance-v3`** (release `3.0.0`) is the current model. The system is one INT8 encoder
+  for type and target, a word snap on the target span and a rule-based parser for the value
+  span. The bundle is 29.3 MB INT8 ONNX, about 1.4 ms p50 on one CPU thread. The release is
   public on Hugging Face: [x8bu/gidi-finance](https://huggingface.co/x8bu/gidi-finance)
-  (INT8). The GitHub release 2.0.3 has the INT8 and FP32 archives. In-browser demo:
-  <https://gidi.8bu.dev>.
+  (INT8) and on GitHub (INT8 and FP32 archives). In-browser demo: <https://gidi.8bu.dev>.
+- **`gidi-finance-v2`** is the previous release (2.0.3): a dual encoder with a CRF value head,
+  58.1 MB INT8 ONNX, about 3.5 ms p50. It stays frozen.
 - **`gidi-finance-v1`** stays frozen and unchanged: type and target only, 28.66 MB INT8 ONNX.
-- Research on a smaller value path is in progress; see [Roadmap](#roadmap).
 
 Usage, output schema and known limitations: [docs/deployment.md](docs/deployment.md). The
 research history is in [docs/investigation-journal.md](docs/investigation-journal.md).
@@ -38,29 +38,30 @@ details are in `AGENTS.md`.
 
 ## Roadmap
 
-Internal experiment names (`V7`, `V8`) are not release versions. Public models are named
-`gidi-finance-vN`, with release versions such as `2.0.3`. The value path of `gidi-finance-v2`
-comes from internal experiment V7.
+Internal experiment names are not release versions. Public models are named `gidi-finance-vN`,
+with release versions such as `3.0.0`.
 
-**Current: `gidi-finance-v2`**
+**Current: `gidi-finance-v3` / `3.0.0` (done)**
+
+- Hybrid neural and deterministic architecture: one INT8 encoder for type and target, value
+  extracted by a rule-based parser (`gidi.value_parser`), no second value encoder.
+- Word snap is on by default: the target is extended to whole-word boundaries.
+- `annotation-v3` taxonomy: a debt-only note is `borrow` or `lend`. The gift receiver is the
+  target (the rule is in the test labels; the training data does not apply it yet).
+- Half the size of v2: 29.3 MB against 58.1 MB, about 1.4 ms p50.
+- On the new test set `human-value-02` (190 notes, LLM-labelled): type 92.1%, target 85.3%,
+  value 100%, end-to-end 78.9%. Details and limitations are in the model card.
+
+**Released before: `gidi-finance-v2`**
 
 - Dual-encoder architecture: one encoder for type and target, a second encoder for the value span.
 - INT8 ONNX distribution on Hugging Face and GitHub.
 - Browser runtime (onnxruntime-web, WASM); public demo at <https://gidi.8bu.dev>.
 
-**Research: internal experiment V8 (under evaluation)**
+**Next**
 
-- Benchmarks a deterministic value parser against the V7 neural value encoder.
-- Keeps the existing type and target model unchanged.
-- Goal: smaller download, lower memory and lower inference cost without meaningful quality loss.
-- Experimental only; it does not replace v2.
-
-**Candidate next major release: `gidi-finance-v3` / `3.0.0` (planned only if V8 is validated)**
-
-- Hybrid neural and deterministic architecture: one encoder for type and target, deterministic
-  value extraction, no second value encoder.
-- Materially smaller browser and runtime footprint.
-- Not confirmed. If the V8 evidence does not support replacement, v2 stays the current release.
+- Raise target accuracy (now about 85%): multi-word brand and shop names, gift receivers.
+- Calibrate confidences and add an abstention policy.
 
 ## Stack
 
@@ -89,9 +90,9 @@ pnpm -C playground install && pnpm -C playground build
 uv run python scripts/demo_ui.py
 
 # release and publish (see docs/releasing.md)
-uv run python scripts/release.py build --model gidi-finance-v2 --version 2.0.1
-uv run python scripts/release.py verify --release dist/releases/gidi-finance-v2/2.0.1
-uv run python scripts/publish.py all --release dist/releases/gidi-finance-v2/2.0.1 --dry-run
+uv run python scripts/release.py build --model gidi-finance-v3 --version 3.0.0
+uv run python scripts/release.py verify --release dist/releases/gidi-finance-v3/3.0.0
+uv run python scripts/publish.py all --release dist/releases/gidi-finance-v3/3.0.0 --dry-run
 ```
 
 ## Layout

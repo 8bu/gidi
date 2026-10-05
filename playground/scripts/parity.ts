@@ -1,18 +1,20 @@
 /**
  * Parity gate: the browser runtime (onnxruntime-web wasm EP, same code as the browser) against the
- * Python INT8 runtime, stage by stage, on every input of `scripts/dump_web_parity.py`.
+ * Python INT8 runtime of the gidi-finance-v3 bundle, stage by stage, on every input of
+ * `scripts/dump_web_parity.py`.
  *
  *   uv run python scripts/dump_web_parity.py && pnpm parity
  *
  * Per case, EXACT: NFC text + offset maps, input_ids, attention_mask, token offsets (code points),
- * special-token mask, truncated, target BIO argmax tags, value Viterbi path, type, target/value text
- * and spans, per-token offsets in the original string. NUMERIC: max |delta| of the three logit
- * tensors and |delta| <= 1e-4 of the three confidences.
+ * special-token mask, truncated, target BIO argmax tags, type, target text and span (after the
+ * whole-word snap), value text and span (rule parser), per-token offsets in the original string.
+ * NUMERIC: max |delta| of the two logit tensors and |delta| <= 1e-4 of the two confidences.
  *
  * Every case is decoded twice by the TS code: from the onnxruntime-web logits (the real pipeline)
- * and from the Python reference logits (isolates the ported tokenizer/decoder/CRF from ORT numerics).
- * A mismatch is "float-tolerance" only if the second run is exact; otherwise it is "semantic".
- * Exit code 1 on any semantic mismatch. Writes experiments/deployment-v2/web-parity.{md,json}.
+ * and from the Python reference logits (isolates the ported tokenizer/decoder/parser from ORT
+ * numerics). A mismatch is "float-tolerance" only if the second run is exact; otherwise it is
+ * "semantic". The parser is also compared alone on every distinct corpus text (`parser.jsonl`).
+ * Exit code 1 on any semantic mismatch. Writes experiments/deployment-v3/web-parity.{md,json}.
  */
 
 import { createHash } from "node:crypto"
@@ -23,6 +25,7 @@ import { fileURLToPath } from "node:url"
 import * as ort from "onnxruntime-web/wasm"
 
 import { parseConfig } from "../src/runtime/config.ts"
+import { parseValue } from "../src/runtime/value-parser.ts"
 import { createOrtRunner } from "../src/runtime/ort-runner.ts"
 import {
   decodeLogits,
@@ -34,9 +37,14 @@ import {
 } from "../src/runtime/predictor.ts"
 import {
   endToOriginal,
+  foldCodePoint,
   fromCodePoints,
+  isAlnum,
+  isAlpha,
   isCombining,
+  isPunct,
   isPySpace,
+  isUpper,
   normalizeNfc,
   startToOriginal,
 } from "../src/runtime/text.ts"
@@ -46,13 +54,9 @@ import type { Prediction } from "../src/runtime/types.ts"
 const here = dirname(fileURLToPath(import.meta.url))
 const root = resolve(here, "../..")
 const parityDir = resolve(here, "../.parity")
-const reportDir = resolve(root, "experiments/deployment-v2")
+const reportDir = resolve(root, "experiments/deployment-v3")
 const CONFIDENCE_TOLERANCE = 1e-4
-const CONFIDENCE_FIELDS = [
-  "type_confidence",
-  "target_confidence",
-  "value_confidence",
-] as const
+const CONFIDENCE_FIELDS = ["type_confidence", "target_confidence"] as const
 const REQUIRED_COVERAGE = [
   "accented",
   "unaccented",
@@ -67,14 +71,23 @@ const REQUIRED_COVERAGE = [
 ] as const
 
 interface Meta {
-  release: string
+  bundle: string
   files: Record<string, string>
   python: string
   unicode: string
   versions: Record<string, string>
   inputs: number
   sweep: number
-  unicode_ranges: { combining: number[]; space: number[] }
+  parser_texts: number
+  unicode_ranges: {
+    combining: number[]
+    space: number[]
+    alpha: number[]
+    alnum: number[]
+    upper: number[]
+    punct: number[]
+  }
+  fold_pairs: [number, number][]
 }
 
 interface Trace {
@@ -88,9 +101,7 @@ interface Trace {
   special: number[]
   type_logits: number[]
   tag_logits: number[][]
-  value_logits: number[][]
   target_tags: number[]
-  value_tags: number[]
 }
 
 interface CaseRecord {
@@ -196,12 +207,16 @@ function decodeStages(a: Analysis, t: Trace, e: Prediction): Stage[] {
   const p = a.prediction
   return [
     { name: "target_bio_tags", python: t.target_tags, ts: a.targetTags },
-    { name: "value_viterbi_tags", python: t.value_tags, ts: a.valueTags },
     { name: "type", python: e.type, ts: p.type },
     { name: "target", python: e.target, ts: p.target },
     { name: "target_span", python: e.target_span, ts: p.target_span },
     { name: "value_text", python: e.value_text, ts: p.value_text },
     { name: "value_span", python: e.value_span, ts: p.value_span },
+    {
+      name: "value_confidence",
+      python: e.value_confidence,
+      ts: p.value_confidence,
+    },
     {
       name: "original_offsets",
       python: t.original_offsets,
@@ -248,6 +263,39 @@ function checkSweep(tokenizer: BundleTokenizer, records: SweepRecord[]) {
   return failures
 }
 
+/** The code points `foldCodePoint` changes, flat `[cp, folded]` pairs (cf. `fold_pairs`). */
+function foldPairs(): number[] {
+  const out: number[] = []
+  for (let cp = 0; cp <= 0x10ffff; cp++) {
+    const folded = foldCodePoint(cp)
+    if (folded !== cp) out.push(cp, folded)
+  }
+  return out
+}
+
+interface ParserRecord {
+  text: string
+  value: [number, number] | null
+}
+
+/** `parseValue` alone against `gidi.value_parser.parse_value` on every distinct corpus text. */
+function checkParser(records: ParserRecord[]) {
+  const failures: { text: string; python: unknown; ts: unknown }[] = []
+  let withValue = 0
+  for (const rec of records) {
+    const value = parseValue(rec.text)
+    const ts = value === null ? null : [value.start, value.end]
+    if (rec.value !== null) withValue++
+    const textOk =
+      value === null ||
+      value.text ===
+        fromCodePoints(normalizeNfc(rec.text).original, value.start, value.end)
+    if (!same(ts, rec.value) || !textOk)
+      failures.push({ text: rec.text, python: rec.value, ts })
+  }
+  return { texts: records.length, with_value: withValue, failures }
+}
+
 function ortEnvironment(releaseVersionNote: string) {
   const resolveFile = (specifier: string): { path: string; bytes: number } => {
     const path = fileURLToPath(import.meta.resolve(specifier))
@@ -282,14 +330,10 @@ async function main(): Promise<number> {
   const meta = JSON.parse(
     readFileSync(resolve(parityDir, "meta.json"), "utf8")
   ) as Meta
-  const release = resolve(root, meta.release)
-  const tokenizerBytes = readFileSync(
-    resolve(release, "tokenizer/tokenizer.json")
-  )
-  const configBytes = readFileSync(resolve(release, "runtime/config.json"))
-  const modelBytes = readFileSync(
-    resolve(release, "model/int8/model.int8.onnx")
-  )
+  const bundle = resolve(root, meta.bundle)
+  const tokenizerBytes = readFileSync(resolve(bundle, "tokenizer.json"))
+  const configBytes = readFileSync(resolve(bundle, "config.json"))
+  const modelBytes = readFileSync(resolve(bundle, "model.int8.onnx"))
   const hashes = {
     "config.json": sha256(configBytes),
     "tokenizer.json": sha256(tokenizerBytes),
@@ -297,7 +341,7 @@ async function main(): Promise<number> {
   }
   if (!same(hashes, meta.files)) {
     console.error(
-      "release files differ from the ones the dump was made from; rerun the dump"
+      "bundle files differ from the ones the dump was made from; rerun the dump"
     )
     return 1
   }
@@ -316,9 +360,27 @@ async function main(): Promise<number> {
     ...(same(rangesOf(isPySpace), meta.unicode_ranges.space)
       ? []
       : ["SPACE_RANGES differ from str.isspace"]),
+    ...(same(rangesOf(isAlpha), meta.unicode_ranges.alpha)
+      ? []
+      : ["ALPHA_RANGES differ from str.isalpha"]),
+    ...(same(rangesOf(isAlnum), meta.unicode_ranges.alnum)
+      ? []
+      : ["ALNUM_RANGES differ from str.isalnum"]),
+    ...(same(rangesOf(isUpper), meta.unicode_ranges.upper)
+      ? []
+      : ["UPPER_RANGES differ from str.isupper"]),
+    ...(same(rangesOf(isPunct), meta.unicode_ranges.punct)
+      ? []
+      : ["PUNCT_RANGES differ from unicodedata.category P*"]),
+    ...(same(foldPairs(), meta.fold_pairs.flat())
+      ? []
+      : ["FOLD_PAIRS differ from gidi.value_parser.fold"]),
   ]
   const sweep = readJsonl<SweepRecord>(resolve(parityDir, "sweep.jsonl"))
   const sweepFailures = checkSweep(tokenizer, sweep)
+  const parser = checkParser(
+    readJsonl<ParserRecord>(resolve(parityDir, "parser.jsonl"))
+  )
 
   // --- Model cases ------------------------------------------------------------------------------
   ort.env.wasm.numThreads = 1
@@ -336,15 +398,12 @@ async function main(): Promise<number> {
   const maxDelta = {
     type_logits: 0,
     tag_logits: 0,
-    value_logits: 0,
     type_confidence: 0,
     target_confidence: 0,
-    value_confidence: 0,
   }
   const maxDeltaOnReferenceLogits = {
     type_confidence: 0,
     target_confidence: 0,
-    value_confidence: 0,
   }
   let withinTolerance = 0
   let decodeOnReferenceExact = 0
@@ -363,7 +422,7 @@ async function main(): Promise<number> {
       string,
       number
     >,
-    maxDelta: { type_confidence: 0, target_confidence: 0, value_confidence: 0 },
+    maxDelta: { type_confidence: 0, target_confidence: 0 },
     bySource: {} as Record<
       string,
       {
@@ -379,10 +438,7 @@ async function main(): Promise<number> {
   const presetCases: unknown[] = []
   let presetsIdentical = 0
   const presetDelta = { web_vs_default: 0, web_vs_basic: 0 }
-  const webLogits: Record<
-    string,
-    { type: number[]; tag: number[]; value: number[] }
-  > = {}
+  const webLogits: Record<string, { type: number[]; tag: number[] }> = {}
 
   for (const rec of records) {
     const stats = (bySource[rec.source] ??= {
@@ -462,7 +518,6 @@ async function main(): Promise<number> {
     const logitDeltas = {
       type_logits: maxAbs(analysis.logits.typeLogits, t.type_logits),
       tag_logits: maxAbs(analysis.logits.tagLogits, flat(t.tag_logits)),
-      value_logits: maxAbs(analysis.logits.valueLogits, flat(t.value_logits)),
     }
     const conf = confidenceDeltas(analysis, e)
     for (const [k, v] of Object.entries(logitDeltas)) {
@@ -484,7 +539,6 @@ async function main(): Promise<number> {
       webLogits[`${rec.source}/${rec.id}`] = {
         type: Array.from(analysis.logits.typeLogits),
         tag: Array.from(analysis.logits.tagLogits),
-        value: Array.from(analysis.logits.valueLogits),
       }
     }
 
@@ -492,7 +546,6 @@ async function main(): Promise<number> {
     const reference: ModelOutputs = {
       typeLogits: Float32Array.from(t.type_logits),
       tagLogits: Float32Array.from(flat(t.tag_logits)),
-      valueLogits: Float32Array.from(flat(t.value_logits)),
     }
     const onReference = decodeLogits(config, stage, reference)
     const decOnReference = decodeStages(onReference, t, e)
@@ -617,7 +670,7 @@ async function main(): Promise<number> {
             ? "semantic: ORT-independent stage differs, or TS decode of the Python logits differs"
             : "float-tolerance: TS decode of the Python reference logits is exact; ORT logits differ " +
               `(max |logit delta| type ${logitDeltas.type_logits.toExponential(2)}, tag ` +
-              `${logitDeltas.tag_logits.toExponential(2)}, value ${logitDeltas.value_logits.toExponential(2)})`,
+              `${logitDeltas.tag_logits.toExponential(2)})`,
         expected: e,
         actual: analysis.prediction,
         logits: {
@@ -628,10 +681,6 @@ async function main(): Promise<number> {
           tag: {
             python: t.tag_logits,
             ts: Array.from(analysis.logits.tagLogits),
-          },
-          value: {
-            python: t.value_logits,
-            ts: Array.from(analysis.logits.valueLogits),
           },
         },
       })
@@ -660,15 +709,15 @@ async function main(): Promise<number> {
     return existsSync(path) ? JSON.parse(readFileSync(path, "utf8")) : null
   }
   const browser = sidecar("browser.json")
-  const goldQuality = sidecar("quality.json")
 
   const report = {
     generated_by:
       "playground/scripts/parity.ts (pnpm parity) from scripts/dump_web_parity.py",
-    release: { path: meta.release, files: meta.files },
+    bundle: { path: meta.bundle, files: meta.files },
     reference: {
       description:
-        "Python gidi.inference GidiPredictor on the release INT8 model; ORT session at " +
+        "Python gidi.inference GidiPredictor on the gidi-finance-v3 INT8 model (whole-word target " +
+        "snap, value from gidi.value_parser); ORT session at " +
         "ORT_ENABLE_BASIC (graph as written). The default-level session is compared separately.",
       python: meta.python,
       unicode: meta.unicode,
@@ -707,6 +756,12 @@ async function main(): Promise<number> {
       failures: sweepFailures.slice(0, 50),
     },
     unicode_tables: { failures: tableFailures },
+    parser_only: {
+      texts: parser.texts,
+      with_value: parser.with_value,
+      mismatches: parser.failures.length,
+      failures: parser.failures.slice(0, 50),
+    },
     vs_python_default_session: {
       note:
         "Informational. ORT's default level fuses DynamicQuantizeMatMul/MatMulIntegerToFloat; its " +
@@ -715,7 +770,6 @@ async function main(): Promise<number> {
       ...vsDefault,
     },
     browser_run: browser,
-    gold_quality: goldQuality,
     presets: {
       identical_all_three: presetsIdentical,
       max_confidence_delta_web_vs_default: presetDelta.web_vs_default,
@@ -748,6 +802,9 @@ async function main(): Promise<number> {
   console.log(
     `sweep ${sweep.length}: ${sweepFailures.length} mismatches; tables: ${tableFailures.length}`
   )
+  console.log(
+    `parser-only ${parser.texts} texts (${parser.with_value} with a value): ${parser.failures.length} mismatches`
+  )
   for (const [name, c] of Object.entries(stageCounts)) {
     console.log(`  ${name.padEnd(28)} ${c.exact}/${c.total}`)
   }
@@ -757,7 +814,8 @@ async function main(): Promise<number> {
   const failed =
     statuses.semantic > 0 ||
     sweepFailures.length > 0 ||
-    tableFailures.length > 0
+    tableFailures.length > 0 ||
+    parser.failures.length > 0
   console.log(
     failed ? "\nFAIL (semantic mismatch)" : "\nPARITY: no semantic mismatch"
   )
@@ -772,7 +830,7 @@ function renderMarkdown(report: Report, meta: Meta): string {
   const lines: string[] = []
   const t = report.totals
   lines.push(
-    "# gidi-finance-v2 2.0.2: in-browser runtime parity",
+    "# gidi-finance-v3 3.0.0: in-browser runtime parity",
     "",
     "Generated by `pnpm -C playground parity` (`playground/scripts/parity.ts`) from",
     "`scripts/dump_web_parity.py`. Machine-readable twin: `web-parity.json`. Regenerate with",
@@ -786,18 +844,21 @@ function renderMarkdown(report: Report, meta: Meta): string {
       `Float-tolerance cases: ${t.by_status.float_tolerance} ` +
       `(${t.confidence_only_float_cases} differ only in a confidence beyond 1e-4, ` +
       `${t.by_status.float_tolerance - t.confidence_only_float_cases} flip a discrete field).`,
-    `- TS tokenizer/NFC/decoder/CRF fed the Python reference logits: ` +
+    `- TS tokenizer/NFC/decoder/snap/parser fed the Python reference logits: ` +
       `${report.ts_decode_on_python_logits.exact_cases}/${report.ts_decode_on_python_logits.of} ` +
       "cases exact in every decode stage, confidences within 1e-4.",
     `- Code-point sweep: ${report.code_point_sweep.strings} strings, ` +
       `${report.code_point_sweep.mismatches} mismatches (NFC text, offset map, ids, offsets, truncated).`,
-    "- Reference = Python `GidiPredictor` on the release INT8 model with the ORT session at " +
+    `- Value parser alone (\`gidi.value_parser\` vs the TS port): ${report.parser_only.texts} distinct ` +
+      `corpus / dataset / fuzz texts (${report.parser_only.with_value} with a value), ` +
+      `**${report.parser_only.mismatches} mismatches**.`,
+    "- Reference = Python `GidiPredictor` on the gidi-finance-v3 INT8 bundle with the ORT session at " +
       "`ORT_ENABLE_BASIC`. See *ORT numerics* for why not the default level.",
     "",
     "## Tolerance",
     "",
     `Exact: NFC text, offset map, input_ids, attention_mask, token offsets (code points), special mask, ` +
-      "truncated, target BIO tags, value Viterbi path, type, target/value text and spans, per-token " +
+      "truncated, target BIO tags, type, target text and span (after the word snap), value text and span (rule parser), value_confidence (null), per-token " +
       `original-string offsets. Confidences: |delta| <= ${report.tolerance.confidence_abs}. ` +
       "Logits: max |delta| reported, not gated.",
     "",
@@ -818,16 +879,13 @@ function renderMarkdown(report: Report, meta: Meta): string {
     "|---|---:|",
     `| type_logits | ${fmt(m.type_logits)} |`,
     `| tag_logits | ${fmt(m.tag_logits)} |`,
-    `| value_logits | ${fmt(m.value_logits)} |`,
     `| type_confidence | ${fmt(m.type_confidence)} |`,
     `| target_confidence | ${fmt(m.target_confidence)} |`,
-    `| value_confidence | ${fmt(m.value_confidence)} |`,
     "",
-    `Cases with all three confidences within 1e-4: ${t.confidences_within_1e4}/${t.predictions}. ` +
+    `Cases with both confidences within 1e-4: ${t.confidences_within_1e4}/${t.predictions}. ` +
       "With the Python logits as input, the TS decoder's confidences differ by at most " +
       `${fmt(report.ts_decode_on_python_logits.max_confidence_delta.type_confidence)} (type), ` +
-      `${fmt(report.ts_decode_on_python_logits.max_confidence_delta.target_confidence)} (target), ` +
-      `${fmt(report.ts_decode_on_python_logits.max_confidence_delta.value_confidence)} (value): ` +
+      `${fmt(report.ts_decode_on_python_logits.max_confidence_delta.target_confidence)} (target): ` +
       "the whole confidence gap is in the logits.",
     "",
     "## ORT numerics (why float differences exist)",
@@ -842,7 +900,7 @@ function renderMarkdown(report: Report, meta: Meta): string {
       "across two ORT builds, not of the port; every decision flip is listed below with its logits.",
     "",
     "The web runtime also differs from Python's stock default-level session; those differences, " +
-      "their effect on gold-label quality and the optimization level of the frozen v2 numbers " +
+      "and which reference the deployed Python numbers correspond to " +
       "are in *Web vs the stock default-level Python session* below.",
     "",
     "## Coverage",
@@ -874,8 +932,9 @@ function renderMarkdown(report: Report, meta: Meta): string {
     "",
     "Sources: golden = `experiments/deployment-v2/golden-suite.jsonl`; robustness = " +
       "`robustness-inputs.jsonl`; hardening = `hardening-cases.jsonl`; test / validation / train = " +
-      "`datasets/annotation-v2/training-v1/*.jsonl`; probe = `probe-v1-eval-only.jsonl` (the " +
-      "probe-v1 set with texts); preset = `playground/src/lib/presets.ts`; stress = seeded " +
+      "`datasets/annotation-v2/training-v1/*.jsonl`; probe = `probe-v1-eval-only.jsonl`; human-value-01 / -02 = the review queues of " +
+      "`datasets/annotation-v2/human-value-01` and `datasets/annotation-v3/human-value-02`; regression = " +
+      "`tests/data/production-regressions.jsonl`; preset = `playground/src/lib/presets.ts`; stress = seeded " +
       "adversarial strings (special-token text, separators, whitespace variants, NFD/reordered " +
       "combining marks, astral, lone surrogates, long inputs).",
     "",
@@ -918,12 +977,12 @@ function renderMarkdown(report: Report, meta: Meta): string {
     `- wasm: ${env.wasm_flavour}; binary \`${env.wasm_binary.path}\`, ${env.wasm_binary.bytes} bytes`,
     `- numThreads ${env.num_threads}, simd: ${env.simd}, proxy: ${env.proxy}`,
     `- graph optimization: ${env.graph_optimization_level}`,
-    `- tokenizer, NFC, CRF Viterbi and decoding: ${env.tokenizer_and_crf}`,
+    `- tokenizer, NFC, decoding, word snap and value parser: ${env.tokenizer_and_crf}`,
     `- Node ${env.node}; Python ${meta.python} (Unicode ${meta.unicode}), onnxruntime ` +
       `${meta.versions.onnxruntime}, tokenizers ${meta.versions.tokenizers}`,
     "- Browser build: Vite emits the same wasm as `assets/ort-wasm-simd-threaded-<hash>.wasm` " +
       "(14,239,897 bytes, self-hosted, no CDN); the JS glue is inlined in the worker chunk. " +
-      "Inference, tokenizer and CRF run in a dedicated Web Worker; `ort.env.wasm.proxy = false`, " +
+      "Inference, tokenizer and parser run in a dedicated Web Worker; `ort.env.wasm.proxy = false`, " +
       "`numThreads = 1` (no cross-origin isolation required).",
     ""
   )
@@ -969,14 +1028,11 @@ function renderMarkdown(report: Report, meta: Meta): string {
         )
         if (
           inc.first_divergent_stage.endsWith("tags") ||
-          inc.first_divergent_stage.startsWith("target") ||
-          inc.first_divergent_stage.startsWith("value")
+          inc.first_divergent_stage.startsWith("target")
         ) {
           lines.push(
             `- tag logits python: \`${rows(inc.logits.tag.python)}\``,
-            `- tag logits ts: \`${rows(chunk3(inc.logits.tag.ts))}\``,
-            `- value logits python: \`${rows(inc.logits.value.python)}\``,
-            `- value logits ts: \`${rows(chunk3(inc.logits.value.ts))}\``
+            `- tag logits ts: \`${rows(chunk3(inc.logits.tag.ts))}\``
           )
         }
       }
@@ -1015,26 +1071,23 @@ function briefLine(b: Brief): string {
   )
 }
 
-/** Web vs the stock default-level Python session: per-source flips, listed cases, gold quality. */
+/** Web vs the stock default-level Python session: per-source flips, listed cases. */
 function defaultSessionSection(report: Report): string[] {
-  const fmtN = (n: number | null): string => (n === null ? "n/a" : n.toFixed(4))
   const fmt = (n: number): string => (n === 0 ? "0" : n.toExponential(2))
   const d = report.vs_python_default_session
   const lines: string[] = [
     "",
     "## Web vs the stock default-level Python session",
     "",
-    "### Which reference the frozen v2 numbers correspond to",
+    "### Which Python reference is the deployed one",
     "",
     "`gidi.inference.runner.OnnxRunner` sets only `intra_op_num_threads=1`, " +
       "`inter_op_num_threads=1` and `ORT_SEQUENTIAL`; it never sets `graph_optimization_level`, " +
       "so deployed Python runs ORT's default, `ORT_ENABLE_ALL`. " +
-      "`scripts/verify_deployment.py` / `verify_value_deployment.py` build their INT8 predictor " +
-      "with `GidiPredictor.from_bundle` (same runner, same default) and " +
-      "`experiments/deployment-v2/verification.json` records macOS arm64, onnxruntime 1.30.0. " +
-      "The frozen v2 numbers therefore correspond to the **default `ORT_ENABLE_ALL` session on " +
-      "arm64, i.e. with ORT's fused `DynamicQuantizeMatMul`/`MatMulIntegerToFloat` kernels " +
-      "(KleidiAI on arm64)**, not to the unfused graph that onnxruntime-web executes. This " +
+      "`GidiPredictor.from_bundle` (the deployed Python path) therefore runs the **default " +
+      "`ORT_ENABLE_ALL` session on arm64, i.e. with ORT's fused " +
+      "`DynamicQuantizeMatMul`/`MatMulIntegerToFloat` kernels (KleidiAI on arm64)**, not the " +
+      "unfused graph that onnxruntime-web executes. This " +
       "report's *Python basic* column is the same runtime with `ORT_ENABLE_BASIC` " +
       "(`scripts/dump_web_parity.py`, `graph_level_predictor`).",
     "",
@@ -1087,83 +1140,6 @@ function defaultSessionSection(report: Report): string[] {
       `| ${JSON.stringify(p.text)} | ${briefLine(p.web)} | ${briefLine(p.python_default)} | ${briefLine(p.python_basic)} | ${p.identical ? "yes" : "NO"} |`
     )
   }
-  const q = report.gold_quality as Report | null
-  lines.push(
-    "",
-    "### Gold-label quality (annotation-v2 test split and probe)",
-    ""
-  )
-  if (q === null) {
-    lines.push(
-      "Not computed (run `uv run python scripts/score_web_parity_quality.py`, then `pnpm parity`).",
-      ""
-    )
-    return lines
-  }
-  lines.push(
-    "Scored with the frozen evaluation code (`gidi.evaluation.value_eval.evaluate_records`, " +
-      "`summarize_set`, `value_quality_criteria`; CRF decoding of the bundle config) on the " +
-      "single-note logits of each backend: *python default* = stock `GidiPredictor`, " +
-      "*python basic* = same with `ORT_ENABLE_BASIC`, *web* = onnxruntime-web in Node (identical " +
-      "to the browser run). Gold labels come from the dataset; `value` metrics use complete labels.",
-    "",
-    "| set | backend | n | type acc | target exact | value exact | present/null | human value exact | multi-number exact | frozen criteria |",
-    "|---|---|---:|---:|---:|---:|---:|---:|---:|---|"
-  )
-  for (const set of Object.keys(q.sets as Report)) {
-    for (const backend of q.backends as string[]) {
-      const h = q.headline[backend][set]
-      const crit = q.frozen_criteria[backend]
-      lines.push(
-        `| ${set} | ${backend} | ${h.n} | ${fmtN(h.type_accuracy)} | ${fmtN(h.target_exact)} | ` +
-          `${fmtN(h.value_exact)} | ${fmtN(h.present_null_accuracy)} | ${fmtN(h.human_exact)} | ` +
-          `${fmtN(h.multi_number_exact)} | ${set === "test" ? (crit.all_pass ? "all pass" : "FAIL") : ""} |`
-      )
-    }
-  }
-  lines.push(
-    "",
-    "Frozen value-span-v7 criteria (test split): " +
-      (q.backends as string[])
-        .map(
-          (b) =>
-            `${b}: ${q.frozen_criteria[b].criteria.filter((c: Report) => c.pass).length}/${q.frozen_criteria[b].criteria.length} pass`
-        )
-        .join("; ") +
-      ".",
-    "",
-    "Note-level changes in gold correctness (notes that become correct / become wrong when moving " +
-      "from the first backend to the second):",
-    "",
-    "| comparison | set | type +/- | target +/- | value +/- |",
-    "|---|---|---:|---:|---:|"
-  )
-  for (const [pair, bySet] of Object.entries(q.note_level as Report)) {
-    for (const [set, r] of Object.entries(bySet as Report)) {
-      lines.push(
-        `| ${pair} | ${set} | +${r.type.gained}/-${r.type.lost} | +${r.target.gained}/-${r.target.lost} | +${r.value.gained}/-${r.value.lost} |`
-      )
-    }
-  }
-  lines.push(
-    "",
-    "Notes whose correctness differs between web and Python default:",
-    ""
-  )
-  const changed = (q.note_level.web_vs_python_default as Report) ?? {}
-  let any = false
-  for (const [set, r] of Object.entries(changed)) {
-    for (const n of r.notes as Report[]) {
-      any = true
-      lines.push(
-        `- ${set} / ${n.id} \`${JSON.stringify(n.text)}\`: ${n.field} gold ${JSON.stringify(n.gold)}; ` +
-          `default ${JSON.stringify(n.python_default)} (${n.python_default_ok ? "ok" : "wrong"}), ` +
-          `web ${JSON.stringify(n.web)} (${n.web_ok ? "ok" : "wrong"})`
-      )
-    }
-  }
-  if (!any) lines.push("None.")
-  lines.push("")
   return lines
 }
 

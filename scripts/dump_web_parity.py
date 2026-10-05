@@ -1,17 +1,20 @@
 """Dump the Python INT8 runtime's outputs that the browser runtime must reproduce.
 
-The in-browser playground (``playground/src/runtime``) is a port of ``gidi.inference``. This script
-runs the reference, ``GidiPredictor`` on the INT8 model of the published release, over a fixed
-set of inputs and writes everything the TS side needs to compare:
+The in-browser playground (``playground/src/runtime``) is a port of ``gidi.inference`` and
+``gidi.value_parser``. This script runs the reference, ``GidiPredictor`` on the INT8 model of the
+``gidi-finance-v3`` bundle (type + target from the encoder, whole-word target snap, value from the
+rule parser), over a fixed set of inputs and writes everything the TS side needs to compare:
 
 - ``expected.jsonl``: one record per input with ``Prediction.to_dict()`` (or the error), the
-  tokenization (ids, NFC offsets, special mask) and the raw logits / CRF tags, from the *portable*
-  reference (INT8 graph as written, ``ORT_ENABLE_BASIC``; see ``graph_level_predictor``), plus
-  ``default``: the stock ``GidiPredictor`` (ORT's default fused kernels) for comparison. Inputs: the
-  deployment-v2 golden suite, robustness inputs and hardening cases, the annotation-v2 test /
-  train / validation / probe texts, the playground presets, and a seeded set of adversarial strings
-  (special-token text, separators, whitespace variants, NFD, combining orders, astral, lone
-  surrogates, long inputs).
+  tokenization (ids, NFC offsets, special mask) and the raw logits / target tags, from the
+  *portable* reference (INT8 graph as written, ``ORT_ENABLE_BASIC``; see ``graph_level_predictor``),
+  plus ``default``: the stock ``GidiPredictor`` (ORT's default fused kernels) for comparison.
+  Inputs: the deployment-v2 golden suite, robustness inputs and hardening cases, the annotation-v2
+  test / train / validation / probe texts, human-value-01 and human-value-02, the production
+  regressions, the playground presets, and a seeded set of adversarial strings (special-token text,
+  separators, whitespace variants, NFD, combining orders, astral, lone surrogates, long inputs).
+- ``parser.jsonl``: parser-only reference, ``gidi.value_parser.parse_value`` on every distinct text
+  of the corpus, datasets, regressions and presets plus seeded parser-oriented fuzz strings.
 - ``sweep.jsonl``: tokenizer + NFC-map reference for ``a<c> <c>b`` over every BMP code point, all of
   plane 1 and a stride through the remaining planes (no model; catches Unicode class differences).
 - ``meta.json``: release hashes, library versions and the Unicode range tables the TS side checks.
@@ -29,7 +32,6 @@ import json
 import random
 import re
 import sys
-import tempfile
 import unicodedata
 from importlib import metadata
 from pathlib import Path
@@ -41,22 +43,26 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(ROOT / "src"))
 
-from gen_runtime_unicode_tables import python_unicode_ranges  # noqa: E402
+from gen_runtime_unicode_tables import fold_pairs, python_unicode_ranges  # noqa: E402
 
 from gidi.inference import GidiPredictor  # noqa: E402
 from gidi.inference.bundle import CONFIG_FILE, MODEL_FILE, TOKENIZER_FILE  # noqa: E402
 from gidi.inference.schema import EmptyInputError  # noqa: E402
 from gidi.inference.text import normalize_nfc  # noqa: E402
 from gidi.inference.tokenizer import BundleTokenizer  # noqa: E402
+from gidi.value_parser import parse_value  # noqa: E402
 
-RELEASE = ROOT / "dist" / "releases" / "gidi-finance-v2" / "2.0.2"
+BUNDLE = ROOT / "models" / "gidi-finance-v3"
 DEPLOY_V2 = ROOT / "experiments" / "deployment-v2"
 EVAL_DIR = ROOT / "datasets" / "annotation-v2" / "training-v1"
+HV01_DIR = ROOT / "datasets" / "annotation-v2" / "human-value-01"
+HV02_DIR = ROOT / "datasets" / "annotation-v3" / "human-value-02"
 PRESETS_TS = ROOT / "playground" / "src" / "lib" / "presets.ts"
 PRODUCTION_REGRESSIONS = ROOT / "tests" / "data" / "production-regressions.jsonl"
 DEFAULT_OUT = ROOT / "playground" / ".parity"
 STRESS_SEED = 20261003
 STRESS_CASES = 900
+PARSER_FUZZ_CASES = 6000
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -68,20 +74,14 @@ def sha256_file(path: Path) -> str:
 
 
 def release_files() -> dict[str, Path]:
-    """The three release files the runtime needs, verified against the release manifest."""
-    files = {
-        CONFIG_FILE: "runtime/config.json",
-        TOKENIZER_FILE: "tokenizer/tokenizer.json",
-        MODEL_FILE: "model/int8/model.int8.onnx",
-    }
-    manifest = json.loads((RELEASE / "manifest.json").read_text(encoding="utf-8"))
-    listed = {a["path"]: a for a in manifest["artifacts"]}
+    """The three bundle files the runtime needs, verified against the bundle manifest."""
+    listed = json.loads((BUNDLE / "manifest.json").read_text(encoding="utf-8"))["files"]
     paths: dict[str, Path] = {}
-    for name, relative in files.items():
-        path = RELEASE / relative
-        entry = listed[relative]
-        if entry["sha256"] != sha256_file(path) or entry["size_bytes"] != path.stat().st_size:
-            raise SystemExit(f"{path} does not match the release manifest")
+    for name in (CONFIG_FILE, TOKENIZER_FILE, MODEL_FILE):
+        path = BUNDLE / name
+        entry = listed[name]
+        if entry["sha256"] != sha256_file(path) or entry["bytes"] != path.stat().st_size:
+            raise SystemExit(f"{path} does not match the bundle manifest")
         paths[name] = path
     return paths
 
@@ -178,6 +178,18 @@ def collect_inputs() -> list[tuple[str, str, str, dict[str, bool] | None]]:
             rows.append((split, r["id"], r["text"], gold_flags(r["target"], r.get("value"))))
     for r in read_jsonl(EVAL_DIR / "probe-v1-eval-only.jsonl"):
         rows.append(("probe", r["id"], r["text"], gold_flags(r["target"], r.get("value"))))
+    labels01 = {r["id"]: r for r in read_jsonl(HV01_DIR / "labels.jsonl")}
+    for r in read_jsonl(HV01_DIR / "review-queue.jsonl"):
+        label = labels01[r["id"]]
+        rows.append(
+            ("human-value-01", r["id"], r["text"], gold_flags(label["target"], label["value"]))
+        )
+    labels02 = {r["id"]: r for r in read_jsonl(HV02_DIR / "labels.jsonl")}
+    for r in read_jsonl(HV02_DIR / "review-queue-all.jsonl"):
+        label = labels02[r["id"]]
+        rows.append(
+            ("human-value-02", r["id"], r["text"], gold_flags(label["target"], label["value"]))
+        )
     rows += [("preset", f"preset-{i}", t, None) for i, t in enumerate(playground_presets())]
     for r in read_jsonl(PRODUCTION_REGRESSIONS):
         rows.append(("regression", r["id"], r["text"], None))
@@ -278,16 +290,13 @@ def reference_record(
         "special": list(raw.special_tokens_mask),
         "type_logits": [float(x) for x in raw.type_logits],
         "tag_logits": [[float(x) for x in row] for row in raw.tag_logits],
-        "value_logits": [[float(x) for x in row] for row in raw.value_logits],
         "target_tags": [int(i) for i in raw.tag_logits.argmax(axis=-1)],
-        "value_tags": list(raw.value_tags),
     }
     default_raw = default.run(text)
     record["default"] = {
         "expected": default.predict(text).to_dict(),
         "type_logits": [float(x) for x in default_raw.type_logits],
         "tag_logits": [[float(x) for x in row] for row in default_raw.tag_logits],
-        "value_logits": [[float(x) for x in row] for row in default_raw.value_logits],
     }
     return record
 
@@ -315,6 +324,69 @@ def sweep_record(tokenizer: BundleTokenizer, text: str) -> dict[str, Any]:
     return record
 
 
+def parser_fuzz_inputs() -> list[str]:
+    """Seeded strings built from the parser's own vocabulary: numbers, units, context words."""
+    rng = random.Random(STRESS_SEED + 1)
+    numbers = [
+        "1", "5", "10", "70", "150", "612", "1500", "20000", "80.000", "1.250.000", "1,5",
+        "12,500,000",
+        "0912 345 678", "0912345678", "1 000 000", "20/10", "9/12/2024", "10:30", "5%", "2024",
+        "2019",
+        "6", "8", "3", "12", "250", "1tr5", "2tr", "500k", "15 K", "80.000đ", "250.000 VND",
+        "350.000 đồng", "5 củ rưỡi", "1 triệu 2", "2 củ", "3 xị", "4 chai", "5 lít",
+        "hai trăm nghìn",
+        "bốn triệu", "nửa củ", "một triệu rưỡi", "ba chục", "t10", "q4", "iphone15", "10kg", "5h",
+    ]  # fmt: skip
+    words = [
+        "tháng", "kỳ", "đợt", "lần", "quý", "năm", "Năm", "Lan", "Thu", "thứ", "tuần", "ngày",
+        "mùng",
+        "lớp", "tầng", "phòng", "chia", "số", "hàng", "tô", "vé", "người", "cái", "xăng", "sữa",
+        "trà",
+        "bia", "nước", "cafe", "đồng", "đóng", "dong", "ck", "mua", "trả", "cho", "vay", "mượn",
+        "anh", "chị", "Nam", "Hùng", "đ", "d", "vnd", "₫", "k", "tr", "trieu", "ty", "tỷ", "nghìn",
+        "ngàn", "rưỡi", "ruoi", "kg", "m2", "gb", "phút", "giờ", "tuổi", "TỔNG", "ĐỒNG", "NĂM",
+    ]  # fmt: skip
+    seps = [" ", " ", " ", "", ".", ",", "-", "/", ":", "%", "(", ")", " - ", "  "]
+    out: list[str] = []
+    for _ in range(PARSER_FUZZ_CASES):
+        parts = [
+            rng.choice(numbers if rng.random() < 0.45 else words) for _ in range(rng.randint(1, 7))
+        ]
+        text = ""
+        for part in parts:
+            text += part + rng.choice(seps)
+        mode = rng.random()
+        if mode < 0.15:
+            text = unicodedata.normalize("NFD", text)
+        elif mode < 0.25:
+            text = text.upper()
+        elif mode < 0.3:
+            text = text.lower()
+        out.append(text)
+    return out
+
+
+def corpus_texts(extra: list[str]) -> list[str]:
+    """Every distinct note text of ``corpus/``, ``datasets/`` and ``tests/data``, then ``extra``."""
+    seen: dict[str, None] = {}
+    for base in (ROOT / "corpus", ROOT / "datasets", ROOT / "tests" / "data"):
+        for path in sorted(base.rglob("*.jsonl")):
+            for line in path.read_text(encoding="utf-8").splitlines():
+                if not line.startswith("{"):
+                    continue
+                row = json.loads(line)
+                if isinstance(row, dict) and isinstance(row.get("text"), str):
+                    seen.setdefault(row["text"])
+    for text in extra:
+        seen.setdefault(text)
+    return list(seen)
+
+
+def parser_record(text: str) -> dict[str, Any]:
+    value = parse_value(text)
+    return {"text": text, "value": None if value is None else [value.start, value.end]}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
@@ -323,25 +395,27 @@ def main() -> int:
     inputs = collect_inputs()
     args.out.mkdir(parents=True, exist_ok=True)
 
-    with tempfile.TemporaryDirectory() as bundle:
-        for name, source in files.items():
-            (Path(bundle) / name).symlink_to(source)
-        default = GidiPredictor.from_bundle(bundle)
-        graph = graph_level_predictor(bundle)
-        records = [reference_record(graph, default, *item) for item in inputs]
-        sweep_tokenizer = BundleTokenizer(Path(bundle) / TOKENIZER_FILE, 32)
+    default = GidiPredictor.from_bundle(BUNDLE)
+    graph = graph_level_predictor(BUNDLE)
+    records = [reference_record(graph, default, *item) for item in inputs]
+    sweep_tokenizer = BundleTokenizer(BUNDLE / TOKENIZER_FILE, 32)
 
-        sweep_count = 0
-        with (args.out / "sweep.jsonl").open("w", encoding="utf-8") as sweep:
-            for text in sweep_texts():
-                sweep.write(json_line(sweep_record(sweep_tokenizer, text)) + "\n")
-                sweep_count += 1
+    sweep_count = 0
+    with (args.out / "sweep.jsonl").open("w", encoding="utf-8") as sweep:
+        for text in sweep_texts():
+            sweep.write(json_line(sweep_record(sweep_tokenizer, text)) + "\n")
+            sweep_count += 1
+
+    parser_texts = corpus_texts([text for _, _, text, _ in inputs] + parser_fuzz_inputs())
+    (args.out / "parser.jsonl").write_text(
+        "".join(json_line(parser_record(t)) + "\n" for t in parser_texts), encoding="utf-8"
+    )
 
     (args.out / "expected.jsonl").write_text(
         "".join(json_line(r) + "\n" for r in records), encoding="utf-8"
     )
     meta = {
-        "release": str(RELEASE.relative_to(ROOT)),
+        "bundle": str(BUNDLE.relative_to(ROOT)),
         "files": {name: sha256_file(path) for name, path in files.items()},
         "python": sys.version.split()[0],
         "unicode": unicodedata.unidata_version,
@@ -354,10 +428,15 @@ def main() -> int:
             for s in dict.fromkeys(r["source"] for r in records)
         },
         "sweep": sweep_count,
+        "parser_texts": len(parser_texts),
         "unicode_ranges": python_unicode_ranges(),
+        "fold_pairs": fold_pairs(),
     }
     (args.out / "meta.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
-    print(f"wrote {len(records)} inputs + {sweep_count} sweep strings to {args.out}")
+    print(
+        f"wrote {len(records)} inputs + {sweep_count} sweep strings + "
+        f"{len(parser_texts)} parser texts to {args.out}"
+    )
     print(json.dumps(meta["by_source"]))
     return 0
 

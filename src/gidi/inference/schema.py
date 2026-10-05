@@ -14,18 +14,19 @@ class EmptyInputError(ValueError):
 
 @dataclass(frozen=True)
 class ValuePrediction:
-    """The value-span head's result for one note (bundles with a value head only).
+    """The value span of one note (bundles with a value head or the rule parser only).
 
     ``span`` is ``[start, end)`` in code points of the *caller's* string and ``text`` is
-    ``text[start:end]`` sliced from that string. ``confidence`` follows the target formula: the
-    geometric mean of the per-token probability of the predicted tag over the span's tokens, or,
-    with no span, the minimum ``P(O)`` over the note's real tokens. The value is a span only;
-    no number is ever derived from it.
+    ``text[start:end]`` sliced from that string. ``confidence`` of a value head follows the target
+    formula: the geometric mean of the per-token probability of the predicted tag over the span's
+    tokens, or, with no span, the minimum ``P(O)`` over the note's real tokens. The rule parser
+    (v3) has no score, so its ``confidence`` is ``None`` (``value_confidence: null``). The value is
+    a span only; no number is ever derived from it.
     """
 
     text: str | None
     span: tuple[int, int] | None
-    confidence: float
+    confidence: float | None
 
 
 @dataclass(frozen=True)

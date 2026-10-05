@@ -7,13 +7,11 @@
  */
 
 import type { BundleConfig } from "./config.ts"
-import { viterbiMasked } from "./crf.ts"
 import {
   argmaxTags,
-  bestSpanFromTags,
   decodeFirstSpan,
   type DecodedSpan,
-  TAG_O,
+  snapSpanToWords,
   targetConfidence,
   typePrediction,
 } from "./decode.ts"
@@ -26,12 +24,12 @@ import {
   startToOriginal,
 } from "./text.ts"
 import type { BundleTokenizer, TokenizedText } from "./tokenizer.ts"
+import { parseNormalizedValue } from "./value-parser.ts"
 import { EmptyInputError, type Prediction, type WebPredictor } from "./types.ts"
 
 export interface ModelOutputs {
   typeLogits: Float32Array // [num_types]
   tagLogits: Float32Array // [tokens, 3]
-  valueLogits: Float32Array // [tokens, 3]
 }
 
 export interface ModelRunner {
@@ -60,7 +58,6 @@ export interface Tokenization {
 export interface Analysis extends Tokenization {
   logits: ModelOutputs
   targetTags: number[]
-  valueTags: number[]
   /** Per-token `[start, end)` in the caller's string (`[0, 0]` for specials). */
   originalOffsets: [number, number][]
   prediction: Prediction
@@ -90,21 +87,21 @@ export function tokenize(
   return { normalized, tokens, attentionMask: tokens.ids.map(() => 1) }
 }
 
-/** Everything after the model: argmax / Viterbi tags, spans, confidences, original offsets. */
+/** Everything after the model: argmax tags, target span, value parser, confidences, original offsets. */
 export function decodeLogits(
   config: BundleConfig,
   stage: Tokenization,
   logits: ModelOutputs
 ): Analysis {
   const { normalized, tokens } = stage
-  const { typeLogits, tagLogits, valueLogits } = logits
+  const { typeLogits, tagLogits } = logits
 
   const [typeIndex, typeConfidence] = typePrediction(typeLogits)
   const real = tokens.specialTokensMask.map((special) => special === 0)
   const targetTags = argmaxTags(tagLogits)
-  const targetDecoded = decodeFirstSpan(
-    tokens.offsets,
-    targetTags,
+  // The target is extended to whole words (the BIO tags only mark whole tokens).
+  const targetDecoded = snapSpanToWords(
+    decodeFirstSpan(tokens.offsets, targetTags, normalized.cps),
     normalized.cps
   )
   const targetConf = targetConfidence(
@@ -115,20 +112,7 @@ export function decodeLogits(
   )
   const [target, targetSpan] = sliceOriginal(normalized, targetDecoded)
 
-  const valueTags = viterbiMasked(
-    Float64Array.from(valueLogits),
-    real,
-    config.crf,
-    TAG_O
-  )
-  const [valueDecoded, valueConf] = bestSpanFromTags(
-    valueLogits,
-    valueTags,
-    tokens.offsets,
-    normalized.cps,
-    real
-  )
-  const [valueText, valueSpan] = sliceOriginal(normalized, valueDecoded)
+  const value = parseNormalizedValue(normalized)
 
   const originalOffsets = tokens.offsets.map(([s, e], i): [number, number] =>
     tokens.specialTokensMask[i] === 1
@@ -139,7 +123,6 @@ export function decodeLogits(
     ...stage,
     logits,
     targetTags,
-    valueTags,
     originalOffsets,
     prediction: {
       type: config.types[typeIndex],
@@ -147,9 +130,9 @@ export function decodeLogits(
       target,
       target_span: targetSpan,
       target_confidence: targetConf,
-      value_text: valueText,
-      value_span: valueSpan,
-      value_confidence: valueConf,
+      value_text: value?.text ?? null,
+      value_span: value ? [value.start, value.end] : null,
+      value_confidence: null,
       truncated: tokens.truncated,
       model_version: config.modelVersion,
     },

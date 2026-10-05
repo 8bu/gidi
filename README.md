@@ -23,17 +23,17 @@ Code deterministic chuyển span này thành số.
 
 ## Trạng thái
 
-- **`gidi-finance-v2`** là candidate hiện tại có thể kiểm thử.
-  Đây là `dual encoder` value-span-v7: path v1 đóng băng cho type và target,
-  path thứ hai đã fine-tune, kèm CRF, cho value span.
-  Bản này là 58.1 MB INT8 ONNX, khoảng 3.5 ms p50 trên một CPU thread.
-  Release 2.0.3 đã public trên Hugging Face:
-  [x8bu/gidi-finance](https://huggingface.co/x8bu/gidi-finance) (INT8).
-  GitHub release 2.0.3 có archive INT8 và FP32.
+- **`gidi-finance-v3`** (release `3.0.0`) là model hiện tại.
+  Hệ thống gồm một encoder INT8 cho type và target, word snap cho span `target`, và parser
+  theo luật cho value span. Bundle là 29.3 MB INT8 ONNX, khoảng 1.4 ms p50 trên một CPU thread.
+  Release công khai trên Hugging Face
+  [x8bu/gidi-finance](https://huggingface.co/x8bu/gidi-finance) (INT8) và GitHub
+  (archive INT8 và FP32).
   Demo chạy trong trình duyệt: <https://gidi.8bu.dev>.
+- **`gidi-finance-v2`** là release trước (2.0.3): `dual encoder` với value head CRF,
+  58.1 MB INT8 ONNX, khoảng 3.5 ms p50. Vẫn đóng băng.
 - **`gidi-finance-v1`** vẫn đóng băng và không đổi: chỉ có type và target,
   28.66 MB INT8 ONNX.
-- Research đang tiếp tục với một value path nhỏ hơn. Chi tiết nằm ở [Lộ trình](#lộ-trình).
 
 Usage, output schema và known limitations nằm tại [docs/deployment.md](docs/deployment.md).
 Lịch sử research nằm trong [docs/investigation-journal.md](docs/investigation-journal.md).
@@ -46,29 +46,31 @@ Chi tiết về agent nằm trong `AGENTS.md`.
 
 ## Lộ trình
 
-Tên experiment nội bộ (`V7`, `V8`) không phải là version release.
-Model public có tên `gidi-finance-vN` và version release như `2.0.3`.
-Value path của `gidi-finance-v2` đến từ experiment nội bộ V7.
+Tên experiment nội bộ không phải là version release.
+Model public có tên `gidi-finance-vN` và version release như `3.0.0`.
 
-**Hiện tại: `gidi-finance-v2`**
+**Hiện tại: `gidi-finance-v3` / `3.0.0` (đã xong)**
+
+- Kiến trúc lai neural và tất định: một encoder INT8 cho type và target, value được trích xuất
+  bằng parser theo luật (`gidi.value_parser`), không còn value encoder thứ hai.
+- Word snap bật mặc định: `target` được mở rộng ra ranh giới của cả từ.
+- Taxonomy `annotation-v3`: ghi chú chỉ nói về nợ là `borrow` hoặc `lend`.
+  Người nhận quà là `target` (quy tắc có trong nhãn test; dữ liệu huấn luyện chưa áp dụng).
+- Nhỏ một nửa so với v2: 29.3 MB so với 58.1 MB, khoảng 1.4 ms p50.
+- Trên bộ test mới `human-value-02` (190 ghi chú, nhãn LLM): `type` 92.1%, `target` 85.3%,
+  `value` 100%, end-to-end 78.9%. Chi tiết và giới hạn nằm trong model card.
+
+**Đã phát hành trước đó: `gidi-finance-v2`**
 
 - Kiến trúc `dual encoder`: một encoder cho type và target, encoder thứ hai cho value span.
 - Bản phân phối INT8 ONNX trên Hugging Face và GitHub.
 - Runtime trong trình duyệt (onnxruntime-web, WASM). Demo public: <https://gidi.8bu.dev>.
 
-**Research: experiment nội bộ V8 (đang đánh giá)**
+**Tiếp theo**
 
-- V8 so sánh một value parser tất định (deterministic) với value encoder neural của V7.
-- Model type và target hiện có được giữ nguyên.
-- Mục tiêu: giảm kích thước tải về, bộ nhớ và chi phí inference mà không giảm chất lượng đáng kể.
-- V8 chỉ là experiment. V8 chưa thay thế v2.
-
-**Candidate cho major release tiếp theo: `gidi-finance-v3` / `3.0.0` (chỉ khi V8 được xác nhận)**
-
-- Kiến trúc lai neural và tất định: một encoder cho type và target, value được trích xuất bằng
-  parser tất định, không còn value encoder thứ hai.
-- Runtime trong trình duyệt và trên thiết bị nhỏ hơn đáng kể.
-- v3 chưa được xác nhận. Nếu kết quả V8 không đủ để thay thế, v2 vẫn là release hiện tại.
+- Nâng độ chính xác của `target` (hiện khoảng 85%): tên thương hiệu và cửa hàng nhiều từ,
+  người nhận quà.
+- Hiệu chỉnh điểm tin cậy và cơ chế từ chối.
 
 ## Stack
 
@@ -97,9 +99,9 @@ pnpm -C playground install && pnpm -C playground build
 uv run python scripts/demo_ui.py
 
 # release and publish (see docs/releasing.md)
-uv run python scripts/release.py build --model gidi-finance-v2 --version 2.0.1
-uv run python scripts/release.py verify --release dist/releases/gidi-finance-v2/2.0.1
-uv run python scripts/publish.py all --release dist/releases/gidi-finance-v2/2.0.1 --dry-run
+uv run python scripts/release.py build --model gidi-finance-v3 --version 3.0.0
+uv run python scripts/release.py verify --release dist/releases/gidi-finance-v3/3.0.0
+uv run python scripts/publish.py all --release dist/releases/gidi-finance-v3/3.0.0 --dry-run
 ```
 
 ## Cấu trúc

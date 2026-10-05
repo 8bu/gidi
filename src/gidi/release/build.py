@@ -100,9 +100,27 @@ def iso_timestamp(epoch: int | None) -> str | None:
 
 
 def runtime_from_config(config: Mapping[str, Any]) -> dict[str, Any]:
-    """The manifest ``runtime`` block, derived only from the bundle ``config.json``."""
+    """The manifest ``runtime`` block, derived only from the bundle ``config.json``.
+
+    A bundle with a value head (v2) records ``value_labels``/``value_decoding``. A rule-parser
+    bundle (v3, ``value_source`` in the config) has no head, so both are ``null``, and it adds
+    ``value_source``, ``value_parser`` and ``target_snap``.
+    """
     try:
         onnx = config["onnx"]
+        rules: dict[str, Any] = {}
+        if "value_source" in config:
+            head = {"value_labels": None, "value_decoding": None}
+            rules = {
+                "value_source": config["value_source"],
+                "value_parser": dict(config["value_parser"]),
+                "target_snap": config["target_snap"],
+            }
+        else:
+            head = {
+                "value_labels": list(config["value_labels"]),
+                "value_decoding": config["value_decoding"]["method"],
+            }
         return {
             "onnx_inputs": list(onnx["inputs"]),
             "onnx_outputs": list(onnx["outputs"]),
@@ -110,10 +128,10 @@ def runtime_from_config(config: Mapping[str, Any]) -> dict[str, Any]:
             "max_length": config["max_length"],
             "types": list(config["types"]),
             "tags": list(config["tags"]),
-            "value_labels": list(config["value_labels"]),
-            "value_decoding": config["value_decoding"]["method"],
+            **head,
             "prediction_keys": list(PREDICTION_KEYS),
             "schema_version": None,
+            **rules,
         }
     except (KeyError, TypeError) as error:
         raise ReleaseError(f"runtime config.json lacks the interface fields: {error!r}") from error
@@ -261,6 +279,7 @@ def _readme_values(
         "onnxruntime_requirement": requirements.get("onnxruntime", ""),
         "tokenizers_requirement": requirements.get("tokenizers", ""),
         "numpy_requirement": requirements.get("numpy", ""),
+        "value_parser_version": (config.get("value_parser") or {}).get("version", ""),
     }
     for item in spec.files:
         if item.kind.startswith("onnx-"):

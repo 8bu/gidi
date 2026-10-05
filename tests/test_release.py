@@ -121,6 +121,43 @@ def test_manifest_rejects_unknown_or_malformed_fields(release):
         Manifest.parse("{")
 
 
+def test_rule_parser_runtime_block_round_trips_and_has_no_value_head(release):
+    """A v3-style config (no value head, value_source rule-parser) gets the extended block."""
+    from release_fakes import fake_config
+
+    from gidi.release.build import runtime_from_config
+
+    config = fake_config()
+    for key in ("value_labels", "value_decoding"):
+        del config[key]
+    config["onnx"]["outputs"] = ["type_logits", "tag_logits"]
+    config |= {
+        "value_source": "rule-parser",
+        "value_parser": {"name": "gidi.value_parser", "version": "1"},
+        "target_snap": "words",
+    }
+    runtime = runtime_from_config(config)
+    assert runtime["value_labels"] is None and runtime["value_decoding"] is None
+    assert runtime["value_source"] == "rule-parser" and runtime["target_snap"] == "words"
+    assert runtime["value_parser"] == {"name": "gidi.value_parser", "version": "1"}
+
+    data = load_manifest(release)
+    manifest = Manifest.from_dict({**data, "runtime": runtime})
+    assert Manifest.parse(manifest.serialize()) == manifest
+    assert list(manifest.to_dict()["runtime"])[-3:] == [
+        "value_source",
+        "value_parser",
+        "target_snap",
+    ]
+    # a head-style block must not carry the rule keys, and vice versa
+    with pytest.raises(ReleaseError, match="keys"):
+        Manifest.from_dict({**data, "runtime": {**data["runtime"], "target_snap": "words"}})
+    with pytest.raises(ReleaseError, match="keys"):
+        Manifest.from_dict(
+            {**data, "runtime": {k: v for k, v in runtime.items() if k != "target_snap"}}
+        )
+
+
 def test_manifest_records_artifacts_requirements_and_no_archive_hashes(release):
     manifest = load_manifest(release)
     kinds = {item["path"]: item["kind"] for item in manifest["artifacts"]}

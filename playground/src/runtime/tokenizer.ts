@@ -89,7 +89,7 @@ function isWordChar(cp: number): boolean {
   return !(cp >= 0x2000 && cp <= 0x200a)
 }
 
-/** GPT-2 `bytes_to_unicode`: the printable stand-in character of each byte. */
+/** Byte-level BPE `bytes_to_unicode`: the printable stand-in character of each byte. */
 const BYTE_TO_CHAR: string[] = (() => {
   const keep: number[] = []
   for (let b = 0x21; b <= 0x7e; b++) keep.push(b)

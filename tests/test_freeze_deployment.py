@@ -155,3 +155,30 @@ def test_base_checkpoint_must_share_the_tokenizer_with_the_value_checkpoint(
     )
     with pytest.raises(SystemExit, match="differs between the base checkpoint"):
         freeze.build_bundle(tmp_path / "out", "2026-01-01T00:00:00Z", protocol_path)
+
+
+def test_rule_parser_protocol_pins_the_parser_version_and_the_word_snap():
+    from gidi import value_parser
+
+    rules = freeze._runtime_rules({"value_source": "rule-parser", "target_snap": "words"}, False)
+    assert rules == {
+        "value_source": "rule-parser",
+        "value_parser": {"name": "gidi.value_parser", "version": value_parser.VERSION},
+        "target_snap": "words",
+    }
+    assert freeze._runtime_rules({}, False) == {}  # v1/v2 bundles stay byte-identical
+
+
+@pytest.mark.parametrize(
+    ("protocol", "value_head"),
+    [
+        ({"value_source": "rule-parser"}, False),  # snap is required with the rule parser
+        ({"value_source": "rule-parser", "target_snap": "chars"}, False),
+        ({"value_source": "crf", "target_snap": "words"}, False),
+        ({"value_source": "rule-parser", "target_snap": "words"}, True),  # excludes a value head
+        ({"target_snap": "words"}, False),  # snap without a declared value source
+    ],
+)
+def test_inconsistent_rule_parser_protocols_are_rejected(protocol, value_head):
+    with pytest.raises(SystemExit):
+        freeze._runtime_rules(protocol, value_head)

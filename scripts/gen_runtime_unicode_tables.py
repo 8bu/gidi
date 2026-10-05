@@ -1,10 +1,12 @@
 """Write ``playground/src/runtime/unicode-tables.ts`` from Python's ``unicodedata``.
 
-The browser runtime ports ``gidi.inference.text`` / ``decode``, which use two Unicode properties
-JavaScript does not expose: the canonical combining class (``unicodedata.combining``) and
-``str.isspace``. Both are tabulated here from the same interpreter that produced the reference
-outputs, so the TS port classifies every code point exactly like Python. ``dump_web_parity.py``
-dumps the same ranges and the parity runner checks the committed table against them.
+The browser runtime ports ``gidi.inference.text`` / ``decode`` / ``gidi.value_parser``, which use
+Unicode properties JavaScript does not expose the way Python does: the canonical combining class
+(``unicodedata.combining``), ``str.isspace``, ``str.isalpha``, ``str.isalnum``, ``str.isupper``
+and the ``P*`` general categories. They are tabulated here from the same interpreter that
+produced the reference outputs, so the TS port classifies every code point exactly like Python.
+``dump_web_parity.py`` dumps the same ranges and the parity runner checks the committed tables
+against them.
 
     uv run python scripts/gen_runtime_unicode_tables.py
 """
@@ -15,6 +17,10 @@ import sys
 import unicodedata
 from collections.abc import Callable
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
+from gidi.value_parser.parser import fold  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "playground" / "src" / "runtime" / "unicode-tables.ts"
@@ -39,13 +45,45 @@ def python_unicode_ranges() -> dict[str, list[int]]:
     return {
         "combining": ranges(lambda ch: unicodedata.combining(ch) != 0),
         "space": ranges(str.isspace),
+        "alpha": ranges(str.isalpha),
+        "alnum": ranges(str.isalnum),
+        "upper": ranges(str.isupper),
+        "punct": ranges(lambda ch: unicodedata.category(ch).startswith("P")),
     }
+
+
+def fold_pairs() -> list[tuple[int, int]]:
+    """``(code point, folded code point)`` where ``gidi.value_parser.fold`` changes a character.
+
+    The parser only asks of a folded character whether it is a letter / alphanumeric and whether
+    it equals an ASCII or currency character. A fold to a non-ASCII character that keeps both
+    classes (``Ǆ`` -> ``ǆ``) is therefore equal to no fold, and only the 497 folds onto ASCII (plus
+    any that would change alpha / alnum) are tabulated.
+    """
+    pairs = []
+    for cp in range(MAX_CODE_POINT + 1):
+        char = chr(cp)
+        folded = fold(char)
+        if folded == char:
+            continue
+        if (
+            ord(folded) < 0x80
+            or char.isalpha() != folded.isalpha()
+            or char.isalnum() != folded.isalnum()
+        ):
+            pairs.append((cp, ord(folded)))
+    return pairs
 
 
 def _format(name: str, flat: list[int]) -> str:
     pairs = [f"0x{a:X}, 0x{b:X}" for a, b in zip(flat[::2], flat[1::2], strict=True)]
     rows = "".join(f"  {pair},\n" for pair in pairs)
     return f"export const {name}: readonly number[] = [\n{rows}]\n"
+
+
+def _format_pairs(name: str, pairs: list[tuple[int, int]]) -> str:
+    flat = ", ".join(f"0x{a:X}, 0x{b:X}" for a, b in pairs)
+    return f"export const {name}: readonly number[] = [{flat}]\n"
 
 
 def main() -> int:
@@ -59,12 +97,24 @@ def main() -> int:
         + _format("COMBINING_RANGES", tables["combining"])
         + "\n/** `str.isspace()` */\n"
         + _format("SPACE_RANGES", tables["space"])
+        + "\n/** `str.isalpha()` */\n"
+        + _format("ALPHA_RANGES", tables["alpha"])
+        + "\n/** `str.isalnum()` */\n"
+        + _format("ALNUM_RANGES", tables["alnum"])
+        + "\n/** `str.isupper()` */\n"
+        + _format("UPPER_RANGES", tables["upper"])
+        + '\n/** `unicodedata.category(ch).startswith("P")` */\n'
+        + _format("PUNCT_RANGES", tables["punct"])
+        + "\n/** Flat `[code point, folded code point]` pairs of `gidi.value_parser.fold`. */\n"
+        + _format_pairs("FOLD_PAIRS", fold_pairs())
     )
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(text, encoding="utf-8")
     print(
         f"wrote {OUTPUT.relative_to(ROOT)}: {len(tables['combining']) // 2} combining ranges, "
-        f"{len(tables['space']) // 2} space ranges"
+        f"{len(tables['space']) // 2} space ranges, {len(tables['alpha']) // 2} alpha ranges, "
+        f"{len(tables['alnum']) // 2} alnum ranges, {len(tables['upper']) // 2} upper ranges, "
+        f"{len(tables['punct']) // 2} punct ranges"
     )
     return 0
 

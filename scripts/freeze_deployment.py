@@ -6,6 +6,8 @@ Usage:
     uv run python scripts/freeze_deployment.py --out models/gidi-finance-v1 --check
     uv run python scripts/freeze_deployment.py --out models/gidi-finance-v2 \\
         --protocol experiments/deployment-v2/protocol.json     # value-head bundle
+    uv run python scripts/freeze_deployment.py --out models/gidi-finance-v3 \\
+        --protocol experiments/deployment-v3/protocol.json     # rule-parser + word-snap bundle
 
 Nothing is trained or re-exported: the INT8 ONNX, tokenizer and vocab map are byte copies of the
 source artifacts named in the protocol (default ``experiments/deployment-v1/protocol.json``);
@@ -17,6 +19,10 @@ tensors of the checkpoint, float32-exact) and the dual-encoder ``architecture`` 
 no compression metadata) takes the compression/vocab/FFN provenance and the layer map from that
 base checkpoint, requires its tokenizer and HF config to equal the value checkpoint's, and records
 its weights in the manifest.
+A protocol with ``"value_source": "rule-parser"`` and ``"target_snap": "words"`` (the v3 bundle:
+no value head, value span from ``gidi.value_parser``) writes ``value_source``, ``value_parser``
+(name and version) and ``target_snap`` into ``config.json`` and ``manifest.json``;
+``GidiPredictor`` honours them.
 
 Default mode builds the bundle in a temporary sibling directory and moves it into place. If
 ``--out`` already exists the bundle is rebuilt anyway and compared byte for byte: identical is a
@@ -46,15 +52,19 @@ from gidi.inference.bundle import (
     CONFIG_FILE,
     MANIFEST_FILE,
     MODEL_FILE,
+    TARGET_SNAP_WORDS,
     TOKENIZER_CONFIG_FILE,
     TOKENIZER_FILE,
     VALUE_LABELS,
     VALUE_OUTPUT,
+    VALUE_PARSER_NAME,
+    VALUE_SOURCE_RULE_PARSER,
     VOCAB_MAP_FILE,
     sha256_file,
 )
 from gidi.modeling.checkpoint import META_FILE, WEIGHTS_FILE
 from gidi.modeling.preprocessing import DEFAULT_MAX_LENGTH, TAGS, TYPES
+from gidi.value_parser import VERSION as VALUE_PARSER_VERSION
 
 PROTOCOL = Path("experiments/deployment-v1/protocol.json")
 ANNOTATION_CONFIG = Path("configs/annotation-v1.yaml")
@@ -131,6 +141,31 @@ def _onnx_interface(path: Path) -> dict:
         "inputs": [i.name for i in model.graph.input],
         "outputs": [o.name for o in model.graph.output],
         "opset": max(opsets),
+    }
+
+
+def _runtime_rules(protocol: dict, value_head: bool) -> dict:
+    """``value_source``/``value_parser``/``target_snap`` for ``config.json`` and the manifest.
+
+    A protocol with ``"value_source": "rule-parser"`` (v3) has no value head: the value span comes
+    from ``gidi.value_parser`` (its version is pinned) and ``"target_snap": "words"`` is required
+    with it. Without ``value_source`` the protocol must not declare ``target_snap``, so v1/v2
+    bundles stay byte-identical.
+    """
+    source = protocol.get("value_source")
+    snap = protocol.get("target_snap")
+    if source is None:
+        _require(snap is None, "target_snap needs value_source (v3 protocols declare both)")
+        return {}
+    _require(source == VALUE_SOURCE_RULE_PARSER, f"unsupported value_source {source!r}")
+    _require(not value_head, "value_source rule-parser excludes a value head")
+    _require(
+        snap == TARGET_SNAP_WORDS, f"rule-parser protocols need target_snap {TARGET_SNAP_WORDS!r}"
+    )
+    return {
+        "value_source": source,
+        "value_parser": {"name": VALUE_PARSER_NAME, "version": VALUE_PARSER_VERSION},
+        "target_snap": snap,
     }
 
 
@@ -312,6 +347,7 @@ def build_bundle(out_dir: Path, created_at: str, protocol_path: Path = PROTOCOL)
                 "path_b_note": "value encoder + emission MLP + CRF",
             },
         }
+    runtime_rules = _runtime_rules(protocol, value_head)
 
     config = {
         "model_version": protocol["version"],
@@ -319,6 +355,7 @@ def build_bundle(out_dir: Path, created_at: str, protocol_path: Path = PROTOCOL)
         "types": list(meta["types"]),
         "tags": list(meta["tags"]),
         **value_config,
+        **runtime_rules,
         "max_length": meta["max_length"],
         "onnx": interface,
         "architecture": architecture,
@@ -345,6 +382,7 @@ def build_bundle(out_dir: Path, created_at: str, protocol_path: Path = PROTOCOL)
         "model_version": protocol["version"],
         "annotation_version": annotation["version"],
         **value_manifest,
+        **runtime_rules,
         "created_at": created_at,
         "seed": meta["seed"],
         "protocol": _entry(protocol_path),

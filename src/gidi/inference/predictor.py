@@ -2,11 +2,21 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import numpy as np
 
-from gidi.inference.bundle import MODEL_FILE, TOKENIZER_FILE, BundleConfig, load_config
+from gidi.inference.bundle import (
+    MODEL_FILE,
+    TARGET_SNAP_WORDS,
+    TOKENIZER_FILE,
+    VALUE_SOURCE_RULE_PARSER,
+    BundleConfig,
+    BundleError,
+    load_config,
+)
 from gidi.inference.crf import CRFTransitions, viterbi_masked
 from gidi.inference.decode import (
     TAG_O,
@@ -22,6 +32,9 @@ from gidi.inference.schema import EmptyInputError, Prediction, RawOutput, ValueP
 from gidi.inference.text import NormalizedText, normalize_nfc
 from gidi.inference.tokenizer import BundleTokenizer, TokenizedText
 
+if TYPE_CHECKING:
+    from gidi.value_parser import ValueSpan
+
 
 class GidiPredictor:
     """Single-note CPU classifier. Deterministic: one thread, no sampling, no state."""
@@ -32,16 +45,34 @@ class GidiPredictor:
         tokenizer: BundleTokenizer,
         runner: OnnxRunner,
         *,
-        snap_words: bool = False,
+        snap_words: bool | None = None,
     ) -> None:
-        # ``snap_words`` extends the decoded target span to whole-word boundaries (off by
-        # default: the deployed web parity is unchanged).
-        self._snap_words = snap_words
+        # ``snap_words`` extends the decoded target span to whole-word boundaries. ``None``
+        # follows the bundle (``target_snap: "words"``: on for v3; v1/v2 bundles: off, so the
+        # deployed web parity is unchanged); a bool overrides it.
+        self._snap_words = (
+            config.target_snap == TARGET_SNAP_WORDS if snap_words is None else snap_words
+        )
         self._config = config
         self._tokenizer = tokenizer
         self._runner = runner
         self.model_version: str = config.model_version
-        self.has_value_head: bool = config.value_labels is not None
+        # True when predictions carry a value span: from the CRF value head (v2) or the rule
+        # parser (v3).
+        self.has_value_head: bool = (
+            config.value_labels is not None or config.value_source == VALUE_SOURCE_RULE_PARSER
+        )
+        self._parse_value: Callable[[str], ValueSpan | None] | None = None
+        if config.value_source == VALUE_SOURCE_RULE_PARSER:
+            # Imported here: ``gidi.value_parser`` itself imports ``gidi.inference.text``.
+            from gidi import value_parser
+
+            if config.value_parser_version != value_parser.VERSION:
+                raise BundleError(
+                    f"bundle {config.model_version} was frozen with value parser version "
+                    f"{config.value_parser_version!r}, this runtime has {value_parser.VERSION!r}"
+                )
+            self._parse_value = value_parser.parse_value
         self._crf: CRFTransitions | None = None
         if config.value_decoding is not None:
             decoding = config.value_decoding
@@ -58,11 +89,12 @@ class GidiPredictor:
         *,
         model_path: str | Path | None = None,
         intra_op_threads: int = 1,
-        snap_words: bool = False,
+        snap_words: bool | None = None,
     ) -> GidiPredictor:
         """Load ``bundle_dir``; ``model_path`` swaps the ONNX file (e.g. the FP32 export).
 
         ``snap_words`` extends the target span to whole-word boundaries (see ``__init__``).
+        ``None`` (default) follows the bundle's ``target_snap``; a bool overrides it.
         """
         root = Path(bundle_dir)
         config = load_config(root)
@@ -117,6 +149,13 @@ class GidiPredictor:
             )
             value_text, value_span = self._slice_original(text, normalized, value_decoded)
             value = ValuePrediction(text=value_text, span=value_span, confidence=value_conf)
+        elif self._parse_value is not None:
+            found = self._parse_value(text)
+            value = ValuePrediction(
+                text=None if found is None else found.text,
+                span=None if found is None else (found.start, found.end),
+                confidence=None,
+            )
         return Prediction(
             type=self._config.types[type_index],
             type_confidence=type_conf,

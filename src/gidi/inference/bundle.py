@@ -27,6 +27,12 @@ VALUE_OUTPUT = "value_logits"
 VALUE_DECODING_METHOD = "crf_viterbi"
 VALUE_SPAN_SELECTION = "highest_confidence"
 
+# A v3 bundle has no value head: the value span comes from the rule parser, and the decoded
+# target span is snapped to whole words (config.json ``value_source`` / ``target_snap``).
+VALUE_SOURCE_RULE_PARSER = "rule-parser"
+VALUE_PARSER_NAME = "gidi.value_parser"
+TARGET_SNAP_WORDS = "words"
+
 # Files whose sha256 the manifest lists under ``files`` (it cannot list itself).
 BUNDLE_FILES = (
     MODEL_FILE,
@@ -65,6 +71,12 @@ class BundleConfig:
     value_labels: tuple[str, ...] | None = None
     # Set exactly when ``value_labels`` is.
     value_decoding: ValueDecoding | None = None
+    # v3 bundles: ``"rule-parser"`` (value span from ``gidi.value_parser``, no value head) and
+    # the parser version the bundle was frozen with; ``"words"`` for whole-word target snap.
+    # ``None`` keeps the v1/v2 behaviour.
+    value_source: str | None = None
+    value_parser_version: str | None = None
+    target_snap: str | None = None
 
 
 def sha256_file(path: str | Path) -> str:
@@ -111,6 +123,30 @@ def _parse_value_decoding(block: Any) -> ValueDecoding:
     )
 
 
+def _parse_runtime_rules(config: dict[str, Any]) -> dict[str, str | None]:
+    """Validate ``value_source``/``value_parser``/``target_snap`` of a v3-style bundle.
+
+    Absent keys keep the v1/v2 behaviour (value from the CRF head if there is one, no snap).
+    """
+    source = config.get("value_source")
+    parser = config.get("value_parser")
+    snap = config.get("target_snap")
+    if source not in (None, VALUE_SOURCE_RULE_PARSER):
+        raise BundleError(f"unsupported value_source {source!r}")
+    if snap not in (None, TARGET_SNAP_WORDS):
+        raise BundleError(f"unsupported target_snap {snap!r}")
+    if source is None:
+        if parser is not None:
+            raise BundleError("value_parser needs value_source")
+        return {"value_source": None, "value_parser_version": None, "target_snap": snap}
+    if "value_labels" in config:
+        raise BundleError("value_source rule-parser excludes a value head (value_labels)")
+    ok = isinstance(parser, dict) and parser.get("name") == VALUE_PARSER_NAME
+    if not ok or not isinstance(parser.get("version"), str) or not parser["version"]:
+        raise BundleError(f"value_parser must be {{name: {VALUE_PARSER_NAME!r}, version: str}}")
+    return {"value_source": source, "value_parser_version": parser["version"], "target_snap": snap}
+
+
 def load_config(bundle_dir: str | Path) -> BundleConfig:
     config = _read_json(Path(bundle_dir) / CONFIG_FILE)
     try:
@@ -126,6 +162,7 @@ def load_config(bundle_dir: str | Path) -> BundleConfig:
         )
     except (KeyError, TypeError, ValueError) as error:
         raise BundleError(f"invalid {CONFIG_FILE} in {bundle_dir}: {error!r}") from error
+    loaded = replace(loaded, **_parse_runtime_rules(config))
     if loaded.tags != ("O", "B-TARGET", "I-TARGET"):
         raise BundleError(f"unsupported tag set {loaded.tags!r}")
     expected_outputs = 2 if loaded.value_labels is None else 3

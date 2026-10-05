@@ -1,0 +1,33 @@
+{
+  "experiment": "deployment-v3",
+  "declared_before_packaging": true,
+  "version": "gidi-finance-v3",
+  "annotation_config": "configs/annotation-v3.yaml",
+  "value_source": "rule-parser",
+  "target_snap": "words",
+  "scope": "packaging only: freeze the annotation-v3-retrain-v4 seed-1 INT8 encoder (type + target) together with the unchanged rule-based value parser (gidi.value_parser) and the whole-word target snap into one release. No training, no re-training, no seed change, no architecture/tokenizer/vocabulary/annotation/taxonomy change, no new data, no threshold change, no special-casing of any note. models/gidi-finance-v1 and models/gidi-finance-v2 are not modified.",
+  "architecture": "annotation-v3-retrain-v4 seed 1: compression-v3 recipe (pretrained BamiBERT-derived 4x768 encoder, layers 2,5,8,11, FFN 2048 combined criterion, 34 position rows, vocabulary B-rank-8000 with 8,338 tokens, max_length 32), supervised on training-v4 with annotation-v3 labels; type head (8 classes) + target BIO head, ONNX INT8 (dynamic, QInt8 weights). Same ONNX interface as gidi-finance-v1: inputs input_ids/attention_mask, outputs type_logits/tag_logits. No neural value head: the value span is produced by the deterministic parser gidi.value_parser.parse_value on the caller's string (config.json value_source rule-parser, value_parser.version pinned). The decoded first target span is extended to whole words (config.json target_snap words; gidi.inference.decode.snap_span_to_words). Tokenizer, tokenizer_config and vocab map are byte-identical to gidi-finance-v1.",
+  "source_experiment": "experiments/annotation-v3-retrain-v4",
+  "source_experiment_protocol_sha256": "615e854c5fcf08344392bc4c2dc1bd5499e73e3f6bff5c315e4594f570448f4e",
+  "source_checkpoint": "experiments/annotation-v3-retrain-v4/weights/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2048/seed1",
+  "source_onnx": "experiments/annotation-v3-retrain-v4/onnx/seed1/",
+  "bundle": "models/gidi-finance-v3",
+  "seed": 1,
+  "seed_selection": {
+    "rule": "seed 1, the release candidate fixed in experiments/annotation-v3-retrain-v4/protocol.json before any model of that run was trained, exported or scored (the deployment convention of every earlier run). The candidate was not chosen among seeds 1-3 by any held-out score.",
+    "why_not_held_out_metrics": "selecting the seed by test/probe/human-value results would select on evaluation sets and bias every number reported for the released model",
+    "no_weight_averaging_or_ensembling": true
+  },
+  "value_decoding_rule": "none: no value head. The value span is gidi.value_parser.parse_value(text) (offsets in code points of the caller's string, None when the note holds no amount); Prediction value_confidence is null because the rule parser has no score.",
+  "target_snap_rule": "the decoded first target span is extended outward to whole words (maximal non-whitespace runs, edge punctuation of the extension trimmed), exactly gidi.inference.decode.snap_to_words; member tokens, and therefore target_confidence, are unchanged.",
+  "evaluation_sets_report_only": "frozen test, probe-v1, human-value-01 and human-value-02 (LLM-labelled by two independent labellers with adjudication) are used only to report quality, never to select, tune or special-case. Numbers: experiments/annotation-v3-retrain-v4/results.json, experiments/annotation-v3-retrain-v5/results-hv02.json (system run4), experiments/deployment-v3/hv02-release-check.json.",
+  "thresholds": "none; confidences are uncalibrated scores, abstention policy is left to a later calibration phase",
+  "acceptance_gate": [
+    "bundle reproducible from the sources (freeze_deployment --check byte-identical); every bundle file matches manifest.json",
+    "INT8 model equals the ONNX the run-4 held-out runs scored (sha256 61c17d27b92e1ac4ac1add0af73344cb1c68bdbbc19db58532ce6d38d9bb7315, 28,658,533 bytes)",
+    "GidiPredictor.from_bundle(models/gidi-finance-v3) with no flags reproduces the run-4 human-value-02 numbers exactly (type 0.9211, target exact 0.8526, value exact 1.0, end-to-end 0.7895 on 190 notes)",
+    "gidi-finance-v1 and gidi-finance-v2 bundles load and predict exactly as before (no snap, v2 value from its CRF head)",
+    "release verify passes: hashes, runtime config accepted by the runtime loader, INT8 and FP32 smoke predictions match the spec"
+  ],
+  "on_gate_failure": "stop and report the blocker; no retraining, no seed change"
+}

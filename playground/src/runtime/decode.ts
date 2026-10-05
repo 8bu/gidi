@@ -6,7 +6,7 @@
  * member tokens after trimming whitespace; tokens with empty trimmed offsets are skipped.
  */
 
-import { isPySpace } from "./text.ts"
+import { isPunct, isPySpace } from "./text.ts"
 
 export const TAG_O = 0
 export const TAG_B = 1
@@ -30,6 +30,36 @@ export function trimSpan(
   while (start < end && isPySpace(text[start])) start++
   while (end > start && isPySpace(text[end - 1])) end--
   return [start, end]
+}
+
+/**
+ * Extend `[start, end)` to whole-word boundaries (never shrinks it). A word is a maximal run of
+ * non-whitespace code points; punctuation (`P*`) at the edge of the extension is trimmed, so
+ * `(vpbank),` snaps to `vpbank`. Port of `gidi.inference.decode.snap_to_words`.
+ */
+export function snapToWords(
+  text: readonly number[],
+  start: number,
+  end: number
+): [number, number] {
+  if (start >= end) return [start, end]
+  let lo = start
+  while (lo > 0 && !isPySpace(text[lo - 1])) lo--
+  let hi = end
+  while (hi < text.length && !isPySpace(text[hi])) hi++
+  while (lo < start && isPunct(text[lo])) lo++
+  while (hi > end && isPunct(text[hi - 1])) hi--
+  return [lo, hi]
+}
+
+/** `span` extended to whole words; member tokens are unchanged. */
+export function snapSpanToWords(
+  span: DecodedSpan | null,
+  text: readonly number[]
+): DecodedSpan | null {
+  if (span === null) return null
+  const [start, end] = snapToWords(text, span.start, span.end)
+  return { start, end, members: span.members }
 }
 
 export function decodeFirstSpan(
@@ -128,65 +158,4 @@ export function targetConfidence(
     if (isReal) min = Math.min(min, logP[i * NUM_TAGS + TAG_O])
   })
   return min === Infinity ? 1.0 : Math.exp(min)
-}
-
-/** Every BIO span in token order, by the same rule as `decodeFirstSpan`. */
-export function decodeAllSpans(
-  offsets: readonly (readonly [number, number])[],
-  tagIds: readonly number[],
-  text: readonly number[]
-): DecodedSpan[] {
-  const spans: DecodedSpan[] = []
-  let current: DecodedSpan | null = null
-  const flush = (): void => {
-    if (current !== null) spans.push(current)
-    current = null
-  }
-  for (let i = 0; i < Math.min(offsets.length, tagIds.length); i++) {
-    const [s, e] = trimSpan(text, offsets[i][0], offsets[i][1])
-    if (s >= e) continue
-    const tag = tagIds[i]
-    if (tag === TAG_B) {
-      flush()
-      current = { start: s, end: e, members: [i] }
-    } else if (tag === TAG_I) {
-      if (current === null) {
-        current = { start: s, end: e, members: [i] }
-      } else {
-        current.start = Math.min(current.start, s)
-        current.end = Math.max(current.end, e)
-        current.members.push(i)
-      }
-    } else {
-      flush()
-    }
-  }
-  flush()
-  return spans
-}
-
-/**
- * The most confident BIO span of `tagIds` and its confidence (ties go to the earlier span).
- * With no span the confidence is the minimum P(O) over the real tokens.
- */
-export function bestSpanFromTags(
-  logits: Float32Array,
-  tagIds: readonly number[],
-  offsets: readonly (readonly [number, number])[],
-  text: readonly number[],
-  real: readonly boolean[]
-): [DecodedSpan | null, number] {
-  const spans = decodeAllSpans(offsets, tagIds, text)
-  if (spans.length === 0)
-    return [null, targetConfidence(logits, tagIds, null, real)]
-  let best = spans[0]
-  let bestConfidence = targetConfidence(logits, tagIds, best, real)
-  for (const span of spans.slice(1)) {
-    const confidence = targetConfidence(logits, tagIds, span, real)
-    if (confidence > bestConfidence) {
-      best = span
-      bestConfidence = confidence
-    }
-  }
-  return [best, bestConfidence]
 }

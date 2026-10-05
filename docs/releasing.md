@@ -4,26 +4,28 @@ A release is a deterministic, hash-pinned directory built from the frozen model 
 only copies a verified release to providers. All logic is in `src/gidi/release/`,
 `src/gidi/publish/`, `scripts/release.py` and `scripts/publish.py`; CI only runs those commands.
 
-Inputs are pinned by the committed spec `releases/gidi-finance-v2.json` (paths and sha256 of the
-bundle, FP32 model, protocols, checkpoint). Provider metadata (repo ids, tags) is in
-`releases/providers.json` and is not part of the release.
+Inputs are pinned by the committed spec `releases/<model>.json` (here
+`releases/gidi-finance-v3.json`: paths and sha256 of the bundle, FP32 model, protocols,
+checkpoint). Provider metadata (repo ids, tags) is in `releases/providers.json` and is not part
+of the release.
 
-All commands below use `gidi-finance-v2` and `2.0.0`.
+All commands below use `gidi-finance-v3` and `3.0.0`. The `gidi-finance-v2` releases (`2.0.x`)
+use the same commands with `releases/gidi-finance-v2.json`.
 
 ## 1. Build locally
 
 Needs the model files in `models/` (gitignored) and a clean git tree.
 
 ```bash
-uv run python scripts/release.py build --model gidi-finance-v2 --version 2.0.0
+uv run python scripts/release.py build --model gidi-finance-v3 --version 3.0.0
 ```
 
-Output: `dist/releases/gidi-finance-v2/2.0.0/` (all files `0444`). Re-running with identical
+Output: `dist/releases/gidi-finance-v3/3.0.0/` (all files `0444`). Re-running with identical
 inputs is a no-op; a different result for an existing directory is an error, never an overwrite.
 For a dirty tree (local experiments only; records commit `null`):
 
 ```bash
-uv run python scripts/release.py build --model gidi-finance-v2 --version 2.0.0 --allow-unversioned
+uv run python scripts/release.py build --model gidi-finance-v3 --version 3.0.0 --allow-unversioned
 ```
 
 Use `--out DIR` to build elsewhere and `--spec PATH` for another spec.
@@ -31,9 +33,9 @@ Use `--out DIR` to build elsewhere and `--spec PATH` for another spec.
 ## 2. Verify locally
 
 ```bash
-uv run python scripts/release.py verify --release dist/releases/gidi-finance-v2/2.0.0
-uv run python scripts/release.py build --model gidi-finance-v2 --version 2.0.0 --check
-uv run python scripts/release.py package --release dist/releases/gidi-finance-v2/2.0.0 --check
+uv run python scripts/release.py verify --release dist/releases/gidi-finance-v3/3.0.0
+uv run python scripts/release.py build --model gidi-finance-v3 --version 3.0.0 --check
+uv run python scripts/release.py package --release dist/releases/gidi-finance-v3/3.0.0 --check
 ```
 
 `verify` exits 0/1 and prints each check (hashes, files, versions, absolute paths, archives,
@@ -44,7 +46,7 @@ archives and compares bytes.
 ## 3. Inspect the release
 
 ```bash
-cd dist/releases/gidi-finance-v2/2.0.0
+cd dist/releases/gidi-finance-v3/3.0.0
 find . -type f | sort
 sha256sum -c checksums.txt          # macOS: shasum -a 256 -c checksums.txt
 python -m json.tool manifest.json
@@ -55,7 +57,7 @@ README.md  manifest.json  checksums.txt
 model/int8/model.int8.onnx   model/fp32/model.onnx
 tokenizer/{tokenizer.json,tokenizer_config.json,vocab_map.json}
 runtime/config.json
-archives/gidi-finance-v2-2.0.0-{int8,fp32}.tar.gz
+archives/gidi-finance-v3-3.0.0-{int8,fp32}.tar.gz
 ```
 
 `manifest.json` records git commit and dirty flag, source hashes, runtime contract, artifact
@@ -67,10 +69,10 @@ Dry-runs verify the release, stage fresh copies, print the plan and write a dry-
 contact no provider and need no credentials.
 
 ```bash
-uv run python scripts/publish.py huggingface --release dist/releases/gidi-finance-v2/2.0.0 --dry-run
-uv run python scripts/publish.py github --release dist/releases/gidi-finance-v2/2.0.0 --dry-run
-uv run python scripts/publish.py kaggle --release dist/releases/gidi-finance-v2/2.0.0 --dry-run
-uv run python scripts/publish.py all --release dist/releases/gidi-finance-v2/2.0.0 --dry-run
+uv run python scripts/publish.py huggingface --release dist/releases/gidi-finance-v3/3.0.0 --dry-run
+uv run python scripts/publish.py github --release dist/releases/gidi-finance-v3/3.0.0 --dry-run
+uv run python scripts/publish.py kaggle --release dist/releases/gidi-finance-v3/3.0.0 --dry-run
+uv run python scripts/publish.py all --release dist/releases/gidi-finance-v3/3.0.0 --dry-run
 ```
 
 Staging goes to `dist/staging/<provider>/<model>/<version>/` (`--staging-root`). Without
@@ -82,11 +84,12 @@ before probing credentials or contacting any provider. The publish workflow adds
 ## 5. Release CI
 
 Workflow `release` (manual dispatch, `.github/workflows/release.yml`). Inputs: `release_version`
-(required), `model_version` (default `gidi-finance-v2`).
+(required), `model_version` (default `gidi-finance-v2`; pass `gidi-finance-v3` for v3).
 
 - Runs on a self-hosted runner labelled `gidi-models`. Model binaries are gitignored, so they are
-  not in the checkout. The runner must set `GIDI_MODELS_DIR` to a directory holding
-  `gidi-finance-v2/` and `gidi-finance-v2-onnx/`; the job fails if it is unset.
+  not in the checkout. The runner must set `GIDI_MODELS_DIR` to a directory holding the model
+  directories of the release (`gidi-finance-v3/` and `gidi-finance-v3-onnx/`; for v2
+  `gidi-finance-v2/` and `gidi-finance-v2-onnx/`); the job fails if it is unset.
 - A step symlinks its entries into `models/`. The runner cannot substitute different bytes: the
   committed spec pins every input by sha256 and the build rejects mismatches.
 - Steps: checkout exact sha, `uv sync --frozen`, link models, `build`, `verify`, `build --check`,
@@ -130,21 +133,22 @@ the receipts artifact.
 
 ## 9. Model version vs release version
 
-The model version (`gidi-finance-v2`) names the trained, frozen model. The release version
-(`2.0.0`) names a packaging of it, semver `MAJOR.MINOR.PATCH[-prerelease]`. MAJOR must equal the
-model's `vN`: `gidi-finance-v2` releases are `2.x.y`. A packaging-only fix (README, archive
-layout) bumps MINOR or PATCH; a new model bumps MAJOR with a new model version.
+The model version (`gidi-finance-v3`) names the trained, frozen model. The release version
+(`3.0.0`) names a packaging of it, semver `MAJOR.MINOR.PATCH[-prerelease]`. MAJOR must equal the
+model's `vN`: `gidi-finance-v3` releases are `3.x.y` (`gidi-finance-v2`: `2.x.y`). A packaging-only
+fix (README, archive layout) bumps MINOR or PATCH; a new model bumps MAJOR with a new model
+version.
 
 ## 10. Reproducing an older release
 
 ```bash
 git checkout <commit-from-manifest.json>
-# provision the same models dir (gidi-finance-v2/, gidi-finance-v2-onnx/); the spec pins sha256s
+# provision the same models dir (gidi-finance-v3/, gidi-finance-v3-onnx/); the spec pins sha256s
 uv sync --frozen
-uv run python scripts/release.py build --model gidi-finance-v2 --version 2.0.0 --check   # vs existing dist/
+uv run python scripts/release.py build --model gidi-finance-v3 --version 3.0.0 --check   # vs existing dist/
 # or rebuild to another directory and compare
-uv run python scripts/release.py build --model gidi-finance-v2 --version 2.0.0 --out /tmp/rebuild
-diff -r dist/releases/gidi-finance-v2/2.0.0 /tmp/rebuild
+uv run python scripts/release.py build --model gidi-finance-v3 --version 3.0.0 --out /tmp/rebuild
+diff -r dist/releases/gidi-finance-v3/3.0.0 /tmp/rebuild/releases/gidi-finance-v3/3.0.0
 ```
 
 Compare `checksums.txt`. Gzip output depends on the zlib version, so archive bytes can differ
@@ -165,3 +169,12 @@ non-archive files must always match.
 - The model card is bilingual. `README.md` is Vietnamese (the default, and the Hugging Face card),
   written to the STV standard (TVKTĐGH/KHMT); `README.en.md` is the English secondary. The spec
   key `readmes` maps each release path to its template under `releases/templates/`.
+- `gidi-finance-v3` has no value head: its runtime `config.json` declares `value_source`
+  (`rule-parser`), `value_parser` (name and version) and `target_snap`, and the manifest `runtime`
+  block repeats them with `value_labels` and `value_decoding` as `null` (v2 manifests keep the
+  older block unchanged). The value span comes from `gidi.value_parser`, which is part of the
+  `gidi` package, not of the release files; the bundle pins its version and the runtime refuses a
+  mismatch. The FP32 reference is read from `models/gidi-finance-v3-onnx/model.onnx` (a byte copy
+  of the encoder's FP32 export; its sha256 is pinned in the spec).
+- The `source.experiment` of the v3 manifest is the experiment family (`annotation-v3-retrain`),
+  not an internal run number.

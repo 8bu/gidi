@@ -18,7 +18,7 @@ export interface LoadOptions {
   signal?: AbortSignal
 }
 
-/** Exactly `gidi.inference.Prediction.to_dict()` of a bundle with a value head. */
+/** Exactly `gidi.inference.Prediction.to_dict()` of a v3 bundle (rule-parser value). */
 export interface Prediction {
   type: string
   type_confidence: number
@@ -28,7 +28,8 @@ export interface Prediction {
   target_confidence: number
   value_text: string | null
   value_span: [number, number] | null
-  value_confidence: number
+  /** Always `null`: the rule-based value parser has no confidence. */
+  value_confidence: null
   truncated: boolean
   model_version: string
 }

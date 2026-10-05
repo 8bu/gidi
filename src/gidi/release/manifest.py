@@ -62,6 +62,18 @@ _RUNTIME_KEYS = (
     "prediction_keys",
     "schema_version",
 )
+# A bundle without a value head whose value span comes from the rule parser (gidi-finance-v3)
+# also records the decoding rules; ``value_labels`` and ``value_decoding`` are then ``null``.
+_RUNTIME_RULE_KEYS = ("value_source", "value_parser", "target_snap")
+
+
+def runtime_keys(runtime: Any) -> tuple[str, ...]:
+    """The exact key tuple of a manifest ``runtime`` block (the rule keys only when present)."""
+    if isinstance(runtime, dict) and "value_source" in runtime:
+        return (*_RUNTIME_KEYS, *_RUNTIME_RULE_KEYS)
+    return _RUNTIME_KEYS
+
+
 _ARTIFACT_KEYS = ("path", "kind", "sha256", "size_bytes")
 _ARCHIVE_KEYS = ("path", "variant", "root", "members")
 
@@ -118,7 +130,7 @@ class Manifest:
             "git": {key: self.git[key] for key in _GIT_KEYS},
             "build_timestamp": self.build_timestamp,
             "source": {key: self.source[key] for key in _SOURCE_KEYS},
-            "runtime": {key: self.runtime[key] for key in _RUNTIME_KEYS},
+            "runtime": {key: self.runtime[key] for key in runtime_keys(self.runtime)},
             "requirements": self.requirements,
             "artifacts": [{key: item[key] for key in _ARTIFACT_KEYS} for item in self.artifacts],
             "archives": [{key: item[key] for key in _ARCHIVE_KEYS} for item in self.archives],
@@ -153,7 +165,8 @@ class Manifest:
             raise ReleaseError("manifest source.experiment/seed have the wrong type")
         for key in _SOURCE_KEYS[2:]:
             _require_sha256(source[key], f"source.{key}")
-        runtime = _require_keys(top["runtime"], _RUNTIME_KEYS, "runtime")
+        runtime_block = top["runtime"]
+        runtime = _require_keys(runtime_block, runtime_keys(runtime_block), "runtime")
         if not isinstance(top["requirements"], dict):
             raise ReleaseError("manifest requirements must be an object")
         artifacts = top["artifacts"]

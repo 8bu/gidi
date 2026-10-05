@@ -5,11 +5,21 @@ import type { PredictResponse, RuntimeInfo } from "@/lib/api"
 import { KNOWN_LIMITATION } from "@/lib/presets"
 import { ms, pct, spanLabel } from "@/lib/format"
 import { Badge } from "@/components/ui/badge"
-import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty"
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { Diagnostics } from "@/components/diagnostics"
 import { RawJson } from "@/components/raw-json"
 import { SpanLegend, SpanView } from "@/components/span-view"
@@ -29,7 +39,11 @@ function Confidence({ value, hint }: { value: number; hint?: string }) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Badge variant="secondary" tabIndex={0} className="font-mono tabular-nums">
+        <Badge
+          variant="secondary"
+          tabIndex={0}
+          className="font-mono tabular-nums"
+        >
           {pct(value)}
         </Badge>
       </TooltipTrigger>
@@ -48,16 +62,22 @@ function SpanText({ span }: { span: readonly [number, number] }) {
           chars {spanLabel(span)}
         </span>
       </TooltipTrigger>
-      <TooltipContent>Unicode code points, start inclusive, end exclusive</TooltipContent>
+      <TooltipContent>
+        Unicode code points, start inclusive, end exclusive
+      </TooltipContent>
     </Tooltip>
   )
 }
 
 function Primary({ children }: { children: ReactNode }) {
-  return <p className="text-lg leading-snug font-semibold break-words">{children}</p>
+  return (
+    <p className="text-lg leading-snug font-semibold break-words">{children}</p>
+  )
 }
 
-const NONE = <span className="text-lg leading-snug text-muted-foreground">—</span>
+const NONE = (
+  <span className="text-lg leading-snug text-muted-foreground">—</span>
+)
 
 export function ResultEmpty() {
   return (
@@ -68,7 +88,8 @@ export function ResultEmpty() {
         </EmptyMedia>
         <EmptyTitle>No result yet</EmptyTitle>
         <EmptyDescription>
-          Run a note or pick a preset to see its transaction type, target and value.
+          Run a note or pick a preset to see its transaction type, target and
+          value.
         </EmptyDescription>
       </EmptyHeader>
     </Empty>
@@ -77,7 +98,11 @@ export function ResultEmpty() {
 
 export function ResultSkeleton() {
   return (
-    <div role="status" aria-label="Running inference" className="flex flex-col gap-4">
+    <div
+      role="status"
+      aria-label="Running inference"
+      className="flex flex-col gap-4"
+    >
       {[0, 1, 2].map((row) => (
         <div key={row} className="flex flex-col gap-4">
           <div className="grid grid-cols-[4.5rem_minmax(0,1fr)] gap-x-3 sm:grid-cols-[5.5rem_minmax(0,1fr)]">
@@ -103,12 +128,19 @@ type ResultViewProps = {
   info: RuntimeInfo | null
 }
 
-export function ResultView({ text, response, roundTripMs, info }: ResultViewProps) {
+export function ResultView({
+  text,
+  response,
+  roundTripMs,
+  info,
+}: ResultViewProps) {
   const { result, latencyMs, segments, spansOverlap } = response
   const hasValue = "value_text" in result
   const valueText = result.value_text ?? null
   const showKnownLimitation =
-    text === KNOWN_LIMITATION.text && hasValue && valueText !== KNOWN_LIMITATION.expectedValue
+    text === KNOWN_LIMITATION.text &&
+    hasValue &&
+    valueText !== KNOWN_LIMITATION.expectedValue
 
   return (
     <div className="flex min-w-0 flex-col gap-4">
@@ -151,14 +183,12 @@ export function ResultView({ text, response, roundTripMs, info }: ResultViewProp
             <>
               {valueText === null ? NONE : <Primary>{valueText}</Primary>}
               <div className="flex flex-wrap items-center gap-2">
-                <Confidence
-                  value={result.value_confidence ?? 0}
-                  hint={
-                    valueText === null
-                      ? "No value span. Confidence is the lowest P(O) over the note's tokens."
-                      : undefined
-                  }
-                />
+                {result.value_confidence === null ||
+                result.value_confidence === undefined ? (
+                  <Badge variant="secondary">rule-based parser</Badge>
+                ) : (
+                  <Confidence value={result.value_confidence} />
+                )}
                 {result.value_span ? (
                   <SpanText span={result.value_span} />
                 ) : (
@@ -173,8 +203,9 @@ export function ResultView({ text, response, roundTripMs, info }: ResultViewProp
                       </Badge>
                     </TooltipTrigger>
                     <TooltipContent>
-                      The expected value for this note is “{KNOWN_LIMITATION.expectedValue}”. The
-                      output is shown exactly as the model returned it.
+                      The expected value for this note is “
+                      {KNOWN_LIMITATION.expectedValue}”. The output is shown
+                      exactly as the model returned it.
                     </TooltipContent>
                   </Tooltip>
                 ) : null}
@@ -185,7 +216,9 @@ export function ResultView({ text, response, roundTripMs, info }: ResultViewProp
         <Separator />
         <Row label="Runtime">
           <div className="flex flex-wrap items-center gap-2 text-sm">
-            <span className="font-mono text-xs break-all">{result.model_version}</span>
+            <span className="font-mono text-xs break-all">
+              {result.model_version}
+            </span>
             <Badge variant="secondary" className="font-mono tabular-nums">
               {ms(latencyMs)}
             </Badge>
@@ -213,8 +246,8 @@ export function ResultView({ text, response, roundTripMs, info }: ResultViewProp
         <SpanLegend hasValue={hasValue} />
         {spansOverlap ? (
           <p className="text-xs text-muted-foreground">
-            Target and value spans overlap. The shared text is outlined; both raw spans are in
-            Diagnostics.
+            Target and value spans overlap. The shared text is outlined; both
+            raw spans are in Diagnostics.
           </p>
         ) : null}
       </section>

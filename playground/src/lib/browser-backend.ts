@@ -9,8 +9,8 @@ import type { BrowserBackend, LoadProgress } from "@/lib/backend"
 import { highlightSegments, spansOverlap } from "@/lib/segments"
 import { loadPredictor, ModelIntegrityError } from "@/runtime"
 
-/** Written by `scripts/sync-release.mjs` from the immutable release manifest. */
-const RELEASE_BASE = "/release/gidi-finance-v2/2.0.2"
+/** Written by `scripts/sync-release.mjs` from the immutable bundle manifest. */
+const RELEASE_BASE = "/release/gidi-finance-v3/3.0.0"
 
 type WebRelease = {
   model_version: string
@@ -74,7 +74,7 @@ export async function loadBrowserPredictor(
     model_version: info.model_version,
     bundle: `${info.model_version} ${info.release_version}`,
     max_length: info.max_length,
-    has_value_head: true,
+    has_value_head: true, // from the rule-based parser
     architecture: info.architecture,
     precision: info.precision,
     backend: info.backend,

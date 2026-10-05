@@ -7,7 +7,10 @@ export type Segment = {
   overlap?: boolean
 }
 
-/** `Prediction.to_dict()` of the runtime. The `value_*` keys exist only for a bundle with a value head. */
+/**
+ * `Prediction.to_dict()` of the runtime. The `value_*` keys exist only for a bundle with a value;
+ * `value_confidence` is `null` when the value comes from the rule-based parser.
+ */
 export type Prediction = {
   type: string
   type_confidence: number
@@ -16,7 +19,7 @@ export type Prediction = {
   target_confidence: number
   value_text?: string | null
   value_span?: Span | null
-  value_confidence?: number
+  value_confidence?: number | null
   truncated: boolean
   model_version: string
 }
@@ -126,7 +129,11 @@ function readPrediction(raw: unknown, length: number): Prediction {
   }
   need(typeof raw.type === "string", "type", "a string")
   need(isNumber(raw.type_confidence), "type_confidence", "a number")
-  need(raw.target === null || typeof raw.target === "string", "target", "a string or null")
+  need(
+    raw.target === null || typeof raw.target === "string",
+    "target",
+    "a string or null"
+  )
   need(isNumber(raw.target_confidence), "target_confidence", "a number")
   need(typeof raw.truncated === "boolean", "truncated", "a boolean")
   need(typeof raw.model_version === "string", "model_version", "a string")
@@ -147,10 +154,18 @@ function readPrediction(raw: unknown, length: number): Prediction {
       "value_text",
       "a string or null"
     )
-    need(isNumber(raw.value_confidence), "value_confidence", "a number")
+    need(
+      raw.value_confidence === null || isNumber(raw.value_confidence),
+      "value_confidence",
+      "a number or null"
+    )
     prediction.value_text = raw.value_text as string | null
-    prediction.value_span = readSpan(raw.value_span, "result.value_span", length)
-    prediction.value_confidence = raw.value_confidence as number
+    prediction.value_span = readSpan(
+      raw.value_span,
+      "result.value_span",
+      length
+    )
+    prediction.value_confidence = raw.value_confidence as number | null
   }
   return prediction
 }
@@ -161,10 +176,16 @@ function readSegments(raw: unknown, text: string): Segment[] {
     if (
       !isRecord(item) ||
       typeof item.text !== "string" ||
-      !(item.role === null || item.role === "target" || item.role === "value") ||
+      !(
+        item.role === null ||
+        item.role === "target" ||
+        item.role === "value"
+      ) ||
       !(item.overlap === undefined || typeof item.overlap === "boolean")
     ) {
-      throw malformed(`segments[${index}] must be {text, role: null|"target"|"value"}`)
+      throw malformed(
+        `segments[${index}] must be {text, role: null|"target"|"value"}`
+      )
     }
     return {
       text: item.text,
@@ -179,12 +200,19 @@ function readSegments(raw: unknown, text: string): Segment[] {
 }
 
 /** Validate a decoded `/api/predict` success body against the submitted `text`. */
-export function parsePredictResponse(body: unknown, text: string): PredictResponse {
-  if (!isRecord(body) || body.ok !== true) throw malformed("response is not an ok payload")
+export function parsePredictResponse(
+  body: unknown,
+  text: string
+): PredictResponse {
+  if (!isRecord(body) || body.ok !== true)
+    throw malformed("response is not an ok payload")
   if (!isNumber(body.latency_ms) || body.latency_ms < 0) {
     throw malformed("latency_ms must be a non-negative number")
   }
-  if (body.spans_overlap !== undefined && typeof body.spans_overlap !== "boolean") {
+  if (
+    body.spans_overlap !== undefined &&
+    typeof body.spans_overlap !== "boolean"
+  ) {
     throw malformed("spans_overlap must be a boolean")
   }
   const result = readPrediction(body.result, codePointLength(text))
@@ -193,7 +221,8 @@ export function parsePredictResponse(body: unknown, text: string): PredictRespon
     result,
     latencyMs: body.latency_ms,
     segments: readSegments(body.segments, text),
-    spansOverlap: typeof body.spans_overlap === "boolean" ? body.spans_overlap : null,
+    spansOverlap:
+      typeof body.spans_overlap === "boolean" ? body.spans_overlap : null,
   }
 }
 
@@ -209,7 +238,11 @@ export function parseRuntimeInfo(body: unknown): RuntimeInfo {
     !isOptionalString(body.backend) ||
     !isOptionalString(body.model_file) ||
     !isOptionalString(body.bundle_path) ||
-    !(body.onnx_opset === undefined || body.onnx_opset === null || isNumber(body.onnx_opset))
+    !(
+      body.onnx_opset === undefined ||
+      body.onnx_opset === null ||
+      isNumber(body.onnx_opset)
+    )
   ) {
     throw malformed("/api/info has an unexpected shape")
   }
@@ -231,15 +264,19 @@ function errorFromResponse(status: number, body: unknown): PlaygroundError {
   const error = isRecord(body) && isRecord(body.error) ? body.error : null
   const code = error && typeof error.code === "string" ? error.code : null
   const message =
-    error && typeof error.message === "string" ? error.message : `HTTP ${status}`
+    error && typeof error.message === "string"
+      ? error.message
+      : `HTTP ${status}`
   if (code === null) {
     return malformed(`HTTP ${status} response without an error payload`)
   }
-  if (code === "empty_input") return new PlaygroundError("empty_input", message, code, status)
+  if (code === "empty_input")
+    return new PlaygroundError("empty_input", message, code, status)
   if (code === "missing_artifact") {
     return new PlaygroundError("missing_artifact", message, code, status)
   }
-  if (status >= 500) return new PlaygroundError("inference", message, code, status)
+  if (status >= 500)
+    return new PlaygroundError("inference", message, code, status)
   return new PlaygroundError("rejected", message, code, status)
 }
 
@@ -295,7 +332,9 @@ export async function predict(
   return parsePredictResponse(body, text)
 }
 
-export async function fetchInfo(timeoutMs: number = REQUEST_TIMEOUT_MS): Promise<RuntimeInfo> {
+export async function fetchInfo(
+  timeoutMs: number = REQUEST_TIMEOUT_MS
+): Promise<RuntimeInfo> {
   const { status, ok, body } = await request("/api/info", {}, timeoutMs)
   if (!ok) throw errorFromResponse(status, body)
   return parseRuntimeInfo(body)

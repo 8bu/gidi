@@ -7,7 +7,15 @@
  * reordering) is atomic: a span boundary inside it is rounded outward to the group's edges.
  */
 
-import { COMBINING_RANGES, SPACE_RANGES } from "./unicode-tables.ts"
+import {
+  ALNUM_RANGES,
+  ALPHA_RANGES,
+  COMBINING_RANGES,
+  FOLD_PAIRS,
+  PUNCT_RANGES,
+  SPACE_RANGES,
+  UPPER_RANGES,
+} from "./unicode-tables.ts"
 
 function inRanges(ranges: readonly number[], cp: number): boolean {
   let lo = 0
@@ -29,6 +37,35 @@ export function isCombining(cp: number): boolean {
 /** Python `str.isspace` for one code point (differs from JS `\s`: U+001C..1F yes, U+FEFF no). */
 export function isPySpace(cp: number): boolean {
   return inRanges(SPACE_RANGES, cp)
+}
+
+/** Python `str.isalpha` for one code point. */
+export function isAlpha(cp: number): boolean {
+  return inRanges(ALPHA_RANGES, cp)
+}
+
+/** Python `str.isalnum` for one code point. */
+export function isAlnum(cp: number): boolean {
+  return inRanges(ALNUM_RANGES, cp)
+}
+
+/** Python `str.isupper` for a one-character string. */
+export function isUpper(cp: number): boolean {
+  return inRanges(UPPER_RANGES, cp)
+}
+
+/** `unicodedata.category(ch).startswith("P")` */
+export function isPunct(cp: number): boolean {
+  return inRanges(PUNCT_RANGES, cp)
+}
+
+const FOLD = new Map<number, number>()
+for (let i = 0; i < FOLD_PAIRS.length; i += 2)
+  FOLD.set(FOLD_PAIRS[i], FOLD_PAIRS[i + 1])
+
+/** `gidi.value_parser.fold` for one code point (see `fold_pairs` in the table generator). */
+export function foldCodePoint(cp: number): number {
+  return FOLD.get(cp) ?? cp
 }
 
 /** Code points of `text`; a lone surrogate is one element, like a Python `str`. */
