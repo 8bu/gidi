@@ -1,0 +1,164 @@
+{
+  "name": "human-value-02-labels",
+  "annotation_version": "annotation-v3",
+  "label_source": "LLM labels (two independent labellers + adjudication); NOT human labels",
+  "user_approval_exception": "The user explicitly approved LLM labels for this test set (they will not label it). This is an exception to the repo rule 'never auto-generate human labels'; these labels are never called human labels, and the exception applies to nothing else.",
+  "never_train": true,
+  "notes": 200,
+  "queue": "review-queue-all.jsonl (review-queue.jsonl, 150 notes, bytes unchanged, + review-queue-b.jsonl, 50 notes)",
+  "labellers": {
+    "a": {
+      "role": "independent labeller A",
+      "tool": "Claude Code CLI `claude -p --model opus --effort high --tools '' --setting-sources ''`, empty working directory",
+      "models": {
+        "claude-opus-5-5": 5
+      },
+      "chunks": "4 chunks of 50 notes + 1 extra chunk of 1 note (see swapped_note)"
+    },
+    "b": {
+      "role": "independent LLM labeller (B)",
+      "chunks": "4 chunks of 50 notes + 1 extra chunk of 1 note (see swapped_note)"
+    },
+    "adjudicator": {
+      "role": "third pass over the notes where A and B disagree; sees both labels anonymised as X / Y (A is X for a note when sha256('hv02-adjudication:<id>') is even), picks X, Y or `uncertain`",
+      "tool": "Claude Code CLI, same flags as A",
+      "models": {
+        "claude-opus-5-5": 1
+      },
+      "note": "same model family as labeller A; all 9 picks went to A's label"
+    }
+  },
+  "isolation": "each labeller saw only rules.md + task.md + the {id, text} of its chunk: no strata, no training data, no model prediction, no repo, and never the other labeller's labels; the adjudicator saw both labels of the disagreeing notes only",
+  "prompts_sha256": {
+    "rules.md": "5b09297cf0e29ac462b783021fe66d96391251f6bb6b87b3f72af2a3ed5a1da1",
+    "task.md": "06c70336b7c1ee0e384323fa79151e0e24baf5fee79a926e6697f8ca9c5484a1",
+    "adjudicate-task.md": "d57c52b02439fea52d4a6400c668e7dea7126e0da16d2dff818bbfb57bd5d745"
+  },
+  "prompt_template": "rules.md + '\\n\\n---\\n\\n' + task.md + '\\n\\n---\\n\\n' + '# Notes' block (one {id, text} JSON per line)",
+  "rules_sources": [
+    "docs/annotation-v1.md",
+    "docs/annotation-v2.md (up to 'Value pass labels')",
+    "docs/annotation-v3.md (up to 'Re-label batch')",
+    "human-value-02/annotation-guide.md (from 'How to label a note')",
+    "configs/annotation-v3.quet.yaml"
+  ],
+  "agreement": {
+    "records": 200,
+    "field_agreement": {
+      "annotation_status": {
+        "agree": 195,
+        "rate": 0.975
+      },
+      "type": {
+        "agree": 195,
+        "rate": 0.975
+      },
+      "target_text": {
+        "agree": 197,
+        "rate": 0.985
+      },
+      "value_text": {
+        "agree": 200,
+        "rate": 1.0
+      },
+      "value_status": {
+        "agree": 199,
+        "rate": 0.995
+      }
+    },
+    "full_label_agreement": {
+      "agree": 191,
+      "rate": 0.955
+    },
+    "full_label_or_both_uncertain": {
+      "agree": 192,
+      "rate": 0.96
+    },
+    "full_label_rule": "annotation_status, type, target text, value text and value status all equal (notes and offsets ignored)",
+    "disagreeing_records": 9,
+    "status_counts": {
+      "a": {
+        "complete": 190,
+        "uncertain": 10
+      },
+      "b": {
+        "complete": 195,
+        "uncertain": 5
+      }
+    },
+    "type_disagreements_a_vs_b": {
+      "None | income": 2,
+      "None | expense": 1,
+      "None | borrow": 1,
+      "None | repayment_out": 1
+    }
+  },
+  "final_labels": {
+    "provenance": {
+      "agreed": 191,
+      "adjudicated": 9
+    },
+    "adjudicated_picks": {
+      "A": 9
+    },
+    "status": {
+      "complete": 190,
+      "uncertain": 10
+    },
+    "type": {
+      "income": 15,
+      "borrow": 16,
+      "expense": 116,
+      "repayment_in": 5,
+      "lend": 14,
+      "transfer": 6,
+      "repayment_out": 14,
+      "None": 10,
+      "refund": 4
+    },
+    "value_uncertain": 1
+  },
+  "offset_repairs": {
+    "rule": "only mechanical: span text re-located in the note (nearest occurrence to the claimed start); chosen words never changed; 0 unfixable",
+    "a": {
+      "value": 2
+    },
+    "b": {
+      "target": 5,
+      "value": 6
+    }
+  },
+  "swapped_note": {
+    "withdrawn": "lì xì cháu Bin 100k",
+    "replacement": "quà thôi nôi bé Gấu 350k",
+    "why": "the withdrawn note is an exact text in contrast-04/source.jsonl (a candidate the contrast-04 build dropped against this set); it was labelled in the first run (raw chunk-4) and is not part of the set or of labels.jsonl"
+  },
+  "files_sha256": {
+    "review-queue.jsonl": "a9ba9627f24796d6d0be61b8cf69b9e9d83691da3c0473cefcc57adb8c0b0cb6",
+    "review-queue-b.jsonl": "f48812b414ac814f40e823cf6dd59766b95fabb6085b2f244b1c17a346146760",
+    "review-queue-all.jsonl": "72a7af5f141b8c26924220bff99c6962762aad719700890faa8060e24af0bd7d",
+    "a-labels.jsonl": "d6361d4396f784d8476f77b2f544206aa325f2e3ec2d09094d72866eea48a1ae",
+    "b-labels.jsonl": "b420e67cc3ea743df98bc53be79ca2048026f50127c97d7417e789229f21c20b",
+    "agreement.json": "ec380ab11d88fb9d2cda60c71dd768450f22e0a06b76f4921482d583564ea882",
+    "labels.jsonl": "d6361d4396f784d8476f77b2f544206aa325f2e3ec2d09094d72866eea48a1ae",
+    "labels-provenance.jsonl": "ca1c4e43465a634eaf991ae19d9b128a9be7b3a57a273c7cbc9f52764814e543"
+  },
+  "raw_outputs_sha256": {
+    "a/chunk-1.txt": "c24bcdb7543b8df7065820a5b5051dd8e72de9ba0087684a01ccdbe6ca82a0c2",
+    "a/chunk-2.txt": "5d8654154f8cd2d2a92e22ba26801e46dc5d1a6237aff72bee6fbc0ce11c8fab",
+    "a/chunk-3.txt": "a41b519e34ebef8fe74bad85733e20f682c95acd279bc85c665c22180a81855c",
+    "a/chunk-4.txt": "f7032cc4a09c67fbf911492455785d263f208cf48d81ecd30195b171d8451626",
+    "a/chunk-extra-1.txt": "ed9075b2c1a092046f440ed61e9654d02df49c944099d98b6d1098ee555ff144",
+    "adj/adjudication.txt": "f995e1cfbf57b587d548d46ffda3741969ec4c73e7663f11a414f383a7de79a9",
+    "b/chunk-1.txt": "b74e2f9383bc14640ab7782afc812ea284f8d609924ad59a416d1c0ba2cc760b",
+    "b/chunk-2.txt": "0b1eed3a4648422fc5f42abd9a9deeed13186c6407e5e3f598cfccc9da8925e2",
+    "b/chunk-3.txt": "d3d9192568135f3b386938d99688b51b136ff69e0c59d5b36ae36095b7e37a17",
+    "b/chunk-4.txt": "f6db546be765a780e887679a94f3bfec6872689b070ea80cc252d2b8cf01520e",
+    "b/chunk-extra-1.txt": "ed3e48a0aa9079656dc381b5152722eba7d9bfa692a6229dcd2aaab03fce27c0"
+  },
+  "scripts": {
+    "scripts/build_human_value_02_b.py": "334e5d31be1cd9a9fcc58f5d0bf98ee0855e8a32999c0f73fd3dabd9f4ab6f01",
+    "scripts/label_human_value_02_llm.py": "b2d71ad631eb397f309d5b6336dbf6c1d91da19e63014da110740bfa7f2646cd"
+  },
+  "validate_command": "uv run python scripts/validate_annotations.py datasets/annotation-v3/human-value-02/labels.jsonl --config configs/annotation-v3.quet.yaml --queue datasets/annotation-v3/human-value-02/review-queue-all.jsonl"
+}

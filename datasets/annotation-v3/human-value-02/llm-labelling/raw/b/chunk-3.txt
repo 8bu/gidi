@@ -1,0 +1,50 @@
+{"id":"hv02-273196810130","annotation_status":"complete","type":"borrow","target":{"text":"Tuấn","start":5,"end":9},"value":{"text":"1000","start":10,"end":14},"span_status":{"value":"complete"}}
+{"id":"hv02-29c5faaba11d","annotation_status":"complete","type":"expense","target":null,"value":{"text":"40","start":14,"end":16},"span_status":{"value":"complete"}}
+{"id":"hv02-8b2801aea92d","annotation_status":"complete","type":"expense","target":null,"value":{"text":"270k","start":18,"end":22},"span_status":{"value":"complete"}}
+{"id":"hv02-c4b0f024ebaa","annotation_status":"complete","type":"expense","target":{"text":"pizza 4p","start":3,"end":11},"value":{"text":"520k","start":19,"end":23},"span_status":{"value":"complete"}}
+{"id":"hv02-84c2deee3fb7","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"4tr","start":22,"end":25},"span_status":{"value":"complete"}}
+{"id":"hv02-2af0805a5dda","annotation_status":"complete","type":"expense","target":null,"value":{"text":"1tr4","start":24,"end":28},"span_status":{"value":"complete"}}
+{"id":"hv02-874c76d80096","annotation_status":"complete","type":"expense","target":{"text":"fpt shop","start":19,"end":27},"value":{"text":"8tr","start":28,"end":31},"span_status":{"value":"complete"}}
+{"id":"hv02-a4ace2599de6","annotation_status":"complete","type":"repayment_out","target":null,"value":{"text":"5tr","start":25,"end":28},"span_status":{"value":"complete"}}
+{"id":"hv02-039e3567e2ad","annotation_status":"complete","type":"transfer","target":null,"value":{"text":"2tr","start":25,"end":28},"span_status":{"value":"complete"}}
+{"id":"hv02-6b1d6d920dca","annotation_status":"complete","type":"expense","target":null,"value":{"text":"640k","start":16,"end":20},"span_status":{"value":"complete"}}
+{"id":"hv02-908f1a91ffc4","annotation_status":"complete","type":"expense","target":null,"value":{"text":"70k","start":5,"end":8},"span_status":{"value":"complete"}}
+{"id":"hv02-a89ed502b931","annotation_status":"complete","type":"refund","target":null,"value":{"text":"1tr4","start":17,"end":21},"span_status":{"value":"complete"}}
+{"id":"hv02-f9201c7f0bf2","annotation_status":"complete","type":"expense","target":{"text":"bách hóa xanh","start":9,"end":22},"value":{"text":"312k","start":23,"end":27},"span_status":{"value":"complete"}}
+{"id":"hv02-b2dee923ede7","annotation_status":"complete","type":"expense","target":null,"value":{"text":"800","start":21,"end":24},"span_status":{"value":"complete"}}
+{"id":"hv02-2b634659d8ab","annotation_status":"complete","type":"expense","target":null,"value":{"text":"40","start":11,"end":13},"span_status":{"value":"complete"}}
+{"id":"hv02-177bb97fd3c6","annotation_status":"complete","type":"expense","target":null,"value":{"text":"500k","start":17,"end":21},"span_status":{"value":"complete"}}
+{"id":"hv02-8a5a1de97379","annotation_status":"complete","type":"lend","target":{"text":"bạn","start":4,"end":8},"value":{"text":"300k","start":14,"end":18},"span_status":{"value":"complete"}}
+{"id":"hv02-aaeb282a961b","annotation_status":"complete","type":"expense","target":{"text":"techcombank","start":22,"end":33},"value":{"text":"11k","start":34,"end":37},"span_status":{"value":"complete"}}
+{"id":"hv02-b7f2ba06ad86","annotation_status":"complete","type":"expense","target":{"text":"kfc","start":8,"end":11},"value":{"text":"89k","start":12,"end":15},"span_status":{"value":"complete"}}
+{"id":"hv02-db3481cc7242","annotation_status":"complete","type":"lend","target":{"text":"Thao","start":0,"end":4},"value":{"text":"180k","start":22,"end":26},"span_status":{"value":"complete"}}
+{"id":"hv02-625eed5e849d","annotation_status":"complete","type":"borrow","target":{"text":"mb bank","start":4,"end":11},"value":{"text":"20tr","start":12,"end":16},"span_status":{"value":"complete"}}
+{"id":"hv02-dde391dcb7cf","annotation_status":"complete","type":"expense","target":{"text":"viettel","start":20,"end":27},"value":{"text":"100k","start":28,"end":32},"span_status":{"value":"complete"}}
+{"id":"hv02-9a39a142fa52","annotation_status":"uncertain","type":null,"target":{"text":"ba","start":16,"end":18},"value":null,"span_status":{"value":"complete"},"note":"purpose unclear: gift, payment, loan, or repayment"}
+{"id":"hv02-97bf5f958d7f","annotation_status":"complete","type":"repayment_out","target":{"text":"mb","start":15,"end":17},"value":{"text":"3tr5","start":18,"end":22},"span_status":{"value":"complete"}}
+{"id":"hv02-91569233457d","annotation_status":"complete","type":"expense","target":null,"value":{"text":"4tr5","start":23,"end":27},"span_status":{"value":"complete"}}
+{"id":"hv02-7f09fb4a6d3c","annotation_status":"complete","type":"expense","target":{"text":"phong vu","start":13,"end":21},"value":{"text":"15tr","start":22,"end":26},"span_status":{"value":"complete"}}
+{"id":"hv02-f55f640a7553","annotation_status":"complete","type":"repayment_out","target":{"text":"fe credit","start":0,"end":9},"value":{"text":"2tr","start":15,"end":18},"span_status":{"value":"complete"}}
+{"id":"hv02-e627d9e2a5a8","annotation_status":"complete","type":"expense","target":null,"value":{"text":"25k","start":8,"end":11},"span_status":{"value":"complete"}}
+{"id":"hv02-14e1c9c126b2","annotation_status":"complete","type":"borrow","target":{"text":"bà Sáu","start":7,"end":14},"value":{"text":"1tr2","start":15,"end":19},"span_status":{"value":"complete"}}
+{"id":"hv02-fc00f60d8294","annotation_status":"complete","type":"borrow","target":{"text":"Trung","start":7,"end":12},"value":{"text":"900k","start":13,"end":17},"span_status":{"value":"complete"}}
+{"id":"hv02-e97979b57d14","annotation_status":"complete","type":"expense","target":{"text":"netflix","start":0,"end":7},"value":{"text":"260k","start":8,"end":12},"span_status":{"value":"complete"}}
+{"id":"hv02-3abafe0e6bb2","annotation_status":"complete","type":"income","target":null,"value":{"text":"2tr2","start":28,"end":32},"span_status":{"value":"complete"}}
+{"id":"hv02-9705a37bf17e","annotation_status":"complete","type":"repayment_in","target":{"text":"Lan","start":0,"end":3},"value":{"text":"300","start":11,"end":14},"span_status":{"value":"complete"}}
+{"id":"hv02-fa504730901e","annotation_status":"complete","type":"expense","target":null,"value":{"text":"150","start":7,"end":10},"span_status":{"value":"complete"}}
+{"id":"hv02-d14cc4d43987","annotation_status":"complete","type":"expense","target":{"text":"tiki","start":0,"end":4},"value":{"text":"275k","start":14,"end":18},"span_status":{"value":"complete"}}
+{"id":"hv02-6ed3caf72c1e","annotation_status":"complete","type":"income","target":{"text":"ba","start":0,"end":2},"value":{"text":"3tr","start":7,"end":10},"span_status":{"value":"complete"}}
+{"id":"hv02-caeb6f47a148","annotation_status":"complete","type":"borrow","target":{"text":"Hạnh","start":12,"end":16},"value":{"text":"2tr","start":17,"end":20},"span_status":{"value":"complete"}}
+{"id":"hv02-e45bc43ad473","annotation_status":"uncertain","type":null,"target":{"text":"vợ","start":0,"end":2},"value":{"text":"2tr5","start":10,"end":14},"span_status":{"value":"complete"},"note":"incoming purpose unclear: income, loan, repayment, or refund"}
+{"id":"hv02-c66380fd19d4","annotation_status":"complete","type":"expense","target":null,"value":{"text":"230","start":19,"end":22},"span_status":{"value":"complete"}}
+{"id":"hv02-26c7913daf90","annotation_status":"complete","type":"expense","target":{"text":"Hưng","start":10,"end":14},"value":{"text":"500","start":15,"end":18},"span_status":{"value":"complete"}}
+{"id":"hv02-1f422699e8a4","annotation_status":"complete","type":"expense","target":null,"value":{"text":"1tr2","start":19,"end":23},"span_status":{"value":"complete"}}
+{"id":"hv02-3f8e5fd00907","annotation_status":"complete","type":"expense","target":null,"value":{"text":"60k","start":22,"end":25},"span_status":{"value":"complete"}}
+{"id":"hv02-f734b55ec354","annotation_status":"complete","type":"income","target":{"text":"ba","start":0,"end":2},"value":{"text":"1tr","start":7,"end":10},"span_status":{"value":"complete"}}
+{"id":"hv02-ed0d0894c998","annotation_status":"complete","type":"expense","target":null,"value":{"text":"250k","start":21,"end":25},"span_status":{"value":"complete"}}
+{"id":"hv02-a3de6aba4c62","annotation_status":"complete","type":"lend","target":{"text":"Hung","start":0,"end":4},"value":{"text":"2tr","start":13,"end":16},"span_status":{"value":"complete"}}
+{"id":"hv02-3e66cd7f9d00","annotation_status":"complete","type":"borrow","target":{"text":"Thu","start":16,"end":19},"value":{"text":"90k","start":20,"end":23},"span_status":{"value":"complete"}}
+{"id":"hv02-720454f89fea","annotation_status":"complete","type":"repayment_out","target":{"text":"home credit","start":0,"end":11},"value":{"text":"780k","start":18,"end":22},"span_status":{"value":"complete"}}
+{"id":"hv02-754430d08879","annotation_status":"complete","type":"income","target":{"text":"mb","start":14,"end":16},"value":{"text":"85k","start":17,"end":20},"span_status":{"value":"complete"}}
+{"id":"hv02-2b3e89a0f9a9","annotation_status":"uncertain","type":null,"target":{"text":"Quang","start":13,"end":18},"value":{"text":"300k","start":23,"end":27},"span_status":{"value":"complete"},"note":"payment purpose and debt context unclear"}
+{"id":"hv02-39f242f7e21b","annotation_status":"complete","type":"expense","target":null,"value":{"text":"128","start":11,"end":14},"span_status":{"value":"complete"}}

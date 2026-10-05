@@ -79,9 +79,9 @@
     "datasets/annotation-v3/debt-01/labels.jsonl": "499dc911a3a10e96c74a63b5facdc5140159e6cdaa153f67fe2ca921d04b816d",
     "datasets/annotation-v3/debt-01/provenance.jsonl": "c14c62a2d83e4ca3edfb532a93d451f6d1e45f6ec56d434c62475c798c27b2d9",
     "datasets/annotation-v3/debt-01/manifest.json": "6034c0326b362fa6f0c6a83f47249f9150310f6a4ef0e46bbdc79eb24eb36422",
-    "datasets/annotation-v2/human-value-01/labels.jsonl": "2a79ec30952a00c9f52018d652eaa7e2399ec068a6dcc796a82f8fa8ccd66ed1",
+    "datasets/annotation-v2/human-value-01/labels.jsonl": "e0808f4bbb13e46a6e8a7ffd0b3e506aece54291610f138ea4188df9340c077f",
     "datasets/annotation-v2/human-value-01/review-queue.jsonl": "362cf8ca58c265d51e3ac12706de66fd6c4fb5111a82c5390d4aef92f13b6a28",
-    "datasets/annotation-v2/human-value-01/freeze.json": "c54967dee43fb2fbea177804d93670421b8f55b4435466a79542cd5058e96d9e",
+    "datasets/annotation-v2/human-value-01/freeze.json": "4738e581ba95dc2a7c6cd13fb7c725645006acc747a06224d3aee283502df481",
     "datasets/probe-v1/notes.jsonl": "6ffc9017bf8a153fe42741f20788b47e35ddd6213afb5479ac25e32d26c31797"
   },
   "outputs_sha256": {

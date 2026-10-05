@@ -1,0 +1,375 @@
+{
+  "name": "contrast-04",
+  "annotation_version": "annotation-v3",
+  "role": "LLM-composed notes: multi-word shop names the contrast-03 quota dropped (go! big c, big c, lotte mart, mm mega market, aeon mall, emart, ...) drawn per shop name, gift notes whose named receiver is the target (user decision), gift notes without a receiver (no target)",
+  "annotator": "llm",
+  "annotator_note": "labels are LLM-made (user-approved), not human labels; provenance.jsonl marks every note `annotator: llm`",
+  "schema": "configs/annotation-v3.quet.yaml",
+  "schema_sha256": "21f5e53be17230a8a6bf6ecc48b2d3ea5a5e2269a9cbe1194977e7d30b2c5743",
+  "contract": "configs/annotation-v3.yaml",
+  "contract_sha256": "e8986e1a66acf856f6b3b9e1d793a330126ca82b580bf995137e19bf0d3e636d",
+  "counts": {
+    "candidates": 87,
+    "kept": 43,
+    "dropped": 44,
+    "type": {
+      "expense": 43
+    },
+    "family": {
+      "gift": 15,
+      "gift_null": 3,
+      "shop": 25
+    },
+    "quota": {
+      "shop": 25,
+      "gift": 15,
+      "gift_null": 3
+    },
+    "per_cue_cap": {
+      "shop": 3,
+      "gift": 2,
+      "gift_null": 3
+    },
+    "shop_notes_by_name": {
+      "aeon mall": 3,
+      "big c": 3,
+      "emart": 2,
+      "family mart": 2,
+      "fpt shop": 2,
+      "go! big c": 3,
+      "lotte mart": 3,
+      "mm mega market": 3,
+      "nha sach phuong nam": 1,
+      "nhà sách phương nam": 1,
+      "the pizza company": 2
+    },
+    "cue": {
+      "aeon mall": 3,
+      "big c": 3,
+      "birthday": 2,
+      "elder": 2,
+      "emart": 2,
+      "family mart": 2,
+      "farewell": 1,
+      "fpt shop": 2,
+      "funeral": 2,
+      "go! big c": 3,
+      "holiday": 2,
+      "housewarming": 1,
+      "lixi": 2,
+      "lotte mart": 3,
+      "mm mega market": 3,
+      "newborn": 1,
+      "nhà sách phương nam": 2,
+      "no-receiver": 3,
+      "the pizza company": 2,
+      "wedding": 2
+    },
+    "target_null": 3,
+    "target_multi_word": 27,
+    "value_null": 0,
+    "accented": 33,
+    "unaccented": 10,
+    "unaccented_share": 0.2326
+  },
+  "required_shops": [
+    "go! big c",
+    "big c",
+    "lotte mart",
+    "mm mega market",
+    "aeon mall",
+    "emart"
+  ],
+  "leakage": {
+    "rules": {
+      "exact": "NFC + strip + lowercase",
+      "folded": "NFC, lowercase, accents stripped, digits masked, whitespace collapsed",
+      "sequence": "difflib ratio of folded texts >= 0.9",
+      "token": "folded token Jaccard >= 0.8 (>= 4 tokens)",
+      "char3": "folded char-3-gram Jaccard >= 0.8",
+      "hv_char3_limit": "folded char-3-gram Jaccard >= 0.6 to any human-value-01 or human-value-02 note: dropped",
+      "source": "scripts/build_human_value_queue.py (via build_debt_relabel_queue.py)"
+    },
+    "human_value_02": {
+      "gated": true,
+      "review_queue_sha256": {
+        "datasets/annotation-v3/human-value-02/review-queue.jsonl": "a9ba9627f24796d6d0be61b8cf69b9e9d83691da3c0473cefcc57adb8c0b0cb6",
+        "datasets/annotation-v3/human-value-02/review-queue-b.jsonl": "f48812b414ac814f40e823cf6dd59766b95fabb6085b2f244b1c17a346146760"
+      },
+      "note": "batches a and b; texts used only by the gate, never printed or stored"
+    },
+    "group_order": [
+      "human-value-01",
+      "human-value-02",
+      "test-split",
+      "probe-v1",
+      "v1-skipped-kept",
+      "existing-corpus",
+      "earlier-generated",
+      "training-v2",
+      "contrast-02",
+      "contrast-03",
+      "human-value-01-char3",
+      "human-value-02-char3",
+      "over-quota"
+    ],
+    "reference_texts": {
+      "human-value-01": 150,
+      "human-value-02": 200,
+      "test-split": 143,
+      "probe-v1": 81,
+      "v1-skipped-kept": 0,
+      "existing-corpus": 1695,
+      "training-v2": 905,
+      "contrast-02": 100,
+      "contrast-03": 83
+    },
+    "dropped_by_group": {
+      "contrast-03": 2,
+      "existing-corpus": 4,
+      "human-value-01": 1,
+      "over-quota": 36,
+      "probe-v1": 1
+    },
+    "dropped_by_rule": {
+      "exact": 1,
+      "gift": 12,
+      "gift_null": 2,
+      "sequence": 3,
+      "shop": 22,
+      "token": 4
+    },
+    "dropped": [
+      {
+        "text": "sieu thi go! big c 876k",
+        "group": "human-value-01",
+        "rule": "token"
+      },
+      {
+        "text": "emart mua nước mắm dầu ăn 240k",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "quà sinh nhật Nhi 400k",
+        "group": "existing-corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "li xi be Su 50k",
+        "group": "probe-v1",
+        "rule": "exact"
+      },
+      {
+        "text": "phúng viếng bác Sáu 500k",
+        "group": "existing-corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "mừng đầy tháng cháu Bông 500k",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "mua tai nghe ở fpt shop 890k",
+        "group": "contrast-03",
+        "rule": "token"
+      },
+      {
+        "text": "mua quà sinh nhật cho Quỳnh 450k",
+        "group": "contrast-03",
+        "rule": "sequence"
+      },
+      {
+        "text": "mua nệm và gối ở go! big c 2tr3",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "mua nuoc ngot bia o big c 560k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "big c quận 7 mua rau thịt 392k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "lotte mart cuối tuần 1tr28",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "lotte mart mua thit bo my 780k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "di mm mega market mua ca 430k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "mm mega market mua đồ khô 2tr15",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "aeon mall ăn trưa cả nhà 520k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "mua do choi o aeon mall 750k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "mua banh keo o emart 330k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "emart tuần này 1tr35",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "mua cafe va sandwich o family mart 57k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "family mart 85k mua đồ ăn đêm",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "family mart mua sữa chua 24k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "fpt shop mua ốp lưng 180k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "mua chuot may tinh o fpt shop 420k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "nhà sách phương nam 320k mua dụng cụ học tập",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "nha sach phuong nam sach giao khoa 468k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "nha sach phuong nam mua sach ngoai ngu 275k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "the pizza company combo gia dinh 749k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "dat pizza o the pizza company 289k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "the pizza company tối thứ 7 645k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "mừng sinh nhật Tú 200k",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "mua quà cưới cho Trang 600k",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "quà cưới Hiếu 700k",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "mung cuoi Phuc 1tr",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "li xi cho chau Heo 100k",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "quà 20/10 cho vợ 600k",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "qua 20/10 tang me 700k",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "quà tết cho ông bà ngoại 1tr2",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "bieu ba noi 1tr",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "biếu cô Năm 600k",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "qua day thang be Ty 400k",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "qua chia tay anh Long 300k",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "lì xì 20 bao 400k",
+        "group": "over-quota",
+        "rule": "gift_null"
+      },
+      {
+        "text": "mua quà 8/3 400k",
+        "group": "over-quota",
+        "rule": "gift_null"
+      }
+    ],
+    "max_char3_kept": {
+      "human-value-01": 0.4333,
+      "human-value-02": 0.5833
+    }
+  },
+  "files_sha256": {
+    "queue.jsonl": "904adba555c00a0e75f76ff0448b8fcdf7b2af217cc627efabf386a9e9bba8ea",
+    "labels.jsonl": "4cc94b8d06b2dbf39cfbbfc98f57a209153a565fc5184b71b4af01d980cf959c",
+    "provenance.jsonl": "4a3c25a659a14b922101db9dfb230d1c7b7ae26544a9fbe361ab9ce32109720e",
+    "source.jsonl": "6324cf26f21777882163c47c9efcef8df0eef5d2002a19c40b531feafd945bd3"
+  }
+}

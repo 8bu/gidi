@@ -1,0 +1,193 @@
+{
+  "name": "training-v5",
+  "annotation_version": "annotation-v3",
+  "purpose": "encoder-1 retrain set v5: training-v4 with the gift-receiver relabel map applied (user decision: a gift receiver is the target) + contrast-04 (shop names the contrast-03 quota dropped, gift notes with the receiver as target); validation is in-sample, the frozen test split, probe-v1, human-value-01 (amendment-01) and human-value-02 stay held out",
+  "counts": {
+    "training_v2_train": 905,
+    "training_v4_after_base": 178,
+    "gift_relabeled": 4,
+    "gift_dropped": 1,
+    "after_relabel": 177,
+    "removed_for_human_value_02": 2,
+    "after_removal": 175,
+    "contrast_04_complete": 43,
+    "train": 1123
+  },
+  "type_counts": {
+    "expense": 337,
+    "income": 107,
+    "borrow": 127,
+    "lend": 138,
+    "repayment_in": 77,
+    "repayment_out": 123,
+    "transfer": 141,
+    "refund": 73
+  },
+  "type_counts_by_source": {
+    "training_v2_train": {
+      "expense": 217,
+      "income": 84,
+      "borrow": 116,
+      "lend": 111,
+      "repayment_in": 75,
+      "repayment_out": 99,
+      "transfer": 131,
+      "refund": 72
+    },
+    "training_v4_after_relabel_and_removal": {
+      "expense": 77,
+      "income": 23,
+      "borrow": 11,
+      "lend": 27,
+      "repayment_in": 2,
+      "repayment_out": 24,
+      "transfer": 10,
+      "refund": 1
+    },
+    "contrast_04": {
+      "expense": 43,
+      "income": 0,
+      "borrow": 0,
+      "lend": 0,
+      "repayment_in": 0,
+      "repayment_out": 0,
+      "transfer": 0,
+      "refund": 0
+    }
+  },
+  "source_counts": {
+    "baseline-01": 497,
+    "targeted-annotation-v1-01": 114,
+    "targeted-annotation-v1-02": 112,
+    "debt-01": 79,
+    "contrast-01": 103,
+    "contrast-02": 93,
+    "contrast-03": 82,
+    "contrast-04": 43
+  },
+  "annotator_counts": {
+    "human": 256,
+    "ai": 546,
+    "llm": 321
+  },
+  "gift_relabel": {
+    "map": "datasets/annotation-v3/gift-relabel-01/map.jsonl",
+    "applied": [
+      {
+        "id": "contrast-03-202ee7b034e9",
+        "text": "mua qua sinh nhat cho Hanh 450k",
+        "old": null,
+        "new": "Hanh",
+        "action": "relabel"
+      },
+      {
+        "id": "contrast-03-5e8eb16c75e6",
+        "text": "qua sinh nhat Duc 350k",
+        "old": null,
+        "new": "Duc",
+        "action": "relabel"
+      },
+      {
+        "id": "contrast-03-88c14150f4cf",
+        "text": "mua quà 20/10 cho cô Lan 340k",
+        "old": null,
+        "new": "Lan",
+        "action": "relabel"
+      },
+      {
+        "id": "contrast-03-24eb1714b7a3",
+        "text": "gói quà tặng sếp mới 600k",
+        "old": null,
+        "new": "sếp mới",
+        "action": "relabel"
+      },
+      {
+        "id": "contrast-03-7813f886774e",
+        "text": "mua quà cho bạn Minh ở shopee 280k",
+        "old": "shopee",
+        "new": null,
+        "action": "drop"
+      }
+    ]
+  },
+  "removed_for_human_value_02": [
+    {
+      "id": "contrast-02-ba7cf4c95aeb",
+      "text": "ban laptop cu duoc 5tr5",
+      "type": "income",
+      "target": null,
+      "reason": "char3-human-value-02"
+    },
+    {
+      "id": "contrast-02-9f3b4a58a62a",
+      "text": "nhà thuốc long châu mua vitamin 280k",
+      "type": "expense",
+      "target": "long châu",
+      "reason": "char3-human-value-02"
+    }
+  ],
+  "removed_note": "training-v4 notes (after the relabel) removed because they are near duplicates of, or at folded char-3 Jaccard >= 0.6 to, a note of human-value-02 batch b (written after training-v4); score only, the test notes were not read",
+  "excluded_human_value_01_ids": [
+    "baseline-01-1f8b559fe3c3",
+    "baseline-01-3f29fa04ff7a",
+    "baseline-01-3f8d7d6f6fac",
+    "baseline-01-43b46e772c2b",
+    "baseline-01-4a30fae51dfa",
+    "baseline-01-5facc59b6ce4",
+    "baseline-01-6b471f45cc33",
+    "baseline-01-790ca645bdb7",
+    "baseline-01-eff9d5387a64"
+  ],
+  "leakage_gate": {
+    "sets": {
+      "frozen test": 105,
+      "probe-v1": 81,
+      "human-value-01": 150,
+      "human-value-02": 200
+    },
+    "human_value_02_review_queue_sha256": {
+      "datasets/annotation-v3/human-value-02/review-queue.jsonl": "a9ba9627f24796d6d0be61b8cf69b9e9d83691da3c0473cefcc57adb8c0b0cb6",
+      "datasets/annotation-v3/human-value-02/review-queue-b.jsonl": "f48812b414ac814f40e823cf6dd59766b95fabb6085b2f244b1c17a346146760"
+    },
+    "rule": "no id, no verbatim or NFC+strip+lowercase text of any train record in a set; no non-base note is a near duplicate (exact, folded, sequence >= 0.9, token, char3 >= 0.8: scripts/build_human_value_queue.py) of any note of a set, and no base note of a human-value-02 note; no non-base note has folded char-3-gram Jaccard >= 0.6 to a human-value-01 or human-value-02 note",
+    "max_char3_new_notes": {
+      "human-value-01": 0.5909,
+      "human-value-02": 0.5909
+    },
+    "base_notes_near_duplicate_of_set": {
+      "frozen test": 7,
+      "probe-v1": 0,
+      "human-value-01": 2,
+      "human-value-02": 0
+    },
+    "base_notes_at_char3_ge_limit": {
+      "human-value-01": 42,
+      "human-value-02": 18
+    },
+    "base_note": "the 905 training-v2 notes are byte-identical to the earlier runs (same templated corpus text, not edited here): earlier held-out notes have near duplicates among them (counts above, informational, as in every earlier run); none is a near duplicate of human-value-02; some reach the stricter char-3 bound, which is applied to the non-base notes only",
+    "result": "pass"
+  },
+  "inputs_sha256": {
+    "datasets/annotation-v3/training-v2/train.jsonl": "fe851fd1a7905ffe6fab65398167a4adc762cbe8f1f3066e4e70f9e83cd3b24d",
+    "datasets/annotation-v3/training-v2/manifest.json": "c3d2ea45f7acabb4eede339a349582c3fc6c3ee086b2afbca42bcb02e6443e9a",
+    "datasets/annotation-v3/training-v4/train.jsonl": "1fc42fa67de92e0d0872e647371407bbcf1041fa631388ce9f25ed104427473d",
+    "datasets/annotation-v3/training-v4/manifest.json": "27939b551b10566bad9d37774319ddcbbf81e723d9fb48ca8b7d6410c3d23b81",
+    "datasets/annotation-v3/gift-relabel-01/map.jsonl": "493230137009c3904256ea96117e3be47d23bcfc32e463f7476f8729b7de4a07",
+    "datasets/annotation-v3/gift-relabel-01/manifest.json": "d1a38856eb30ceffdd030592c8a34ed88e581191fc06c778d32d0d24ddb45d3d",
+    "datasets/annotation-v3/contrast-04/queue.jsonl": "904adba555c00a0e75f76ff0448b8fcdf7b2af217cc627efabf386a9e9bba8ea",
+    "datasets/annotation-v3/contrast-04/labels.jsonl": "4cc94b8d06b2dbf39cfbbfc98f57a209153a565fc5184b71b4af01d980cf959c",
+    "datasets/annotation-v3/contrast-04/provenance.jsonl": "4a3c25a659a14b922101db9dfb230d1c7b7ae26544a9fbe361ab9ce32109720e",
+    "datasets/annotation-v3/contrast-04/manifest.json": "444670f405127cf5844ef60b288d92fd58ab3d76cbc8a0d3b9f5ddcfc7ce25ef",
+    "datasets/annotation-v3/debt-01/manifest.json": "6034c0326b362fa6f0c6a83f47249f9150310f6a4ef0e46bbdc79eb24eb36422",
+    "datasets/annotation-v2/human-value-01/labels.jsonl": "e0808f4bbb13e46a6e8a7ffd0b3e506aece54291610f138ea4188df9340c077f",
+    "datasets/annotation-v2/human-value-01/review-queue.jsonl": "362cf8ca58c265d51e3ac12706de66fd6c4fb5111a82c5390d4aef92f13b6a28",
+    "datasets/annotation-v2/human-value-01/freeze.json": "4738e581ba95dc2a7c6cd13fb7c725645006acc747a06224d3aee283502df481",
+    "datasets/probe-v1/notes.jsonl": "6ffc9017bf8a153fe42741f20788b47e35ddd6213afb5479ac25e32d26c31797",
+    "datasets/annotation-v3/human-value-02/review-queue.jsonl": "a9ba9627f24796d6d0be61b8cf69b9e9d83691da3c0473cefcc57adb8c0b0cb6",
+    "datasets/annotation-v3/human-value-02/review-queue-b.jsonl": "f48812b414ac814f40e823cf6dd59766b95fabb6085b2f244b1c17a346146760"
+  },
+  "outputs_sha256": {
+    "train.jsonl": "aa39377928cb054b5b2c0470f4c530e1794171f1359e752b8ac866a483f45286"
+  },
+  "evaluation_sets": "validation.jsonl (in-sample, logging only) and test.jsonl are symlinks to the frozen annotation-v1 splits"
+}

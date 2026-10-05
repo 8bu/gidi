@@ -1,0 +1,112 @@
+{
+  "records": 200,
+  "field_agreement": {
+    "annotation_status": {
+      "agree": 195,
+      "rate": 0.975
+    },
+    "type": {
+      "agree": 195,
+      "rate": 0.975
+    },
+    "target_text": {
+      "agree": 197,
+      "rate": 0.985
+    },
+    "value_text": {
+      "agree": 200,
+      "rate": 1.0
+    },
+    "value_status": {
+      "agree": 199,
+      "rate": 0.995
+    }
+  },
+  "full_label_agreement": {
+    "agree": 191,
+    "rate": 0.955
+  },
+  "full_label_or_both_uncertain": {
+    "agree": 192,
+    "rate": 0.96
+  },
+  "full_label_rule": "annotation_status, type, target text, value text and value status all equal (notes and offsets ignored)",
+  "disagreeing_records": 9,
+  "status_counts": {
+    "a": {
+      "complete": 190,
+      "uncertain": 10
+    },
+    "b": {
+      "complete": 195,
+      "uncertain": 5
+    }
+  },
+  "type_disagreements_a_vs_b": {
+    "None | income": 2,
+    "None | expense": 1,
+    "None | borrow": 1,
+    "None | repayment_out": 1
+  },
+  "disagreements": [
+    {
+      "id": "hv02-cfeb880cfc92",
+      "fields": [
+        "target_text"
+      ]
+    },
+    {
+      "id": "hv02-33613b94da2b",
+      "fields": [
+        "annotation_status",
+        "type"
+      ]
+    },
+    {
+      "id": "hv02-fa2479b9d07b",
+      "fields": [
+        "target_text"
+      ]
+    },
+    {
+      "id": "hv02-b9aac56b6089",
+      "fields": [
+        "target_text"
+      ]
+    },
+    {
+      "id": "hv02-6d5a34f5aafc",
+      "fields": [
+        "annotation_status",
+        "type"
+      ]
+    },
+    {
+      "id": "hv02-a4ace2599de6",
+      "fields": [
+        "annotation_status",
+        "type"
+      ]
+    },
+    {
+      "id": "hv02-754430d08879",
+      "fields": [
+        "annotation_status",
+        "type"
+      ]
+    },
+    {
+      "id": "hv02-2b3e89a0f9a9",
+      "fields": [
+        "value_status"
+      ]
+    },
+    {
+      "id": "hv02-bd2e80186a2d",
+      "fields": [
+        "annotation_status",
+        "type"
+      ]
+    }
+  ]
+}

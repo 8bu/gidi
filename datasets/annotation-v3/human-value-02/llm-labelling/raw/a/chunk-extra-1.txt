@@ -1,0 +1,1 @@
+{"id": "hv02-279f19b179cb", "annotation_status": "complete", "type": "expense", "target": {"text": "Gấu", "start": 16, "end": 19}, "value": {"text": "350k", "start": 20, "end": 24}, "span_status": {"value": "complete"}, "note": "gift to recipient; prefix bé dropped"}

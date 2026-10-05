@@ -1,0 +1,246 @@
+{
+  "name": "human-value-02-b",
+  "annotation_version": "annotation-v3",
+  "role": "batch B of the human-value-02 TEST set (50 more notes); labelled by two independent LLM labellers, not by humans (see manifest-labels.json)",
+  "never_train": true,
+  "provenance": {
+    "source": "llm-written",
+    "writer": "an LLM (the assistant), by hand, from the annotation rules and the reviewed-corpus style only; no training-data file was read when writing",
+    "candidates_file": "candidates-b.txt"
+  },
+  "seed": "human-value-02:b:v1",
+  "id_rule": "hv02-<sha256(NFC text)[:12]>; order = sha256(seed:id)",
+  "section_targets": {
+    "weak": 22,
+    "gift": 8,
+    "debt": 9,
+    "shop": 4,
+    "other": 7
+  },
+  "counts": {
+    "candidates": 84,
+    "queue": 50,
+    "dropped_by_leakage_gate": 18,
+    "survived_gate": 66,
+    "not_selected_surplus": 16,
+    "queue_by_section": {
+      "debt": 9,
+      "gift": 7,
+      "gift-reserve": 1,
+      "other": 7,
+      "shop": 4,
+      "weak": 22
+    },
+    "combined_queue": 200
+  },
+  "leakage": {
+    "rules": {
+      "exact": "NFC + strip + lowercase",
+      "folded": "NFC, lowercase, accents stripped, digits masked, whitespace collapsed",
+      "sequence": "difflib ratio of folded texts >= 0.9",
+      "token": "folded token Jaccard >= 0.8 (>= 4 tokens)",
+      "char3": "folded char-3-gram Jaccard >= 0.8"
+    },
+    "reference_groups_in_priority_order": [
+      "human-value-01",
+      "human-value-02-a",
+      "frozen-test",
+      "probe-v1",
+      "annotation-v3",
+      "annotation-v1-v2",
+      "corpus"
+    ],
+    "reference_unique_texts": {
+      "human-value-01": 150,
+      "human-value-02-a": 150,
+      "frozen-test": 143,
+      "probe-v1": 81,
+      "annotation-v3": 1322,
+      "annotation-v1-v2": 1229,
+      "corpus": 1413
+    },
+    "reference_files": {
+      "human-value-01": 3,
+      "human-value-02-a": 1,
+      "frozen-test": 3,
+      "probe-v1": 5,
+      "annotation-v3": 17,
+      "annotation-v1-v2": 27,
+      "corpus": 4
+    },
+    "annotation_v3_dirs": [
+      "datasets/annotation-v3/contrast-01",
+      "datasets/annotation-v3/contrast-02",
+      "datasets/annotation-v3/contrast-03",
+      "datasets/annotation-v3/contrast-04",
+      "datasets/annotation-v3/debt-01",
+      "datasets/annotation-v3/gift-relabel-01",
+      "datasets/annotation-v3/training-v1",
+      "datasets/annotation-v3/training-v2",
+      "datasets/annotation-v3/training-v3",
+      "datasets/annotation-v3/training-v4",
+      "datasets/annotation-v3/training-v5"
+    ],
+    "dropped_by_group": {
+      "annotation-v3": 13,
+      "corpus": 2,
+      "annotation-v1-v2": 2,
+      "frozen-test": 1
+    },
+    "dropped_by_rule": {
+      "sequence": 8,
+      "folded": 3,
+      "token": 5,
+      "exact": 2
+    },
+    "dropped": [
+      {
+        "text": "tiền gas 380",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "phí cầu đường 40",
+        "section": "weak",
+        "group": "corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "tiền điện tháng 3 hết 574k",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "đổ 5 lít xăng 110k",
+        "section": "weak",
+        "group": "annotation-v1-v2",
+        "rule": "sequence"
+      },
+      {
+        "text": "kỳ 4 trả góp điện thoại 1tr7",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "token"
+      },
+      {
+        "text": "tra gop macbook dot 11 3tr2",
+        "section": "weak",
+        "group": "frozen-test",
+        "rule": "sequence"
+      },
+      {
+        "text": "thưởng tết 3 tháng lương",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "tiền gửi xe tháng 9 120k",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "token"
+      },
+      {
+        "text": "quà đầy tháng bé Su 400k",
+        "section": "gift",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "lì xì cháu Bin 100k",
+        "section": "gift",
+        "group": "annotation-v3",
+        "rule": "exact"
+      },
+      {
+        "text": "mua quà cho mẹ 400k",
+        "section": "gift",
+        "group": "corpus",
+        "rule": "token"
+      },
+      {
+        "text": "no tien tro 2 thang chu nha 6tr",
+        "section": "debt",
+        "group": "annotation-v3",
+        "rule": "token"
+      },
+      {
+        "text": "ăn tối pizza company 380k",
+        "section": "shop",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "thanh toán thẻ tín dụng vib 3tr8",
+        "section": "other",
+        "group": "annotation-v3",
+        "rule": "token"
+      },
+      {
+        "text": "nạp tiền vào ví momo 500k",
+        "section": "other",
+        "group": "annotation-v3",
+        "rule": "exact"
+      },
+      {
+        "text": "mua 1 chỉ vàng 9999 8tr",
+        "section": "other",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "trả nợ anh Long 2tr",
+        "section": "other",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "Lâm gửi 400k",
+        "section": "other",
+        "group": "annotation-v1-v2",
+        "rule": "sequence"
+      }
+    ],
+    "surplus_not_selected": [
+      "Duy trả tiền mượn hôm trước 700k",
+      "cafe sáng... 38k!!",
+      "cf the coffee house 55k",
+      "cho Vy vay 3tr",
+      "cty gửi lương 18tr5",
+      "cắt tóc nam 90",
+      "mua ccq vcbf 3tr",
+      "mua sạc cáp 135",
+      "mua đồ gia dụng ở điện máy xanh 2tr3",
+      "mượn anh Thịnh 4tr",
+      "mừng em Thịnh đỗ đại học 300k",
+      "mừng khai trương cửa hàng chị Diệp 500k",
+      "đi chợ mua cá 87",
+      "đi taxi sân bay 340",
+      "đóng tiền nhà tháng này",
+      "ứng lương của sếp 3tr"
+    ]
+  },
+  "strata": {
+    "bare_number": 7,
+    "date_month_year_amount": 5,
+    "general": 20,
+    "installment_index_amount": 3,
+    "long_noisy": 1,
+    "multi_number": 13,
+    "null_no_number_ambiguous": 5,
+    "quantity_amount": 2,
+    "slang_compact_money": 10,
+    "unaccented": 2,
+    "unusual_whitespace_punct": 2
+  },
+  "outputs": {
+    "review-queue-b.jsonl": "f48812b414ac814f40e823cf6dd59766b95fabb6085b2f244b1c17a346146760",
+    "review-queue-all.jsonl": "72a7af5f141b8c26924220bff99c6962762aad719700890faa8060e24af0bd7d"
+  },
+  "inputs": {
+    "candidates-b.txt": "d7001b27b558224b910a5c516861471c0493ca3b7b8c01df428768b76572b90d",
+    "review-queue.jsonl": "a9ba9627f24796d6d0be61b8cf69b9e9d83691da3c0473cefcc57adb8c0b0cb6"
+  }
+}

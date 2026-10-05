@@ -81,15 +81,15 @@
   },
   "inputs_sha256": {
     "datasets/annotation-v3/training-v2/train.jsonl": "fe851fd1a7905ffe6fab65398167a4adc762cbe8f1f3066e4e70f9e83cd3b24d",
-    "datasets/annotation-v3/training-v2/manifest.json": "829c45da9c040968d20497f137b6d8b34309abc6df74b3e7adeea9e6ef1a4c83",
+    "datasets/annotation-v3/training-v2/manifest.json": "c3d2ea45f7acabb4eede339a349582c3fc6c3ee086b2afbca42bcb02e6443e9a",
     "datasets/annotation-v3/contrast-02/queue.jsonl": "004bd5808dfe7cd66de8cd637c374211ffa6761b64dc7b7c5139f63c09010b80",
     "datasets/annotation-v3/contrast-02/labels.jsonl": "4e4de9dbf9f58e6aab8313bdec6877d4fb91dffbc0f5ac4136dc0e6b59640edb",
     "datasets/annotation-v3/contrast-02/provenance.jsonl": "76aa0f2cb2b4c999b2844e671bc0498bef137ac8fe6336873586b783a47fdc1f",
     "datasets/annotation-v3/contrast-02/manifest.json": "fe172cdc19ce5abdffa82ac299426ff69e94572f4a64872ff74c5c3b86d4ecc1",
     "datasets/annotation-v3/debt-01/manifest.json": "6034c0326b362fa6f0c6a83f47249f9150310f6a4ef0e46bbdc79eb24eb36422",
-    "datasets/annotation-v2/human-value-01/labels.jsonl": "2a79ec30952a00c9f52018d652eaa7e2399ec068a6dcc796a82f8fa8ccd66ed1",
+    "datasets/annotation-v2/human-value-01/labels.jsonl": "e0808f4bbb13e46a6e8a7ffd0b3e506aece54291610f138ea4188df9340c077f",
     "datasets/annotation-v2/human-value-01/review-queue.jsonl": "362cf8ca58c265d51e3ac12706de66fd6c4fb5111a82c5390d4aef92f13b6a28",
-    "datasets/annotation-v2/human-value-01/freeze.json": "c54967dee43fb2fbea177804d93670421b8f55b4435466a79542cd5058e96d9e",
+    "datasets/annotation-v2/human-value-01/freeze.json": "4738e581ba95dc2a7c6cd13fb7c725645006acc747a06224d3aee283502df481",
     "datasets/probe-v1/notes.jsonl": "6ffc9017bf8a153fe42741f20788b47e35ddd6213afb5479ac25e32d26c31797"
   },
   "outputs_sha256": {

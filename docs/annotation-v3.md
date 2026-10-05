@@ -70,6 +70,30 @@ relabelled and never trained on. `proposals.jsonl` is advisory LLM output; a hum
 Quet. In this pass **`skipped` means "reject this note"** (it turned out not to be a debt-only
 note).
 
+## Gift receivers
+
+Clarification (user decision, 2026-10-05; no taxonomy change, it makes the v1 rule
+"Beneficiary is not payee" explicit): **the receiver of a gift or ceremony money is the
+counterparty, so it is the `target`.**
+
+* Gift or ceremony-money notes name the gift itself (`quà`, `mừng`, `lì xì`, `biếu`, `tặng` +
+  receiver): the named receiver is the target. A kinship/title prefix before a proper name is
+  dropped, a kinship or role term that is the only identifier is kept:
+  `quà sinh nhật bé Na 300k` -> `Na`, `quà sinh nhật Vy 300 nghìn` -> `Vy`,
+  `mừng cưới Hoa 1 triệu` -> `Hoa`, `quà 20/10 cho mẹ` -> `mẹ`, `lì xì cháu 200k` -> `cháu`,
+  `mua quà sinh nhật cho cô Lan 340k` -> `Lan`. No receiver named (`tiền mừng cưới 500k`,
+  `mua quà sinh nhật 300k`) -> `null`.
+* Buying a concrete item for someone is a purchase, not a gift to a counterparty, so the
+  beneficiary stays out of the target: `mua vở bút cho bé 180k`, `mua hoa tặng mẹ`,
+  `mua vòng tay cho mẹ`, `mua hoa quả biếu bà` -> `null` (the shop is the target when named:
+  `mua nước hoa tặng vợ ở sephora` -> `sephora`).
+* A gift note that also names a shop or marketplace (`mua quà cho bạn Minh ở shopee 280k`) has two
+  plausible counterparties: `uncertain`, not a training note.
+
+Applied to the data in run 5: `human-value-01` amendment-01 (one label,
+`datasets/annotation-v2/human-value-01/amendment-01.json`), the relabel map
+`datasets/annotation-v3/gift-relabel-01/`, and `contrast-04`.
+
 ## Test set `human-value-02`
 
 `datasets/annotation-v3/human-value-02/` (builder: `scripts/build_human_value_02.py`, `--check`
@@ -87,3 +111,47 @@ datasets and the whole `corpus/` tree with the near-duplicate rules of
 **no proposals file**, no model or rule label, and the set is **never trained on**: later
 training sets must gate against `review-queue.jsonl` (`id` = `hv02-<sha256(text)[:12]>`). In this
 pass `skipped` means "reject this note as unusable".
+
+### Batch B and LLM labels (200 notes)
+
+The user will not label `human-value-02` and **explicitly approved LLM labels for this test set**.
+This is an exception to the repo rule "never auto-generate human labels"; it applies to this set
+only, and the labels are LLM labels, never human labels (the file names, `manifest-labels.json`
+and the scorer say so). The 150 notes of `review-queue.jsonl` and their quet-web project
+`gidi-hv02` are unchanged.
+
+* **Batch B**: 50 new LLM-written notes (`candidates-b.txt`, `scripts/build_human_value_02_b.py`,
+  `--check` verifies): 22 weak-stratum notes (bare number, multi number, quantity, installment,
+  date, null, spacing/punctuation) and 28 general ones (8 gifts with a named receiver, 9
+  debt-only notes both ways, 4 multi-word shop names, 7 other types). They are gated with the
+  `human-value-02` leakage rules against every earlier reference group, the 150 batch-A notes and
+  **every** `datasets/annotation-v3/*` set on disk (so `contrast-04`, `training-v5`,
+  `gift-relabel-01` too). One candidate was swapped after the gate saw `contrast-04/source.jsonl`
+  (`manifest-labels.json`, `swapped_note`). Output: `review-queue-b.jsonl` (`hv02-<sha12>` ids)
+  and `review-queue-all.jsonl` (the 150 bytes unchanged + the 50 = **200**), `manifest-b.json`.
+  Later training sets must gate against `review-queue-all.jsonl`; the set is never trained on.
+* **Labellers** (`scripts/label_human_value_02_llm.py`; prompts, notes and raw output in
+  `llm-labelling/`): A = Claude (`claude -p`, Opus), B = an independent LLM labeller (B).
+  Each saw only the rules (`rules.md`: annotation-v1, v2 span
+  convention, v3 debt-only rules, the combined-pass guide and the Quet schema; the gift-receiver
+  and kinship-prefix rules are in them) and `{id, text}` of its notes, in an empty working
+  directory with no tools; neither saw the other's labels, the strata, training data or any model
+  output. Output: combined labels `{id, annotation_status, type, target, value, span_status,
+  note}`.
+* **Validation**: `a-labels.jsonl`, `b-labels.jsonl` and `labels.jsonl` pass
+  `scripts/validate_annotations.py --config configs/annotation-v3.quet.yaml --queue
+  datasets/annotation-v3/human-value-02/review-queue-all.jsonl` with 0 errors. Only mechanical
+  offset errors were repaired (the span text is re-located in the note; the chosen words are never
+  changed): A 2 value spans, B 5 target and 6 value spans.
+* **Agreement** (`agreement.json`): status 97.5 %, type 97.5 %, target text 98.5 %, value text
+  100 %, value status 99.5 %; **full label 191 / 200 = 95.5 %** (status, type, target, value and
+  value status all equal). The 9 disagreements were judgement calls (product brand vs seller,
+  bank fee target, bill split, advance direction, bank interest direction, `gửi`).
+* **Final labels**: `labels.jsonl` = the 191 agreed labels as is plus the 9 others adjudicated by
+  a third Claude pass that saw both labels (anonymised as X / Y in a hashed order) and the rules
+  and picked one or `uncertain`. `labels-provenance.jsonl` marks each record `agreed` or
+  `adjudicated` (with the pick and the reason). The adjudicator is the same model family as A
+  and picked A's label all 9 times, so score the `agreed` subset too.
+* **Scoring**: `scripts/score_human_value_02.py` reads `review-queue-all.jsonl` and `labels.jsonl`
+  (`complete` labels only) and reports every system on all complete notes and on the `agreed`
+  subset (`systems_agreed`, `verdict_agreed`). It is run once, after training run 5.

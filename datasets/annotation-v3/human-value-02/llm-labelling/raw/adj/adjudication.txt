@@ -1,0 +1,9 @@
+{"id": "hv02-cfeb880cfc92", "choice": "X", "reason": "Head & Shoulders is the product brand of the shampoo, not the merchant paid, and no seller is written, so the target is null."}
+{"id": "hv02-33613b94da2b", "choice": "Y", "reason": "A bare bill-split note does not say whether 85k is the user's own share (expense) or money the user fronted and will collect from the others, so the type is not established."}
+{"id": "hv02-fa2479b9d07b", "choice": "X", "reason": "Unlike the generic 'phí ngân hàng', the note names a specific bank (vcb), which is the party charging the transfer fee, so it is the counterparty and should not be left null."}
+{"id": "hv02-b9aac56b6089", "choice": "Y", "reason": "In 'giày nike', nike describes the product brand, not the seller, and no merchant is named, so the target is null."}
+{"id": "hv02-6d5a34f5aafc", "choice": "X", "reason": "'chị Thủy ứng tiền điện' could mean Thủy fronted the bill for the user or Thủy took an advance, and no money is shown reaching the user, so borrow is not established."}
+{"id": "hv02-a4ace2599de6", "choice": "X", "reason": "'thanh toán đợt 2 tiền xe' states a staged payment with no trả góp, loan or financed balance, so it could be a staged purchase payment (expense) rather than repayment_out."}
+{"id": "hv02-754430d08879", "choice": "X", "reason": "'lãi ngân hàng mb' does not say whether the interest was earned on savings (income) or paid on a loan (expense), so the direction is unclear."}
+{"id": "hv02-2b3e89a0f9a9", "choice": "Y", "reason": "Both are rightly uncertain on type, but 'con 300k' (còn 300k) may be the remaining balance rather than the amount paid, so the value status should also be uncertain."}
+{"id": "hv02-bd2e80186a2d", "choice": "X", "reason": "'mẹ gửi tiền chợ' could be an allowance to the user or household grocery money the user spends on mẹ's behalf, and like 'Nam gửi tao 500k', gửi does not establish income."}

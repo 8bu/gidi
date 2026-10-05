@@ -1,14 +1,14 @@
 #!/usr/bin/env python
-"""Score the retrain-v4 release candidate on the test set human-value-02 (200 notes), once.
+"""Score the retrain-v5 release candidate on the test set human-value-02 (200 notes), once.
 
 Usage (after the labels exist):
-    uv run python scripts/score_human_value_02.py \\
-        [--out experiments/annotation-v3-retrain-v4/results-hv02.json]
+    uv run python scripts/score_human_value_02_v5.py \\
+        [--out experiments/annotation-v3-retrain-v5/results-hv02.json]
 
 The 200 notes are ``review-queue-all.jsonl`` (the 150 of ``review-queue.jsonl`` followed by the 50
 of ``review-queue-b.jsonl``). Their labels are ``labels.jsonl``: **LLM labels**, not human labels
-(the user approved this for the test set): two independent LLM labellers (A and B), the records
-on which they agreed as is and the others adjudicated by a third Claude pass
+(the user approved this for the test set): two independent LLM labellers (A and B), the records on
+which they agreed as is and the others adjudicated by a third pass
 (``labels-provenance.jsonl``: ``agreed`` / ``adjudicated``; ``manifest-labels.json``). Every system
 is scored on all complete notes (``systems``) and on the ``agreed`` subset only
 (``systems_agreed``, the labels no single model decided).
@@ -17,10 +17,12 @@ Refuses to run until ``datasets/annotation-v3/human-value-02/labels.jsonl`` exis
 overwrite ``--out`` (the set is scored once). Systems, all INT8 encoder (type + target) + the
 unchanged rule value parser ``gidi.value_parser.parse_value``:
 
-* ``candidate``: retrain-v4 seed 1 with ``snap_words=True`` (the release candidate fixed in
-  ``experiments/annotation-v3-retrain-v4/protocol.json``); its ONNX hash must equal the one the
+* ``candidate``: retrain-v5 seed 1 with ``snap_words=True`` (the release candidate fixed in
+  ``experiments/annotation-v3-retrain-v5/protocol.json``); its ONNX hash must equal the one the
   held-out run (``results.json``) scored;
 * ``candidate_nosnap``: the same model without the snap (isolates the snap);
+* ``run4``: retrain-v4 seed 1 with ``snap_words=True`` (the previous candidate); its ONNX hash must
+  equal the one the run 4 held-out run scored;
 * ``old``: the deployed encoder ``models/gidi-finance-v1`` (no snap);
 * ``run2``: retrain-v2 seed 1 (no snap), the best earlier single model; ``run2_snap``: with it.
 
@@ -49,10 +51,13 @@ import evaluate_encoder_retrain_v3 as v3e  # noqa: E402
 from gidi.inference import GidiPredictor  # noqa: E402
 
 HV02 = ROOT / "datasets" / "annotation-v3" / "human-value-02"
-EXP = ROOT / "experiments" / "annotation-v3-retrain-v4"
+EXP = ROOT / "experiments" / "annotation-v3-retrain-v5"
+EXP4 = ROOT / "experiments" / "annotation-v3-retrain-v4"
 PROTOCOL = EXP / "protocol.json"
 CANDIDATE_MODEL = EXP / "onnx" / "seed1" / "model.int8.onnx"
 HELD_OUT_RESULTS = EXP / "results.json"
+RUN4_MODEL = EXP4 / "onnx" / "seed1" / "model.int8.onnx"
+RUN4_RESULTS = EXP4 / "results.json"
 RUN2_MODEL = v3e.V2_ONNX / "seed1" / "model.int8.onnx"
 DEFAULT_OUT = EXP / "results-hv02.json"
 THRESHOLD = 0.95
@@ -75,13 +80,16 @@ def main(argv: list[str] | None = None) -> int:
             raise SystemExit(
                 f"{labels} does not exist yet: label human-value-02 first (Quet), then run this"
             )
-    for needed in (PROTOCOL, CANDIDATE_MODEL, RUN2_MODEL):
+    for needed in (PROTOCOL, CANDIDATE_MODEL, RUN4_MODEL, RUN2_MODEL):
         if not needed.is_file():
             raise SystemExit(f"missing {needed}")
     if not args.smoke:
-        scored = json.loads(HELD_OUT_RESULTS.read_text("utf-8"))["models"]["v4_seed1"]["sha256"]
+        scored = json.loads(HELD_OUT_RESULTS.read_text("utf-8"))["models"]["v5_seed1"]["sha256"]
         if base.sha256_file(CANDIDATE_MODEL) != scored:
             raise SystemExit("candidate ONNX differs from the model scored in results.json")
+        scored4 = json.loads(RUN4_RESULTS.read_text("utf-8"))["models"]["v4_seed1"]["sha256"]
+        if base.sha256_file(RUN4_MODEL) != scored4:
+            raise SystemExit("run 4 ONNX differs from the model scored in the run 4 results.json")
 
     records, excluded = base.load_human(queue, labels)
     if not records:
@@ -108,6 +116,7 @@ def main(argv: list[str] | None = None) -> int:
     plan: dict[str, tuple[Path | None, bool]] = {
         "candidate": (CANDIDATE_MODEL, True),
         "candidate_nosnap": (CANDIDATE_MODEL, False),
+        "run4": (RUN4_MODEL, True),
         "old": (None, False),
         "run2": (RUN2_MODEL, False),
         "run2_snap": (RUN2_MODEL, True),
@@ -156,7 +165,7 @@ def main(argv: list[str] | None = None) -> int:
         systems_agreed["candidate"]["end_to_end_exact"] if agreed_ids is not None else None
     )
     results = {
-        "experiment": "annotation-v3-retrain-v4",
+        "experiment": "annotation-v3-retrain-v5",
         "set": "human-value-02" if not args.smoke else "debt-01 (smoke)",
         "smoke": args.smoke,
         "n_complete": len(records),
@@ -174,6 +183,7 @@ def main(argv: list[str] | None = None) -> int:
                 "path": str(CANDIDATE_MODEL),
                 "sha256": base.sha256_file(CANDIDATE_MODEL),
             },
+            "run4": {"path": str(RUN4_MODEL), "sha256": base.sha256_file(RUN4_MODEL)},
             "old": {
                 "path": str(base.OLD_BUNDLE / "model.int8.onnx"),
                 "sha256": base.sha256_file(base.OLD_BUNDLE / "model.int8.onnx"),

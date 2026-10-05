@@ -1,0 +1,60 @@
+{
+  "name": "gift-relabel-01",
+  "annotation_version": "annotation-v3",
+  "rule": "docs/annotation-v3.md 'Gift receivers': the receiver of a gift or ceremony money is the target; buying a concrete item for someone (`mua hoa tặng mẹ`) has no target",
+  "scan": {
+    "source": "datasets/annotation-v3/training-v4/train.jsonl",
+    "source_sha256": "1fc42fa67de92e0d0872e647371407bbcf1041fa631388ce9f25ed104427473d",
+    "cue_regex_folded": "\\b(qua|tang|bieu|mung|li xi|lixi|phong bi|cuoi|dam cuoi|dam ma|dam hoi|phung|vieng|sinh nhat|sn|tan gia|day thang|thoi noi)\\b",
+    "records": 1083,
+    "cue_hits": 91,
+    "cue_hits_by_annotator": {
+      "ai": 45,
+      "human": 18,
+      "llm": 28
+    },
+    "cue_hits_by_source": {
+      "baseline-01": 38,
+      "contrast-01": 4,
+      "contrast-02": 10,
+      "contrast-03": 14,
+      "debt-01": 3,
+      "targeted-annotation-v1-01": 1,
+      "targeted-annotation-v1-02": 21
+    }
+  },
+  "counts": {
+    "relabel": 4,
+    "drop": 1,
+    "map_rows": 5
+  },
+  "human_cue_hits_with_target": [
+    "baseline-01-0e861bba26e8",
+    "baseline-01-2a6a4957fc36",
+    "baseline-01-45dd1b1e30ff",
+    "baseline-01-5522b5321153",
+    "baseline-01-6efa6394bb11",
+    "baseline-01-9623f288ab8a",
+    "baseline-01-a2a26540de33",
+    "baseline-01-b323f8915a79",
+    "baseline-01-bad7492ca347",
+    "baseline-01-ce97d487edba",
+    "baseline-01-f4cee6b35c6d",
+    "debt-01-2b2e135ec705",
+    "debt-01-492ab21db46d",
+    "debt-01-fd63b374ebe3"
+  ],
+  "human_cue_hits_with_target_note": "human annotation-v1 labels with a cue hit and a target (the cue also matches non-gift words): kept; the gift notes among them follow the rule (e.g. `qua sinh nhat bé Na 300k` -> `Na`, `quà 20/10 cho mẹ` -> `mẹ`, `mung dam cuoi Tuan 500k` -> `Tuan`)",
+  "human_conflicts": [],
+  "human_conflicts_note": "no human label conflicts with the rule; the human records with a gift cue and a null target are listed in `human_null_reviewed`",
+  "human_null_reviewed": {
+    "baseline-01-ffe59df773f6": "`qua` = via (`chuyển qua tk tiết kiệm`), not a gift",
+    "baseline-01-c0c3b1551f40": "`qua` = yesterday evening (`ốc tối qua vs Hiếu`), not a gift",
+    "baseline-01-d432338e650a": "`qua` = yesterday (`hôm qua`), not a gift",
+    "targeted-annotation-v1-01-38ce17a93a13": "`qua` = via (`vay qua app`), not a gift"
+  },
+  "ai_labels_note": "annotator `ai` baseline / targeted labels already follow the rule (gift receivers are targets, item purchases `mua hoa tặng mẹ` are null); not changed",
+  "files_sha256": {
+    "map.jsonl": "493230137009c3904256ea96117e3be47d23bcfc32e463f7476f8729b7de4a07"
+  }
+}

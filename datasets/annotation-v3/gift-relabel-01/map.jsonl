@@ -1,0 +1,5 @@
+{"id": "contrast-03-202ee7b034e9", "text": "mua qua sinh nhat cho Hanh 450k", "old": null, "new": "Hanh", "action": "relabel", "reason": "gift (`mua quà ... cho Hanh`): the named receiver is the target"}
+{"id": "contrast-03-5e8eb16c75e6", "text": "qua sinh nhat Duc 350k", "old": null, "new": "Duc", "action": "relabel", "reason": "gift (`quà sinh nhật Duc`): the named receiver is the target"}
+{"id": "contrast-03-88c14150f4cf", "text": "mua quà 20/10 cho cô Lan 340k", "old": null, "new": "Lan", "action": "relabel", "reason": "gift (`quà 20/10 cho cô Lan`): the named receiver is the target, prefix `cô` dropped"}
+{"id": "contrast-03-24eb1714b7a3", "text": "gói quà tặng sếp mới 600k", "old": null, "new": "sếp mới", "action": "relabel", "reason": "gift (`gói quà tặng sếp mới`): the receiver (role term + modifier) is the target"}
+{"id": "contrast-03-7813f886774e", "text": "mua quà cho bạn Minh ở shopee 280k", "old": "shopee", "new": null, "action": "drop", "reason": "gift for a named receiver bought on a marketplace (`cho bạn Minh ở shopee`): two plausible counterparties, so uncertain under the one-target rule; not trainable"}

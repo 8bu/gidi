@@ -58,6 +58,9 @@ DERIVED_DIRS = (
     Path("datasets/annotation-v3/contrast-02"),
     Path("datasets/annotation-v3/contrast-03"),
     Path("datasets/annotation-v3/training-v4"),
+    Path("datasets/annotation-v3/gift-relabel-01"),
+    Path("datasets/annotation-v3/contrast-04"),
+    Path("datasets/annotation-v3/training-v5"),
     # human-value-02 is a test set: the new builders gate it as an explicit group, so earlier
     # batches (frozen before it existed) keep rebuilding byte for byte.
     Path("datasets/annotation-v3/human-value-02"),

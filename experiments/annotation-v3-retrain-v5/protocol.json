@@ -1,0 +1,22 @@
+{
+  "experiment": "annotation-v3-retrain-v5",
+  "written_before": "any model of this run was trained, exported or scored",
+  "question": "after the user decision that a gift receiver is the target (human-value-01 amendment-01, gift relabel map for the LLM contrast notes) and a per-name quota for the shop names contrast-03 lost (contrast-04), does training-v5 improve encoder 1 (type + target, word snap on) + the unchanged rule value parser over run 4 on human-value-01 (amended labels), without a regression on the frozen test and probe-v1?",
+  "release_candidate": {
+    "rule": "seed 1 of the unchanged compression-v3 K2048 recipe (the deployment convention of every earlier run). Fixed now: the candidate is not chosen among seeds 1-3 by any held-out score, and no seed is re-run, dropped or swapped after scoring.",
+    "seed": 1,
+    "word_snap": true
+  },
+  "data": "datasets/annotation-v3/training-v5 = training-v4 with datasets/annotation-v3/gift-relabel-01/map.jsonl applied (4 gift notes relabelled, 1 dropped) minus 2 notes that are at folded char-3 >= 0.6 to human-value-02 batch b (gate score only) + contrast-04 (43 notes: shop names drawn per name, gift notes with the receiver as target). Fixed before training; leakage asserted by the builder.",
+  "recipe": "unchanged from retrain-v2 / v3 / v4 (supervised student-4x768, BamiBERT layers 2/5/8/11, pos32, vocab B-rank-8000, FFN combined-K2048, 40 epochs, batch 8, encoder lr 5e-5, head lr 1e-3, warmup 0.1, wd 0.01, dropout 0.1, grad-clip 1.0, MPS, last epoch, --retokenize)",
+  "seeds_trained": [1, 2, 3],
+  "reported": "seed 1 (candidate), each seed and the three-seed mean; nothing is selected by it",
+  "word_snap": "GidiPredictor(snap_words=True), as in run 4. Off by default in the predictor; on for every system scored in this run except the explicit no-snap controls.",
+  "value": "unchanged rule parser gidi.value_parser.parse_value for every system",
+  "human_value_01_labels": "amended: datasets/annotation-v2/human-value-01/amendment-01.json (1 label: `quà sinh nhật Vy 300 nghìn` target null -> `Vy`, user-approved). Every system, including run 4 seed 1, is scored on the amended labels; the old / run 2 no-snap rows can therefore no longer be asserted equal to the stored retrain-v2 results on human-value-01 (they are still asserted equal on the frozen test and probe-v1).",
+  "held_out_scored_in_this_run": ["frozen test (105)", "probe-v1 (81 complete)", "human-value-01 (147 complete, amended labels, debt slice n=13)"],
+  "human_value_02": "NOT scored in this run. scripts/score_human_value_02_v5.py scores the candidate (run 5 seed 1 + snap), run 4 seed 1 + snap, the old model and run 2 seed 1 once, after the labels exist, and writes results-hv02.json.",
+  "success_criterion_hv02": "candidate end-to-end exact (type + target + value all exact, value from the unchanged parser) >= 0.95 on the complete human-value-02 labels",
+  "controls": ["run 4 seed 1 + snap (rescored on the amended labels)", "old encoder models/gidi-finance-v1 (snap off and on)", "run 2 seed 1 (snap off and on)", "run 5 seed 1 without the snap"],
+  "no_tuning": "no hyperparameter, data-selection or snap rule is changed after seeing held-out numbers; the relabel map, the removal rule and contrast-04 were fixed before training"
+}

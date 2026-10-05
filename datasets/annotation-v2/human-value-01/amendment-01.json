@@ -1,0 +1,24 @@
+{
+  "set": "human-value-01",
+  "amendment": "amendment-01",
+  "date": "2026-10-05",
+  "approved_by": "user",
+  "rule": "gift receiver is the target (user decision, docs/annotation-v3.md 'Gift receivers'; docs/annotation-v1.md 'Beneficiary is not payee'): a gift / ceremony-money note with a named receiver has the receiver as target, a kinship prefix before a proper name dropped",
+  "labels_sha256_before": "2a79ec30952a00c9f52018d652eaa7e2399ec068a6dcc796a82f8fa8ccd66ed1",
+  "n_changes": 1,
+  "changes": [
+    {
+      "id": "baseline-01-94b4a287f26a",
+      "text": "quà sinh nhật Vy 300 nghìn",
+      "old_target": null,
+      "new_target": "Vy",
+      "new_span": {
+        "text": "Vy",
+        "start": 14,
+        "end": 16
+      },
+      "reason": "gift note `quà sinh nhật Vy`: the gift receiver Vy is the counterparty"
+    }
+  ],
+  "scan": "all 150 notes read for gift / ceremony-money wording (quà, mừng, lì xì, tặng, biếu, cưới, sinh nhật, ...); the others already follow the rule or name no receiver"
+}

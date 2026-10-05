@@ -32,7 +32,7 @@
 {"id": "baseline-01-34fe3f428758", "annotation_status": "complete", "type": "transfer", "target": null, "value": {"text": "1tr", "start": 23, "end": 26}, "span_status": {"value": "complete"}}
 {"id": "baseline-01-0564b63cc451", "annotation_status": "complete", "type": "transfer", "target": null, "value": {"text": "1tr5", "start": 22, "end": 26}, "span_status": {"value": "complete"}}
 {"id": "baseline-01-b7f1f97772ee", "annotation_status": "complete", "type": "transfer", "target": null, "value": {"text": "200k", "start": 27, "end": 31}, "span_status": {"value": "complete"}}
-{"id": "baseline-01-94b4a287f26a", "annotation_status": "complete", "type": "expense", "target": null, "value": {"text": "300 nghìn", "start": 17, "end": 26}, "span_status": {"value": "complete"}}
+{"id": "baseline-01-94b4a287f26a", "annotation_status": "complete", "type": "expense", "target": {"text": "Vy", "start": 14, "end": 16}, "value": {"text": "300 nghìn", "start": 17, "end": 26}, "span_status": {"value": "complete"}}
 {"id": "baseline-01-46fe0242d00e", "annotation_status": "complete", "type": "income", "target": null, "value": {"text": "18tr2", "start": 15, "end": 20}, "span_status": {"value": "complete"}}
 {"id": "baseline-01-aa9e7786331f", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "vpbank", "start": 13, "end": 19}, "value": {"text": "3tr9", "start": 28, "end": 32}, "span_status": {"value": "complete"}}
 {"id": "baseline-01-d61f1f99e199", "annotation_status": "complete", "type": "refund", "target": {"text": "shopee", "start": 15, "end": 21}, "value": {"text": "129k", "start": 22, "end": 26}, "span_status": {"value": "complete"}}

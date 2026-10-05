@@ -1,0 +1,50 @@
+{"id": "hv02-790bbacc9fc1", "text": "ngày 5/6 đóng bảo hiểm xe 780k", "strata": ["multi_number", "date_month_year_amount"], "review_group": "primary"}
+{"id": "hv02-b859a9adced1", "text": "tien thuoc cho me 280", "strata": ["bare_number", "unaccented"], "review_group": "primary"}
+{"id": "hv02-1333ce286ba3", "text": "tiền nợ Quân 800k", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-8221015c359e", "text": "bán laptop cũ 6tr5", "strata": ["slang_compact_money"], "review_group": "primary"}
+{"id": "hv02-443d6fed1ec0", "text": "chưa trả anh Sơn 750k", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-bf972a9a00da", "text": "mua tã bỉm con cưng 420k", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-5cd9bb1d8ac3", "text": "mua thuốc long châu 185k", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-1d67ee311d82", "text": "mừng cưới Quỳnh 1tr", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-40a6ad76d204", "text": "khách thanh toán đợt 2 12tr", "strata": ["multi_number", "installment_index_amount"], "review_group": "primary"}
+{"id": "hv02-e718b459aefd", "text": "ăn sáng bánh cuốn 45", "strata": ["bare_number"], "review_group": "primary"}
+{"id": "hv02-40aa9d88f770", "text": "phúng đám tang bác Hòa 300k", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-ea574d2775cd", "text": "còn nợ chị Lụa 450k tiền vải", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-279f19b179cb", "text": "quà thôi nôi bé Gấu 350k", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-605a890593bd", "text": "mua   sữa  tươi 62k", "strata": ["unusual_whitespace_punct"], "review_group": "primary"}
+{"id": "hv02-a1036af90abe", "text": "trả góp tivi lần 5 850k", "strata": ["multi_number", "installment_index_amount"], "review_group": "primary"}
+{"id": "hv02-0bb68671e9e6", "text": "gui xe truong 5", "strata": ["bare_number", "unaccented"], "review_group": "primary"}
+{"id": "hv02-a54b8c2e9cc1", "text": "mừng thọ ông Bảy 1tr", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-9bf2ed85753e", "text": "mua 2 chai nước mắm 58k", "strata": ["multi_number", "slang_compact_money", "null_no_number_ambiguous"], "review_group": "primary"}
+{"id": "hv02-10d681ad0e83", "text": "mung dam cuoi anh Tri 500k", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-cb4ce5e7a22d", "text": "ăn vặt trà sữa 52", "strata": ["bare_number"], "review_group": "primary"}
+{"id": "hv02-1da76e23430a", "text": "grab food cơm tấm 78k", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-d1c07108c9f9", "text": "đi xem phim lotte cinema 130k", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-602839d00311", "text": "ăn 4 xiên nướng 85", "strata": ["multi_number", "bare_number", "null_no_number_ambiguous"], "review_group": "primary"}
+{"id": "hv02-9a29140b7f25", "text": "rút atm 1tr5 tiêu vặt", "strata": ["slang_compact_money"], "review_group": "primary"}
+{"id": "hv02-aca58d23333f", "text": "shopee hoàn tiền đơn hủy 210k", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-2d60d640d464", "text": "Ngọc trả nợ tiền ăn hôm trước 260k", "strata": ["long_noisy"], "review_group": "primary"}
+{"id": "hv02-37b4c75036ce", "text": "phở gà 2 tô 110", "strata": ["multi_number", "bare_number", "quantity_amount"], "review_group": "primary"}
+{"id": "hv02-5a98c6b0a63e", "text": "quà tốt nghiệp em Khải 500k", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-8f30ebcaf146", "text": "trả góp thế giới di động 1tr8", "strata": ["slang_compact_money"], "review_group": "primary"}
+{"id": "hv02-c158c81b4f0b", "text": "kỳ 7 góp máy lạnh 1tr3", "strata": ["multi_number", "installment_index_amount", "slang_compact_money"], "review_group": "primary"}
+{"id": "hv02-7964bde56e12", "text": "còn nợ 1tr", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-6c2977a4e369", "text": "nhận tiền thưởng cuối năm", "strata": ["null_no_number_ambiguous"], "review_group": "primary"}
+{"id": "hv02-5cec16e6224f", "text": "đặt 2 vé máy bay 20/12 3tr9", "strata": ["multi_number", "date_month_year_amount", "quantity_amount", "slang_compact_money"], "review_group": "primary"}
+{"id": "hv02-84ac6db6e2c0", "text": "in 30 trang tài liệu 45k", "strata": ["multi_number"], "review_group": "primary"}
+{"id": "hv02-285594a9a67a", "text": "họp lớp 15/8 góp 250k", "strata": ["multi_number", "date_month_year_amount"], "review_group": "primary"}
+{"id": "hv02-6baea9f77169", "text": "nợ bác Tư 2tr", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-b19f1930ac14", "text": "cô Mai còn thiếu mình 300k", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-a276c1539756", "text": "tháng 4/2026 đóng tiền rác 40k", "strata": ["multi_number", "date_month_year_amount"], "review_group": "primary"}
+{"id": "hv02-c58686b27607", "text": "mừng tân gia chị Vân 600k", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-3784720f9a74", "text": "tiền học thêm ,, 1tr2", "strata": ["slang_compact_money", "unusual_whitespace_punct"], "review_group": "primary"}
+{"id": "hv02-21561ab2c6e2", "text": "hoàn thuế thu nhập cá nhân 2tr6", "strata": ["slang_compact_money"], "review_group": "primary"}
+{"id": "hv02-ff8e76267da7", "text": "mua trái cây 165", "strata": ["bare_number"], "review_group": "primary"}
+{"id": "hv02-b8da30f25814", "text": "Bảo còn nợ mình 1tr2", "strata": ["slang_compact_money"], "review_group": "primary"}
+{"id": "hv02-bd2e80186a2d", "text": "mẹ gửi tiền chợ", "strata": ["null_no_number_ambiguous"], "review_group": "primary"}
+{"id": "hv02-319b6d413685", "text": "Hưng hứa cuối tháng trả 900k", "strata": ["general"], "review_group": "primary"}
+{"id": "hv02-34495612b48c", "text": "mua 12 quả trứng gà 48k", "strata": ["multi_number"], "review_group": "primary"}
+{"id": "hv02-a3526d5a898e", "text": "Tâm chưa trả tiền cơm hôm qua", "strata": ["null_no_number_ambiguous"], "review_group": "primary"}
+{"id": "hv02-9a47abd50bd1", "text": "mua nước rửa chén 3 chai 95k", "strata": ["slang_compact_money"], "review_group": "primary"}
+{"id": "hv02-06ed47636ef1", "text": "t8 2026 tiền wifi 245k", "strata": ["multi_number", "date_month_year_amount"], "review_group": "primary"}
+{"id": "hv02-b36348b60677", "text": "quà cưới Phương 800k", "strata": ["general"], "review_group": "primary"}
