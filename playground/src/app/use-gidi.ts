@@ -8,7 +8,7 @@ import {
   type LoadProgress,
 } from "@/lib/backend"
 
-import { amountToVnd } from "./amount"
+import { amountToVnd, widenSlangValue } from "./amount"
 import {
   TX_TYPES,
   type ModelReading,
@@ -97,7 +97,11 @@ async function classify(text: string): Promise<NoteRecord> {
   const note = text.trim()
   if (note === "") throw new Error("Ghi chú đang trống.")
   const { result } = await (await load())(note)
-  const valueText = result.value_text ?? null
+  const { valueText, span: valueSpan } = widenSlangValue(
+    note,
+    result.value_text ?? null,
+    copySpan(result.value_span)
+  )
   const type = isTxType(result.type) ? result.type : null
   if (type === null)
     throw new Error(`Mô hình trả về loại không hợp lệ: ${result.type}`)
@@ -109,7 +113,7 @@ async function classify(text: string): Promise<NoteRecord> {
     targetSpan: copySpan(result.target_span),
     targetConfidence: result.target_confidence,
     valueText,
-    valueSpan: copySpan(result.value_span),
+    valueSpan,
     amount: valueText ? amountToVnd(valueText) : null,
     modelVersion: result.model_version,
   }

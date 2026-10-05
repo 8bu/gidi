@@ -350,7 +350,9 @@ is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Wor
   stack lists its records; the user can correct type, target and amount (the model's reading is
   kept). Notes stay in the browser (IndexedDB) with JSON export/import. The app turns the value
   span into VND in `playground/src/app/amount.ts` (app-only; a bare number under 1,000 with no
-  unit or currency suffix counts in thousands). Works on phones and tablets (touch).
+  unit or currency suffix counts in thousands; slang `củ`/`chai` = 1 million, `xị`/`lít`/`cành` =
+  100k, `tỏi` = 1 billion; the app widens the value span over `cành`/`tỏi`, which the pinned
+  parser does not read). Works on phones and tablets (touch).
 - `/lab` is the developer playground (spans, confidences, diagnostics, raw JSON).
 - The site needs a secure context (HTTPS or `localhost`): the model sha256 check uses
   `crypto.subtle`. To try a local build on a phone, expose it over HTTPS (for example

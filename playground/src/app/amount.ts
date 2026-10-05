@@ -3,10 +3,12 @@
  *
  * `amountToVnd` reads the value text the deterministic parser returns (see
  * `src/runtime/value-parser.ts`, `src/runtime/lexicon.ts`): digits with `.`/`,`/space grouping,
- * the unit words `k`, `nghìn`, `ngàn`, `tr`, `triệu`, `tỷ`, the slang `củ` (1 million) and
- * `xị`/`chai`/`lít` (100 thousand, as the lexicon defines them), a half (`2 củ rưỡi`), trailing
+ * the unit words `k`, `nghìn`, `ngàn`, `tr`, `triệu`, `tỷ`, the slang `củ`/`chai` (1 million),
+ * `xị`/`lít`/`cành` (100 thousand) and `tỏi` (1 billion), a half (`2 củ rưỡi`), trailing
  * digits (`1tr2`, `1 triệu 2`, `1tr500k`), numeral words (`hai trăm nghìn`, `nửa củ`) and the
- * currency markers `đ`, `₫`, `vnd`, `đồng`.
+ * currency markers `đ`, `₫`, `vnd`, `đồng`. The app reads `chai` as a million although the
+ * released lexicon notes it as 100k; `cành` and `tỏi` are unknown to the released parser, so
+ * `widenSlangValue` adds them to the span (the parser is pinned by the v3 bundle).
  */
 
 const THOUSAND = 1_000
@@ -25,8 +27,10 @@ const UNITS: Readonly<Record<string, number>> = {
   cu: MILLION,
   ty: BILLION,
   xi: SLANG_HUNDRED_THOUSAND,
-  chai: SLANG_HUNDRED_THOUSAND,
   lit: SLANG_HUNDRED_THOUSAND,
+  canh: SLANG_HUNDRED_THOUSAND,
+  chai: MILLION,
+  toi: BILLION,
 }
 
 const DIGIT_WORDS: Readonly<Record<string, number>> = {
@@ -218,6 +222,70 @@ export function amountToVnd(valueText: string): number | null {
   if (text === folded && value < 1000) value *= 1000
   const rounded = Math.round(value)
   return Number.isSafeInteger(rounded) ? rounded : null
+}
+
+/** Slang units the released parser does not read; accented only (`tôi` is "I", `canh` soup). */
+const TRAILING_SLANG: Readonly<Record<string, true>> = { tỏi: true, cành: true }
+/** `cành` followed by one of these (folded) counts branches of flowers, not money. */
+const BRANCH_GOODS: Readonly<Record<string, true>> = {
+  hoa: true,
+  dao: true,
+  mai: true,
+  lan: true,
+  hong: true,
+  cuc: true,
+  ly: true,
+  tre: true,
+  cay: true,
+}
+
+const BARE_NUMBER = /^\d+(?:[.,]\d+)?$/
+const isLetter = (char: string | undefined): boolean =>
+  char !== undefined && /\p{L}/u.test(char)
+
+/** The word starting at `pos` of `chars` (code points), or `null` when no letter is there. */
+function wordAt(
+  chars: string[],
+  pos: number
+): { word: string; end: number } | null {
+  let end = pos
+  while (isLetter(chars[end])) end += 1
+  return end === pos ? null : { word: chars.slice(pos, end).join(""), end }
+}
+
+/**
+ * The value span widened over a slang unit the released parser stops before: `1 tỏi`,
+ * `50 cành`, `2 tỏi rưỡi`. Only a bare number span is widened; spans are code-point offsets.
+ */
+export function widenSlangValue(
+  note: string,
+  valueText: string | null,
+  span: [number, number] | null
+): { valueText: string | null; span: [number, number] | null } {
+  if (valueText === null || span === null || !BARE_NUMBER.test(valueText)) {
+    return { valueText, span }
+  }
+  const chars = Array.from(note)
+  if (chars[span[1]] !== " ") return { valueText, span }
+  const unit = wordAt(chars, span[1] + 1)
+  if (
+    unit === null ||
+    !Object.hasOwn(TRAILING_SLANG, unit.word.normalize("NFC").toLowerCase())
+  ) {
+    return { valueText, span }
+  }
+  let end = unit.end
+  const next = chars[end] === " " ? wordAt(chars, end + 1) : null
+  if (next !== null && fold(next.word) === "ruoi") end = next.end
+  else if (
+    next !== null &&
+    fold(unit.word) === "canh" &&
+    Object.hasOwn(BRANCH_GOODS, fold(next.word))
+  ) {
+    return { valueText, span }
+  }
+  const widened: [number, number] = [span[0], end]
+  return { valueText: chars.slice(span[0], end).join(""), span: widened }
 }
 
 function groupThousands(digits: string): string {
