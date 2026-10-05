@@ -12,10 +12,13 @@ import {
 } from "motion/react"
 import { DropdownMenu } from "radix-ui"
 import {
+  BoxIcon,
   CheckIcon,
+  CodeIcon,
   DownloadIcon,
   EllipsisIcon,
   FlaskConicalIcon,
+  GlobeIcon,
   MonitorIcon,
   MoonIcon,
   RotateCcwIcon,
@@ -28,7 +31,26 @@ import {
 import { useTheme } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import { formatVnd, formatVndCompact } from "./amount"
-import type { StackSummary, TxType } from "./types"
+import { TYPE_META } from "./taxonomy"
+import { TX_TYPES, type StackSummary, type TxType } from "./types"
+
+/**
+ * Cash in and out over every type by its direction: Thu = income, borrow, repayment_in, refund;
+ * Chi = expense, lend, repayment_out. Transfers move money between own accounts and are left out.
+ */
+function cashFlow(summaries: Record<TxType, StackSummary>): {
+  income: number
+  expense: number
+} {
+  let income = 0
+  let expense = 0
+  for (const type of TX_TYPES) {
+    const { sign } = TYPE_META[type]
+    if (sign > 0) income += summaries[type].total
+    else if (sign < 0) expense += summaries[type].total
+  }
+  return { income, expense }
+}
 
 export interface HeaderProps {
   summaries: Record<TxType, StackSummary>
@@ -256,13 +278,7 @@ function Pill({
   let content: ReactNode
   if (state === "loading") content = <Loading progress={model.progress} />
   else if (state === "error") content = <Failed onRetry={model.retry} />
-  else if (state === "totals")
-    content = (
-      <Totals
-        income={summaries.income.total}
-        expense={summaries.expense.total}
-      />
-    )
+  else if (state === "totals") content = <Totals {...cashFlow(summaries)} />
   else content = <Idle />
 
   return (
@@ -394,6 +410,33 @@ function Menu({
             <a href="/lab">
               <FlaskConicalIcon aria-hidden />
               Phòng thử nghiệm
+            </a>
+          </DropdownMenu.Item>
+          <DropdownMenu.Separator className="mx-1 my-1.5 h-px bg-border" />
+          <DropdownMenu.Item className={ITEM} asChild>
+            <a
+              href="https://github.com/8bu/gidi"
+              target="_blank"
+              rel="noopener"
+            >
+              <CodeIcon aria-hidden />
+              Mã nguồn (GitHub)
+            </a>
+          </DropdownMenu.Item>
+          <DropdownMenu.Item className={ITEM} asChild>
+            <a
+              href="https://huggingface.co/x8bu/gidi-finance"
+              target="_blank"
+              rel="noopener"
+            >
+              <BoxIcon aria-hidden />
+              Mô hình (Hugging Face)
+            </a>
+          </DropdownMenu.Item>
+          <DropdownMenu.Item className={ITEM} asChild>
+            <a href="https://8bu.dev" target="_blank" rel="noopener">
+              <GlobeIcon aria-hidden />
+              Tác giả: 8bu.dev
             </a>
           </DropdownMenu.Item>
           <DropdownMenu.Separator className="mx-1 my-1.5 h-px bg-border" />
