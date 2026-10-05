@@ -31,6 +31,8 @@ export interface StickyComposerProps {
 
 /** Only show "reading" if classify takes longer than this, so a fast reply never flashes. */
 const READING_DELAY_MS = 220
+/** Gap between cards when one send holds several lines, so each one reads as its own flight. */
+const FLIGHT_STAGGER_MS = 110
 const LINE = "1.75rem"
 const INK_LINE = "color-mix(in oklab, var(--ink-note) 15%, transparent)"
 
@@ -134,13 +136,41 @@ export function StickyComposer({
     sending.current = true
     const timer = window.setTimeout(() => setReading(true), READING_DELAY_MS)
     try {
-      const record = await classify(text)
+      // One line is one note: a pasted list becomes one record per line.
+      const lines = text
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter((line) => line !== "")
+      const records: NoteRecord[] = []
+      const failed: string[] = []
+      let firstError: unknown = null
+      for (const line of lines) {
+        try {
+          records.push(await classify(line))
+        } catch (e) {
+          failed.push(line)
+          firstError ??= e
+        }
+      }
       const rect = paperRef.current?.getBoundingClientRect()
-      if (rect) fly(record, rect)
-      if (valueRef.current.trim() === text) onValueChange("")
-      setMessage(null)
-      peelFresh()
+      if (rect) {
+        records.forEach((record, index) => {
+          if (index === 0) fly(record, rect)
+          else
+            window.setTimeout(
+              () => fly(record, rect),
+              index * FLIGHT_STAGGER_MS
+            )
+        })
+      }
+      // Lines the model could not read stay on the pad so nothing typed is lost.
+      if (valueRef.current.trim() === text) onValueChange(failed.join("\n"))
+      if (records.length > 0) {
+        setMessage(null)
+        peelFresh()
+      }
       textareaRef.current?.focus()
+      if (firstError !== null) throw firstError
     } catch (e) {
       complain(
         e instanceof Error
@@ -207,7 +237,7 @@ export function StickyComposer({
           enterKeyHint="send"
           aria-invalid={message !== null}
           aria-describedby={message !== null ? messageId : undefined}
-          placeholder="mua sữa vinamilk hết 500k"
+          placeholder={"mua sữa vinamilk hết 500k\nmỗi dòng là một ghi chú"}
           className="min-h-28 w-full flex-1 resize-none bg-transparent text-[max(1.05rem,16px)] outline-none group-data-[keyboard=open]/app:h-14 group-data-[keyboard=open]/app:min-h-14 group-data-[keyboard=open]/app:flex-none placeholder:text-[color-mix(in_oklab,var(--ink-note)_42%,transparent)] [@media(max-height:500px)]:h-[5.25rem] [@media(max-height:500px)]:min-h-[5.25rem] [@media(max-height:500px)]:flex-none"
           style={{
             lineHeight: LINE,
