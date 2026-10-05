@@ -816,6 +816,27 @@ Next: needs a user decision. Options: re-state the bound against the old 3-seed 
 
 ---
 
+## 29. Annotation-v3-retrain-v3: contrast-02 for the confused type pairs, 3 seeds + soft-vote ensemble (REJECT by the declared gate)
+
+Details: `experiments/annotation-v3-retrain-v3/report.md`, `results.json`; data `datasets/annotation-v3/contrast-02/` (100 notes) and `training-v3/` (1005 = training-v2 + contrast-02); builders `scripts/build_contrast_02.py`, `scripts/build_annotation_v3_training_v3.py`; evaluator `scripts/evaluate_encoder_retrain_v3.py`.
+
+Question: after §28 the human-value-01 type errors were income read as expense/refund, shop/app/restaurant purchases read as transfer/refund, installment/app-loan repayments read as expense/repayment_in, paying on behalf of someone (lend) read as repayment_out, and debt-only `X còn thiếu ...` read as expense. Do 100 new LLM-composed notes for exactly those families (income 25, expense 25 incl. jewelry as a gift, repayment_out 20, lend 15, debt-only both directions 15; user-approved, `provenance.annotator: llm`, 38% unaccented, written from the rules without reading any held-out note, extra gate: char-3 Jaccard < 0.6 to every human-value-01 note) fix them, and does a 3-model ensemble help?
+
+Setup: the §27 recipe unchanged on 1005 notes, seeds 1, 2, 3, INT8. Ensemble (fixed before scoring): mean of the three softmax type distributions and of the per-token softmax tag distributions, then the unchanged decoder; value from the unchanged parser. Gate unchanged from §28, reported only.
+
+Result:
+
+- human-value-01 type accuracy 0.8435 (old) -> 0.9252 (v2 seed 1) -> 0.9592 (v3 seed 1 and ensemble); macro-F1 0.805 -> 0.893 -> 0.969 / 0.971. income 20/21, repayment_out 15/15, lend 20/20 on seed 1. Debt slice type accuracy 13/13 on seeds 2, 3 and the ensemble.
+- But target exact on human-value-01 fell (v2 seed 1 0.898 -> 0.837 seed 1, 0.864 ensemble) and the debt slice end-to-end fell from 12/13 to 9/13 (seed 1) and 10/13 (ensemble): the debt notes now lose the target span (`no tien nha ba chu` -> `ba`). End-to-end on all 147: 0.8435 (v2 seed 1) -> 0.8231 (seed 1), 0.8571 (ensemble, best row). Brand-only expense notes (`bach hoa xanh ...`, `pizza 4p ...`) are now read as income. [INFERENCE] both look caused by the new notes; no ablation.
+- Frozen test type macro-F1 (old 0.956): seed 1 0.928, seed 2 0.954, seed 3 0.906, mean 0.929 +- 0.024, ensemble 0.941; target exact 0.876 / 0.857 / 0.905 / ensemble 0.886. probe-v1 type macro-F1 mean 0.880, ensemble 0.884 (old 0.754). Every candidate fails the gate (seed 1: F1 drop 0.029, debt e2e 0.692; ensemble: drop 0.015, debt e2e 0.769).
+- Ensemble: 86.0 MB INT8 (3 x 28.7 MB), 3.9 ms p50 / 5.0 ms p95 against 1.3 / 1.7 ms for one model; it lowers variance, not the bias.
+
+Decision: `gidi-finance-v1` stays the encoder; no release, no deployment.
+
+Next: needs a user decision. The type confusions are largely fixed but the added notes cost target exactness; options are to re-balance contrast-02 (e.g. targets for `ban`/`dong nghiep`-style generic nouns, brand-only expense notes) and re-run, or to treat the type gain and the target loss as separate problems (a target-only fix). Either is a new experiment.
+
+---
+
 # Mental model
 
 Think of a transformer like a building.

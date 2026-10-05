@@ -55,6 +55,8 @@ DERIVED_DIRS = (
     Path("datasets/annotation-v3/training-v1"),
     Path("datasets/annotation-v3/contrast-01"),
     Path("datasets/annotation-v3/training-v2"),
+    Path("datasets/annotation-v3/contrast-02"),
+    Path("datasets/annotation-v3/training-v3"),
 )
 SCHEMA = Path("configs/annotation-v3.quet.yaml")
 CONTRACT = Path("configs/annotation-v3.yaml")

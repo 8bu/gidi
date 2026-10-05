@@ -1,0 +1,388 @@
+{
+  "name": "contrast-02",
+  "annotation_version": "annotation-v3",
+  "role": "LLM-composed notes for the confused type pairs of retrain-v2: income, shop / app / restaurant expenses (incl. jewelry as a gift), installment and app-loan repayment_out, lend on behalf of someone, debt-only notes in both directions",
+  "annotator": "llm",
+  "annotator_note": "labels are LLM-made (user-approved), not human labels; provenance.jsonl marks every note `annotator: llm`",
+  "schema": "configs/annotation-v3.quet.yaml",
+  "schema_sha256": "21f5e53be17230a8a6bf6ecc48b2d3ea5a5e2269a9cbe1194977e7d30b2c5743",
+  "contract": "configs/annotation-v3.yaml",
+  "contract_sha256": "e8986e1a66acf856f6b3b9e1d793a330126ca82b580bf995137e19bf0d3e636d",
+  "counts": {
+    "candidates": 149,
+    "kept": 100,
+    "dropped": 49,
+    "type": {
+      "borrow": 6,
+      "expense": 25,
+      "income": 25,
+      "lend": 24,
+      "repayment_out": 20
+    },
+    "family": {
+      "debt": 15,
+      "expense": 25,
+      "income": 25,
+      "lend": 15,
+      "repayment_out": 20
+    },
+    "quota": {
+      "income": 25,
+      "expense": 25,
+      "repayment_out": 20,
+      "lend": 15,
+      "debt": 15
+    },
+    "cue": {
+      "allowance": 4,
+      "bank-loan": 4,
+      "bnpl": 2,
+      "bonus": 4,
+      "borrow-chua-tra": 2,
+      "borrow-no": 1,
+      "borrow-null": 1,
+      "borrow-thieu": 2,
+      "clothes": 2,
+      "commission": 1,
+      "customer-pays": 4,
+      "delivery-app": 3,
+      "dong-ho": 3,
+      "ecommerce": 3,
+      "electronics": 2,
+      "fashion-event": 2,
+      "finance-co": 3,
+      "gift": 2,
+      "gift-baby": 1,
+      "gift-child": 1,
+      "gift-mother": 1,
+      "gift-sister": 1,
+      "gift-wife": 1,
+      "lend-chua-tra": 3,
+      "lend-hen": 1,
+      "lend-no": 1,
+      "lend-null": 1,
+      "lend-thieu": 3,
+      "mua-ho": 4,
+      "pharmacy": 2,
+      "platform": 1,
+      "restaurant": 3,
+      "salary": 1,
+      "sale": 1,
+      "scholarship": 1,
+      "supermarket": 3,
+      "tip": 1,
+      "tra-gop": 6,
+      "tra-ho": 4,
+      "ung-cho": 4,
+      "vay-app": 5,
+      "writing-fee": 5
+    },
+    "target_null": 22,
+    "value_null": 2,
+    "accented": 62,
+    "unaccented": 38,
+    "unaccented_share": 0.38
+  },
+  "leakage": {
+    "rules": {
+      "exact": "NFC + strip + lowercase",
+      "folded": "NFC, lowercase, accents stripped, digits masked, whitespace collapsed",
+      "sequence": "difflib ratio of folded texts >= 0.9",
+      "token": "folded token Jaccard >= 0.8 (>= 4 tokens)",
+      "char3": "folded char-3-gram Jaccard >= 0.8",
+      "hv_char3_limit": "folded char-3-gram Jaccard >= 0.6 to any human-value-01 note: dropped",
+      "source": "scripts/build_human_value_queue.py (via build_debt_relabel_queue.py)"
+    },
+    "group_order": [
+      "human-value-01",
+      "test-split",
+      "probe-v1",
+      "v1-skipped-kept",
+      "existing-corpus",
+      "earlier-generated",
+      "training-v2",
+      "human-value-01-char3",
+      "over-quota"
+    ],
+    "reference_texts": {
+      "human-value-01": 150,
+      "test-split": 143,
+      "probe-v1": 81,
+      "v1-skipped-kept": 0,
+      "existing-corpus": 1695,
+      "training-v2": 905
+    },
+    "dropped_by_group": {
+      "existing-corpus": 12,
+      "human-value-01-char3": 2,
+      "over-quota": 34,
+      "test-split": 1
+    },
+    "dropped_by_rule": {
+      "char3 0.72": 1,
+      "char3 0.74": 1,
+      "debt": 5,
+      "expense": 16,
+      "folded": 2,
+      "income": 3,
+      "lend": 6,
+      "repayment_out": 4,
+      "sequence": 5,
+      "token": 6
+    },
+    "dropped": [
+      {
+        "text": "cty thuong tet 2 thang luong 24tr",
+        "group": "existing-corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "lương tháng 10 về rồi 14tr2",
+        "group": "existing-corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "bán đồ cũ trên chợ tốt 380k",
+        "group": "existing-corpus",
+        "rule": "folded"
+      },
+      {
+        "text": "lãi tiết kiệm tháng này 210k",
+        "group": "existing-corpus",
+        "rule": "folded"
+      },
+      {
+        "text": "hoa hong ban hang shopee 460k",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "nhận tiền cho thuê phòng tháng 11 2tr8",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "an sang pho 24 70k",
+        "group": "existing-corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "tiki mua 3 cuốn sách 340k",
+        "group": "test-split",
+        "rule": "token"
+      },
+      {
+        "text": "trả tiền đơn lazada 410k",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "đóng kỳ 5 góp tủ lạnh 1tr3",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "trả thẻ tín dụng sacombank 3tr8",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "thanh toan du no the visa 5tr6",
+        "group": "existing-corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "còn nợ đồng nghiệp 80k tiền cafe",
+        "group": "existing-corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "nhan tien freelance dich tai lieu 2tr1",
+        "group": "human-value-01-char3",
+        "rule": "char3 0.74"
+      },
+      {
+        "text": "em Trang còn thiếu 300k tiền vé",
+        "group": "human-value-01-char3",
+        "rule": "char3 0.72"
+      },
+      {
+        "text": "chi Van tra tien day kem thang nay 2tr",
+        "group": "over-quota",
+        "rule": "income"
+      },
+      {
+        "text": "phu huynh dong hoc phi day kem 1tr6",
+        "group": "over-quota",
+        "rule": "income"
+      },
+      {
+        "text": "cô Hương trả tiền gia sư tháng này 1tr8",
+        "group": "over-quota",
+        "rule": "income"
+      },
+      {
+        "text": "mega market thit ca rau 540k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "winmart+ sữa bánh mì 86k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "gs25 cơm hộp 35k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "family mart onigiri + cafe 62k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "be food com ga 55k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "gojek di lam 38k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "an toi nha hang Quan Ngon 480k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "phúc long trà đào 2 ly 94k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "ăn lẩu hotpot story 4 người 780k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "pizza company 359k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "the coffee house cacao đá xay 65k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "bún chả hương liên 2 suất 120k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "chuyển khoản thanh toán đơn hàng tiki 230k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "ck mua giay biti's 590k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "guardian mua son + kem 380k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "watsons sua rua mat 265k",
+        "group": "over-quota",
+        "rule": "expense"
+      },
+      {
+        "text": "trả góp 0% thẻ vcb tháng 6 2tr5",
+        "group": "over-quota",
+        "rule": "repayment_out"
+      },
+      {
+        "text": "đóng tiền vay f88 2tr1",
+        "group": "over-quota",
+        "rule": "repayment_out"
+      },
+      {
+        "text": "trả tiền vay cake kỳ 3 1tr75",
+        "group": "over-quota",
+        "rule": "repayment_out"
+      },
+      {
+        "text": "tra no app vay ky nay 1tr8",
+        "group": "over-quota",
+        "rule": "repayment_out"
+      },
+      {
+        "text": "mua hộ cô Hạnh thuốc 340k",
+        "group": "over-quota",
+        "rule": "lend"
+      },
+      {
+        "text": "ứng tiền taxi cho sếp 250k",
+        "group": "over-quota",
+        "rule": "lend"
+      },
+      {
+        "text": "thanh toan ho ban cung phong tien dien 220k",
+        "group": "over-quota",
+        "rule": "lend"
+      },
+      {
+        "text": "thanh toán hộ chị Vy tiền khám 600k",
+        "group": "over-quota",
+        "rule": "lend"
+      },
+      {
+        "text": "chi ho tien tiec cho anh Binh 1tr2",
+        "group": "over-quota",
+        "rule": "lend"
+      },
+      {
+        "text": "đặt phòng hộ Tín 1tr8 chưa gửi tiền",
+        "group": "over-quota",
+        "rule": "lend"
+      },
+      {
+        "text": "ban Hoa chua tra tien com 85k",
+        "group": "over-quota",
+        "rule": "debt"
+      },
+      {
+        "text": "còn thiếu Khánh 900k tiền nhậu",
+        "group": "over-quota",
+        "rule": "debt"
+      },
+      {
+        "text": "mình còn thiếu bạn Lộc 250k chưa trả",
+        "group": "over-quota",
+        "rule": "debt"
+      },
+      {
+        "text": "thieu tien phong cho chu nha thang nay 2tr8",
+        "group": "over-quota",
+        "rule": "debt"
+      },
+      {
+        "text": "chưa gửi lại cho anh Tuấn 500k",
+        "group": "over-quota",
+        "rule": "debt"
+      }
+    ],
+    "max_hv_char3_kept": 0.5278
+  },
+  "files_sha256": {
+    "queue.jsonl": "004bd5808dfe7cd66de8cd637c374211ffa6761b64dc7b7c5139f63c09010b80",
+    "labels.jsonl": "4e4de9dbf9f58e6aab8313bdec6877d4fb91dffbc0f5ac4136dc0e6b59640edb",
+    "provenance.jsonl": "76aa0f2cb2b4c999b2844e671bc0498bef137ac8fe6336873586b783a47fdc1f",
+    "source.jsonl": "7734f17c67e368c6db69f1ba2d6b1e4036b718a67dd1d1f167f0bb45608be899"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "name": "training-v3",
+  "annotation_version": "annotation-v3",
+  "purpose": "encoder-1 retrain set v3: training-v2 train (905, byte-identical) plus the LLM-composed contrast-02 notes (income, shop / app / restaurant expense, installment repayment_out, lend on behalf of someone, debt-only notes); validation is in-sample, the frozen test split, probe-v1 and human-value-01 stay held out",
+  "counts": {
+    "training_v2_train": 905,
+    "contrast_02_complete": 100,
+    "train": 1005
+  },
+  "type_counts": {
+    "expense": 242,
+    "income": 109,
+    "borrow": 122,
+    "lend": 135,
+    "repayment_in": 75,
+    "repayment_out": 119,
+    "transfer": 131,
+    "refund": 72
+  },
+  "type_counts_by_source": {
+    "training_v2_train": {
+      "expense": 217,
+      "income": 84,
+      "borrow": 116,
+      "lend": 111,
+      "repayment_in": 75,
+      "repayment_out": 99,
+      "transfer": 131,
+      "refund": 72
+    },
+    "contrast_02": {
+      "expense": 25,
+      "income": 25,
+      "borrow": 6,
+      "lend": 24,
+      "repayment_in": 0,
+      "repayment_out": 20,
+      "transfer": 0,
+      "refund": 0
+    }
+  },
+  "source_counts": {
+    "baseline-01": 497,
+    "targeted-annotation-v1-01": 114,
+    "targeted-annotation-v1-02": 112,
+    "debt-01": 79,
+    "contrast-01": 103,
+    "contrast-02": 100
+  },
+  "annotator_counts": {
+    "human": 256,
+    "ai": 546,
+    "llm": 203
+  },
+  "contrast_02_dropped_by_group": {
+    "existing-corpus": 12,
+    "human-value-01-char3": 2,
+    "over-quota": 34,
+    "test-split": 1
+  },
+  "excluded_human_value_01_ids": [
+    "baseline-01-1f8b559fe3c3",
+    "baseline-01-3f29fa04ff7a",
+    "baseline-01-3f8d7d6f6fac",
+    "baseline-01-43b46e772c2b",
+    "baseline-01-4a30fae51dfa",
+    "baseline-01-5facc59b6ce4",
+    "baseline-01-6b471f45cc33",
+    "baseline-01-790ca645bdb7",
+    "baseline-01-eff9d5387a64"
+  ],
+  "leakage_gate": {
+    "sets": {
+      "frozen test": 105,
+      "probe-v1": 81,
+      "human-value-01": 150
+    },
+    "rule": "no id, no verbatim or NFC+strip+lowercase text of any train record in a set; no contrast-02 note is a near duplicate (exact, folded, sequence >= 0.9, token, char3 >= 0.8: scripts/build_human_value_queue.py) of any note of a set; no contrast-02 note has folded char-3-gram Jaccard >= 0.6 to a human-value-01 note",
+    "max_char3_to_human_value_01": 0.5278,
+    "result": "pass"
+  },
+  "inputs_sha256": {
+    "datasets/annotation-v3/training-v2/train.jsonl": "fe851fd1a7905ffe6fab65398167a4adc762cbe8f1f3066e4e70f9e83cd3b24d",
+    "datasets/annotation-v3/training-v2/manifest.json": "829c45da9c040968d20497f137b6d8b34309abc6df74b3e7adeea9e6ef1a4c83",
+    "datasets/annotation-v3/contrast-02/queue.jsonl": "004bd5808dfe7cd66de8cd637c374211ffa6761b64dc7b7c5139f63c09010b80",
+    "datasets/annotation-v3/contrast-02/labels.jsonl": "4e4de9dbf9f58e6aab8313bdec6877d4fb91dffbc0f5ac4136dc0e6b59640edb",
+    "datasets/annotation-v3/contrast-02/provenance.jsonl": "76aa0f2cb2b4c999b2844e671bc0498bef137ac8fe6336873586b783a47fdc1f",
+    "datasets/annotation-v3/contrast-02/manifest.json": "fe172cdc19ce5abdffa82ac299426ff69e94572f4a64872ff74c5c3b86d4ecc1",
+    "datasets/annotation-v3/debt-01/manifest.json": "6034c0326b362fa6f0c6a83f47249f9150310f6a4ef0e46bbdc79eb24eb36422",
+    "datasets/annotation-v2/human-value-01/labels.jsonl": "2a79ec30952a00c9f52018d652eaa7e2399ec068a6dcc796a82f8fa8ccd66ed1",
+    "datasets/annotation-v2/human-value-01/review-queue.jsonl": "362cf8ca58c265d51e3ac12706de66fd6c4fb5111a82c5390d4aef92f13b6a28",
+    "datasets/annotation-v2/human-value-01/freeze.json": "c54967dee43fb2fbea177804d93670421b8f55b4435466a79542cd5058e96d9e",
+    "datasets/probe-v1/notes.jsonl": "6ffc9017bf8a153fe42741f20788b47e35ddd6213afb5479ac25e32d26c31797"
+  },
+  "outputs_sha256": {
+    "train.jsonl": "55fde17dcae9e9282a9f91be41fba05f943ef731533a4a939aa1ff2f72315485"
+  },
+  "evaluation_sets": "validation.jsonl (in-sample, logging only) and test.jsonl are symlinks to the frozen annotation-v1 splits"
+}

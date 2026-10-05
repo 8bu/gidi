@@ -1,0 +1,149 @@
+{"text": "bố cho thêm tiền tiêu vặt 500k", "type": "income", "target": "bố", "value": "500k", "family": "income", "cue": "allowance"}
+{"text": "me cho tien tieu vat thang nay 1tr5", "type": "income", "target": "me", "value": "1tr5", "family": "income", "cue": "allowance"}
+{"text": "ba cho 2 cu tien an thang 10", "type": "income", "target": "ba", "value": "2 cu", "family": "income", "cue": "allowance"}
+{"text": "trợ cấp sinh viên quý này 1tr8", "type": "income", "target": null, "value": "1tr8", "family": "income", "cue": "allowance"}
+{"text": "thưởng dự án quý 3 về 6tr", "type": "income", "target": null, "value": "6tr", "family": "income", "cue": "bonus"}
+{"text": "sếp thưởng nóng 1 triệu", "type": "income", "target": "sếp", "value": "1 triệu", "family": "income", "cue": "bonus"}
+{"text": "cty thuong tet 2 thang luong 24tr", "type": "income", "target": "cty", "value": "24tr", "family": "income", "cue": "bonus"}
+{"text": "thuong doanh so thang 9 3tr2", "type": "income", "target": null, "value": "3tr2", "family": "income", "cue": "bonus"}
+{"text": "thưởng KPI tháng 10 2tr5", "type": "income", "target": null, "value": "2tr5", "family": "income", "cue": "bonus"}
+{"text": "nhuan but bai bao 800k", "type": "income", "target": null, "value": "800k", "family": "income", "cue": "writing-fee"}
+{"text": "nhan nhuan but 1tr2 bai tuan truoc", "type": "income", "target": null, "value": "1tr2", "family": "income", "cue": "writing-fee"}
+{"text": "nhà xuất bản trả nhuận bút 3tr5", "type": "income", "target": "nhà xuất bản", "value": "3tr5", "family": "income", "cue": "writing-fee"}
+{"text": "tiền viết content tháng 10 4tr", "type": "income", "target": null, "value": "4tr", "family": "income", "cue": "writing-fee"}
+{"text": "viet bai thue duoc 450 nghin", "type": "income", "target": null, "value": "450 nghin", "family": "income", "cue": "writing-fee"}
+{"text": "khách ck tiền làm web 7tr", "type": "income", "target": "khách", "value": "7tr", "family": "income", "cue": "customer-pays"}
+{"text": "khach chuyen khoan tien thiet ke banner 900k", "type": "income", "target": "khach", "value": "900k", "family": "income", "cue": "customer-pays"}
+{"text": "anh Tùng thanh toán tiền sửa laptop 350k", "type": "income", "target": "Tùng", "value": "350k", "family": "income", "cue": "customer-pays"}
+{"text": "khách trả tiền chụp ảnh cưới 5tr5", "type": "income", "target": "khách", "value": "5tr5", "family": "income", "cue": "customer-pays"}
+{"text": "chi Van tra tien day kem thang nay 2tr", "type": "income", "target": "Van", "value": "2tr", "family": "income", "cue": "customer-pays"}
+{"text": "phu huynh dong hoc phi day kem 1tr6", "type": "income", "target": "phu huynh", "value": "1tr6", "family": "income", "cue": "customer-pays"}
+{"text": "cô Hương trả tiền gia sư tháng này 1tr8", "type": "income", "target": "Hương", "value": "1tr8", "family": "income", "cue": "customer-pays"}
+{"text": "lương tháng 10 về rồi 14tr2", "type": "income", "target": null, "value": "14tr2", "family": "income", "cue": "salary"}
+{"text": "lương part-time tuần này 850k", "type": "income", "target": null, "value": "850k", "family": "income", "cue": "salary"}
+{"text": "nhan tien freelance dich tai lieu 2tr1", "type": "income", "target": null, "value": "2tr1", "family": "income", "cue": "freelance"}
+{"text": "ban laptop cu duoc 5tr5", "type": "income", "target": null, "value": "5tr5", "family": "income", "cue": "sale"}
+{"text": "bán đồ cũ trên chợ tốt 380k", "type": "income", "target": "chợ tốt", "value": "380k", "family": "income", "cue": "sale"}
+{"text": "lãi tiết kiệm tháng này 210k", "type": "income", "target": null, "value": "210k", "family": "income", "cue": "interest"}
+{"text": "hoa hong ban hang shopee 460k", "type": "income", "target": "shopee", "value": "460k", "family": "income", "cue": "commission"}
+{"text": "tien hoa hong gioi thieu khach 500k", "type": "income", "target": null, "value": "500k", "family": "income", "cue": "commission"}
+{"text": "lì xì tết bà nội cho 500k", "type": "income", "target": "bà nội", "value": "500k", "family": "income", "cue": "gift"}
+{"text": "dượng cho tiền mua sách 300k", "type": "income", "target": "dượng", "value": "300k", "family": "income", "cue": "gift"}
+{"text": "khách boa 100k", "type": "income", "target": "khách", "value": "100k", "family": "income", "cue": "tip"}
+{"text": "nhận học bổng kỳ 1 5tr", "type": "income", "target": null, "value": "5tr", "family": "income", "cue": "scholarship"}
+{"text": "grab thuong chuyen di 120k", "type": "income", "target": "grab", "value": "120k", "family": "income", "cue": "platform"}
+{"text": "nhận tiền cho thuê phòng tháng 11 2tr8", "type": "income", "target": null, "value": "2tr8", "family": "income", "cue": "rent"}
+{"text": "sieu thi lotte mart do an tuan 650k", "type": "expense", "target": "lotte mart", "value": "650k", "family": "expense", "cue": "supermarket"}
+{"text": "đi big c mua đồ ăn vặt 230k", "type": "expense", "target": "big c", "value": "230k", "family": "expense", "cue": "supermarket"}
+{"text": "aeon mua do cho be 780k", "type": "expense", "target": "aeon", "value": "780k", "family": "expense", "cue": "supermarket"}
+{"text": "mega market thit ca rau 540k", "type": "expense", "target": "mega market", "value": "540k", "family": "expense", "cue": "supermarket"}
+{"text": "winmart+ sữa bánh mì 86k", "type": "expense", "target": "winmart", "value": "86k", "family": "expense", "cue": "supermarket"}
+{"text": "gs25 cơm hộp 35k", "type": "expense", "target": "gs25", "value": "35k", "family": "expense", "cue": "supermarket"}
+{"text": "family mart onigiri + cafe 62k", "type": "expense", "target": "family mart", "value": "62k", "family": "expense", "cue": "supermarket"}
+{"text": "grabfood bún bò huế 68k", "type": "expense", "target": "grabfood", "value": "68k", "family": "expense", "cue": "delivery-app"}
+{"text": "shopeefood 2 phần cơm tấm 94k", "type": "expense", "target": "shopeefood", "value": "94k", "family": "expense", "cue": "delivery-app"}
+{"text": "baemin tra sua + banh 112k", "type": "expense", "target": "baemin", "value": "112k", "family": "expense", "cue": "delivery-app"}
+{"text": "be food com ga 55k", "type": "expense", "target": "be food", "value": "55k", "family": "expense", "cue": "delivery-app"}
+{"text": "gojek di lam 38k", "type": "expense", "target": "gojek", "value": "38k", "family": "expense", "cue": "delivery-app"}
+{"text": "kfc combo gà 2 người 169k", "type": "expense", "target": "kfc", "value": "169k", "family": "expense", "cue": "restaurant"}
+{"text": "lotteria 2 burger + khoai 118k", "type": "expense", "target": "lotteria", "value": "118k", "family": "expense", "cue": "restaurant"}
+{"text": "jollibee ăn tối 245k", "type": "expense", "target": "jollibee", "value": "245k", "family": "expense", "cue": "restaurant"}
+{"text": "an toi nha hang Quan Ngon 480k", "type": "expense", "target": "Quan Ngon", "value": "480k", "family": "expense", "cue": "restaurant"}
+{"text": "phúc long trà đào 2 ly 94k", "type": "expense", "target": "phúc long", "value": "94k", "family": "expense", "cue": "restaurant"}
+{"text": "ăn lẩu hotpot story 4 người 780k", "type": "expense", "target": "hotpot story", "value": "780k", "family": "expense", "cue": "restaurant"}
+{"text": "pizza company 359k", "type": "expense", "target": "pizza company", "value": "359k", "family": "expense", "cue": "restaurant"}
+{"text": "the coffee house cacao đá xay 65k", "type": "expense", "target": "the coffee house", "value": "65k", "family": "expense", "cue": "restaurant"}
+{"text": "an sang pho 24 70k", "type": "expense", "target": "pho 24", "value": "70k", "family": "expense", "cue": "restaurant"}
+{"text": "bún chả hương liên 2 suất 120k", "type": "expense", "target": "hương liên", "value": "120k", "family": "expense", "cue": "restaurant"}
+{"text": "tiki mua 3 cuốn sách 340k", "type": "expense", "target": "tiki", "value": "340k", "family": "expense", "cue": "ecommerce"}
+{"text": "lazada đặt ốp lưng 79k", "type": "expense", "target": "lazada", "value": "79k", "family": "expense", "cue": "ecommerce"}
+{"text": "shopee mua tai nghe 199k", "type": "expense", "target": "shopee", "value": "199k", "family": "expense", "cue": "ecommerce"}
+{"text": "đơn tiktok shop áo thun 150k", "type": "expense", "target": "tiktok shop", "value": "150k", "family": "expense", "cue": "ecommerce"}
+{"text": "chuyển khoản thanh toán đơn hàng tiki 230k", "type": "expense", "target": "tiki", "value": "230k", "family": "expense", "cue": "ecommerce"}
+{"text": "ck mua giay biti's 590k", "type": "expense", "target": "biti's", "value": "590k", "family": "expense", "cue": "ecommerce"}
+{"text": "trả tiền đơn lazada 410k", "type": "expense", "target": "lazada", "value": "410k", "family": "expense", "cue": "ecommerce"}
+{"text": "fpt shop sạc dự phòng 450k", "type": "expense", "target": "fpt shop", "value": "450k", "family": "expense", "cue": "electronics"}
+{"text": "thegioididong mua ổ cứng 1tr9", "type": "expense", "target": "thegioididong", "value": "1tr9", "family": "expense", "cue": "electronics"}
+{"text": "nhà thuốc long châu mua vitamin 280k", "type": "expense", "target": "long châu", "value": "280k", "family": "expense", "cue": "pharmacy"}
+{"text": "pharmacity mua khẩu trang 45k", "type": "expense", "target": "pharmacity", "value": "45k", "family": "expense", "cue": "pharmacy"}
+{"text": "guardian mua son + kem 380k", "type": "expense", "target": "guardian", "value": "380k", "family": "expense", "cue": "pharmacy"}
+{"text": "watsons sua rua mat 265k", "type": "expense", "target": "watsons", "value": "265k", "family": "expense", "cue": "pharmacy"}
+{"text": "zara mua váy đi tiệc 1tr290", "type": "expense", "target": "zara", "value": "1tr290", "family": "expense", "cue": "clothes"}
+{"text": "uniqlo áo sơ mi 590k", "type": "expense", "target": "uniqlo", "value": "590k", "family": "expense", "cue": "clothes"}
+{"text": "mua nhẫn vàng tặng mẹ 20/10 6tr5", "type": "expense", "target": null, "value": "6tr5", "family": "expense", "cue": "gift-mother"}
+{"text": "mua dây chuyền vàng pnj tặng vợ sinh nhật 12tr", "type": "expense", "target": "pnj", "value": "12tr", "family": "expense", "cue": "gift-wife"}
+{"text": "mua lac tay bac cho con gai 1tr8", "type": "expense", "target": null, "value": "1tr8", "family": "expense", "cue": "gift-child"}
+{"text": "mua đôi bông tai vàng đi đám cưới 2tr3", "type": "expense", "target": null, "value": "2tr3", "family": "expense", "cue": "fashion-event"}
+{"text": "mua cap nhan cuoi tai doji 15tr", "type": "expense", "target": "doji", "value": "15tr", "family": "expense", "cue": "fashion-event"}
+{"text": "trả góp tivi samsung điện máy xanh 1tr4", "type": "repayment_out", "target": "điện máy xanh", "value": "1tr4", "family": "repayment_out", "cue": "tra-gop"}
+{"text": "tra gop dien thoai the gioi di dong ky 3 1tr1", "type": "repayment_out", "target": "the gioi di dong", "value": "1tr1", "family": "repayment_out", "cue": "tra-gop"}
+{"text": "đóng tiền góp xe vision tháng 11 2tr6", "type": "repayment_out", "target": null, "value": "2tr6", "family": "repayment_out", "cue": "tra-gop"}
+{"text": "đóng kỳ 5 góp tủ lạnh 1tr3", "type": "repayment_out", "target": null, "value": "1tr3", "family": "repayment_out", "cue": "tra-gop"}
+{"text": "góp mua laptop kỳ 8 2tr", "type": "repayment_out", "target": null, "value": "2tr", "family": "repayment_out", "cue": "tra-gop"}
+{"text": "trả góp máy lạnh 6 tháng đợt 2 1tr15", "type": "repayment_out", "target": null, "value": "1tr15", "family": "repayment_out", "cue": "tra-gop"}
+{"text": "gop iphone thang nay tgdd 2tr", "type": "repayment_out", "target": "tgdd", "value": "2tr", "family": "repayment_out", "cue": "tra-gop"}
+{"text": "trả góp 0% thẻ vcb tháng 6 2tr5", "type": "repayment_out", "target": "vcb", "value": "2tr5", "family": "repayment_out", "cue": "tra-gop"}
+{"text": "mcredit kỳ 4 thanh toán 1tr85", "type": "repayment_out", "target": "mcredit", "value": "1tr85", "family": "repayment_out", "cue": "vay-app"}
+{"text": "tất toán vay mcredit 7tr2", "type": "repayment_out", "target": "mcredit", "value": "7tr2", "family": "repayment_out", "cue": "vay-app"}
+{"text": "trả tiền vay tima kỳ này 1tr3", "type": "repayment_out", "target": "tima", "value": "1tr3", "family": "repayment_out", "cue": "vay-app"}
+{"text": "trả nợ app vay 1tr5 hôm nay", "type": "repayment_out", "target": null, "value": "1tr5", "family": "repayment_out", "cue": "vay-app"}
+{"text": "tra tien vay online dot 2 1tr2", "type": "repayment_out", "target": null, "value": "1tr2", "family": "repayment_out", "cue": "vay-app"}
+{"text": "đóng tiền vay f88 2tr1", "type": "repayment_out", "target": "f88", "value": "2tr1", "family": "repayment_out", "cue": "vay-app"}
+{"text": "trả tiền vay cake kỳ 3 1tr75", "type": "repayment_out", "target": "cake", "value": "1tr75", "family": "repayment_out", "cue": "vay-app"}
+{"text": "tra no app vay ky nay 1tr8", "type": "repayment_out", "target": null, "value": "1tr8", "family": "repayment_out", "cue": "vay-app"}
+{"text": "thanh toan kredivo thang nay 900k", "type": "repayment_out", "target": "kredivo", "value": "900k", "family": "repayment_out", "cue": "bnpl"}
+{"text": "tra sPayLater thang 10 650k", "type": "repayment_out", "target": "sPayLater", "value": "650k", "family": "repayment_out", "cue": "bnpl"}
+{"text": "hd saison tháng này 1tr090", "type": "repayment_out", "target": "hd saison", "value": "1tr090", "family": "repayment_out", "cue": "finance-co"}
+{"text": "lotte finance kỳ 7 1tr420", "type": "repayment_out", "target": "lotte finance", "value": "1tr420", "family": "repayment_out", "cue": "finance-co"}
+{"text": "thanh toán kỳ vay tiêu dùng shinhan 1tr56", "type": "repayment_out", "target": "shinhan", "value": "1tr56", "family": "repayment_out", "cue": "finance-co"}
+{"text": "tra goc lai vay vib thang 10 4tr2", "type": "repayment_out", "target": "vib", "value": "4tr2", "family": "repayment_out", "cue": "bank-loan"}
+{"text": "ck tra khoan vay ngan hang agribank 3tr6", "type": "repayment_out", "target": "agribank", "value": "3tr6", "family": "repayment_out", "cue": "bank-loan"}
+{"text": "đóng kỳ vay mua xe tpbank 3tr4", "type": "repayment_out", "target": "tpbank", "value": "3tr4", "family": "repayment_out", "cue": "bank-loan"}
+{"text": "trả khoản vay mua nhà techcombank 12tr", "type": "repayment_out", "target": "techcombank", "value": "12tr", "family": "repayment_out", "cue": "bank-loan"}
+{"text": "trả thẻ tín dụng sacombank 3tr8", "type": "repayment_out", "target": "sacombank", "value": "3tr8", "family": "repayment_out", "cue": "card"}
+{"text": "thanh toan du no the visa 5tr6", "type": "repayment_out", "target": null, "value": "5tr6", "family": "repayment_out", "cue": "card"}
+{"text": "trả hộ Nam tiền điện tháng này 650k", "type": "lend", "target": "Nam", "value": "650k", "family": "lend", "cue": "tra-ho"}
+{"text": "tra ho em Thu tien tro 2tr", "type": "lend", "target": "Thu", "value": "2tr", "family": "lend", "cue": "tra-ho"}
+{"text": "tra tien ship ho Quan 85k", "type": "lend", "target": "Quan", "value": "85k", "family": "lend", "cue": "tra-ho"}
+{"text": "tra giup Phat tien xe 90k", "type": "lend", "target": "Phat", "value": "90k", "family": "lend", "cue": "tra-ho"}
+{"text": "mua hộ mẹ cái nồi cơm điện 890k", "type": "lend", "target": "mẹ", "value": "890k", "family": "lend", "cue": "mua-ho"}
+{"text": "mua ho chi Lan 2 hop sua 560k", "type": "lend", "target": "Lan", "value": "560k", "family": "lend", "cue": "mua-ho"}
+{"text": "mua gium Lan 2 ve xem phim 240k", "type": "lend", "target": "Lan", "value": "240k", "family": "lend", "cue": "mua-ho"}
+{"text": "mua giúp bé Na bộ màu 150k chưa gửi lại", "type": "lend", "target": "Na", "value": "150k", "family": "lend", "cue": "mua-ho"}
+{"text": "mua hộ cô Hạnh thuốc 340k", "type": "lend", "target": "Hạnh", "value": "340k", "family": "lend", "cue": "mua-ho"}
+{"text": "ứng tiền cho Hải đóng học phí 3tr", "type": "lend", "target": "Hải", "value": "3tr", "family": "lend", "cue": "ung-cho"}
+{"text": "ung truoc cho Phuc 1tr5 dong tien net", "type": "lend", "target": "Phuc", "value": "1tr5", "family": "lend", "cue": "ung-cho"}
+{"text": "ứng trước tiền vé cho chú Sơn 1tr2", "type": "lend", "target": "Sơn", "value": "1tr2", "family": "lend", "cue": "ung-cho"}
+{"text": "tam ung cho dong nghiep 400k", "type": "lend", "target": "dong nghiep", "value": "400k", "family": "lend", "cue": "ung-cho"}
+{"text": "ứng tiền taxi cho sếp 250k", "type": "lend", "target": "sếp", "value": "250k", "family": "lend", "cue": "ung-cho"}
+{"text": "dong ho tien phong cho ban 2tr", "type": "lend", "target": "ban", "value": "2tr", "family": "lend", "cue": "dong-ho"}
+{"text": "đóng hộ Khôi tiền gym 400k", "type": "lend", "target": "Khôi", "value": "400k", "family": "lend", "cue": "dong-ho"}
+{"text": "đóng tiền net hộ thằng Vinh 180k", "type": "lend", "target": "Vinh", "value": "180k", "family": "lend", "cue": "dong-ho"}
+{"text": "thanh toan ho ban cung phong tien dien 220k", "type": "lend", "target": "ban cung phong", "value": "220k", "family": "lend", "cue": "dong-ho"}
+{"text": "thanh toán hộ chị Vy tiền khám 600k", "type": "lend", "target": "Vy", "value": "600k", "family": "lend", "cue": "dong-ho"}
+{"text": "chi ho tien tiec cho anh Binh 1tr2", "type": "lend", "target": "Binh", "value": "1tr2", "family": "lend", "cue": "dong-ho"}
+{"text": "đặt phòng hộ Tín 1tr8 chưa gửi tiền", "type": "lend", "target": "Tín", "value": "1tr8", "family": "lend", "cue": "dong-ho"}
+{"text": "Quân còn thiếu mình 400k tiền hụi", "type": "lend", "target": "Quân", "value": "400k", "family": "debt", "cue": "lend-thieu"}
+{"text": "thg Kien thieu t 1tr2", "type": "lend", "target": "Kien", "value": "1tr2", "family": "debt", "cue": "lend-thieu"}
+{"text": "em Trang còn thiếu 300k tiền vé", "type": "lend", "target": "Trang", "value": "300k", "family": "debt", "cue": "lend-thieu"}
+{"text": "Nga thieu minh 450k tien sinh nhat", "type": "lend", "target": "Nga", "value": "450k", "family": "debt", "cue": "lend-thieu"}
+{"text": "Vy chưa trả tiền ăn hôm qua 200k", "type": "lend", "target": "Vy", "value": "200k", "family": "debt", "cue": "lend-chua-tra"}
+{"text": "chị Hạnh chưa gửi lại 1tr", "type": "lend", "target": "Hạnh", "value": "1tr", "family": "debt", "cue": "lend-chua-tra"}
+{"text": "Đạt chua tra 500k tien xang", "type": "lend", "target": "Đạt", "value": "500k", "family": "debt", "cue": "lend-chua-tra"}
+{"text": "ban Hoa chua tra tien com 85k", "type": "lend", "target": "Hoa", "value": "85k", "family": "debt", "cue": "lend-chua-tra"}
+{"text": "Huy quên trả tiền bánh", "type": "lend", "target": "Huy", "value": null, "family": "debt", "cue": "lend-null"}
+{"text": "Son hua tuan sau tra 600k", "type": "lend", "target": "Son", "value": "600k", "family": "debt", "cue": "lend-hen"}
+{"text": "Phát còn nợ t 2 củ", "type": "lend", "target": "Phát", "value": "2 củ", "family": "debt", "cue": "lend-no"}
+{"text": "còn thiếu bác Tư 2tr tiền sửa mái", "type": "borrow", "target": "bác Tư", "value": "2tr", "family": "debt", "cue": "borrow-thieu"}
+{"text": "con thieu chi Phuong 1tr5 tien tro", "type": "borrow", "target": "Phuong", "value": "1tr5", "family": "debt", "cue": "borrow-thieu"}
+{"text": "còn thiếu Khánh 900k tiền nhậu", "type": "borrow", "target": "Khánh", "value": "900k", "family": "debt", "cue": "borrow-thieu"}
+{"text": "mình còn thiếu bạn Lộc 250k chưa trả", "type": "borrow", "target": "Lộc", "value": "250k", "family": "debt", "cue": "borrow-thieu"}
+{"text": "thieu tien phong cho chu nha thang nay 2tr8", "type": "borrow", "target": "chu nha", "value": "2tr8", "family": "debt", "cue": "borrow-thieu"}
+{"text": "chưa trả cô Lan tiền sữa 300k", "type": "borrow", "target": "Lan", "value": "300k", "family": "debt", "cue": "borrow-chua-tra"}
+{"text": "chua tra Tin 150k tien bong da", "type": "borrow", "target": "Tin", "value": "150k", "family": "debt", "cue": "borrow-chua-tra"}
+{"text": "chưa gửi lại cho anh Tuấn 500k", "type": "borrow", "target": "Tuấn", "value": "500k", "family": "debt", "cue": "borrow-chua-tra"}
+{"text": "chưa trả Thảo tiền bánh mì", "type": "borrow", "target": "Thảo", "value": null, "family": "debt", "cue": "borrow-null"}
+{"text": "còn nợ cô Mai tiền quán 120k", "type": "borrow", "target": "Mai", "value": "120k", "family": "debt", "cue": "borrow-no"}
+{"text": "còn nợ đồng nghiệp 80k tiền cafe", "type": "borrow", "target": "đồng nghiệp", "value": "80k", "family": "debt", "cue": "borrow-no"}
+{"text": "mua 1 chỉ vàng tặng cháu đầy tháng 8tr", "type": "expense", "target": null, "value": "8tr", "family": "expense", "cue": "gift-baby"}
+{"text": "mua vong vang mung cuoi em gai 9tr", "type": "expense", "target": null, "value": "9tr", "family": "expense", "cue": "gift-sister"}
