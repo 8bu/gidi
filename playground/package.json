@@ -21,6 +21,7 @@
     "class-variance-authority": "^0.7.1",
     "cn": "^0.4.0",
     "lucide-react": "^1.51.0",
+    "motion": "^14.0.0",
     "onnxruntime-web": "^1.30.0",
     "radix-ui": "^1.6.7",
     "react": "^19.2.8",

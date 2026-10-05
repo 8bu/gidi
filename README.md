@@ -29,7 +29,8 @@ Code deterministic chuyển span này thành số.
   Release công khai trên Hugging Face
   [x8bu/gidi-finance](https://huggingface.co/x8bu/gidi-finance) (INT8) và GitHub
   (archive INT8 và FP32).
-  Demo chạy trong trình duyệt: <https://gidi.8bu.dev>.
+  Demo chạy trong trình duyệt: <https://gidi.8bu.dev> (ứng dụng ghi chú, dùng được trên điện
+  thoại và máy tính bảng; công cụ cho nhà phát triển ở `/lab`).
 - **`gidi-finance-v2`** là release trước (2.0.3): `dual encoder` với value head CRF,
   58.1 MB INT8 ONNX, khoảng 3.5 ms p50. Vẫn đóng băng.
 - **`gidi-finance-v1`** vẫn đóng băng và không đổi: chỉ có type và target,

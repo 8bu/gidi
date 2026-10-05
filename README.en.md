@@ -23,7 +23,8 @@ converting it to a number stays deterministic code.
   for type and target, a word snap on the target span and a rule-based parser for the value
   span. The bundle is 29.3 MB INT8 ONNX, about 1.4 ms p50 on one CPU thread. The release is
   public on Hugging Face: [x8bu/gidi-finance](https://huggingface.co/x8bu/gidi-finance)
-  (INT8) and on GitHub (INT8 and FP32 archives). In-browser demo: <https://gidi.8bu.dev>.
+  (INT8) and on GitHub (INT8 and FP32 archives). In-browser demo: <https://gidi.8bu.dev> (a notes
+  app that works on phones and tablets; developer tools at `/lab`).
 - **`gidi-finance-v2`** is the previous release (2.0.3): a dual encoder with a CRF value head,
   58.1 MB INT8 ONNX, about 3.5 ms p50. It stays frozen.
 - **`gidi-finance-v1`** stays frozen and unchanged: type and target only, 28.66 MB INT8 ONNX.

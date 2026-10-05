@@ -1,0 +1,133 @@
+/*
+ * Gidi notes app: paper palette.
+ * One muted hue per type (25 / 60 / 120 / 155 / 200 / 250 / 300 / 350), spread around the wheel
+ * so stacks stay distinguishable without shouting. `--paper-*` is the sheet, `--ink-*` is text/accent.
+ */
+
+:root {
+  --paper-expense: oklch(0.925 0.04 25);
+  --paper-income: oklch(0.93 0.045 155);
+  --paper-borrow: oklch(0.93 0.055 62);
+  --paper-lend: oklch(0.93 0.04 200);
+  --paper-repayment_in: oklch(0.935 0.05 120);
+  --paper-repayment_out: oklch(0.93 0.04 300);
+  --paper-transfer: oklch(0.93 0.035 250);
+  --paper-refund: oklch(0.93 0.045 350);
+
+  --ink-expense: oklch(0.42 0.115 25);
+  --ink-income: oklch(0.4 0.09 155);
+  --ink-borrow: oklch(0.45 0.105 55);
+  --ink-lend: oklch(0.4 0.085 205);
+  --ink-repayment_in: oklch(0.42 0.09 125);
+  --ink-repayment_out: oklch(0.42 0.1 300);
+  --ink-transfer: oklch(0.42 0.1 255);
+  --ink-refund: oklch(0.43 0.115 350);
+
+  /* Central sticky note: classic yellow, toned down. */
+  --paper-note: oklch(0.935 0.095 96);
+  --ink-note: oklch(0.36 0.06 80);
+
+  /* Paper edge highlight (how much white is mixed into the top of a sheet). */
+  --paper-sheen: 18%;
+
+  /* Shadows are tinted warm so they never read as pure black on the desk. */
+  --paper-shadow-1:
+    0 0.5px 0 oklch(0.3 0.04 70 / 0.1), 0 1px 2px oklch(0.3 0.04 70 / 0.12),
+    0 3px 6px -2px oklch(0.3 0.04 70 / 0.14);
+  --paper-shadow-2:
+    0 1px 1px oklch(0.3 0.04 70 / 0.1),
+    0 4px 8px -2px oklch(0.3 0.04 70 / 0.16),
+    0 10px 20px -6px oklch(0.3 0.04 70 / 0.2);
+  --paper-shadow-3:
+    0 2px 2px oklch(0.3 0.04 70 / 0.1),
+    0 12px 24px -6px oklch(0.3 0.04 70 / 0.22),
+    0 28px 48px -12px oklch(0.3 0.04 70 / 0.28);
+
+  --desk-base: oklch(0.972 0.007 85);
+  --desk-glow: oklch(1 0 0 / 0.75);
+  --desk-dot: oklch(0.5 0.02 70 / 0.17);
+}
+
+.dark {
+  --paper-expense: oklch(0.31 0.045 25);
+  --paper-income: oklch(0.3 0.04 155);
+  --paper-borrow: oklch(0.32 0.05 62);
+  --paper-lend: oklch(0.3 0.04 200);
+  --paper-repayment_in: oklch(0.31 0.045 120);
+  --paper-repayment_out: oklch(0.31 0.045 300);
+  --paper-transfer: oklch(0.3 0.04 250);
+  --paper-refund: oklch(0.31 0.045 350);
+
+  --ink-expense: oklch(0.86 0.075 25);
+  --ink-income: oklch(0.86 0.075 155);
+  --ink-borrow: oklch(0.87 0.08 62);
+  --ink-lend: oklch(0.86 0.065 200);
+  --ink-repayment_in: oklch(0.87 0.08 120);
+  --ink-repayment_out: oklch(0.86 0.075 300);
+  --ink-transfer: oklch(0.86 0.07 250);
+  --ink-refund: oklch(0.86 0.075 350);
+
+  --paper-note: oklch(0.37 0.06 92);
+  --ink-note: oklch(0.9 0.07 96);
+
+  --paper-sheen: 7%;
+
+  --paper-shadow-1:
+    0 0.5px 0 oklch(0 0 0 / 0.4), 0 1px 2px oklch(0 0 0 / 0.35),
+    0 3px 6px -2px oklch(0 0 0 / 0.35);
+  --paper-shadow-2:
+    0 1px 1px oklch(0 0 0 / 0.35), 0 4px 8px -2px oklch(0 0 0 / 0.4),
+    0 10px 20px -6px oklch(0 0 0 / 0.45);
+  --paper-shadow-3:
+    0 2px 2px oklch(0 0 0 / 0.35), 0 12px 24px -6px oklch(0 0 0 / 0.5),
+    0 28px 48px -12px oklch(0 0 0 / 0.55);
+
+  --desk-base: oklch(0.2 0.008 70);
+  --desk-glow: oklch(1 0 0 / 0.035);
+  --desk-dot: oklch(0.8 0.02 70 / 0.1);
+}
+
+/* Desk the notes lie on: faint dotted grid with a soft pool of light under the note. */
+.gidi-desk {
+  background-color: var(--desk-base);
+  background-image:
+    radial-gradient(
+      ellipse 70% 55% at 50% 46%,
+      var(--desk-glow),
+      transparent 72%
+    ),
+    radial-gradient(var(--desk-dot) 1px, transparent 1.3px);
+  background-size:
+    auto,
+    24px 24px;
+  background-position:
+    0 0,
+    12px 12px;
+}
+
+/*
+ * A sheet of paper. Set `--sheet-paper` and `--sheet-ink` on the element
+ * (usually `var(--paper-x)` / `var(--ink-x)`).
+ */
+.gidi-sheet {
+  --sheet-paper: var(--paper-note);
+  --sheet-ink: var(--ink-note);
+  color: var(--sheet-ink);
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--sheet-paper), white var(--paper-sheen)) 0%,
+    var(--sheet-paper) 38%
+  );
+  border: 1px solid color-mix(in oklab, var(--sheet-ink) 14%, transparent);
+  border-radius: 6px 6px 8px 8px;
+  box-shadow: var(--paper-shadow-1);
+}
+
+/* Empty slot where a stack will grow. */
+.gidi-slot {
+  --slot-ink: var(--muted-foreground);
+  color: var(--slot-ink);
+  border: 1.5px dashed color-mix(in oklab, var(--slot-ink) 45%, transparent);
+  border-radius: 8px;
+  background: color-mix(in oklab, var(--slot-ink) 5%, transparent);
+}

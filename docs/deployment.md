@@ -337,13 +337,24 @@ place.
 
 ## Web playground (gidi.8bu.dev)
 
-The same React playground (`playground/`) also ships as a static site that runs
+The React app in `playground/` ships as a static site that runs
 `gidi-finance-v3` **in the browser** (onnxruntime-web, WASM, INT8 encoder for type and target;
 the whole-word target snap and the rule-based value parser are TypeScript ports of
 `gidi.inference.decode.snap_to_words` and `gidi.value_parser`). No server does inference and no
 note leaves the device. It is one Cloudflare Worker (`gidi`) with static assets; the 28.7 MB model
 is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Worker at
 `/models/<key>`.
+
+- `/` is the notes app (`playground/src/app/`): a sticky note in the centre, one paper stack per
+  type around it, each with the sum of its amounts. A sent note flies into its stack. Tapping a
+  stack lists its records; the user can correct type, target and amount (the model's reading is
+  kept). Notes stay in the browser (IndexedDB) with JSON export/import. The app turns the value
+  span into VND in `playground/src/app/amount.ts` (app-only; a bare number under 1,000 with no
+  unit or currency suffix counts in thousands). Works on phones and tablets (touch).
+- `/lab` is the developer playground (spans, confidences, diagnostics, raw JSON).
+- The site needs a secure context (HTTPS or `localhost`): the model sha256 check uses
+  `crypto.subtle`. To try a local build on a phone, expose it over HTTPS (for example
+  `cloudflared tunnel --url http://localhost:8787`), not a plain LAN IP.
 
 - Source of truth is the immutable bundle `models/gidi-finance-v3/` (the bytes of release 3.0.0).
   `playground/scripts/sync-release.mjs` checks `config.json` and `tokenizer.json` against the
