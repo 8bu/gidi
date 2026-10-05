@@ -9,6 +9,7 @@ the member tokens after trimming whitespace; tokens with empty trimmed offsets a
 from __future__ import annotations
 
 import math
+import unicodedata
 from collections.abc import Sequence
 from dataclasses import dataclass
 
@@ -33,6 +34,40 @@ def trim_span(text: str, start: int, end: int) -> tuple[int, int]:
     while end > start and text[end - 1].isspace():
         end -= 1
     return start, end
+
+
+def _is_edge_punct(char: str) -> bool:
+    return unicodedata.category(char).startswith("P")
+
+
+def snap_to_words(text: str, start: int, end: int) -> tuple[int, int]:
+    """Extend ``[start, end)`` to whole-word boundaries (never shrinks it).
+
+    A word is a maximal run of non-whitespace characters; punctuation (Unicode category ``P*``)
+    at the edge of the extension is trimmed, so ``(vpbank),`` snaps to ``vpbank``. A span that
+    covers several words keeps all of them; only its two ends move, and only outward.
+    """
+    if start >= end:
+        return start, end
+    lo = start
+    while lo > 0 and not text[lo - 1].isspace():
+        lo -= 1
+    hi = end
+    while hi < len(text) and not text[hi].isspace():
+        hi += 1
+    while lo < start and _is_edge_punct(text[lo]):
+        lo += 1
+    while hi > end and _is_edge_punct(text[hi - 1]):
+        hi -= 1
+    return lo, hi
+
+
+def snap_span_to_words(span: DecodedSpan | None, text: str) -> DecodedSpan | None:
+    """``span`` extended to whole words (``snap_to_words``); member tokens are unchanged."""
+    if span is None:
+        return None
+    start, end = snap_to_words(text, span.start, span.end)
+    return DecodedSpan(start, end, span.members)
 
 
 def decode_first_span(

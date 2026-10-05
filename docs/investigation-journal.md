@@ -4,7 +4,7 @@ _Last updated: 2026-10-05_
 
 This is a compact investigation journal for the Gidi finance-note model work. It records the decisions, experiments, and what each experiment taught us. It is intentionally not a full lab report.
 
-**Current status:** `gidi-finance-v2` (`models/gidi-finance-v2/`, §25) remains the **current release**. It packages the accepted value-span-v7 dual encoder: path A is gidi-finance-v1, unchanged, for type/target; path B is a fine-tuned encoder clone + MLP + CRF for the value span. 58.1 MB INT8 bundle, 3.5 ms p50 CPU. Known limitation: `cho a Nam vay 1 triệu 20/10` → `1 triệu 20/10`. `gidi-finance-v1` stays frozen and intact. Internal experiment **V8** (a deterministic value parser replacing path B, §26) is **under evaluation**: its first held-out run passed the pre-declared gates, but the labels are not independent of the rule proposer, so it needs a follow-up before anything is decided. V8 is an internal name, not a release; `gidi-finance-v3` would only be a candidate name if V8 is validated. No compression or distillation. A retrain of encoder 1 on the annotation-v3 debt rule (§27) fixed debt-only notes but missed the frozen-test bound (type macro-F1 -0.044): REJECT. A second try with 103 LLM-composed contrast notes and 3 seeds (§28) fixed the four regression notes but still missed the bound (seed 1: -0.035; mean -0.022): REJECT. `gidi-finance-v1` stays the encoder.
+**Current status:** `gidi-finance-v2` (`models/gidi-finance-v2/`, §25) remains the **current release**. It packages the accepted value-span-v7 dual encoder: path A is gidi-finance-v1, unchanged, for type/target; path B is a fine-tuned encoder clone + MLP + CRF for the value span. 58.1 MB INT8 bundle, 3.5 ms p50 CPU. Known limitation: `cho a Nam vay 1 triệu 20/10` → `1 triệu 20/10`. `gidi-finance-v1` stays frozen and intact. Internal experiment **V8** (a deterministic value parser replacing path B, §26) is **under evaluation**: its first held-out run passed the pre-declared gates, but the labels are not independent of the rule proposer, so it needs a follow-up before anything is decided. V8 is an internal name, not a release; `gidi-finance-v3` would only be a candidate name if V8 is validated. No compression or distillation. A retrain of encoder 1 on the annotation-v3 debt rule (§27) fixed debt-only notes but missed the frozen-test bound (type macro-F1 -0.044): REJECT. A second try with 103 LLM-composed contrast notes and 3 seeds (§28) fixed the four regression notes but still missed the bound (seed 1: -0.035; mean -0.022): REJECT. A third (§29, contrast-02) fixed most type confusions but cost target spans: REJECT. A fourth try (§30: word snap on the decoded target span + contrast-03, training-v4) reaches 0.884 end-to-end on human-value-01 (seed 1) and is prepared for one scoring on the new test set human-value-02; nothing is deployed. `gidi-finance-v1` stays the encoder.
 
 Detailed metrics live in each `experiments/*/report.md`; this journal keeps only the reasoning trail (question → experiment → result → decision → next direction). History is append-only: later findings are added chronologically, earlier conclusions are not rewritten. Update policy: see `AGENTS.md`.
 
@@ -834,6 +834,28 @@ Result:
 Decision: `gidi-finance-v1` stays the encoder; no release, no deployment.
 
 Next: needs a user decision. The type confusions are largely fixed but the added notes cost target exactness; options are to re-balance contrast-02 (e.g. targets for `ban`/`dong nghiep`-style generic nouns, brand-only expense notes) and re-run, or to treat the type gain and the target loss as separate problems (a target-only fix). Either is a new experiment.
+
+---
+
+## 30. Annotation-v3-retrain-v4: word snap + contrast-03 target-span notes (candidate prepared for human-value-02; no deployment)
+
+Details: `experiments/annotation-v3-retrain-v4/report.md`, `results.json`, `snap-effect.json`, `protocol.json`; data `datasets/annotation-v3/contrast-03/` (83 notes) and `training-v4/` (1083 = training-v2 905 + 95 of the 100 contrast-02 notes + contrast-03); builders `scripts/build_contrast_03.py`, `scripts/build_annotation_v3_training_v4.py`; evaluator `scripts/evaluate_encoder_retrain_v4.py`; test-set scoring `scripts/score_human_value_02.py` (not run).
+
+Question: §29 fixed most types but the target spans got worse (sub-word fragments `vpbank` -> `pbank`, missing shops, extra targets for gift receivers / product brands / a bank used as a cash-withdrawal channel, kinship+role targets cut to one word). Does (a) extending the decoded target span to whole words at inference and (b) 83 new LLM notes for exactly those target errors, with the suspect contrast-02 notes removed (brand-named income, bare generic-noun targets, and two notes close to human-value-02), reach 95% end-to-end on a new human-labelled test set (human-value-02)?
+
+Setup: `GidiPredictor(snap_words=True)` (off by default, web parity unchanged); contrast-03 written from the rules, gated against the frozen test, probe-v1, human-value-01 and human-value-02 (near-duplicate rules + char-3 Jaccard < 0.6); the §27 recipe unchanged, seeds 1-3, INT8. Candidate = seed 1 + snap, fixed in `protocol.json` before training. Scored once on the frozen test, probe-v1 and human-value-01; human-value-02 is not scored in this run.
+
+Result:
+
+- Snap: 33 target spans changed over three models x three sets, 17 fixed, 0 broken; frozen-test target exact +0.029 for run 2 seed 1 and run 4 seed 1; no effect on human-value-01 for those two.
+- human-value-01 (147 complete), end-to-end: old 0.7415, run 2 seed 1 0.8435, run 4 seed 1 0.8844 (130/147), run 4 mean 0.8776 +- 0.0118; type accuracy 0.9592, target exact 0.9116 (seed 1); the value parser is exact on all 147. Debt slice 11/13 on every seed (run 2: 12/13). Frozen test (seed 1 + snap): type macro-F1 0.9339 (old 0.9563), target exact 0.9238 (old 0.8857).
+- 17 notes remain wrong on seed 1: 11 target-only (whole-word errors: `bach hoa xanh` -> `hoa xanh`, `go! big c` -> `big`, `chi Loan` -> `chi`), 4 type-only, 2 type + target. The fragment errors of §29 are gone, but the snap cannot fix whole-word errors.
+- Disclosed: the contrast-03 round-robin quota dropped every `go! big c` / `big c` candidate, so a spelling named in the task is not in the training data; not fixed after scoring (that would be tuning on the held-out numbers). Also contrast-03 was written knowing the error *kinds* of human-value-01, so that number is not a clean held-out estimate.
+
+Decision: no release, no deployment; `gidi-finance-v1` stays the encoder. The single scoring on human-value-02 (`uv run python scripts/score_human_value_02.py`, refuses to run before `datasets/annotation-v3/human-value-02/labels.jsonl` exists) decides whether this candidate is close to the 95% goal.
+
+Next: score human-value-02 once the user has labelled it; if the errors there are whole-word boundaries again, the options are a per-name shop quota and more prefix-word contrast notes (`ban X`, `chi X`), or a boundary-aware span loss; each is a new experiment.
+
 
 ---
 

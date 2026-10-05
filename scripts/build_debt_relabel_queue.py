@@ -56,6 +56,11 @@ DERIVED_DIRS = (
     Path("datasets/annotation-v3/contrast-01"),
     Path("datasets/annotation-v3/training-v2"),
     Path("datasets/annotation-v3/contrast-02"),
+    Path("datasets/annotation-v3/contrast-03"),
+    Path("datasets/annotation-v3/training-v4"),
+    # human-value-02 is a test set: the new builders gate it as an explicit group, so earlier
+    # batches (frozen before it existed) keep rebuilding byte for byte.
+    Path("datasets/annotation-v3/human-value-02"),
     Path("datasets/annotation-v3/training-v3"),
 )
 SCHEMA = Path("configs/annotation-v3.quet.yaml")
@@ -119,6 +124,15 @@ def _dump(rows: list[dict[str, Any]]) -> str:
 
 def _sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def _guide_bytes(root: Path) -> bytes:
+    """``docs/annotation-v3.md`` up to the section after this batch's own (later sections of the
+    document, e.g. the human-value-02 test set, do not belong to the debt-01 guide)."""
+    text = (root / DOC).read_text("utf-8")
+    own = text.find("\n## Re-label batch `debt-01`")
+    end = text.find("\n## ", own + 1) if own >= 0 else -1
+    return (text if end < 0 else text[:end]).encode("utf-8")
 
 
 def _nfc(text: str) -> str:
@@ -342,7 +356,7 @@ def build_manifest(
         "contract": str(CONTRACT),
         "contract_sha256": _sha256((root / CONTRACT).read_bytes()),
         "guide": str(DOC),
-        "guide_sha256": _sha256((root / DOC).read_bytes()),
+        "guide_sha256": _sha256(_guide_bytes(root)),
         "counts": {
             "queue": len(queue),
             "old_v1_skipped": v1_kept,

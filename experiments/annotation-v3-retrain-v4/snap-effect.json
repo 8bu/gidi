@@ -1,0 +1,80 @@
+{
+ "old": {
+  "test": {
+   "n": 105,
+   "changed": 3,
+   "fixed": 2,
+   "broken": 0,
+   "still_wrong": 1,
+   "broken_notes": []
+  },
+  "probe": {
+   "n": 81,
+   "changed": 5,
+   "fixed": 3,
+   "broken": 0,
+   "still_wrong": 2,
+   "broken_notes": []
+  },
+  "human": {
+   "n": 147,
+   "changed": 5,
+   "fixed": 2,
+   "broken": 0,
+   "still_wrong": 3,
+   "broken_notes": []
+  }
+ },
+ "run2_seed1": {
+  "test": {
+   "n": 105,
+   "changed": 3,
+   "fixed": 3,
+   "broken": 0,
+   "still_wrong": 0,
+   "broken_notes": []
+  },
+  "probe": {
+   "n": 81,
+   "changed": 4,
+   "fixed": 0,
+   "broken": 0,
+   "still_wrong": 4,
+   "broken_notes": []
+  },
+  "human": {
+   "n": 147,
+   "changed": 3,
+   "fixed": 0,
+   "broken": 0,
+   "still_wrong": 3,
+   "broken_notes": []
+  }
+ },
+ "run4_seed1": {
+  "test": {
+   "n": 105,
+   "changed": 3,
+   "fixed": 3,
+   "broken": 0,
+   "still_wrong": 0,
+   "broken_notes": []
+  },
+  "probe": {
+   "n": 81,
+   "changed": 5,
+   "fixed": 4,
+   "broken": 0,
+   "still_wrong": 1,
+   "broken_notes": []
+  },
+  "human": {
+   "n": 147,
+   "changed": 2,
+   "fixed": 0,
+   "broken": 0,
+   "still_wrong": 2,
+   "broken_notes": []
+  }
+ }
+}

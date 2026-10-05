@@ -1,0 +1,20 @@
+{
+  "experiment": "annotation-v3-retrain-v4",
+  "written_before": "any model of this run was trained, exported or scored",
+  "question": "do (a) a word snap on the decoded target span and (b) training-v4 (training-v2 + contrast-02 minus the suspect notes + contrast-03) lift encoder 1 (type + target) + the unchanged rule value parser to >= 95% end-to-end exact on the new human-labelled test set human-value-02?",
+  "release_candidate": {
+    "rule": "seed 1 of the unchanged compression-v3 K2048 recipe (the deployment convention of every earlier run). Fixed now: the candidate is not chosen among seeds 1-3 by any held-out score, and no seed is re-run, dropped or swapped after scoring.",
+    "seed": 1,
+    "word_snap": true
+  },
+  "recipe": "unchanged from retrain-v2 / retrain-v3 (supervised student-4x768, BamiBERT layers 2/5/8/11, pos32, vocab B-rank-8000, FFN combined-K2048, 40 epochs, batch 8, encoder lr 5e-5, head lr 1e-3, warmup 0.1, wd 0.01, dropout 0.1, grad-clip 1.0, MPS, last epoch, --retokenize)",
+  "seeds_trained": [1, 2, 3],
+  "reported": "seed 1 (candidate), each seed and the three-seed mean; nothing is selected by it",
+  "word_snap": "GidiPredictor(snap_words=True): the decoded first target span is extended to whole words (maximal non-whitespace runs, edge punctuation of the extension trimmed). Off by default in the predictor (web parity unchanged); on for every system scored in this run except the explicit 'run 2 no snap' control.",
+  "value": "unchanged rule parser gidi.value_parser.parse_value for every system",
+  "held_out_scored_in_this_run": ["frozen test (105)", "probe-v1 (81 complete)", "human-value-01 (147 complete, debt slice n=13)"],
+  "human_value_02": "NOT scored in this run. The scoring command (scripts/score_human_value_02.py) refuses to run until datasets/annotation-v3/human-value-02/labels.jsonl exists; it scores the candidate (seed 1 + snap), the old model and run 2 seed 1 once and writes results-hv02.json.",
+  "success_criterion_hv02": "candidate end-to-end exact (type + target + value all exact, value from the unchanged parser) >= 0.95 on the complete human-value-02 labels",
+  "controls": ["old encoder models/gidi-finance-v1 (snap off and on)", "run 2 seed 1 (snap off and on)", "run 3 seed 1 is not re-scored"],
+  "no_tuning": "no hyperparameter, data-selection or snap rule is changed after seeing held-out numbers; the training-v4 removal rules and contrast-03 were fixed before training"
+}

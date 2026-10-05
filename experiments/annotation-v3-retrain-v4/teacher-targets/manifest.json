@@ -1,0 +1,102 @@
+{
+  "teacher": {
+    "checkpoint": "models/distillation-v1/teacher/bamibert/lr5e-05-seed1",
+    "model_sha256": "3838de12468629e1d80bbb848b2a70f060e87b03e4812212360c6cd47f72c1bc",
+    "tokenizer_sha256": "746cc4a588fb974f8a2d5316ec25940791d9ef1521f72b5294bc18474ea71491",
+    "checkpoint_meta": {
+      "encoder": "Qualcomm-AI-Research/BamiBERT",
+      "types": [
+        "expense",
+        "income",
+        "borrow",
+        "lend",
+        "repayment_in",
+        "repayment_out",
+        "transfer",
+        "refund"
+      ],
+      "tags": [
+        "O",
+        "B-TARGET",
+        "I-TARGET"
+      ],
+      "max_length": 32,
+      "num_types": 8,
+      "num_tags": 3,
+      "dropout": 0.1,
+      "best_epoch": 13,
+      "val_score": 0.995748987854251,
+      "seed": 1,
+      "lr": 5e-05,
+      "stop_epoch": 13,
+      "selection": "none (fixed epoch)"
+    },
+    "device": "mps"
+  },
+  "data": {
+    "path": "datasets/annotation-v3/training-v4/train.jsonl",
+    "sha256": "1fc42fa67de92e0d0872e647371407bbcf1041fa631388ce9f25ed104427473d",
+    "limit": null,
+    "manifest_sha256": "a02ffcec61ae1053ee0495df85b25ad4719887eb8f9d9ef06d321dca1fdf6790"
+  },
+  "n": 1083,
+  "max_length": 32,
+  "types": [
+    "expense",
+    "income",
+    "borrow",
+    "lend",
+    "repayment_in",
+    "repayment_out",
+    "transfer",
+    "refund"
+  ],
+  "tags": [
+    "O",
+    "B-TARGET",
+    "I-TARGET"
+  ],
+  "shapes": {
+    "input_ids": [
+      1083,
+      32
+    ],
+    "attention_mask": [
+      1083,
+      32
+    ],
+    "tag_labels": [
+      1083,
+      32
+    ],
+    "type_ids": [
+      1083
+    ],
+    "teacher_type_logits": [
+      1083,
+      8
+    ],
+    "teacher_tag_logits": [
+      1083,
+      32,
+      3
+    ]
+  },
+  "dtypes": {
+    "input_ids": "int64",
+    "attention_mask": "int64",
+    "tag_labels": "int64",
+    "type_ids": "int64",
+    "teacher_type_logits": "float32",
+    "teacher_tag_logits": "float32"
+  },
+  "teacher_vs_gold": {
+    "type_accuracy": 0.8642659187316895,
+    "tag_token_accuracy": 0.9819047451019287,
+    "n_valid_tag_positions": 9450
+  },
+  "files": {
+    "targets.safetensors": "1085d4685240485a5718bca981ef7b7e3d6403a5101fdeeff34c6b6a1f449b6e",
+    "index.jsonl": "75f668fc7340b6d2b5db2014fef998cf0d2808aab5f11a3ded271eb100bb3463"
+  }
+}

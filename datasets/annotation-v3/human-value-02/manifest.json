@@ -1,0 +1,573 @@
+{
+  "name": "human-value-02",
+  "annotation_version": "annotation-v3",
+  "role": "independent human-labelled TEST set: type + target + value in one combined Quet pass; scores V8 (encoder 1 + rule value parser) end to end under annotation-v3",
+  "never_train": true,
+  "labels_by": "the user, in Quet (annotation-v3 combined pass); no proposals, no model or rule labels",
+  "provenance": {
+    "source": "llm-written",
+    "writer": "an LLM (the assistant), by hand, from docs/annotation-v1.md, docs/annotation-v3.md and the reviewed-corpus style only; no training-data file and no human-value-01 label was read when writing",
+    "candidates_file": "candidates.txt",
+    "sections": {
+      "weak": "weak strata of human-value-01 batch 2",
+      "general": "all types"
+    }
+  },
+  "seed": "human-value-02:v1",
+  "id_rule": "hv02-<sha256(NFC text)[:12]>; order = sha256(seed:id)",
+  "counts": {
+    "candidates": 282,
+    "queue": 150,
+    "dropped_by_leakage_gate": 64,
+    "survived_gate": 218,
+    "not_selected_surplus": 68,
+    "queue_by_section": {
+      "general": 80,
+      "weak": 70
+    },
+    "no_diacritics_share": 0.413
+  },
+  "leakage": {
+    "rules": {
+      "exact": "NFC + strip + lowercase",
+      "folded": "NFC, lowercase, accents stripped, digits masked, whitespace collapsed",
+      "sequence": "difflib ratio of folded texts >= 0.9",
+      "token": "folded token Jaccard >= 0.8 (>= 4 tokens)",
+      "char3": "folded char-3-gram Jaccard >= 0.8"
+    },
+    "reference_groups_in_priority_order": [
+      "human-value-01",
+      "frozen-test",
+      "probe-v1",
+      "annotation-v3",
+      "annotation-v1-v2",
+      "corpus"
+    ],
+    "reference_unique_texts": {
+      "human-value-01": 150,
+      "frozen-test": 143,
+      "probe-v1": 81,
+      "annotation-v3": 1101,
+      "annotation-v1-v2": 1229,
+      "corpus": 1413
+    },
+    "reference_files": {
+      "human-value-01": 3,
+      "frozen-test": 3,
+      "probe-v1": 5,
+      "annotation-v3": 10,
+      "annotation-v1-v2": 27,
+      "corpus": 4
+    },
+    "dropped_by_group": {
+      "annotation-v1-v2": 9,
+      "corpus": 5,
+      "annotation-v3": 36,
+      "frozen-test": 4,
+      "human-value-01": 7,
+      "probe-v1": 2,
+      "earlier-candidate": 1
+    },
+    "dropped_by_rule": {
+      "folded": 19,
+      "sequence": 26,
+      "token": 17,
+      "char3": 2
+    },
+    "dropped": [
+      {
+        "text": "grab đi làm 62",
+        "section": "weak",
+        "group": "annotation-v1-v2",
+        "rule": "folded"
+      },
+      {
+        "text": "đổ xăng 70",
+        "section": "weak",
+        "group": "corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "highlands 59",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "trà sữa gong cha 48",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "lì xì cháu 200",
+        "section": "weak",
+        "group": "frozen-test",
+        "rule": "sequence"
+      },
+      {
+        "text": "winmart 215",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "bánh mì 20",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "cắt tóc 120",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "mẹ cho 500",
+        "section": "weak",
+        "group": "corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "tien nuoc 85",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "mua thuoc cho be 180",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "token"
+      },
+      {
+        "text": "cho Tú mượn 200",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "lương t8 12tr5 thưởng 2tr",
+        "section": "weak",
+        "group": "annotation-v1-v2",
+        "rule": "sequence"
+      },
+      {
+        "text": "đổ 4 lít xăng 90k",
+        "section": "weak",
+        "group": "annotation-v1-v2",
+        "rule": "sequence"
+      },
+      {
+        "text": "trả góp kỳ 4 1tr2",
+        "section": "weak",
+        "group": "frozen-test",
+        "rule": "folded"
+      },
+      {
+        "text": "tra gop laptop ky 7 1tr6",
+        "section": "weak",
+        "group": "annotation-v1-v2",
+        "rule": "token"
+      },
+      {
+        "text": "thưởng tết 3 tháng lương",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "cho Hà mượn 1tr;",
+        "section": "weak",
+        "group": "human-value-01",
+        "rule": "sequence"
+      },
+      {
+        "text": "vé xem phim cgv 180k",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "token"
+      },
+      {
+        "text": "quà sinh nhật Bảo 400k",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "phúng viếng bác Tư 500k",
+        "section": "general",
+        "group": "corpus",
+        "rule": "folded"
+      },
+      {
+        "text": "mua sữa cho bé 450k",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "token"
+      },
+      {
+        "text": "trả thẻ tín dụng sacombank 5tr2",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "nap vi momo 500k",
+        "section": "general",
+        "group": "annotation-v1-v2",
+        "rule": "sequence"
+      },
+      {
+        "text": "chú Hai cho vay 15tr",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "token"
+      },
+      {
+        "text": "anh ba trả 1tr5 tiền mượn",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "token"
+      },
+      {
+        "text": "Dũng còn thiếu mình 700k",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "lương tháng 9 14tr8",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "char3"
+      },
+      {
+        "text": "khách trả tiền thiết kế logo 1tr2",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "shopee hoàn 85k",
+        "section": "general",
+        "group": "annotation-v1-v2",
+        "rule": "sequence"
+      },
+      {
+        "text": "lazada hoàn tiền đơn hủy 199k",
+        "section": "general",
+        "group": "human-value-01",
+        "rule": "token"
+      },
+      {
+        "text": "chuyển 2tr sang tiết kiệm",
+        "section": "general",
+        "group": "human-value-01",
+        "rule": "char3"
+      },
+      {
+        "text": "mua vàng 1 chỉ",
+        "section": "general",
+        "group": "annotation-v1-v2",
+        "rule": "folded"
+      },
+      {
+        "text": "nạp zalopay 300k",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "mua chứng chỉ quỹ 3tr",
+        "section": "general",
+        "group": "frozen-test",
+        "rule": "token"
+      },
+      {
+        "text": "trả tiền ứng lương 1tr",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "token"
+      },
+      {
+        "text": "trả spaylater 430k",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "do xang xe may 85",
+        "section": "weak",
+        "group": "human-value-01",
+        "rule": "sequence"
+      },
+      {
+        "text": "dong tien gop dien thoai ky 5 1tr1",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "token"
+      },
+      {
+        "text": "luong thang nay ve roi",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "token"
+      },
+      {
+        "text": "đi chợ - 190k",
+        "section": "weak",
+        "group": "frozen-test",
+        "rule": "sequence"
+      },
+      {
+        "text": "tien nha  : 3tr2",
+        "section": "weak",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "an sang pho 24 45k",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "di grab ra san bay 180k",
+        "section": "general",
+        "group": "corpus",
+        "rule": "token"
+      },
+      {
+        "text": "tien phong tro thang nay 2tr6",
+        "section": "general",
+        "group": "corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "li xi be Bin 100k",
+        "section": "general",
+        "group": "probe-v1",
+        "rule": "folded"
+      },
+      {
+        "text": "qua 8/3 cho me 300k",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "me gui 2tr tien an",
+        "section": "general",
+        "group": "earlier-candidate",
+        "rule": "token"
+      },
+      {
+        "text": "chi hai cho muon 1tr",
+        "section": "general",
+        "group": "human-value-01",
+        "rule": "token"
+      },
+      {
+        "text": "cau Nam cho vay 7tr",
+        "section": "general",
+        "group": "annotation-v1-v2",
+        "rule": "token"
+      },
+      {
+        "text": "luong thang 10 ve 13tr",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "tiki hoan tien 135k",
+        "section": "general",
+        "group": "annotation-v1-v2",
+        "rule": "sequence"
+      },
+      {
+        "text": "tiktok shop hoan 58k",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "momo cashback 22k",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "chuyen tu momo ve vcb 700k",
+        "section": "general",
+        "group": "human-value-01",
+        "rule": "folded"
+      },
+      {
+        "text": "mua vang sjc 2 chi",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "token"
+      },
+      {
+        "text": "cho dong nghiep muon 500k",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "ung truoc luong cty 3tr",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "con no chu tro 1 thang tien nha",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "circle k mua nuoc 28k",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "mua sach fahasa 180k",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "folded"
+      },
+      {
+        "text": "li xi be Bong 50k",
+        "section": "general",
+        "group": "probe-v1",
+        "rule": "sequence"
+      },
+      {
+        "text": "cho ban muon 1tr",
+        "section": "general",
+        "group": "annotation-v3",
+        "rule": "sequence"
+      },
+      {
+        "text": "vpbank rut tien mat 5tr",
+        "section": "general",
+        "group": "human-value-01",
+        "rule": "token"
+      }
+    ],
+    "surplus_not_selected": [
+      "2 chai nước mắm 52k",
+      "3 suất cơm 135k",
+      "Phuong con thieu 250k",
+      "Quan tra no 700k",
+      "Tâm chưa gửi lại 1tr",
+      "an sang cung Phuc",
+      "anh Long tra lai tien dien 400k",
+      "ba Tu con no 2tr",
+      "ban dong ho cu tren shopee 750k",
+      "bao hiem y te hoan 900k",
+      "bo tui mua banh trung thu 350",
+      "bán hàng online hôm nay 680k",
+      "bún bò huế 55",
+      "bún chả 50k!!",
+      "ca phe 25",
+      "ca phe phuc long 65k",
+      "cafe sáng 35",
+      "cat 2 chia khoa 30k",
+      "cho Vy vay 3tr",
+      "cho chi Van vay 4tr",
+      "cho thuê phòng tháng này 2tr5",
+      "chuyen hsbc sang acb 3tr",
+      "cty hoàn tiền taxi 160k",
+      "cty thuong tet 8tr",
+      "dat ve may bay vietjet 1tr9",
+      "grab   85k",
+      "góp điện thoại đợt 6 850k",
+      "haidilao 1tr2",
+      "hoan tien don shopee",
+      "lương 12tr5 !!!",
+      "lấy lại cọc 3tr",
+      "mirae asset ky 12 1tr45",
+      "mua 1 bo ban ghe 3tr2",
+      "mua 10 quyển vở 85k",
+      "mua 12 chai bia tiger 380k",
+      "mua cai op lung 70",
+      "mua do cho meo o petmart 260k",
+      "mua ly o ikea 349k",
+      "mua thit ga 3 kg 270",
+      "mua thuốc ở long châu 230k",
+      "mua điện thoại ở thế giới di động 7tr9",
+      "mung tuoi ong noi 500k",
+      "muon anh Bao 2tr tien nha",
+      "ngay 15/6 dong bao hiem xe 1tr2",
+      "pizza 4p tối qua 640k",
+      "rút atm bidv 1tr",
+      "ship đồ 25",
+      "thu 5 tuan truoc tra tien nuoc 96k",
+      "thu tien khach, 4tr",
+      "thưởng kpi 2tr",
+      "thằng Kiên nợ 300k chưa trả",
+      "thứ 7 đi chợ 340k",
+      "tiền học thêm 600",
+      "tiền nhà 3tr ~",
+      "tiền điện 450",
+      "tra lai bac Sau 2tr",
+      "tra no chi Mai tien com 150k",
+      "tra no the tpbank 3tr",
+      "tra sua koi 55k",
+      "tra tien muon be Nga 400k",
+      "vay tien me dong hoc",
+      "vib hoàn tiền 120k",
+      "xăng 2 lít 46k",
+      "ăn bún đậu cùng Hoa 120k",
+      "ăn trưa (cơm gà) 45k",
+      "đặt phòng 2 đêm 1tr8",
+      "ốp lưng iphone 15 120k",
+      "“bún riêu” 40k"
+    ],
+    "note": "sets newer than training-v3 are not references here; they must gate against this queue"
+  },
+  "strata": {
+    "bare_number": 23,
+    "date_month_year_amount": 11,
+    "general": 41,
+    "installment_index_amount": 7,
+    "long_noisy": 7,
+    "multi_number": 37,
+    "null_no_number_ambiguous": 8,
+    "quantity_amount": 14,
+    "slang_compact_money": 19,
+    "unaccented": 49,
+    "unusual_whitespace_punct": 9
+  },
+  "weak_stratum_targets": {
+    "bare_number": 23,
+    "multi_number": 11,
+    "quantity_amount": 11,
+    "unusual_whitespace_punct": 8,
+    "installment_index_amount": 7,
+    "null_no_number_ambiguous": 6,
+    "date_month_year_amount": 5
+  },
+  "outputs": {
+    "review-queue.jsonl": "a9ba9627f24796d6d0be61b8cf69b9e9d83691da3c0473cefcc57adb8c0b0cb6",
+    "annotation-guide.md": "fbca0e86dbf042284fc5bf543157ebd182a1eb2b04d8882d74f4591fcfbcc99d"
+  },
+  "inputs": {
+    "candidates.txt": "5ad191ed9f9f37f842c8a6f4b80c0cfb692b6935e2901fd32f22fbc3ef0a8ab8"
+  },
+  "queue_sha256": "a9ba9627f24796d6d0be61b8cf69b9e9d83691da3c0473cefcc57adb8c0b0cb6",
+  "proposals": null,
+  "quet_schema": {
+    "path": "configs/annotation-v3.quet.yaml",
+    "sha256": "21f5e53be17230a8a6bf6ecc48b2d3ea5a5e2269a9cbe1194977e7d30b2c5743"
+  },
+  "quet_command": "quet annotate datasets/annotation-v3/human-value-02/review-queue.jsonl --schema configs/annotation-v3.quet.yaml --out datasets/annotation-v3/human-value-02/labels.jsonl",
+  "quet_web_push": "quet web push datasets/annotation-v3/human-value-02/review-queue.jsonl --schema configs/annotation-v3.quet.yaml --project gidi-hv02 --name \"gidi human-value-02 · test set (150)\"",
+  "validate_command": "uv run python scripts/validate_annotations.py datasets/annotation-v3/human-value-02/labels.jsonl --config configs/annotation-v3.quet.yaml --queue datasets/annotation-v3/human-value-02/review-queue.jsonl"
+}

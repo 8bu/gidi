@@ -13,6 +13,7 @@ from gidi.inference.decode import (
     DecodedSpan,
     decode_first_span,
     decode_value_crf,
+    snap_span_to_words,
     target_confidence,
     type_prediction,
 )
@@ -26,8 +27,16 @@ class GidiPredictor:
     """Single-note CPU classifier. Deterministic: one thread, no sampling, no state."""
 
     def __init__(
-        self, config: BundleConfig, tokenizer: BundleTokenizer, runner: OnnxRunner
+        self,
+        config: BundleConfig,
+        tokenizer: BundleTokenizer,
+        runner: OnnxRunner,
+        *,
+        snap_words: bool = False,
     ) -> None:
+        # ``snap_words`` extends the decoded target span to whole-word boundaries (off by
+        # default: the deployed web parity is unchanged).
+        self._snap_words = snap_words
         self._config = config
         self._tokenizer = tokenizer
         self._runner = runner
@@ -49,8 +58,12 @@ class GidiPredictor:
         *,
         model_path: str | Path | None = None,
         intra_op_threads: int = 1,
+        snap_words: bool = False,
     ) -> GidiPredictor:
-        """Load ``bundle_dir``; ``model_path`` swaps the ONNX file (e.g. the FP32 export)."""
+        """Load ``bundle_dir``; ``model_path`` swaps the ONNX file (e.g. the FP32 export).
+
+        ``snap_words`` extends the target span to whole-word boundaries (see ``__init__``).
+        """
         root = Path(bundle_dir)
         config = load_config(root)
         tokenizer = BundleTokenizer(root / TOKENIZER_FILE, config.max_length)
@@ -60,7 +73,7 @@ class GidiPredictor:
             config.output_names,
             intra_op_threads,
         )
-        return cls(config, tokenizer, runner)
+        return cls(config, tokenizer, runner, snap_words=snap_words)
 
     def run(self, text: str) -> RawOutput:
         """Tokenize and run the model; see ``RawOutput`` for the fields."""
@@ -93,6 +106,8 @@ class GidiPredictor:
         real = [not special for special in tokens.special_tokens_mask]
         tag_ids = np.argmax(tag_logits, axis=-1)
         target_decoded = decode_first_span(tokens.offsets, tag_ids, normalized.text)
+        if self._snap_words:
+            target_decoded = snap_span_to_words(target_decoded, normalized.text)
         target_conf = target_confidence(tag_logits, tag_ids, target_decoded, real)
         target, target_span = self._slice_original(text, normalized, target_decoded)
         value = None

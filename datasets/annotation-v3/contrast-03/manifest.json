@@ -1,0 +1,406 @@
+{
+  "name": "contrast-03",
+  "annotation_version": "annotation-v3",
+  "role": "LLM-composed notes for the target-span errors of retrain-v3: shop / supermarket / app expenses with the shop as (multi-word) target, gifts with the receiver not a target, product / brand as item with no target, bank as channel (transfer, no target) vs as lender (target), kinship+role targets of two words",
+  "annotator": "llm",
+  "annotator_note": "labels are LLM-made (user-approved), not human labels; provenance.jsonl marks every note `annotator: llm`",
+  "schema": "configs/annotation-v3.quet.yaml",
+  "schema_sha256": "21f5e53be17230a8a6bf6ecc48b2d3ea5a5e2269a9cbe1194977e7d30b2c5743",
+  "contract": "configs/annotation-v3.yaml",
+  "contract_sha256": "e8986e1a66acf856f6b3b9e1d793a330126ca82b580bf995137e19bf0d3e636d",
+  "counts": {
+    "candidates": 135,
+    "kept": 83,
+    "dropped": 52,
+    "type": {
+      "borrow": 5,
+      "expense": 54,
+      "income": 1,
+      "lend": 6,
+      "refund": 1,
+      "repayment_in": 2,
+      "repayment_out": 4,
+      "transfer": 10
+    },
+    "family": {
+      "bank": 13,
+      "gift": 12,
+      "item": 12,
+      "kin": 20,
+      "shop": 26
+    },
+    "quota": {
+      "shop": 26,
+      "gift": 12,
+      "item": 12,
+      "bank": 14,
+      "kin": 20
+    },
+    "cue": {
+      "app": 3,
+      "atm": 4,
+      "clothes": 3,
+      "convenience": 4,
+      "electronics": 3,
+      "gift-person": 7,
+      "gift-shop": 5,
+      "grand": 2,
+      "in-law": 5,
+      "issuer": 1,
+      "item-brand": 5,
+      "item-device": 4,
+      "item-shop": 3,
+      "landlord": 5,
+      "lender": 2,
+      "name-con": 2,
+      "own-account": 5,
+      "pharmacy": 2,
+      "restaurant": 4,
+      "ride": 3,
+      "savings": 1,
+      "sibling": 4,
+      "supermarket": 4,
+      "teacher": 2
+    },
+    "target_null": 26,
+    "target_multi_word": 34,
+    "value_null": 0,
+    "accented": 44,
+    "unaccented": 39,
+    "unaccented_share": 0.4699
+  },
+  "leakage": {
+    "rules": {
+      "exact": "NFC + strip + lowercase",
+      "folded": "NFC, lowercase, accents stripped, digits masked, whitespace collapsed",
+      "sequence": "difflib ratio of folded texts >= 0.9",
+      "token": "folded token Jaccard >= 0.8 (>= 4 tokens)",
+      "char3": "folded char-3-gram Jaccard >= 0.8",
+      "hv_char3_limit": "folded char-3-gram Jaccard >= 0.6 to any human-value-01 or human-value-02 note: dropped",
+      "source": "scripts/build_human_value_queue.py (via build_debt_relabel_queue.py)"
+    },
+    "human_value_02": {
+      "gated": true,
+      "review_queue_sha256": "a9ba9627f24796d6d0be61b8cf69b9e9d83691da3c0473cefcc57adb8c0b0cb6",
+      "note": "texts used only by the gate; never printed or stored"
+    },
+    "group_order": [
+      "human-value-01",
+      "human-value-02",
+      "test-split",
+      "probe-v1",
+      "v1-skipped-kept",
+      "existing-corpus",
+      "earlier-generated",
+      "training-v2",
+      "contrast-02",
+      "human-value-01-char3",
+      "human-value-02-char3",
+      "over-quota"
+    ],
+    "reference_texts": {
+      "human-value-01": 150,
+      "human-value-02": 150,
+      "test-split": 143,
+      "probe-v1": 81,
+      "v1-skipped-kept": 0,
+      "existing-corpus": 1695,
+      "training-v2": 905,
+      "contrast-02": 100
+    },
+    "dropped_by_group": {
+      "earlier-generated": 2,
+      "existing-corpus": 7,
+      "human-value-01": 1,
+      "human-value-01-char3": 1,
+      "human-value-02": 3,
+      "human-value-02-char3": 1,
+      "over-quota": 36,
+      "training-v2": 1
+    },
+    "dropped_by_rule": {
+      "char3 0.60": 1,
+      "char3 0.67": 1,
+      "exact": 1,
+      "folded": 2,
+      "gift": 4,
+      "item": 8,
+      "kin": 4,
+      "sequence": 5,
+      "shop": 20,
+      "token": 6
+    },
+    "dropped": [
+      {
+        "text": "phuc long tra sua 2 ly 98k",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "mua qua sinh nhat cho Lam 380k",
+        "group": "earlier-generated",
+        "rule": "sequence"
+      },
+      {
+        "text": "quà sinh nhật Mai 500k",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "mua hoa tang co giao 20/11 250k",
+        "group": "human-value-02",
+        "rule": "sequence"
+      },
+      {
+        "text": "mua giày adidas 1tr9",
+        "group": "existing-corpus",
+        "rule": "exact"
+      },
+      {
+        "text": "rut tien mat acb 1tr5",
+        "group": "existing-corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "mở sổ tiết kiệm sacombank 10tr",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "trả thẻ tín dụng vpbank 4tr2",
+        "group": "human-value-01",
+        "rule": "token"
+      },
+      {
+        "text": "tra the tin dung shb 2tr7",
+        "group": "existing-corpus",
+        "rule": "token"
+      },
+      {
+        "text": "vcb hoan phi chuyen khoan 11k",
+        "group": "human-value-02",
+        "rule": "token"
+      },
+      {
+        "text": "con no ba chu 600k tien hang",
+        "group": "earlier-generated",
+        "rule": "folded"
+      },
+      {
+        "text": "mượn chị dâu 3tr đóng học",
+        "group": "existing-corpus",
+        "rule": "sequence"
+      },
+      {
+        "text": "ba ngoai cho 500k",
+        "group": "human-value-02",
+        "rule": "folded"
+      },
+      {
+        "text": "gửi tiết kiệm tpbank 20tr kỳ hạn 6 tháng",
+        "group": "training-v2",
+        "rule": "sequence"
+      },
+      {
+        "text": "ghe bach hoa xanh mua trung 58k",
+        "group": "human-value-01-char3",
+        "rule": "char3 0.60"
+      },
+      {
+        "text": "mua giay nike o shopee 1tr2",
+        "group": "human-value-02-char3",
+        "rule": "char3 0.67"
+      },
+      {
+        "text": "lotte mart mua nước giặt 189k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "go! big c mua thit bo ca hoi 920k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "go! big c hom nay mua do an cho ca tuan 1tr05",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "big c mua ta sua cho be 465k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "mm mega market mua hải sản 1tr35",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "aeon mall mua đồ gia dụng 1tr2",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "emart mua hoa qua nhap khau 210k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "gs25 mua mi ly va kimbap 51k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "texas chicken 2 phan ga ran 178k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "highlands cà phê sữa đá 2 ly 89k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "the coffee house tra dao 55k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "starbucks mua 2 ly 150k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "gong cha tra sua tran chau 59k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "taxi mai linh ra bến xe 190k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "goi grabcar ve que 640k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "taxi ra ben xe 160k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "di taxi ve nha luc khuya 95k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "grabmart mua đồ dùng 120k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "loship ship do an 47k",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "điện máy xanh mua nồi chiên 1tr7",
+        "group": "over-quota",
+        "rule": "shop"
+      },
+      {
+        "text": "mua sua bieu ong ba noi 700k",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "mua quà trung thu cho các cháu 540k",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "mua đồ chơi tặng bé Bin 220k",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "mua hoa qua tham ba ngoai 180k",
+        "group": "over-quota",
+        "rule": "gift"
+      },
+      {
+        "text": "sua vinamilk 2 thung 520k",
+        "group": "over-quota",
+        "rule": "item"
+      },
+      {
+        "text": "mi hao hao 1 thung 115k",
+        "group": "over-quota",
+        "rule": "item"
+      },
+      {
+        "text": "1 thùng coca pepsi 210k",
+        "group": "over-quota",
+        "rule": "item"
+      },
+      {
+        "text": "kem danh rang colgate 35k",
+        "group": "over-quota",
+        "rule": "item"
+      },
+      {
+        "text": "airpods pro 4tr9",
+        "group": "over-quota",
+        "rule": "item"
+      },
+      {
+        "text": "samsung galaxy s24 18tr",
+        "group": "over-quota",
+        "rule": "item"
+      },
+      {
+        "text": "op lung iphone 120k",
+        "group": "over-quota",
+        "rule": "item"
+      },
+      {
+        "text": "đổ xăng xe wave 60k",
+        "group": "over-quota",
+        "rule": "item"
+      },
+      {
+        "text": "con no ba chu 450k tien hang",
+        "group": "over-quota",
+        "rule": "kin"
+      },
+      {
+        "text": "cho em re vay 5tr lam von",
+        "group": "over-quota",
+        "rule": "kin"
+      },
+      {
+        "text": "em rể còn nợ mình 2tr",
+        "group": "over-quota",
+        "rule": "kin"
+      },
+      {
+        "text": "chị gái cho 2tr tiền ăn học",
+        "group": "over-quota",
+        "rule": "kin"
+      }
+    ],
+    "max_char3_kept": {
+      "human-value-01": 0.5909,
+      "human-value-02": 0.5278
+    }
+  },
+  "files_sha256": {
+    "queue.jsonl": "662ce94ac0b2fd5fb06255c093ec15e94b05d39d86c48a1bb5bb340b765736f4",
+    "labels.jsonl": "11b386e8d80abd1388c4bd1fb142fb447387eecbe0c3b84b4f2d39f185d4b4ed",
+    "provenance.jsonl": "71d8fd2f011f4c385c7876089514897e86ea0b6e7c545678240d82ce9650ad62",
+    "source.jsonl": "9409f0bb282f26a9bea1c14c9db189883c6a21c7da374ad0df36086fbf9e55ab"
+  }
+}

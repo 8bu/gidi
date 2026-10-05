@@ -1,0 +1,168 @@
+{
+  "name": "training-v4",
+  "annotation_version": "annotation-v3",
+  "purpose": "encoder-1 retrain set v4: training-v2 train (905, byte-identical) + the contrast-02 notes of training-v3 minus the suspect ones + contrast-03 (target-span notes: shops, gift receivers / product brands / bank channel without target, two-word kinship+role targets); validation is in-sample, the frozen test split, probe-v1, human-value-01 and human-value-02 stay held out",
+  "counts": {
+    "training_v2_train": 905,
+    "contrast_02_in_training_v3": 100,
+    "contrast_02_removed": 5,
+    "contrast_02_kept": 95,
+    "contrast_03_complete": 83,
+    "train": 1083
+  },
+  "type_counts": {
+    "expense": 296,
+    "income": 108,
+    "borrow": 127,
+    "lend": 138,
+    "repayment_in": 77,
+    "repayment_out": 123,
+    "transfer": 141,
+    "refund": 73
+  },
+  "type_counts_by_source": {
+    "training_v2_train": {
+      "expense": 217,
+      "income": 84,
+      "borrow": 116,
+      "lend": 111,
+      "repayment_in": 75,
+      "repayment_out": 99,
+      "transfer": 131,
+      "refund": 72
+    },
+    "contrast_02_kept": {
+      "expense": 25,
+      "income": 23,
+      "borrow": 6,
+      "lend": 21,
+      "repayment_in": 0,
+      "repayment_out": 20,
+      "transfer": 0,
+      "refund": 0
+    },
+    "contrast_03": {
+      "expense": 54,
+      "income": 1,
+      "borrow": 5,
+      "lend": 6,
+      "repayment_in": 2,
+      "repayment_out": 4,
+      "transfer": 10,
+      "refund": 1
+    }
+  },
+  "source_counts": {
+    "baseline-01": 497,
+    "targeted-annotation-v1-01": 114,
+    "targeted-annotation-v1-02": 112,
+    "debt-01": 79,
+    "contrast-01": 103,
+    "contrast-02": 95,
+    "contrast-03": 83
+  },
+  "annotator_counts": {
+    "human": 256,
+    "ai": 546,
+    "llm": 281
+  },
+  "contrast_02_removed_rules": {
+    "brand-income": "an income note whose target is a brand / platform name (grab, shopee, chợ tốt, ...): the pattern `brand + amount -> income` that turned shop expense notes into income in retrain-v3",
+    "generic-peer-noun": "the whole target is a bare generic peer noun (bạn, đồng nghiệp) that also prefixes a given name: it taught the encoder to stop at the first word of a role phrase / to tag `bạn` instead of the name",
+    "char3-human-value-02": "folded char-3-gram Jaccard >= 0.6 to a human-value-02 note (score only; the note itself was not read)"
+  },
+  "contrast_02_removed": [
+    {
+      "id": "contrast-02-79a01d300e6d",
+      "text": "khách ck tiền làm web 7tr",
+      "type": "income",
+      "target": "khách",
+      "reason": "char3-human-value-02"
+    },
+    {
+      "id": "contrast-02-3661717489ce",
+      "text": "grab thuong chuyen di 120k",
+      "type": "income",
+      "target": "grab",
+      "reason": "brand-income"
+    },
+    {
+      "id": "contrast-02-0507f1239566",
+      "text": "mua gium Lan 2 ve xem phim 240k",
+      "type": "lend",
+      "target": "Lan",
+      "reason": "char3-human-value-02"
+    },
+    {
+      "id": "contrast-02-92d41fc5f684",
+      "text": "tam ung cho dong nghiep 400k",
+      "type": "lend",
+      "target": "dong nghiep",
+      "reason": "generic-peer-noun"
+    },
+    {
+      "id": "contrast-02-54fb86f37d32",
+      "text": "dong ho tien phong cho ban 2tr",
+      "type": "lend",
+      "target": "ban",
+      "reason": "generic-peer-noun"
+    }
+  ],
+  "excluded_human_value_01_ids": [
+    "baseline-01-1f8b559fe3c3",
+    "baseline-01-3f29fa04ff7a",
+    "baseline-01-3f8d7d6f6fac",
+    "baseline-01-43b46e772c2b",
+    "baseline-01-4a30fae51dfa",
+    "baseline-01-5facc59b6ce4",
+    "baseline-01-6b471f45cc33",
+    "baseline-01-790ca645bdb7",
+    "baseline-01-eff9d5387a64"
+  ],
+  "leakage_gate": {
+    "sets": {
+      "frozen test": 105,
+      "probe-v1": 81,
+      "human-value-01": 150,
+      "human-value-02": 150
+    },
+    "human_value_02_review_queue_sha256": "a9ba9627f24796d6d0be61b8cf69b9e9d83691da3c0473cefcc57adb8c0b0cb6",
+    "rule": "no id, no verbatim or NFC+strip+lowercase text of any train record in a set; no new (contrast) note is a near duplicate (exact, folded, sequence >= 0.9, token, char3 >= 0.8: scripts/build_human_value_queue.py) of any note of a set, and no base note of a human-value-02 note; no contrast-02 / contrast-03 note has folded char-3-gram Jaccard >= 0.6 to a human-value-01 or human-value-02 note",
+    "max_char3_new_notes": {
+      "human-value-01": 0.5909,
+      "human-value-02": 0.5667
+    },
+    "base_notes_near_duplicate_of_set": {
+      "frozen test": 7,
+      "probe-v1": 0,
+      "human-value-01": 2,
+      "human-value-02": 0
+    },
+    "base_notes_at_char3_ge_limit": {
+      "human-value-01": 42,
+      "human-value-02": 10
+    },
+    "base_note": "the 905 training-v2 notes are byte-identical to the earlier runs (same templated corpus text, not edited here): earlier held-out notes have near duplicates among them (counts above, informational, as in every earlier run); none is a near duplicate of human-value-02; some reach the stricter char-3 bound (counts above), which is applied to the new notes only",
+    "result": "pass"
+  },
+  "inputs_sha256": {
+    "datasets/annotation-v3/training-v2/train.jsonl": "fe851fd1a7905ffe6fab65398167a4adc762cbe8f1f3066e4e70f9e83cd3b24d",
+    "datasets/annotation-v3/training-v2/manifest.json": "829c45da9c040968d20497f137b6d8b34309abc6df74b3e7adeea9e6ef1a4c83",
+    "datasets/annotation-v3/training-v3/train.jsonl": "55fde17dcae9e9282a9f91be41fba05f943ef731533a4a939aa1ff2f72315485",
+    "datasets/annotation-v3/training-v3/manifest.json": "44d292a1cc9df9c61b79994b31ab85d410f0043d46e1a140d4fef4fb01aefff3",
+    "datasets/annotation-v3/contrast-03/queue.jsonl": "662ce94ac0b2fd5fb06255c093ec15e94b05d39d86c48a1bb5bb340b765736f4",
+    "datasets/annotation-v3/contrast-03/labels.jsonl": "11b386e8d80abd1388c4bd1fb142fb447387eecbe0c3b84b4f2d39f185d4b4ed",
+    "datasets/annotation-v3/contrast-03/provenance.jsonl": "71d8fd2f011f4c385c7876089514897e86ea0b6e7c545678240d82ce9650ad62",
+    "datasets/annotation-v3/contrast-03/manifest.json": "711de33eeb75315f3a59dc6c8f28d0abba66c26e638b2a95126e2a5c7c38258f",
+    "datasets/annotation-v3/debt-01/manifest.json": "6034c0326b362fa6f0c6a83f47249f9150310f6a4ef0e46bbdc79eb24eb36422",
+    "datasets/annotation-v2/human-value-01/labels.jsonl": "2a79ec30952a00c9f52018d652eaa7e2399ec068a6dcc796a82f8fa8ccd66ed1",
+    "datasets/annotation-v2/human-value-01/review-queue.jsonl": "362cf8ca58c265d51e3ac12706de66fd6c4fb5111a82c5390d4aef92f13b6a28",
+    "datasets/annotation-v2/human-value-01/freeze.json": "c54967dee43fb2fbea177804d93670421b8f55b4435466a79542cd5058e96d9e",
+    "datasets/probe-v1/notes.jsonl": "6ffc9017bf8a153fe42741f20788b47e35ddd6213afb5479ac25e32d26c31797",
+    "datasets/annotation-v3/human-value-02/review-queue.jsonl": "a9ba9627f24796d6d0be61b8cf69b9e9d83691da3c0473cefcc57adb8c0b0cb6"
+  },
+  "outputs_sha256": {
+    "train.jsonl": "1fc42fa67de92e0d0872e647371407bbcf1041fa631388ce9f25ed104427473d"
+  },
+  "evaluation_sets": "validation.jsonl (in-sample, logging only) and test.jsonl are symlinks to the frozen annotation-v1 splits"
+}
