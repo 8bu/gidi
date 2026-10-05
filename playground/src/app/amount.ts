@@ -224,8 +224,16 @@ export function amountToVnd(valueText: string): number | null {
   return Number.isSafeInteger(rounded) ? rounded : null
 }
 
-/** Slang units the released parser does not read; accented only (`tôi` is "I", `canh` soup). */
-const TRAILING_SLANG: Readonly<Record<string, true>> = { tỏi: true, cành: true }
+/**
+ * Slang units the released parser does not read, as written: the right accent or none at all
+ * (`5 toi` in a no-diacritic note). Other accents are other words (`tôi` I, `cạnh` beside).
+ */
+const TRAILING_SLANG: Readonly<Record<string, true>> = {
+  tỏi: true,
+  toi: true,
+  cành: true,
+  canh: true,
+}
 /** `cành` followed by one of these (folded) counts branches of flowers, not money. */
 const BRANCH_GOODS: Readonly<Record<string, true>> = {
   hoa: true,
