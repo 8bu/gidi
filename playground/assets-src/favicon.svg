@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .note{fill:#fceaa0}.fold{fill:#e3c862}.g{stroke:#4e3914}
+    @media (prefers-color-scheme:dark){.note{fill:#f0cf5c}.fold{fill:#b8963a}.g{stroke:#2a1f06}}
+  </style>
+  <path class="note" d="M10 6H54Q58 6 58 10V42L42 58H10Q6 58 6 54V10Q6 6 10 6Z"/>
+  <path class="fold" d="M58 42L42 58V46Q42 42 46 42Z"/>
+  <g class="g" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="28" cy="28" r="9"/>
+    <path d="M37 19V41Q37 49 28 49Q23 49 20 46"/>
+  </g>
+</svg>

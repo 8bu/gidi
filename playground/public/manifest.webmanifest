@@ -1,0 +1,20 @@
+{
+  "name": "Gidi – Ghi chú chi tiêu",
+  "short_name": "Gidi",
+  "description": "Gidi là mô hình nhỏ đọc ghi chú chi tiêu tiếng Việt ngắn gọn (ăn phở 45k, nhận lương 15tr, cho Nam mượn 2 củ), tự phân loại giao dịch và nhận ra số tiền, chạy hoàn toàn trong trình duyệt. Miễn phí, không cần tài khoản.",
+  "lang": "vi",
+  "dir": "ltr",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8f5f1",
+  "theme_color": "#f8f5f1",
+  "categories": ["finance", "productivity"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

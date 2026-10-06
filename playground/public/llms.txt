@@ -1,0 +1,32 @@
+# Gidi
+
+> Gidi is a free web app and an open model that read short, informal Vietnamese personal-finance notes such as "ăn phở 45k" or "cho Nam mượn 2 củ" and return the transaction type (one of 8), the counterparty and the amount in VND. Everything runs in the user's browser: no note text, name or amount is sent anywhere.
+
+Gidi (from "GiaoDịch", Vietnamese for "transaction") is Vietnamese-first. The model is `gidi-finance-v3` (release 3.0.0): one INT8 encoder for type and target plus a rule-based value parser, 29.3 MB as INT8 ONNX, about 1.4 ms p50 per note on one CPU thread, licensed Apache-2.0. On the 190-note test set `human-value-02`: type 92.1%, target 85.3%, value 100%, end-to-end exact 78.9%. It is an experimental project, not financial advice, and not a bank or accounting product.
+
+## App
+
+- [Gidi app](https://gidi.8bu.dev/): the free notes app, Vietnamese interface, runs in the browser, no account
+
+## About pages
+
+- [Giới thiệu Gidi (Vietnamese)](https://gidi.8bu.dev/gioi-thieu): what Gidi is, the 8 types, slang amounts, privacy, accuracy and FAQ
+- [About Gidi (English)](https://gidi.8bu.dev/about): the same content in English
+- [Full English facts](https://gidi.8bu.dev/llms-full.txt): all facts in one plain-markdown file, suitable for citation
+
+## Code and model
+
+- [GitHub: 8bu/gidi](https://github.com/8bu/gidi): source code for the app, training and evaluation
+- [Hugging Face: x8bu/gidi-finance](https://huggingface.co/x8bu/gidi-finance): the gidi-finance-v3 model (INT8 ONNX, Apache-2.0)
+
+## Documentation
+
+- [Overview](https://github.com/8bu/gidi/blob/main/docs/overview.md): project overview
+- [Deployment](https://github.com/8bu/gidi/blob/main/docs/deployment.md): how the web app is deployed
+- [Releasing](https://github.com/8bu/gidi/blob/main/docs/releasing.md): how model releases are made
+- [Investigation journal](https://github.com/8bu/gidi/blob/main/docs/investigation-journal.md): experiments and decisions behind the model
+
+## Optional
+
+- [Quet](https://github.com/8bu/quet): the annotation tool used to label Gidi's data
+- [8bu.dev](https://8bu.dev): the author's site

@@ -3,3 +3,30 @@
   Cache-Control: public, max-age=31536000, immutable
 /release/*
   Cache-Control: public, max-age=31536000, immutable
+  X-Robots-Tag: noindex
+
+# The developer playground is a tool, not a page to rank (SPA fallback; the app also adds a meta).
+/lab
+  X-Robots-Tag: noindex
+/lab/*
+  X-Robots-Tag: noindex
+
+# Static SEO pages and crawl files: short cache so edits show up within the hour.
+/gioi-thieu
+  Cache-Control: public, max-age=3600
+/about
+  Cache-Control: public, max-age=3600
+/gioi-thieu.html
+  Cache-Control: public, max-age=3600
+/about.html
+  Cache-Control: public, max-age=3600
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+/robots.txt
+  Cache-Control: public, max-age=3600
+/sitemap.xml
+  Cache-Control: public, max-age=3600

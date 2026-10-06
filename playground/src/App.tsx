@@ -70,8 +70,17 @@ export function App() {
   const title = info ? displayName(info.model_version) : "Gidi Finance"
 
   useEffect(() => {
-    document.title = `${title} playground`
-  }, [title])
+    const previousTitle = document.title
+    const robots = document.createElement("meta")
+    robots.name = "robots"
+    robots.content = "noindex"
+    document.head.append(robots)
+    document.title = "Gidi Lab – công cụ cho nhà phát triển"
+    return () => {
+      robots.remove()
+      document.title = previousTitle
+    }
+  }, [])
 
   // Stacked layout: bring the result into view when a run starts.
   useEffect(() => {

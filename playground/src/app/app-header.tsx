@@ -19,6 +19,7 @@ import {
   EllipsisIcon,
   FlaskConicalIcon,
   GlobeIcon,
+  InfoIcon,
   MonitorIcon,
   MoonIcon,
   RotateCcwIcon,
@@ -407,6 +408,12 @@ function Menu({
             Nhập ghi chú (JSON)
           </DropdownMenu.Item>
           <DropdownMenu.Separator className="mx-1 my-1.5 h-px bg-border" />
+          <DropdownMenu.Item className={ITEM} asChild>
+            <a href="/gioi-thieu">
+              <InfoIcon aria-hidden />
+              Giới thiệu
+            </a>
+          </DropdownMenu.Item>
           <DropdownMenu.Item className={ITEM} asChild>
             <a href="/lab">
               <FlaskConicalIcon aria-hidden />

@@ -1,8 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="data:," />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content"
@@ -21,7 +24,158 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <title>Gidi Finance playground</title>
+    <title>Gidi – Ghi chú chi tiêu tự phân loại, chạy trên máy</title>
+    <meta
+      name="description"
+      content="Gidi đọc ghi chú chi tiêu tiếng Việt như “ăn phở 45k”, tự phân loại 8 loại giao dịch, tìm người liên quan và số tiền. Chạy ngay trên máy bạn, miễn phí."
+    />
+    <meta name="application-name" content="Gidi" />
+    <meta name="apple-mobile-web-app-title" content="Gidi" />
+    <meta name="author" content="8bu" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://gidi.8bu.dev/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Gidi" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta
+      property="og:title"
+      content="Gidi – Ghi chú chi tiêu tự phân loại, chạy trên máy"
+    />
+    <meta
+      property="og:description"
+      content="Gidi đọc ghi chú chi tiêu tiếng Việt như “ăn phở 45k”, tự phân loại 8 loại giao dịch, tìm người liên quan và số tiền. Chạy ngay trên máy bạn, miễn phí."
+    />
+    <meta property="og:url" content="https://gidi.8bu.dev/" />
+    <meta property="og:image" content="https://gidi.8bu.dev/og.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Gidi – Ghi chú chi tiêu tự phân loại, chạy trên máy"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Gidi – Ghi chú chi tiêu tự phân loại, chạy trên máy"
+    />
+    <meta
+      name="twitter:description"
+      content="Gidi đọc ghi chú chi tiêu tiếng Việt như “ăn phở 45k”, tự phân loại 8 loại giao dịch, tìm người liên quan và số tiền. Chạy ngay trên máy bạn, miễn phí."
+    />
+    <meta name="twitter:image" content="https://gidi.8bu.dev/og.png" />
+    <meta
+      name="twitter:image:alt"
+      content="Gidi – Ghi chú chi tiêu tự phân loại, chạy trên máy"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "@id": "https://gidi.8bu.dev/#app",
+            "name": "Gidi",
+            "alternateName": "Gidi – on-device classifier for Vietnamese money notes",
+            "url": "https://gidi.8bu.dev/",
+            "description": "Gidi đọc ghi chú chi tiêu tiếng Việt ngắn, thân mật như “ăn phở 45k” hay “cho Nam mượn 2 củ”, rồi trả về loại giao dịch (8 loại), đối tượng liên quan và số tiền. Mô hình chạy hoàn toàn trong trình duyệt, ghi chú chỉ lưu trên máy bạn.",
+            "inLanguage": "vi",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Any (web browser)",
+            "browserRequirements": "Requires JavaScript and WebAssembly",
+            "isAccessibleForFree": true,
+            "license": "https://www.apache.org/licenses/LICENSE-2.0",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "VND"
+            },
+            "featureList": [
+              "Tự phân loại ghi chú thành 8 loại giao dịch: chi tiêu, thu nhập, đi vay, cho vay, được trả nợ, trả nợ, chuyển tiền, hoàn tiền",
+              "Nhận ra đối tượng liên quan và số tiền trong ghi chú",
+              "Hiểu cách viết số tiền kiểu tiếng lóng: k, nghìn, tr, triệu, củ, chai, xị, lít, cành, tỏi, rưỡi, 1tr2",
+              "Chạy hoàn toàn trong trình duyệt bằng onnxruntime-web (WebAssembly)",
+              "Ghi chú lưu trên máy (IndexedDB), xuất và nhập JSON",
+              "Miễn phí, không cần tài khoản, dùng được trên điện thoại và máy tính bảng, có giao diện sáng và tối"
+            ],
+            "screenshot": "https://gidi.8bu.dev/og.png",
+            "image": "https://gidi.8bu.dev/og.png",
+            "author": { "@id": "https://8bu.dev/#person" },
+            "isPartOf": { "@id": "https://gidi.8bu.dev/#website" },
+            "sameAs": [
+              "https://github.com/8bu/gidi",
+              "https://huggingface.co/x8bu/gidi-finance"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://gidi.8bu.dev/#website",
+            "name": "Gidi",
+            "url": "https://gidi.8bu.dev/",
+            "inLanguage": ["vi", "en"],
+            "publisher": { "@id": "https://8bu.dev/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://8bu.dev/#person",
+            "name": "8bu",
+            "url": "https://8bu.dev"
+          }
+        ]
+      }
+    </script>
+    <style>
+      /* Crawler/no-JS fallback: hidden (but kept in the HTML) once the inline script marks <html class="js">. */
+      html.js #root > .seo-fallback {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .seo-fallback {
+        box-sizing: border-box;
+        min-height: 100vh;
+        padding: 24px 20px 48px;
+        background: #f8f5f1;
+        color: #181512;
+        font:
+          1.0625rem/1.6 system-ui,
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
+      }
+      .seo-fallback > * {
+        max-width: 42rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .seo-fallback h1 {
+        font-size: 1.75rem;
+        line-height: 1.25;
+      }
+      .seo-fallback h2 {
+        margin-top: 2rem;
+        font-size: 1.25rem;
+      }
+      .seo-fallback a {
+        color: inherit;
+        text-decoration: underline;
+      }
+      .seo-fallback code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        .seo-fallback {
+          background: #181512;
+          color: #f8f5f1;
+        }
+      }
+    </style>
     <script>
       // Apply the stored or system theme before first paint (ThemeProvider takes over afterwards).
       ;(function () {
@@ -34,6 +188,7 @@
           (stored !== "light" &&
             window.matchMedia("(prefers-color-scheme: dark)").matches)
         document.documentElement.classList.add(dark ? "dark" : "light")
+        document.documentElement.classList.add("js")
         // An explicit in-app choice overrides the OS-driven theme-color metas.
         if (stored === "dark" || stored === "light") {
           var metas = document.querySelectorAll('meta[name="theme-color"]')
@@ -45,7 +200,90 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <main class="seo-fallback">
+        <h1>Gidi – Ghi chú chi tiêu tự phân loại, chạy trên máy</h1>
+        <p>
+          Gidi là một mô hình nhỏ đọc những ghi chú tài chính cá nhân ngắn, thân
+          mật bằng tiếng Việt, ví dụ <code>ăn phở 45k</code>,
+          <code>nhận lương 15tr</code>, <code>cho Nam mượn 2 củ</code> hay
+          <code>Long trả 5 lít</code>. Với mỗi ghi chú, Gidi trả về loại giao
+          dịch (một trong 8 loại), đối tượng liên quan và số tiền, rồi ứng dụng
+          đổi số tiền đó thành VND.
+        </p>
+        <p>
+          Gidi hiểu các cách viết số tiền kiểu tiếng lóng như k, nghìn, ngàn,
+          tr, triệu, củ, chai, xị, lít, cành, tỏi, rưỡi hay 1tr2, có dấu hoặc
+          không dấu. Ứng dụng miễn phí, không cần tài khoản, dùng được trên điện
+          thoại, máy tính bảng và có giao diện sáng, tối. Đây là dự án thử
+          nghiệm, không phải lời khuyên tài chính và không phải sản phẩm ngân
+          hàng hay kế toán.
+        </p>
+
+        <h2>8 loại giao dịch</h2>
+        <ul>
+          <li><strong>Chi tiêu</strong>: tiền bạn chi cho hàng hóa, phí.</li>
+          <li><strong>Thu nhập</strong>: lương, thưởng, tiền bán hàng.</li>
+          <li><strong>Đi vay</strong>: bạn vay tiền và phải trả lại.</li>
+          <li><strong>Cho vay</strong>: bạn cho vay và người ta sẽ trả bạn.</li>
+          <li><strong>Được trả nợ</strong>: có người trả lại tiền cho bạn.</li>
+          <li><strong>Trả nợ</strong>: bạn trả lại khoản nợ của mình.</li>
+          <li>
+            <strong>Chuyển tiền</strong>: chỉ giữa các tài khoản, ví của chính
+            bạn.
+          </li>
+          <li>
+            <strong>Hoàn tiền</strong>: tiền được trả lại sau khi hủy hoặc trả
+            hàng.
+          </li>
+        </ul>
+
+        <h2>Ví dụ ghi chú</h2>
+        <ul>
+          <li><code>ăn phở 45k</code>: Chi tiêu, 45.000 VND.</li>
+          <li><code>nhận lương 15tr</code>: Thu nhập, 15.000.000 VND.</li>
+          <li>
+            <code>cho Nam mượn 2 củ</code>: Cho vay, đối tượng Nam, 2.000.000
+            VND.
+          </li>
+          <li>
+            <code>Long trả 5 lít</code>: Được trả nợ, đối tượng Long, 500.000
+            VND.
+          </li>
+        </ul>
+
+        <h2>Riêng tư</h2>
+        <p>
+          Mô hình chạy hoàn toàn trong trình duyệt của bạn (onnxruntime-web,
+          WebAssembly). Ghi chú chỉ được lưu trong trình duyệt (IndexedDB), có
+          thể xuất và nhập bằng JSON. Không có nội dung ghi chú, tên hay số tiền
+          nào được gửi đi. Ứng dụng chỉ đếm lượt dùng ẩn danh, không dùng
+          cookie, và chỉ ghi lại số sự kiện và loại sự kiện.
+        </p>
+
+        <h2>Tìm hiểu thêm</h2>
+        <ul>
+          <li><a href="/gioi-thieu">Giới thiệu Gidi (tiếng Việt)</a></li>
+          <li><a href="/about">About Gidi (English)</a></li>
+          <li>
+            <a href="https://github.com/8bu/gidi">Mã nguồn trên GitHub</a>
+          </li>
+          <li>
+            <a href="https://huggingface.co/x8bu/gidi-finance"
+              >Mô hình trên Hugging Face</a
+            >
+          </li>
+          <li><a href="https://8bu.dev">8bu.dev, trang của tác giả</a></li>
+        </ul>
+
+        <noscript>
+          <p>
+            Gidi cần JavaScript và WebAssembly để chạy mô hình ngay trong trình
+            duyệt. Hãy bật JavaScript để dùng ứng dụng.
+          </p>
+        </noscript>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

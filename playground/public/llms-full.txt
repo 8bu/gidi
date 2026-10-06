@@ -1,0 +1,102 @@
+# Gidi
+
+> Gidi is a free web app and an open model that read short, informal Vietnamese personal-finance notes (for example "ăn phở 45k", "nhận lương 15tr", "cho Nam mượn 2 củ", "Long trả 5 lít") and return the transaction type (one of 8), the counterparty (target) span and the amount span. The app turns the amount into VND. Everything runs in the user's browser.
+
+Last updated: 2026-10-06. Site: https://gidi.8bu.dev
+
+## What Gidi is
+
+- Name: Gidi, from "GiaoDịch", Vietnamese for "transaction".
+- App title (Vietnamese): "Gidi – Ghi chú chi tiêu tự phân loại, chạy trên máy".
+- App title (English): "Gidi – on-device classifier for Vietnamese money notes".
+- Input: a short, informal Vietnamese personal-finance note.
+- Output: the transaction type (8 types), the counterparty (target) span, and the amount span; the app converts the amount to VND.
+- Free, no account. Works on phones and tablets (touch). Light and dark theme. Vietnamese-first.
+- Experimental project. It is not financial advice and not a bank or accounting product.
+
+## The 8 transaction types
+
+| Type | Vietnamese label | Meaning | Example note (illustrative) |
+|---|---|---|---|
+| expense | Chi tiêu | Money spent on goods or fees | `ăn phở 45k` |
+| income | Thu nhập | Salary, bonus, sales | `nhận lương 15tr` |
+| borrow | Đi vay | You borrow money and must repay it | `mượn Hùng 3tr` |
+| lend | Cho vay | You lend money and they repay you | `cho Nam mượn 2 củ` |
+| repayment_in | Được trả nợ | Someone repays you | `Long trả 5 lít` |
+| repayment_out | Trả nợ | You repay a debt you owe | `trả nợ Lan 500k` |
+| transfer | Chuyển tiền | Between your own accounts or wallets only | `chuyển 2tr từ thẻ sang ví` |
+| refund | Hoàn tiền | Money back after a cancellation or return | `shop hoàn tiền 150k` |
+
+## Slang amounts understood
+
+Vietnamese money shorthand and slang, with or without diacritics:
+
+| Written as | Value |
+|---|---|
+| `k`, `nghìn`, `ngàn` | 1,000 VND |
+| `tr`, `triệu` | 1,000,000 VND |
+| `củ`, `chai` | 1,000,000 VND |
+| `xị`, `lít`, `cành` | 100,000 VND |
+| `tỏi` | 1,000,000,000 VND |
+| `rưỡi` | half of the preceding unit (`2tr rưỡi` = 2,500,000 VND) |
+| `1tr2` style | compact form (`1tr2` = 1,200,000 VND) |
+
+## Privacy
+
+- Inference runs fully in the browser with onnxruntime-web (WebAssembly). No note text, name or amount is sent anywhere.
+- Notes are stored only in the browser (IndexedDB), with JSON export and import.
+- Anonymous, cookieless usage counts (PostHog) record only event counts and event types, never note content.
+
+## Architecture and model
+
+- Model: `gidi-finance-v3`, release 3.0.0.
+- One INT8 encoder predicts the transaction type and the target span; a rule-based value parser finds and converts the amount.
+- Bundle: 29.3 MB INT8 ONNX.
+- Speed: about 1.4 ms p50 per note on one CPU thread.
+- Runtime: onnxruntime-web (WASM), in the browser.
+
+## Accuracy
+
+Test set `human-value-02`: 190 notes, labelled by two LLM labellers with adjudication and approved by the author.
+
+| Metric | v3 (current) | v2 (previous) |
+|---|---|---|
+| Transaction type | 92.1% | not reported here |
+| Target (counterparty) | 85.3% | not reported here |
+| Value (amount) | 100% | not reported here |
+| End-to-end exact | 78.9% | 59.5% |
+| Model size | 29.3 MB | 58.1 MB |
+
+## Training data
+
+About 1,000 generated raw notes, reviewed by a human and labelled in Quet (https://github.com/8bu/quet). Human labels are authoritative.
+
+## Limitations
+
+- Known weak spots: multi-word shop names; the who-pays meaning of `trả` (a friend repaying you versus an employer paying you); gift receivers.
+- The test set has 190 notes, so the figures are indicative.
+- Vietnamese-first. Offline use is not a promised feature: the page and the model bundle must be downloaded first.
+
+## License
+
+Apache-2.0 (model `gidi-finance-v3`): https://www.apache.org/licenses/LICENSE-2.0
+
+## Links
+
+- App: https://gidi.8bu.dev/
+- About (English): https://gidi.8bu.dev/about
+- Giới thiệu (Vietnamese): https://gidi.8bu.dev/gioi-thieu
+- Short index for LLMs: https://gidi.8bu.dev/llms.txt
+- Code: https://github.com/8bu/gidi
+- Model: https://huggingface.co/x8bu/gidi-finance
+- Deployment docs: https://github.com/8bu/gidi/blob/main/docs/deployment.md
+- Investigation journal: https://github.com/8bu/gidi/blob/main/docs/investigation-journal.md
+- Annotation tool Quet: https://github.com/8bu/quet
+
+## Author
+
+8bu (https://8bu.dev).
+
+## Suggested citation
+
+Gidi, an on-device classifier for informal Vietnamese money notes, by 8bu. https://gidi.8bu.dev/about (last updated 2026-10-06).

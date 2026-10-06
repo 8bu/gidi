@@ -1,0 +1,39 @@
+# /release/ stays crawlable: the app loads its small model metadata from there when rendered.
+# /models/ holds the 29 MB model binary.
+User-agent: *
+Allow: /
+Disallow: /models/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /models/
+
+User-agent: Claude-User
+Allow: /
+Disallow: /models/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /models/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /models/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /models/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /models/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /models/
+
+User-agent: CCBot
+Allow: /
+Disallow: /models/
+
+Sitemap: https://gidi.8bu.dev/sitemap.xml
