@@ -363,7 +363,9 @@ is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Wor
   (`cookieless_mode: "always"`, server-side daily hash; the project has cookieless server hash
   mode on), no autocapture, session replay, heatmaps or surveys. Events carry counts and types,
   never note text, targets or amounts. `VITE_POSTHOG_KEY` / `VITE_POSTHOG_HOST` override the
-  project at build time.
+  project at build time. Open the app once with `?internal=1` on your own browsers (`?internal=0`
+  undoes it): their events get `internal: true`, and the project's default test-account filter
+  (`internal` not set, `$host` = `gidi.8bu.dev`) drops them from insights.
 
 - Source of truth is the immutable bundle `models/gidi-finance-v3/` (the bytes of release 3.0.0).
   `playground/scripts/sync-release.mjs` checks `config.json` and `tokenizer.json` against the
