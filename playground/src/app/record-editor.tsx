@@ -52,7 +52,10 @@ export function parseAmountInput(text: string): ParsedAmount {
   return value === null ? { ok: false } : { ok: true, value }
 }
 
-/** Small square of the type's paper colour. */
+/**
+ * Solid dot in the type's ink colour. A paper-coloured square vanished on its own stack's
+ * paper in dark mode and read as an empty checkbox.
+ */
 export function TypeSwatch({
   type,
   className,
@@ -63,11 +66,8 @@ export function TypeSwatch({
   return (
     <span
       aria-hidden
-      className={cn("inline-block size-3 shrink-0 rounded-[3px]", className)}
-      style={{
-        background: `var(--paper-${type})`,
-        boxShadow: `inset 0 0 0 1px color-mix(in oklab, var(--ink-${type}) 45%, transparent)`,
-      }}
+      className={cn("inline-block size-2.5 shrink-0 rounded-full", className)}
+      style={{ background: `var(--ink-${type})` }}
     />
   )
 }
@@ -205,8 +205,10 @@ export function RecordEditor({
           <SelectContent>
             {TX_TYPES.map((t) => (
               <SelectItem key={t} value={t}>
-                <TypeSwatch type={t} />
-                {TYPE_META[t].label}
+                <span className="flex items-center gap-2">
+                  <TypeSwatch type={t} />
+                  {TYPE_META[t].label}
+                </span>
               </SelectItem>
             ))}
           </SelectContent>
