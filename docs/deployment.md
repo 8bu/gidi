@@ -366,6 +366,15 @@ is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Wor
   project at build time. Open the app once with `?internal=1` on your own browsers (`?internal=0`
   undoes it): their events get `internal: true`, and the project's default test-account filter
   (`internal` not set, `$host` = `gidi.8bu.dev`) drops them from insights.
+- Search and answer engines: `playground/index.html` carries the meta, Open Graph and JSON-LD
+  (`WebApplication`) plus a static fallback inside `#root` that non-JS crawlers read (hidden once
+  JS runs; React replaces it). Static pages `/gioi-thieu` (vi) and `/about` (en) are plain HTML
+  in `playground/public/` with `AboutPage`/`FAQPage` JSON-LD; keep their facts and FAQ JSON-LD in
+  sync with the visible text and with the current release numbers. `llms.txt`, `llms-full.txt`,
+  `robots.txt` (blocks only `/models/`) and `sitemap.xml` sit beside them; `/lab` gets
+  `X-Robots-Tag: noindex` from `_headers`. Icons and social cards are rendered from
+  `playground/assets-src/` with `build.sh` (needs rsvg-convert, ImageMagick and the Be Vietnam
+  Pro font).
 
 - Source of truth is the immutable bundle `models/gidi-finance-v3/` (the bytes of release 3.0.0).
   `playground/scripts/sync-release.mjs` checks `config.json` and `tokenizer.json` against the
