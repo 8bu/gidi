@@ -375,6 +375,9 @@ is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Wor
   `X-Robots-Tag: noindex` from `_headers`. Icons and social cards are rendered from
   `playground/assets-src/` with `build.sh` (needs rsvg-convert, ImageMagick and the Be Vietnam
   Pro font).
+- Google Search Console: domain property `gidi.8bu.dev` (account nhvlongg@gmail.com), verified
+  by the TXT record `google-site-verification=IU7C…` on `gidi.8bu.dev`; keep it, or the
+  property loses verification. `sitemap.xml` is submitted there.
 
 - Source of truth is the immutable bundle `models/gidi-finance-v3/` (the bytes of release 3.0.0).
   `playground/scripts/sync-release.mjs` checks `config.json` and `tokenizer.json` against the
