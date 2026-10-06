@@ -45,7 +45,7 @@ Vietnamese money shorthand and slang, with or without diacritics:
 
 - Inference runs fully in the browser with onnxruntime-web (WebAssembly). No note text, name or amount is sent anywhere.
 - Notes are stored only in the browser (IndexedDB), with JSON export and import.
-- Anonymous, cookieless usage counts (PostHog) record only event counts and event types, never note content.
+- Anonymous usage analytics (PostHog), keyed by a random ID kept in the browser's localStorage, record only event counts and event types, never note content.
 
 ## Architecture and model
 

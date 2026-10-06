@@ -142,7 +142,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
           "name": "Does my data leave my device?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. The model runs entirely in your browser (onnxruntime-web, WebAssembly), so note text, names and amounts are never sent anywhere. Notes are stored only in your browser (IndexedDB), and you can export or import them as JSON. The app records only anonymous, cookieless usage counts (PostHog): event counts and event types, never note content."
+            "text": "No. The model runs entirely in your browser (onnxruntime-web, WebAssembly), so note text, names and amounts are never sent anywhere. Notes are stored only in your browser (IndexedDB), and you can export or import them as JSON. The app records only anonymous usage analytics (PostHog) under a random ID kept in your browser: event counts and event types, never note content."
           }
         },
         {
@@ -302,7 +302,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
 <ul>
 <li>Inference runs fully in the browser (onnxruntime-web, WASM). Note text, names and amounts are <strong>never sent anywhere</strong>.</li>
 <li>Notes are stored only in your browser (IndexedDB), with JSON export and import.</li>
-<li>The app records only anonymous, cookieless usage counts (PostHog): event counts and event types, never note content.</li>
+<li>The app records only anonymous usage analytics (PostHog) under a random ID kept in your browser: event counts and event types, never note content.</li>
 </ul>
 </section>
 
@@ -336,7 +336,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
 <section id="faq">
 <h2>FAQ</h2>
 <details><summary><h3>Is Gidi free?</h3></summary><p>Yes. Gidi is free and needs no account. The model is released under the Apache-2.0 license and the code is on GitHub.</p></details>
-<details><summary><h3>Does my data leave my device?</h3></summary><p>No. The model runs entirely in your browser (onnxruntime-web, WebAssembly), so note text, names and amounts are never sent anywhere. Notes are stored only in your browser (IndexedDB), and you can export or import them as JSON. The app records only anonymous, cookieless usage counts (PostHog): event counts and event types, never note content.</p></details>
+<details><summary><h3>Does my data leave my device?</h3></summary><p>No. The model runs entirely in your browser (onnxruntime-web, WebAssembly), so note text, names and amounts are never sent anywhere. Notes are stored only in your browser (IndexedDB), and you can export or import them as JSON. The app records only anonymous usage analytics (PostHog) under a random ID kept in your browser: event counts and event types, never note content.</p></details>
 <details><summary><h3>Does Gidi work on phones and offline?</h3></summary><p>Gidi works on phones and tablets with touch input, in light and dark themes. Classification happens on your device, but the page and the 29.3 MB model bundle must be downloaded first, so offline use is not a promised feature.</p></details>
 <details><summary><h3>Which notes does Gidi understand?</h3></summary><p>Short, informal Vietnamese personal-finance notes such as ăn phở 45k, nhận lương 15tr, cho Nam mượn 2 củ or Long trả 5 lít. It also reads slang amounts such as k, nghìn, ngàn, tr, triệu, củ, chai, xị, lít, cành, tỏi, rưỡi and the 1tr2 style, with or without diacritics. Gidi is Vietnamese-first.</p></details>
 <details><summary><h3>How accurate is Gidi?</h3></summary><p>On the 190-note test set human-value-02, Gidi gets the transaction type right 92.1% of the time, the target 85.3%, the value 100%, and the whole note exactly right (end-to-end) 78.9%, up from 59.5% for release v2. Known weak spots are multi-word shop names, who pays in the verb trả, and gift receivers. The test set is small and was labelled by two LLM labellers with adjudication, approved by the author.</p></details>

@@ -7,9 +7,10 @@ import type { TxType } from "@/app/types"
  *
  * Privacy contract: the app promises that a note never leaves the device, so no event carries
  * note text, a target name or an amount. Events say only what happened and to which type.
- * Tracking is cookieless (`cookieless_mode: "always"`): no cookie, no localStorage, no person
- * profile; PostHog counts visitors by a daily server-side hash. Autocapture, session replay,
- * heatmaps, surveys and exception capture are off, here and in the project settings.
+ * Visitors get a random anonymous ID that PostHog keeps in localStorage (no cookie, no person
+ * profile, never identified), so returning visitors, retention and multi-day funnels work.
+ * Autocapture, session replay, heatmaps, surveys and exception capture are off, here and in the
+ * project settings.
  *
  * Internal traffic: opening the app once with `?internal=1` marks this browser as the owner's
  * (a `gidi:internal` flag in localStorage; `?internal=0` clears it). Every event from it then
@@ -88,8 +89,7 @@ export function initAnalytics(): void {
         api_host: HOST,
         ui_host: UI_HOST,
         defaults: "2025-05-24",
-        cookieless_mode: "always",
-        persistence: "memory",
+        persistence: "localStorage",
         person_profiles: "identified_only",
         autocapture: false,
         capture_dead_clicks: false,

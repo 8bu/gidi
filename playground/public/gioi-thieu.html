@@ -142,7 +142,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
           "name": "Dữ liệu của tôi có rời khỏi thiết bị không?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Không. Mô hình chạy hoàn toàn trong trình duyệt (onnxruntime-web, WebAssembly), nên nội dung ghi chú, tên người và số tiền không được gửi đi đâu. Ghi chú chỉ lưu trong trình duyệt (IndexedDB) và bạn có thể xuất hoặc nhập bằng JSON. Ứng dụng chỉ ghi số liệu sử dụng ẩn danh, không dùng cookie (PostHog), gồm số sự kiện và loại sự kiện, không bao giờ có nội dung ghi chú."
+            "text": "Không. Mô hình chạy hoàn toàn trong trình duyệt (onnxruntime-web, WebAssembly), nên nội dung ghi chú, tên người và số tiền không được gửi đi đâu. Ghi chú chỉ lưu trong trình duyệt (IndexedDB) và bạn có thể xuất hoặc nhập bằng JSON. Ứng dụng chỉ ghi số liệu sử dụng ẩn danh (PostHog), gồm số sự kiện và loại sự kiện, không bao giờ có nội dung ghi chú."
           }
         },
         {
@@ -302,7 +302,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
 <ul>
 <li>Mô hình chạy hoàn toàn trong trình duyệt (onnxruntime-web, WASM). Nội dung ghi chú, tên người và số tiền <strong>không được gửi đi đâu</strong>.</li>
 <li>Ghi chú chỉ nằm trong trình duyệt của bạn (IndexedDB), có thể xuất hoặc nhập bằng JSON.</li>
-<li>Ứng dụng chỉ ghi số liệu sử dụng ẩn danh, không dùng cookie (PostHog): chỉ đếm số sự kiện và loại sự kiện, không có nội dung ghi chú.</li>
+<li>Ứng dụng chỉ ghi số liệu sử dụng ẩn danh (PostHog): chỉ đếm số sự kiện và loại sự kiện, không có nội dung ghi chú.</li>
 </ul>
 </section>
 
@@ -336,7 +336,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
 <section id="hoi-dap">
 <h2>Hỏi đáp</h2>
 <details><summary><h3>Gidi có miễn phí không?</h3></summary><p>Có. Gidi miễn phí, không cần tài khoản. Mô hình được phát hành theo giấy phép Apache-2.0 và mã nguồn nằm trên GitHub.</p></details>
-<details><summary><h3>Dữ liệu của tôi có rời khỏi thiết bị không?</h3></summary><p>Không. Mô hình chạy hoàn toàn trong trình duyệt (onnxruntime-web, WebAssembly), nên nội dung ghi chú, tên người và số tiền không được gửi đi đâu. Ghi chú chỉ lưu trong trình duyệt (IndexedDB) và bạn có thể xuất hoặc nhập bằng JSON. Ứng dụng chỉ ghi số liệu sử dụng ẩn danh, không dùng cookie (PostHog), gồm số sự kiện và loại sự kiện, không bao giờ có nội dung ghi chú.</p></details>
+<details><summary><h3>Dữ liệu của tôi có rời khỏi thiết bị không?</h3></summary><p>Không. Mô hình chạy hoàn toàn trong trình duyệt (onnxruntime-web, WebAssembly), nên nội dung ghi chú, tên người và số tiền không được gửi đi đâu. Ghi chú chỉ lưu trong trình duyệt (IndexedDB) và bạn có thể xuất hoặc nhập bằng JSON. Ứng dụng chỉ ghi số liệu sử dụng ẩn danh (PostHog), gồm số sự kiện và loại sự kiện, không bao giờ có nội dung ghi chú.</p></details>
 <details><summary><h3>Gidi có dùng được trên điện thoại và khi không có mạng không?</h3></summary><p>Gidi dùng được trên điện thoại và máy tính bảng bằng cảm ứng, có giao diện sáng và tối. Việc phân loại diễn ra ngay trên thiết bị, nhưng trang và bộ mô hình 29,3 MB phải được tải về trước, nên dùng khi không có mạng không phải là tính năng được cam kết.</p></details>
 <details><summary><h3>Gidi hiểu những ghi chú nào?</h3></summary><p>Gidi hiểu các ghi chú tài chính cá nhân ngắn, viết tự nhiên bằng tiếng Việt, ví dụ ăn phở 45k, nhận lương 15tr, cho Nam mượn 2 củ hay Long trả 5 lít. Gidi hiểu cả tiền lóng như k, nghìn, ngàn, tr, triệu, củ, chai, xị, lít, cành, tỏi, rưỡi và kiểu viết 1tr2, có dấu hoặc không dấu. Gidi ưu tiên tiếng Việt.</p></details>
 <details><summary><h3>Gidi chính xác đến mức nào?</h3></summary><p>Trên bộ kiểm thử human-value-02 gồm 190 ghi chú, Gidi đoán đúng loại giao dịch 92,1%, đối tượng 85,3%, số tiền 100% và khớp hoàn toàn cả ghi chú (end-to-end) 78,9%, so với 59,5% của bản v2. Điểm yếu đã biết là tên cửa hàng gồm nhiều từ, nghĩa “ai trả” của chữ trả và người nhận quà. Bộ kiểm thử còn nhỏ và được gán nhãn bởi hai bộ gán nhãn LLM có phân xử, tác giả đã duyệt.</p></details>
