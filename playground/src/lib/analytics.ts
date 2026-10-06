@@ -1,0 +1,93 @@
+import type { PostHog } from "posthog-js"
+
+import type { TxType } from "@/app/types"
+
+/**
+ * Anonymous usage counts for the notes app (PostHog, US zone, project "Gidi").
+ *
+ * Privacy contract: the app promises that a note never leaves the device, so no event carries
+ * note text, a target name or an amount. Events say only what happened and to which type.
+ * Tracking is cookieless (`cookieless_mode: "always"`): no cookie, no localStorage, no person
+ * profile; PostHog counts visitors by a daily server-side hash. Autocapture, session replay,
+ * heatmaps, surveys and exception capture are off, here and in the project settings.
+ *
+ * The SDK is a lazy chunk so it never delays the first paint, and it only loads in a production
+ * bundle: dev servers and previews send nothing.
+ */
+
+/** Public project token. Override at build time to point at a dev project. */
+const KEY =
+  import.meta.env.VITE_POSTHOG_KEY ??
+  "phc_r3UaVwvpE3N8jcbE7xcwL7fDX2AXGaYr7oEvTK7ezjS6"
+const HOST = import.meta.env.VITE_POSTHOG_HOST ?? "https://us.i.posthog.com"
+const UI_HOST = "https://us.posthog.com"
+
+/** Every event and its properties. Keep names stable: they are the PostHog taxonomy. */
+export interface AnalyticsEventMap {
+  /** The on-device model finished loading. */
+  model_loaded: { ms: number }
+  /** The model could not load; `error` is the app's own message, never note text. */
+  model_load_failed: { ms: number; error: string }
+  /** One send from the composer; a pasted list is one send with several lines. */
+  notes_sent: {
+    lines: number
+    classified: number
+    failed: number
+    with_amount: number
+    with_target: number
+    types: Partial<Record<TxType, number>>
+  }
+  /** A stack sheet opened. */
+  stack_opened: { type: TxType }
+  /** The user corrected a record; `to_type` differs from `from_type` when retyped. */
+  note_edited: {
+    from_type: TxType
+    to_type: TxType
+    type_changed: boolean
+    target_changed: boolean
+    amount_changed: boolean
+  }
+  note_deleted: { type: TxType }
+  notes_exported: { count: number }
+  notes_imported: { count: number }
+  /** An outbound link in the menu (`/lab` shows up as its own pageview). */
+  link_clicked: { link: "github" | "huggingface" | "author" }
+}
+
+let client: Promise<PostHog | null> | null = null
+
+export function initAnalytics(): void {
+  if (!import.meta.env.PROD || client !== null) return
+  client = import("posthog-js").then(
+    ({ default: posthog }) => {
+      posthog.init(KEY, {
+        api_host: HOST,
+        ui_host: UI_HOST,
+        defaults: "2025-05-24",
+        cookieless_mode: "always",
+        persistence: "memory",
+        person_profiles: "identified_only",
+        autocapture: false,
+        capture_dead_clicks: false,
+        capture_heatmaps: false,
+        capture_exceptions: false,
+        disable_session_recording: true,
+        disable_surveys: true,
+        disable_product_tours: true,
+        disable_conversations: true,
+        disable_web_experiments: true,
+        advanced_disable_flags: true,
+        disable_external_dependency_loading: true,
+      })
+      return posthog
+    },
+    () => null
+  )
+}
+
+export function track<E extends keyof AnalyticsEventMap>(
+  event: E,
+  properties: AnalyticsEventMap[E]
+): void {
+  void client?.then((posthog) => posthog?.capture(event, properties))
+}

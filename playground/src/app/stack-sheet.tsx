@@ -24,6 +24,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet"
+import { track } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
 import { formatVnd, formatVndCompact } from "./amount"
 import { useFly } from "./fly-layer"
@@ -527,6 +528,15 @@ function SheetBody({
   ) => {
     setEditingId(null)
     const retyped = patch.type !== undefined && patch.type !== record.type
+    track("note_edited", {
+      from_type: record.type,
+      to_type: patch.type ?? record.type,
+      type_changed: retyped,
+      target_changed:
+        patch.target !== undefined && patch.target !== record.target,
+      amount_changed:
+        patch.amount !== undefined && patch.amount !== record.amount,
+    })
     const run = () =>
       update(record.id, patch).catch((e: unknown) =>
         showToast(e instanceof Error ? e.message : "Không lưu được chỉnh sửa.")
@@ -562,6 +572,7 @@ function SheetBody({
 
   const handleDelete = (record: NoteRecord) => {
     setEditingId(null)
+    track("note_deleted", { type: record.type })
     remove(record.id).then(
       () => showToast("Đã xóa ghi chú", () => void add(record)),
       (e: unknown) =>

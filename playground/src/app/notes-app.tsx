@@ -14,6 +14,7 @@ import {
 import { AnimatePresence, MotionConfig, motion } from "motion/react"
 
 import { TooltipProvider } from "@/components/ui/tooltip"
+import { track } from "@/lib/analytics"
 import { AppHeader, APP_HEADER_HEIGHT } from "./app-header"
 import { FlyProvider } from "./fly-layer"
 import { RingLayout } from "./layouts"
@@ -196,6 +197,7 @@ function Page({ notify }: { notify: (message: string) => void }) {
     link.download = `gidi-ghi-chu-${new Date().toISOString().slice(0, 10)}.json`
     link.click()
     window.setTimeout(() => URL.revokeObjectURL(url), 1000)
+    track("notes_exported", { count: notes.length })
     notify(`Đã xuất ${notes.length} ghi chú`)
   }
 
@@ -207,12 +209,14 @@ function Page({ notify }: { notify: (message: string) => void }) {
       .text()
       .then((text) => importJson(text))
       .then(
-        (count) =>
+        (count) => {
+          track("notes_imported", { count })
           notify(
             count === 0
               ? "Không có ghi chú mới trong tệp này."
               : `Đã nhập ${count} ghi chú`
-          ),
+          )
+        },
         (e: unknown) =>
           notify(e instanceof Error ? e.message : "Không nhập được tệp này.")
       )
@@ -280,7 +284,10 @@ function Page({ notify }: { notify: (message: string) => void }) {
         <RingLayout
           summaries={summaries}
           composer={composer}
-          onOpenStack={setOpenType}
+          onOpenStack={(type) => {
+            track("stack_opened", { type })
+            setOpenType(type)
+          }}
         />
       </motion.main>
 

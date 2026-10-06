@@ -13,9 +13,10 @@ import { animate, useAnimate, useReducedMotion } from "motion/react"
 import { RotateCcwIcon, SendHorizontalIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { track } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
 import { useFly } from "./fly-layer"
-import type { NoteRecord } from "./types"
+import type { NoteRecord, TxType } from "./types"
 
 export interface StickyComposerProps {
   value: string
@@ -152,6 +153,17 @@ export function StickyComposer({
           firstError ??= e
         }
       }
+      const types: Partial<Record<TxType, number>> = {}
+      for (const record of records)
+        types[record.type] = (types[record.type] ?? 0) + 1
+      track("notes_sent", {
+        lines: lines.length,
+        classified: records.length,
+        failed: failed.length,
+        with_amount: records.filter((r) => r.amount !== null).length,
+        with_target: records.filter((r) => r.target !== null).length,
+        types,
+      })
       const rect = paperRef.current?.getBoundingClientRect()
       if (rect) {
         records.forEach((record, index) => {

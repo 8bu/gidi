@@ -29,6 +29,7 @@ import {
 } from "lucide-react"
 
 import { useTheme } from "@/components/theme-provider"
+import { track } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
 import { formatVnd, formatVndCompact } from "./amount"
 import { TYPE_META } from "./taxonomy"
@@ -418,6 +419,7 @@ function Menu({
               href="https://github.com/8bu/gidi"
               target="_blank"
               rel="noopener"
+              onClick={() => track("link_clicked", { link: "github" })}
             >
               <CodeIcon aria-hidden />
               Mã nguồn (GitHub)
@@ -428,13 +430,19 @@ function Menu({
               href="https://huggingface.co/x8bu/gidi-finance"
               target="_blank"
               rel="noopener"
+              onClick={() => track("link_clicked", { link: "huggingface" })}
             >
               <BoxIcon aria-hidden />
               Mô hình (Hugging Face)
             </a>
           </DropdownMenu.Item>
           <DropdownMenu.Item className={ITEM} asChild>
-            <a href="https://8bu.dev" target="_blank" rel="noopener">
+            <a
+              href="https://8bu.dev"
+              target="_blank"
+              rel="noopener"
+              onClick={() => track("link_clicked", { link: "author" })}
+            >
               <GlobeIcon aria-hidden />
               Tác giả: 8bu.dev
             </a>
@@ -442,7 +450,8 @@ function Menu({
           <DropdownMenu.Separator className="mx-1 my-1.5 h-px bg-border" />
           <p className="flex items-start gap-2.5 px-2.5 pt-1 pb-1.5 text-xs leading-snug text-muted-foreground">
             <ShieldCheckIcon className="mt-px size-4 shrink-0" aria-hidden />
-            Mô hình chạy trên thiết bị. Ghi chú không rời khỏi máy.
+            Mô hình chạy trên thiết bị. Ghi chú không rời khỏi máy. Chỉ đếm lượt
+            dùng ẩn danh, không có nội dung, tên hay số tiền.
           </p>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>

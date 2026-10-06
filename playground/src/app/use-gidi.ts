@@ -1,5 +1,6 @@
 import { useMemo, useSyncExternalStore } from "react"
 
+import { track } from "@/lib/analytics"
 import { predict, type PredictResponse, type Span } from "@/lib/api"
 import {
   BROWSER_MODE,
@@ -70,16 +71,23 @@ async function loadPredictor(): Promise<Predictor> {
 function load(): Promise<Predictor> {
   if (predictor === null) {
     setState({ status: "loading", progress: null, error: null })
+    const started = performance.now()
     const loaded = loadPredictor()
     predictor = loaded
     loaded.then(
       () => {
+        track("model_loaded", { ms: Math.round(performance.now() - started) })
         if (predictor === loaded)
           setState({ status: "ready", progress: 1, error: null })
       },
       (cause: unknown) => {
+        const error = toMessage(cause)
+        track("model_load_failed", {
+          ms: Math.round(performance.now() - started),
+          error,
+        })
         if (predictor === loaded) {
-          setState({ status: "error", progress: null, error: toMessage(cause) })
+          setState({ status: "error", progress: null, error })
         }
       }
     )

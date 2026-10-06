@@ -3,6 +3,9 @@ import { createRoot } from "react-dom/client"
 
 import "./index.css"
 import { ThemeProvider } from "@/components/theme-provider.tsx"
+import { initAnalytics } from "@/lib/analytics"
+
+initAnalytics()
 
 // Each page is its own chunk: `/` never loads the developer playground and vice versa.
 const App = lazy(() => import("./App.tsx"))

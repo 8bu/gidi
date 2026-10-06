@@ -357,6 +357,13 @@ is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Wor
 - The site needs a secure context (HTTPS or `localhost`): the model sha256 check uses
   `crypto.subtle`. To try a local build on a phone, expose it over HTTPS (for example
   `cloudflared tunnel --url http://localhost:8787`), not a plain LAN IP.
+- Usage analytics: PostHog project "Gidi (gidi.8bu.dev)" (US cloud, id 648258), wired in
+  `playground/src/lib/analytics.ts` (event names and properties are the typed
+  `AnalyticsEventMap`). Production bundles only, loaded as a lazy chunk. Cookieless
+  (`cookieless_mode: "always"`, server-side daily hash; the project has cookieless server hash
+  mode on), no autocapture, session replay, heatmaps or surveys. Events carry counts and types,
+  never note text, targets or amounts. `VITE_POSTHOG_KEY` / `VITE_POSTHOG_HOST` override the
+  project at build time.
 
 - Source of truth is the immutable bundle `models/gidi-finance-v3/` (the bytes of release 3.0.0).
   `playground/scripts/sync-release.mjs` checks `config.json` and `tokenizer.json` against the
