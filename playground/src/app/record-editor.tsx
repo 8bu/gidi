@@ -1,7 +1,7 @@
 "use client"
 
 import { useId, useRef, useState, type FocusEvent, type FormEvent } from "react"
-import { RotateCcwIcon } from "lucide-react"
+import { CheckIcon, ChevronDownIcon, RotateCcwIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -13,6 +13,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet"
+import { useCoarsePointer } from "@/hooks/use-coarse-pointer"
 import { cn } from "@/lib/utils"
 import { amountToVnd, formatVnd, formatVndCompact } from "./amount"
 import { TYPE_META } from "./taxonomy"
@@ -69,6 +77,108 @@ export function TypeSwatch({
       className={cn("inline-block size-2.5 shrink-0 rounded-full", className)}
       style={{ background: `var(--ink-${type})` }}
     />
+  )
+}
+
+interface TypePickerProps {
+  id: string
+  value: TxType
+  onChange(type: TxType): void
+}
+
+/**
+ * Type field. With a finger a popup list lands on top of the form and its rows are cramped, so
+ * touch devices get a bottom sheet with large rows and each type's hint; a mouse keeps the select.
+ */
+function TypePicker({ id, value, onChange }: TypePickerProps) {
+  const coarse = useCoarsePointer()
+  const [open, setOpen] = useState(false)
+
+  if (!coarse) {
+    return (
+      <Select value={value} onValueChange={(next) => onChange(next as TxType)}>
+        <SelectTrigger id={id}>
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          {TX_TYPES.map((t) => (
+            <SelectItem key={t} value={t}>
+              <span className="flex items-center gap-2">
+                <TypeSwatch type={t} />
+                {TYPE_META[t].label}
+              </span>
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    )
+  }
+
+  return (
+    <>
+      <button
+        type="button"
+        id={id}
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        onClick={() => setOpen(true)}
+        className="flex h-11 w-full items-center justify-between gap-2 rounded-lg border border-input bg-transparent px-3 text-base transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:bg-foreground/5"
+      >
+        <span className="flex items-center gap-2">
+          <TypeSwatch type={value} />
+          {TYPE_META[value].label}
+        </span>
+        <ChevronDownIcon aria-hidden className="size-4 opacity-50" />
+      </button>
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetContent side="bottom" showCloseButton={false}>
+          <SheetHeader className="pt-1 pb-2">
+            <SheetTitle className="text-lg">Chọn loại</SheetTitle>
+            <SheetDescription>
+              Khi lưu, ghi chú sẽ bay sang chồng của loại mới.
+            </SheetDescription>
+          </SheetHeader>
+          <div
+            role="radiogroup"
+            aria-label="Loại"
+            className="grid gap-1 overflow-y-auto overscroll-contain px-2 pb-3"
+          >
+            {TX_TYPES.map((t) => {
+              const selected = t === value
+              return (
+                <button
+                  key={t}
+                  type="button"
+                  role="radio"
+                  aria-checked={selected}
+                  onClick={() => {
+                    onChange(t)
+                    setOpen(false)
+                  }}
+                  className={cn(
+                    "flex min-h-14 w-full items-center gap-3 rounded-xl px-3 py-2 text-left transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50 active:bg-foreground/10",
+                    selected && "bg-foreground/[0.06]"
+                  )}
+                >
+                  <TypeSwatch type={t} className="size-3" />
+                  <span className="grid min-w-0 flex-1 gap-0.5">
+                    <span className="text-base font-medium">
+                      {TYPE_META[t].label}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {TYPE_META[t].hint}
+                    </span>
+                  </span>
+                  {selected && (
+                    <CheckIcon aria-hidden className="size-5 shrink-0" />
+                  )}
+                </button>
+              )
+            })}
+          </div>
+        </SheetContent>
+      </Sheet>
+    </>
   )
 }
 
@@ -195,24 +305,7 @@ export function RecordEditor({
 
       <div className="grid gap-1.5">
         <Label htmlFor={`${id}-type`}>Loại</Label>
-        <Select
-          value={type}
-          onValueChange={(value) => setType(value as TxType)}
-        >
-          <SelectTrigger id={`${id}-type`}>
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {TX_TYPES.map((t) => (
-              <SelectItem key={t} value={t}>
-                <span className="flex items-center gap-2">
-                  <TypeSwatch type={t} />
-                  {TYPE_META[t].label}
-                </span>
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <TypePicker id={`${id}-type`} value={type} onChange={setType} />
         {type !== record.type && (
           <p className="text-xs text-muted-foreground">
             Khi lưu, ghi chú sẽ bay sang chồng “{TYPE_META[type].label}”.

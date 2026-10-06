@@ -5,7 +5,6 @@ import {
   useId,
   useRef,
   useState,
-  useSyncExternalStore,
   type KeyboardEvent,
   type Ref,
 } from "react"
@@ -13,6 +12,7 @@ import { animate, useAnimate, useReducedMotion } from "motion/react"
 import { RotateCcwIcon, SendHorizontalIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { useCoarsePointer } from "@/hooks/use-coarse-pointer"
 import { track } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
 import { useFly } from "./fly-layer"
@@ -36,23 +36,6 @@ const READING_DELAY_MS = 220
 const FLIGHT_STAGGER_MS = 110
 const LINE = "1.75rem"
 const INK_LINE = "color-mix(in oklab, var(--ink-note) 15%, transparent)"
-
-const COARSE_QUERY = "(pointer: coarse)"
-
-function subscribeCoarse(onChange: () => void) {
-  const query = window.matchMedia(COARSE_QUERY)
-  query.addEventListener("change", onChange)
-  return () => query.removeEventListener("change", onChange)
-}
-
-/** True when the primary pointer is a finger (phones, tablets); reacts to input-mode changes. */
-function useCoarsePointer() {
-  return useSyncExternalStore(
-    subscribeCoarse,
-    () => window.matchMedia(COARSE_QUERY).matches,
-    () => false
-  )
-}
 
 export function StickyComposer({
   value,
