@@ -11,6 +11,11 @@ import type { TxType } from "@/app/types"
  * profile; PostHog counts visitors by a daily server-side hash. Autocapture, session replay,
  * heatmaps, surveys and exception capture are off, here and in the project settings.
  *
+ * Internal traffic: opening the app once with `?internal=1` marks this browser as the owner's
+ * (a `gidi:internal` flag in localStorage; `?internal=0` clears it). Every event from it then
+ * carries `internal: true`, and the project's test-account filter hides those events. They are
+ * still sent, so the owner can watch them live.
+ *
  * The SDK is a lazy chunk so it never delays the first paint, and it only loads in a production
  * bundle: dev servers and previews send nothing.
  */
@@ -21,6 +26,24 @@ const KEY =
   "phc_r3UaVwvpE3N8jcbE7xcwL7fDX2AXGaYr7oEvTK7ezjS6"
 const HOST = import.meta.env.VITE_POSTHOG_HOST ?? "https://us.i.posthog.com"
 const UI_HOST = "https://us.posthog.com"
+const INTERNAL_KEY = "gidi:internal"
+
+/** Read, and apply then strip, the `?internal=1|0` switch. Storage may be blocked: then false. */
+function isInternal(): boolean {
+  try {
+    const url = new URL(window.location.href)
+    const flag = url.searchParams.get("internal")
+    if (flag === "1") window.localStorage.setItem(INTERNAL_KEY, "1")
+    if (flag === "0") window.localStorage.removeItem(INTERNAL_KEY)
+    if (flag !== null) {
+      url.searchParams.delete("internal")
+      window.history.replaceState(window.history.state, "", url)
+    }
+    return window.localStorage.getItem(INTERNAL_KEY) === "1"
+  } catch {
+    return false
+  }
+}
 
 /** Every event and its properties. Keep names stable: they are the PostHog taxonomy. */
 export interface AnalyticsEventMap {
@@ -58,6 +81,7 @@ let client: Promise<PostHog | null> | null = null
 
 export function initAnalytics(): void {
   if (!import.meta.env.PROD || client !== null) return
+  const internal = isInternal()
   client = import("posthog-js").then(
     ({ default: posthog }) => {
       posthog.init(KEY, {
@@ -78,6 +102,10 @@ export function initAnalytics(): void {
         disable_web_experiments: true,
         advanced_disable_flags: true,
         disable_external_dependency_loading: true,
+        before_send: (event) => {
+          if (event && internal) event.properties.internal = true
+          return event
+        },
       })
       return posthog
     },
