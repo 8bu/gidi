@@ -1,0 +1,38 @@
+{
+  "experiment": "clef-distill-v1",
+  "written_before": "any model of this run was trained, exported or scored",
+  "question": "does adding Cloudflare Clef silver labels (16-shot kNN teacher, scripts/clef_teacher.py) on 1,757 new hand-written notes aimed at known weak spots improve encoder 1 (type + target, word snap on) + the unchanged rule value parser over the released run 4 (gidi-finance-v3), without regressing the frozen test, probe-v1 and human-value-01?",
+  "teacher": {
+    "model": "@cf/cloudflare/clef via omp judge role",
+    "probe_report": "experiments/clef-teacher-v1/report.md",
+    "probe_numbers": "validation 0.936 type / 0.955 target; human-value-02 0.953 type / 0.874 target / 0.832 type+target (v3 student 0.921 / 0.853)",
+    "note": "labels are model labels, never human labels; silver data is train-only and lives apart from labels.jsonl / corpus/reviewed"
+  },
+  "silver_pool": "datasets/annotation-v3/distill-clef-01 (manifest.json): 1,757 notes that passed the leakage gate, labelled once, filters fixed now: silver-A = type max prob >= 0.6 and target prob >= 0.6 (952 notes); silver-B = type max prob >= 0.5 and target prob >= 0.4 (1,344 notes)",
+  "arms": {
+    "run5_control": "training-v5 as trained in annotation-v3-retrain-v5 (no new training; reuse its stored results)",
+    "A": "training-v5 train + silver-A (the pre-declared release candidate arm)",
+    "B": "training-v5 train + silver-B"
+  },
+  "release_candidate": {
+    "rule": "arm A, seed 1, word snap on. Fixed now: not chosen among arms or seeds by any held-out score; no seed is re-run, dropped or swapped after scoring.",
+    "seed": 1,
+    "word_snap": true
+  },
+  "recipe": "unchanged from retrain-v5 (supervised student-4x768, BamiBERT layers 2/5/8/11, pos32, vocab B-rank-8000, FFN combined-K2048, 40 epochs, batch 8, encoder lr 5e-5, head lr 1e-3, warmup 0.1, wd 0.01, dropout 0.1, grad-clip 1.0, MPS, last epoch, --retokenize); all training data records are weighted equally, no soft labels",
+  "seeds_trained": [1, 2, 3],
+  "value": "unchanged rule parser gidi.value_parser.parse_value for every system",
+  "held_out_scored_in_this_run": [
+    "frozen test (105)",
+    "probe-v1 (81 complete)",
+    "human-value-01 (147 complete, amended labels)",
+    "human-value-02 (190 complete, LLM labels; already used for the v3 release decision, so it is a reused test set)"
+  ],
+  "controls": [
+    "run 4 seed 1 + snap = shipped gidi-finance-v3 (stored results)",
+    "run 5 seed 1 + snap (stored results)"
+  ],
+  "success_criterion": "arm A seed 1 end-to-end exact (type + target + value) on human-value-02 >= 0.8105 (run 4 seed 1 scores 0.7895; +4 notes of 190 or better), AND no regression larger than 0.02 against run 4 seed 1 on each of: frozen test type macro-F1, frozen test target exact, probe-v1 type macro-F1, human-value-01 end-to-end exact. Also report each seed and the three-seed mean for arms A and B; nothing is selected by them.",
+  "no_tuning": "no threshold, prompt, data-selection or snap rule is changed after seeing held-out numbers. If the criterion fails the result is reported as a failure, and the next step is a user decision.",
+  "leakage": "builder must raise (write nothing) if any silver or train note matches the frozen test, probe-v1, human-value-01 or human-value-02 by id, verbatim text or NFC-lowercase text, or is a near duplicate under the rules already used by scripts/build_annotation_v3_training_v5.py"
+}

@@ -1,0 +1,1274 @@
+{
+ "experiment": "clef-distill-v1",
+ "protocol_sha256": "d5fd1894a71560f272c0cc60ce5009b8199eb1d974c388e9ce18a62276f1366e",
+ "release_candidate": "A_seed1",
+ "sets": {
+  "test": 105,
+  "probe": 81,
+  "hv01": 147,
+  "hv02": 190
+ },
+ "hv02_not_complete_excluded": 10,
+ "models": {
+  "run4_seed1": {
+   "path": "experiments/annotation-v3-retrain-v4/onnx/seed1/model.int8.onnx",
+   "sha256": "61c17d27b92e1ac4ac1add0af73344cb1c68bdbbc19db58532ce6d38d9bb7315"
+  },
+  "run5_seed1": {
+   "path": "experiments/annotation-v3-retrain-v5/onnx/seed1/model.int8.onnx",
+   "sha256": "00d9a234d9e526464974393cfb0ed46c93d7624ad18e618bce33f28cb138305f"
+  },
+  "A_seed1": {
+   "path": "experiments/clef-distill-v1/armA/onnx/seed1/model.int8.onnx",
+   "sha256": "f038bcc817e4efe03f0f0901077c95c5a724eab789e480d7292ef632a547175d"
+  },
+  "A_seed2": {
+   "path": "experiments/clef-distill-v1/armA/onnx/seed2/model.int8.onnx",
+   "sha256": "f5ff1585b037d4e09a7e98df731aa98ba10481e1079532d77ab011c5400bc74a"
+  },
+  "A_seed3": {
+   "path": "experiments/clef-distill-v1/armA/onnx/seed3/model.int8.onnx",
+   "sha256": "f404dd761dc33774b20dc0d222c827019ea0dc8a868c51cefb047cb1f2aa2202"
+  },
+  "B_seed1": {
+   "path": "experiments/clef-distill-v1/armB/onnx/seed1/model.int8.onnx",
+   "sha256": "533389a29acf9acdd133ea2b6d3c09d5320d614ebe83cd1c67317bc5254de700"
+  },
+  "B_seed2": {
+   "path": "experiments/clef-distill-v1/armB/onnx/seed2/model.int8.onnx",
+   "sha256": "30c36baaab1b6c2fab85b802cee7d3cd356a291b3e2533fb28038f1a5733a01d"
+  },
+  "B_seed3": {
+   "path": "experiments/clef-distill-v1/armB/onnx/seed3/model.int8.onnx",
+   "sha256": "cd98b91c1c2f3374b0328f2e0793416b408a7d758e8bafe4813db0eebde5b76c"
+  }
+ },
+ "systems": {
+  "run4_seed1": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9428571428571428,
+    "type_macro_f1": 0.9338744588744589,
+    "target_exact": 0.9238095238095239,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8846153846153846
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.8271604938271605,
+    "type_macro_f1": 0.8263996068343894,
+    "target_exact": 0.8518518518518519,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8392857142857144
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9591836734693877,
+    "type_macro_f1": 0.9410584616979949,
+    "target_exact": 0.9183673469387755,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.891156462585034,
+    "type_target_exact": 0.891156462585034,
+    "span_f1": 0.8609271523178809
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9210526315789473,
+    "type_macro_f1": 0.897294487919488,
+    "target_exact": 0.8526315789473684,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.7894736842105263,
+    "type_target_exact": 0.7894736842105263,
+    "span_f1": 0.814070351758794
+   }
+  },
+  "run5_seed1": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9428571428571428,
+    "type_macro_f1": 0.9372421122421122,
+    "target_exact": 0.9047619047619048,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8490566037735848
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.8641975308641975,
+    "type_macro_f1": 0.8878198101983268,
+    "target_exact": 0.8641975308641975,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8623853211009175
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9523809523809523,
+    "type_macro_f1": 0.9504777296469317,
+    "target_exact": 0.9047619047619048,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.8775510204081632,
+    "type_target_exact": 0.8775510204081632,
+    "span_f1": 0.8421052631578949
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9105263157894737,
+    "type_macro_f1": 0.876290773825003,
+    "target_exact": 0.8368421052631579,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.7736842105263158,
+    "type_target_exact": 0.7736842105263158,
+    "span_f1": 0.7918781725888324
+   }
+  },
+  "A_seed1": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9619047619047619,
+    "type_macro_f1": 0.9492673992673992,
+    "target_exact": 0.9428571428571428,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.9108910891089109
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.8395061728395061,
+    "type_macro_f1": 0.8673469387755102,
+    "target_exact": 0.8641975308641975,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8440366972477065
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9795918367346939,
+    "type_macro_f1": 0.9856295957233954,
+    "target_exact": 0.9319727891156463,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.9183673469387755,
+    "type_target_exact": 0.9183673469387755,
+    "span_f1": 0.894736842105263
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9631578947368421,
+    "type_macro_f1": 0.9589527196096256,
+    "target_exact": 0.8789473684210526,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.8631578947368421,
+    "type_target_exact": 0.8631578947368421,
+    "span_f1": 0.86
+   }
+  },
+  "A_seed2": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9523809523809523,
+    "type_macro_f1": 0.9449475144787645,
+    "target_exact": 0.9142857142857143,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8653846153846154
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.8518518518518519,
+    "type_macro_f1": 0.872432953701342,
+    "target_exact": 0.8518518518518519,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8440366972477065
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9659863945578231,
+    "type_macro_f1": 0.9752947466121924,
+    "target_exact": 0.9591836734693877,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.9319727891156463,
+    "type_target_exact": 0.9319727891156463,
+    "span_f1": 0.9271523178807947
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9578947368421052,
+    "type_macro_f1": 0.9396518679558327,
+    "target_exact": 0.8631578947368421,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.8421052631578947,
+    "type_target_exact": 0.8421052631578947,
+    "span_f1": 0.8374384236453202
+   }
+  },
+  "A_seed3": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9809523809523809,
+    "type_macro_f1": 0.9781926535796505,
+    "target_exact": 0.9238095238095239,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8737864077669903
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.8641975308641975,
+    "type_macro_f1": 0.8944693028726641,
+    "target_exact": 0.8765432098765432,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8648648648648648
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9659863945578231,
+    "type_macro_f1": 0.9742112378070367,
+    "target_exact": 0.9727891156462585,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.9455782312925171,
+    "type_target_exact": 0.9455782312925171,
+    "span_f1": 0.9466666666666667
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9526315789473684,
+    "type_macro_f1": 0.9447833855161442,
+    "target_exact": 0.9052631578947369,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.868421052631579,
+    "type_target_exact": 0.868421052631579,
+    "span_f1": 0.89
+   }
+  },
+  "B_seed1": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9809523809523809,
+    "type_macro_f1": 0.9781926535796505,
+    "target_exact": 0.9333333333333333,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8952380952380952
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.8888888888888888,
+    "type_macro_f1": 0.8921024431187307,
+    "target_exact": 0.7777777777777778,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.7826086956521738
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9659863945578231,
+    "type_macro_f1": 0.9753484659013302,
+    "target_exact": 0.9455782312925171,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.9115646258503401,
+    "type_target_exact": 0.9115646258503401,
+    "span_f1": 0.913907284768212
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9421052631578948,
+    "type_macro_f1": 0.9235825587290342,
+    "target_exact": 0.8631578947368421,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.8210526315789474,
+    "type_target_exact": 0.8210526315789474,
+    "span_f1": 0.8374384236453202
+   }
+  },
+  "B_seed2": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9619047619047619,
+    "type_macro_f1": 0.9502244487538605,
+    "target_exact": 0.9333333333333333,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.9056603773584905
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.8888888888888888,
+    "type_macro_f1": 0.9002877885230827,
+    "target_exact": 0.8024691358024691,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.810344827586207
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9659863945578231,
+    "type_macro_f1": 0.9534887071232261,
+    "target_exact": 0.9591836734693877,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.9319727891156463,
+    "type_target_exact": 0.9319727891156463,
+    "span_f1": 0.9342105263157895
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9368421052631579,
+    "type_macro_f1": 0.9134471953430905,
+    "target_exact": 0.8736842105263158,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.8315789473684211,
+    "type_target_exact": 0.8315789473684211,
+    "span_f1": 0.8472906403940886
+   }
+  },
+  "B_seed3": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9714285714285714,
+    "type_macro_f1": 0.9702570995503464,
+    "target_exact": 0.9333333333333333,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.9056603773584905
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.8765432098765432,
+    "type_macro_f1": 0.8916841328606034,
+    "target_exact": 0.8024691358024691,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8205128205128205
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9455782312925171,
+    "type_macro_f1": 0.942970254926369,
+    "target_exact": 0.9455782312925171,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.891156462585034,
+    "type_target_exact": 0.891156462585034,
+    "span_f1": 0.9066666666666666
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9526315789473684,
+    "type_macro_f1": 0.944339383813068,
+    "target_exact": 0.8842105263157894,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.8421052631578947,
+    "type_target_exact": 0.8421052631578947,
+    "span_f1": 0.87
+   }
+  }
+ },
+ "aggregate_seeds": {
+  "A": {
+   "test": {
+    "type_accuracy": {
+     "mean": 0.9650793650793651,
+     "sd": 0.014547859349066156
+    },
+    "type_macro_f1": {
+     "mean": 0.9574691891086048,
+     "sd": 0.01807655486835893
+    },
+    "target_exact": {
+     "mean": 0.9269841269841269,
+     "sd": 0.014547859349066156
+    },
+    "value_exact": null,
+    "end_to_end_exact": null
+   },
+   "probe": {
+    "type_accuracy": {
+     "mean": 0.8518518518518517,
+     "sd": 0.012345679012345678
+    },
+    "type_macro_f1": {
+     "mean": 0.8780830651165054,
+     "sd": 0.014416951057954892
+    },
+    "target_exact": {
+     "mean": 0.8641975308641975,
+     "sd": 0.012345679012345678
+    },
+    "value_exact": null,
+    "end_to_end_exact": null
+   },
+   "hv01": {
+    "type_accuracy": {
+     "mean": 0.9705215419501133,
+     "sd": 0.007855105703260224
+    },
+    "type_macro_f1": {
+     "mean": 0.9783785267142081,
+     "sd": 0.006302935757621923
+    },
+    "target_exact": {
+     "mean": 0.9546485260770975,
+     "sd": 0.020782656212951618
+    },
+    "value_exact": {
+     "mean": 1.0,
+     "sd": 0.0
+    },
+    "end_to_end_exact": {
+     "mean": 0.9319727891156463,
+     "sd": 0.013605442176870763
+    }
+   },
+   "hv02": {
+    "type_accuracy": {
+     "mean": 0.9578947368421052,
+     "sd": 0.0052631578947368585
+    },
+    "type_macro_f1": {
+     "mean": 0.9477959910272008,
+     "sd": 0.009996877643262762
+    },
+    "target_exact": {
+     "mean": 0.8824561403508772,
+     "sd": 0.021270799391196756
+    },
+    "value_exact": {
+     "mean": 1.0,
+     "sd": 0.0
+    },
+    "end_to_end_exact": {
+     "mean": 0.8578947368421052,
+     "sd": 0.013925006900339994
+    }
+   }
+  },
+  "B": {
+   "test": {
+    "type_accuracy": {
+     "mean": 0.9714285714285714,
+     "sd": 0.00952380952380949
+    },
+    "type_macro_f1": {
+     "mean": 0.9662247339612858,
+     "sd": 0.01441353875622555
+    },
+    "target_exact": {
+     "mean": 0.9333333333333332,
+     "sd": 0.0
+    },
+    "value_exact": null,
+    "end_to_end_exact": null
+   },
+   "probe": {
+    "type_accuracy": {
+     "mean": 0.8847736625514403,
+     "sd": 0.007127781101106459
+    },
+    "type_macro_f1": {
+     "mean": 0.8946914548341388,
+     "sd": 0.004851078121048829
+    },
+    "target_exact": {
+     "mean": 0.794238683127572,
+     "sd": 0.014255562202212982
+    },
+    "value_exact": null,
+    "end_to_end_exact": null
+   },
+   "hv01": {
+    "type_accuracy": {
+     "mean": 0.9591836734693877,
+     "sd": 0.01178265855489027
+    },
+    "type_macro_f1": {
+     "mean": 0.9572691426503085,
+     "sd": 0.016516837047861006
+    },
+    "target_exact": {
+     "mean": 0.9501133786848074,
+     "sd": 0.00785510570326016
+    },
+    "value_exact": {
+     "mean": 1.0,
+     "sd": 0.0
+    },
+    "end_to_end_exact": {
+     "mean": 0.9115646258503401,
+     "sd": 0.020408163265306145
+    }
+   },
+   "hv02": {
+    "type_accuracy": {
+     "mean": 0.943859649122807,
+     "sd": 0.008039606482378631
+    },
+    "type_macro_f1": {
+     "mean": 0.9271230459617309,
+     "sd": 0.0157474796237309
+    },
+    "target_exact": {
+     "mean": 0.8736842105263158,
+     "sd": 0.010526315789473661
+    },
+    "value_exact": {
+     "mean": 1.0,
+     "sd": 0.0
+    },
+    "end_to_end_exact": {
+     "mean": 0.8315789473684211,
+     "sd": 0.010526315789473661
+    }
+   }
+  }
+ },
+ "success_criterion": {
+  "text": "arm A seed 1 end-to-end exact (type + target + value) on human-value-02 >= 0.8105 (run 4 seed 1 scores 0.7895; +4 notes of 190 or better), AND no regression larger than 0.02 against run 4 seed 1 on each of: frozen test type macro-F1, frozen test target exact, probe-v1 type macro-F1, human-value-01 end-to-end exact. Also report each seed and the three-seed mean for arms A and B; nothing is selected by them."
+ },
+ "criterion_checks": {
+  "hv02_end_to_end_exact": {
+   "arm_A_seed1": 0.8631578947368421,
+   "run4_seed1": 0.7894736842105263,
+   "need_at_least": 0.8105,
+   "pass": true
+  },
+  "frozen_test_type_macro_f1": {
+   "arm_A_seed1": 0.9492673992673992,
+   "run4_seed1": 0.9338744588744589,
+   "regression": -0.015392940392940369,
+   "max_allowed": 0.02,
+   "pass": true
+  },
+  "frozen_test_target_exact": {
+   "arm_A_seed1": 0.9428571428571428,
+   "run4_seed1": 0.9238095238095239,
+   "regression": -0.01904761904761898,
+   "max_allowed": 0.02,
+   "pass": true
+  },
+  "probe_v1_type_macro_f1": {
+   "arm_A_seed1": 0.8673469387755102,
+   "run4_seed1": 0.8263996068343894,
+   "regression": -0.04094733194112077,
+   "max_allowed": 0.02,
+   "pass": true
+  },
+  "human_value_01_end_to_end_exact": {
+   "arm_A_seed1": 0.9183673469387755,
+   "run4_seed1": 0.891156462585034,
+   "regression": -0.027210884353741527,
+   "max_allowed": 0.02,
+   "pass": true
+  }
+ },
+ "verdict": "PASS",
+ "hv02_changed_notes_arm_A_seed1_vs_run4_seed1": [
+  {
+   "id": "hv02-cfeb880cfc92",
+   "gold": {
+    "type": "expense",
+    "target": null
+   },
+   "run4_seed1": {
+    "type": "expense",
+    "target": null,
+    "end_to_end_ok": true
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": [
+     12,
+     26
+    ],
+    "end_to_end_ok": false
+   },
+   "outcome": "broke"
+  },
+  {
+   "id": "hv02-2ef93d79f771",
+   "gold": {
+    "type": "expense",
+    "target": null
+   },
+   "run4_seed1": {
+    "type": "income",
+    "target": null,
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "transfer",
+    "target": null,
+    "end_to_end_ok": false
+   },
+   "outcome": "changed, same end-to-end result"
+  },
+  {
+   "id": "hv02-bf3f1d41b7b0",
+   "gold": {
+    "type": "lend",
+    "target": [
+     8,
+     13
+    ]
+   },
+   "run4_seed1": {
+    "type": "borrow",
+    "target": [
+     8,
+     13
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "lend",
+    "target": [
+     8,
+     13
+    ],
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-ea0c413f2db7",
+   "gold": {
+    "type": "income",
+    "target": [
+     0,
+     2
+    ]
+   },
+   "run4_seed1": {
+    "type": "repayment_in",
+    "target": [
+     0,
+     2
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "income",
+    "target": [
+     0,
+     2
+    ],
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-fa2479b9d07b",
+   "gold": {
+    "type": "expense",
+    "target": [
+     17,
+     20
+    ]
+   },
+   "run4_seed1": {
+    "type": "transfer",
+    "target": [
+     17,
+     20
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": [
+     17,
+     20
+    ],
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-5b0e0c49f608",
+   "gold": {
+    "type": "income",
+    "target": null
+   },
+   "run4_seed1": {
+    "type": "expense",
+    "target": null,
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "income",
+    "target": null,
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-58f96b41d707",
+   "gold": {
+    "type": "expense",
+    "target": [
+     3,
+     15
+    ]
+   },
+   "run4_seed1": {
+    "type": "expense",
+    "target": null,
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "income",
+    "target": null,
+    "end_to_end_ok": false
+   },
+   "outcome": "changed, same end-to-end result"
+  },
+  {
+   "id": "hv02-e5316df9a9b5",
+   "gold": {
+    "type": "borrow",
+    "target": [
+     14,
+     18
+    ]
+   },
+   "run4_seed1": {
+    "type": "borrow",
+    "target": [
+     14,
+     18
+    ],
+    "end_to_end_ok": true
+   },
+   "A_seed1": {
+    "type": "borrow",
+    "target": [
+     9,
+     13
+    ],
+    "end_to_end_ok": false
+   },
+   "outcome": "broke"
+  },
+  {
+   "id": "hv02-6c627821ff48",
+   "gold": {
+    "type": "expense",
+    "target": [
+     13,
+     29
+    ]
+   },
+   "run4_seed1": {
+    "type": "expense",
+    "target": null,
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": [
+     13,
+     29
+    ],
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-ed99612a96da",
+   "gold": {
+    "type": "expense",
+    "target": [
+     10,
+     14
+    ]
+   },
+   "run4_seed1": {
+    "type": "expense",
+    "target": [
+     5,
+     9
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": [
+     10,
+     14
+    ],
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-1aa16f44b53f",
+   "gold": {
+    "type": "expense",
+    "target": [
+     10,
+     21
+    ]
+   },
+   "run4_seed1": {
+    "type": "income",
+    "target": null,
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "income",
+    "target": [
+     0,
+     9
+    ],
+    "end_to_end_ok": false
+   },
+   "outcome": "changed, same end-to-end result"
+  },
+  {
+   "id": "hv02-dac57cb116b6",
+   "gold": {
+    "type": "expense",
+    "target": [
+     10,
+     17
+    ]
+   },
+   "run4_seed1": {
+    "type": "expense",
+    "target": [
+     13,
+     17
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": [
+     10,
+     17
+    ],
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-3de7c2a2a39e",
+   "gold": {
+    "type": "expense",
+    "target": null
+   },
+   "run4_seed1": {
+    "type": "income",
+    "target": null,
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "income",
+    "target": [
+     12,
+     17
+    ],
+    "end_to_end_ok": false
+   },
+   "outcome": "changed, same end-to-end result"
+  },
+  {
+   "id": "hv02-326da238ed89",
+   "gold": {
+    "type": "transfer",
+    "target": null
+   },
+   "run4_seed1": {
+    "type": "transfer",
+    "target": [
+     18,
+     21
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "transfer",
+    "target": null,
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-8d332bba77cb",
+   "gold": {
+    "type": "expense",
+    "target": null
+   },
+   "run4_seed1": {
+    "type": "expense",
+    "target": [
+     14,
+     19
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": null,
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-1678c79a81bf",
+   "gold": {
+    "type": "expense",
+    "target": null
+   },
+   "run4_seed1": {
+    "type": "expense",
+    "target": null,
+    "end_to_end_ok": true
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": [
+     16,
+     22
+    ],
+    "end_to_end_ok": false
+   },
+   "outcome": "broke"
+  },
+  {
+   "id": "hv02-b3d595e178d7",
+   "gold": {
+    "type": "expense",
+    "target": [
+     6,
+     14
+    ]
+   },
+   "run4_seed1": {
+    "type": "income",
+    "target": [
+     6,
+     14
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": [
+     6,
+     14
+    ],
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-c4b0f024ebaa",
+   "gold": {
+    "type": "expense",
+    "target": [
+     3,
+     11
+    ]
+   },
+   "run4_seed1": {
+    "type": "expense",
+    "target": [
+     3,
+     11
+    ],
+    "end_to_end_ok": true
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": [
+     0,
+     2
+    ],
+    "end_to_end_ok": false
+   },
+   "outcome": "broke"
+  },
+  {
+   "id": "hv02-2af0805a5dda",
+   "gold": {
+    "type": "expense",
+    "target": null
+   },
+   "run4_seed1": {
+    "type": "expense",
+    "target": [
+     16,
+     18
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": [
+     19,
+     23
+    ],
+    "end_to_end_ok": false
+   },
+   "outcome": "changed, same end-to-end result"
+  },
+  {
+   "id": "hv02-b2dee923ede7",
+   "gold": {
+    "type": "expense",
+    "target": null
+   },
+   "run4_seed1": {
+    "type": "income",
+    "target": [
+     9,
+     20
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": null,
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-177bb97fd3c6",
+   "gold": {
+    "type": "expense",
+    "target": null
+   },
+   "run4_seed1": {
+    "type": "income",
+    "target": null,
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "income",
+    "target": [
+     0,
+     4
+    ],
+    "end_to_end_ok": false
+   },
+   "outcome": "changed, same end-to-end result"
+  },
+  {
+   "id": "hv02-aaeb282a961b",
+   "gold": {
+    "type": "expense",
+    "target": [
+     22,
+     33
+    ]
+   },
+   "run4_seed1": {
+    "type": "transfer",
+    "target": [
+     0,
+     3
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": [
+     22,
+     33
+    ],
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-625eed5e849d",
+   "gold": {
+    "type": "borrow",
+    "target": [
+     4,
+     11
+    ]
+   },
+   "run4_seed1": {
+    "type": "borrow",
+    "target": [
+     4,
+     6
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "borrow",
+    "target": null,
+    "end_to_end_ok": false
+   },
+   "outcome": "changed, same end-to-end result"
+  },
+  {
+   "id": "hv02-a3de6aba4c62",
+   "gold": {
+    "type": "lend",
+    "target": [
+     0,
+     4
+    ]
+   },
+   "run4_seed1": {
+    "type": "repayment_in",
+    "target": [
+     0,
+     4
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "lend",
+    "target": [
+     0,
+     4
+    ],
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-d1c07108c9f9",
+   "gold": {
+    "type": "expense",
+    "target": [
+     12,
+     24
+    ]
+   },
+   "run4_seed1": {
+    "type": "expense",
+    "target": [
+     12,
+     17
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": [
+     12,
+     24
+    ],
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-5a98c6b0a63e",
+   "gold": {
+    "type": "expense",
+    "target": [
+     18,
+     22
+    ]
+   },
+   "run4_seed1": {
+    "type": "expense",
+    "target": [
+     4,
+     7
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": [
+     18,
+     22
+    ],
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-8f30ebcaf146",
+   "gold": {
+    "type": "repayment_out",
+    "target": [
+     8,
+     24
+    ]
+   },
+   "run4_seed1": {
+    "type": "repayment_out",
+    "target": [
+     20,
+     24
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "repayment_out",
+    "target": [
+     8,
+     24
+    ],
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-3784720f9a74",
+   "gold": {
+    "type": "expense",
+    "target": null
+   },
+   "run4_seed1": {
+    "type": "income",
+    "target": null,
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": null,
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  },
+  {
+   "id": "hv02-06ed47636ef1",
+   "gold": {
+    "type": "expense",
+    "target": null
+   },
+   "run4_seed1": {
+    "type": "expense",
+    "target": [
+     13,
+     17
+    ],
+    "end_to_end_ok": false
+   },
+   "A_seed1": {
+    "type": "expense",
+    "target": null,
+    "end_to_end_ok": true
+   },
+   "outcome": "fixed"
+  }
+ ]
+}

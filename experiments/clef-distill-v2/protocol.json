@@ -1,0 +1,47 @@
+{
+  "experiment": "clef-distill-v2",
+  "written_before": "any model of this run was trained, exported or scored",
+  "question": "do (1) deterministic label-preserving augmentation, (2) soft-label training that also uses the notes Clef was unsure about, and (3) the annotation-v4 rules (R1 `X tra ...`, R2 on-behalf, R3 sending money to people, R4 salary phrasing) given to the Clef teacher improve encoder 1 over clef-distill-v1 arm A seed 1 (the current candidate) and the released gidi-finance-v3?",
+  "rules": "docs/annotation-v4.md, configs/annotation-v4.yaml (user-approved rules from experiments/v3-field-issues.md). Existing human/LLM labels are not changed; conflicts are only listed in datasets/annotation-v3/distill-clef-02/rule-conflicts.jsonl.",
+  "teacher": "Clef 16-shot kNN with the frozen rule-aware prompt (scripts/clef_teacher.py). Dev sets used to freeze the prompt: the 17 field-case notes and the validation split; never the held-out sets below. Labels are model labels, never human labels.",
+  "amendment_1": "written after the rule-aware labels existed and before any training: the frozen rule-aware Clef prompt fails two lexically clear cases (R2 `tra/ung/mua/dong ho|giùm|dùm X ...` is labelled expense in 87 of 105 rule notes; `ung luong` / `tam ung` is labelled borrow in only 11 of 36). For those rows only, a deterministic lexical override sets the soft type distribution to the rule type (R2 -> lend, ung luong / tam ung -> borrow, probability 0.95 on that type, the rest spread uniformly) and records `provenance.override = 'R2' | 'R4-ung'`; the target stays Clef's choice and is trusted only when its probability >= 0.6. Applied to every row of labels-all.jsonl, the old pool included. No other label is overridden.",
+  "data": {
+    "base": "training-v5 train (1,123 records)",
+    "augment-01": "deterministic transforms of training-v5 train only (lowercase target, strip diacritics, glue amounts); labels unchanged",
+    "soft silver": "datasets/annotation-v3/distill-clef-02/labels-all.jsonl: every rule-aware Clef-labelled note, no threshold on notes; type trained on Clef probabilities, span loss kept only when target prob >= 0.6 (target_trusted)",
+    "rule notes": "about 500 new hand-written R1-R4 notes, gated against test, probe-v1, probe-rules-v1, human-value-01/02"
+  },
+  "arms": {
+    "arm_A_v1": "clef-distill-v1 arm A (training-v6a, hard silver-A); stored results are the control",
+    "D1": "training-v6a + augment-01 (idea 1 only)",
+    "D2": "training-v5 train + augment-01 + soft silver of the old 1,757-note pool (ideas 1 + 2; the labels come from the rule-aware prompt, so the prompt change is confounded with the soft labels here)",
+    "D3": "D2 + soft silver of the new rule notes (ideas 1 + 2 + 3), the release-candidate arm"
+  },
+  "release_candidate": {
+    "rule": "D3 seed 1, word snap on. Fixed now: not chosen among arms or seeds by any held-out score; no seed re-run, dropped or swapped after scoring.",
+    "seed": 1,
+    "word_snap": true
+  },
+  "recipe": "unchanged from clef-distill-v1 / retrain-v5 except the soft type loss and the span mask for records with `soft`; all records equal weight; seeds 1, 2, 3 for D1, D2, D3",
+  "value": "unchanged rule parser gidi.value_parser.parse_value",
+  "held_out_scored_in_this_run": [
+    "frozen test (105)",
+    "probe-v1 (81 complete)",
+    "human-value-01 (147 complete, amended labels)",
+    "human-value-02 (190 complete, LLM labels, reused test set)",
+    "probe-rules-v1 (64 notes, LLM labels, evaluation only, written independently from the rule text; new, so the only set that measures R1-R4)"
+  ],
+  "controls": ["gidi-finance-v3 (run 4 seed 1)", "clef-distill-v1 arm A seed 1"],
+  "success_criterion": "D3 seed 1 type+target exact on probe-rules-v1 >= 0.10 above both arm A seed 1 and v3, AND no drop larger than 0.02 against arm A seed 1 on each of: frozen test type macro-F1, frozen test target exact, probe-v1 type macro-F1, human-value-01 end-to-end exact, human-value-02 end-to-end exact. Also report each seed and the three-seed mean for D1, D2, D3, the 17 field cases per system (dev only), and nothing is selected by them.",
+  "no_tuning": "no threshold, prompt, augmentation set or data selection is changed after seeing held-out numbers. If the criterion fails it is reported as a failure and the next step is a user decision.",
+  "d4": {
+    "written_before": "any D4 model was trained, exported or scored; written after the D1-D3 results (verdict FAIL) were known, on the user's approval of one follow-up arm",
+    "question": "does the hard-label route (arm A style: no soft field, silver kept only where Clef is confident) plus the new R1-R4 rule notes keep arm A's span quality on the human sets while gaining on probe-rules-v1? D1-D3 suggest the soft silver (or the relabelled old pool) cost span quality; D4 drops both and keeps only the rule notes.",
+    "data": "training-v7-d4 = training-v7-d1 (training-v5 train + training-v6a hard silver-A (rows that hit probe-rules-v1 dropped, as in D1) + augment-01) + the `rules` shard of datasets/annotation-v3/distill-clef-02/labels-all.jsonl, HARD labels (no `soft` field), kept only when type prob >= 0.6 and target prob >= 0.6 (the silver-A rule of distill-clef-01). amendment_1 overrides (R2 -> lend, R4-ung -> borrow, type prob 0.95) are applied as in D2/D3 before the filter. The old-pool relabels (s01..s20) are NOT used. Same leakage gates and drops as D1-D3 (extended with probe-rules-v1).",
+    "recipe": "identical to D1: teacher cache built from exactly training-v7-d4/train.jsonl with the same bamibert teacher, scripts/train_student.py with the D1 flags (supervised, student-4x768, 40 epochs, lr 5e-5, head-lr 1e-3, same vocab/ffn maps), seeds 1, 2, 3. Nothing else changes.",
+    "release_candidate": "D4 seed 1, word snap on; fixed now, not chosen by any held-out score; no seed re-run, dropped or swapped after scoring.",
+    "controls": ["gidi-finance-v3", "clef-distill-v1 arm A seed 1"],
+    "success_criterion": "D4 seed 1 type+target exact on probe-rules-v1 >= 0.10 above both arm A seed 1 and v3, AND no drop larger than 0.02 against arm A seed 1 on each of: frozen test type macro-F1, frozen test target exact, probe-v1 type macro-F1, human-value-01 end-to-end exact, human-value-02 end-to-end exact. Also report each seed and the three-seed mean, D1/D2/D3 stay as scored, the 17 field cases (dev only).",
+    "no_tuning": "same as v2: no threshold, data selection or recipe change after seeing held-out numbers; a failed criterion is reported as a failure."
+  }
+}

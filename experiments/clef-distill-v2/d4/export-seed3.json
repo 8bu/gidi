@@ -1,0 +1,174 @@
+{
+  "checkpoint": "experiments/clef-distill-v2/d4/weights/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2048/seed3",
+  "encoder": "student-4x768",
+  "max_length": 32,
+  "param_count": 28496395,
+  "checkpoint_safetensors_mb": 113.99406,
+  "notes": {
+    "source": "datasets/annotation-v1/splits/test.jsonl",
+    "count": 50,
+    "seed": 0
+  },
+  "fp32": {
+    "path": "experiments/clef-distill-v2/d4/onnx/seed3/model.onnx",
+    "exporter": "dynamo",
+    "opset_requested": 17,
+    "errors": {},
+    "size_mb": 114.024066,
+    "parity": {
+      "samples": 50,
+      "atol": 0.0001,
+      "max_abs_diff_type_logits": 1.239776611328125e-05,
+      "max_abs_diff_tag_logits": 2.288818359375e-05,
+      "max_abs_diff_single_note": 2.288818359375e-05,
+      "max_abs_diff": 2.288818359375e-05,
+      "passed": true
+    }
+  },
+  "int8": {
+    "path": "experiments/clef-distill-v2/d4/onnx/seed3/model.int8.onnx",
+    "fp32_size_mb": 114.024066,
+    "int8_size_mb": 28.658533,
+    "size_ratio": 0.2513375816645584,
+    "agreement": {
+      "samples": 50,
+      "type_agreement": 1.0,
+      "tag_agreement": 0.9960552268244576,
+      "tag_tokens": 507,
+      "max_abs_diff_type_logits": 1.1707944869995117
+    }
+  },
+  "latency": {
+    "threads_1": {
+      "torch_fp32": {
+        "runs": 200,
+        "warmup": 20,
+        "texts": 50,
+        "tokenization": {
+          "p50_ms": 0.0797295942902565,
+          "p95_ms": 0.10770885273814201,
+          "mean_ms": 0.08213372202590108
+        },
+        "inference": {
+          "p50_ms": 2.9390209820121527,
+          "p95_ms": 3.3772080205380917,
+          "mean_ms": 2.990107147488743
+        },
+        "total": {
+          "p50_ms": 3.020687960088253,
+          "p95_ms": 3.4686666913330555,
+          "mean_ms": 3.072240869514644
+        }
+      },
+      "onnx_fp32": {
+        "runs": 200,
+        "warmup": 20,
+        "texts": 50,
+        "tokenization": {
+          "p50_ms": 0.06527034565806389,
+          "p95_ms": 0.0966251827776432,
+          "mean_ms": 0.07019348908215761
+        },
+        "inference": {
+          "p50_ms": 2.1376460790634155,
+          "p95_ms": 2.487749792635441,
+          "mean_ms": 2.166919617448002
+        },
+        "total": {
+          "p50_ms": 2.2000207100063562,
+          "p95_ms": 2.5704577565193176,
+          "mean_ms": 2.2371131065301597
+        }
+      },
+      "onnx_int8": {
+        "runs": 200,
+        "warmup": 20,
+        "texts": 50,
+        "tokenization": {
+          "p50_ms": 0.053208088502287865,
+          "p95_ms": 0.1566666178405285,
+          "mean_ms": 0.07100518327206373
+        },
+        "inference": {
+          "p50_ms": 1.3208952732384205,
+          "p95_ms": 2.481583971530199,
+          "mean_ms": 1.4255212270654738
+        },
+        "total": {
+          "p50_ms": 1.387604745104909,
+          "p95_ms": 2.5768340565264225,
+          "mean_ms": 1.4965264103375375
+        }
+      }
+    },
+    "threads_default": {
+      "torch_fp32": {
+        "runs": 200,
+        "warmup": 20,
+        "texts": 50,
+        "tokenization": {
+          "p50_ms": 0.08093751966953278,
+          "p95_ms": 0.11029234156012535,
+          "mean_ms": 0.0834125280380249
+        },
+        "inference": {
+          "p50_ms": 3.491792129352689,
+          "p95_ms": 3.7379171699285507,
+          "mean_ms": 3.4808820858597755
+        },
+        "total": {
+          "p50_ms": 3.572750138118863,
+          "p95_ms": 3.8122092373669147,
+          "mean_ms": 3.5642946138978004
+        }
+      },
+      "onnx_fp32": {
+        "runs": 200,
+        "warmup": 20,
+        "texts": 50,
+        "tokenization": {
+          "p50_ms": 0.05645793862640858,
+          "p95_ms": 0.08204206824302673,
+          "mean_ms": 0.06069133058190346
+        },
+        "inference": {
+          "p50_ms": 1.2026461772620678,
+          "p95_ms": 1.3330420479178429,
+          "mean_ms": 1.2029489525593817
+        },
+        "total": {
+          "p50_ms": 1.258875010535121,
+          "p95_ms": 1.4282502233982086,
+          "mean_ms": 1.2636402831412852
+        }
+      },
+      "onnx_int8": {
+        "runs": 200,
+        "warmup": 20,
+        "texts": 50,
+        "tokenization": {
+          "p50_ms": 0.03327103331685066,
+          "p95_ms": 0.049958936870098114,
+          "mean_ms": 0.03549766028299928
+        },
+        "inference": {
+          "p50_ms": 0.7764166221022606,
+          "p95_ms": 0.9062499739229679,
+          "mean_ms": 0.7736204308457673
+        },
+        "total": {
+          "p50_ms": 0.8112711366266012,
+          "p95_ms": 0.9469999931752682,
+          "mean_ms": 0.8091180911287665
+        }
+      }
+    },
+    "torch_threads_default": 8
+  },
+  "environment": {
+    "torch": "2.14.0",
+    "onnxruntime": "1.30.0",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "machine": "arm64"
+  }
+}

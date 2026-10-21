@@ -1,0 +1,23 @@
+{
+  "arm": "supervised",
+  "variant": "student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2048",
+  "seed": 3,
+  "kd": {
+    "temperature": 2.0,
+    "alpha_hard": 1.0,
+    "type_weight": 1.0,
+    "span_weight": 1.0
+  },
+  "final_epoch": 40,
+  "test_type_macro_f1": 0.9369391025641025,
+  "test_span_f1": 0.8571428571428571,
+  "param_count": 28496395,
+  "param_bytes_fp32": 113985580,
+  "steps": 20840,
+  "device": "mps",
+  "wall_time_sec": 1461.6038594171405,
+  "train_time_sec": 1460.177195708733,
+  "sec_per_epoch": 36.50442989271833,
+  "train_examples_per_sec": 114.12313552747766,
+  "checkpoint_path": "experiments/clef-distill-v2/d3/weights/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2048/seed3"
+}

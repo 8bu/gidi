@@ -1,0 +1,75 @@
+W1021 02:02:38.821000 51807 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 02:02:39.144000 51807 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 02:02:39.144000 51807 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 02:02:39.144000 51807 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 02:02:39.144000 51807 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+exporter=dynamo parity max_abs_diff=4.98e-05
+size FP32 114.0 MB -> INT8 28.7 MB
+INT8 agreement type=1.000 tag=1.000
+threads_1        torch_fp32  total p50 2.94 ms p95 3.12 ms (inference p50 2.86)
+threads_1        onnx_fp32   total p50 2.15 ms p95 2.40 ms (inference p50 2.08)
+threads_1        onnx_int8   total p50 1.25 ms p95 1.60 ms (inference p50 1.20)
+threads_default  torch_fp32  total p50 3.50 ms p95 3.81 ms (inference p50 3.42)
+threads_default  onnx_fp32   total p50 1.21 ms p95 1.42 ms (inference p50 1.16)
+threads_default  onnx_int8   total p50 0.82 ms p95 0.99 ms (inference p50 0.79)
+report -> experiments/clef-distill-v1/armB/export-seed1.json
+W1021 02:02:48.273000 51864 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 02:02:48.581000 51864 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 02:02:48.581000 51864 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 02:02:48.581000 51864 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 02:02:48.582000 51864 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+exporter=dynamo parity max_abs_diff=2.96e-05
+size FP32 114.0 MB -> INT8 28.7 MB
+INT8 agreement type=1.000 tag=1.000
+threads_1        torch_fp32  total p50 3.03 ms p95 3.34 ms (inference p50 2.95)
+threads_1        onnx_fp32   total p50 2.18 ms p95 2.43 ms (inference p50 2.12)
+threads_1        onnx_int8   total p50 1.25 ms p95 1.57 ms (inference p50 1.21)
+threads_default  torch_fp32  total p50 3.61 ms p95 3.89 ms (inference p50 3.53)
+threads_default  onnx_fp32   total p50 1.25 ms p95 1.36 ms (inference p50 1.20)
+threads_default  onnx_int8   total p50 0.83 ms p95 1.01 ms (inference p50 0.79)
+report -> experiments/clef-distill-v1/armB/export-seed2.json
+W1021 02:02:57.599000 51910 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 02:02:57.913000 51910 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 02:02:57.913000 51910 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 02:02:57.913000 51910 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 02:02:57.913000 51910 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+exporter=dynamo parity max_abs_diff=2.31e-05
+size FP32 114.0 MB -> INT8 28.7 MB
+INT8 agreement type=0.980 tag=1.000
+threads_1        torch_fp32  total p50 3.05 ms p95 3.36 ms (inference p50 2.97)
+threads_1        onnx_fp32   total p50 2.15 ms p95 2.36 ms (inference p50 2.08)
+threads_1        onnx_int8   total p50 1.24 ms p95 1.56 ms (inference p50 1.20)
+threads_default  torch_fp32  total p50 3.55 ms p95 3.83 ms (inference p50 3.46)
+threads_default  onnx_fp32   total p50 1.18 ms p95 1.26 ms (inference p50 1.13)
+threads_default  onnx_int8   total p50 0.82 ms p95 0.98 ms (inference p50 0.79)
+report -> experiments/clef-distill-v1/armB/export-seed3.json

@@ -1,0 +1,3238 @@
+{
+ "experiment": "clef-distill-v2",
+ "protocol_sha256": "df67ef3ce92ea9c8fd469973ac7e83b866d76c0ef3c2028aa875d4edaeffcfe9",
+ "release_candidate": "D3_seed1",
+ "sets": {
+  "test": 105,
+  "probe": 81,
+  "hv01": 147,
+  "hv02": 190,
+  "rules": 64
+ },
+ "hv02_not_complete_excluded": 10,
+ "models": {
+  "v3": {
+   "path": "models/gidi-finance-v3/model.int8.onnx",
+   "sha256": "61c17d27b92e1ac4ac1add0af73344cb1c68bdbbc19db58532ce6d38d9bb7315"
+  },
+  "A_seed1": {
+   "path": "experiments/clef-distill-v1/armA/onnx/seed1/model.int8.onnx",
+   "sha256": "f038bcc817e4efe03f0f0901077c95c5a724eab789e480d7292ef632a547175d"
+  },
+  "D1_seed1": {
+   "path": "experiments/clef-distill-v2/d1/onnx/seed1/model.int8.onnx",
+   "sha256": "e0bd8310334a621296bab86993a4a529f67c65f5cf751c9dfe616aaf51a58c6d"
+  },
+  "D1_seed2": {
+   "path": "experiments/clef-distill-v2/d1/onnx/seed2/model.int8.onnx",
+   "sha256": "694eebf329eace44c085cc3ed061283813affe5754a950ee0045ad07d5c6c38a"
+  },
+  "D1_seed3": {
+   "path": "experiments/clef-distill-v2/d1/onnx/seed3/model.int8.onnx",
+   "sha256": "1a2c6c9998f5ac4dd1d4a1bc6d87a7c1328a9147e522a185f9550aa9c7ee6e28"
+  },
+  "D2_seed1": {
+   "path": "experiments/clef-distill-v2/d2/onnx/seed1/model.int8.onnx",
+   "sha256": "2886e2ba862d3dc0c896dc51c973de3cfaeb3a6e1d0483a70ba583df08b1d63e"
+  },
+  "D2_seed2": {
+   "path": "experiments/clef-distill-v2/d2/onnx/seed2/model.int8.onnx",
+   "sha256": "520b77ec171f4b42c5258f0ca8d71787538355a8bafdac634758dcdc692bc2af"
+  },
+  "D2_seed3": {
+   "path": "experiments/clef-distill-v2/d2/onnx/seed3/model.int8.onnx",
+   "sha256": "b73a3b88039c674849201e481b5bbe5dc8e81f3a5a4e01dedb04164a25167297"
+  },
+  "D3_seed1": {
+   "path": "experiments/clef-distill-v2/d3/onnx/seed1/model.int8.onnx",
+   "sha256": "12799249d5594cab4c023f5cb97b596cba5169b4a01eaefc665481529eac7679"
+  },
+  "D3_seed2": {
+   "path": "experiments/clef-distill-v2/d3/onnx/seed2/model.int8.onnx",
+   "sha256": "a1294cd76b77cdc080b9774776e34a1e146778adf4a0fcc086b8e6337775449a"
+  },
+  "D3_seed3": {
+   "path": "experiments/clef-distill-v2/d3/onnx/seed3/model.int8.onnx",
+   "sha256": "9f915ff78fb8e3dd4bd0ea7ba4dd34c571b384ee7414f98d9a21d19801faf100"
+  }
+ },
+ "systems": {
+  "v3": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9428571428571428,
+    "type_macro_f1": 0.9338744588744589,
+    "target_exact": 0.9238095238095239,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8846153846153846
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.8271604938271605,
+    "type_macro_f1": 0.8263996068343894,
+    "target_exact": 0.8518518518518519,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8392857142857144
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9591836734693877,
+    "type_macro_f1": 0.9410584616979949,
+    "target_exact": 0.9183673469387755,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.891156462585034,
+    "type_target_exact": 0.891156462585034,
+    "span_f1": 0.8609271523178809
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9210526315789473,
+    "type_macro_f1": 0.897294487919488,
+    "target_exact": 0.8526315789473684,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.7894736842105263,
+    "type_target_exact": 0.7894736842105263,
+    "span_f1": 0.814070351758794
+   },
+   "rules": {
+    "n": 64,
+    "type_accuracy": 0.703125,
+    "type_macro_f1": 0.7161220043572984,
+    "target_exact": 0.734375,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": 0.5,
+    "span_f1": 0.6329113924050633,
+    "per_rule": {
+     "R1": {
+      "n": 16,
+      "type_accuracy": 0.5625,
+      "target_exact": 0.75,
+      "type_target_exact": 0.3125
+     },
+     "R2": {
+      "n": 16,
+      "type_accuracy": 0.9375,
+      "target_exact": 0.4375,
+      "type_target_exact": 0.375
+     },
+     "R3": {
+      "n": 16,
+      "type_accuracy": 0.75,
+      "target_exact": 0.875,
+      "type_target_exact": 0.75
+     },
+     "R4": {
+      "n": 16,
+      "type_accuracy": 0.5625,
+      "target_exact": 0.875,
+      "type_target_exact": 0.5625
+     }
+    }
+   }
+  },
+  "A_seed1": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9619047619047619,
+    "type_macro_f1": 0.9492673992673992,
+    "target_exact": 0.9428571428571428,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.9108910891089109
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.8395061728395061,
+    "type_macro_f1": 0.8673469387755102,
+    "target_exact": 0.8641975308641975,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8440366972477065
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9795918367346939,
+    "type_macro_f1": 0.9856295957233954,
+    "target_exact": 0.9319727891156463,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.9183673469387755,
+    "type_target_exact": 0.9183673469387755,
+    "span_f1": 0.894736842105263
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9631578947368421,
+    "type_macro_f1": 0.9589527196096256,
+    "target_exact": 0.8789473684210526,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.8631578947368421,
+    "type_target_exact": 0.8631578947368421,
+    "span_f1": 0.86
+   },
+   "rules": {
+    "n": 64,
+    "type_accuracy": 0.90625,
+    "type_macro_f1": 0.8990384615384616,
+    "target_exact": 0.8125,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": 0.71875,
+    "span_f1": 0.708860759493671,
+    "per_rule": {
+     "R1": {
+      "n": 16,
+      "type_accuracy": 1.0,
+      "target_exact": 0.8125,
+      "type_target_exact": 0.8125
+     },
+     "R2": {
+      "n": 16,
+      "type_accuracy": 0.9375,
+      "target_exact": 0.5625,
+      "type_target_exact": 0.5
+     },
+     "R3": {
+      "n": 16,
+      "type_accuracy": 0.875,
+      "target_exact": 0.875,
+      "type_target_exact": 0.75
+     },
+     "R4": {
+      "n": 16,
+      "type_accuracy": 0.8125,
+      "target_exact": 1.0,
+      "type_target_exact": 0.8125
+     }
+    }
+   }
+  },
+  "D1_seed1": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9714285714285714,
+    "type_macro_f1": 0.9639682138037401,
+    "target_exact": 0.9428571428571428,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.9320388349514563
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.8765432098765432,
+    "type_macro_f1": 0.902527700043228,
+    "target_exact": 0.8888888888888888,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8727272727272727
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9591836734693877,
+    "type_macro_f1": 0.9562798281278517,
+    "target_exact": 0.9455782312925171,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.9115646258503401,
+    "type_target_exact": 0.9115646258503401,
+    "span_f1": 0.9150326797385621
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9789473684210527,
+    "type_macro_f1": 0.9818328209632557,
+    "target_exact": 0.8947368421052632,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.8842105263157894,
+    "type_target_exact": 0.8842105263157894,
+    "span_f1": 0.8787878787878789
+   },
+   "rules": {
+    "n": 64,
+    "type_accuracy": 0.875,
+    "type_macro_f1": 0.8683317262539273,
+    "target_exact": 0.796875,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": 0.703125,
+    "span_f1": 0.675,
+    "per_rule": {
+     "R1": {
+      "n": 16,
+      "type_accuracy": 0.8125,
+      "target_exact": 0.75,
+      "type_target_exact": 0.625
+     },
+     "R2": {
+      "n": 16,
+      "type_accuracy": 1.0,
+      "target_exact": 0.5625,
+      "type_target_exact": 0.5625
+     },
+     "R3": {
+      "n": 16,
+      "type_accuracy": 0.875,
+      "target_exact": 0.875,
+      "type_target_exact": 0.8125
+     },
+     "R4": {
+      "n": 16,
+      "type_accuracy": 0.8125,
+      "target_exact": 1.0,
+      "type_target_exact": 0.8125
+     }
+    }
+   }
+  },
+  "D1_seed2": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9714285714285714,
+    "type_macro_f1": 0.9639995421245422,
+    "target_exact": 0.9238095238095239,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8846153846153846
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.9135802469135802,
+    "type_macro_f1": 0.9132591775448918,
+    "target_exact": 0.9135802469135802,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.918918918918919
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9591836734693877,
+    "type_macro_f1": 0.9660066016252554,
+    "target_exact": 0.9591836734693877,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.9251700680272109,
+    "type_target_exact": 0.9251700680272109,
+    "span_f1": 0.9271523178807947
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9578947368421052,
+    "type_macro_f1": 0.9433555716595364,
+    "target_exact": 0.8894736842105263,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.8526315789473684,
+    "type_target_exact": 0.8526315789473684,
+    "span_f1": 0.8743718592964823
+   },
+   "rules": {
+    "n": 64,
+    "type_accuracy": 0.84375,
+    "type_macro_f1": 0.8485754985754985,
+    "target_exact": 0.796875,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": 0.6875,
+    "span_f1": 0.675,
+    "per_rule": {
+     "R1": {
+      "n": 16,
+      "type_accuracy": 0.75,
+      "target_exact": 0.75,
+      "type_target_exact": 0.625
+     },
+     "R2": {
+      "n": 16,
+      "type_accuracy": 0.9375,
+      "target_exact": 0.5625,
+      "type_target_exact": 0.5
+     },
+     "R3": {
+      "n": 16,
+      "type_accuracy": 0.875,
+      "target_exact": 0.875,
+      "type_target_exact": 0.8125
+     },
+     "R4": {
+      "n": 16,
+      "type_accuracy": 0.8125,
+      "target_exact": 1.0,
+      "type_target_exact": 0.8125
+     }
+    }
+   }
+  },
+  "D1_seed3": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9809523809523809,
+    "type_macro_f1": 0.9781926535796505,
+    "target_exact": 0.9523809523809523,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.9333333333333333
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.9135802469135802,
+    "type_macro_f1": 0.924852982128524,
+    "target_exact": 0.8765432098765432,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8672566371681416
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9591836734693877,
+    "type_macro_f1": 0.9702778149080966,
+    "target_exact": 0.9727891156462585,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.9387755102040817,
+    "type_target_exact": 0.9387755102040817,
+    "span_f1": 0.96
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9526315789473684,
+    "type_macro_f1": 0.9294549663299663,
+    "target_exact": 0.9105263157894737,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.868421052631579,
+    "type_target_exact": 0.868421052631579,
+    "span_f1": 0.8923076923076922
+   },
+   "rules": {
+    "n": 64,
+    "type_accuracy": 0.890625,
+    "type_macro_f1": 0.8856964311779302,
+    "target_exact": 0.75,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": 0.671875,
+    "span_f1": 0.6075949367088608,
+    "per_rule": {
+     "R1": {
+      "n": 16,
+      "type_accuracy": 0.875,
+      "target_exact": 0.6875,
+      "type_target_exact": 0.6875
+     },
+     "R2": {
+      "n": 16,
+      "type_accuracy": 0.9375,
+      "target_exact": 0.5625,
+      "type_target_exact": 0.5
+     },
+     "R3": {
+      "n": 16,
+      "type_accuracy": 0.9375,
+      "target_exact": 0.75,
+      "type_target_exact": 0.6875
+     },
+     "R4": {
+      "n": 16,
+      "type_accuracy": 0.8125,
+      "target_exact": 1.0,
+      "type_target_exact": 0.8125
+     }
+    }
+   }
+  },
+  "D2_seed1": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9714285714285714,
+    "type_macro_f1": 0.9702570995503464,
+    "target_exact": 0.8952380952380953,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.882882882882883
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.9382716049382716,
+    "type_macro_f1": 0.9529856386999244,
+    "target_exact": 0.8765432098765432,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8869565217391303
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9795918367346939,
+    "type_macro_f1": 0.9870238587373767,
+    "target_exact": 0.9115646258503401,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.9047619047619048,
+    "type_target_exact": 0.9047619047619048,
+    "span_f1": 0.8999999999999999
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9526315789473684,
+    "type_macro_f1": 0.9308506734493577,
+    "target_exact": 0.8210526315789474,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.7789473684210526,
+    "type_target_exact": 0.7789473684210526,
+    "span_f1": 0.8093023255813954
+   },
+   "rules": {
+    "n": 64,
+    "type_accuracy": 0.921875,
+    "type_macro_f1": 0.9289596540370534,
+    "target_exact": 0.796875,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": 0.75,
+    "span_f1": 0.6913580246913581,
+    "per_rule": {
+     "R1": {
+      "n": 16,
+      "type_accuracy": 0.875,
+      "target_exact": 0.875,
+      "type_target_exact": 0.75
+     },
+     "R2": {
+      "n": 16,
+      "type_accuracy": 0.875,
+      "target_exact": 0.5625,
+      "type_target_exact": 0.5
+     },
+     "R3": {
+      "n": 16,
+      "type_accuracy": 0.9375,
+      "target_exact": 0.8125,
+      "type_target_exact": 0.8125
+     },
+     "R4": {
+      "n": 16,
+      "type_accuracy": 1.0,
+      "target_exact": 0.9375,
+      "type_target_exact": 0.9375
+     }
+    }
+   }
+  },
+  "D2_seed2": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9619047619047619,
+    "type_macro_f1": 0.9560639880952381,
+    "target_exact": 0.8761904761904762,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8672566371681416
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.9259259259259259,
+    "type_macro_f1": 0.9348923780038331,
+    "target_exact": 0.8641975308641975,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8596491228070176
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9795918367346939,
+    "type_macro_f1": 0.9870238587373767,
+    "target_exact": 0.8979591836734694,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.891156462585034,
+    "type_target_exact": 0.891156462585034,
+    "span_f1": 0.8819875776397516
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9631578947368421,
+    "type_macro_f1": 0.9524526561832024,
+    "target_exact": 0.8105263157894737,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.7789473684210526,
+    "type_target_exact": 0.7789473684210526,
+    "span_f1": 0.8018433179723502
+   },
+   "rules": {
+    "n": 64,
+    "type_accuracy": 0.90625,
+    "type_macro_f1": 0.9196408529741863,
+    "target_exact": 0.796875,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": 0.765625,
+    "span_f1": 0.675,
+    "per_rule": {
+     "R1": {
+      "n": 16,
+      "type_accuracy": 0.9375,
+      "target_exact": 0.8125,
+      "type_target_exact": 0.8125
+     },
+     "R2": {
+      "n": 16,
+      "type_accuracy": 0.75,
+      "target_exact": 0.5625,
+      "type_target_exact": 0.4375
+     },
+     "R3": {
+      "n": 16,
+      "type_accuracy": 0.9375,
+      "target_exact": 0.8125,
+      "type_target_exact": 0.8125
+     },
+     "R4": {
+      "n": 16,
+      "type_accuracy": 1.0,
+      "target_exact": 1.0,
+      "type_target_exact": 1.0
+     }
+    }
+   }
+  },
+  "D2_seed3": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9619047619047619,
+    "type_macro_f1": 0.9560639880952381,
+    "target_exact": 0.8952380952380953,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8928571428571428
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.9135802469135802,
+    "type_macro_f1": 0.9260015117157974,
+    "target_exact": 0.8765432098765432,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8869565217391303
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9795918367346939,
+    "type_macro_f1": 0.9870238587373767,
+    "target_exact": 0.9115646258503401,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.9047619047619048,
+    "type_target_exact": 0.9047619047619048,
+    "span_f1": 0.8999999999999999
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.968421052631579,
+    "type_macro_f1": 0.9486666536399744,
+    "target_exact": 0.8,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.7736842105263158,
+    "type_target_exact": 0.7736842105263158,
+    "span_f1": 0.7945205479452055
+   },
+   "rules": {
+    "n": 64,
+    "type_accuracy": 0.9375,
+    "type_macro_f1": 0.9441077441077441,
+    "target_exact": 0.78125,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": 0.75,
+    "span_f1": 0.6666666666666667,
+    "per_rule": {
+     "R1": {
+      "n": 16,
+      "type_accuracy": 0.8125,
+      "target_exact": 0.8125,
+      "type_target_exact": 0.6875
+     },
+     "R2": {
+      "n": 16,
+      "type_accuracy": 1.0,
+      "target_exact": 0.5625,
+      "type_target_exact": 0.5625
+     },
+     "R3": {
+      "n": 16,
+      "type_accuracy": 0.9375,
+      "target_exact": 0.8125,
+      "type_target_exact": 0.8125
+     },
+     "R4": {
+      "n": 16,
+      "type_accuracy": 1.0,
+      "target_exact": 0.9375,
+      "type_target_exact": 0.9375
+     }
+    }
+   }
+  },
+  "D3_seed1": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9619047619047619,
+    "type_macro_f1": 0.9612744155676625,
+    "target_exact": 0.8476190476190476,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8347826086956521
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.9382716049382716,
+    "type_macro_f1": 0.950535169022564,
+    "target_exact": 0.8641975308641975,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8793103448275862
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9795918367346939,
+    "type_macro_f1": 0.9846264026113941,
+    "target_exact": 0.9115646258503401,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.8979591836734694,
+    "type_target_exact": 0.8979591836734694,
+    "span_f1": 0.8930817610062893
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9473684210526315,
+    "type_macro_f1": 0.9225080705572553,
+    "target_exact": 0.8368421052631579,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.7894736842105263,
+    "type_target_exact": 0.7894736842105263,
+    "span_f1": 0.8279069767441861
+   },
+   "rules": {
+    "n": 64,
+    "type_accuracy": 0.921875,
+    "type_macro_f1": 0.9294532627865961,
+    "target_exact": 0.8125,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": 0.765625,
+    "span_f1": 0.7,
+    "per_rule": {
+     "R1": {
+      "n": 16,
+      "type_accuracy": 1.0,
+      "target_exact": 0.8125,
+      "type_target_exact": 0.8125
+     },
+     "R2": {
+      "n": 16,
+      "type_accuracy": 0.6875,
+      "target_exact": 0.5625,
+      "type_target_exact": 0.375
+     },
+     "R3": {
+      "n": 16,
+      "type_accuracy": 1.0,
+      "target_exact": 0.875,
+      "type_target_exact": 0.875
+     },
+     "R4": {
+      "n": 16,
+      "type_accuracy": 1.0,
+      "target_exact": 1.0,
+      "type_target_exact": 1.0
+     }
+    }
+   }
+  },
+  "D3_seed2": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9714285714285714,
+    "type_macro_f1": 0.9702570995503464,
+    "target_exact": 0.8666666666666667,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8695652173913042
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.9629629629629629,
+    "type_macro_f1": 0.9674847716864523,
+    "target_exact": 0.8888888888888888,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8947368421052632
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9863945578231292,
+    "type_macro_f1": 0.9908803113043272,
+    "target_exact": 0.9183673469387755,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.9115646258503401,
+    "type_target_exact": 0.9115646258503401,
+    "span_f1": 0.9125
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9578947368421052,
+    "type_macro_f1": 0.9337447410010292,
+    "target_exact": 0.8210526315789474,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.7894736842105263,
+    "type_target_exact": 0.7894736842105263,
+    "span_f1": 0.8186046511627907
+   },
+   "rules": {
+    "n": 64,
+    "type_accuracy": 0.90625,
+    "type_macro_f1": 0.9183049129285689,
+    "target_exact": 0.828125,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": 0.765625,
+    "span_f1": 0.7250000000000001,
+    "per_rule": {
+     "R1": {
+      "n": 16,
+      "type_accuracy": 0.9375,
+      "target_exact": 0.875,
+      "type_target_exact": 0.8125
+     },
+     "R2": {
+      "n": 16,
+      "type_accuracy": 0.6875,
+      "target_exact": 0.5625,
+      "type_target_exact": 0.375
+     },
+     "R3": {
+      "n": 16,
+      "type_accuracy": 1.0,
+      "target_exact": 0.875,
+      "type_target_exact": 0.875
+     },
+     "R4": {
+      "n": 16,
+      "type_accuracy": 1.0,
+      "target_exact": 1.0,
+      "type_target_exact": 1.0
+     }
+    }
+   }
+  },
+  "D3_seed3": {
+   "test": {
+    "n": 105,
+    "type_accuracy": 0.9428571428571428,
+    "type_macro_f1": 0.9369391025641025,
+    "target_exact": 0.8666666666666667,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8495575221238938
+   },
+   "probe": {
+    "n": 81,
+    "type_accuracy": 0.9753086419753086,
+    "type_macro_f1": 0.9768512810529618,
+    "target_exact": 0.8518518518518519,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null,
+    "span_f1": 0.8717948717948718
+   },
+   "hv01": {
+    "n": 147,
+    "type_accuracy": 0.9795918367346939,
+    "type_macro_f1": 0.9870238587373767,
+    "target_exact": 0.9047619047619048,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.8979591836734694,
+    "type_target_exact": 0.8979591836734694,
+    "span_f1": 0.8805031446540881
+   },
+   "hv02": {
+    "n": 190,
+    "type_accuracy": 0.9631578947368421,
+    "type_macro_f1": 0.9523876720386855,
+    "target_exact": 0.8473684210526315,
+    "value_exact": 1.0,
+    "end_to_end_exact": 0.8157894736842105,
+    "type_target_exact": 0.8157894736842105,
+    "span_f1": 0.8356807511737089
+   },
+   "rules": {
+    "n": 64,
+    "type_accuracy": 0.921875,
+    "type_macro_f1": 0.9294532627865961,
+    "target_exact": 0.828125,
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": 0.78125,
+    "span_f1": 0.7250000000000001,
+    "per_rule": {
+     "R1": {
+      "n": 16,
+      "type_accuracy": 1.0,
+      "target_exact": 0.8125,
+      "type_target_exact": 0.8125
+     },
+     "R2": {
+      "n": 16,
+      "type_accuracy": 0.6875,
+      "target_exact": 0.5625,
+      "type_target_exact": 0.375
+     },
+     "R3": {
+      "n": 16,
+      "type_accuracy": 1.0,
+      "target_exact": 0.9375,
+      "type_target_exact": 0.9375
+     },
+     "R4": {
+      "n": 16,
+      "type_accuracy": 1.0,
+      "target_exact": 1.0,
+      "type_target_exact": 1.0
+     }
+    }
+   }
+  }
+ },
+ "aggregate_seeds": {
+  "D1": {
+   "test": {
+    "type_accuracy": {
+     "mean": 0.9746031746031746,
+     "sd": 0.00549857399228213
+    },
+    "type_macro_f1": {
+     "mean": 0.9687201365026442,
+     "sd": 0.008203455381517705
+    },
+    "target_exact": {
+     "mean": 0.9396825396825396,
+     "sd": 0.014547859349066107
+    },
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null
+   },
+   "probe": {
+    "type_accuracy": {
+     "mean": 0.9012345679012346,
+     "sd": 0.021383343303319438
+    },
+    "type_macro_f1": {
+     "mean": 0.913546619905548,
+     "sd": 0.011165416354979049
+    },
+    "target_exact": {
+     "mean": 0.8930041152263374,
+     "sd": 0.018858336193233884
+    },
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null
+   },
+   "hv01": {
+    "type_accuracy": {
+     "mean": 0.9591836734693877,
+     "sd": 0.0
+    },
+    "type_macro_f1": {
+     "mean": 0.9641880815537346,
+     "sd": 0.00717399260613438
+    },
+    "target_exact": {
+     "mean": 0.9591836734693877,
+     "sd": 0.013605442176870708
+    },
+    "value_exact": {
+     "mean": 1.0,
+     "sd": 0.0
+    },
+    "end_to_end_exact": {
+     "mean": 0.9251700680272109,
+     "sd": 0.013605442176870763
+    },
+    "type_target_exact": {
+     "mean": 0.9251700680272109,
+     "sd": 0.013605442176870763
+    }
+   },
+   "hv02": {
+    "type_accuracy": {
+     "mean": 0.9631578947368421,
+     "sd": 0.013925006900339994
+    },
+    "type_macro_f1": {
+     "mean": 0.9515477863175862,
+     "sd": 0.027132898845298018
+    },
+    "target_exact": {
+     "mean": 0.8982456140350877,
+     "sd": 0.01095613683929547
+    },
+    "value_exact": {
+     "mean": 1.0,
+     "sd": 0.0
+    },
+    "end_to_end_exact": {
+     "mean": 0.8684210526315789,
+     "sd": 0.01578947368421052
+    },
+    "type_target_exact": {
+     "mean": 0.8684210526315789,
+     "sd": 0.01578947368421052
+    }
+   },
+   "rules": {
+    "type_accuracy": {
+     "mean": 0.8697916666666666,
+     "sd": 0.023867581744561668
+    },
+    "type_macro_f1": {
+     "mean": 0.8675345520024521,
+     "sd": 0.018573301386909644
+    },
+    "target_exact": {
+     "mean": 0.78125,
+     "sd": 0.027063293868263706
+    },
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": {
+     "mean": 0.6875,
+     "sd": 0.015625
+    }
+   }
+  },
+  "D2": {
+   "test": {
+    "type_accuracy": {
+     "mean": 0.9650793650793651,
+     "sd": 0.00549857399228213
+    },
+    "type_macro_f1": {
+     "mean": 0.9607950252469409,
+     "sd": 0.008194396719245182
+    },
+    "target_exact": {
+     "mean": 0.888888888888889,
+     "sd": 0.010997147984564325
+    },
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null
+   },
+   "probe": {
+    "type_accuracy": {
+     "mean": 0.9259259259259259,
+     "sd": 0.012345679012345678
+    },
+    "type_macro_f1": {
+     "mean": 0.9379598428065182,
+     "sd": 0.013751101138114617
+    },
+    "target_exact": {
+     "mean": 0.8724279835390947,
+     "sd": 0.007127781101106522
+    },
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null
+   },
+   "hv01": {
+    "type_accuracy": {
+     "mean": 0.9795918367346937,
+     "sd": 0.0
+    },
+    "type_macro_f1": {
+     "mean": 0.9870238587373766,
+     "sd": 0.0
+    },
+    "target_exact": {
+     "mean": 0.9070294784580498,
+     "sd": 0.007855105703260224
+    },
+    "value_exact": {
+     "mean": 1.0,
+     "sd": 0.0
+    },
+    "end_to_end_exact": {
+     "mean": 0.9002267573696145,
+     "sd": 0.007855105703260224
+    },
+    "type_target_exact": {
+     "mean": 0.9002267573696145,
+     "sd": 0.007855105703260224
+    }
+   },
+   "hv02": {
+    "type_accuracy": {
+     "mean": 0.9614035087719298,
+     "sd": 0.008039606482378692
+    },
+    "type_macro_f1": {
+     "mean": 0.9439899944241782,
+     "sd": 0.011535370413378593
+    },
+    "target_exact": {
+     "mean": 0.8105263157894737,
+     "sd": 0.010526315789473661
+    },
+    "value_exact": {
+     "mean": 1.0,
+     "sd": 0.0
+    },
+    "end_to_end_exact": {
+     "mean": 0.7771929824561403,
+     "sd": 0.003038685627313829
+    },
+    "type_target_exact": {
+     "mean": 0.7771929824561403,
+     "sd": 0.003038685627313829
+    }
+   },
+   "rules": {
+    "type_accuracy": {
+     "mean": 0.921875,
+     "sd": 0.015625
+    },
+    "type_macro_f1": {
+     "mean": 0.9309027503729945,
+     "sd": 0.012348639923627367
+    },
+    "target_exact": {
+     "mean": 0.7916666666666666,
+     "sd": 0.009021097956087902
+    },
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": {
+     "mean": 0.7552083333333334,
+     "sd": 0.009021097956087902
+    }
+   }
+  },
+  "D3": {
+   "test": {
+    "type_accuracy": {
+     "mean": 0.9587301587301588,
+     "sd": 0.014547859349066168
+    },
+    "type_macro_f1": {
+     "mean": 0.9561568725607038,
+     "sd": 0.017238450209194955
+    },
+    "target_exact": {
+     "mean": 0.8603174603174604,
+     "sd": 0.010997147984564325
+    },
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null
+   },
+   "probe": {
+    "type_accuracy": {
+     "mean": 0.9588477366255144,
+     "sd": 0.018858336193233932
+    },
+    "type_macro_f1": {
+     "mean": 0.9649570739206593,
+     "sd": 0.013338904756220004
+    },
+    "target_exact": {
+     "mean": 0.8683127572016461,
+     "sd": 0.018858336193233884
+    },
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": null
+   },
+   "hv01": {
+    "type_accuracy": {
+     "mean": 0.981859410430839,
+     "sd": 0.003927552851630112
+    },
+    "type_macro_f1": {
+     "mean": 0.987510190884366,
+     "sd": 0.003155191389247626
+    },
+    "target_exact": {
+     "mean": 0.9115646258503401,
+     "sd": 0.006802721088435382
+    },
+    "value_exact": {
+     "mean": 1.0,
+     "sd": 0.0
+    },
+    "end_to_end_exact": {
+     "mean": 0.9024943310657596,
+     "sd": 0.007855105703260224
+    },
+    "type_target_exact": {
+     "mean": 0.9024943310657596,
+     "sd": 0.007855105703260224
+    }
+   },
+   "hv02": {
+    "type_accuracy": {
+     "mean": 0.956140350877193,
+     "sd": 0.008039606482378692
+    },
+    "type_macro_f1": {
+     "mean": 0.9362134945323234,
+     "sd": 0.015092007956894912
+    },
+    "target_exact": {
+     "mean": 0.8350877192982455,
+     "sd": 0.013245323570650428
+    },
+    "value_exact": {
+     "mean": 1.0,
+     "sd": 0.0
+    },
+    "end_to_end_exact": {
+     "mean": 0.7982456140350878,
+     "sd": 0.015193428136569083
+    },
+    "type_target_exact": {
+     "mean": 0.7982456140350878,
+     "sd": 0.015193428136569083
+    }
+   },
+   "rules": {
+    "type_accuracy": {
+     "mean": 0.9166666666666666,
+     "sd": 0.009021097956087902
+    },
+    "type_macro_f1": {
+     "mean": 0.9257371461672537,
+     "sd": 0.006436502791552166
+    },
+    "target_exact": {
+     "mean": 0.8229166666666666,
+     "sd": 0.009021097956087902
+    },
+    "value_exact": null,
+    "end_to_end_exact": null,
+    "type_target_exact": {
+     "mean": 0.7708333333333334,
+     "sd": 0.009021097956087902
+    }
+   }
+  }
+ },
+ "success_criterion": {
+  "text": "D3 seed 1 type+target exact on probe-rules-v1 >= 0.10 above both arm A seed 1 and v3, AND no drop larger than 0.02 against arm A seed 1 on each of: frozen test type macro-F1, frozen test target exact, probe-v1 type macro-F1, human-value-01 end-to-end exact, human-value-02 end-to-end exact. Also report each seed and the three-seed mean for D1, D2, D3, the 17 field cases per system (dev only), and nothing is selected by them."
+ },
+ "criterion_checks": {
+  "probe_rules_v1_type_target_exact_gain_vs_arm_A_seed1": {
+   "D3_seed1": 0.765625,
+   "arm_A_seed1": 0.71875,
+   "gain": 0.046875,
+   "need_at_least": 0.1,
+   "pass": false
+  },
+  "probe_rules_v1_type_target_exact_gain_vs_v3": {
+   "D3_seed1": 0.765625,
+   "v3": 0.5,
+   "gain": 0.265625,
+   "need_at_least": 0.1,
+   "pass": true
+  },
+  "frozen_test_type_macro_f1": {
+   "D3_seed1": 0.9612744155676625,
+   "arm_A_seed1": 0.9492673992673992,
+   "drop": -0.01200701630026324,
+   "max_allowed": 0.02,
+   "pass": true
+  },
+  "frozen_test_target_exact": {
+   "D3_seed1": 0.8476190476190476,
+   "arm_A_seed1": 0.9428571428571428,
+   "drop": 0.09523809523809523,
+   "max_allowed": 0.02,
+   "pass": false
+  },
+  "probe_v1_type_macro_f1": {
+   "D3_seed1": 0.950535169022564,
+   "arm_A_seed1": 0.8673469387755102,
+   "drop": -0.0831882302470538,
+   "max_allowed": 0.02,
+   "pass": true
+  },
+  "human_value_01_end_to_end_exact": {
+   "D3_seed1": 0.8979591836734694,
+   "arm_A_seed1": 0.9183673469387755,
+   "drop": 0.020408163265306145,
+   "max_allowed": 0.02,
+   "pass": false
+  },
+  "human_value_02_end_to_end_exact": {
+   "D3_seed1": 0.7894736842105263,
+   "arm_A_seed1": 0.8631578947368421,
+   "drop": 0.0736842105263158,
+   "max_allowed": 0.02,
+   "pass": false
+  }
+ },
+ "verdict": "FAIL",
+ "field_cases_dev_only": {
+  "v3": {
+   "correct": 9,
+   "n": 17,
+   "rows": [
+    {
+     "note": "Chuyển cho họ hàng 2 củ",
+     "expected": [
+      "expense",
+      null
+     ],
+     "type": "transfer",
+     "target": "họ hàng",
+     "ok": false
+    },
+    {
+     "note": "trả giùm tiền cơm Khoa 50k",
+     "expected": [
+      "lend",
+      "Khoa"
+     ],
+     "type": "expense",
+     "target": "Khoa",
+     "ok": false
+    },
+    {
+     "note": "moi nhan luong 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "expense",
+     "target": null,
+     "ok": false
+    },
+    {
+     "note": "moi lanh luong 26tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "borrow",
+     "target": "lanh",
+     "ok": false
+    },
+    {
+     "note": "long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "long"
+     ],
+     "type": "income",
+     "target": null,
+     "ok": false
+    },
+    {
+     "note": "Long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "Long"
+     ],
+     "type": "repayment_in",
+     "target": "Long",
+     "ok": true
+    },
+    {
+     "note": "chị Linh trả 2tr",
+     "expected": [
+      "repayment_in",
+      "Linh"
+     ],
+     "type": "repayment_in",
+     "target": "Linh",
+     "ok": true
+    },
+    {
+     "note": "cong ty tra tien t10 5 lit",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "repayment_in",
+     "target": "cong ty",
+     "ok": false
+    },
+    {
+     "note": "khach tra tien 500k",
+     "expected": [
+      "income",
+      "khach"
+     ],
+     "type": "income",
+     "target": "khach",
+     "ok": true
+    },
+    {
+     "note": "chuyển sang ví momo 1tr",
+     "expected": [
+      "transfer",
+      null
+     ],
+     "type": "transfer",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "chuyển cho mẹ 2 củ",
+     "expected": [
+      "expense",
+      "mẹ"
+     ],
+     "type": "income",
+     "target": "mẹ",
+     "ok": false
+    },
+    {
+     "note": "mới nhận lương 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "borrow",
+     "target": null,
+     "ok": false
+    },
+    {
+     "note": "lãnh lương 18tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng lương 3tr",
+     "expected": [
+      "borrow",
+      null
+     ],
+     "type": "borrow",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng giùm Lan tiền điện 400k",
+     "expected": [
+      "lend",
+      "Lan"
+     ],
+     "type": "lend",
+     "target": "Lan",
+     "ok": true
+    },
+    {
+     "note": "mua hộ Tú 200k",
+     "expected": [
+      "lend",
+      "Tú"
+     ],
+     "type": "lend",
+     "target": "Tú",
+     "ok": true
+    },
+    {
+     "note": "Khoa trả lại tiền mình trả giùm 50k",
+     "expected": [
+      "repayment_in",
+      "Khoa"
+     ],
+     "type": "repayment_in",
+     "target": "Khoa",
+     "ok": true
+    }
+   ]
+  },
+  "A_seed1": {
+   "correct": 13,
+   "n": 17,
+   "rows": [
+    {
+     "note": "Chuyển cho họ hàng 2 củ",
+     "expected": [
+      "expense",
+      null
+     ],
+     "type": "income",
+     "target": "Chuyển",
+     "ok": false
+    },
+    {
+     "note": "trả giùm tiền cơm Khoa 50k",
+     "expected": [
+      "lend",
+      "Khoa"
+     ],
+     "type": "repayment_out",
+     "target": "Khoa",
+     "ok": false
+    },
+    {
+     "note": "moi nhan luong 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "moi lanh luong 26tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "long"
+     ],
+     "type": "income",
+     "target": null,
+     "ok": false
+    },
+    {
+     "note": "Long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "Long"
+     ],
+     "type": "repayment_in",
+     "target": "Long",
+     "ok": true
+    },
+    {
+     "note": "chị Linh trả 2tr",
+     "expected": [
+      "repayment_in",
+      "Linh"
+     ],
+     "type": "repayment_in",
+     "target": "Linh",
+     "ok": true
+    },
+    {
+     "note": "cong ty tra tien t10 5 lit",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": "cong ty",
+     "ok": false
+    },
+    {
+     "note": "khach tra tien 500k",
+     "expected": [
+      "income",
+      "khach"
+     ],
+     "type": "income",
+     "target": "khach",
+     "ok": true
+    },
+    {
+     "note": "chuyển sang ví momo 1tr",
+     "expected": [
+      "transfer",
+      null
+     ],
+     "type": "transfer",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "chuyển cho mẹ 2 củ",
+     "expected": [
+      "expense",
+      "mẹ"
+     ],
+     "type": "expense",
+     "target": "mẹ",
+     "ok": true
+    },
+    {
+     "note": "mới nhận lương 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "lãnh lương 18tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng lương 3tr",
+     "expected": [
+      "borrow",
+      null
+     ],
+     "type": "borrow",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng giùm Lan tiền điện 400k",
+     "expected": [
+      "lend",
+      "Lan"
+     ],
+     "type": "lend",
+     "target": "Lan",
+     "ok": true
+    },
+    {
+     "note": "mua hộ Tú 200k",
+     "expected": [
+      "lend",
+      "Tú"
+     ],
+     "type": "lend",
+     "target": "Tú",
+     "ok": true
+    },
+    {
+     "note": "Khoa trả lại tiền mình trả giùm 50k",
+     "expected": [
+      "repayment_in",
+      "Khoa"
+     ],
+     "type": "repayment_in",
+     "target": "Khoa",
+     "ok": true
+    }
+   ]
+  },
+  "D1_seed1": {
+   "correct": 13,
+   "n": 17,
+   "rows": [
+    {
+     "note": "Chuyển cho họ hàng 2 củ",
+     "expected": [
+      "expense",
+      null
+     ],
+     "type": "income",
+     "target": "Chuyển",
+     "ok": false
+    },
+    {
+     "note": "trả giùm tiền cơm Khoa 50k",
+     "expected": [
+      "lend",
+      "Khoa"
+     ],
+     "type": "lend",
+     "target": "Khoa",
+     "ok": true
+    },
+    {
+     "note": "moi nhan luong 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "moi lanh luong 26tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "long"
+     ],
+     "type": "income",
+     "target": "long",
+     "ok": false
+    },
+    {
+     "note": "Long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "Long"
+     ],
+     "type": "repayment_in",
+     "target": "Long",
+     "ok": true
+    },
+    {
+     "note": "chị Linh trả 2tr",
+     "expected": [
+      "repayment_in",
+      "Linh"
+     ],
+     "type": "repayment_in",
+     "target": "Linh",
+     "ok": true
+    },
+    {
+     "note": "cong ty tra tien t10 5 lit",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "refund",
+     "target": "cong ty",
+     "ok": false
+    },
+    {
+     "note": "khach tra tien 500k",
+     "expected": [
+      "income",
+      "khach"
+     ],
+     "type": "repayment_in",
+     "target": "khach",
+     "ok": false
+    },
+    {
+     "note": "chuyển sang ví momo 1tr",
+     "expected": [
+      "transfer",
+      null
+     ],
+     "type": "transfer",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "chuyển cho mẹ 2 củ",
+     "expected": [
+      "expense",
+      "mẹ"
+     ],
+     "type": "expense",
+     "target": "mẹ",
+     "ok": true
+    },
+    {
+     "note": "mới nhận lương 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "lãnh lương 18tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng lương 3tr",
+     "expected": [
+      "borrow",
+      null
+     ],
+     "type": "borrow",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng giùm Lan tiền điện 400k",
+     "expected": [
+      "lend",
+      "Lan"
+     ],
+     "type": "lend",
+     "target": "Lan",
+     "ok": true
+    },
+    {
+     "note": "mua hộ Tú 200k",
+     "expected": [
+      "lend",
+      "Tú"
+     ],
+     "type": "lend",
+     "target": "Tú",
+     "ok": true
+    },
+    {
+     "note": "Khoa trả lại tiền mình trả giùm 50k",
+     "expected": [
+      "repayment_in",
+      "Khoa"
+     ],
+     "type": "repayment_in",
+     "target": "Khoa",
+     "ok": true
+    }
+   ]
+  },
+  "D1_seed2": {
+   "correct": 13,
+   "n": 17,
+   "rows": [
+    {
+     "note": "Chuyển cho họ hàng 2 củ",
+     "expected": [
+      "expense",
+      null
+     ],
+     "type": "income",
+     "target": "Chuyển",
+     "ok": false
+    },
+    {
+     "note": "trả giùm tiền cơm Khoa 50k",
+     "expected": [
+      "lend",
+      "Khoa"
+     ],
+     "type": "repayment_out",
+     "target": "Khoa",
+     "ok": false
+    },
+    {
+     "note": "moi nhan luong 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "moi lanh luong 26tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "long"
+     ],
+     "type": "income",
+     "target": null,
+     "ok": false
+    },
+    {
+     "note": "Long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "Long"
+     ],
+     "type": "repayment_in",
+     "target": "Long",
+     "ok": true
+    },
+    {
+     "note": "chị Linh trả 2tr",
+     "expected": [
+      "repayment_in",
+      "Linh"
+     ],
+     "type": "repayment_in",
+     "target": "Linh",
+     "ok": true
+    },
+    {
+     "note": "cong ty tra tien t10 5 lit",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": "cong ty",
+     "ok": false
+    },
+    {
+     "note": "khach tra tien 500k",
+     "expected": [
+      "income",
+      "khach"
+     ],
+     "type": "income",
+     "target": "khach",
+     "ok": true
+    },
+    {
+     "note": "chuyển sang ví momo 1tr",
+     "expected": [
+      "transfer",
+      null
+     ],
+     "type": "transfer",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "chuyển cho mẹ 2 củ",
+     "expected": [
+      "expense",
+      "mẹ"
+     ],
+     "type": "expense",
+     "target": "mẹ",
+     "ok": true
+    },
+    {
+     "note": "mới nhận lương 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "lãnh lương 18tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng lương 3tr",
+     "expected": [
+      "borrow",
+      null
+     ],
+     "type": "borrow",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng giùm Lan tiền điện 400k",
+     "expected": [
+      "lend",
+      "Lan"
+     ],
+     "type": "lend",
+     "target": "Lan",
+     "ok": true
+    },
+    {
+     "note": "mua hộ Tú 200k",
+     "expected": [
+      "lend",
+      "Tú"
+     ],
+     "type": "lend",
+     "target": "Tú",
+     "ok": true
+    },
+    {
+     "note": "Khoa trả lại tiền mình trả giùm 50k",
+     "expected": [
+      "repayment_in",
+      "Khoa"
+     ],
+     "type": "repayment_in",
+     "target": "Khoa",
+     "ok": true
+    }
+   ]
+  },
+  "D1_seed3": {
+   "correct": 13,
+   "n": 17,
+   "rows": [
+    {
+     "note": "Chuyển cho họ hàng 2 củ",
+     "expected": [
+      "expense",
+      null
+     ],
+     "type": "income",
+     "target": "Chuyển",
+     "ok": false
+    },
+    {
+     "note": "trả giùm tiền cơm Khoa 50k",
+     "expected": [
+      "lend",
+      "Khoa"
+     ],
+     "type": "repayment_out",
+     "target": "Khoa",
+     "ok": false
+    },
+    {
+     "note": "moi nhan luong 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "moi lanh luong 26tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "long"
+     ],
+     "type": "income",
+     "target": "long",
+     "ok": false
+    },
+    {
+     "note": "Long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "Long"
+     ],
+     "type": "repayment_in",
+     "target": "Long",
+     "ok": true
+    },
+    {
+     "note": "chị Linh trả 2tr",
+     "expected": [
+      "repayment_in",
+      "Linh"
+     ],
+     "type": "repayment_in",
+     "target": "Linh",
+     "ok": true
+    },
+    {
+     "note": "cong ty tra tien t10 5 lit",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": "cong ty",
+     "ok": false
+    },
+    {
+     "note": "khach tra tien 500k",
+     "expected": [
+      "income",
+      "khach"
+     ],
+     "type": "income",
+     "target": "khach",
+     "ok": true
+    },
+    {
+     "note": "chuyển sang ví momo 1tr",
+     "expected": [
+      "transfer",
+      null
+     ],
+     "type": "transfer",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "chuyển cho mẹ 2 củ",
+     "expected": [
+      "expense",
+      "mẹ"
+     ],
+     "type": "expense",
+     "target": "mẹ",
+     "ok": true
+    },
+    {
+     "note": "mới nhận lương 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "lãnh lương 18tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng lương 3tr",
+     "expected": [
+      "borrow",
+      null
+     ],
+     "type": "borrow",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng giùm Lan tiền điện 400k",
+     "expected": [
+      "lend",
+      "Lan"
+     ],
+     "type": "lend",
+     "target": "Lan",
+     "ok": true
+    },
+    {
+     "note": "mua hộ Tú 200k",
+     "expected": [
+      "lend",
+      "Tú"
+     ],
+     "type": "lend",
+     "target": "Tú",
+     "ok": true
+    },
+    {
+     "note": "Khoa trả lại tiền mình trả giùm 50k",
+     "expected": [
+      "repayment_in",
+      "Khoa"
+     ],
+     "type": "repayment_in",
+     "target": "Khoa",
+     "ok": true
+    }
+   ]
+  },
+  "D2_seed1": {
+   "correct": 14,
+   "n": 17,
+   "rows": [
+    {
+     "note": "Chuyển cho họ hàng 2 củ",
+     "expected": [
+      "expense",
+      null
+     ],
+     "type": "expense",
+     "target": "họ hàng",
+     "ok": false
+    },
+    {
+     "note": "trả giùm tiền cơm Khoa 50k",
+     "expected": [
+      "lend",
+      "Khoa"
+     ],
+     "type": "lend",
+     "target": "Khoa",
+     "ok": true
+    },
+    {
+     "note": "moi nhan luong 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "moi lanh luong 26tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "long"
+     ],
+     "type": "repayment_in",
+     "target": "long",
+     "ok": true
+    },
+    {
+     "note": "Long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "Long"
+     ],
+     "type": "repayment_in",
+     "target": "Long",
+     "ok": true
+    },
+    {
+     "note": "chị Linh trả 2tr",
+     "expected": [
+      "repayment_in",
+      "Linh"
+     ],
+     "type": "repayment_in",
+     "target": "Linh",
+     "ok": true
+    },
+    {
+     "note": "cong ty tra tien t10 5 lit",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": "cong ty",
+     "ok": false
+    },
+    {
+     "note": "khach tra tien 500k",
+     "expected": [
+      "income",
+      "khach"
+     ],
+     "type": "income",
+     "target": "khach",
+     "ok": true
+    },
+    {
+     "note": "chuyển sang ví momo 1tr",
+     "expected": [
+      "transfer",
+      null
+     ],
+     "type": "transfer",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "chuyển cho mẹ 2 củ",
+     "expected": [
+      "expense",
+      "mẹ"
+     ],
+     "type": "expense",
+     "target": "mẹ",
+     "ok": true
+    },
+    {
+     "note": "mới nhận lương 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "lãnh lương 18tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng lương 3tr",
+     "expected": [
+      "borrow",
+      null
+     ],
+     "type": "borrow",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng giùm Lan tiền điện 400k",
+     "expected": [
+      "lend",
+      "Lan"
+     ],
+     "type": "lend",
+     "target": "Lan",
+     "ok": true
+    },
+    {
+     "note": "mua hộ Tú 200k",
+     "expected": [
+      "lend",
+      "Tú"
+     ],
+     "type": "lend",
+     "target": "Tú",
+     "ok": true
+    },
+    {
+     "note": "Khoa trả lại tiền mình trả giùm 50k",
+     "expected": [
+      "repayment_in",
+      "Khoa"
+     ],
+     "type": "lend",
+     "target": "Khoa",
+     "ok": false
+    }
+   ]
+  },
+  "D2_seed2": {
+   "correct": 14,
+   "n": 17,
+   "rows": [
+    {
+     "note": "Chuyển cho họ hàng 2 củ",
+     "expected": [
+      "expense",
+      null
+     ],
+     "type": "income",
+     "target": "họ hàng",
+     "ok": false
+    },
+    {
+     "note": "trả giùm tiền cơm Khoa 50k",
+     "expected": [
+      "lend",
+      "Khoa"
+     ],
+     "type": "lend",
+     "target": "Khoa",
+     "ok": true
+    },
+    {
+     "note": "moi nhan luong 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "moi lanh luong 26tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "long"
+     ],
+     "type": "repayment_in",
+     "target": "long",
+     "ok": true
+    },
+    {
+     "note": "Long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "Long"
+     ],
+     "type": "repayment_in",
+     "target": "Long",
+     "ok": true
+    },
+    {
+     "note": "chị Linh trả 2tr",
+     "expected": [
+      "repayment_in",
+      "Linh"
+     ],
+     "type": "repayment_in",
+     "target": "Linh",
+     "ok": true
+    },
+    {
+     "note": "cong ty tra tien t10 5 lit",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": "cong ty",
+     "ok": false
+    },
+    {
+     "note": "khach tra tien 500k",
+     "expected": [
+      "income",
+      "khach"
+     ],
+     "type": "income",
+     "target": "khach",
+     "ok": true
+    },
+    {
+     "note": "chuyển sang ví momo 1tr",
+     "expected": [
+      "transfer",
+      null
+     ],
+     "type": "transfer",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "chuyển cho mẹ 2 củ",
+     "expected": [
+      "expense",
+      "mẹ"
+     ],
+     "type": "expense",
+     "target": "mẹ",
+     "ok": true
+    },
+    {
+     "note": "mới nhận lương 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "lãnh lương 18tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": "lãnh",
+     "ok": false
+    },
+    {
+     "note": "ứng lương 3tr",
+     "expected": [
+      "borrow",
+      null
+     ],
+     "type": "borrow",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng giùm Lan tiền điện 400k",
+     "expected": [
+      "lend",
+      "Lan"
+     ],
+     "type": "lend",
+     "target": "Lan",
+     "ok": true
+    },
+    {
+     "note": "mua hộ Tú 200k",
+     "expected": [
+      "lend",
+      "Tú"
+     ],
+     "type": "lend",
+     "target": "Tú",
+     "ok": true
+    },
+    {
+     "note": "Khoa trả lại tiền mình trả giùm 50k",
+     "expected": [
+      "repayment_in",
+      "Khoa"
+     ],
+     "type": "repayment_in",
+     "target": "Khoa",
+     "ok": true
+    }
+   ]
+  },
+  "D2_seed3": {
+   "correct": 15,
+   "n": 17,
+   "rows": [
+    {
+     "note": "Chuyển cho họ hàng 2 củ",
+     "expected": [
+      "expense",
+      null
+     ],
+     "type": "expense",
+     "target": "họ hàng",
+     "ok": false
+    },
+    {
+     "note": "trả giùm tiền cơm Khoa 50k",
+     "expected": [
+      "lend",
+      "Khoa"
+     ],
+     "type": "lend",
+     "target": "Khoa",
+     "ok": true
+    },
+    {
+     "note": "moi nhan luong 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "moi lanh luong 26tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "long"
+     ],
+     "type": "repayment_in",
+     "target": "long",
+     "ok": true
+    },
+    {
+     "note": "Long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "Long"
+     ],
+     "type": "repayment_in",
+     "target": "Long",
+     "ok": true
+    },
+    {
+     "note": "chị Linh trả 2tr",
+     "expected": [
+      "repayment_in",
+      "Linh"
+     ],
+     "type": "repayment_in",
+     "target": "Linh",
+     "ok": true
+    },
+    {
+     "note": "cong ty tra tien t10 5 lit",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": "cong ty",
+     "ok": false
+    },
+    {
+     "note": "khach tra tien 500k",
+     "expected": [
+      "income",
+      "khach"
+     ],
+     "type": "income",
+     "target": "khach",
+     "ok": true
+    },
+    {
+     "note": "chuyển sang ví momo 1tr",
+     "expected": [
+      "transfer",
+      null
+     ],
+     "type": "transfer",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "chuyển cho mẹ 2 củ",
+     "expected": [
+      "expense",
+      "mẹ"
+     ],
+     "type": "expense",
+     "target": "mẹ",
+     "ok": true
+    },
+    {
+     "note": "mới nhận lương 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "lãnh lương 18tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng lương 3tr",
+     "expected": [
+      "borrow",
+      null
+     ],
+     "type": "borrow",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng giùm Lan tiền điện 400k",
+     "expected": [
+      "lend",
+      "Lan"
+     ],
+     "type": "lend",
+     "target": "Lan",
+     "ok": true
+    },
+    {
+     "note": "mua hộ Tú 200k",
+     "expected": [
+      "lend",
+      "Tú"
+     ],
+     "type": "lend",
+     "target": "Tú",
+     "ok": true
+    },
+    {
+     "note": "Khoa trả lại tiền mình trả giùm 50k",
+     "expected": [
+      "repayment_in",
+      "Khoa"
+     ],
+     "type": "repayment_in",
+     "target": "Khoa",
+     "ok": true
+    }
+   ]
+  },
+  "D3_seed1": {
+   "correct": 14,
+   "n": 17,
+   "rows": [
+    {
+     "note": "Chuyển cho họ hàng 2 củ",
+     "expected": [
+      "expense",
+      null
+     ],
+     "type": "expense",
+     "target": "họ hàng",
+     "ok": false
+    },
+    {
+     "note": "trả giùm tiền cơm Khoa 50k",
+     "expected": [
+      "lend",
+      "Khoa"
+     ],
+     "type": "lend",
+     "target": "Khoa",
+     "ok": true
+    },
+    {
+     "note": "moi nhan luong 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "moi lanh luong 26tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "long"
+     ],
+     "type": "repayment_in",
+     "target": "long",
+     "ok": true
+    },
+    {
+     "note": "Long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "Long"
+     ],
+     "type": "repayment_in",
+     "target": "Long",
+     "ok": true
+    },
+    {
+     "note": "chị Linh trả 2tr",
+     "expected": [
+      "repayment_in",
+      "Linh"
+     ],
+     "type": "repayment_in",
+     "target": "Linh",
+     "ok": true
+    },
+    {
+     "note": "cong ty tra tien t10 5 lit",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": "cong ty",
+     "ok": false
+    },
+    {
+     "note": "khach tra tien 500k",
+     "expected": [
+      "income",
+      "khach"
+     ],
+     "type": "income",
+     "target": "khach",
+     "ok": true
+    },
+    {
+     "note": "chuyển sang ví momo 1tr",
+     "expected": [
+      "transfer",
+      null
+     ],
+     "type": "transfer",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "chuyển cho mẹ 2 củ",
+     "expected": [
+      "expense",
+      "mẹ"
+     ],
+     "type": "expense",
+     "target": "mẹ",
+     "ok": true
+    },
+    {
+     "note": "mới nhận lương 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "lãnh lương 18tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng lương 3tr",
+     "expected": [
+      "borrow",
+      null
+     ],
+     "type": "borrow",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng giùm Lan tiền điện 400k",
+     "expected": [
+      "lend",
+      "Lan"
+     ],
+     "type": "lend",
+     "target": "Lan",
+     "ok": true
+    },
+    {
+     "note": "mua hộ Tú 200k",
+     "expected": [
+      "lend",
+      "Tú"
+     ],
+     "type": "lend",
+     "target": "Tú",
+     "ok": true
+    },
+    {
+     "note": "Khoa trả lại tiền mình trả giùm 50k",
+     "expected": [
+      "repayment_in",
+      "Khoa"
+     ],
+     "type": "lend",
+     "target": "Khoa",
+     "ok": false
+    }
+   ]
+  },
+  "D3_seed2": {
+   "correct": 14,
+   "n": 17,
+   "rows": [
+    {
+     "note": "Chuyển cho họ hàng 2 củ",
+     "expected": [
+      "expense",
+      null
+     ],
+     "type": "expense",
+     "target": "họ hàng",
+     "ok": false
+    },
+    {
+     "note": "trả giùm tiền cơm Khoa 50k",
+     "expected": [
+      "lend",
+      "Khoa"
+     ],
+     "type": "lend",
+     "target": "Khoa",
+     "ok": true
+    },
+    {
+     "note": "moi nhan luong 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "moi lanh luong 26tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "long"
+     ],
+     "type": "repayment_in",
+     "target": "long",
+     "ok": true
+    },
+    {
+     "note": "Long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "Long"
+     ],
+     "type": "repayment_in",
+     "target": "Long",
+     "ok": true
+    },
+    {
+     "note": "chị Linh trả 2tr",
+     "expected": [
+      "repayment_in",
+      "Linh"
+     ],
+     "type": "repayment_in",
+     "target": "Linh",
+     "ok": true
+    },
+    {
+     "note": "cong ty tra tien t10 5 lit",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": "cong ty",
+     "ok": false
+    },
+    {
+     "note": "khach tra tien 500k",
+     "expected": [
+      "income",
+      "khach"
+     ],
+     "type": "income",
+     "target": "khach",
+     "ok": true
+    },
+    {
+     "note": "chuyển sang ví momo 1tr",
+     "expected": [
+      "transfer",
+      null
+     ],
+     "type": "transfer",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "chuyển cho mẹ 2 củ",
+     "expected": [
+      "expense",
+      "mẹ"
+     ],
+     "type": "expense",
+     "target": "mẹ",
+     "ok": true
+    },
+    {
+     "note": "mới nhận lương 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "lãnh lương 18tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng lương 3tr",
+     "expected": [
+      "borrow",
+      null
+     ],
+     "type": "borrow",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng giùm Lan tiền điện 400k",
+     "expected": [
+      "lend",
+      "Lan"
+     ],
+     "type": "lend",
+     "target": "Lan",
+     "ok": true
+    },
+    {
+     "note": "mua hộ Tú 200k",
+     "expected": [
+      "lend",
+      "Tú"
+     ],
+     "type": "lend",
+     "target": "Tú",
+     "ok": true
+    },
+    {
+     "note": "Khoa trả lại tiền mình trả giùm 50k",
+     "expected": [
+      "repayment_in",
+      "Khoa"
+     ],
+     "type": "lend",
+     "target": "Khoa",
+     "ok": false
+    }
+   ]
+  },
+  "D3_seed3": {
+   "correct": 14,
+   "n": 17,
+   "rows": [
+    {
+     "note": "Chuyển cho họ hàng 2 củ",
+     "expected": [
+      "expense",
+      null
+     ],
+     "type": "expense",
+     "target": "họ hàng",
+     "ok": false
+    },
+    {
+     "note": "trả giùm tiền cơm Khoa 50k",
+     "expected": [
+      "lend",
+      "Khoa"
+     ],
+     "type": "lend",
+     "target": "Khoa",
+     "ok": true
+    },
+    {
+     "note": "moi nhan luong 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "moi lanh luong 26tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "long"
+     ],
+     "type": "repayment_in",
+     "target": "long",
+     "ok": true
+    },
+    {
+     "note": "Long tra 5 lit",
+     "expected": [
+      "repayment_in",
+      "Long"
+     ],
+     "type": "repayment_in",
+     "target": "Long",
+     "ok": true
+    },
+    {
+     "note": "chị Linh trả 2tr",
+     "expected": [
+      "repayment_in",
+      "Linh"
+     ],
+     "type": "repayment_in",
+     "target": "Linh",
+     "ok": true
+    },
+    {
+     "note": "cong ty tra tien t10 5 lit",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": "cong ty",
+     "ok": false
+    },
+    {
+     "note": "khach tra tien 500k",
+     "expected": [
+      "income",
+      "khach"
+     ],
+     "type": "income",
+     "target": "khach",
+     "ok": true
+    },
+    {
+     "note": "chuyển sang ví momo 1tr",
+     "expected": [
+      "transfer",
+      null
+     ],
+     "type": "transfer",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "chuyển cho mẹ 2 củ",
+     "expected": [
+      "expense",
+      "mẹ"
+     ],
+     "type": "expense",
+     "target": "mẹ",
+     "ok": true
+    },
+    {
+     "note": "mới nhận lương 26cu",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "lãnh lương 18tr",
+     "expected": [
+      "income",
+      null
+     ],
+     "type": "income",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng lương 3tr",
+     "expected": [
+      "borrow",
+      null
+     ],
+     "type": "borrow",
+     "target": null,
+     "ok": true
+    },
+    {
+     "note": "ứng giùm Lan tiền điện 400k",
+     "expected": [
+      "lend",
+      "Lan"
+     ],
+     "type": "lend",
+     "target": "Lan",
+     "ok": true
+    },
+    {
+     "note": "mua hộ Tú 200k",
+     "expected": [
+      "lend",
+      "Tú"
+     ],
+     "type": "lend",
+     "target": "Tú",
+     "ok": true
+    },
+    {
+     "note": "Khoa trả lại tiền mình trả giùm 50k",
+     "expected": [
+      "repayment_in",
+      "Khoa"
+     ],
+     "type": "lend",
+     "target": "Khoa",
+     "ok": false
+    }
+   ]
+  }
+ }
+}
