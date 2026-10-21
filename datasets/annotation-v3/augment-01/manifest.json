@@ -1,0 +1,26 @@
+{
+  "version": "augment-01",
+  "source": "datasets/annotation-v3/training-v5/train.jsonl",
+  "source_sha256": "aa39377928cb054b5b2c0470f4c530e1794171f1359e752b8ac866a483f45286",
+  "source_records": 1123,
+  "records": 1106,
+  "max_per_note": 2,
+  "max_total": 1200,
+  "per_transform": {
+    "glue_amount": 22,
+    "lower_target": 227,
+    "no_diacritic_name_only": 159,
+    "strip_and_lower": 120,
+    "strip_diacritics": 578
+  },
+  "per_type": {
+    "borrow": 176,
+    "expense": 248,
+    "income": 93,
+    "lend": 219,
+    "refund": 49,
+    "repayment_in": 120,
+    "repayment_out": 114,
+    "transfer": 87
+  }
+}

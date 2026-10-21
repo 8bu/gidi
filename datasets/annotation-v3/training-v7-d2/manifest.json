@@ -1,0 +1,3418 @@
+{
+  "name": "training-v7-d2",
+  "annotation_version": "annotation-v3",
+  "purpose": "clef-distill-v2 D2: training-v5 train + augment-01 + soft silver of the old pool (model labels, provenance.annotator = clef / augment, NOT human labels); validation is in-sample, the frozen test split, probe-v1, human-value-01/02 and probe-rules-v1 stay held out",
+  "counts": {
+    "base_records": 1123,
+    "base_dropped": 0,
+    "augment_records": 1106,
+    "augment_dropped": 320,
+    "augment_added": 786,
+    "silver_notes": 2395,
+    "silver_dropped": 138,
+    "silver_added": 1661,
+    "train": 3570
+  },
+  "silver_share": 0.4653,
+  "type_counts": {
+    "expense": 1347,
+    "income": 443,
+    "borrow": 310,
+    "lend": 401,
+    "repayment_in": 225,
+    "repayment_out": 328,
+    "transfer": 303,
+    "refund": 213
+  },
+  "type_counts_by_source": {
+    "base": {
+      "expense": 337,
+      "income": 107,
+      "borrow": 127,
+      "lend": 138,
+      "repayment_in": 77,
+      "repayment_out": 123,
+      "transfer": 141,
+      "refund": 73
+    },
+    "augment": {
+      "expense": 211,
+      "income": 79,
+      "borrow": 116,
+      "lend": 113,
+      "repayment_in": 59,
+      "repayment_out": 82,
+      "transfer": 81,
+      "refund": 45
+    },
+    "silver": {
+      "expense": 799,
+      "income": 257,
+      "borrow": 67,
+      "lend": 150,
+      "repayment_in": 89,
+      "repayment_out": 123,
+      "transfer": 81,
+      "refund": 95
+    }
+  },
+  "source_counts": {
+    "baseline-01": 497,
+    "targeted-annotation-v1-01": 114,
+    "targeted-annotation-v1-02": 112,
+    "debt-01": 79,
+    "contrast-01": 103,
+    "contrast-02": 93,
+    "contrast-03": 82,
+    "contrast-04": 43,
+    "augment-01": 786,
+    "distill-clef-02": 1661
+  },
+  "annotator_counts": {
+    "human": 256,
+    "ai": 546,
+    "llm": 321,
+    "augment": 786,
+    "clef": 1661
+  },
+  "soft_records": 1661,
+  "soft_target_trusted": 706,
+  "overrides": {
+    "rule": {
+      "R2": "\\b(?:tra|ung|mua|dong|nop)\\s+(?:\\S+\\s+)?(?:ho|gium|dum|giup)\\b",
+      "R4-ung": "\\b(?:ung luong|tam ung)\\b"
+    },
+    "applied_over": "NFC, lowercase, diacritics stripped, d-bar -> d (R2 skips accented 'đồng hồ' = watch)",
+    "rows_matched_in_labels_all": {
+      "R2": 190,
+      "R4-ung": 42
+    },
+    "rows_whose_argmax_type_changed": {
+      "R2": 170,
+      "R4-ung": 25
+    },
+    "rows_with_override_in_this_train": {
+      "R2": 53,
+      "R4-ung": 5
+    }
+  },
+  "base_dropped": [],
+  "augment_dropped": [
+    {
+      "id": "augment-01-0027d43e64d5",
+      "text": "cho tâm bên kế toán mượn 500k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-0087c15832f6",
+      "text": "quân còn thiếu mình 400k tiền hụi",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-00b8d010505d",
+      "text": "cho hiếu vay 2tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-01395520b1f3",
+      "text": "cho vay nghia 3tr lai 2%",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-015f7cd4688c",
+      "text": "muon tam duc 300k an trua",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-0196c6313bcf",
+      "text": "anh tùng thanh toán tiền sửa laptop 350k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-0229f0dd9590",
+      "text": "muon dat 100k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-0283a404b76d",
+      "text": "cho q muon 150k an trua",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-02cf8bb66cad",
+      "text": "con no a long 300k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-04af928a7644",
+      "text": "anh hải hoàn lại 600k mình ứng tiền taxi",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-04fdd1fc74b7",
+      "text": "hoa trả tiền ăn hôm qua 150k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-061dbeef4345",
+      "text": "khoa còn nợ mình 250k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-065d83556f41",
+      "text": "mua thuoc cam 65k nha thuoc long chau",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-0772382fd630",
+      "text": "đạt chua tra 500k tien xang",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-07a781100faa",
+      "text": "trả bớt nợ cô hạnh 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-07e4c9e93ebb",
+      "text": "me cho 1 trieu",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-082d08833942",
+      "text": "sinh nhật bé na quà 350k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-08b42a29e45c",
+      "text": "tuấn còn nợ mình 400k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-08c380d9145f",
+      "text": "di xuan cho vay 8 cu mua xe may cu",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-09769c9498fc",
+      "text": "mượn me 5 triệu sửa nhà",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-0bba6ca556c9",
+      "text": "đóng tiền net hộ thằng vinh 180k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-0c47c64ff130",
+      "text": "hằng nợ tiền cafe 45k chưa gửi",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-0d8c436a937c",
+      "text": "còn thiếu bác tư 2tr tiền sửa mái",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-0f1a23f8909e",
+      "text": "duy trả tiền ăn hôm qua 150k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-0f61659e3e44",
+      "text": "mừng tân gia anh quân 500k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-1149c6ddd98d",
+      "text": "thanh toan the techcombank 4tr5",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-11b33902a999",
+      "text": "phát trả lại tiền vé mình mua hộ 380k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-1272b4700748",
+      "text": "thảo vay mình 1tr5, tuần sau trả",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-13b34b191a5e",
+      "text": "mua thuoc cam nha thuoc long chau 126k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-1435e5be28d0",
+      "text": "ngân mượn 300k đóng tiền điện",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-1444e45a56b7",
+      "text": "hua cuoi thang tra thu 500k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-151870167d9c",
+      "text": "cho thằng bin mượn 150k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-151b8fc534c0",
+      "text": "doi dc no bao 600k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-155904171a4f",
+      "text": "ck chú ba 1tr mừng tân gia",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-17126575cb48",
+      "text": "anh tai tra no 3 cu",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-175f061006ee",
+      "text": "cho em ngọc mượn 400k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-17801461c3d3",
+      "text": "tân trả lại tiền cafe hôm qua 90k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-17c6f53ca54e",
+      "text": "trả hộ nam tiền điện tháng này 650k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-17e417b867e6",
+      "text": "nợ cũ tâm 3tr chưa thanh toán",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-18012933b372",
+      "text": "hua cuoi thang tra Thu 500k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-18a28ec267be",
+      "text": "mượn a sơn 700 nghìn",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-18af5a520d0f",
+      "text": "chú năm cho mượn tạm 1tr5 trả tiền điện",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-19adafe286ae",
+      "text": "còn nợ chú hải 12tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-1ae08e826492",
+      "text": "bao hiem y te nam 1tr1",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-1ba83e57e551",
+      "text": "ung luong thang 10 3tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "augment-01-1bac5c8f1b9f",
+      "text": "cho cau tu muon 5tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-1c10300286fd",
+      "text": "thằng tuấn gửi lại 300k tiền ăn",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-1c6e0347c76f",
+      "text": "cong no Minh 2tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-1c8e4a8cad7f",
+      "text": "em phương gửi lại tiền mượn đóng học 2tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-1cba69c4cba8",
+      "text": "nam ck trả nợ, done 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-1d3041442a9c",
+      "text": "cho cau tu muon 3tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-1e6d988867db",
+      "text": "hung con con no minh 300k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-1ea8d7f87332",
+      "text": "quang con no minh 400k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-1f06644c7a6b",
+      "text": "son tra tien ve concert minh mua ho 900k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-1f252ccb91ca",
+      "text": "nợ em trang 70k tiền gửi xe",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-2483b44c96ea",
+      "text": "trả nợ chị mai 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-24c6c1a3f353",
+      "text": "lay lai duoc 800k sang muon hom truoc",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-24f738fa967f",
+      "text": "tra tien muon thang khoa 700k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-254a1baaa329",
+      "text": "cậu sáu còn nợ 5tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-26d9aed00008",
+      "text": "trả nợ anh long 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-294b4d37b553",
+      "text": "mo hai cho 300k mung nhap hoc",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-2989c4a8bc0c",
+      "text": "mung dam cuoi tuan 500k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-2a24e8a36c55",
+      "text": "me cho 1 triệu",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-2a53e4f8505e",
+      "text": "tra no long 200k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-2e31bddc84cf",
+      "text": "còn nợ phương tiền cafe",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-303682736ff8",
+      "text": "trả nợ thắng 1 triệu",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-326d0b7c6b3a",
+      "text": "vay tam di nam 2tr",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-32d35ae8c173",
+      "text": "cho nam muon 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-331455f7bb7b",
+      "text": "em còn nợ chị ngân 2 triệu",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-331b01ab919d",
+      "text": "hang chuyen khoan tra lai 250k tien ve",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-3341ed23c7f0",
+      "text": "hải còn nợ mình 700k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-338a140f1934",
+      "text": "qua sinh nhat linh 300k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-3445d323b825",
+      "text": "tra sua gong cha 55k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-35b819d382d7",
+      "text": "được lì xì ba ngoai 500k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-363ee5dae234",
+      "text": "mai trả lại 200k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-36d99bc70675",
+      "text": "bạn mi chuyển trả tiền mượn sạc 150k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-37b81a1c1e7c",
+      "text": "cho phong muon 200k an trua",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-387e06d79314",
+      "text": "chuyển khoản: dương trả lại tiền gas 140k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-39cb1109844f",
+      "text": "tra giup phat tien xe 90k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-3a136deaae5e",
+      "text": "trả nợ chị thảo 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-3a2256fd217e",
+      "text": "mượn đồng nghiệp hằng 1tr đến cuối tháng",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-3a3aabd6aace",
+      "text": "qua sinh nhat Mai 300 nghin",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-3a805a8d70f9",
+      "text": "duy nợ 2 củ chưa trả",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-3b515ffe2983",
+      "text": "nhan lai 1tr tu dat tien cho muon tuan truoc",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-3bb19277a51c",
+      "text": "chi Ha thieu minh 900k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-3bde278db441",
+      "text": "nhan tien shopee hoan 89k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-3c51b11f543b",
+      "text": "hằng mượn 250k ăn trưa",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-3c5d184a24f4",
+      "text": "cho quang mượn tiền mặt 700k t5",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-3cf4e79198c1",
+      "text": "nhi con no 20k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-3ddaea896218",
+      "text": "tra tien muon lan truoc cho nhan 500k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-3e022842beff",
+      "text": "vay cậu ba 10tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-3f0dc9a0a4d3",
+      "text": "ban dien thoai cu dc 2tr7",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-3f300c378234",
+      "text": "mượn thảo 100k đổ xăng",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-3fb40723d605",
+      "text": "phát còn nợ t 2 củ",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-3fc61d09f927",
+      "text": "Huy quen tra tien banh",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-4086f551a65c",
+      "text": "chua tra co Lan tien sua 300k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-415a91d30db5",
+      "text": "mua thuốc cảm 65k nhà thuốc long chau",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-43c18a4b32b0",
+      "text": "quà 8/3 cho cô hạnh 250k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-43ce47d56472",
+      "text": "sang chưa trả lại tiền mình",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-453fa6ac5e97",
+      "text": "shopee hoan tien 89k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-45d173ca7c12",
+      "text": "thg binh vay t 2tr hen luong ve tra",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-4709b53fba3e",
+      "text": "dc khang tra no 800k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-471f3dce6735",
+      "text": "thu lai tien cho loc vay 2tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-49dc8df2dc38",
+      "text": "Quan còn nợ mình 300k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-4a0c484e5dbf",
+      "text": "dam cuoi anh Phong mung 500k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-4a97e28c3f4a",
+      "text": "thu nợ a sơn đợt 1 2tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-4a9c50faf245",
+      "text": "nam con mượn 500k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-4b698df2113c",
+      "text": "vay nong Tai 1tr",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-4b8a9c105342",
+      "text": "chu tin cho e vay 5tr sua xe",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-4cca43fb273e",
+      "text": "thg kien thieu t 1tr2",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-4d195f28484e",
+      "text": "rut tiet kiem 10tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "augment-01-4d302a42d3f8",
+      "text": "long con thieu minh 350k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-4f4a1760e1fe",
+      "text": "dì út cho em vay 4 củ đi viện",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-4fde1122e042",
+      "text": "cô thảo chưa trả tiền mượn 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-5012f65e7df4",
+      "text": "trả nợ hùng 500k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-51807aa86667",
+      "text": "Binh chua tra 400k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-537735307e63",
+      "text": "công nợ minh 2tr",
+      "reasons": [
+        "duplicate of a training-v5 train record",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-539c0c72a478",
+      "text": "hiền ck trả tiền mượn đợt trước 3tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-5427565de6e1",
+      "text": "anh tuan muon cua t 800k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-5549a58ec6f2",
+      "text": "cho tuấn mượn 2tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-55daef2f067d",
+      "text": "ông bảy hứa tháng sau trả 5tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-5624704ecdbb",
+      "text": "chưa trả bảo tiền ăn tối qua",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-570a0bcd7c9a",
+      "text": "cho chu Hai vay 10 trieu",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-58d014a6e173",
+      "text": "thu nợ khoa 800k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-59ef4602fc11",
+      "text": "qua sinh nhat mai 300 nghin",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-5b1e1b027028",
+      "text": "tra no chi hoa 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-5be450b4bcf2",
+      "text": "mua thuốc cảm nhà thuốc long chau 125k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-5c1bb44cb5e7",
+      "text": "cô út gửi trả 2 triệu",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-5cc80dd8c13e",
+      "text": "Tung muon 2tr hen cuoi thang",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-5d1a07c7296d",
+      "text": "chú hai trả tiền mượn làm vườn 10tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-5d424c056b2f",
+      "text": "bác hai cho vay 10tr mua laptop",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-5d839ca8ee25",
+      "text": "hùng hẹn đầu tháng trả 500k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-5ec89e0f5f11",
+      "text": "gop xe may thang 10 2tr1",
+      "reasons": [
+        "near-duplicate (sequence) of frozen test"
+      ]
+    },
+    {
+      "id": "augment-01-5f2bc814d738",
+      "text": "bieu bac Tu 500k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-5fe73428dbe9",
+      "text": "tra het no chu hai 10 cu",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6105c6248e98",
+      "text": "cho cô hạnh mượn 3tr đóng tiền trọ",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6203ed341cb3",
+      "text": "còn nợ dì út 3tr chưa có tiền trả",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-63cb1ea1127a",
+      "text": "hoan tien shopee 99k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-646859bcfa1e",
+      "text": "minh con no dung 1tr",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-647be5e968c5",
+      "text": "cho nam mượn 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-649d1fcd7722",
+      "text": "Minh tra lai tien an 120k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-65d5da885e0e",
+      "text": "Quan con no minh 300k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-662655028036",
+      "text": "còn nợ cô lan 450k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-67673cd73bf3",
+      "text": "chi mai tra lai 300k tien an",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-68c0c7af0dfa",
+      "text": "duy tra du 1tr2 roi",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-692078f0e760",
+      "text": "vinh tra gop ky 3 cho minh 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6928c5ed1f20",
+      "text": "t cho anh khoi muon 2tr, luong ve anh gui lai",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-6979c9aad810",
+      "text": "ck trả nợ vy 350k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6a1159df47ab",
+      "text": "cho dung muon 400k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6a75bcdd6018",
+      "text": "khoa muon tam 250k tien xang",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6ae178f872f5",
+      "text": "ung cho khai 500k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6b681ff1d2a9",
+      "text": "cô bảy cho e vay 2tr5 mua gạo tháng này",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6b853d63cc51",
+      "text": "ứng trước tiền vé cho chú sơn 1tr2",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6c1ab06977e3",
+      "text": "hòa hoàn lại tiền mượn 700k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6c7124e3fc61",
+      "text": "lì xì cho em thảo 200k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6c73fbbf2676",
+      "text": "em ngan tra 150k hom bua muon",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6c7dc63ff8f1",
+      "text": "do xang xe 70.000d",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-6c863f1f53e5",
+      "text": "cho Long muon 1tr",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-6d60acf00872",
+      "text": "mượn thủy 250k mua vé",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6d85d7edba6e",
+      "text": "bình chuyển lại phần tiền điện mình đóng trước 420k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6d8aa305eb97",
+      "text": "phong gui lai tien grab 65k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6d90a9a81fe1",
+      "text": "hanh tra no roi 1tr2",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6e531aad8021",
+      "text": "anh kiệt ck trả tiền mượn 2tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6f0395e6c721",
+      "text": "quà sn bé na 350k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6f1f518b3a2d",
+      "text": "nhan luong thang 9 18tr5",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01",
+        "char3 >= 0.6 to human-value-02",
+        "near-duplicate (sequence) of probe-rules-v1",
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "augment-01-6f26f0983b7a",
+      "text": "cho em tí mượn 300k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6f5855788c34",
+      "text": "quang còn nợ mình 400k",
+      "reasons": [
+        "duplicate of a training-v5 train record",
+        "near-duplicate (sequence) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-6f7248c5113f",
+      "text": "thu hoi duoc no tu anh tin 2tr5",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6f98cf3a124f",
+      "text": "trả nợ tiền ăn cho hậu 130k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6fc46b2de52f",
+      "text": "hung chuyen tra 2tr tien vay",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-6ff8a4a11459",
+      "text": "mua ho chi lan 2 hop sua 560k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-700c27ad1e4a",
+      "text": "cho chị hoa mượn tạm 800k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-70a6aa90b018",
+      "text": "ban hanh hua cuoi thang tra 1tr",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-7104938194a5",
+      "text": "tra gop tivi ky 5 900k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-71e5b36f0ca2",
+      "text": "tâm gửi lại tiền taxi 90k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-73277921ffb7",
+      "text": "long còn thiếu mình 350k",
+      "reasons": [
+        "duplicate of a training-v5 train record",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-73ea4d631bdf",
+      "text": "Hoa con no minh 350k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-7456d2e66162",
+      "text": "anh kiên ck lại 1tr2 tiền mượn",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-76713d50784b",
+      "text": "dong nghiep long no 100k an trua",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-772da1103238",
+      "text": "tra lai hung 400k tien nhau",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-792cf9d3b7a7",
+      "text": "co ut tra lai 1tr tien muon",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-797bbd374364",
+      "text": "muon cau khoa 800k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-7a1c4edfc788",
+      "text": "cho em linh muon 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-7c5458ca4ea5",
+      "text": "em mai con thieu 250k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-7d66a654c435",
+      "text": "linh tra not 300k nha",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-7f10c64163b5",
+      "text": "no huy 5 xi tu hom tet",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-7f3359ff3aff",
+      "text": "hùng trả nợ 500k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-7fe8a2f92f99",
+      "text": "cho em tí mượn 200 nghìn",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-7ffca969fa71",
+      "text": "da tra Phong 1tr muon tuan truoc",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-80619f1206c5",
+      "text": "cho em linh mượn 300k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-84ecefd88ff7",
+      "text": "dong ho Khoi tien gym 400k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-84f3012bbd30",
+      "text": "tra home credit 950k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-86c0b0e80062",
+      "text": "cho linh mượn 500k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-87b89cc2794b",
+      "text": "cho em linh vay 300k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-8826328b3740",
+      "text": "mua qua sinh nhat cho hanh 450k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-88fe2d2d1981",
+      "text": "tra bot chi hanh 1 trieu",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-89dcf5986d74",
+      "text": "nga thieu minh 450k tien sinh nhat",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-8ad69cac5247",
+      "text": "thg bao cho tao vay 400k nap tien dien thoai",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-8bb4539c895a",
+      "text": "tra ho em thu tien tro 2tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-8d30fd51829e",
+      "text": "mượn khánh 150k đổ xăng",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-8d80301560d8",
+      "text": "cho bác hai vay 10tr mua laptop",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-8de7c7997ab5",
+      "text": "chuyển qua tk tiết kiệm online 3cu",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-8de7d1298a36",
+      "text": "Vy chua tra tien an hom qua 200k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-8ea4a82aa7c8",
+      "text": "ck qua tk phu 2 trieu",
+      "reasons": [
+        "near-duplicate (token) of frozen test",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-8f4cd4dc35ce",
+      "text": "con thieu chi phuong 1tr5 tien tro",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-8f9d5d36f02a",
+      "text": "minh chuyen khoan tra no 3tr",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-9027a4cb43c3",
+      "text": "t còn nợ bà hai 700k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-90f8f4678e86",
+      "text": "trả lại tiền mượn cho vy 200k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-932f5a029ec2",
+      "text": "ck tra no thg tuan 750k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-93eae3a44899",
+      "text": "mua thuoc cam nha thuoc long chau 125k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-94822fe54c62",
+      "text": "gui lai phong tien grab 65k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-952d985f01ce",
+      "text": "anh phong nợ mình 2tr hẹn t6 trả",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-971273e529fb",
+      "text": "nhan luong thang 10 18tr5",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01",
+        "char3 >= 0.6 to human-value-02",
+        "near-duplicate (sequence) of probe-rules-v1",
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "augment-01-984cd8834ca8",
+      "text": "tra no bac sau 5 cu",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-98fc37dec01c",
+      "text": "khang chua tra tien com 60k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-99aa904a3bad",
+      "text": "Tuan tra gop lan 2 cho minh 1tr",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-9b6f0bb1fef3",
+      "text": "tin hen tuan sau tra 450k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-9c50d703a33a",
+      "text": "son hua tuan sau tra 600k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-9c936f64f2f1",
+      "text": "huy mượn của mình 300k nạp game, thứ 6 trả",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-9e6be82ecdae",
+      "text": "phương mượn 150k đổ xăng",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-9ea91b530056",
+      "text": "trang chưa gửi lại 350k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-9fe85de61b1f",
+      "text": "đám cưới hoa mừng 500k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-a04389740335",
+      "text": "duoc chu nam cho 2 cu mung do dai hoc",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-a0652caa33e9",
+      "text": "Khanh con no minh 250k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-a1ad6e1337dd",
+      "text": "thằng tuấn nợ t 200k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-a390c6fa8adc",
+      "text": "bac hung mung tuoi 500k sang mung 1",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-a509972bd6ff",
+      "text": "Minh tra no 700k roi",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-a548ca0e1aa0",
+      "text": "chi mai gui lai tien an 200k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-a69ce1697239",
+      "text": "phúng đám ma ông tám 500k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-a7575b8dd021",
+      "text": "tra gop cho vinh ky 3 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-a7c4f36c06c2",
+      "text": "mua quà 20/10 cho cô lan 340k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-a8524f661c7e",
+      "text": "tien tieu tet cho chi lan 500k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-a94814caa490",
+      "text": "còn nợ cô mai tiền quán 120k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-a950dadbbd1d",
+      "text": "linh vừa trả nợ 4tr rồi",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-a9649bcbcfb7",
+      "text": "cau hai vay 3 trieu, thang sau tra",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-aa69bc78a0f7",
+      "text": "anh Tu cho vay 20tr",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-aa6a4b574654",
+      "text": "li xi di sau 300k mung nam moi",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-ad77d541ff60",
+      "text": "con no nam 300k tien an",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-ae5873235934",
+      "text": "con no chi mai 700k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-ae5ef9d0bdb1",
+      "text": "bảo trả lại 120k tiền cf mình trả hộ",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-af782a663f05",
+      "text": "di sau li xi 300k mung nam moi",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-b008640fcbcb",
+      "text": "tra lai cau ut 4 cu",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-b0e9e278ff70",
+      "text": "chu ba muon tam cua t 5 cu, cuoi thang gui lai",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-b1190fe76056",
+      "text": "muon chi Loan 500k tien tro",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-b1ee76d7ca8f",
+      "text": "lì xì cháu bin 100k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-b226e7d5a87c",
+      "text": "chị hạnh chưa gửi lại 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-b394e36c29a7",
+      "text": "cho ban Phuc vay 2tr hen cuoi thang",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-b4aa9fa3c5e7",
+      "text": "em bao tra tien minh ung ho 450k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-b52aab58e3c3",
+      "text": "mua nua chi vang 3tr9",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-b54cbbe31251",
+      "text": "đòi được 700k cường nợ từ tháng trước",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-b804502259d5",
+      "text": "chưa gửi lại hằng 250k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-b872eaa556f3",
+      "text": "con vy no t 150k tien ve",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-b91efbb4b4c6",
+      "text": "mượn tạm vy 100k đổ xăng",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-b926fe27b896",
+      "text": "tra tien ship ho quan 85k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-b938bfa629eb",
+      "text": "phong bi cuoi anh dung 500k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-ba24deb561a8",
+      "text": "khoa còn nợ mình 700k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-bc3e4a924348",
+      "text": "trang trả đủ 1,5tr rồi nha",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-bcf4a3f7726a",
+      "text": "vay chú ba 10 triệu sửa nhà",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-bdfaaa2e7717",
+      "text": "phuc cho minh muon 500k do xang",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-bfed8d9d42d5",
+      "text": "còn nợ nam 200k tiền vé",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-c02bbcb5919f",
+      "text": "binh tra tien no thang 9 700k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-c0d745a7570b",
+      "text": "tien hoi muon 600k da ck",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-c1aa5d61d6d0",
+      "text": "con no anh minh 800k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-c255917149df",
+      "text": "cho a long muon 5 cu",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-c28985bac5ad",
+      "text": "mua giup be Na bo mau 150k chua gui lai",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-c35d9188e474",
+      "text": "thu no duc 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-c46d185a4cdd",
+      "text": "ung truoc cho phuc 1tr5 dong tien net",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-c47d70d65bd2",
+      "text": "qua sinh nhat duc 350k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-c48efe35818c",
+      "text": "cho em Tu vay 2tr",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-c4e2c096bc64",
+      "text": "muon chi thu 2tr tra cuoi thang",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-c62325a5cf84",
+      "text": "minh muon Huy 300k nap game, thu 6 tra",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-c65176a6517f",
+      "text": "muon chi hanh 2tr dong hoc",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-c68ad683935d",
+      "text": "thu no thg tuan 250k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-c6c5d45028d1",
+      "text": "Loc quen tra minh tien xang",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-c7d5dee8aa7a",
+      "text": "muon nhan 200k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-c9184c14e781",
+      "text": "mua gao 10kg 190k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-c99b2af45165",
+      "text": "nhan lai tien cho muon tu hoa 2tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-cb0a554991a2",
+      "text": "muon cau bin 500 nghin",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-cbc7368b7261",
+      "text": "vay hai 3tr",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-cbcce5ec653e",
+      "text": "gop xe may thang 11 1,8tr",
+      "reasons": [
+        "near-duplicate (sequence) of frozen test"
+      ]
+    },
+    {
+      "id": "augment-01-cc9a524dc776",
+      "text": "hoan tien shopee 189k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-cd947e2a5e84",
+      "text": "anh nghia gui lai tien muon 5tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-d057f877d1f1",
+      "text": "mung tuoi bac hung 500k sang mung 1",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-d18aa1a71e5b",
+      "text": "muon tam chu ba 5 cu, cuoi thang gui lai",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-d1a4c0279239",
+      "text": "ban xe dap cu dc 1tr8",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-d2297b96f449",
+      "text": "duoc li xi ba ngoai 500k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-d3640e159bb4",
+      "text": "minh cho phuc muon 500k do xang",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-d4863bb9e7fd",
+      "text": "qua sinh nhat bé na 300k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-d5cc1b705893",
+      "text": "tra Quan tien ve 180k",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-d7285c127391",
+      "text": "long tra no 200k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-d98f55bf88df",
+      "text": "tra lai ban linh 250k tien ve hom qua",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-da80ac4d632c",
+      "text": "cho dong nghiep thao muon 200k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-dbe2512d1c34",
+      "text": "mừng cưới lan 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-df4d068135ae",
+      "text": "linh nợ mình 120k tiền trà sữa",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-df67492a43df",
+      "text": "e cho chu tin vay 5tr sua xe",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-df770dc3e0dd",
+      "text": "chua tra bac tu 1tr5 muon hom tet",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-e15a3ed41233",
+      "text": "bac sau tra tien muon 3tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-e1c36b94e49c",
+      "text": "vay ban quang 5tr, hen thang sau tra",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-e36918c6f555",
+      "text": "tra spaylater thang 10 650k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-e483eaccabb6",
+      "text": "muon chi lan 2tr tien nha",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-e4941c361ac9",
+      "text": "t vay thg binh 2tr hen luong ve tra",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-e4b397c56dd3",
+      "text": "cho d muon 700k ck qua stk",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-e4c90ee10e46",
+      "text": "tri gui tra 180k tien xang",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-e54f53208061",
+      "text": "trung tra no ok 400K",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-e60ddfc69a74",
+      "text": "tra het no Vy 2 trieu roi",
+      "reasons": [
+        "duplicate of an earlier augment/silver record"
+      ]
+    },
+    {
+      "id": "augment-01-e7f60cd52455",
+      "text": "ck tra no nam 400k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-e80ad5ed5536",
+      "text": "khang tra bot no 1tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-e8b3a625e062",
+      "text": "thu no chi ngoc 3tr",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-e9b18c275c1e",
+      "text": "mung sinh nhat khoa 200k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-ea61405fa3d8",
+      "text": "dat chua tra 300k tien com",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-ed5baed7391e",
+      "text": "muon me 5 trieu sua nha",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-efa34cb12e94",
+      "text": "cho hoa mượn 500k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-f05839e79f53",
+      "text": "chua tra tin 150k tien bong da",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-f2be0be5a37b",
+      "text": "mua thuốc cảm nhà thuốc long chau 126k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "augment-01-f5470a07fae2",
+      "text": "nhan luong thang 11 16tr5",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01",
+        "char3 >= 0.6 to human-value-02",
+        "near-duplicate (sequence) of probe-rules-v1",
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "augment-01-f5aac26af7c7",
+      "text": "cho linh muon 200k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-f63b6b68c9aa",
+      "text": "do xang xe 80.000d",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-fad0cbdfc7fd",
+      "text": "phung dam ma bac hai 300k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "augment-01-fd1ffd4bdcad",
+      "text": "chuyen tien tu vi momo ve vcb 820k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "augment-01-fe017fc81987",
+      "text": "gui tiet kiem 5tr ky han 6 thang",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    }
+  ],
+  "silver_dropped": [
+    {
+      "id": "clef-01-4e0495bad8a3",
+      "text": "mua sữa bách hóa xanh 128k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-d367e81f89d2",
+      "text": "nhà thuốc long châu mua vitamin 230k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-e08f252c55dc",
+      "text": "lotteria combo ga 79k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-58853e64b0a0",
+      "text": "ăn sáng hủ tiếu Nam Vang 45k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-a8776b86ef47",
+      "text": "cà phê trung nguyên 28k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-a9cbb3b2e9d0",
+      "text": "bach hoa xanh sua tuoi + banh 76k",
+      "reasons": [
+        "near-duplicate (token) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-3ec3c96c0497",
+      "text": "xanh sm sân bay 280k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-9e50932c8835",
+      "text": "shopee food trà sữa 2 ly 89k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-96efc8975272",
+      "text": "nhà thuốc long châu mua thuốc ho 78k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-ed09ea901f0b",
+      "text": "cgv 2 vé xem phim 190k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-032f7205eed7",
+      "text": "mua trai cay 80k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-90d4631d6629",
+      "text": "shopee hoàn tiền đơn giày 289k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-80f4c7e08bcb",
+      "text": "khách trả tiền web 5tr",
+      "reasons": [
+        "near-duplicate (folded) of human-value-01",
+        "char3 >= 0.6 to human-value-01",
+        "near-duplicate (token) of probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-ec796957cc66",
+      "text": "khach tra tien lam web 8 trieu",
+      "reasons": [
+        "near-duplicate (token) of human-value-01",
+        "near-duplicate (token) of probe-rules-v1",
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-a8f53abaf6ed",
+      "text": "cty vừa thanh toán tiền xăng tháng 9 450k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-ab6d257356bf",
+      "text": "ck hoan phi chuyen khoan 11k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-f8d2c1580970",
+      "text": "quà tốt nghiệp em Khải 500k",
+      "reasons": [
+        "verbatim text in human-value-02",
+        "near-duplicate (exact) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-dc4aba52e369",
+      "text": "mừng đám cưới Quỳnh 2tr",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-c9aca47134f1",
+      "text": "mừng cưới 1tr cho cty anh Khoa",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-88bca4e113b3",
+      "text": "nhận lì xì 2tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-0ea5ff855887",
+      "text": "sữa cho con 450k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-868f95e19436",
+      "text": "nợ chủ trọ tiền điện 280k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "clef-01-5e57c6a4a41c",
+      "text": "vay ngan hang 50 củ mua xe",
+      "reasons": [
+        "near-duplicate (token) of human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-a74682477731",
+      "text": "nợ anh Tùng 2tr tiền nhậu",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-52b6165a4ba3",
+      "text": "còn nợ mẹ 4tr",
+      "reasons": [
+        "near-duplicate (folded) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-d30c9b04515b",
+      "text": "ứng lương trước 2 triệu",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-dbf1dc0ade33",
+      "text": "Phúc chưa trả 1tr5",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-2cd8ba26b74d",
+      "text": "Hải hứa tuần sau trả 1tr",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-3af96fa8fff9",
+      "text": "cho muon 600k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-960e62115444",
+      "text": "cho co Thu muon 5tr",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-5a19de6373e3",
+      "text": "trả giùm tiền cơm Khoa 50k",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-0398c008af65",
+      "text": "Khoa gửi lại tiền cơm 50k",
+      "reasons": [
+        "near-duplicate (folded) of probe-rules-v1",
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-5433229016b2",
+      "text": "tuấn trả 1tr",
+      "reasons": [
+        "near-duplicate (folded) of probe-rules-v1",
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-ac748c864ec8",
+      "text": "khach tra tien ship 35k",
+      "reasons": [
+        "near-duplicate (folded) of probe-rules-v1",
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-d4bb4954a3d1",
+      "text": "đối tác thanh toán đợt 2 20tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-420d02e660db",
+      "text": "nhận tiền freelance từ khách 4tr5",
+      "reasons": [
+        "near-duplicate (folded) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-cb910730b7fb",
+      "text": "trả hết nợ cô Lan 5tr",
+      "reasons": [
+        "near-duplicate (token) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-a1415593483e",
+      "text": "tra gop tivi 900k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-4cb66a710ba1",
+      "text": "trả góp máy giặt 1tr2 tháng 9",
+      "reasons": [
+        "near-duplicate (token) of human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-6aa711f1288d",
+      "text": "trả tiền nợ đồng nghiệp Trang 140k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-28fa681e28ab",
+      "text": "lãnh lương 12tr8 rồi",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-4495c46f18aa",
+      "text": "luong t10 18tr5",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-c9de040ad7c4",
+      "text": "nhận lương ngày 5 lương 19tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-23f761752a1c",
+      "text": "lương về tk 25tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-49bffc371a5b",
+      "text": "phu cap an trua 730k",
+      "reasons": [
+        "verbatim text in human-value-01",
+        "near-duplicate (exact) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-811bf23e1697",
+      "text": "nhận lương đợt 1 tháng 10 10tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-f037bc81c5d9",
+      "text": "có lương òi 13tr",
+      "reasons": [
+        "near-duplicate (sequence) of probe-rules-v1",
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-cc36713acf50",
+      "text": "lương nhận về 16tr tháng 10",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-236161fddc44",
+      "text": "lì xì lương tháng 13 8tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-40ca402bbc9a",
+      "text": "tạm ứng cty 5tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-7dc42fb53218",
+      "text": "tam ung luong 4 cu",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-c9a2db4e243b",
+      "text": "ứng lương gấp 1 củ",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-ba8fbdab070e",
+      "text": "mới ứng lương 4tr5",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-e9dbb04a71c9",
+      "text": "lai ngan hang 120k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-7c336e01bdbe",
+      "text": "bán lap cũ 7tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-a2fe6cb56ab3",
+      "text": "trúng thưởng bốc thăm công ty 500k",
+      "reasons": [
+        "near-duplicate (token) of probe-v1"
+      ]
+    },
+    {
+      "id": "clef-01-2fda236694e9",
+      "text": "tiền lãi sổ tiết kiệm đáo hạn 2tr75",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-85b3971cda0e",
+      "text": "ck cho họ hàng 2 củ",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-ad5b624c27bf",
+      "text": "biếu ba mẹ 3tr",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-fe17b54d3b72",
+      "text": "ck tiền phòng t10 3tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-ce5f77f11df4",
+      "text": "chuyển cho chị Hai 1tr",
+      "reasons": [
+        "near-duplicate (token) of probe-rules-v1",
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-0150e7b60f72",
+      "text": "gui tien nha cho me 3tr",
+      "reasons": [
+        "near-duplicate (token) of human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-0556456255e6",
+      "text": "chuyển sang ví momo 1tr",
+      "reasons": [
+        "verbatim text in probe-rules-v1",
+        "near-duplicate (exact) of probe-rules-v1",
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-0b1a915896c3",
+      "text": "gửi tiết kiệm kỳ hạn 6 tháng 50tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-15380dc892b8",
+      "text": "chuyển khoản qua ví zalopay 200k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-3888463f6839",
+      "text": "mua chứng chỉ quỹ vesaf 2tr",
+      "reasons": [
+        "near-duplicate (token) of probe-rules-v1",
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-8fb6230ad46a",
+      "text": "rut 3tr tu momo ve vcb",
+      "reasons": [
+        "near-duplicate (token) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-d572b3ad73df",
+      "text": "phở bò 50k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-e04727374afd",
+      "text": "an vat 35k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-9396b4913dfd",
+      "text": "ăn sáng hủ tiếu 35,000",
+      "reasons": [
+        "near-duplicate (token) of human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-c9fb19ee06b9",
+      "text": "mua 2 kg cam 90k",
+      "reasons": [
+        "near-duplicate (folded) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-a00d98631da1",
+      "text": "cf trung nguyen 45k",
+      "reasons": [
+        "verbatim text in human-value-02",
+        "near-duplicate (exact) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-07d59190078d",
+      "text": "bách hóa xanh 267k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-eb21b94481b4",
+      "text": "Lan an sang 30k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-f5b0d4446df8",
+      "text": "banh bao + sua dau nanh 18k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-d8ae6968524a",
+      "text": "tien tro t12 2tr8",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-cf2c09bbf440",
+      "text": "icloud 50GB 19k",
+      "reasons": [
+        "verbatim text in human-value-01",
+        "near-duplicate (exact) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-1ecfac94aaf3",
+      "text": "tien hoc piano cho be 1,2tr",
+      "reasons": [
+        "near-duplicate (token) of human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-b474fa6815eb",
+      "text": "trả tiền nhà tháng 3 2tr9 xong",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-873659805568",
+      "text": "do xang xe may 70k",
+      "reasons": [
+        "near-duplicate (token) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-5f56ccbd961c",
+      "text": "be ve nha 52k",
+      "reasons": [
+        "near-duplicate (folded) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-7f12cad17464",
+      "text": "ve may bay vietjet 1,2tr",
+      "reasons": [
+        "near-duplicate (token) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-8bb28161ea72",
+      "text": "gửi xe 5k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-bf33dc24fd94",
+      "text": "khám bệnh 300k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-8ccfeffc1cf5",
+      "text": "mua giày nike 2tr8",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01",
+        "near-duplicate (folded) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-a24e48cccd19",
+      "text": "taxi ra san bay 280k",
+      "reasons": [
+        "near-duplicate (token) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-aaa4df824f59",
+      "text": "dat ve may bay tet 4 củ",
+      "reasons": [
+        "near-duplicate (token) of human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-bbba58d789bb",
+      "text": "tra tien nha chu nha 4tr2 thang 10",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-b00cf41b8c3f",
+      "text": "cong ty tra tien t11 12tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-cd399f84465b",
+      "text": "chuyển tiền tiết kiệm sang tk vcb 5tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-c01b2e7742a2",
+      "text": "trả mẹ tiền mượn lần trước 1tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-9cfef5b25c43",
+      "text": "đóng bảo hiểm 1tr3 ❤️",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-5e09b2d51021",
+      "text": "nhanluong 18tr5",
+      "reasons": [
+        "near-duplicate (sequence) of probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-19749576822e",
+      "text": "mua vé xem phim 2 ve 180k",
+      "reasons": [
+        "near-duplicate (token) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-9bec2b5965ec",
+      "text": "nhận lương rồi, 22tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-01-1c6bbadb0f58",
+      "text": "xang 70k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-02-b95df6f5b2a2",
+      "text": "vy tra 350k ne",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-da0af7e760f6",
+      "text": "chú Tư trả 4tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-b50db9205db3",
+      "text": "cty trả tiền tháng này 11tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-573952fbe6df",
+      "text": "khách trả tiền cọc đơn hàng 2tr",
+      "reasons": [
+        "near-duplicate (token) of probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-781cbceb91c4",
+      "text": "công ty trả tiền thưởng tết 10tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-02-f21f999d3a16",
+      "text": "dũng trả lại tiền mượn 3 triệu",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-02-df436550d5ec",
+      "text": "cô Lan trả nợ 6tr",
+      "reasons": [
+        "near-duplicate (token) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-02-d421a3bb9bf1",
+      "text": "em Trang trả lại tiền mượn 200k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-02-e33167aa0819",
+      "text": "anh Đạt tra bot no 3tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-02-730b2394ba54",
+      "text": "em Khoa tra no 150k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-02-ea12b68e2c55",
+      "text": "trả hộ chú Ba tiền thuốc 220k",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-3447a9e82298",
+      "text": "nga gui lai tien an minh tra gium 80k",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-f5fc4a329ad2",
+      "text": "duy tra lai tien dien minh ung gium 300k",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-17aa28650b73",
+      "text": "Tuấn hoàn lại tiền mình trả hộ 380k",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-a1f6261c734a",
+      "text": "mua ho ban 3 ve xem phim 270k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-02-2a9b8ccbdd9c",
+      "text": "gửi mẹ 3 củ tiền chợ",
+      "reasons": [
+        "near-duplicate (token) of human-value-02"
+      ]
+    },
+    {
+      "id": "clef-02-972ac6eef106",
+      "text": "chuyển cho họ hàng 2 củ giúp đỡ",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-59bd288ca2cc",
+      "text": "chuyen sang vi zalopay 500k",
+      "reasons": [
+        "near-duplicate (folded) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-02-c58d6971f464",
+      "text": "gửi tiết kiệm online 4tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-064efde09cb2",
+      "text": "gui tiet kiem ky han 6 thang 20tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-02-b210e881206a",
+      "text": "chuyển khoản cho mẹ 3tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-84941edcbdef",
+      "text": "nhận lương đợt 1 6tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-d7ce0cf6a4b7",
+      "text": "lãnh lương rồi 13tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-0c77abc4dfa7",
+      "text": "nhận lương và thưởng 20tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-80a68d29a3dd",
+      "text": "nhan luong co ban 7tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-63ef772f6644",
+      "text": "nhận lương trợ giảng 3tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-70f3f028c35c",
+      "text": "tam ung cty 2tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-2268a06920e2",
+      "text": "tiền lương nhận 15tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-3dff67c105ef",
+      "text": "tien luong thang 5 nhan 11tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02",
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-422274765a6b",
+      "text": "nhan tien luong 13 cu",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-b2c9b30bdb7b",
+      "text": "grab đi làm 54k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-02-bafb57ad6854",
+      "text": "mua trai cay 85k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-02-34fe6d5c3d46",
+      "text": "siêu thị coopmart 340k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-02-0cbd0cffc11c",
+      "text": "mua sách 145k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-02-d4d3a8d32af6",
+      "text": "ăn sáng bánh cuốn 35k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-02-f55ae0f89e7e",
+      "text": "nhận lương tháng 13 của công ty 12tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-cc4d635951a2",
+      "text": "khach tra du tien web 12tr",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-02-96f55943db90",
+      "text": "chị Trinh hoàn lại tiền ăn mình trả giùm 120k",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-020083d8f756",
+      "text": "Hà Anh gửi lại tiền quà mình mua hộ 250k",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    },
+    {
+      "id": "clef-02-a59ba4d47d2f",
+      "text": "đi taxi ra sân bay 260k",
+      "reasons": [
+        "near-duplicate (token) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-02-c99957d23172",
+      "text": "phí chuyển tiền ngân hàng 11k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-02-a3162983cc78",
+      "text": "cong ty tra tien du an dot cuoi 22tr",
+      "reasons": [
+        "char3 >= 0.6 to probe-rules-v1"
+      ]
+    }
+  ],
+  "leakage_gate": {
+    "sets": {
+      "frozen test": 105,
+      "probe-v1": 81,
+      "human-value-01": 150,
+      "human-value-02": 200,
+      "probe-rules-v1": 64
+    },
+    "rule": "no id, no verbatim or NFC+lowercase text of any train record in a set; no new (augment/silver) note a near duplicate (scripts/build_human_value_queue.py rules) of any note of a set; no new note at folded char-3 Jaccard >= 0.6 to a human-value-01/02 or probe-rules-v1 note; no new note equal to a training-v5 train text. Failing notes are dropped, see augment_dropped / silver_dropped",
+    "max_char3_new_notes": {
+      "human-value-01": 0.5938,
+      "human-value-02": 0.5926,
+      "probe-rules-v1": 0.5938
+    },
+    "result": "pass"
+  },
+  "inputs_sha256": {
+    "datasets/annotation-v3/training-v5/train.jsonl": "aa39377928cb054b5b2c0470f4c530e1794171f1359e752b8ac866a483f45286",
+    "datasets/annotation-v3/training-v5/manifest.json": "b5c1af416f0c0ffdd8e2a4174e4a4d6735596f560538f470e4c3fd532d4b5c4e",
+    "datasets/annotation-v3/training-v6a/train.jsonl": "0a2e6fa3dff6d8177af94516bb406112096fa3b684186a5f0badbe3e9ad62044",
+    "datasets/annotation-v3/augment-01/train.jsonl": "0a852731314c9e92b3d1d7d300576d868d848eaec6273f93525572e42b6476c5",
+    "datasets/annotation-v3/augment-01/manifest.json": "21b21f195764cf0ed7d7d34cb011952146b19c3ad7f392ff50ef641739e0190d",
+    "datasets/annotation-v3/distill-clef-02/labels-all.jsonl": "e092b0a1f7b82e4470ea1c047e10ef1e4f55224f7b7f625f9e3f4def598a30d3",
+    "datasets/annotation-v3/distill-clef-02/manifest.json": "684f67a906bb76a2bdc4e6edf98768f05a9efae0e7728984519cfd94f8ea0de6",
+    "datasets/probe-rules-v1/queue.jsonl": "dcf605d57eec46e9fd7aa9e944b176e1873cb5b15adc21a3bb1c56779c92b0c8",
+    "datasets/annotation-v3/human-value-02/review-queue.jsonl": "a9ba9627f24796d6d0be61b8cf69b9e9d83691da3c0473cefcc57adb8c0b0cb6",
+    "datasets/annotation-v3/human-value-02/review-queue-b.jsonl": "f48812b414ac814f40e823cf6dd59766b95fabb6085b2f244b1c17a346146760"
+  },
+  "outputs_sha256": {
+    "train.jsonl": "0849bdc574fa34925f8f99b9ab123df61a3d1793d4aa14d3e8680a41a39fcc15"
+  },
+  "evaluation_sets": "validation.jsonl (in-sample, logging only) and test.jsonl are symlinks to the frozen annotation-v1 splits"
+}

@@ -1,0 +1,64 @@
+{"id":"pr-001","annotation_status":"complete","type":"repayment_in","target":{"text":"Tuấn","start":0,"end":4}}
+{"id":"pr-002","annotation_status":"complete","type":"repayment_in","target":{"text":"bà ngoại","start":0,"end":8}}
+{"id":"pr-003","annotation_status":"complete","type":"repayment_in","target":{"text":"hung","start":0,"end":4}}
+{"id":"pr-004","annotation_status":"complete","type":"repayment_in","target":{"text":"chú Sáu","start":0,"end":7}}
+{"id":"pr-005","annotation_status":"complete","type":"repayment_in","target":{"text":"em Vy","start":0,"end":5}}
+{"id":"pr-006","annotation_status":"complete","type":"repayment_in","target":{"text":"thằng Bảo","start":0,"end":9}}
+{"id":"pr-007","annotation_status":"complete","type":"repayment_in","target":{"text":"bác Hải","start":0,"end":7}}
+{"id":"pr-008","annotation_status":"complete","type":"repayment_in","target":{"text":"dì tư","start":0,"end":5}}
+{"id":"pr-009","annotation_status":"complete","type":"income","target":{"text":"cong ty","start":0,"end":7}}
+{"id":"pr-010","annotation_status":"complete","type":"income","target":{"text":"khach","start":0,"end":5}}
+{"id":"pr-011","annotation_status":"complete","type":"income","target":{"text":"khách hàng","start":0,"end":10}}
+{"id":"pr-012","annotation_status":"complete","type":"income","target":{"text":"cty","start":0,"end":3}}
+{"id":"pr-013","annotation_status":"complete","type":"income","target":{"text":"khach quen","start":0,"end":10}}
+{"id":"pr-014","annotation_status":"complete","type":"income","target":{"text":"chủ quán","start":0,"end":8}}
+{"id":"pr-015","annotation_status":"complete","type":"income","target":{"text":"công ty","start":0,"end":7}}
+{"id":"pr-016","annotation_status":"complete","type":"income","target":{"text":"khach","start":0,"end":5}}
+{"id":"pr-017","annotation_status":"complete","type":"lend","target":{"text":"Nam","start":9,"end":12}}
+{"id":"pr-018","annotation_status":"complete","type":"lend","target":{"text":"chi Hoa","start":7,"end":14}}
+{"id":"pr-019","annotation_status":"complete","type":"lend","target":{"text":"bác Tư","start":7,"end":13}}
+{"id":"pr-020","annotation_status":"complete","type":"lend","target":{"text":"em Phát","start":8,"end":15}}
+{"id":"pr-021","annotation_status":"complete","type":"lend","target":{"text":"thang Duc","start":7,"end":16}}
+{"id":"pr-022","annotation_status":"complete","type":"lend","target":{"text":"cô Mai","start":9,"end":15}}
+{"id":"pr-023","annotation_status":"complete","type":"lend","target":{"text":"Kien","start":9,"end":13}}
+{"id":"pr-024","annotation_status":"complete","type":"lend","target":{"text":"chú Ba","start":7,"end":13}}
+{"id":"pr-025","annotation_status":"complete","type":"repayment_in","target":{"text":"Khoa","start":0,"end":4}}
+{"id":"pr-026","annotation_status":"complete","type":"repayment_in","target":{"text":"linh","start":0,"end":4}}
+{"id":"pr-027","annotation_status":"complete","type":"repayment_in","target":{"text":"chị Hoa","start":0,"end":7}}
+{"id":"pr-028","annotation_status":"complete","type":"repayment_in","target":{"text":"bao","start":0,"end":3}}
+{"id":"pr-029","annotation_status":"complete","type":"repayment_in","target":{"text":"Phúc","start":0,"end":4}}
+{"id":"pr-030","annotation_status":"complete","type":"repayment_in","target":{"text":"em Nga","start":0,"end":6}}
+{"id":"pr-031","annotation_status":"complete","type":"repayment_in","target":{"text":"anh Tín","start":0,"end":7}}
+{"id":"pr-032","annotation_status":"complete","type":"repayment_in","target":{"text":"Thư","start":0,"end":3}}
+{"id":"pr-033","annotation_status":"complete","type":"expense","target":{"text":"mẹ","start":11,"end":13}}
+{"id":"pr-034","annotation_status":"complete","type":"expense","target":{"text":"ba","start":8,"end":10}}
+{"id":"pr-035","annotation_status":"complete","type":"expense","target":{"text":"bà nội","start":5,"end":11}}
+{"id":"pr-036","annotation_status":"complete","type":"expense","target":{"text":"ho hang","start":11,"end":18}}
+{"id":"pr-037","annotation_status":"complete","type":"expense","target":{"text":"bạn Tâm","start":8,"end":15}}
+{"id":"pr-038","annotation_status":"complete","type":"expense","target":{"text":"co Ba","start":5,"end":10}}
+{"id":"pr-039","annotation_status":"complete","type":"expense","target":{"text":"chị hai","start":17,"end":24}}
+{"id":"pr-040","annotation_status":"complete","type":"expense","target":{"text":"bo","start":4,"end":6}}
+{"id":"pr-041","annotation_status":"complete","type":"transfer","target":null}
+{"id":"pr-042","annotation_status":"complete","type":"transfer","target":null}
+{"id":"pr-043","annotation_status":"complete","type":"transfer","target":null}
+{"id":"pr-044","annotation_status":"complete","type":"transfer","target":null}
+{"id":"pr-045","annotation_status":"complete","type":"transfer","target":null}
+{"id":"pr-046","annotation_status":"complete","type":"transfer","target":null}
+{"id":"pr-047","annotation_status":"complete","type":"transfer","target":null}
+{"id":"pr-048","annotation_status":"complete","type":"transfer","target":null}
+{"id":"pr-049","annotation_status":"complete","type":"income","target":null}
+{"id":"pr-050","annotation_status":"complete","type":"income","target":null}
+{"id":"pr-051","annotation_status":"complete","type":"income","target":null}
+{"id":"pr-052","annotation_status":"complete","type":"income","target":null}
+{"id":"pr-053","annotation_status":"complete","type":"income","target":null}
+{"id":"pr-054","annotation_status":"complete","type":"income","target":null}
+{"id":"pr-055","annotation_status":"complete","type":"income","target":null}
+{"id":"pr-056","annotation_status":"complete","type":"income","target":null}
+{"id":"pr-057","annotation_status":"complete","type":"borrow","target":null}
+{"id":"pr-058","annotation_status":"complete","type":"borrow","target":null}
+{"id":"pr-059","annotation_status":"complete","type":"borrow","target":null}
+{"id":"pr-060","annotation_status":"complete","type":"borrow","target":null}
+{"id":"pr-061","annotation_status":"complete","type":"borrow","target":null}
+{"id":"pr-062","annotation_status":"complete","type":"borrow","target":null}
+{"id":"pr-063","annotation_status":"complete","type":"borrow","target":null}
+{"id":"pr-064","annotation_status":"complete","type":"borrow","target":null}

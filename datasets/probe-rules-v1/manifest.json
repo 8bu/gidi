@@ -1,0 +1,9 @@
+{
+  "name": "probe-rules-v1",
+  "notes": 64,
+  "per_rule": {"R1": 16, "R2": 16, "R3": 16, "R4": 16},
+  "purpose": "Evaluation-only diagnostic set for the annotation-v4 rules R1-R4 (see clef-distill-v2).",
+  "labelled_by": "llm (hand-written notes, labels derived by applying the rule text only)",
+  "human_labels": false,
+  "usage": "Never train on this set. Never paraphrase, copy or derive augmentation from it."
+}

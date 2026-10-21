@@ -1,0 +1,584 @@
+{
+  "name": "training-v6b",
+  "annotation_version": "annotation-v3",
+  "purpose": "clef-distill-v1 arm B: training-v5 train + Clef silver-B (model labels, provenance.annotator = clef, NOT human labels); validation is in-sample, the frozen test split, probe-v1, human-value-01 and human-value-02 stay held out",
+  "counts": {
+    "training_v5_train": 1123,
+    "silver_B_records": 1344,
+    "silver_dropped": 66,
+    "silver_added": 1278,
+    "train": 2401
+  },
+  "silver_share": 0.5323,
+  "type_counts": {
+    "expense": 958,
+    "income": 322,
+    "borrow": 177,
+    "lend": 203,
+    "repayment_in": 151,
+    "repayment_out": 223,
+    "transfer": 215,
+    "refund": 152
+  },
+  "type_counts_by_source": {
+    "training_v5_train": {
+      "expense": 337,
+      "income": 107,
+      "borrow": 127,
+      "lend": 138,
+      "repayment_in": 77,
+      "repayment_out": 123,
+      "transfer": 141,
+      "refund": 73
+    },
+    "silver_B": {
+      "expense": 621,
+      "income": 215,
+      "borrow": 50,
+      "lend": 65,
+      "repayment_in": 74,
+      "repayment_out": 100,
+      "transfer": 74,
+      "refund": 79
+    }
+  },
+  "source_counts": {
+    "baseline-01": 497,
+    "targeted-annotation-v1-01": 114,
+    "targeted-annotation-v1-02": 112,
+    "debt-01": 79,
+    "contrast-01": 103,
+    "contrast-02": 93,
+    "contrast-03": 82,
+    "contrast-04": 43,
+    "distill-clef-01": 1278
+  },
+  "annotator_counts": {
+    "human": 256,
+    "ai": 546,
+    "llm": 321,
+    "clef": 1278
+  },
+  "silver_dropped": [
+    {
+      "id": "clef-01-4e0495bad8a3",
+      "text": "mua sữa bách hóa xanh 128k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-d367e81f89d2",
+      "text": "nhà thuốc long châu mua vitamin 230k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-e08f252c55dc",
+      "text": "lotteria combo ga 79k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-58853e64b0a0",
+      "text": "ăn sáng hủ tiếu Nam Vang 45k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-a8776b86ef47",
+      "text": "cà phê trung nguyên 28k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-a9cbb3b2e9d0",
+      "text": "bach hoa xanh sua tuoi + banh 76k",
+      "reasons": [
+        "near-duplicate (token) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-3ec3c96c0497",
+      "text": "xanh sm sân bay 280k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-9e50932c8835",
+      "text": "shopee food trà sữa 2 ly 89k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-96efc8975272",
+      "text": "nhà thuốc long châu mua thuốc ho 78k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-ed09ea901f0b",
+      "text": "cgv 2 vé xem phim 190k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-032f7205eed7",
+      "text": "mua trai cay 80k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-90d4631d6629",
+      "text": "shopee hoàn tiền đơn giày 289k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-80f4c7e08bcb",
+      "text": "khách trả tiền web 5tr",
+      "reasons": [
+        "near-duplicate (folded) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-ec796957cc66",
+      "text": "khach tra tien lam web 8 trieu",
+      "reasons": [
+        "near-duplicate (token) of human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-a8f53abaf6ed",
+      "text": "cty vừa thanh toán tiền xăng tháng 9 450k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-f8d2c1580970",
+      "text": "quà tốt nghiệp em Khải 500k",
+      "reasons": [
+        "verbatim text in human-value-02",
+        "near-duplicate (exact) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-dc4aba52e369",
+      "text": "mừng đám cưới Quỳnh 2tr",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-c9aca47134f1",
+      "text": "mừng cưới 1tr cho cty anh Khoa",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-88bca4e113b3",
+      "text": "nhận lì xì 2tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-0ea5ff855887",
+      "text": "sữa cho con 450k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-868f95e19436",
+      "text": "nợ chủ trọ tiền điện 280k",
+      "reasons": [
+        "duplicate of a training-v5 train record"
+      ]
+    },
+    {
+      "id": "clef-01-5e57c6a4a41c",
+      "text": "vay ngan hang 50 củ mua xe",
+      "reasons": [
+        "near-duplicate (token) of human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-a74682477731",
+      "text": "nợ anh Tùng 2tr tiền nhậu",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-52b6165a4ba3",
+      "text": "còn nợ mẹ 4tr",
+      "reasons": [
+        "near-duplicate (folded) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-dbf1dc0ade33",
+      "text": "Phúc chưa trả 1tr5",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-2cd8ba26b74d",
+      "text": "Hải hứa tuần sau trả 1tr",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-3af96fa8fff9",
+      "text": "cho muon 600k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-960e62115444",
+      "text": "cho co Thu muon 5tr",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-d4bb4954a3d1",
+      "text": "đối tác thanh toán đợt 2 20tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-420d02e660db",
+      "text": "nhận tiền freelance từ khách 4tr5",
+      "reasons": [
+        "near-duplicate (folded) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-cb910730b7fb",
+      "text": "trả hết nợ cô Lan 5tr",
+      "reasons": [
+        "near-duplicate (token) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-a1415593483e",
+      "text": "tra gop tivi 900k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-4cb66a710ba1",
+      "text": "trả góp máy giặt 1tr2 tháng 9",
+      "reasons": [
+        "near-duplicate (token) of human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-6aa711f1288d",
+      "text": "trả tiền nợ đồng nghiệp Trang 140k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-4495c46f18aa",
+      "text": "luong t10 18tr5",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-7c336e01bdbe",
+      "text": "bán lap cũ 7tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-a2fe6cb56ab3",
+      "text": "trúng thưởng bốc thăm công ty 500k",
+      "reasons": [
+        "near-duplicate (token) of probe-v1"
+      ]
+    },
+    {
+      "id": "clef-01-2fda236694e9",
+      "text": "tiền lãi sổ tiết kiệm đáo hạn 2tr75",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-ad5b624c27bf",
+      "text": "biếu ba mẹ 3tr",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-fe17b54d3b72",
+      "text": "ck tiền phòng t10 3tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-0b1a915896c3",
+      "text": "gửi tiết kiệm kỳ hạn 6 tháng 50tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-15380dc892b8",
+      "text": "chuyển khoản qua ví zalopay 200k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-8fb6230ad46a",
+      "text": "rut 3tr tu momo ve vcb",
+      "reasons": [
+        "near-duplicate (token) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-d572b3ad73df",
+      "text": "phở bò 50k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-e04727374afd",
+      "text": "an vat 35k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-9396b4913dfd",
+      "text": "ăn sáng hủ tiếu 35,000",
+      "reasons": [
+        "near-duplicate (token) of human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-c9fb19ee06b9",
+      "text": "mua 2 kg cam 90k",
+      "reasons": [
+        "near-duplicate (folded) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-07d59190078d",
+      "text": "bách hóa xanh 267k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-eb21b94481b4",
+      "text": "Lan an sang 30k",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-f5b0d4446df8",
+      "text": "banh bao + sua dau nanh 18k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-d8ae6968524a",
+      "text": "tien tro t12 2tr8",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-cf2c09bbf440",
+      "text": "icloud 50GB 19k",
+      "reasons": [
+        "verbatim text in human-value-01",
+        "near-duplicate (exact) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-1ecfac94aaf3",
+      "text": "tien hoc piano cho be 1,2tr",
+      "reasons": [
+        "near-duplicate (token) of human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-873659805568",
+      "text": "do xang xe may 70k",
+      "reasons": [
+        "near-duplicate (token) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-7f12cad17464",
+      "text": "ve may bay vietjet 1,2tr",
+      "reasons": [
+        "near-duplicate (token) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-8bb28161ea72",
+      "text": "gửi xe 5k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-bf33dc24fd94",
+      "text": "khám bệnh 300k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-8ccfeffc1cf5",
+      "text": "mua giày nike 2tr8",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01",
+        "near-duplicate (folded) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-a24e48cccd19",
+      "text": "taxi ra san bay 280k",
+      "reasons": [
+        "near-duplicate (token) of human-value-01",
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-aaa4df824f59",
+      "text": "dat ve may bay tet 4 củ",
+      "reasons": [
+        "near-duplicate (token) of human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-bbba58d789bb",
+      "text": "tra tien nha chu nha 4tr2 thang 10",
+      "reasons": [
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-cd399f84465b",
+      "text": "chuyển tiền tiết kiệm sang tk vcb 5tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-c01b2e7742a2",
+      "text": "trả mẹ tiền mượn lần trước 1tr",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-9cfef5b25c43",
+      "text": "đóng bảo hiểm 1tr3 ❤️",
+      "reasons": [
+        "char3 >= 0.6 to human-value-01"
+      ]
+    },
+    {
+      "id": "clef-01-19749576822e",
+      "text": "mua vé xem phim 2 ve 180k",
+      "reasons": [
+        "near-duplicate (token) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    },
+    {
+      "id": "clef-01-1c6bbadb0f58",
+      "text": "xang 70k",
+      "reasons": [
+        "near-duplicate (sequence) of human-value-02",
+        "char3 >= 0.6 to human-value-02"
+      ]
+    }
+  ],
+  "leakage_gate": {
+    "sets": {
+      "frozen test": 105,
+      "probe-v1": 81,
+      "human-value-01": 150,
+      "human-value-02": 200
+    },
+    "rule": "no id, no verbatim or NFC+strip+lowercase text of any train record in a set; no silver note a near duplicate (scripts/build_human_value_queue.py rules) of any note of a set; no silver note at folded char-3 Jaccard >= 0.6 to a human-value-01 or human-value-02 note. The training-v5 records are byte-identical to training-v5 (gated there). Silver notes failing any rule (or an exact duplicate) are dropped, see silver_dropped",
+    "max_char3_silver_notes": {
+      "human-value-01": 0.5926,
+      "human-value-02": 0.5862
+    },
+    "result": "pass"
+  },
+  "inputs_sha256": {
+    "datasets/annotation-v3/training-v5/train.jsonl": "aa39377928cb054b5b2c0470f4c530e1794171f1359e752b8ac866a483f45286",
+    "datasets/annotation-v3/training-v5/manifest.json": "b5c1af416f0c0ffdd8e2a4174e4a4d6735596f560538f470e4c3fd532d4b5c4e",
+    "datasets/annotation-v3/distill-clef-01/silver-B.jsonl": "559a34b23cb7a54f8368c53d00495242127ef4e89eb47fa6387f7fd778b36786",
+    "datasets/annotation-v3/distill-clef-01/manifest.json": "4e30ce75fca44d3a7e847018442480bc8db4b966b0cac6ee3471f39859a7f6ac",
+    "datasets/annotation-v3/human-value-02/review-queue.jsonl": "a9ba9627f24796d6d0be61b8cf69b9e9d83691da3c0473cefcc57adb8c0b0cb6",
+    "datasets/annotation-v3/human-value-02/review-queue-b.jsonl": "f48812b414ac814f40e823cf6dd59766b95fabb6085b2f244b1c17a346146760"
+  },
+  "outputs_sha256": {
+    "train.jsonl": "be3f6044de38480d7779232f82234627cd11993ee64452fb39d6fa6acd4553ab"
+  },
+  "evaluation_sets": "validation.jsonl (in-sample, logging only) and test.jsonl are symlinks to the frozen annotation-v1 splits"
+}
