@@ -15,6 +15,11 @@ student needs, so no student run ever touches the teacher. Layout of the cache d
                           teacher-vs-gold agreement, hashes of the two files above
 
 Every record is passed through ``assert_distillation_trainable`` first.
+
+Records may carry the optional ``soft`` field ``{"type_probs": {type: p}, "target_trusted": bool}``
+(annotation-v4 Clef soft labels). It is copied verbatim into the matching ``index.jsonl`` row (rows
+of records without it are unchanged, so existing caches stay valid) and the manifest gains a
+``soft`` summary; ``soft_tensors`` turns the rows into the tensors the student loss reads.
 """
 
 from __future__ import annotations
@@ -95,11 +100,33 @@ def padded_encoding(
     )
 
 
+def validate_soft(record: dict[str, Any]) -> dict[str, Any] | None:
+    """The record's ``soft`` field if it has one (validated), else ``None``."""
+    soft = record.get("soft")
+    if soft is None:
+        return None
+    rid = record.get("id")
+    probs, trusted = soft.get("type_probs"), soft.get("target_trusted")
+    if not isinstance(probs, dict) or not isinstance(trusted, bool):
+        raise ValueError(f"record {rid!r}: soft needs type_probs (dict) and target_trusted (bool)")
+    if unknown := sorted(set(probs) - set(TYPES)):
+        raise ValueError(f"record {rid!r}: soft.type_probs has unknown types {unknown}")
+    if (
+        any(not isinstance(p, int | float) or p < 0 for p in probs.values())
+        or sum(probs.values()) <= 0
+    ):
+        raise ValueError(
+            f"record {rid!r}: soft.type_probs must be non-negative with a positive sum"
+        )
+    return soft
+
+
 def index_rows(
     records: list[dict[str, Any]], offsets: list[list[list[int]]]
 ) -> list[dict[str, Any]]:
-    return [
-        {
+    rows = []
+    for i, (r, offs) in enumerate(zip(records, offsets, strict=True)):
+        row = {
             "row": i,
             "id": r["id"],
             "text": r["text"],
@@ -107,8 +134,42 @@ def index_rows(
             "target": r["target"],
             "offsets": offs,
         }
-        for i, (r, offs) in enumerate(zip(records, offsets, strict=True))
-    ]
+        if (soft := validate_soft(r)) is not None:
+            row["soft"] = soft
+        rows.append(row)
+    return rows
+
+
+def soft_tensors(
+    index: list[dict[str, Any]],
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor] | None:
+    """``(type_probs [N, C] float32, soft_rows [N] bool, span_rows [N] bool)``, or ``None``.
+
+    ``None`` when no index row has ``soft`` (the training path is then exactly the hard one).
+    ``span_rows`` is False for rows whose ``soft.target_trusted`` is false. ``type_probs`` is
+    zero on hard rows (they are never read).
+    """
+    if not any("soft" in row for row in index):
+        return None
+    probs = torch.zeros(len(index), len(TYPES), dtype=torch.float32)
+    soft_rows = torch.zeros(len(index), dtype=torch.bool)
+    span_rows = torch.ones(len(index), dtype=torch.bool)
+    for i, row in enumerate(index):
+        if (soft := validate_soft(row)) is None:
+            continue
+        soft_rows[i] = True
+        span_rows[i] = soft["target_trusted"]
+        for name, p in soft["type_probs"].items():
+            probs[i, TYPES.index(name)] = float(p)
+    return probs, soft_rows, span_rows
+
+
+def soft_summary(index: list[dict[str, Any]]) -> dict[str, int] | None:
+    """Counts of soft rows for the manifest, or ``None`` without any."""
+    soft = [row["soft"] for row in index if "soft" in row]
+    if not soft:
+        return None
+    return {"n_soft": len(soft), "n_target_untrusted": sum(not s["target_trusted"] for s in soft)}
 
 
 @torch.no_grad()
@@ -188,6 +249,8 @@ def build_targets(
             "n_valid_tag_positions": int(valid.sum()),
         },
     }
+    if (soft := soft_summary(targets.index)) is not None:
+        targets.manifest["soft"] = soft
     return targets
 
 
@@ -273,6 +336,10 @@ def verify_encoding(
         for key in ("id", "text", "type", "target"):
             if row[key] != rec[key]:
                 raise ValueError(f"cache row {row['row']} {key} {row[key]!r} != {rec[key]!r}")
+        if row.get("soft") != rec.get("soft"):
+            raise ValueError(
+                f"cache row {row['row']} soft {row.get('soft')!r} != {rec.get('soft')!r}"
+            )
     if targets.manifest["max_length"] != max_length:
         raise ValueError(f"cache max_length {targets.manifest['max_length']} != {max_length}")
     data = prepare(tokenizer, records, max_length)

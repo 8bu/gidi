@@ -20,6 +20,7 @@ from gidi.distillation.targets import (
     build_targets,
     check_targets,
     load_targets,
+    soft_tensors,
     verify_encoding,
     write_targets,
 )
@@ -112,6 +113,90 @@ def test_soft_term_is_t_squared_times_the_temperature_kl(temperature):
     assert out["tag_kl"].item() == pytest.approx(kl, rel=1e-5)
     assert out["type_loss"].item() == pytest.approx(temperature**2 * kl, rel=1e-5)
     assert out["total"].item() == pytest.approx((1 + 2) * temperature**2 * kl, rel=1e-5)
+
+
+@pytest.mark.parametrize("alpha", [1.0, 0.5])
+def test_hard_only_batch_with_soft_arguments_equals_the_old_loss_bit_for_bit(alpha):
+    type_logits, tag_logits, type_ids, tags, teacher_type, teacher_tag = _batch()
+    cfg = KDConfig(alpha_hard=alpha)
+    teacher = (teacher_type, teacher_tag) if cfg.uses_teacher else (None, None)
+    old = kd_loss(type_logits, tag_logits, type_ids, tags, cfg, *teacher)
+    assert torch.equal(old["type_hard"], F.cross_entropy(type_logits, type_ids))
+    off = torch.zeros(4, dtype=torch.bool)
+    new = kd_loss(
+        type_logits,
+        tag_logits,
+        type_ids,
+        tags,
+        cfg,
+        *teacher,
+        soft_type_probs=torch.zeros(4, len(TYPES)),
+        soft_rows=off,
+        span_rows=~off,
+    )
+    for key in old:
+        assert torch.equal(old[key], new[key]), key
+
+
+def test_soft_type_loss_is_cross_entropy_against_the_renormalised_distribution():
+    # Row 0 is soft with unnormalised probs (1, 3, 0, ...) -> (0.25, 0.75); row 1 is hard (class 2).
+    type_logits = torch.zeros(2, 8)
+    type_logits[0, :2] = torch.tensor([1.0, 0.0])
+    type_logits[1, 2] = 3.0
+    probs = torch.zeros(2, 8)
+    probs[0, :2] = torch.tensor([1.0, 3.0])
+    soft_rows = torch.tensor([True, False])
+    log_z0 = math.log(math.exp(1.0) + 1.0 + 6.0)
+    soft_ce = -(0.25 * (1.0 - log_z0) + 0.75 * (0.0 - log_z0))
+    hard_ce = math.log(math.exp(3.0) + 7.0) - 3.0
+    tags = torch.full((2, 1), IGNORE_INDEX)
+    out = kd_loss(
+        type_logits,
+        torch.zeros(2, 1, 3),
+        torch.tensor([0, 2]),
+        tags,
+        KDConfig(alpha_hard=1.0, type_weight=2.0),
+        soft_type_probs=probs,
+        soft_rows=soft_rows,
+    )
+    assert out["type_hard"].item() == pytest.approx((soft_ce + hard_ce) / 2, rel=1e-5)
+    assert out["total"].item() == pytest.approx(2.0 * (soft_ce + hard_ce) / 2, rel=1e-5)
+    # A one-hot soft row is the hard loss.
+    onehot = torch.zeros(2, 8)
+    onehot[:, 0] = 1.0
+    same = kd_loss(
+        type_logits,
+        torch.zeros(2, 1, 3),
+        torch.tensor([0, 0]),
+        tags,
+        KDConfig(alpha_hard=1.0),
+        soft_type_probs=onehot,
+        soft_rows=torch.tensor([True, True]),
+    )
+    plain = kd_loss(
+        type_logits, torch.zeros(2, 1, 3), torch.tensor([0, 0]), tags, KDConfig(alpha_hard=1.0)
+    )
+    assert same["type_hard"].item() == pytest.approx(plain["type_hard"].item(), rel=1e-6)
+
+
+def test_untrusted_target_rows_are_masked_from_the_span_loss():
+    type_logits, tag_logits, type_ids, tags, _, _ = _batch()
+    tag_logits = tag_logits.clone().requires_grad_()
+    span_rows = torch.tensor([True, False, True, True])
+    cfg = KDConfig(alpha_hard=1.0)
+    masked = kd_loss(type_logits, tag_logits, type_ids, tags, cfg, span_rows=span_rows)
+    masked["total"].backward()
+    assert torch.all(tag_logits.grad[1] == 0) and torch.any(tag_logits.grad[0] != 0)
+    kept = [0, 2, 3]
+    expected = F.cross_entropy(
+        tag_logits.detach()[kept].reshape(-1, 3),
+        tags[kept].reshape(-1),
+        ignore_index=IGNORE_INDEX,
+    )
+    assert masked["tag_hard"].item() == pytest.approx(expected.item(), rel=1e-6)
+    # Masking every row leaves a clean zero span loss, not NaN.
+    none = kd_loss(type_logits, tag_logits, type_ids, tags, cfg, span_rows=torch.zeros(4).bool())
+    assert none["tag_hard"].item() == 0.0
 
 
 def _base_config() -> RobertaConfig:
@@ -276,3 +361,50 @@ def test_build_targets_refuses_forbidden_records(tmp_path, teacher_dir):
     data.write_text("\n".join(json.dumps(r) for r in records) + "\n", encoding="utf-8")
     with pytest.raises(ValueError, match="probe"):
         build_targets(teacher_dir, data, max_length=12, root=REPO)
+
+
+def test_soft_field_is_carried_into_the_cache_and_hard_caches_stay_unchanged(tmp_path, teacher_dir):
+    data = tmp_path / "train.jsonl"
+    records = _write_records(data)
+    plain = build_targets(teacher_dir, data, max_length=12, root=REPO)
+    assert all("soft" not in row for row in plain.index) and "soft" not in plain.manifest
+    assert soft_tensors(plain.index) is None
+
+    soft = {"type_probs": {"expense": 0.6, "lend": 0.4}, "target_trusted": False}
+    records[1]["soft"] = soft
+    data.write_text("\n".join(json.dumps(r) for r in records) + "\n", encoding="utf-8")
+    targets = build_targets(teacher_dir, data, max_length=12, root=REPO)
+    assert targets.index[1]["soft"] == soft and "soft" not in targets.index[0]
+    assert targets.manifest["soft"] == {"n_soft": 1, "n_target_untrusted": 1}
+    # Hard fields are identical to the cache without soft.
+    assert torch.equal(targets.input_ids, plain.input_ids)
+    assert torch.equal(targets.type_ids, plain.type_ids)
+
+    cache = tmp_path / "cache"
+    write_targets(targets, cache)
+    loaded = load_targets(cache)
+    verify_encoding(loaded, load_split(data), _tokenizer(WORDS), 12)
+    probs, soft_rows, span_rows = soft_tensors(loaded.index)
+    assert soft_rows.tolist() == [False, True, False] and span_rows.tolist() == [True, False, True]
+    assert probs[1, TYPES.index("expense")].item() == pytest.approx(0.6)
+    assert probs[1, TYPES.index("lend")].item() == pytest.approx(0.4)
+    assert probs[0].sum().item() == 0.0
+    # A train file whose soft field differs from the cache is refused.
+    other = [dict(r) for r in load_split(data)]
+    other[1]["soft"] = {**soft, "target_trusted": True}
+    with pytest.raises(ValueError, match="soft"):
+        verify_encoding(loaded, other, _tokenizer(WORDS), 12)
+
+
+def test_malformed_soft_field_is_refused(tmp_path, teacher_dir):
+    data = tmp_path / "train.jsonl"
+    records = _write_records(data)
+    for bad in (
+        {"type_probs": {"nonsense": 1.0}, "target_trusted": True},
+        {"type_probs": {"expense": 0.0}, "target_trusted": True},
+        {"type_probs": {"expense": 1.0}, "target_trusted": "yes"},
+    ):
+        records[0]["soft"] = bad
+        data.write_text("\n".join(json.dumps(r) for r in records) + "\n", encoding="utf-8")
+        with pytest.raises(ValueError, match="soft"):
+            build_targets(teacher_dir, data, max_length=12, root=REPO)

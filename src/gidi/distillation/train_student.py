@@ -25,6 +25,11 @@ over all epochs, no early stopping, and the LAST epoch's weights are kept: nothi
 on a held-out set. The training data already contains the validation split, so the per-epoch
 validation metrics are in-sample diagnostics only. The frozen test split is evaluated once,
 after training, and never trained on.
+
+Soft labels (annotation-v4): train records may carry ``soft`` (``type_probs``, ``target_trusted``);
+``build_teacher_targets.py`` copies it into the cache index. For such a record the type loss is the
+cross entropy against ``type_probs`` and, when ``target_trusted`` is false, its span loss is
+skipped. Records without ``soft`` (and caches built before it existed) train exactly as before.
 """
 
 from __future__ import annotations
@@ -65,6 +70,8 @@ from gidi.distillation.targets import (
     load_targets,
     padded_encoding,
     sha256_file,
+    soft_summary,
+    soft_tensors,
     verify_encoding,
 )
 from gidi.modeling.checkpoint import save_checkpoint
@@ -383,6 +390,7 @@ def train_student(cfg: StudentTrainConfig) -> dict[str, Any]:
             "targets": {
                 k: targets.manifest[k] for k in ("teacher", "data", "n", "teacher_vs_gold")
             },
+            "soft_labels": soft_summary(targets.index),
             "split_sizes": {name: len(d) for name, d in data.items()},
             "validation_is_in_sample": True,
             "truncation": truncation,
@@ -400,6 +408,7 @@ def train_student(cfg: StudentTrainConfig) -> dict[str, Any]:
 
     teacher_type = targets.teacher_type_logits
     teacher_tag = targets.teacher_tag_logits
+    soft = soft_tensors(targets.index)
     log_rows: list[dict[str, Any]] = []
     step = 0
     train_seconds = 0.0
@@ -425,7 +434,14 @@ def train_student(cfg: StudentTrainConfig) -> dict[str, Any]:
                 t_tag = teacher_tag[idx, :width].to(device)
             else:
                 t_type = t_tag = None
-            losses = kd_loss(type_logits, tag_logits, types, tags, kd, t_type, t_tag)
+            soft_kwargs = {}
+            if soft is not None:
+                soft_kwargs = {
+                    "soft_type_probs": soft[0][idx].to(device),
+                    "soft_rows": soft[1][idx].to(device),
+                    "span_rows": soft[2][idx].to(device),
+                }
+            losses = kd_loss(type_logits, tag_logits, types, tags, kd, t_type, t_tag, **soft_kwargs)
             optimizer.zero_grad(set_to_none=True)
             losses["total"].backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), cfg.max_grad_norm)

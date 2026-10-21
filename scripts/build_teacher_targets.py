@@ -10,7 +10,9 @@ Usage:
 Writes ``targets.safetensors``, ``index.jsonl`` and ``manifest.json`` (see
 ``gidi.distillation.targets``). ``--check`` regenerates the targets in memory and compares them
 with the stored cache (exact for ids/labels/index/provenance, within 1e-4 for the logits) without
-writing anything. ``--limit N`` uses only the first N records (smoke tests).
+writing anything. ``--limit N`` uses only the first N records (smoke tests). Records with the
+optional ``soft`` field (annotation-v4) have it copied into the cache index; for a supervised
+soft-label run the teacher is only needed to build the cache.
 """
 
 from __future__ import annotations

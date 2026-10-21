@@ -14,6 +14,10 @@ only in the loss: ``supervised`` forces ``alpha_hard = 1``; ``distilled`` uses t
 Each run writes ``<out-dir>/<arm>/<variant>/seed<N>/`` and
 ``<weights-dir>/<arm>/<variant>/seed<N>/``. The epoch budget is fixed and the last epoch's
 weights are kept. ``--max-steps`` stops each run after that many optimizer steps (smoke only).
+
+Soft labels (annotation-v4): if ``<splits-dir>/train.jsonl`` records carry ``soft`` and the cache
+(``--targets``) was built from that file, those records train with a cross entropy against their
+``soft.type_probs`` and skip the span loss when ``soft.target_trusted`` is false; no flag needed.
 """
 
 from __future__ import annotations

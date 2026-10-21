@@ -17,6 +17,13 @@ With ``a = alpha_hard``, ``T = temperature``::
 Supervised-only training is ``alpha_hard = 1``: the KL terms are not computed and no teacher
 tensors are needed, and ``L`` equals ``CE(type) + CE(tags)`` for unit weights, the loss of
 ``gidi.training.train.train_run``.
+
+Soft records (annotation-v4 ``soft`` field, optional): for a row flagged in ``soft_rows`` the
+hard type CE is replaced by the cross entropy against its renormalised ``soft_type_probs``
+distribution (same batch-mean reduction and weight), and a row with ``span_rows`` False is
+dropped from the token CE / token KL altogether (its stored target is only advisory). Without
+these arguments the loss is exactly the one above; ``type_hard`` / ``tag_hard`` then hold the
+mixed hard/soft and the masked values.
 """
 
 from __future__ import annotations
@@ -59,6 +66,14 @@ def _soft_kl(
     )
 
 
+def soft_type_cross_entropy(type_logits: torch.Tensor, type_probs: torch.Tensor) -> torch.Tensor:
+    """Per-row ``-sum_c p_c log softmax(type_logits)_c`` with ``p`` renormalised to sum to 1."""
+    totals = type_probs.sum(dim=-1, keepdim=True)
+    if bool((totals <= 0).any()):
+        raise ValueError("soft type_probs row sums to zero")
+    return -((type_probs / totals) * F.log_softmax(type_logits, dim=-1)).sum(dim=-1)
+
+
 def kd_loss(
     type_logits: torch.Tensor,
     tag_logits: torch.Tensor,
@@ -67,6 +82,9 @@ def kd_loss(
     cfg: KDConfig,
     teacher_type_logits: torch.Tensor | None = None,
     teacher_tag_logits: torch.Tensor | None = None,
+    soft_type_probs: torch.Tensor | None = None,
+    soft_rows: torch.Tensor | None = None,
+    span_rows: torch.Tensor | None = None,
 ) -> dict[str, torch.Tensor]:
     """Combined loss. ``total`` carries the gradient; every other entry is a detached copy.
 
@@ -76,10 +94,24 @@ def kd_loss(
     ``tag_hard``, ``type_kl``, ``tag_kl`` (zero when ``alpha_hard == 1``); ``type_loss`` and
     ``span_loss`` are the two bracketed, alpha/T^2-scaled terms before ``type_weight`` /
     ``span_weight``.
+    Optional soft-record arguments: ``soft_type_probs [B, C]`` with ``soft_rows [B]`` bool (rows
+    that use it instead of ``type_ids``; other rows' entries are ignored), and ``span_rows [B]``
+    bool (False = skip the span loss of that row).
     """
     a, temp = cfg.alpha_hard, cfg.temperature
     keep = tag_labels != IGNORE_INDEX
-    type_hard = F.cross_entropy(type_logits, type_ids)
+    if span_rows is not None:
+        keep = keep & span_rows.unsqueeze(-1)
+    if soft_rows is not None and bool(soft_rows.any()):
+        if soft_type_probs is None:
+            raise ValueError("soft_rows needs soft_type_probs")
+        per_row = F.cross_entropy(type_logits, type_ids, reduction="none")
+        one_hot = F.one_hot(type_ids, type_logits.shape[-1]).to(type_logits.dtype)
+        probs = torch.where(soft_rows.unsqueeze(-1), soft_type_probs, one_hot)
+        soft_ce = soft_type_cross_entropy(type_logits, probs)
+        type_hard = torch.where(soft_rows, soft_ce, per_row).mean()
+    else:
+        type_hard = F.cross_entropy(type_logits, type_ids)
     # Boolean selection (not ignore_index) so the empty case is a clean zero, not NaN.
     student_tokens = tag_logits[keep]
     tag_hard = (
