@@ -43,12 +43,52 @@ function contentRange(range: R2Range | undefined, size: number): string | null {
     end = size - 1
   } else {
     start = offset ?? 0
-    end = length === undefined ? size - 1 : Math.min(start + length - 1, size - 1)
+    end =
+      length === undefined ? size - 1 : Math.min(start + length - 1, size - 1)
   }
   return `bytes ${start}-${end}/${size}`
 }
 
-async function serveModel(request: Request, env: Env, key: string): Promise<Response> {
+/**
+ * Edge cache for the full-object response. The key is the bare URL, so a Range or conditional
+ * request is answered from the cached 200 by `cache.match` (206 / 304) without touching R2.
+ * Only a plain GET that misses is stored; a Range miss is served from R2 and leaves the cache
+ * to the next full GET.
+ */
+async function serveModel(
+  request: Request,
+  env: Env,
+  ctx: ExecutionContext,
+  key: string
+): Promise<Response> {
+  if (request.method !== "GET") return serveFromR2(request, env, key)
+  const cache = caches.default
+  const cached = await cache.match(request)
+  if (cached !== undefined) return cached
+  const response = await serveFromR2(request, env, key)
+  if (
+    response.status === 200 &&
+    !request.headers.has("range") &&
+    !request.headers.has("if-none-match") &&
+    !request.headers.has("if-modified-since")
+  ) {
+    const [forCache, forClient] = response.body!.tee()
+    ctx.waitUntil(
+      cache.put(
+        new Request(request.url),
+        new Response(forCache, { status: 200, headers: response.headers })
+      )
+    )
+    return new Response(forClient, { status: 200, headers: response.headers })
+  }
+  return response
+}
+
+async function serveFromR2(
+  request: Request,
+  env: Env,
+  key: string
+): Promise<Response> {
   if (request.method === "HEAD") {
     const head = await env.MODELS.head(key)
     if (head === null) return notFound()
@@ -69,7 +109,9 @@ async function serveModel(request: Request, env: Env, key: string): Promise<Resp
     return new Response(null, { status: 304, headers })
   }
   // R2 reports `range` only for a Range request, but be explicit about which one we answered.
-  const partial = request.headers.has("range") ? contentRange(object.range, object.size) : null
+  const partial = request.headers.has("range")
+    ? contentRange(object.range, object.size)
+    : null
   if (partial === null) {
     headers.set("content-length", String(object.size))
     return new Response(object.body, { status: 200, headers })
@@ -79,7 +121,7 @@ async function serveModel(request: Request, env: Env, key: string): Promise<Resp
 }
 
 export default {
-  async fetch(request, env): Promise<Response> {
+  async fetch(request, env, ctx): Promise<Response> {
     const url = new URL(request.url)
     if (!url.pathname.startsWith(MODELS_PREFIX)) return notFound()
     if (request.method !== "GET" && request.method !== "HEAD") {
@@ -94,9 +136,14 @@ export default {
     } catch {
       return notFound()
     }
-    if (key === "" || key.split("/").some((part) => part === "" || part === "." || part === "..")) {
+    if (
+      key === "" ||
+      key
+        .split("/")
+        .some((part) => part === "" || part === "." || part === "..")
+    ) {
       return notFound()
     }
-    return serveModel(request, env, key)
+    return serveModel(request, env, ctx, key)
   },
 } satisfies ExportedHandler<Env>

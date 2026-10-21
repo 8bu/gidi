@@ -408,7 +408,9 @@ is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Wor
 - Deploy: `pnpm -C playground run deploy` (build:web + `wrangler deploy`; `run` is needed because `pnpm deploy` is a built-in). Config is
   `playground/wrangler.jsonc`: R2 binding `MODELS` -> bucket `gidi-models`, custom domain
   `gidi.8bu.dev`, only `/models/*` runs the Worker (`playground/worker/index.ts`: GET/HEAD, Range
-  and conditional requests, `cache-control: public, max-age=31536000, immutable`).
+  and conditional requests, `cache-control: public, max-age=31536000, immutable`). A plain GET miss
+  is also stored in the Cache API (`caches.default`, keyed on the URL, `ctx.waitUntil`), so later
+  hits, Range and conditional requests are served from the edge without reading R2.
 - A new model release is a new R2 key (`<model>/<release>/model.int8.onnx`), never an overwrite:
   `wrangler r2 object put gidi-models/<key> --file <release model> --remote`. The v2 key
   (`gidi-finance-v2/2.0.2/model.int8.onnx`) stays in the bucket for rollback.
