@@ -17,6 +17,7 @@ import { track } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
 import { useFly } from "./fly-layer"
 import type { NoteRecord, TxType } from "./types"
+import { formatMegabytes } from "./use-gidi"
 
 export interface StickyComposerProps {
   value: string
@@ -25,6 +26,8 @@ export interface StickyComposerProps {
   status: "loading" | "ready" | "error"
   /** 0..1 while the model downloads, `null` when unknown. */
   progress: number | null
+  loaded: number
+  total: number | null
   error: string | null
   onRetry(): void
   ref?: Ref<HTMLTextAreaElement>
@@ -43,6 +46,8 @@ export function StickyComposer({
   classify,
   status,
   progress,
+  loaded,
+  total,
   error,
   onRetry,
   ref,
@@ -257,9 +262,11 @@ export function StickyComposer({
               />
             </div>
             <p className="mt-1.5 text-xs opacity-70">
-              Mô hình 29 MB đang tải về máy bạn
-              {percent === null ? "" : ` (${percent}%)`}. Bạn cứ viết sẵn, mọi
-              thứ chạy ngay trên thiết bị.
+              Đang tải mô hình về máy bạn
+              {percent === null
+                ? ""
+                : ` (${percent}%, ${formatMegabytes(loaded)} / ${formatMegabytes(total ?? loaded)})`}
+              . Bạn cứ viết sẵn, mọi thứ chạy ngay trên thiết bị.
             </p>
           </div>
         )}

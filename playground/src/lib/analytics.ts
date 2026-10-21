@@ -50,8 +50,19 @@ function isInternal(): boolean {
 export interface AnalyticsEventMap {
   /** The on-device model finished loading. */
   model_loaded: { ms: number }
-  /** The model could not load; `error` is the app's own message, never note text. */
-  model_load_failed: { ms: number; error: string }
+  /** The model could not load; `error` is the app's own message, never note text. The rest says how far the download got and on what connection. */
+  model_load_failed: {
+    ms: number
+    error: string
+    error_name: string
+    /** Bytes received before the failure, and the expected total (null if unknown). */
+    loaded_bytes: number
+    total_bytes: number | null
+    effective_type: string | null
+    save_data: boolean | null
+    online: boolean
+    device_memory: number | null
+  }
   /** One send from the composer; a pasted list is one send with several lines. */
   notes_sent: {
     lines: number

@@ -241,6 +241,8 @@ function Page({ notify }: { notify: (message: string) => void }) {
         classify={gidi.classify}
         status={gidi.status}
         progress={gidi.progress}
+        loaded={gidi.loaded}
+        total={gidi.total}
         error={gidi.error}
         onRetry={gidi.retry}
       />
@@ -261,6 +263,8 @@ function Page({ notify }: { notify: (message: string) => void }) {
         model={{
           status: gidi.status,
           progress: gidi.progress,
+          loaded: gidi.loaded,
+          total: gidi.total,
           retry: gidi.retry,
         }}
         onExport={exportNotes}

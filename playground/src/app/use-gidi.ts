@@ -23,7 +23,38 @@ interface GidiState {
   status: GidiStatus
   /** Model download, 0..1; null until the total size is known. */
   progress: number | null
+  /** Bytes received so far and the expected total (null when unknown). */
+  loaded: number
+  total: number | null
   error: string | null
+}
+
+/** "12,3 MB": decimal megabytes with a Vietnamese decimal comma. */
+export const formatMegabytes = (bytes: number): string =>
+  `${(bytes / 1e6).toFixed(1).replace(".", ",")} MB`
+
+interface NetworkInformation {
+  effectiveType?: string
+  saveData?: boolean
+}
+
+/** Connection and memory hints for diagnosing a failed download; none identify the visitor. */
+function environment(): {
+  effective_type: string | null
+  save_data: boolean | null
+  online: boolean
+  device_memory: number | null
+} {
+  const nav = navigator as Navigator & {
+    connection?: NetworkInformation
+    deviceMemory?: number
+  }
+  return {
+    effective_type: nav.connection?.effectiveType ?? null,
+    save_data: nav.connection?.saveData ?? null,
+    online: navigator.onLine,
+    device_memory: nav.deviceMemory ?? null,
+  }
 }
 
 type Predictor = (text: string) => Promise<PredictResponse>
@@ -38,7 +69,8 @@ const isTxType = (value: string): value is TxType =>
   (TX_TYPES as readonly string[]).includes(value)
 
 // One model per page: module-level, so a StrictMode double mount does not load twice.
-let state: GidiState = { status: "loading", progress: null, error: null }
+const idle = { progress: null, loaded: 0, total: null, error: null }
+let state: GidiState = { status: "loading", ...idle }
 let predictor: Promise<Predictor> | null = null
 const listeners = new Set<() => void>()
 
@@ -53,7 +85,7 @@ function reportProgress({ loaded, total }: LoadProgress): void {
     total !== null && total > 0
       ? Math.min(1, Math.max(0, loaded / total))
       : null
-  setState({ status: "loading", progress, error: null })
+  setState({ status: "loading", progress, loaded, total, error: null })
 }
 
 async function loadPredictor(): Promise<Predictor> {
@@ -70,7 +102,7 @@ async function loadPredictor(): Promise<Predictor> {
 
 function load(): Promise<Predictor> {
   if (predictor === null) {
-    setState({ status: "loading", progress: null, error: null })
+    setState({ status: "loading", ...idle })
     const started = performance.now()
     const loaded = loadPredictor()
     predictor = loaded
@@ -78,16 +110,20 @@ function load(): Promise<Predictor> {
       () => {
         track("model_loaded", { ms: Math.round(performance.now() - started) })
         if (predictor === loaded)
-          setState({ status: "ready", progress: 1, error: null })
+          setState({ ...idle, status: "ready", progress: 1 })
       },
       (cause: unknown) => {
         const error = toMessage(cause)
         track("model_load_failed", {
           ms: Math.round(performance.now() - started),
           error,
+          error_name: cause instanceof Error ? cause.name : "unknown",
+          loaded_bytes: state.loaded,
+          total_bytes: state.total,
+          ...environment(),
         })
         if (predictor === loaded) {
-          setState({ status: "error", progress: null, error })
+          setState({ ...idle, status: "error", error })
         }
       }
     )
@@ -151,6 +187,8 @@ const getSnapshot = (): GidiState => state
 export function useGidi(): {
   status: GidiStatus
   progress: number | null
+  loaded: number
+  total: number | null
   error: string | null
   retry(): void
   classify(text: string): Promise<NoteRecord>

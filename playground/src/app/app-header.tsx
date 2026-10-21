@@ -35,6 +35,7 @@ import { cn } from "@/lib/utils"
 import { formatVnd, formatVndCompact } from "./amount"
 import { TYPE_META } from "./taxonomy"
 import { TX_TYPES, type StackSummary, type TxType } from "./types"
+import { formatMegabytes } from "./use-gidi"
 
 /**
  * Cash in and out over every type by its direction: Thu = income, borrow, repayment_in, refund;
@@ -61,6 +62,8 @@ export interface HeaderProps {
     status: "loading" | "ready" | "error"
     /** Download progress 0..1, null when unknown. */
     progress: number | null
+    loaded: number
+    total: number | null
     retry(): void
   }
   onExport(): void
@@ -180,7 +183,11 @@ function Idle() {
   )
 }
 
-function Loading({ progress }: { progress: number | null }) {
+function Loading({
+  progress,
+  loaded,
+  total,
+}: Pick<HeaderProps["model"], "progress" | "loaded" | "total">) {
   const percent = progress === null ? null : Math.round(progress * 100)
   return (
     <div className="flex items-center gap-3 px-1 sm:min-w-[22rem]">
@@ -189,8 +196,12 @@ function Loading({ progress }: { progress: number | null }) {
           role="status"
           className="truncate text-xs font-medium sm:text-[13px]"
         >
-          <span className="sm:hidden">Đang tải mô hình 29 MB</span>
-          <span className="hidden sm:inline">Đang tải mô hình, 29 MB</span>
+          <span className="sm:hidden">Đang tải mô hình</span>
+          <span className="hidden sm:inline">
+            Đang tải mô hình
+            {percent !== null &&
+              `, ${formatMegabytes(loaded)} / ${formatMegabytes(total ?? loaded)}`}
+          </span>
         </p>
         <p className="hidden truncate text-[11px] text-foreground/70 sm:block">
           Chỉ tải một lần, sau đó chạy ngay trên thiết bị
@@ -278,7 +289,7 @@ function Pill({
           : "idle"
 
   let content: ReactNode
-  if (state === "loading") content = <Loading progress={model.progress} />
+  if (state === "loading") content = <Loading {...model} />
   else if (state === "error") content = <Failed onRetry={model.retry} />
   else if (state === "totals") content = <Totals {...cashFlow(summaries)} />
   else content = <Idle />
