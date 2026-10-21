@@ -2,7 +2,7 @@
 
 > Gidi is a free web app and an open model that read short, informal Vietnamese personal-finance notes such as "ăn phở 45k" or "cho Nam mượn 2 củ" and return the transaction type (one of 8), the counterparty and the amount in VND. Everything runs in the user's browser: no note text, name or amount is sent anywhere.
 
-Gidi (from "GiaoDịch", Vietnamese for "transaction") is Vietnamese-first. The model is `gidi-finance-v3` (release 3.0.0): one INT8 encoder for type and target plus a rule-based value parser, 29.3 MB as INT8 ONNX, about 1.4 ms p50 per note on one CPU thread, licensed Apache-2.0. On the 190-note test set `human-value-02`: type 92.1%, target 85.3%, value 100%, end-to-end exact 78.9%. It is an experimental project, not financial advice, and not a bank or accounting product.
+Gidi (from "GiaoDịch", Vietnamese for "transaction") is Vietnamese-first. The model is `gidi-finance-v4` (release 4.0.0): one INT8 encoder for type and target plus a rule-based value parser, 29.3 MB as INT8 ONNX, about 1.4 ms p50 per note on one CPU thread, licensed Apache-2.0. On the 190-note test set `human-value-02`: type 93.7%, target 88.9%, value 100%, end-to-end exact 84.2%. It is an experimental project, not financial advice, and not a bank or accounting product.
 
 ## App
 

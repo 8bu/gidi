@@ -10,7 +10,7 @@ import { highlightSegments, spansOverlap } from "@/lib/segments"
 import { loadPredictor, ModelIntegrityError } from "@/runtime"
 
 /** Written by `scripts/sync-release.mjs` from the immutable bundle manifest. */
-const RELEASE_BASE = "/release/gidi-finance-v3/3.0.0"
+const RELEASE_BASE = "/release/gidi-finance-v4/4.0.0"
 
 type WebRelease = {
   model_version: string

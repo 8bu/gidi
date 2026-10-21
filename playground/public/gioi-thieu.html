@@ -166,7 +166,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
           "name": "Gidi chính xác đến mức nào?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Trên bộ kiểm thử human-value-02 gồm 190 ghi chú, Gidi đoán đúng loại giao dịch 92,1%, đối tượng 85,3%, số tiền 100% và khớp hoàn toàn cả ghi chú (end-to-end) 78,9%, so với 59,5% của bản v2. Điểm yếu đã biết là tên cửa hàng gồm nhiều từ, nghĩa “ai trả” của chữ trả và người nhận quà. Bộ kiểm thử còn nhỏ và được gán nhãn bởi hai bộ gán nhãn LLM có phân xử, tác giả đã duyệt."
+            "text": "Trên bộ kiểm thử human-value-02 gồm 190 ghi chú, Gidi đoán đúng loại giao dịch 93,7%, đối tượng 88,9%, số tiền 100% và khớp hoàn toàn cả ghi chú (end-to-end) 84,2%, so với 59,5% của bản v2. Điểm yếu đã biết là tên cửa hàng gồm nhiều từ, nghĩa “ai trả” của chữ trả và người nhận quà. Bộ kiểm thử còn nhỏ và được gán nhãn bởi hai bộ gán nhãn LLM có phân xử, tác giả đã duyệt."
           }
         },
         {
@@ -182,7 +182,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
           "name": "Giấy phép của Gidi là gì?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Mô hình gidi-finance-v3 theo giấy phép Apache-2.0. Giấy phép này cho phép sử dụng, sửa đổi và phân phối lại, kể cả với mục đích thương mại, miễn là bạn giữ nguyên thông báo giấy phép."
+            "text": "Mô hình gidi-finance-v4 theo giấy phép Apache-2.0. Giấy phép này cho phép sử dụng, sửa đổi và phân phối lại, kể cả với mục đích thương mại, miễn là bạn giữ nguyên thông báo giấy phép."
           }
         },
         {
@@ -261,7 +261,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
 <li>Bộ phân tích giá trị theo luật (rule-based) tìm <strong>đoạn số tiền</strong> và đổi sang VND.</li>
 <li>Ghi chú được lưu trong trình duyệt của bạn (IndexedDB) và có thể xuất hoặc nhập bằng JSON.</li>
 </ol>
-<p>Mô hình <code>gidi-finance-v3</code> (bản 3.0.0) nặng 29,3 MB ở dạng ONNX INT8 và mất khoảng 1,4 ms (p50) cho mỗi ghi chú trên một luồng CPU.</p>
+<p>Mô hình <code>gidi-finance-v4</code> (bản 4.0.0) nặng 29,3 MB ở dạng ONNX INT8 và mất khoảng 1,4 ms (p50) cho mỗi ghi chú trên một luồng CPU.</p>
 </section>
 
 <section id="tam-loai">
@@ -312,10 +312,10 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
 <div class="table-wrap" tabindex="0" role="region" aria-label="Độ chính xác"><table>
 <thead><tr><th scope="col">Chỉ số</th><th scope="col">Bản v3 (hiện tại)</th><th scope="col">Bản v2 trước đó</th></tr></thead>
 <tbody>
-<tr><th scope="row">Loại giao dịch</th><td class="num">92,1%</td><td class="num">–</td></tr>
-<tr><th scope="row">Đối tượng (target)</th><td class="num">85,3%</td><td class="num">–</td></tr>
+<tr><th scope="row">Loại giao dịch</th><td class="num">93,7%</td><td class="num">–</td></tr>
+<tr><th scope="row">Đối tượng (target)</th><td class="num">88,9%</td><td class="num">–</td></tr>
 <tr><th scope="row">Số tiền (value)</th><td class="num">100%</td><td class="num">–</td></tr>
-<tr><th scope="row">Khớp hoàn toàn cả ghi chú (end-to-end)</th><td class="num">78,9%</td><td class="num">59,5%</td></tr>
+<tr><th scope="row">Khớp hoàn toàn cả ghi chú (end-to-end)</th><td class="num">84,2%</td><td class="num">59,5%</td></tr>
 <tr><th scope="row">Kích thước mô hình</th><td class="num">29,3 MB</td><td class="num">58,1 MB</td></tr>
 </tbody></table></div>
 <h3 style="margin-top:20px">Điểm yếu đã biết</h3>
@@ -339,9 +339,9 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
 <details><summary><h3>Dữ liệu của tôi có rời khỏi thiết bị không?</h3></summary><p>Không. Mô hình chạy hoàn toàn trong trình duyệt (onnxruntime-web, WebAssembly), nên nội dung ghi chú, tên người và số tiền không được gửi đi đâu. Ghi chú chỉ lưu trong trình duyệt (IndexedDB) và bạn có thể xuất hoặc nhập bằng JSON. Ứng dụng chỉ ghi số liệu sử dụng ẩn danh (PostHog), gồm số sự kiện và loại sự kiện, không bao giờ có nội dung ghi chú.</p></details>
 <details><summary><h3>Gidi có dùng được trên điện thoại và khi không có mạng không?</h3></summary><p>Gidi dùng được trên điện thoại và máy tính bảng bằng cảm ứng, có giao diện sáng và tối. Việc phân loại diễn ra ngay trên thiết bị, nhưng trang và bộ mô hình 29,3 MB phải được tải về trước, nên dùng khi không có mạng không phải là tính năng được cam kết.</p></details>
 <details><summary><h3>Gidi hiểu những ghi chú nào?</h3></summary><p>Gidi hiểu các ghi chú tài chính cá nhân ngắn, viết tự nhiên bằng tiếng Việt, ví dụ ăn phở 45k, nhận lương 15tr, cho Nam mượn 2 củ hay Long trả 5 lít. Gidi hiểu cả tiền lóng như k, nghìn, ngàn, tr, triệu, củ, chai, xị, lít, cành, tỏi, rưỡi và kiểu viết 1tr2, có dấu hoặc không dấu. Gidi ưu tiên tiếng Việt.</p></details>
-<details><summary><h3>Gidi chính xác đến mức nào?</h3></summary><p>Trên bộ kiểm thử human-value-02 gồm 190 ghi chú, Gidi đoán đúng loại giao dịch 92,1%, đối tượng 85,3%, số tiền 100% và khớp hoàn toàn cả ghi chú (end-to-end) 78,9%, so với 59,5% của bản v2. Điểm yếu đã biết là tên cửa hàng gồm nhiều từ, nghĩa “ai trả” của chữ trả và người nhận quà. Bộ kiểm thử còn nhỏ và được gán nhãn bởi hai bộ gán nhãn LLM có phân xử, tác giả đã duyệt.</p></details>
+<details><summary><h3>Gidi chính xác đến mức nào?</h3></summary><p>Trên bộ kiểm thử human-value-02 gồm 190 ghi chú, Gidi đoán đúng loại giao dịch 93,7%, đối tượng 88,9%, số tiền 100% và khớp hoàn toàn cả ghi chú (end-to-end) 84,2%, so với 59,5% của bản v2. Điểm yếu đã biết là tên cửa hàng gồm nhiều từ, nghĩa “ai trả” của chữ trả và người nhận quà. Bộ kiểm thử còn nhỏ và được gán nhãn bởi hai bộ gán nhãn LLM có phân xử, tác giả đã duyệt.</p></details>
 <details><summary><h3>Tôi có thể dùng mô hình trong ứng dụng của mình không?</h3></summary><p>Có. Mô hình gidi-finance-v3 (bản 3.0.0) được đăng trên Hugging Face tại huggingface.co/x8bu/gidi-finance ở dạng ONNX INT8 29,3 MB, còn mã nguồn nằm tại github.com/8bu/gidi.</p></details>
-<details><summary><h3>Giấy phép của Gidi là gì?</h3></summary><p>Mô hình gidi-finance-v3 theo giấy phép Apache-2.0. Giấy phép này cho phép sử dụng, sửa đổi và phân phối lại, kể cả với mục đích thương mại, miễn là bạn giữ nguyên thông báo giấy phép.</p></details>
+<details><summary><h3>Giấy phép của Gidi là gì?</h3></summary><p>Mô hình gidi-finance-v4 theo giấy phép Apache-2.0. Giấy phép này cho phép sử dụng, sửa đổi và phân phối lại, kể cả với mục đích thương mại, miễn là bạn giữ nguyên thông báo giấy phép.</p></details>
 <details><summary><h3>Ai làm ra Gidi?</h3></summary><p>Gidi do 8bu (8bu.dev) làm, cùng công cụ gán nhãn Quet (github.com/8bu/quet) dùng để gán nhãn dữ liệu. Đây là dự án thử nghiệm, không phải lời khuyên tài chính và không phải sản phẩm ngân hàng hay kế toán.</p></details>
 </section>
 

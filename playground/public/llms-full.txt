@@ -49,7 +49,7 @@ Vietnamese money shorthand and slang, with or without diacritics:
 
 ## Architecture and model
 
-- Model: `gidi-finance-v3`, release 3.0.0.
+- Model: `gidi-finance-v4`, release 4.0.0.
 - One INT8 encoder predicts the transaction type and the target span; a rule-based value parser finds and converts the amount.
 - Bundle: 29.3 MB INT8 ONNX.
 - Speed: about 1.4 ms p50 per note on one CPU thread.
@@ -61,10 +61,10 @@ Test set `human-value-02`: 190 notes, labelled by two LLM labellers with adjudic
 
 | Metric | v3 (current) | v2 (previous) |
 |---|---|---|
-| Transaction type | 92.1% | not reported here |
-| Target (counterparty) | 85.3% | not reported here |
+| Transaction type | 93.7% | not reported here |
+| Target (counterparty) | 88.9% | not reported here |
 | Value (amount) | 100% | not reported here |
-| End-to-end exact | 78.9% | 59.5% |
+| End-to-end exact | 84.2% | 59.5% |
 | Model size | 29.3 MB | 58.1 MB |
 
 ## Training data
@@ -79,7 +79,7 @@ About 1,000 generated raw notes, reviewed by a human and labelled in Quet (https
 
 ## License
 
-Apache-2.0 (model `gidi-finance-v3`): https://www.apache.org/licenses/LICENSE-2.0
+Apache-2.0 (model `gidi-finance-v4`): https://www.apache.org/licenses/LICENSE-2.0
 
 ## Links
 

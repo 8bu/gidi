@@ -1,5 +1,5 @@
-// Copy the web-facing files of the immutable gidi-finance-v3 bundle (models/gidi-finance-v3, the
-// bytes of release 3.0.0) into public/release/ and write web-release.json. Every copied byte is
+// Copy the web-facing files of the immutable gidi-finance-v4 bundle (models/gidi-finance-v4, the
+// bytes of release 4.0.0) into public/release/ and write web-release.json. Every copied byte is
 // checked against the bundle's manifest.json first; the model itself is not copied (it is served
 // from R2), but its sha256 and size are read from the manifest and published in web-release.json
 // so the browser can verify its download.
@@ -8,8 +8,8 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises"
 import { dirname, join, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 
-const MODEL_VERSION = "gidi-finance-v3"
-const RELEASE_VERSION = "3.0.0"
+const MODEL_VERSION = "gidi-finance-v4"
+const RELEASE_VERSION = "4.0.0"
 
 const here = dirname(fileURLToPath(import.meta.url))
 const playground = resolve(here, "..")
