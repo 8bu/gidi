@@ -19,7 +19,11 @@ converting it to a number stays deterministic code.
 
 ## Status
 
-- **`gidi-finance-v3`** (release `3.0.0`) is the current model. The system is one INT8 encoder
+- **`gidi-finance-v4`** (release `4.0.0`) is the current model: same architecture and runtime as
+  v3, a new encoder trained with Clef-teacher data and the `annotation-v4` rules (see
+  `experiments/clef-distill-v2/report.md`). <https://gidi.8bu.dev> runs v4; the public Hugging
+  Face and GitHub releases are still v3.
+- **`gidi-finance-v3`** (release `3.0.0`) is the previous release. The system is one INT8 encoder
   for type and target, a word snap on the target span and a rule-based parser for the value
   span. The bundle is 29.3 MB INT8 ONNX, about 1.4 ms p50 on one CPU thread. The release is
   public on Hugging Face: [x8bu/gidi-finance](https://huggingface.co/x8bu/gidi-finance)
@@ -42,7 +46,7 @@ details are in `AGENTS.md`.
 Internal experiment names are not release versions. Public models are named `gidi-finance-vN`,
 with release versions such as `3.0.0`.
 
-**Current: `gidi-finance-v3` / `3.0.0` (done)**
+**Current: `gidi-finance-v4` / `4.0.0` (done); previous: `gidi-finance-v3` / `3.0.0`**
 
 - Hybrid neural and deterministic architecture: one INT8 encoder for type and target, value
   extracted by a rule-based parser (`gidi.value_parser`), no second value encoder.
@@ -91,9 +95,9 @@ pnpm -C playground install && pnpm -C playground build
 uv run python scripts/demo_ui.py
 
 # release and publish (see docs/releasing.md)
-uv run python scripts/release.py build --model gidi-finance-v3 --version 3.0.0
-uv run python scripts/release.py verify --release dist/releases/gidi-finance-v3/3.0.0
-uv run python scripts/publish.py all --release dist/releases/gidi-finance-v3/3.0.0 --dry-run
+uv run python scripts/release.py build --model gidi-finance-v4 --version 4.0.0
+uv run python scripts/release.py verify --release dist/releases/gidi-finance-v4/4.0.0
+uv run python scripts/publish.py all --release dist/releases/gidi-finance-v4/4.0.0 --dry-run
 ```
 
 ## Layout

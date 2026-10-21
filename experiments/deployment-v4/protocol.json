@@ -1,0 +1,30 @@
+{
+  "experiment": "deployment-v4",
+  "declared_before_packaging": true,
+  "version": "gidi-finance-v4",
+  "annotation_config": "configs/annotation-v4.yaml",
+  "value_source": "rule-parser",
+  "target_snap": "words",
+  "scope": "packaging only: freeze the clef-distill-v2 D4 seed-1 INT8 encoder (type + target) together with the unchanged rule-based value parser (gidi.value_parser) and the whole-word target snap into one release. No training, no seed change, no architecture/tokenizer/vocabulary change, no threshold change, no special-casing of any note. models/gidi-finance-v1..v3 are not modified. Released by explicit user decision although the pre-set D4 success criterion was missed narrowly (see experiments/clef-distill-v2/report.md, D4 verdict).",
+  "architecture": "clef-distill-v2 D4 seed 1: compression-v3 recipe (pretrained BamiBERT-derived 4x768 encoder, layers 2,5,8,11, FFN 2048 combined criterion, 34 position rows, vocabulary B-rank-8000 with 8,338 tokens, max_length 32), supervised with hard labels on training-v7-d4 (training-v5 + silver-A + augment-01 + annotation-v4 rule notes from the Clef teacher); type head (8 classes) + target BIO head, ONNX INT8 (dynamic, QInt8 weights). Same ONNX interface and runtime contract as gidi-finance-v3 (value span from gidi.value_parser, whole-word target snap).",
+  "source_experiment": "experiments/clef-distill-v2",
+  "source_checkpoint": "experiments/clef-distill-v2/d4/weights/supervised/student-4x768-pretrained-pos32-vocab-B-rank-8000-ffn-combined-K2048/seed1",
+  "source_onnx": "experiments/clef-distill-v2/d4/onnx/seed1/",
+  "bundle": "models/gidi-finance-v4",
+  "seed": 1,
+  "seed_selection": {
+    "rule": "seed 1, the candidate pre-declared in experiments/clef-distill-v2/protocol.json (key d4) before any D4 model existed; not chosen among seeds 1-3 by any held-out score. The user accepted it knowing the D4 success criterion was missed (probe-rules-v1 gain +0.047 vs +0.10 needed; human-value-02 end-to-end -0.021 vs arm A seed 1).",
+    "no_weight_averaging_or_ensembling": true
+  },
+  "value_decoding_rule": "none: no value head. The value span is gidi.value_parser.parse_value(text) (offsets in code points of the caller's string, None when the note holds no amount); Prediction value_confidence is null because the rule parser has no score.",
+  "target_snap_rule": "the decoded first target span is extended outward to whole words (maximal non-whitespace runs, edge punctuation of the extension trimmed), exactly gidi.inference.decode.snap_to_words; member tokens, and therefore target_confidence, are unchanged.",
+  "evaluation_sets_report_only": "frozen test, probe-v1, probe-rules-v1, human-value-01 and human-value-02 are used only to report quality. Numbers: experiments/clef-distill-v2/results-d4.json, report.md.",
+  "thresholds": "none; confidences are uncalibrated scores, abstention policy is left to a later calibration phase",
+  "acceptance_gate": [
+    "bundle reproducible (freeze_deployment --check byte-identical); every bundle file matches manifest.json",
+    "INT8 model is the ONNX the D4 held-out runs scored",
+    "release verify passes: hashes, runtime config, INT8 and FP32 smoke predictions",
+    "gidi-finance-v1..v3 bundles unchanged"
+  ],
+  "on_gate_failure": "stop and report the blocker; no retraining, no seed change"
+}

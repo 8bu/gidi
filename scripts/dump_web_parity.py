@@ -2,7 +2,7 @@
 
 The in-browser playground (``playground/src/runtime``) is a port of ``gidi.inference`` and
 ``gidi.value_parser``. This script runs the reference, ``GidiPredictor`` on the INT8 model of the
-``gidi-finance-v3`` bundle (type + target from the encoder, whole-word target snap, value from the
+``gidi-finance-v4`` bundle (type + target from the encoder, whole-word target snap, value from the
 rule parser), over a fixed set of inputs and writes everything the TS side needs to compare:
 
 - ``expected.jsonl``: one record per input with ``Prediction.to_dict()`` (or the error), the
@@ -52,7 +52,7 @@ from gidi.inference.text import normalize_nfc  # noqa: E402
 from gidi.inference.tokenizer import BundleTokenizer  # noqa: E402
 from gidi.value_parser import parse_value  # noqa: E402
 
-BUNDLE = ROOT / "models" / "gidi-finance-v3"
+BUNDLE = ROOT / "models" / "gidi-finance-v4"
 DEPLOY_V2 = ROOT / "experiments" / "deployment-v2"
 EVAL_DIR = ROOT / "datasets" / "annotation-v2" / "training-v1"
 HV01_DIR = ROOT / "datasets" / "annotation-v2" / "human-value-01"

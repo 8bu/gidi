@@ -129,6 +129,20 @@ def _value_decoding(weights: Path) -> dict:
     }
 
 
+def _load_annotation(path: Path) -> dict:
+    """The annotation config; keys and mapping entries it lacks come from its ``extends`` chain."""
+    config = yaml.safe_load(path.read_text(encoding="utf-8"))
+    parent = config.get("extends")
+    if parent is None:
+        return config
+    base = _load_annotation(path.parent / f"{parent}.yaml")
+    merged = {**base, **config}
+    for key, value in config.items():
+        if isinstance(value, dict) and isinstance(base.get(key), dict):
+            merged[key] = {**base[key], **value}
+    return merged
+
+
 def _require(condition: bool, message: str) -> None:
     if not condition:
         raise SystemExit(f"error: {message}")
@@ -195,7 +209,7 @@ def build_bundle(out_dir: Path, created_at: str, protocol_path: Path = PROTOCOL)
     meta = json.loads((checkpoint / META_FILE).read_text(encoding="utf-8"))
     hf_config = json.loads((checkpoint / "config.json").read_text(encoding="utf-8"))
     annotation_config = Path(protocol.get("annotation_config", ANNOTATION_CONFIG))
-    annotation = yaml.safe_load(annotation_config.read_text(encoding="utf-8"))
+    annotation = _load_annotation(annotation_config)
 
     base = Path(protocol["base_checkpoint"]) if "base_checkpoint" in protocol else None
     provenance = meta

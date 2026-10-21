@@ -1,6 +1,19 @@
-# Deployment: gidi-finance-v1, gidi-finance-v2 and gidi-finance-v3
+# Deployment: gidi-finance-v1 to v4
 
-## gidi-finance-v3 (current)
+## gidi-finance-v4 (current)
+
+`models/gidi-finance-v4/` (release 4.0.0) is the clef-distill-v2 D4 seed-1 INT8 encoder (28,658,533 B,
+sha256 `a702d35ec450…`) with the same runtime contract as v3: rule-parser value, whole-word target
+snap, ONNX inputs `input_ids`/`attention_mask`, outputs `type_logits`/`tag_logits`. Protocol:
+`experiments/deployment-v4/protocol.json`; spec `releases/gidi-finance-v4.json`; freeze with
+`uv run python scripts/freeze_deployment.py --out models/gidi-finance-v4 --protocol experiments/deployment-v4/protocol.json`.
+Quality and the missed pre-set criterion: `experiments/clef-distill-v2/report.md`. The live demo
+serves v4 from R2 key `gidi-finance-v4/4.0.0/model.int8.onnx`; the v3 key stays for rollback. The
+Hugging Face/GitHub publication is not done for v4. Everything below describes v3; v4 differs only
+by the model weights and the names `gidi-finance-v4` / `4.0.0`.
+
+
+## gidi-finance-v3
 
 `models/gidi-finance-v3/` is immutable, like v1 and v2. Protocol and sources:
 `experiments/deployment-v3/protocol.json`. Packaging and publishing: [releasing.md](releasing.md).

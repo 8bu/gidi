@@ -23,7 +23,11 @@ Code deterministic chuyển span này thành số.
 
 ## Trạng thái
 
-- **`gidi-finance-v3`** (release `3.0.0`) là model hiện tại.
+- **`gidi-finance-v4`** (release `4.0.0`) là model hiện tại: cùng kiến trúc và runtime với v3,
+  encoder mới huấn luyện thêm dữ liệu Clef và quy tắc `annotation-v4` (xem
+  `experiments/clef-distill-v2/report.md`). Demo https://gidi.8bu.dev đang chạy v4; bản công khai
+  trên Hugging Face và GitHub vẫn là v3.
+- **`gidi-finance-v3`** (release `3.0.0`) là release trước.
   Hệ thống gồm một encoder INT8 cho type và target, word snap cho span `target`, và parser
   theo luật cho value span. Bundle là 29.3 MB INT8 ONNX, khoảng 1.4 ms p50 trên một CPU thread.
   Release công khai trên Hugging Face
@@ -50,7 +54,7 @@ Chi tiết về agent nằm trong `AGENTS.md`.
 Tên experiment nội bộ không phải là version release.
 Model public có tên `gidi-finance-vN` và version release như `3.0.0`.
 
-**Hiện tại: `gidi-finance-v3` / `3.0.0` (đã xong)**
+**Hiện tại: `gidi-finance-v4` / `4.0.0` (đã xong); trước đó `gidi-finance-v3` / `3.0.0`**
 
 - Kiến trúc lai neural và tất định: một encoder INT8 cho type và target, value được trích xuất
   bằng parser theo luật (`gidi.value_parser`), không còn value encoder thứ hai.
@@ -100,9 +104,9 @@ pnpm -C playground install && pnpm -C playground build
 uv run python scripts/demo_ui.py
 
 # release and publish (see docs/releasing.md)
-uv run python scripts/release.py build --model gidi-finance-v3 --version 3.0.0
-uv run python scripts/release.py verify --release dist/releases/gidi-finance-v3/3.0.0
-uv run python scripts/publish.py all --release dist/releases/gidi-finance-v3/3.0.0 --dry-run
+uv run python scripts/release.py build --model gidi-finance-v4 --version 4.0.0
+uv run python scripts/release.py verify --release dist/releases/gidi-finance-v4/4.0.0
+uv run python scripts/publish.py all --release dist/releases/gidi-finance-v4/4.0.0 --dry-run
 ```
 
 ## Cấu trúc

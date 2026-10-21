@@ -1,0 +1,185 @@
+{
+  "spec_format": 1,
+  "model_version": "gidi-finance-v4",
+  "source": {
+    "experiment": "clef-distill-v2",
+    "seed": 1,
+    "experiment_protocol": {
+      "path": "experiments/clef-distill-v2/protocol.json",
+      "sha256": "c7abf5336e39ddfbed46715ebb565a620ce0fce9ffe3d7df07e6ec5683ec9f64"
+    },
+    "deployment_protocol": {
+      "path": "experiments/deployment-v4/protocol.json",
+      "sha256": "fe47f1490b3a43d53a0a7bb86aa909f1e7c59cfdefda326f7895c0b61ead890d"
+    },
+    "bundle": {
+      "path": "models/gidi-finance-v4",
+      "manifest_sha256": "3125a42dd9abee0073751a410d426be3d72707ba977de44f8699cd0f0a530b7c"
+    },
+    "checkpoint_sha256": "9e328e74d4b32ec5f6166f007d82bf2d393d041cf47ff5342e1ccd540808deae"
+  },
+  "bundle_check": {
+    "script": "scripts/freeze_deployment.py",
+    "bundle": "models/gidi-finance-v4",
+    "protocol": "experiments/deployment-v4/protocol.json"
+  },
+  "files": [
+    {
+      "source": "models/gidi-finance-v4/model.int8.onnx",
+      "path": "model/int8/model.int8.onnx",
+      "kind": "onnx-int8",
+      "sha256": "a702d35ec4501f617e7536f97013c0e512cdd201fd5043e62b9185b354d9d8e7",
+      "size_bytes": 28658533
+    },
+    {
+      "source": "models/gidi-finance-v4-onnx/model.onnx",
+      "path": "model/fp32/model.onnx",
+      "kind": "onnx-fp32",
+      "sha256": "c88d2c8ab0e714faf36e0fbf721183180dcc46898b8d80f0e2e1fd7500b5c36a",
+      "size_bytes": 114024066
+    },
+    {
+      "source": "models/gidi-finance-v4/tokenizer.json",
+      "path": "tokenizer/tokenizer.json",
+      "kind": "tokenizer",
+      "sha256": "564679d03ffb980406a70829b99b5e969df3112e240c819b6534f843fd3ae045",
+      "size_bytes": 574195
+    },
+    {
+      "source": "models/gidi-finance-v4/tokenizer_config.json",
+      "path": "tokenizer/tokenizer_config.json",
+      "kind": "tokenizer-config",
+      "sha256": "e7d65c11cae92e4995e5a41f7c78593ab90096cbc35f3e0e7f96120bb1080d76",
+      "size_bytes": 340
+    },
+    {
+      "source": "models/gidi-finance-v4/vocab_map.json",
+      "path": "tokenizer/vocab_map.json",
+      "kind": "vocab-map",
+      "sha256": "da3f4357262e0379a6167107effd7c1ff5e5b8f8a1f99e87f2a44bb736ea3f68",
+      "size_bytes": 49336
+    },
+    {
+      "source": "models/gidi-finance-v4/config.json",
+      "path": "runtime/config.json",
+      "kind": "runtime-config",
+      "sha256": "4e6efd191d2cab22205d9d5114908cde6160af94502410498c5cd8ca98fbf885",
+      "size_bytes": 932
+    },
+    {
+      "source": "releases/licenses/Apache-2.0.txt",
+      "path": "LICENSE",
+      "kind": "license",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "size_bytes": 11358
+    }
+  ],
+  "readmes": {
+    "README.md": "releases/templates/gidi-finance-v4.README.vi.md",
+    "README.en.md": "releases/templates/gidi-finance-v4.README.en.md"
+  },
+  "variants": {
+    "int8": {
+      "members": {
+        "model.int8.onnx": "model/int8/model.int8.onnx",
+        "config.json": "runtime/config.json",
+        "tokenizer.json": "tokenizer/tokenizer.json",
+        "tokenizer_config.json": "tokenizer/tokenizer_config.json",
+        "vocab_map.json": "tokenizer/vocab_map.json",
+        "README.md": "README.md",
+        "README.en.md": "README.en.md",
+        "LICENSE": "LICENSE",
+        "release-manifest.json": "manifest.json"
+      },
+      "model_file": "model.int8.onnx"
+    },
+    "fp32": {
+      "members": {
+        "model.onnx": "model/fp32/model.onnx",
+        "config.json": "runtime/config.json",
+        "tokenizer.json": "tokenizer/tokenizer.json",
+        "tokenizer_config.json": "tokenizer/tokenizer_config.json",
+        "vocab_map.json": "tokenizer/vocab_map.json",
+        "README.md": "README.md",
+        "README.en.md": "README.en.md",
+        "LICENSE": "LICENSE",
+        "release-manifest.json": "manifest.json"
+      },
+      "model_file": "model.onnx"
+    }
+  },
+  "smoke": [
+    {
+      "text": "cơm tấm 100",
+      "expected": {
+        "type": "expense",
+        "target": null,
+        "value_text": "100"
+      }
+    },
+    {
+      "text": "bún bò 50k",
+      "expected": {
+        "type": "expense",
+        "target": null,
+        "value_text": "50k"
+      }
+    },
+    {
+      "text": "mượn chú hai 5 xị",
+      "expected": {
+        "type": "borrow",
+        "target": "chú hai",
+        "value_text": "5 xị"
+      }
+    },
+    {
+      "text": "còn nợ Hùng 300k",
+      "expected": {
+        "type": "borrow",
+        "target": "Hùng",
+        "value_text": "300k"
+      }
+    },
+    {
+      "text": "Hoa còn nợ mình 350k",
+      "expected": {
+        "type": "lend",
+        "target": "Hoa",
+        "value_text": "350k"
+      }
+    },
+    {
+      "text": "tặng quà sinh nhật Lan 500k",
+      "expected": {
+        "type": "expense",
+        "target": "Lan",
+        "value_text": "500k"
+      }
+    },
+    {
+      "text": "trả góp kỳ 3 1tr5",
+      "expected": {
+        "type": "repayment_out",
+        "target": null,
+        "value_text": "1tr5"
+      }
+    },
+    {
+      "text": "đổ 5 lít xăng 120k",
+      "expected": {
+        "type": "expense",
+        "target": null,
+        "value_text": "120k"
+      }
+    },
+    {
+      "text": "ăn phở",
+      "expected": {
+        "type": "expense",
+        "target": null,
+        "value_text": null
+      }
+    }
+  ]
+}
