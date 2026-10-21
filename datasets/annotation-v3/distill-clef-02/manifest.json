@@ -1,0 +1,108 @@
+{
+ "name": "distill-clef-02",
+ "labels": "model labels from Cloudflare Clef (omp judge role), NOT human labels; train-only silver candidates, provenance.annotator must be 'clef'",
+ "date": "2026-10-21",
+ "file": "labels-all.jsonl: every labelled note, no filtering; thresholds NOT applied (the integrator picks them)",
+ "notes": 2395,
+ "shards": {
+  "s01..s20": "1,757-note pool of distill-clef-01 (queue.jsonl), relabelled with the rule-aware prompt",
+  "rules": "638 hand-written R1-R4 notes (generated/distill-clef-02/rules-1..7.jsonl, 796 written; gate + human-value dedupe -> gated.jsonl 638 after dropping 3 exact dups of pool notes)"
+ },
+ "rules_gate": "scripts/check_note_similarity.py (leakage rules vs eval/train refs, batch duplicates) + exact/NFC-lowercase match against human-value-01/02 (350 notes loaded in code, never printed); 1 note matched and was dropped",
+ "prompt": {
+  "file": "scripts/clef_teacher.py",
+  "sha256": "d1f3b2d800e599df211b075acfe63b3319b2b72647ed16448d59fabfd1f5731b",
+  "call": "questions(text, rules=True) + ShotPool(training-v5 train + validation).state(text), 16 shots",
+  "rules_text_sha256": "594a039c401a170c3d39bfb0a155751e437fbd5b3336b7946c54a1de9d439bae",
+  "config": "configs/annotation-v4.yaml, docs/annotation-v4.md"
+ },
+ "thresholds_applied": null,
+ "info_only_pass_counts": {
+  "rules": {
+   "n": 638,
+   "would_pass_type>=0.6_and_target>=0.6": 347
+  },
+  "s01": {
+   "n": 97,
+   "would_pass_type>=0.6_and_target>=0.6": 46
+  },
+  "s02": {
+   "n": 88,
+   "would_pass_type>=0.6_and_target>=0.6": 52
+  },
+  "s03": {
+   "n": 92,
+   "would_pass_type>=0.6_and_target>=0.6": 61
+  },
+  "s04": {
+   "n": 94,
+   "would_pass_type>=0.6_and_target>=0.6": 35
+  },
+  "s05": {
+   "n": 95,
+   "would_pass_type>=0.6_and_target>=0.6": 48
+  },
+  "s06": {
+   "n": 92,
+   "would_pass_type>=0.6_and_target>=0.6": 23
+  },
+  "s07": {
+   "n": 85,
+   "would_pass_type>=0.6_and_target>=0.6": 47
+  },
+  "s08": {
+   "n": 104,
+   "would_pass_type>=0.6_and_target>=0.6": 30
+  },
+  "s09": {
+   "n": 88,
+   "would_pass_type>=0.6_and_target>=0.6": 52
+  },
+  "s10": {
+   "n": 83,
+   "would_pass_type>=0.6_and_target>=0.6": 62
+  },
+  "s11": {
+   "n": 76,
+   "would_pass_type>=0.6_and_target>=0.6": 52
+  },
+  "s12": {
+   "n": 89,
+   "would_pass_type>=0.6_and_target>=0.6": 42
+  },
+  "s13": {
+   "n": 81,
+   "would_pass_type>=0.6_and_target>=0.6": 39
+  },
+  "s14": {
+   "n": 86,
+   "would_pass_type>=0.6_and_target>=0.6": 52
+  },
+  "s15": {
+   "n": 87,
+   "would_pass_type>=0.6_and_target>=0.6": 65
+  },
+  "s16": {
+   "n": 84,
+   "would_pass_type>=0.6_and_target>=0.6": 54
+  },
+  "s17": {
+   "n": 88,
+   "would_pass_type>=0.6_and_target>=0.6": 63
+  },
+  "s18": {
+   "n": 98,
+   "would_pass_type>=0.6_and_target>=0.6": 30
+  },
+  "s19": {
+   "n": 75,
+   "would_pass_type>=0.6_and_target>=0.6": 58
+  },
+  "s20": {
+   "n": 75,
+   "would_pass_type>=0.6_and_target>=0.6": 43
+  }
+ },
+ "never_train_on": "probe-*, frozen test split, human-value-01/02",
+ "known_weakness": "on the rules shard the teacher follows R1, R3 (people), R4 (salary) but often labels R2 'tra ho/ung gium/mua ho/dong ho X ...' as expense (mostly < 0.6) and 'ung luong/tam ung' in longer notes as income/expense/repayment_out; check before training on those"
+}

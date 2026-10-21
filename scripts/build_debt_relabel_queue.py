@@ -65,6 +65,16 @@ DERIVED_DIRS = (
     # batches (frozen before it existed) keep rebuilding byte for byte.
     Path("datasets/annotation-v3/human-value-02"),
     Path("datasets/annotation-v3/training-v3"),
+    Path("datasets/annotation-v3/distill-clef-01"),
+    Path("datasets/annotation-v3/training-v6a"),
+    Path("datasets/annotation-v3/training-v6b"),
+    Path("datasets/annotation-v3/augment-01"),
+    Path("datasets/annotation-v3/distill-clef-02"),
+    Path("datasets/annotation-v3/training-v7-d1"),
+    Path("datasets/annotation-v3/training-v7-d2"),
+    Path("datasets/annotation-v3/training-v7-d3"),
+    Path("datasets/annotation-v3/training-v7-d4"),
+    Path("datasets/probe-rules-v1"),
 )
 SCHEMA = Path("configs/annotation-v3.quet.yaml")
 CONTRACT = Path("configs/annotation-v3.yaml")

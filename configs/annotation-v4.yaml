@@ -1,0 +1,79 @@
+# Gidi annotation-v4 = annotation-v3 with FOUR clarified rules from the field issues
+# (experiments/v3-field-issues.md): R1 who pays "X trả ...", R2 paying on someone's behalf,
+# R3 sending money to other people vs own accounts, R4 salary phrasing.
+# Human-readable guide: docs/annotation-v4.md. Only what changes is listed here; everything else
+# (statuses, null rules, queue, the `value:` section, the target rules not named below, the Quet
+# schemas) is inherited unchanged from configs/annotation-v3.yaml (-> v2 -> v1).
+# These rules are a user decision about the label CONVENTION: existing human labels are not
+# rewritten, see datasets/annotation-v3/distill-clef-02/rule-conflicts.jsonl for the few notes
+# whose current label disagrees.
+
+version: annotation-v4
+extends: annotation-v3
+
+# The rules, quoted from the user-approved text.
+rules:
+  R1: >-
+    `X trả ...` (the payer decides). X is a person (a name or a kinship term) and the note names
+    no goods, service or work -> repayment_in, target X (`Long tra 5 lit`, `long tra 5 lit`,
+    `chị Linh trả 2tr`). X is an employer, client or customer, OR the note says what the money
+    pays for (wages, a month, an order, goods) -> income (`cong ty tra tien t10 5 lit`,
+    `khach tra tien 500k`, `anh Minh tra tien cong son nha 4tr`); the target is the
+    employer/client noun when named (`cong ty`, `khach`). An explicit debt word still wins:
+    `X trả nợ / trả lại ...` -> repayment_in.
+  R2: >-
+    Paying on someone's behalf: `trả giùm / trả hộ / ứng giùm / ứng hộ / mua hộ / đóng hộ X ...`
+    -> lend, target X. The return side (`X trả lại tiền mình trả giùm`, `Khoa gửi lại tiền cơm`)
+    -> repayment_in, target X.
+  R3: >-
+    Sending money to other people (`chuyển / gửi / biếu cho mẹ, họ hàng, bạn, ba ...`) ->
+    expense, target the person or kinship noun (`chuyển cho mẹ 2 củ` -> expense, `mẹ`;
+    `chuyển cho họ hàng 2 củ` -> expense, `họ hàng`), or lend when a loan is stated. transfer is
+    ONLY between the user's own accounts, wallets, cash, savings or investments (`chuyển sang ví
+    momo 1tr`, `gửi tiết kiệm 5tr`).
+  R4: >-
+    Salary phrasing: `nhận lương`, `lãnh lương` (southern), `lương về`, `có lương`, `mới nhận
+    lương 26cu` (also no-diacritic `moi nhan luong`, `moi lanh luong`) -> income, no target;
+    `ứng lương` / `tạm ứng` -> borrow.
+
+# Only the type definitions R1-R4 touch are restated (the other four are unchanged from v3:
+# borrow keeps its v3 text, plus the salary advance of R4).
+types:
+  expense: >-
+    Money leaves the user with no expectation of principal repayment. annotation-v4 (R3): money
+    sent or given to other people (`chuyển cho mẹ 2 củ`, `biếu ba 1tr`, `gửi cho họ hàng 2 củ`)
+    is expense with the person or kinship noun as target, unless a loan is stated (then lend).
+  income: >-
+    Money received as salary, freelance/client payment, gift, sale proceeds, rewards, or other
+    ordinary incoming money that is neither borrowing, debt repayment, nor refund. annotation-v4:
+    `nhận lương`, `lãnh lương`, `lương về`, `có lương` (R4) are income with no target; an
+    employer, client or customer paying (`cong ty tra tien t10 5 lit`, `khach tra tien 500k`) or
+    a person paying for stated goods or work (`anh Minh tra tien cong son nha 4tr`) is income
+    (R1).
+  borrow: >-
+    The user receives loan principal and now owes another party. annotation-v3: also a
+    DEBT-ONLY note in which the user owes the other party. annotation-v4 (R4): `ứng lương` /
+    `tạm ứng` (a salary advance) is borrow.
+  lend: >-
+    The user gives loan principal to another party and expects repayment. annotation-v3: also a
+    DEBT-ONLY note in which the other party owes the user. annotation-v4 (R2): paying on
+    someone's behalf (`trả giùm / trả hộ / ứng giùm / ứng hộ / mua hộ / đóng hộ X ...`) is lend
+    with X as target.
+  repayment_in: >-
+    Another party repays money they previously owed the user. annotation-v4: a bare `X trả 2tr`
+    with a person X (name or kinship term) and no goods, service or work named is repayment_in,
+    target X (R1); the return side of paying on someone's behalf (`X trả lại tiền mình trả
+    giùm`, `Khoa gửi lại tiền cơm`) is repayment_in (R2).
+  transfer: >-
+    Movement between the user's own accounts, wallets, cash holdings, or savings, including
+    conversion into investment/store-of-value assets the user still owns. annotation-v4 (R3):
+    ONLY the user's own holdings (`chuyển sang ví momo 1tr`, `gửi tiết kiệm 5tr`); sending money
+    to another person is expense (or lend), never transfer. The v3 precious-metal and refundable
+    deposit rules are unchanged.
+
+# Target rules added by annotation-v4 (the rest of the v3 target text applies):
+# * an employer / client / customer noun that is the only name is the target
+#   (`cong ty tra tien t10 5 lit` -> `cong ty`, `khach tra tien 500k` -> `khach`);
+# * a kinship or person noun that is the only name is kept (`chuyển cho mẹ 2 củ` -> `mẹ`,
+#   `chuyển cho họ hàng 2 củ` -> `họ hàng`, `chị Linh trả 2tr` -> `Linh`);
+# * salary notes (R4) have no target (the employer is not named as a counterparty).

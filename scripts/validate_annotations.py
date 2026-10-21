@@ -45,6 +45,13 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--queue", type=Path, default=None, help="default: queue.out in config")
     args = parser.parse_args(argv)
+    missing = [str(path) for path in args.paths if not path.is_file()]
+    if missing:
+        parser.exit(
+            1,
+            f"error: no labels file: {', '.join(missing)}\n"
+            "Quet writes it after the first saved annotation (quet annotate ... --out PATH).\n",
+        )
 
     if is_combined_schema(args.config):
         if args.queue is None:
