@@ -1,7 +1,10 @@
 /**
- * Serves the model file from R2 at `/models/<key>`. Everything else (the SPA, ORT wasm,
- * release metadata) is a static asset and never reaches this Worker (`run_worker_first`).
+ * Serves the model files from R2 at `/models/<key>` and the home page with a language hint.
+ * Everything else (ORT wasm, release metadata, the other pages) is a static asset and never
+ * reaches this Worker (`run_worker_first`).
  */
+
+import { languageForCountry, LANG_HINT_META } from "../src/lib/language"
 
 const MODELS_PREFIX = "/models/"
 
@@ -120,9 +123,60 @@ async function serveFromR2(
   return new Response(object.body, { status: 206, headers })
 }
 
+/**
+ * The visitor's country as Cloudflare sees it, used once and never stored or logged. Local dev
+ * only (`pnpm dev:worker` passes `--var GEO_OVERRIDE:1`; production has no such var) may force
+ * it with `?geo=VN`.
+ */
+function requestCountry(request: Request, env: Env, url: URL): string | null {
+  const forced = url.searchParams.get("geo")
+  if (
+    forced !== null &&
+    (env as { GEO_OVERRIDE?: string }).GEO_OVERRIDE === "1"
+  ) {
+    return forced
+  }
+  const cf = request.cf as { country?: string } | undefined
+  return cf?.country ?? request.headers.get("cf-ipcountry")
+}
+
+/**
+ * `index.html` with `<meta name="gidi-lang-hint" content="vi|en">` and a matching `<html lang>`.
+ * Only the language leaves the Worker (no country, no IP); the answer depends on the visitor, so
+ * it is never cached.
+ */
+async function servePage(
+  request: Request,
+  env: Env,
+  url: URL
+): Promise<Response> {
+  const response = await env.ASSETS.fetch(request)
+  const type = response.headers.get("content-type") ?? ""
+  if (!response.ok || !type.includes("text/html")) return response
+  const lang = languageForCountry(requestCountry(request, env, url))
+  const page = new Response(response.body, response)
+  page.headers.set("cache-control", "private, no-store")
+  page.headers.delete("etag")
+  return new HTMLRewriter()
+    .on("html", {
+      element(element) {
+        element.setAttribute("lang", lang)
+      },
+    })
+    .on("head", {
+      element(element) {
+        element.append(`<meta name="${LANG_HINT_META}" content="${lang}">`, {
+          html: true,
+        })
+      },
+    })
+    .transform(page)
+}
+
 export default {
   async fetch(request, env, ctx): Promise<Response> {
     const url = new URL(request.url)
+    if (url.pathname === "/") return servePage(request, env, url)
     if (!url.pathname.startsWith(MODELS_PREFIX)) return notFound()
     if (request.method !== "GET" && request.method !== "HEAD") {
       return new Response("Method not allowed", {

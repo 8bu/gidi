@@ -6,11 +6,9 @@ import {
   type RuntimeInfo,
 } from "@/lib/api"
 import type { BrowserBackend, LoadProgress } from "@/lib/backend"
+import type { ModelSpec } from "@/lib/models"
 import { highlightSegments, spansOverlap } from "@/lib/segments"
 import { loadPredictor, ModelIntegrityError } from "@/runtime"
-
-/** Written by `scripts/sync-release.mjs` from the immutable bundle manifest. */
-const RELEASE_BASE = "/release/gidi-finance-v4/4.0.0"
 
 type WebRelease = {
   model_version: string
@@ -19,8 +17,14 @@ type WebRelease = {
   model: { url: string; sha256: string; size_bytes: number }
 }
 
-async function fetchWebRelease(signal: AbortSignal): Promise<WebRelease> {
-  const response = await fetch(`${RELEASE_BASE}/web-release.json`, { signal })
+/** `web-release.json` is written by `scripts/sync-release.mjs` from the immutable bundle manifest. */
+async function fetchWebRelease(
+  spec: ModelSpec,
+  signal: AbortSignal
+): Promise<WebRelease> {
+  const response = await fetch(`${spec.releaseBase}/web-release.json`, {
+    signal,
+  })
   if (!response.ok) throw new Error(`web-release.json: HTTP ${response.status}`)
   const body: unknown = await response.json()
   const release = body as Partial<WebRelease> | null
@@ -43,11 +47,14 @@ function loadError(cause: unknown): PlaygroundError {
   }
   return new PlaygroundError(
     "model_load",
-    cause instanceof Error ? cause.message : "Unknown error while loading the model."
+    cause instanceof Error
+      ? cause.message
+      : "Unknown error while loading the model."
   )
 }
 
 export async function loadBrowserPredictor(
+  spec: ModelSpec,
   onProgress: (progress: LoadProgress) => void,
   signal: AbortSignal
 ): Promise<BrowserBackend> {
@@ -55,9 +62,9 @@ export async function loadBrowserPredictor(
   let predictor: Awaited<ReturnType<typeof loadPredictor>>
   let release: WebRelease
   try {
-    release = await fetchWebRelease(signal)
+    release = await fetchWebRelease(spec, signal)
     predictor = await loadPredictor({
-      baseUrl: `${window.location.origin}${RELEASE_BASE}`,
+      baseUrl: `${window.location.origin}${spec.releaseBase}`,
       modelUrl: new URL(release.model.url, window.location.origin).href,
       modelSha256: release.model.sha256,
       onProgress: (loaded, total) =>
@@ -74,7 +81,7 @@ export async function loadBrowserPredictor(
     model_version: info.model_version,
     bundle: `${info.model_version} ${info.release_version}`,
     max_length: info.max_length,
-    has_value_head: true, // from the rule-based parser
+    has_value_head: info.has_value, // the Vietnamese bundle reads the value with the rule-based parser
     architecture: info.architecture,
     precision: info.precision,
     backend: info.backend,
@@ -104,7 +111,11 @@ export async function loadBrowserPredictor(
           ok: true,
           result,
           latency_ms: latencyMs,
-          segments: highlightSegments(text, result.target_span, result.value_span),
+          segments: highlightSegments(
+            text,
+            result.target_span,
+            result.value_span
+          ),
           spans_overlap: spansOverlap(result.target_span, result.value_span),
         },
         text

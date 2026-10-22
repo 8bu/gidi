@@ -6,6 +6,7 @@ import {
   type BrowserBackend,
   type LoadProgress,
 } from "@/lib/backend"
+import { MODELS } from "@/lib/models"
 import {
   fetchInfo,
   PlaygroundError,
@@ -35,7 +36,10 @@ export type InfoState =
 function asPlaygroundError(cause: unknown): PlaygroundError {
   return cause instanceof PlaygroundError
     ? cause
-    : new PlaygroundError("unavailable", cause instanceof Error ? cause.message : "Unknown error.")
+    : new PlaygroundError(
+        "unavailable",
+        cause instanceof Error ? cause.message : "Unknown error."
+      )
 }
 
 export function usePlayground() {
@@ -72,9 +76,14 @@ export function usePlayground() {
     loading.current = controller
     setInfoState({ status: "loading", progress: null })
     try {
-      const loaded = await loadBrowserBackend((progress) => {
-        if (!controller.signal.aborted) setInfoState({ status: "loading", progress })
-      }, controller.signal)
+      const loaded = await loadBrowserBackend(
+        MODELS.vi,
+        (progress) => {
+          if (!controller.signal.aborted)
+            setInfoState({ status: "loading", progress })
+        },
+        controller.signal
+      )
       if (controller.signal.aborted) {
         void loaded.dispose()
         return
@@ -120,7 +129,9 @@ export function usePlayground() {
         if (BROWSER_MODE && loaded === null) {
           throw new PlaygroundError("model_load", "The model is not loaded.")
         }
-        const response = loaded ? await loaded.predict(note) : await predict(note)
+        const response = loaded
+          ? await loaded.predict(note)
+          : await predict(note)
         setRun({
           status: "success",
           text: note,

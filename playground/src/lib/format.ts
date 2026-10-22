@@ -12,6 +12,8 @@ export const ms = (value: number) => `${value.toFixed(value < 10 ? 2 : 1)} ms`
 export function displayName(modelVersion: string) {
   return modelVersion
     .split("-")
-    .map((word) => (/^v\d/.test(word) ? word : word.charAt(0).toUpperCase() + word.slice(1)))
+    .map((word) =>
+      /^v\d/.test(word) ? word : word.charAt(0).toUpperCase() + word.slice(1)
+    )
     .join(" ")
 }

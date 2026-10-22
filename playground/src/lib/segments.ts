@@ -1,7 +1,10 @@
 import type { Segment, Span } from "@/lib/api"
 
 /** Port of `highlight_segments` / `_spans_overlap` in `scripts/demo_ui.py` (code-point spans). */
-export function spansOverlap(first: Span | null | undefined, second: Span | null | undefined) {
+export function spansOverlap(
+  first: Span | null | undefined,
+  second: Span | null | undefined
+) {
   if (!first || !second) return false
   return first[0] < second[1] && second[0] < first[1]
 }
@@ -28,7 +31,8 @@ export function highlightSegments(
   for (let index = 0; index + 1 < sorted.length; index += 1) {
     const start = sorted[index]
     const end = sorted[index + 1]
-    const inTarget = !!targetSpan && targetSpan[0] <= start && end <= targetSpan[1]
+    const inTarget =
+      !!targetSpan && targetSpan[0] <= start && end <= targetSpan[1]
     const inValue = !!valueSpan && valueSpan[0] <= start && end <= valueSpan[1]
     segments.push({
       text: points.slice(start, end).join(""),

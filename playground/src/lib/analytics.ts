@@ -1,6 +1,7 @@
 import type { PostHog } from "posthog-js"
 
 import type { TxType } from "@/app/types"
+import type { Lang } from "@/lib/language"
 
 /**
  * Anonymous usage counts for the notes app (PostHog, US zone, project "Gidi").
@@ -9,7 +10,8 @@ import type { TxType } from "@/app/types"
  * note text, a target name or an amount. Events say only what happened and to which type.
  * Visitors get a random anonymous ID that PostHog keeps in localStorage (no cookie, no person
  * profile, never identified), so returning visitors, retention and multi-day funnels work.
- * Autocapture, session replay, heatmaps, surveys and exception capture are off, here and in the
+ * Events carry the app language (`vi`/`en`, the model's), never the country: the geoip default is
+ * decided by the Worker and is not sent. Autocapture, session replay, heatmaps, surveys and exception capture are off, here and in the
  * project settings.
  *
  * Internal traffic: opening the app once with `?internal=1` marks this browser as the owner's
@@ -48,11 +50,12 @@ function isInternal(): boolean {
 
 /** Every event and its properties. Keep names stable: they are the PostHog taxonomy. */
 export interface AnalyticsEventMap {
-  /** The on-device model finished loading. */
-  model_loaded: { ms: number }
+  /** The on-device model finished loading; `language` is the model's (and the app's) language. */
+  model_loaded: { ms: number; language: Lang }
   /** The model could not load; `error` is the app's own message, never note text. The rest says how far the download got and on what connection. */
   model_load_failed: {
     ms: number
+    language: Lang
     error: string
     error_name: string
     /** Bytes received before the failure, and the expected total (null if unknown). */
@@ -65,6 +68,7 @@ export interface AnalyticsEventMap {
   }
   /** One send from the composer; a pasted list is one send with several lines. */
   notes_sent: {
+    language: Lang
     lines: number
     classified: number
     failed: number
@@ -72,6 +76,8 @@ export interface AnalyticsEventMap {
     with_target: number
     types: Partial<Record<TxType, number>>
   }
+  /** The visitor chose a language (and so a model) in the app; never fired for the geoip default. */
+  language_changed: { to: Lang }
   /** A stack sheet opened. */
   stack_opened: { type: TxType }
   /** The user corrected a record; `to_type` differs from `from_type` when retyped. */
