@@ -19,7 +19,7 @@ converting it to a number stays deterministic code.
 
 ## Status
 
-- **`gidi-en`** (`gidi-en-v2`, release `2.0.0`) is the first English model, and experimental. It
+- **`gidi-en`** (`gidi-en-v2`, release `2.0.1`) is the first English model, and experimental. It
   predicts the type and the target for short English personal-finance notes (no value span yet).
   The INT8 file is 29.2 MB, published on Hugging Face as
   [x8bu/gidi-en](https://huggingface.co/x8bu/gidi-en). It has no human labels: every score is

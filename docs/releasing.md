@@ -181,11 +181,11 @@ non-archive files must always match.
 
 ## 12. The English model (`gidi-en`)
 
-`gidi-en-v2` (release `2.0.0`, spec `releases/gidi-en-v2.json`) follows the same flow with these
+`gidi-en-v2` (release `2.0.1`, spec `releases/gidi-en-v2.json`) follows the same flow with these
 differences:
 
 - **Naming.** MAJOR must equal the model's `vN` (section 9), so the first English release of the
-  `v2` recipe is `2.0.0`. It is an early, experimental release; the model card says so.
+  `v2` recipe is `2.0.0` (`2.0.1` fixed two card errors). It is an early, experimental release; the model card says so.
 - **Bundle.** `scripts/freeze_en_bundle.py` freezes `models/gidi-en-v2-bundle/` from
   `experiments/gidi-en-deployment-v2/protocol.json`. The release build runs it with `--check`
   (`bundle_check` in the spec). The bundle has no value head and no value parser: `config.json`
