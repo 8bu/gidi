@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" font-family="Be Vietnam Pro">
+  <defs>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse" x="12" y="12">
+      <circle cx="1" cy="1" r="1.1" fill="#8a7f72" fill-opacity=".2"/>
+    </pattern>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#4d3a1a" flood-opacity=".2"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="#f8f5f1"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+
+  <g transform="translate(80 70) scale(1.5)">
+    <path fill="#fceaa0" d="M10 6H54Q58 6 58 10V42L42 58H10Q6 58 6 54V10Q6 6 10 6Z"/>
+    <path fill="#e3c862" d="M58 42L42 58V46Q42 42 46 42Z"/>
+    <g stroke="#4e3914" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="28" cy="28" r="9"/>
+      <path d="M37 19V41Q37 49 28 49Q23 49 20 46"/>
+    </g>
+  </g>
+  <text x="76" y="286" font-size="150" font-weight="800" fill="#2b2118" letter-spacing="-3">Gidi</text>
+  <text x="80" y="356" font-size="38" font-weight="600" fill="#4e3914">Type your money note.</text>
+  <text x="80" y="404" font-size="38" font-weight="600" fill="#4e3914">It sorts itself.</text>
+  <text x="80" y="456" font-size="27" font-weight="500" fill="#6b5a3e">On-device. Private. Free.</text>
+  <text x="80" y="498" font-size="27" font-weight="500" fill="#6b5a3e">Vietnamese + English</text>
+  <text x="80" y="570" font-size="34" font-weight="700" fill="#2b2118">gidi.8bu.dev</text>
+
+  <g transform="translate(640 44) rotate(-2 220 62)" filter="url(#sh)">
+    <rect width="470" height="124" rx="10" fill="#ffddd9"/>
+    <text x="30" y="58" font-size="38" font-weight="600" fill="#3a2a1c">ăn phở 45k</text>
+    <circle cx="38" cy="95" r="7" fill="#802e2b"/>
+    <text x="56" y="103" font-size="26" font-weight="700" fill="#802e2b">Chi tiêu · VI</text>
+    <text x="440" y="103" font-size="26" font-weight="600" fill="#802e2b" text-anchor="end">45.000 ₫</text>
+  </g>
+  <g transform="translate(670 190) rotate(1.5 220 62)" filter="url(#sh)">
+    <rect width="470" height="124" rx="10" fill="#d1f1db"/>
+    <text x="30" y="58" font-size="38" font-weight="600" fill="#1d3a2a">got paid 2400</text>
+    <circle cx="38" cy="95" r="7" fill="#115531"/>
+    <text x="56" y="103" font-size="26" font-weight="700" fill="#115531">Income · EN</text>
+    <text x="440" y="103" font-size="26" font-weight="600" fill="#115531" text-anchor="end">$2,400.00</text>
+  </g>
+  <g transform="translate(640 336) rotate(-1 220 62)" filter="url(#sh)">
+    <rect width="470" height="124" rx="10" fill="#caf1f2"/>
+    <text x="30" y="58" font-size="38" font-weight="600" fill="#0e3a40">lent bro 20</text>
+    <circle cx="38" cy="95" r="7" fill="#00545d"/>
+    <text x="56" y="103" font-size="26" font-weight="700" fill="#00545d">Lend · EN</text>
+    <text x="440" y="103" font-size="26" font-weight="600" fill="#00545d" text-anchor="end">$20.00</text>
+  </g>
+  <g transform="translate(670 482) rotate(1 220 62)" filter="url(#sh)">
+    <rect width="470" height="108" rx="10" fill="#fff0c9"/>
+    <text x="30" y="52" font-size="36" font-weight="600" fill="#4a3510">cho Nam mượn 2 củ</text>
+    <circle cx="38" cy="84" r="7" fill="#7a5a10"/>
+    <text x="56" y="92" font-size="24" font-weight="700" fill="#7a5a10">Cho vay · VI</text>
+    <text x="440" y="92" font-size="24" font-weight="600" fill="#7a5a10" text-anchor="end">2.000.000 ₫</text>
+  </g>
+</svg>
