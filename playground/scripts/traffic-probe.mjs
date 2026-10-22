@@ -9,7 +9,8 @@
 // A first visit fetches `/`, the manifest, every file the page and its JS chunks reference, both
 // models' release files and the first language's model parts. A returning visit fetches only `/` (the rest sits in the browser's
 // cache: immutable headers, plus Cache Storage for the model). The burst sends `--burst` GETs to `/`
-// and to one model file (Range 0-1023, so it moves no model bytes) and reports the edge cache
+// and `--burst` HEADs to one model file (the asset service ignores `Range` and answers 200 with the
+// whole 11-16 MiB part, so a ranged GET would move the model; a HEAD moves none) and reports the edge cache
 // status. Invocation counts come from `workersInvocationsAdaptive`; the API lags by a minute or
 // two, so the script polls for up to 6 minutes. It needs `wrangler login` (the token is read with
 // `wrangler auth token`); `--no-analytics` only prints the per-request table.
@@ -134,7 +135,7 @@ if (burst > 0) {
   const flush = async () => results.push(...(await Promise.all(tasks.splice(0))))
   for (let i = 0; i < burst; i++) {
     tasks.push(hit("/").then((r) => ["/", r]))
-    tasks.push(hit(modelPath, { headers: { range: "bytes=0-1023" } }).then((r) => ["model-range", r]))
+    tasks.push(hit(modelPath, { method: "HEAD" }).then((r) => ["model-head", r]))
     if (tasks.length >= 40) await flush()
   }
   await flush()
