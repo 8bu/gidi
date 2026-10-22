@@ -8,7 +8,7 @@ snap, ONNX inputs `input_ids`/`attention_mask`, outputs `type_logits`/`tag_logit
 `experiments/deployment-v4/protocol.json`; spec `releases/gidi-finance-v4.json`; freeze with
 `uv run python scripts/freeze_deployment.py --out models/gidi-finance-v4 --protocol experiments/deployment-v4/protocol.json`.
 Quality and the missed pre-set criterion: `experiments/clef-distill-v2/report.md`. The live demo
-serves v4 from R2 key `gidi-finance-v4/4.0.0/model.int8.onnx`; the v3 key stays for rollback. The
+serves v4 as static-asset parts of `gidi-finance-v4/4.0.0/model.int8.onnx` (see "Web playground"); the R2 copies of v3 and v4 stay as an archive. The
 Hugging Face/GitHub publication is not done for v4. Everything below describes v3; v4 differs only
 by the model weights and the names `gidi-finance-v4` / `4.0.0`.
 
@@ -354,9 +354,10 @@ The React app in `playground/` ships as a static site that runs
 `gidi-finance-v3` **in the browser** (onnxruntime-web, WASM, INT8 encoder for type and target;
 the whole-word target snap and the rule-based value parser are TypeScript ports of
 `gidi.inference.decode.snap_to_words` and `gidi.value_parser`). No server does inference and no
-note leaves the device. It is one Cloudflare Worker (`gidi`) with static assets; the 28.7 MB model
-is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Worker at
-`/models/<key>`.
+note leaves the device. It is one Cloudflare Worker (`gidi`) that is **assets only** (no Worker code
+runs, so no request is billed): the 28.7 MB models are static assets too, cut into 16 MiB parts at
+`/models/<id>/<version>/model.int8.onnx.NN` (Workers assets are limited to 25 MiB per file). Cost
+and traffic model: [cost-and-traffic.md](cost-and-traffic.md).
 
 - `/` is the notes app (`playground/src/app/`): a sticky note in the centre, one paper stack per
   type around it, each with the sum of its amounts. A sent note flies into its stack. Tapping a
@@ -367,18 +368,18 @@ is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Wor
   100k, `tỏi` = 1 billion; the app widens the value span over `cành`/`tỏi`, which the pinned
   parser does not read). Works on phones and tablets (touch).
 - **Language and model.** The app runs one model per language: Vietnamese `gidi-finance-v4`
-  4.0.0 and English `gidi-en-v2` 2.0.1 (R2 key `gidi-en-v2/2.0.1/model.int8.onnx`, 29,166,949 B,
-  sha256 `c169b23f…1933`, same immutable cache headers and Cache API edge caching as v4). The
-  default comes from the visitor's country: the Worker (which now also runs for `/`) reads
-  Cloudflare's `request.cf.country` (or `CF-IPCountry`), maps `VN` to `vi` and anything else or
-  unknown to `en`, and injects only `<meta name="gidi-lang-hint" content="vi|en">` plus
-  `<html lang>` into `index.html` (`cache-control: private, no-store`); no cookie, no storage or
-  log of the IP or country. A visible `VI | EN` switch in the header (and the menu, which shows
-  the active model name and version) sets `gidi:lang` in localStorage; a stored choice always
-  beats the hint (`playground/src/lib/language.ts`, unit tests in `language.test.ts`). With no
-  hint at all (dev server) the browser language decides. Switching retires the other model
-  (aborts a running download or disposes its worker and ORT session) and loads the new one with
-  the same progress readout and SHA-256 check.
+  4.0.0 and English `gidi-en-v2` 2.0.1 (29,166,949 B, sha256 `c169b23f…1933`, served as parts like
+  v4). The default comes from the visitor's country, with no Worker: a zone **Response Header
+  Transform Rule** on `gidi.8bu.dev` sets `Server-Timing: geo;desc=<ip.src.country>` on every
+  response (rule and expression: [cost-and-traffic.md](cost-and-traffic.md), "Cloudflare rule"),
+  and the page reads it from its own navigation entry (`performance.getEntriesByType("navigation")`,
+  `hintFromServerTiming` in `src/lib/language.ts`): `VN` gives `vi`, any other country `en`. No
+  cookie, no storage or log of the IP or country. A visible `VI | EN` switch in the header (and
+  the menu, which shows the active model name and version) sets `gidi:lang` in localStorage; a
+  stored choice always beats the hint (`playground/src/lib/language.ts`, unit tests in
+  `language.test.ts`). With no hint at all (dev server, or the rule missing) the browser
+  language decides. Switching retires the other model (aborts a running download or disposes its
+  worker and ORT session) and loads the new one with the same progress readout and SHA-256 check.
 - **One database per language.** Notes live in IndexedDB `gidi-vi` (Vietnamese, VND) and `gidi-en`
   (English, USD); the app shows, totals, exports and imports only the active language's database,
   and a switch never mixes or copies notes. Each database also has a `meta` store (the model it
@@ -387,8 +388,8 @@ is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Wor
   or deleted, so it is the rollback. If the copy fails, `gidi-notes` is served and the copy is
   retried next start. Code: `playground/src/app/notes-db.ts` (migration), `notes-core.ts` (store),
   tests `notes-core.test.ts` (migration, failed migration, isolation, switching, export/import).
-  Local check of both defaults: `pnpm -C playground dev:worker` (`--var GEO_OVERRIDE:1`) then open
-  `/?geo=VN` or `/?geo=US`; the override exists only with that var, which production does not set.
+  Local check of both defaults: `pnpm -C playground dev` then open `/?geo=VN` or `/?geo=US` (the
+  override exists only in the dev server; a production build ignores `?geo=`).
   UI strings are two typed dictionaries in `playground/src/app/i18n.ts`.
 - **English amounts.** The English bundle has no value head or parser, so the app finds the amount
   with a deterministic en-US scan of the note (`findEnglishValue` in `app/amount.ts`: `12`, `12.50`,
@@ -406,7 +407,10 @@ is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Wor
   `playground/src/lib/analytics.ts` (event names and properties are the typed
   `AnalyticsEventMap`). Production bundles only, loaded as a lazy chunk. A random anonymous ID
   kept in localStorage (no cookie, no person profile, never identified) so returning visitors and
-  retention work; no autocapture, session replay, heatmaps or surveys. Events carry counts and types,
+  retention work; no autocapture, session replay, heatmaps, surveys, `$pageleave` or web vitals
+  (PostHog bills per event; caps and sampling: [cost-and-traffic.md](cost-and-traffic.md)). Failures go to
+  PostHog error tracking with safe context: [error-tracking.md](error-tracking.md).
+  Events carry counts and types,
   never note text, targets or amounts. `VITE_POSTHOG_KEY` / `VITE_POSTHOG_HOST` override the
   project at build time. Open the app once with `?internal=1` on your own browsers (`?internal=0`
   undoes it): their events get `internal: true`, and the project's default test-account filter
@@ -420,17 +424,59 @@ is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Wor
   `X-Robots-Tag: noindex` from `_headers`. Icons and social cards are rendered from
   `playground/assets-src/` with `build.sh` (needs rsvg-convert, ImageMagick and the Be Vietnam
   Pro font).
-- Google Search Console: domain property `gidi.8bu.dev` (account owner@example.invalid), verified
+- Google Search Console: domain property `gidi.8bu.dev` (the owner's Google account), verified
   by the TXT record `google-site-verification=IU7C…` on `gidi.8bu.dev`; keep it, or the
   property loses verification. `sitemap.xml` is submitted there.
 
 - Source of truth is the immutable bundles `models/gidi-finance-v4/` (release 4.0.0) and
-  `models/gidi-en-v2-bundle/` (release 2.0.1). `playground/scripts/sync-release.mjs` checks
-  `config.json` and `tokenizer.json` of each against its `manifest.json` and copies them to
-  `playground/public/release/<model>/<release>/` (gitignored), together with that model's
-  `web-release.json` (model URL, sha256, size). The browser verifies each model against its own
-  sha256 before creating the ORT session; a mismatch is a hard error. `playground/src/lib/models.ts`
-  lists the two models; keep it in sync with the script.
+  `models/gidi-en-v2-bundle/` (release 2.0.1), listed per language in `playground/web-models.json`
+  (releases to ship, the `active` one, a `blocked` list, the manifest `schema` / `min_client`).
+  `playground/scripts/sync-release.mjs` checks each bundle's files against its `manifest.json`,
+  copies `config.json` and `tokenizer.json` to `playground/public/release/<model>/<release>/`,
+  cuts the model into 16 MiB parts under `playground/public/models/<model>/<release>/` (all
+  gitignored) and writes `public/release/manifest.json` (below). The browser downloads the parts in
+  parallel, joins them and verifies the whole file against the manifest's sha256 before creating
+  the ORT session; a mismatch is a hard error. `playground/src/lib/models.ts` only holds UI labels
+  and the record-to-language map; keep its ids in sync with `web-models.json`.
+
+### Model rollout runbook (no manual cache purge)
+
+`/release/manifest.json` is the single source of truth for what each language runs: per language
+`active`, `blocked`, and every release's id, version, sha256, size, `base` and `parts`, plus
+`schema` and `min_client`. It is the only file that changes under a fixed URL: served
+`Cache-Control: no-cache` (`public/_headers`) and fetched with `cache: "no-cache"`, so every load
+revalidates it (ETag, a 304 costs nothing) and a stale copy can never win. Everything else is
+immutable at a versioned path: `/assets/*` (fingerprinted), `/release/<id>/<version>/*`,
+`/models/<id>/<version>/*`. HTML keeps the static-assets default (`max-age=0, must-revalidate`), so a
+deploy is picked up on the next load. (The manifest has its own name because the first parts
+release served an immutable `web-release.json` that some browsers still hold; the new code never
+reads that path.)
+
+Client (`src/runtime/manifest.ts`, `release-manager.ts`, `model-download.ts`, tests beside them): per
+language it reads the release recorded in Cache Storage (`gidi-model:<lang>`, with a `release.json`
+record written after the parts) and the manifest, then:
+
+| Situation | What runs |
+|---|---|
+| nothing cached | download the active release, verify sha256, store, run |
+| active release cached | run it (re-hashed) |
+| cached is older/different than `active` (rollout **or** rollback) | run the cached one now; 3 s later fetch `active` in the background, verify sha256, and only then replace the cache entries (the next load runs it) |
+| cached release is in `blocked` | drop it, download `active` in front, run it |
+| `active` is `null` | the language is off: cache dropped, error shown |
+| manifest unreachable or broken | run the cached release; nothing is forced |
+| a background download fails | keep running the cached one; the error is reported, nothing else changes |
+| `schema` / `min_client` newer than the code | tell the visitor to reload, and reload once by itself (`sessionStorage`) |
+
+Publish a model: add the bundle to `web-models.json` (a new `version`, same `id` family), set
+`active`, `pnpm -C playground build:web`, `node playground/scripts/verify-release.mjs
+http://127.0.0.1:8787 --hash` against `pnpm -C playground preview:site`, `pnpm -C playground run
+deploy`, then `node playground/scripts/verify-release.mjs https://gidi.8bu.dev`. Visitors move to
+it in the background on their next visit; keep the previous release in `releases` so it can be
+rolled back. Roll back or kill a bad model: set `active` back (or `blocked: ["<bad version>"]`, or
+`active: null` to switch a language off) in `web-models.json` and run `pnpm -C playground run
+deploy`: only the manifest changes, no code and no cache purge. Bump `min_client` (and
+`CLIENT_VERSION` in `src/runtime/manifest.ts`) only with a client change older code must not run
+against. A model family rename (`gidi-finance-v5`) also needs `src/lib/models.ts`.
 - The TS runtime (`playground/src/runtime/`) must give the same type, target and value as
   `GidiPredictor.from_bundle("models/gidi-finance-v3")`. Check it with
   `uv run python scripts/dump_web_parity.py && pnpm -C playground parity` (report:
@@ -446,13 +492,15 @@ is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Wor
 - Build modes: `pnpm -C playground build:web` is the browser build; `pnpm -C playground build`
   stays the build served by `scripts/demo_ui.py` (Python `/api` backend).
 - Deploy: `pnpm -C playground run deploy` (build:web + `wrangler deploy`; `run` is needed because `pnpm deploy` is a built-in). Config is
-  `playground/wrangler.jsonc`: R2 binding `MODELS` -> bucket `gidi-models`, custom domain
-  `gidi.8bu.dev`, only `/models/*` and `/` run the Worker (`playground/worker/index.ts`: GET/HEAD, Range
-  and conditional requests, `cache-control: public, max-age=31536000, immutable`). A plain GET miss
-  is also stored in the Cache API (`caches.default`, keyed on the URL, `ctx.waitUntil`), so later
-  hits, Range and conditional requests are served from the edge without reading R2.
-- A new model release is a new R2 key (`<model>/<release>/model.int8.onnx`), never an overwrite:
-  `wrangler r2 object put gidi-models/<key> --file <release model> --remote`. The v2 key
-  (`gidi-finance-v2/2.0.2/model.int8.onnx`) stays in the bucket for rollback.
-- Local check: `pnpm -C playground build:web && pnpm -C playground exec wrangler dev` (add the
-  model to the local R2 with the same `r2 object put ... --local`).
+  `playground/wrangler.jsonc`: assets only (no `main`, no R2 binding, observability off), custom
+  domain `gidi.8bu.dev`, SPA fallback. Every request is a static-asset request: free, unlimited,
+  never a Worker invocation. The model parts and `/release/*` are immutable (`public/_headers`).
+  Verified model bytes are also kept in the browser's Cache Storage
+  (`playground/src/runtime/model-download.ts`, tests in `model-download.test.ts`), so a returning
+  visitor does not download the model again. The R2 bucket `gidi-models` is no longer read by the
+  site; its objects stay as an archive and as the rollback of the pre-cost-guard Worker version.
+- A new model release is a new entry in `playground/scripts/sync-release.mjs` and
+  `playground/src/lib/models.ts`; its parts land under a new path, never overwriting one (they are
+  immutable for a year).
+- Local check: `pnpm -C playground build:web && pnpm -C playground preview:site` (`wrangler dev`
+  serves `dist/`).
