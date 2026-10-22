@@ -499,6 +499,9 @@ against. A model family rename (`gidi-finance-v5`) also needs `src/lib/models.ts
   (`playground/src/runtime/model-download.ts`, tests in `model-download.test.ts`), so a returning
   visitor does not download the model again. The R2 bucket `gidi-models` is no longer read by the
   site; its objects stay as an archive and as the rollback of the pre-cost-guard Worker version.
+  To make production stack traces readable, deploy with `pnpm -C playground sourcemaps:upload && pnpm -C
+  playground exec wrangler deploy` instead (injects chunk ids, uploads the maps, ships none:
+  [error-tracking.md](error-tracking.md), "Source maps").
 - A new model release is a new entry in `playground/scripts/sync-release.mjs` and
   `playground/src/lib/models.ts`; its parts land under a new path, never overwriting one (they are
   immutable for a year).

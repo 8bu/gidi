@@ -53,17 +53,48 @@ Try it locally: `VITE_ANALYTICS_DEV=1 pnpm -C playground dev`, open `/?internal=
 console `__gidiDebug.capture("load")`, `__gidiDebug.throwUncaught()` or
 `__gidiDebug.rejectPromise()` (the hook exists only in the dev server).
 
-## Suggested alerts (set by hand in PostHog)
+## Alerts (set 2026-10-22)
 
-1. **New issue**: Error tracking -> Configuration (alerts) -> "New issue created" -> your email or
-   Slack. Catches every new kind of failure once.
-2. **Model load failures spiking**: Product analytics -> new Trends insight on the event
-   `model_load_failed` (or `$exception` with `stage` = `load`), `internal` not set, interval day;
-   Alerts -> alert when the value is above e.g. 20 a day (set from your normal level), or when it
-   rises more than 100% against the previous day. A bad release or a broken cache shows up here first.
+PostHog's native error-tracking alerts (Error tracking -> Configuration -> Alerting) only offer Slack,
+Discord, GitHub, GitLab, Teams, Linear and PagerDuty as destinations, no email, so the email alerts are
+Product analytics **insight alerts** (hourly check, notify hvanlong@pm.me, the account owner). Both read
+insights that exclude `internal` events (`internal` not set) and events from `127.0.0.1` / `localhost`:
 
-## Limits
+1. **Gidi: new error issues (>2 distinct a day)**: insight "Gidi: production exceptions per day"
+   (`$exception`, distinct `$exception_issue_id` per day). Fires when a day has more than 2 distinct
+   error issues; set above today's baseline of 2.
+2. **Gidi: model_load_failed spike (>20 a day)**: insight "Gidi: model_load_failed per day" (event
+   `model_load_failed`, per day). Fires above 20 a day. A bad release or a broken cache shows up here first.
 
-Source maps are not uploaded: PostHog needs a personal API key for `posthog-cli sourcemap upload`,
-and shipping `.map` files in `dist/` would publish the source. Stack frames show minified file and
-line numbers plus the `app_build` hash, so build that commit locally to read a frame.
+Local previews: a project **suppression rule** (Error tracking -> Configuration -> Suppression rules,
+`$host` contains `127.0.0.1` or `localhost`) drops their exceptions. Turn it off (or delete it) while
+you test the error path from a local build, then switch it on again. PostHog cannot delete events or
+issues from the UI or API: test issues are set to Resolved (they reopen if the same error comes back).
+
+## Source maps (opt-in, 2026-10-22)
+
+Stack frames resolve to `src/` files (for example `notes-db.ts:openVietnamese:145`) once the build you
+deploy was made with `pnpm -C playground sourcemaps:upload` (`scripts/upload-sourcemaps.mjs`):
+
+1. builds `build:web` with `GIDI_SOURCEMAPS=1` (Vite writes hidden maps next to the chunks) and
+   `GIDI_BUILD_ID` = the `app_build` string (git hash, `-dirty` when `playground/` has changes);
+2. `posthog-cli sourcemap process` injects a chunk id into each chunk in `dist/assets`, uploads the maps
+   as release `gidi-playground@<app_build>` and deletes them (`--delete-after`);
+3. fails if any `.map` is left in `dist/`.
+
+The injected chunks are what must be served, so deploy that same `dist/` without rebuilding:
+`pnpm -C playground sourcemaps:upload && pnpm -C playground exec wrangler deploy`
+(`pnpm run deploy` rebuilds without ids: it still works, but traces are minified again). Commit first so
+the build id is not `-dirty`. A map is never a public file (`/assets/*.map` answers the SPA page).
+
+Setup done once: `posthog-cli` (`curl -LsSf https://download.posthog.com/cli | sh`, in `~/.posthog`) and
+a personal API key "gidi-sourcemaps (posthog-cli)" with the single scope `error_tracking:write`, limited
+to project 648258 (create one at https://us.posthog.com/settings/user-api-keys; PostHog asks for the
+password again). The key lives only in the macOS Keychain (service `gidi-posthog-cli`; store it with
+`security add-generic-password -U -a posthog -s gidi-posthog-cli -w`), or in `$POSTHOG_CLI_API_KEY`, or in
+`~/.config/posthog/gidi.env` (`POSTHOG_CLI_API_KEY=...`, `chmod 600`). Never commit it. Symbol sets:
+https://us.posthog.com/project/648258/error_tracking?activeTab=configuration (Symbol sets).
+
+Checked 2026-10-22 with a local production build (`wrangler dev`, `/?internal=1`, a blocked IndexedDB open):
+the exception arrived as `app_build` `e20055e` with frames `notes-db.ts:openVietnamese:145` and
+`openNotesDb:58`; the test issue was set to Resolved.

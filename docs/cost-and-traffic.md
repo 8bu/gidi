@@ -89,7 +89,7 @@ SPA page from the same free asset service (they never reached R2 or a Worker).
 
 ## Risks that remain
 
-1. PostHog events and exceptions (above): set billing limits.
+1. PostHog events and exceptions (above): capped by the billing limits below.
 2. Adding Worker code again (a `main` in `wrangler.jsonc`) brings per-request billing back, and with
    `run_worker_first` on `/`, an attacker's flood. Keep new logic in the client or in a rule.
 3. Deploys remove old fingerprinted files; an open old tab that lazy-loads a removed chunk reloads
@@ -98,19 +98,24 @@ SPA page from the same free asset service (they never reached R2 or a Worker).
 5. About 3 minutes on 2026-10-22 an immutable `web-release.json` in the new format was served at the
    old path; browsers that fetched it in that window hold it. The new code never reads that path.
 
-## Human-only steps (agents cannot set billing caps)
+## Billing caps and alerts (done 2026-10-22)
 
-1. **PostHog billing limits**: https://us.posthog.com/organization/billing -> "Product analytics" ->
-   "Set billing limit" (for example $30 a month) -> Save; do the same under "Error tracking"
-   (https://posthog.com/docs/billing/limits-alerts: data over the limit is dropped, alert emails at 80 %
-   and 100 %).
-2. **Cloudflare budget alert**: dashboard -> Manage account -> Billing -> Billable usage -> "Create
-   budget alert". One alert at $10 exists; add one at about $25. (The "Usage Based Billing" notification
-   under Notifications is documented for Professional plans and up, so it is probably not offered on
-   this account: https://developers.cloudflare.com/notifications/notification-available/.)
-3. **Keep the zone rule** `8bu.dev` -> Rules -> Overview -> Response Header Transform Rules -> "gidi geo
-   hint (Server-Timing)". Deleting it only changes the first-visit default language to the browser's.
-4. Optional: PostHog alerts from `docs/error-tracking.md`.
+1. **PostHog billing limits** (https://us.posthog.com/organization/billing): Product analytics
+   **$25 a month**, Error tracking **$5 a month**. Every other product (Session replay, Destinations,
+   Feature flags & Experiments, Surveys, Sources, AI Observability, Logs, PostHog AI, Replay vision,
+   Self-driving inbox, PostHog Desktop, Workflows) already had the lowest limit, **$1 a month**, and no
+   usage; left as is. Data over a limit is dropped (https://posthog.com/docs/billing/limits-alerts), so
+   at about 1 M visits a month the $25 cap would cut events before the $84 projection above.
+2. **Cloudflare budget alerts** (Manage account -> Billing -> Billable usage -> Budget alerts): the
+   existing $10 alert ("Default budget alert (auto-created)") plus a new "Billing Budget Alert $25"
+   (threshold $25, email hvanlong@pm.me). Platform Notifications also hold account-wide "Usage based
+   billing" alerts for Workers requests, D1 usage and D1 writes (email), so a Workers request spike is
+   covered; no separate alert was added.
+3. **Zone rule kept**: `8bu.dev` -> Rules -> Response Header Transform Rules -> "gidi geo hint
+   (Server-Timing)" is still there and Active (`http.host eq "gidi.8bu.dev"` and path `/`, `Server-Timing`
+   = `concat("geo;desc=", ip.src.country)`). Deleting it only changes the first-visit default language
+   to the browser's.
+4. **PostHog alerts**: set up, see `docs/error-tracking.md` ("Alerts").
 
 ## Sources
 
