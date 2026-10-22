@@ -42,7 +42,7 @@ export async function loadPredictor(
     const { loadPredictorLocal } = await import("./load-local.ts")
     return loadPredictorLocal(options)
   }
-  const { onProgress, signal, ...workerOptions } = options
+  const { onProgress, onDiagnostic, signal, ...workerOptions } = options
   signal?.throwIfAborted()
 
   const worker = new Worker(new URL("./worker.ts", import.meta.url), {
@@ -64,6 +64,8 @@ export async function loadPredictor(
     }
     worker.onmessage = ({ data }: MessageEvent<WorkerResponse>) => {
       if (data.type === "progress") onProgress?.(data.loaded, data.total)
+      else if (data.type === "diagnostic")
+        onDiagnostic?.(data.stage, data.error)
       else if (data.type === "loaded") {
         settle()
         resolve(data.info)

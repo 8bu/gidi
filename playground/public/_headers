@@ -1,9 +1,21 @@
-# Hashed build output, the versioned release files and the model parts never change in place (a
-# new release is a new path). The model parts are the 16 MiB pieces scripts/sync-release.mjs cuts
-# from model.int8.onnx; the browser joins them and checks the sha256 of the whole file.
+# Cache plan (see docs/cost-and-traffic.md):
+#  - /assets/* is fingerprinted, so it is immutable.
+#  - Model parts and a release's config/tokenizer live at versioned paths (<id>/<version>), so they
+#    are immutable too: a new model is a new path, never an overwrite.
+#  - /release/manifest.json is the one file that changes under a fixed URL (which release each
+#    language runs). `no-cache` makes every load revalidate it (ETag, a 304 costs nothing). It
+#    has its own name because an earlier immutable `web-release.json` still sits in some browsers.
+#  - HTML keeps the static-assets default `public, max-age=0, must-revalidate`, so a new deploy is
+#    picked up on the next load.
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
-/release/*
+/release/manifest.json
+  Cache-Control: no-cache
+  X-Robots-Tag: noindex
+/release/:model/:version/config.json
+  Cache-Control: public, max-age=31536000, immutable
+  X-Robots-Tag: noindex
+/release/:model/:version/tokenizer.json
   Cache-Control: public, max-age=31536000, immutable
   X-Robots-Tag: noindex
 /models/*

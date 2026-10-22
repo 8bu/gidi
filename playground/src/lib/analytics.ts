@@ -1,6 +1,14 @@
 import type { PostHog } from "posthog-js"
 
 import type { TxType } from "@/app/types"
+import {
+  createErrorGate,
+  errorProperties,
+  scrubException,
+  scrubPageUrls,
+  setErrorSink,
+  type ErrorStage,
+} from "@/lib/error-report"
 import type { Lang } from "@/lib/language"
 
 /**
@@ -103,7 +111,7 @@ export interface AnalyticsEventMap {
 }
 
 /** The only SDK-made event kept; every app event is in `AnalyticsEventMap` and has no `$`. */
-const SDK_EVENTS = new Set(["$pageview"])
+const SDK_EVENTS = new Set(["$pageview", "$exception"])
 
 /** Hard stop per page load, counted over everything that reaches `capture`. */
 const PAGE_BUDGET = 200
@@ -136,8 +144,15 @@ function admit(event: string, properties: Record<string, unknown>): boolean {
 
 let client: Promise<PostHog | null> | null = null
 
+/** `VITE_ANALYTICS_DEV=1 pnpm dev` sends from the dev server too (to try the error path for real). */
+const enabled =
+  import.meta.env.PROD || import.meta.env.VITE_ANALYTICS_DEV === "1"
+
+const errorGate = createErrorGate()
+
 export function initAnalytics(): void {
-  if (!import.meta.env.PROD || client !== null) return
+  if (!enabled || client !== null) return
+  setErrorSink(captureError)
   const internal = isInternal()
   client = import("posthog-js").then(
     ({ default: posthog }) => {
@@ -153,6 +168,8 @@ export function initAnalytics(): void {
         rageclick: false,
         capture_dead_clicks: false,
         capture_heatmaps: false,
+        // Uncaught errors and unhandled rejections are captured by main.tsx (own listeners), so
+        // they do not depend on the project's remote exception-autocapture switch.
         capture_exceptions: false,
         disable_session_recording: true,
         disable_surveys: true,
@@ -166,7 +183,11 @@ export function initAnalytics(): void {
           if (event.event.startsWith("$") && !SDK_EVENTS.has(event.event)) {
             return null
           }
+          scrubPageUrls(event.properties)
           if (internal) event.properties.internal = true
+          if (event.event === "$exception") {
+            return scrubException(event, errorGate)
+          }
           return event
         },
       })
@@ -182,4 +203,21 @@ export function track<E extends keyof AnalyticsEventMap>(
 ): void {
   if (client === null || !admit(event, properties)) return
   void client.then((posthog) => posthog?.capture(event, properties))
+}
+
+/**
+ * Report a failure the app caught (or let through) to the owner's error tracking: PostHog
+ * `$exception` events with a stage tag and safe context (see `error-report.ts`, which also
+ * scrubs, dedupes and caps them). Never throws, never sends note text.
+ */
+export function captureError(
+  error: unknown,
+  stage: ErrorStage,
+  extra: { kind?: string; recovery?: string } = {}
+): void {
+  if (client === null) return
+  const failure = error instanceof Error ? error : new Error(String(error))
+  void client.then((posthog) =>
+    posthog?.captureException(failure, errorProperties(stage, extra))
+  )
 }

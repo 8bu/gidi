@@ -4,6 +4,7 @@
  * copied, exported or changed. No DOM or React here, so the tests drive it with `fake-indexeddb`.
  */
 
+import { reportError } from "../lib/error-report.ts"
 import type { Lang } from "../lib/language.ts"
 import { MODELS } from "../lib/models.ts"
 import {
@@ -181,6 +182,10 @@ export function createNotesStore(options: {
           }
         }
       } catch (cause) {
+        reportError(cause, "save", {
+          kind: "idb_open",
+          recovery: "memory_only",
+        })
         console.warn(
           "gidi: IndexedDB unavailable, notes stay in memory.",
           cause
@@ -205,6 +210,7 @@ export function createNotesStore(options: {
     const { db } = datasets[lang]
     if (db === null) return Promise.resolve()
     return writeNotes(db, writes, deleteId).catch((cause: unknown) => {
+      reportError(cause, "save", { kind: "idb_write", recovery: "memory_only" })
       console.warn("gidi: could not save to IndexedDB, kept in memory.", cause)
     })
   }

@@ -1,4 +1,5 @@
 import type { PredictResponse, RuntimeInfo } from "@/lib/api"
+import type { ErrorStage } from "@/lib/error-report"
 import type { ModelSpec } from "@/lib/models"
 
 /**
@@ -19,10 +20,11 @@ export interface BrowserBackend {
 export async function loadBrowserBackend(
   spec: ModelSpec,
   onProgress: (progress: LoadProgress) => void,
-  signal: AbortSignal
+  signal: AbortSignal,
+  stage: ErrorStage = "load"
 ): Promise<BrowserBackend> {
   if (!BROWSER_MODE)
     throw new Error("The browser runtime is only built with `pnpm build:web`.")
   const { loadBrowserPredictor } = await import("@/lib/browser-backend")
-  return loadBrowserPredictor(spec, onProgress, signal)
+  return loadBrowserPredictor(spec, onProgress, signal, stage)
 }

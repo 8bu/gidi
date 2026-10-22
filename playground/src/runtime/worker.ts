@@ -26,6 +26,8 @@ self.onmessage = async ({ data }: MessageEvent<WorkerRequest>) => {
           ...data.options,
           onProgress: (loaded, total) =>
             post({ type: "progress", loaded, total }),
+          onDiagnostic: (stage, error) =>
+            post({ type: "diagnostic", stage, error }),
         })
         post({ type: "loaded", info: predictor.info })
       } catch (error) {

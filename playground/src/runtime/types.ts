@@ -1,5 +1,7 @@
 /** Public contract of the in-browser runtime. Mirrors `gidi.inference` (Python). */
 
+import type { ReleaseEntry } from "./manifest.ts"
+
 export interface PredictorInfo {
   model_version: string
   release_version: string
@@ -19,7 +21,7 @@ export interface ModelPart {
 }
 
 export interface LoadOptions {
-  /** Directory holding `config.json`, `tokenizer.json` and `web-release.json`. */
+  /** Directory holding `config.json` and `tokenizer.json`. */
   baseUrl: string
   /**
    * The model file cut into parts (each below the 25 MiB Workers Static Assets limit) that
@@ -27,6 +29,16 @@ export interface LoadOptions {
    */
   modelParts: readonly ModelPart[]
   modelSha256: string
+  /** `model_version` / `release_version` the files must declare (checked against config.json). */
+  modelVersion: string
+  releaseVersion: string
+  /** Where verified bytes are kept (Cache Storage) and the release they belong to. */
+  store?: { name: string; release: ReleaseEntry }
+  /** Non-fatal trouble (Cache Storage, ...): a stage tag and the error's name and message. */
+  onDiagnostic?: (
+    stage: string,
+    error: { name: string; message: string }
+  ) => void
   onProgress?: (loaded: number, total: number | null) => void
   signal?: AbortSignal
 }

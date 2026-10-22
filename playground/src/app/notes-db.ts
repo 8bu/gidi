@@ -11,6 +11,7 @@
  * Pure functions over an `IDBFactory`, so the tests run them on `fake-indexeddb`.
  */
 
+import { reportError } from "../lib/error-report.ts"
 import type { Lang } from "../lib/language.ts"
 
 export const LEGACY_DB_NAME = "gidi-notes"
@@ -171,6 +172,10 @@ export async function openVietnamese(factory: IDBFactory): Promise<Opened> {
     }
     return { db: target, fromLegacy: false }
   } catch (cause) {
+    reportError(cause, "save", {
+      kind: "idb_migration",
+      recovery: "serve_legacy_db",
+    })
     console.warn(
       "gidi: could not copy the notes to gidi-vi, using gidi-notes.",
       cause

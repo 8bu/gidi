@@ -5,6 +5,7 @@
  * under node with a fake `fetch` and `caches`.
  */
 
+import { parseRelease, type ReleaseEntry } from "./manifest.ts"
 import {
   ModelIntegrityError,
   type LoadOptions,
@@ -16,7 +17,7 @@ const sumSizes = (parts: readonly ModelPart[]): number =>
 
 /**
  * Download every part in parallel straight into one buffer, reporting combined progress. The
- * sizes come from `web-release.json`; a part that ends early or runs long (a 404 turned into the
+ * sizes come from the release manifest; a part that ends early or runs long (a 404 turned into the
  * SPA page, a truncated transfer) fails here, before the sha256 check.
  */
 async function downloadParts(
@@ -75,19 +76,36 @@ async function downloadParts(
 }
 
 /**
- * Verified model bytes live in Cache Storage (one cache per model family, keyed by part URL), so
- * a returning visitor, or one switching language back and forth, never downloads the model again
- * even when the browser's HTTP cache dropped it. Everything here is best effort: where Cache
- * Storage is missing or full the model is just downloaded again.
+ * Verified model bytes live in Cache Storage, one cache per language (`gidi-model:<lang>`), keyed
+ * by part URL, plus a `release.json` record of the release they belong to (written last, so its
+ * presence means the parts are complete). A returning visitor, or one switching language back and
+ * forth, never downloads the model again even when the browser's HTTP cache dropped it.
+ * Everything here is best effort: where Cache Storage is missing or full the model is just
+ * downloaded again, and `report` (if given) hears what went wrong.
  */
-async function openModelCache(
-  parts: readonly ModelPart[]
+export interface ModelStore {
+  /** Cache name, e.g. `gidi-model:vi`. */
+  name: string
+  /** The release the parts belong to, stored as `release.json`. */
+  release: ReleaseEntry
+  /** Called with a short stage tag and the error; never throws. */
+  report?: (stage: string, error: unknown) => void
+}
+
+export const STORE_PREFIX = "gidi-model:"
+
+const metaUrl = (parts: readonly ModelPart[]): string =>
+  new URL("/__gidi/release.json", parts[0].url).href
+
+async function openCache(
+  name: string,
+  report?: ModelStore["report"]
 ): Promise<Cache | null> {
   try {
     if (typeof caches === "undefined") return null
-    const family = new URL(parts[0].url).pathname.split("/")[2] ?? "model"
-    return await caches.open(`gidi-model:${family}`)
-  } catch {
+    return await caches.open(name)
+  } catch (error) {
+    report?.("cache_open", error)
     return null
   }
 }
@@ -113,11 +131,12 @@ async function readCached(
   }
 }
 
-/** Store verified bytes and drop parts of other releases of the same family. */
+/** Store verified bytes, then the release record, then drop everything else in this language's cache. */
 async function storeCached(
   cache: Cache,
   parts: readonly ModelPart[],
-  model: Uint8Array
+  model: Uint8Array,
+  store: ModelStore
 ): Promise<void> {
   try {
     let at = 0
@@ -131,20 +150,21 @@ async function storeCached(
       )
       at += part.size
     }
+    const meta = metaUrl(parts)
+    await cache.put(meta, new Response(JSON.stringify(store.release)))
+    const keep = new Set([meta, ...parts.map((part) => part.url)])
     for (const key of await cache.keys()) {
-      if (!parts.some((part) => part.url === key.url)) await cache.delete(key)
+      if (!keep.has(key.url)) await cache.delete(key)
     }
-  } catch {
+  } catch (error) {
     // Quota or private mode: the next visit downloads the model again.
+    store.report?.("cache_store", error)
   }
 }
 
-async function evictCached(
-  cache: Cache,
-  parts: readonly ModelPart[]
-): Promise<void> {
+async function evictCached(cache: Cache): Promise<void> {
   try {
-    await Promise.all(parts.map((part) => cache.delete(part.url)))
+    for (const key of await cache.keys()) await cache.delete(key)
   } catch {
     // Nothing more to do.
   }
@@ -165,10 +185,12 @@ export async function fetchModel(
   parts: readonly ModelPart[],
   sha256: string,
   onProgress: LoadOptions["onProgress"],
-  signal?: AbortSignal
+  signal?: AbortSignal,
+  store?: ModelStore
 ): Promise<Uint8Array> {
   const expected = sha256.toLowerCase()
-  const cache = await openModelCache(parts)
+  const cache =
+    store === undefined ? null : await openCache(store.name, store.report)
   if (cache !== null) {
     const cached = await readCached(cache, parts)
     if (cached !== null) {
@@ -177,7 +199,11 @@ export async function fetchModel(
         return cached
       }
       // A damaged copy: forget it and fetch a fresh one.
-      await evictCached(cache, parts)
+      store?.report?.(
+        "cache_damaged",
+        new ModelIntegrityError("cached model failed its sha256")
+      )
+      await evictCached(cache)
     }
   }
   const model = await downloadParts(parts, onProgress, signal)
@@ -187,6 +213,66 @@ export async function fetchModel(
       `model sha256 mismatch: expected ${sha256}, downloaded ${actual}`
     )
   }
-  if (cache !== null) await storeCached(cache, parts, model)
+  if (cache !== null && store !== undefined)
+    await storeCached(cache, parts, model, store)
   return model
+}
+
+/** The release recorded in a language's cache, or `null` (nothing cached, or an unreadable record). */
+export async function readStoredRelease(
+  name: string
+): Promise<ReleaseEntry | null> {
+  try {
+    const cache = await openCache(name)
+    if (cache === null) return null
+    const keys = await cache.keys()
+    const key = keys.find((k) => k.url.endsWith("/__gidi/release.json"))
+    if (key === undefined) return null
+    const hit = await cache.match(key.url)
+    return hit === undefined ? null : parseRelease(await hit.json())
+  } catch {
+    return null
+  }
+}
+
+/** Forget a language's cached model (a blocked or switched-off release). */
+export async function dropStore(name: string): Promise<void> {
+  try {
+    if (typeof caches !== "undefined") await caches.delete(name)
+  } catch {
+    // Nothing more to do.
+  }
+}
+
+/** Delete caches of this app that no language uses any more (older cache layouts). */
+export async function pruneStores(keep: readonly string[]): Promise<void> {
+  try {
+    if (typeof caches === "undefined") return
+    for (const name of await caches.keys()) {
+      if (name.startsWith(STORE_PREFIX) && !keep.includes(name))
+        await caches.delete(name)
+    }
+  } catch {
+    // Nothing more to do.
+  }
+}
+
+/**
+ * Download `release` in the background and store it, replacing the language's cached release only
+ * after its sha256 passed. Returns whether the cache now holds it; failures leave the cache as it
+ * was (the running model is never touched) and go to `store.report`.
+ */
+export async function prefetchRelease(
+  parts: readonly ModelPart[],
+  sha256: string,
+  signal: AbortSignal | undefined,
+  store: ModelStore
+): Promise<boolean> {
+  try {
+    await fetchModel(parts, sha256, undefined, signal, store)
+    return (await readStoredRelease(store.name))?.sha256 === sha256
+  } catch (error) {
+    if (signal?.aborted !== true) store.report?.("prefetch", error)
+    return false
+  }
 }

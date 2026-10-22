@@ -8,47 +8,31 @@ import {
 import type { BrowserBackend, LoadProgress } from "@/lib/backend"
 import type { ModelSpec } from "@/lib/models"
 import { highlightSegments, spansOverlap } from "@/lib/segments"
+import { captureError } from "@/lib/analytics"
+import { setErrorContext, type ErrorStage } from "@/lib/error-report"
+import { LANGS } from "@/lib/language"
+import { reloadOnce } from "@/lib/reload"
 import { loadPredictor, ModelIntegrityError } from "@/runtime"
+import {
+  ManifestError,
+  type ReleaseEntry,
+  type ReleasePart,
+} from "@/runtime/manifest"
+import {
+  dropStore,
+  prefetchRelease,
+  pruneStores,
+  readStoredRelease,
+} from "@/runtime/model-download"
+import {
+  cacheNameFor,
+  fetchManifestJson,
+  resolveRelease,
+  type Resolved,
+} from "@/runtime/release-manager"
 
-type WebRelease = {
-  model_version: string
-  release_version: string
-  onnx_opset?: number
-  model: {
-    sha256: string
-    size_bytes: number
-    /** Byte ranges of the model file, each its own static asset; they concatenate to the file. */
-    parts: { url: string; size_bytes: number }[]
-  }
-}
-
-/** `web-release.json` is written by `scripts/sync-release.mjs` from the immutable bundle manifest. */
-async function fetchWebRelease(
-  spec: ModelSpec,
-  signal: AbortSignal
-): Promise<WebRelease> {
-  const response = await fetch(`${spec.releaseBase}/web-release.json`, {
-    signal,
-  })
-  if (!response.ok) throw new Error(`web-release.json: HTTP ${response.status}`)
-  const body: unknown = await response.json()
-  const release = body as Partial<WebRelease> | null
-  if (
-    !release ||
-    typeof release.model_version !== "string" ||
-    typeof release.release_version !== "string" ||
-    typeof release.model?.sha256 !== "string" ||
-    !Array.isArray(release.model.parts) ||
-    release.model.parts.length === 0 ||
-    !release.model.parts.every(
-      (part) =>
-        typeof part?.url === "string" && Number.isInteger(part.size_bytes)
-    )
-  ) {
-    throw new Error("web-release.json has an unexpected shape")
-  }
-  return release as WebRelease
-}
+/** Wait this long after the model is up before fetching a newer release. */
+const PREFETCH_DELAY_MS = 3000
 
 function loadError(cause: unknown): PlaygroundError {
   if (cause instanceof PlaygroundError) return cause
@@ -63,32 +47,124 @@ function loadError(cause: unknown): PlaygroundError {
   )
 }
 
+/** Report a non-fatal stage (manifest, Cache Storage, background fetch) to the owner's error tracking. */
+function reporter(stage: ErrorStage) {
+  return (kind: string, error: unknown, recovery?: string): void =>
+    captureError(error, stage, { kind, recovery })
+}
+
+const absolute = (parts: readonly ReleasePart[]) =>
+  parts.map((part) => ({
+    url: new URL(part.url, window.location.origin).href,
+    size: part.size_bytes,
+  }))
+
 export async function loadBrowserPredictor(
   spec: ModelSpec,
   onProgress: (progress: LoadProgress) => void,
-  signal: AbortSignal
+  signal: AbortSignal,
+  stage: ErrorStage = "load"
 ): Promise<BrowserBackend> {
   const loadStarted = performance.now()
-  let predictor: Awaited<ReturnType<typeof loadPredictor>>
-  let release: WebRelease
+  const report = reporter(stage)
+  void pruneStores(LANGS.map(cacheNameFor))
+  setErrorContext({ language: spec.lang })
+
+  let resolved: Resolved
   try {
-    release = await fetchWebRelease(spec, signal)
-    predictor = await loadPredictor({
-      baseUrl: `${window.location.origin}${spec.releaseBase}`,
-      modelParts: release.model.parts.map((part) => ({
-        url: new URL(part.url, window.location.origin).href,
-        size: part.size_bytes,
-      })),
-      modelSha256: release.model.sha256,
+    resolved = await resolveRelease(
+      spec.lang,
+      {
+        fetchManifest: (s) => fetchManifestJson(s),
+        readStored: readStoredRelease,
+        dropStore,
+        report,
+      },
+      signal
+    )
+  } catch (cause) {
+    if (signal.aborted) throw cause
+    if (cause instanceof ManifestError && cause.problem === "outdated_client") {
+      reloadOnce() // new code is waiting; the page was loaded before the model changed
+      throw new PlaygroundError(
+        "model_load",
+        "A newer version of Gidi is available. Reload the page. / Có bản Gidi mới, hãy tải lại trang."
+      )
+    }
+    if (cause instanceof ManifestError && cause.problem === "disabled") {
+      throw new PlaygroundError(
+        "model_load",
+        "This language's model is temporarily switched off. / Mô hình của ngôn ngữ này đang tạm tắt."
+      )
+    }
+    throw loadError(cause)
+  }
+  setErrorContext({
+    manifest_schema: resolved.manifest?.schema ?? null,
+    manifest_active: resolved.manifest?.active ?? null,
+  })
+
+  const open = (run: ReleaseEntry) => {
+    setErrorContext({ model: `${run.id} ${run.version}` })
+    return loadPredictor({
+      baseUrl: `${window.location.origin}${run.base}`,
+      modelParts: absolute(run.parts),
+      modelSha256: run.sha256,
+      modelVersion: run.id,
+      releaseVersion: run.version,
+      store: { name: resolved.cacheName, release: run },
       onProgress: (loaded, total) =>
-        onProgress({ loaded, total: total ?? release.model.size_bytes }),
+        onProgress({ loaded, total: total ?? run.size_bytes }),
+      onDiagnostic: (kind, error) =>
+        report(
+          kind,
+          Object.assign(new Error(error.message), { name: error.name })
+        ),
       signal,
     })
+  }
+
+  let run = resolved.run
+  let predictor: Awaited<ReturnType<typeof loadPredictor>>
+  try {
+    try {
+      predictor = await open(run)
+    } catch (cause) {
+      // The cached older release cannot be read any more: fall back to the active one.
+      if (
+        signal.aborted ||
+        resolved.update === null ||
+        cause instanceof ModelIntegrityError
+      )
+        throw cause
+      report("cached_release_unusable", cause, "load_active_release")
+      run = resolved.update
+      resolved = { ...resolved, update: null }
+      predictor = await open(run)
+    }
   } catch (cause) {
     if (signal.aborted) throw cause
     throw loadError(cause)
   }
 
+  const update = resolved.update
+  if (update !== null) {
+    // A newer (or rolled-back) release: fetch it quietly; the next load switches to it, and only
+    // after its sha256 passed. A failure changes nothing about the model that is running.
+    window.setTimeout(() => {
+      void prefetchRelease(absolute(update.parts), update.sha256, signal, {
+        name: resolved.cacheName,
+        release: update,
+        report: (kind, error) =>
+          report(kind, error, "keep_running_cached_release"),
+      })
+    }, PREFETCH_DELAY_MS)
+  }
+
+  const release = {
+    onnx_opset: run.onnx_opset,
+    model: { sha256: run.sha256 },
+  }
   const { info } = predictor
   const runtimeInfo: RuntimeInfo = {
     model_version: info.model_version,

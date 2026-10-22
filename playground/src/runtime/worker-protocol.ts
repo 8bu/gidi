@@ -2,7 +2,10 @@
 
 import type { LoadOptions, Prediction, PredictorInfo } from "./types.ts"
 
-export type WorkerLoadOptions = Omit<LoadOptions, "onProgress" | "signal">
+export type WorkerLoadOptions = Omit<
+  LoadOptions,
+  "onProgress" | "signal" | "onDiagnostic"
+>
 
 export type WorkerRequest =
   | { type: "load"; options: WorkerLoadOptions }
@@ -16,6 +19,7 @@ export interface SerializedError {
 
 export type WorkerResponse =
   | { type: "progress"; loaded: number; total: number | null }
+  | { type: "diagnostic"; stage: string; error: SerializedError }
   | { type: "loaded"; info: PredictorInfo }
   | { type: "load-error"; error: SerializedError }
   | { type: "result"; id: number; prediction: Prediction }

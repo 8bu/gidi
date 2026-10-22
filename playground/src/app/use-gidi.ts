@@ -1,6 +1,6 @@
 import { useMemo, useSyncExternalStore } from "react"
 
-import { track } from "@/lib/analytics"
+import { captureError, track } from "@/lib/analytics"
 import { predict, type PredictResponse, type Span } from "@/lib/api"
 import {
   BROWSER_MODE,
@@ -8,6 +8,7 @@ import {
   type BrowserBackend,
   type LoadProgress,
 } from "@/lib/backend"
+import { registerSensitive } from "@/lib/error-report"
 import type { Lang } from "@/lib/language"
 import { MODELS } from "@/lib/models"
 
@@ -109,6 +110,9 @@ function retire(old: Session | null): void {
   void old.backend?.dispose()
 }
 
+/** Set once the visitor changed language in this page: later load errors are `switch` errors. */
+let switched = false
+
 async function loadPredictor(
   lang: Lang,
   abort: AbortController,
@@ -124,7 +128,8 @@ async function loadPredictor(
     (progress) => {
       if (isCurrent()) reportProgress(progress)
     },
-    abort.signal
+    abort.signal,
+    switched ? "switch" : "load"
   )
   if (!isCurrent()) {
     // Superseded while the last step ran.
@@ -161,6 +166,9 @@ function start(lang: Lang): Session {
       // A superseded session is not a failure.
       if (session !== current) return
       const error = toMessage(cause)
+      captureError(cause, switched ? "switch" : "load", {
+        kind: "model_load_failed",
+      })
       track("model_load_failed", {
         ms: Math.round(performance.now() - started),
         language: lang,
@@ -193,6 +201,7 @@ function retry(): void {
 
 // The visitor switched language: load the other model (the old one is retired first).
 onLanguageChange(() => {
+  switched = true
   if (listeners.size > 0) load()
 })
 
@@ -219,8 +228,19 @@ function readValue(
 }
 
 async function classify(text: string): Promise<NoteRecord> {
-  const t = getStrings()
   const note = text.trim()
+  registerSensitive(note)
+  try {
+    return await classifyNote(note)
+  } catch (cause) {
+    // Messages of these errors may quote the note, so only the error's name and place leave.
+    captureError(cause, "classify", { kind: "classify_failed" })
+    throw cause
+  }
+}
+
+async function classifyNote(note: string): Promise<NoteRecord> {
+  const t = getStrings()
   if (note === "") throw new Error(t.emptyNote)
   const current = load()
   const { result } = await (await current.predictor)(note)
@@ -243,6 +263,7 @@ async function classify(text: string): Promise<NoteRecord> {
     amount,
     modelVersion: result.model_version,
   }
+  registerSensitive(result.target, valueText)
   return {
     id: crypto.randomUUID(),
     text: note,

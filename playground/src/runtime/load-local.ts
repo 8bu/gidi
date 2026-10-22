@@ -13,11 +13,6 @@ import { BundleTokenizer } from "./tokenizer.ts"
 import { fetchModel } from "./model-download.ts"
 import type { LoadOptions, WebPredictor } from "./types.ts"
 
-interface WebRelease {
-  model_version: string
-  release_version: string
-}
-
 async function fetchJson<T>(url: string, signal?: AbortSignal): Promise<T> {
   const response = await fetch(url, { signal })
   if (!response.ok)
@@ -28,23 +23,47 @@ async function fetchJson<T>(url: string, signal?: AbortSignal): Promise<T> {
 export async function loadPredictorLocal(
   options: LoadOptions
 ): Promise<WebPredictor> {
-  const { baseUrl, modelParts, modelSha256, onProgress, signal } = options
+  const {
+    baseUrl,
+    modelParts,
+    modelSha256,
+    modelVersion,
+    releaseVersion,
+    store,
+    onProgress,
+    onDiagnostic,
+    signal,
+  } = options
   const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`
 
-  const [release, configJson, tokenizerJson] = await Promise.all([
-    fetchJson<WebRelease>(`${base}web-release.json`, signal),
+  const [configJson, tokenizerJson] = await Promise.all([
     fetchJson<unknown>(`${base}config.json`, signal),
     fetchJson<unknown>(`${base}tokenizer.json`, signal),
   ])
   const config = parseConfig(configJson)
-  if (release.model_version !== config.modelVersion) {
+  if (modelVersion !== config.modelVersion) {
     throw new Error(
-      `web-release.json is for ${release.model_version}, config.json for ${config.modelVersion}`
+      `the manifest lists ${modelVersion}, config.json is for ${config.modelVersion}`
     )
   }
   const tokenizer = new BundleTokenizer(tokenizerJson, config.maxLength)
 
-  const model = await fetchModel(modelParts, modelSha256, onProgress, signal)
+  const model = await fetchModel(
+    modelParts,
+    modelSha256,
+    onProgress,
+    signal,
+    store && {
+      ...store,
+      report: (stage, error) =>
+        onDiagnostic?.(
+          stage,
+          error instanceof Error
+            ? { name: error.name, message: error.message }
+            : { name: "Error", message: String(error) }
+        ),
+    }
+  )
   signal?.throwIfAborted()
 
   ort.env.wasm.wasmPaths = { wasm: wasmUrl }
@@ -55,6 +74,6 @@ export async function loadPredictorLocal(
     config,
     tokenizer,
     runner,
-    releaseVersion: release.release_version,
+    releaseVersion,
   })
 }
