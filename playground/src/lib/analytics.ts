@@ -21,6 +21,13 @@ import type { Lang } from "@/lib/language"
  *
  * The SDK is a lazy chunk so it never delays the first paint, and it only loads in a production
  * bundle: dev servers and previews send nothing.
+ *
+ * Cost: PostHog bills per event (1M a month free, then $0.00005 falling to $0.0000343; see
+ * docs/cost-and-traffic.md). A visit therefore sends `$pageview`, one `model_loaded`, and the
+ * events the visitor causes. Anything else the SDK would add on its own (`$pageleave`, web vitals,
+ * rageclicks, `$set`, flag calls) is dropped in `before_send`, `model_loaded` and `stack_opened`
+ * are sent once per page load (per language / per type), failures at most three times, and a page
+ * load stops after `PAGE_BUDGET` events so a loop can never run up the bill.
  */
 
 /** Public project token. Override at build time to point at a dev project. */
@@ -95,6 +102,38 @@ export interface AnalyticsEventMap {
   link_clicked: { link: "github" | "huggingface" | "author" }
 }
 
+/** The only SDK-made event kept; every app event is in `AnalyticsEventMap` and has no `$`. */
+const SDK_EVENTS = new Set(["$pageview"])
+
+/** Hard stop per page load, counted over everything that reaches `capture`. */
+const PAGE_BUDGET = 200
+
+/** Per page load: how often an event may be sent, split by one property (`by`) if given. */
+const PAGE_LIMITS: Partial<
+  Record<keyof AnalyticsEventMap, { max: number; by?: string }>
+> = {
+  model_loaded: { max: 1, by: "language" },
+  model_load_failed: { max: 3 },
+  stack_opened: { max: 1, by: "type" },
+}
+
+const sentThisPage = new Map<string, number>()
+let pageBudget = PAGE_BUDGET
+
+/** Spend one event of this page load's allowance, unless it is a repeat the app does not need. */
+function admit(event: string, properties: Record<string, unknown>): boolean {
+  if (pageBudget <= 0) return false
+  const limit = PAGE_LIMITS[event as keyof AnalyticsEventMap]
+  if (limit !== undefined) {
+    const key = `${event}:${limit.by === undefined ? "" : String(properties[limit.by])}`
+    const sent = sentThisPage.get(key) ?? 0
+    if (sent >= limit.max) return false
+    sentThisPage.set(key, sent + 1)
+  }
+  pageBudget -= 1
+  return true
+}
+
 let client: Promise<PostHog | null> | null = null
 
 export function initAnalytics(): void {
@@ -109,6 +148,9 @@ export function initAnalytics(): void {
         persistence: "localStorage",
         person_profiles: "identified_only",
         autocapture: false,
+        capture_pageleave: false,
+        capture_performance: false,
+        rageclick: false,
         capture_dead_clicks: false,
         capture_heatmaps: false,
         capture_exceptions: false,
@@ -120,7 +162,11 @@ export function initAnalytics(): void {
         advanced_disable_flags: true,
         disable_external_dependency_loading: true,
         before_send: (event) => {
-          if (event && internal) event.properties.internal = true
+          if (!event) return event
+          if (event.event.startsWith("$") && !SDK_EVENTS.has(event.event)) {
+            return null
+          }
+          if (internal) event.properties.internal = true
           return event
         },
       })
@@ -134,5 +180,6 @@ export function track<E extends keyof AnalyticsEventMap>(
   event: E,
   properties: AnalyticsEventMap[E]
 ): void {
-  void client?.then((posthog) => posthog?.capture(event, properties))
+  if (client === null || !admit(event, properties)) return
+  void client.then((posthog) => posthog?.capture(event, properties))
 }
