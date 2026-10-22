@@ -1,0 +1,66 @@
+{
+  "n": 800,
+  "type_agree": 0.85375,
+  "type_kappa": 0.824025087705445,
+  "target_agree": 0.81875,
+  "target_agree_on_notes_with_a_target": 0.7414721723518851,
+  "notes_with_a_target": 557,
+  "consensus": 561,
+  "to_adjudicate": 239,
+  "by_gemini_type": {
+    "None": {
+      "n": 40,
+      "type_agree": 0,
+      "target_agree": 34,
+      "consensus": 0
+    },
+    "borrow": {
+      "n": 58,
+      "type_agree": 39,
+      "target_agree": 54,
+      "consensus": 36
+    },
+    "expense": {
+      "n": 245,
+      "type_agree": 230,
+      "target_agree": 166,
+      "consensus": 155
+    },
+    "income": {
+      "n": 102,
+      "type_agree": 89,
+      "target_agree": 82,
+      "consensus": 73
+    },
+    "lend": {
+      "n": 86,
+      "type_agree": 78,
+      "target_agree": 80,
+      "consensus": 73
+    },
+    "refund": {
+      "n": 37,
+      "type_agree": 36,
+      "target_agree": 36,
+      "consensus": 35
+    },
+    "repayment_in": {
+      "n": 71,
+      "type_agree": 57,
+      "target_agree": 67,
+      "consensus": 55
+    },
+    "repayment_out": {
+      "n": 55,
+      "type_agree": 52,
+      "target_agree": 46,
+      "consensus": 44
+    },
+    "transfer": {
+      "n": 106,
+      "type_agree": 102,
+      "target_agree": 90,
+      "consensus": 90
+    }
+  }
+}

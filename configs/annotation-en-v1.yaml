@@ -1,0 +1,149 @@
+# Gidi annotation-en-v1: the English contract for gidi-en. Same taxonomy and semantic rules as
+# annotation-v4 (R1 payer decides, R2 on-behalf, R3 sending money to people, R4 salary phrasing),
+# re-expressed with English notes. Human-readable guide: docs/annotation-en-v1.md.
+# Validator: gidi.annotation.schema (scripts/validate_annotations.py --config this file).
+# The existing loader does not follow `extends`, so this file is SELF-CONTAINED: it restates the
+# v1-v4 structure (types, statuses, null rules, queue) in full. The Vietnamese configs are not
+# edited. Inherited unchanged in meaning: the type set, status model, null/trainable rules,
+# target mechanics (exact substring, null when none), the value span convention. Re-stated with
+# English examples: all type texts, R1-R4, the target rules. New: English-only cases (apps,
+# bill splitting, IOU, tip, paycheck vocabulary, amount formats).
+#
+# PROVENANCE: there are NO human labels for English. Every gidi-en label is silver (produced by
+# Claude and Cloudflare Clef). Silver files live ONLY under datasets/annotation-en-v1/ and must
+# never be mixed with, or presented as, the human Vietnamese labels. Eval numbers are agreement
+# with Claude+Clef labels, not ground truth.
+
+version: annotation-en-v1
+extends: annotation-v4
+language: en
+label_provenance: silver-claude-clef
+
+rules:
+  R1: >-
+    `X paid ...` / `X sent ...` (the payer decides). X is a person (a name or a kinship noun)
+    and the note names no goods, service or work -> repayment_in, target X (`Mike paid 15`,
+    `sam sent 20`, `sis paid 30`). X is an employer, client or customer, OR the note says what
+    the money pays for (wages, a month, an order, goods, work) -> income (`company paid oct 5k`,
+    `client paid 500`, `Dan paid for the logo work 400`); the target is the employer/client
+    noun when named (`company`, `client`). An explicit debt word still wins: `X paid me back`,
+    `X repaid ...`, `X settled up` -> repayment_in.
+  R2: >-
+    Paying on someone's behalf (`covered lunch for Sam 20`, `fronted Sam 20`, `paid for Lena's
+    ticket 60`, `bought it for Joe, he owes me 15`) -> lend, target the person. The return side
+    (`Sam paid me back for lunch`, `Joe sent back the 15`) -> repayment_in, target the person.
+    Treating a person to something as a gift (`treated mom to dinner 50`, `bought mom a gift`)
+    is expense, not lend: lend needs a stated expectation of being repaid (`covered`, `fronted`,
+    `lent`, `he owes me`, `will pay me back`) or an on-behalf payment.
+  R3: >-
+    Sending money to other people (`venmo'd mom 50`, `zelle to dad 200`, `sent my brother 100`,
+    `gave mom 200`) -> expense, target the person or kinship noun, or lend when a loan is stated
+    (`venmo'd Sam 20 he'll pay back`). transfer is ONLY between the user's own accounts,
+    wallets, cash, savings or investments (`moved 500 to savings`, `cash app to chase 200`,
+    `withdrew 100 cash`).
+  R4: >-
+    Salary phrasing: `got paid`, `payday`, `paycheck`, `salary came in`, `salary credited`,
+    `direct deposit 2400`, `pay hit` -> income, no target. `advance on paycheck`, `salary
+    advance`, `payday loan`, `borrowed against my pay` -> borrow.
+
+# Canonical transaction taxonomy (same eight types as annotation-v4). There is deliberately no
+# "other": notes whose type cannot be determined get annotation_status "uncertain".
+types:
+  expense: >-
+    Money leaves the user with no expectation of principal repayment: purchases, bills, tips,
+    fees, gifts, and (R3) money sent or given to other people (`venmo'd mom 50`, `gave dad 100`)
+    with the person or kinship noun as target, unless a loan is stated (then lend). Paying the
+    user's own share of a split bill is expense (`split dinner, my half 32`).
+  income: >-
+    Money received as salary or pay (R4: `got paid`, `payday`, `paycheck`, `salary came in`,
+    no target), freelance/client payment, gift, sale proceeds, rewards, or other ordinary
+    incoming money that is neither borrowing, debt repayment, nor refund. An employer, client
+    or customer paying (`client paid 500`, `company paid oct 5k`) or a person paying for stated
+    goods or work (`Dan paid for the logo 400`) is income (R1).
+  borrow: >-
+    The user receives loan principal and now owes another party. Also a DEBT-ONLY note in which
+    the user owes the other party (`owe Sam 20`, `IOU Mike 15`, `still owe landlord 300`); no
+    money moves now. R4: a salary advance (`advance on paycheck 300`, `payday loan 400`) is
+    borrow. Direction unclear -> uncertain with a note.
+  lend: >-
+    The user gives loan principal to another party and expects repayment. Also a DEBT-ONLY note
+    in which the other party owes the user (`Sam owes me 20`, `Mike IOU 15`). R2: paying on
+    someone's behalf (`fronted Sam 20`, `covered lunch for Sam`, `paid for Lena's ticket, she
+    owes me`) is lend with the person as target.
+  repayment_in: >-
+    Another party repays money they previously owed the user: `Mike paid me back 15`, `Sam
+    repaid 20`. R1: a bare `X paid 15` with a person X (name or kinship noun) and no goods,
+    service or work named is repayment_in, target X. R2: the return side of paying on someone's
+    behalf (`Sam paid me back for lunch`, `Joe sent back the 15`).
+  repayment_out: >-
+    The user repays money they previously owed another party, including payments on an existing
+    financed balance or liability (installments, BNPL, credit-card balance, student loan,
+    car loan): `paid Sam back 20`, `paid off the credit card 300`, `repaid dad 500`.
+  transfer: >-
+    Movement between the user's own accounts, wallets, cash holdings, or savings, including
+    conversion into investment/store-of-value assets the user still owns (index fund, crypto,
+    gold held as savings). No economic income or expense occurs. R3: ONLY the user's own
+    holdings (`moved 500 to savings`, `topped up cash app from chase 100`, `ATM withdrawal
+    200`); sending money to another person is expense (or lend), never transfer. A returned
+    refundable deposit is transfer (`got security deposit back 1200`); paying a deposit is
+    transfer only when the note establishes it stays refundable.
+  refund: >-
+    Money returned to the user as reversal, reimbursement, rebate, or spending-linked cashback
+    of an earlier expense (`amazon refund 24`, `refund from zara`, `got cashback 5`,
+    `work reimbursed my flight 300`).
+
+# Target = the minimal exact substring of the note that identifies the external financial
+# counterparty, or null. English specifics:
+# * a first name or nickname (`Sam`, `mike`, `Lena`), a kinship noun that is the only name (`mom`,
+#   `dad`, `bro`, `sis`, `grandma`, `uncle`), or an employer / client / customer / landlord noun
+#   that is the only name (`company`, `client`, `boss`, `landlord`) is the target;
+# * a title or kinship word before a proper name is dropped (`uncle Raj` -> `Raj`, `aunty Meena`
+#   -> `Meena`, `Mr Tan` -> `Tan`); `mom` alone stays `mom`;
+# * named merchants/services when they are the counterparty (`amazon refund` -> `amazon`,
+#   `refund from zara` -> `zara`); a generic business noun that is the only counterparty is kept
+#   (`pharmacy refund 12` -> `pharmacy`);
+# * NOT targets: items, dishes, activities, bill names (`rent`, `electric bill`, `coffee`), the
+#   payment channel (`venmo`, `zelle`, `paypal`, `cash app`, `gpay`, `paynow`, `upi`, bank names),
+#   companions (`with`, `w/`) and purchase beneficiaries (`bought shoes for my son`);
+# * several plausible counterparties -> uncertain;
+# * salary notes (R4) have no target; transfers have no target;
+# * the span is copied verbatim from the text, case and typos included (`venmo'd Mom` -> `Mom`).
+# The validator checks structure and span mechanics; the semantic rules live in
+# docs/annotation-en-v1.md.
+null_target_types: [transfer]
+
+statuses:
+  complete: Type (and target, or explicit null target) confidently determined from the text.
+  uncertain: The text does not establish the type or the target; never forced. Requires a note.
+  skipped: >-
+    Not a usable finance note, a valid finance note outside the transaction-event taxonomy, or
+    the annotator chose not to label it. Type and target must both be null.
+
+# Only these statuses may enter the training split.
+trainable_statuses: [complete]
+
+# These statuses must carry a non-empty `note` explaining the ambiguity.
+note_required_statuses: [uncertain]
+
+# These statuses must have `type: null` and `target: null`.
+null_label_statuses: [skipped]
+
+queue:
+  # Silver (Claude + Clef) files only; never under datasets/annotation-v1..v3.
+  corpus: corpus/raw/en-baseline-01.jsonl
+  out: datasets/annotation-en-v1/queue.jsonl
+  size: null
+  seed: annotation-en-v1
+  review_status: approved
+
+# Value span: same convention as annotation-v2/v3 (the amount substring, selection only, no
+# normalisation; `$20`, `20 bucks`, `1.5k`, `3 grand` are spans as written, null when the note
+# has no amount). English amount forms are listed in docs/annotation-en-v1.md.
+value:
+  types:
+    amount: The note states a monetary amount; `target` is its value span.
+    no_amount: The note states no amount. `target` must be null.
+  null_target_types: [no_amount]
+  tags: [O, B-VALUE, I-VALUE]
+  files:
+    dir: datasets/annotation-en-v1

@@ -1,0 +1,197 @@
+{"text": "elec bill 65 quid", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "gas bill 42", "prompt_id": "en-slang-02", "reason": "near_corpus 0.89"}
+{"text": "wifi bill 50", "prompt_id": "en-slang-02", "reason": "near_corpus 0.90"}
+{"text": "trader joes run 64$", "prompt_id": "en-slang-02", "reason": "near_corpus 0.87"}
+{"text": "dentist checkup copay 40", "prompt_id": "en-slang-02", "reason": "near_corpus 0.86"}
+{"text": "netflix sub 15.99 rn", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "boots pharmacy meds 12.50", "prompt_id": "en-slang-02", "reason": "near_corpus 0.89"}
+{"text": "subway sandwich lunch 7.50", "prompt_id": "en-slang-02", "reason": "near_corpus 0.85"}
+{"text": "spotify family pmt 17.99", "prompt_id": "en-slang-02", "reason": "near_corpus 0.88"}
+{"text": "chipotle bowl w guac 14$", "prompt_id": "en-slang-02", "reason": "near_corpus 0.90"}
+{"text": "wifi util bill 55 bucks", "prompt_id": "en-slang-02", "reason": "near_corpus 0.87"}
+{"text": "opticians eye test 25 quid", "prompt_id": "en-slang-02", "reason": "near_corpus 0.89"}
+{"text": "treated little brother to cinema and snacks 30 bucks 🎬", "prompt_id": "en-slang-02", "reason": "near_corpus 0.92"}
+{"text": "paid sam back 30 bucks", "prompt_id": "en-slang-02", "reason": "near_corpus 0.86"}
+{"text": "cc payment 300", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "chase cc payment 400", "prompt_id": "en-slang-02", "reason": "near_corpus 0.89"}
+{"text": "klarna instalment 35", "prompt_id": "en-slang-02", "reason": "near_corpus 0.97"}
+{"text": "student loan pmt 250", "prompt_id": "en-slang-02", "reason": "near_corpus 0.86"}
+{"text": "cleared amex balance 600", "prompt_id": "en-slang-02", "reason": "near_corpus 0.87"}
+{"text": "repaid liam the 40", "prompt_id": "en-slang-02", "reason": "near_corpus 0.87"}
+{"text": "cleared barclaycard balance in full 340", "prompt_id": "en-slang-02", "reason": "near_corpus 0.88"}
+{"text": "payday!", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "got paid 2,400", "prompt_id": "en-slang-02", "reason": "near_corpus 0.89"}
+{"text": "direct deposit 3100", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "oct salary credited 45k rs", "prompt_id": "en-slang-02", "reason": "near_corpus 0.88"}
+{"text": "overtime pay credited 180 bucks", "prompt_id": "en-slang-02", "reason": "near_corpus 0.88"}
+{"text": "sold textbooks on ebay 45", "prompt_id": "en-slang-02", "reason": "near_corpus 0.96"}
+{"text": "sold designer jacket on vinted 55 quid", "prompt_id": "en-slang-02", "reason": "near_corpus 0.94"}
+{"text": "covered lunch for sam 22", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "fronted priya 35 for tickets", "prompt_id": "en-slang-02", "reason": "near_corpus 0.93"}
+{"text": "sam owes me 25", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "cvrd uber 4 tom 15$", "prompt_id": "en-slang-02", "reason": "near_corpus 0.89"}
+{"text": "lent roomie 40 for groceries", "prompt_id": "en-slang-02", "reason": "near_corpus 0.88"}
+{"text": "lent mate 10 quid pints", "prompt_id": "en-slang-02", "reason": "near_corpus 0.86"}
+{"text": "covered dinner for dave 35", "prompt_id": "en-slang-02", "reason": "near_corpus 0.90"}
+{"text": "borrowed 50 from roomie", "prompt_id": "en-slang-02", "reason": "near_corpus 0.94"}
+{"text": "iou mike 20", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "owe landlord 500 rent", "prompt_id": "en-slang-02", "reason": "near_corpus 0.88"}
+{"text": "advance on paycheck 200$", "prompt_id": "en-slang-02", "reason": "near_corpus 0.95"}
+{"text": "salary advance 350 emergency", "prompt_id": "en-slang-02", "reason": "near_corpus 0.95"}
+{"text": "borrowed 500 rs from bhai", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "owe wei ming 12 s$", "prompt_id": "en-slang-02", "reason": "near_corpus 0.90"}
+{"text": "payday loan advance 250", "prompt_id": "en-slang-02", "reason": "near_corpus 0.88"}
+{"text": "owe mum 60 quid for groceries", "prompt_id": "en-slang-02", "reason": "near_corpus 0.92"}
+{"text": "bro paid me back 20", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "dad paid me back 100", "prompt_id": "en-slang-02", "reason": "near_corpus 0.92"}
+{"text": "rahul returned 500 rs upi", "prompt_id": "en-slang-02", "reason": "near_corpus 0.85"}
+{"text": "sam pd me back 25", "prompt_id": "en-slang-02", "reason": "near_corpus 0.86"}
+{"text": "priya paid me back 50 for tickets", "prompt_id": "en-slang-02", "reason": "near_corpus 0.91"}
+{"text": "jack paid me back for the cab 16", "prompt_id": "en-slang-02", "reason": "near_corpus 0.87"}
+{"text": "moved 200 to savings", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "cash app to chase 150", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "atm withdrawal 40 quid", "prompt_id": "en-slang-02", "reason": "near_corpus 0.86"}
+{"text": "put 150 in roth ira", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "withdrew 50 bucks atm", "prompt_id": "en-slang-02", "reason": "near_corpus 0.87"}
+{"text": "transferred 80 to revolut card", "prompt_id": "en-slang-02", "reason": "near_corpus 0.95"}
+{"text": "dca 50 into btc", "prompt_id": "en-slang-02", "reason": "near_corpus 0.90"}
+{"text": "moved 1k to house deposit pot", "prompt_id": "en-slang-02", "reason": "near_corpus 0.92"}
+{"text": "amazon refund 24.50", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "work reimbursed flight tickets 280", "prompt_id": "en-slang-02", "reason": "near_corpus 0.86"}
+{"text": "got security deposit back 850", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "zara order return refund 55", "prompt_id": "en-slang-02", "reason": "near_corpus 0.87"}
+{"text": "gym overcharge refunded 20 quid", "prompt_id": "en-slang-02", "reason": "near_corpus 0.91"}
+{"text": "idk what 30 was for", "prompt_id": "en-slang-02", "reason": "near_corpus 0.88"}
+{"text": "atm receipt missing 10 bucks", "prompt_id": "en-slang-02", "reason": "near_corpus 0.88"}
+{"text": "sam 100", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "chck balance", "prompt_id": "en-slang-02", "reason": "near_corpus 0.96"}
+{"text": "cant remember what this 18 charge was", "prompt_id": "en-slang-02", "reason": "near_corpus 0.95"}
+{"text": "borrowed 1000 rs from rohan", "prompt_id": "en-slang-02", "reason": "near_corpus 0.89"}
+{"text": "borrowed 50 s$ from roomie", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "owe wei ming 15 s$", "prompt_id": "en-slang-02", "reason": "near_corpus 0.90"}
+{"text": "owe bhaiya 350 for petrol", "prompt_id": "en-slang-02", "reason": "near_corpus 0.86"}
+{"text": "salary advance 800 s$", "prompt_id": "en-slang-02", "reason": "near_corpus 0.86"}
+{"text": "owe aunty 50 s$ groceries", "prompt_id": "en-slang-02", "reason": "near_batch 0.91"}
+{"text": "covered dinner for anand 300", "prompt_id": "en-slang-02", "reason": "near_corpus 0.88"}
+{"text": "rahul owes me 450 rs", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "irctc ticket cancellation refund 480", "prompt_id": "en-slang-02", "reason": "near_corpus 0.89"}
+{"text": "comfortdelgro taxi overcharge refund 8s$", "prompt_id": "en-slang-02", "reason": "near_corpus 0.86"}
+{"text": "monthly salary credited 65k rs", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "freelance web project pmt 15k", "prompt_id": "en-slang-02", "reason": "near_corpus 0.85"}
+{"text": "affiliate commission payout 2500 rs", "prompt_id": "en-slang-02", "reason": "near_batch 0.95"}
+{"text": "topped up grabpay wallet 50s$", "prompt_id": "en-slang-02", "reason": "near_corpus 0.91"}
+{"text": "topped up paytm wallet 400", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "tf 300 s$ emergency stash", "prompt_id": "en-slang-02", "reason": "near_corpus 0.93"}
+{"text": "topped up ezlink card 20s$", "prompt_id": "en-slang-02", "reason": "near_batch 0.96"}
+{"text": "transferred 8000 rs to savings", "prompt_id": "en-slang-02", "reason": "near_corpus 0.90"}
+{"text": "moved 100 s$ rainy day", "prompt_id": "en-slang-02", "reason": "near_corpus 0.92"}
+{"text": "atm cash withdrawal 100 s$", "prompt_id": "en-slang-02", "reason": "near_corpus 0.93"}
+{"text": "moved 1k rs piggy bank", "prompt_id": "en-slang-02", "reason": "near_corpus 0.90"}
+{"text": "atm cash out 1500 rs", "prompt_id": "en-slang-02", "reason": "near_batch 0.91"}
+{"text": "transferred 3000 rs from paytm to bank account", "prompt_id": "en-slang-02", "reason": "near_corpus 0.93"}
+{"text": "cai fan lunch 4.20 s$", "prompt_id": "en-slang-02", "reason": "exact"}
+{"text": "bescom electric bill 620 rs", "prompt_id": "en-slang-02", "reason": "near_corpus 0.88"}
+{"text": "airtel wifi bill 799 rs", "prompt_id": "en-slang-02", "reason": "near_corpus 0.92"}
+{"text": "yakun kaya toast set 6.20s$", "prompt_id": "en-slang-02", "reason": "near_corpus 0.90"}
+{"text": "paid priya back 300 rs", "prompt_id": "en-slang-02", "reason": "near_corpus 0.92"}
+{"text": "hdfc home loan emi 18k", "prompt_id": "en-slang-02", "reason": "near_corpus 0.86"}
+{"text": "remind me to check upi statement eod", "prompt_id": "en-slang-02", "reason": "near_batch 0.94"}
+{"text": "spotify sub 10.99 rn", "prompt_id": "en-genz-03", "reason": "near_corpus 0.90"}
+{"text": "steam game sale 16", "prompt_id": "en-genz-03", "reason": "near_corpus 0.87"}
+{"text": "paid sam back 20", "prompt_id": "en-genz-03", "reason": "near_corpus 0.90"}
+{"text": "klarna installment hit 35", "prompt_id": "en-genz-03", "reason": "near_corpus 0.91"}
+{"text": "repaid mum 50 quid", "prompt_id": "en-genz-03", "reason": "near_batch 1.00"}
+{"text": "settled up w raj 25", "prompt_id": "en-genz-03", "reason": "near_corpus 0.87"}
+{"text": "chase cc payment 200", "prompt_id": "en-genz-03", "reason": "near_corpus 0.89"}
+{"text": "paid bro back 15", "prompt_id": "en-genz-03", "reason": "near_corpus 0.88"}
+{"text": "sent landlord what i owed", "prompt_id": "en-genz-03", "reason": "near_batch 0.96"}
+{"text": "cleared amex balance 450", "prompt_id": "en-genz-03", "reason": "near_corpus 0.87"}
+{"text": "paid back liam 40", "prompt_id": "en-genz-03", "reason": "near_corpus 0.88"}
+{"text": "student loan pmt 180", "prompt_id": "en-genz-03", "reason": "near_corpus 0.86"}
+{"text": "repaid dad 100 loan", "prompt_id": "en-genz-03", "reason": "near_corpus 0.85"}
+{"text": "monzo flex pmt 45", "prompt_id": "en-genz-03", "reason": "near_corpus 0.89"}
+{"text": "direct deposit 1950", "prompt_id": "en-genz-03", "reason": "exact"}
+{"text": "freelance gig pmt 350", "prompt_id": "en-genz-03", "reason": "near_corpus 0.87"}
+{"text": "overtime pay hit 150", "prompt_id": "en-genz-03", "reason": "near_corpus 0.88"}
+{"text": "covered lunch for sam 18", "prompt_id": "en-genz-03", "reason": "exact"}
+{"text": "bro owes me 25", "prompt_id": "en-genz-03", "reason": "near_corpus 0.90"}
+{"text": "covered dinner for maya 28", "prompt_id": "en-genz-03", "reason": "near_corpus 0.90"}
+{"text": "owe bro 20 bucks", "prompt_id": "en-genz-03", "reason": "near_batch 1.00"}
+{"text": "borrowed 40 from roomie", "prompt_id": "en-genz-03", "reason": "near_corpus 0.94"}
+{"text": "owe landlord 600 rent", "prompt_id": "en-genz-03", "reason": "near_corpus 0.88"}
+{"text": "paycheck advance 150 emergency", "prompt_id": "en-genz-03", "reason": "near_batch 0.95"}
+{"text": "borrowed 50 from mum", "prompt_id": "en-genz-03", "reason": "near_corpus 0.95"}
+{"text": "sam paid me back 15", "prompt_id": "en-genz-03", "reason": "near_corpus 0.92"}
+{"text": "chloe settled up 20", "prompt_id": "en-genz-03", "reason": "near_corpus 0.91"}
+{"text": "ran it back w bestie she paid 20", "prompt_id": "en-genz-03", "reason": "near_batch 0.93"}
+{"text": "moved 100 to savings", "prompt_id": "en-genz-03", "reason": "exact"}
+{"text": "atm withdrawal 40 cash", "prompt_id": "en-genz-03", "reason": "near_corpus 0.86"}
+{"text": "cashapp to chase 100", "prompt_id": "en-genz-03", "reason": "near_corpus 0.97"}
+{"text": "put 75 in roth", "prompt_id": "en-genz-03", "reason": "near_corpus 0.87"}
+{"text": "dca 25 into btc", "prompt_id": "en-genz-03", "reason": "near_corpus 0.90"}
+{"text": "moved 200 rainy day", "prompt_id": "en-genz-03", "reason": "near_corpus 0.94"}
+{"text": "tf 40 monzo pot", "prompt_id": "en-genz-03", "reason": "near_batch 0.90"}
+{"text": "withdrew 60 bucks atm", "prompt_id": "en-genz-03", "reason": "near_corpus 0.87"}
+{"text": "deposited 150 cash bank", "prompt_id": "en-genz-03", "reason": "near_batch 0.93"}
+{"text": "shifted 250 to high yield savings acct", "prompt_id": "en-genz-03", "reason": "near_batch 1.00"}
+{"text": "amazon refund 22 back", "prompt_id": "en-genz-03", "reason": "near_corpus 0.86"}
+{"text": "uber ride refund 12", "prompt_id": "en-genz-03", "reason": "exact"}
+{"text": "gym overcharge refunded 15", "prompt_id": "en-genz-03", "reason": "exact"}
+{"text": "idk what 25 was", "prompt_id": "en-genz-03", "reason": "near_corpus 0.93"}
+{"text": "bro 50", "prompt_id": "en-genz-03", "reason": "exact"}
+{"text": "coffee maybe 5", "prompt_id": "en-genz-03", "reason": "near_batch 1.00"}
+{"text": "repaid meiling 20 s$", "prompt_id": "en-genz-03", "reason": "near_corpus 0.87"}
+{"text": "cleared monzo flex 45", "prompt_id": "en-genz-03", "reason": "near_corpus 0.89"}
+{"text": "paid bhai back 1000", "prompt_id": "en-genz-03", "reason": "near_corpus 0.94"}
+{"text": "repaid wei ming 18s$", "prompt_id": "en-genz-03", "reason": "near_corpus 0.90"}
+{"text": "paid cheryl back 12s$", "prompt_id": "en-genz-03", "reason": "near_corpus 0.87"}
+{"text": "cleared klarna bill 60 no more instalments", "prompt_id": "en-genz-03", "reason": "near_batch 0.92"}
+{"text": "borrowed 20 from mate", "prompt_id": "en-genz-03", "reason": "near_corpus 0.87"}
+{"text": "borrowed 50 s$ roomie", "prompt_id": "en-genz-03", "reason": "near_corpus 0.89"}
+{"text": "borrowed 1000 from papa", "prompt_id": "en-genz-03", "reason": "near_corpus 0.87"}
+{"text": "salary advance 10k rs", "prompt_id": "en-genz-03", "reason": "near_corpus 0.86"}
+{"text": "borrowed tenner from coworker", "prompt_id": "en-genz-03", "reason": "near_corpus 0.92"}
+{"text": "borrowed 500 from bhai", "prompt_id": "en-genz-03", "reason": "near_corpus 0.93"}
+{"text": "borrowed 50 s$ from colleague for lunch", "prompt_id": "en-genz-03", "reason": "near_batch 0.94"}
+{"text": "bhaiya owes me 1k", "prompt_id": "en-genz-03", "reason": "exact"}
+{"text": "deepak owes me 800", "prompt_id": "en-genz-03", "reason": "near_batch 0.91"}
+{"text": "covered biryani for vikas", "prompt_id": "en-genz-03", "reason": "near_batch 0.96"}
+{"text": "mate owes me 15", "prompt_id": "en-genz-03", "reason": "near_corpus 0.86"}
+{"text": "fam owes me 25", "prompt_id": "en-genz-03", "reason": "near_corpus 0.92"}
+{"text": "covered drinks for arun", "prompt_id": "en-genz-03", "reason": "near_corpus 0.86"}
+{"text": "lent mate 50 quid for car repair", "prompt_id": "en-genz-03", "reason": "near_batch 1.00"}
+{"text": "lent colleague 25 s$ for team lunch", "prompt_id": "en-genz-03", "reason": "near_corpus 0.87"}
+{"text": "fronted 75 s$ for chalet booking for our polytechnic squad gathering next month", "prompt_id": "en-genz-03", "reason": "near_batch 1.00"}
+{"text": "lent rajesh 5000 rs for urgent bike insurance renewal he will repay monday", "prompt_id": "en-genz-03", "reason": "near_batch 0.99"}
+{"text": "cai fan lunch 4.50s$", "prompt_id": "en-genz-03", "reason": "near_corpus 0.95"}
+{"text": "auto fare 60 rs", "prompt_id": "en-genz-03", "reason": "exact"}
+{"text": "hawker wanton mee 5s$", "prompt_id": "en-genz-03", "reason": "near_batch 0.93"}
+{"text": "wifi bill 699 rs", "prompt_id": "en-genz-03", "reason": "exact"}
+{"text": "petrol scooty 250 rs", "prompt_id": "en-genz-03", "reason": "near_batch 0.90"}
+{"text": "gym membership 25 quid", "prompt_id": "en-genz-03", "reason": "near_corpus 0.86"}
+{"text": "swiggy biryani 280 rs", "prompt_id": "en-genz-03", "reason": "near_corpus 0.91"}
+{"text": "tesco meal deal 3.40", "prompt_id": "en-genz-03", "reason": "exact"}
+{"text": "boots meal deal 4", "prompt_id": "en-genz-03", "reason": "exact"}
+{"text": "zepto snacks 180 rs", "prompt_id": "en-genz-03", "reason": "exact"}
+{"text": "yakun kaya toast 6s$", "prompt_id": "en-genz-03", "reason": "near_corpus 0.86"}
+{"text": "bak chor mee 6s$", "prompt_id": "en-genz-03", "reason": "near_corpus 0.91"}
+{"text": "chicken biryani order at paradise restaurant 350rs", "prompt_id": "en-genz-03", "reason": "near_batch 0.95"}
+{"text": "salary credited 55k rs", "prompt_id": "en-genz-03", "reason": "near_corpus 0.95"}
+{"text": "we're so back 1500", "prompt_id": "en-genz-03", "reason": "near_batch 1.00"}
+{"text": "sold old iphone on olx 18000 rs", "prompt_id": "en-genz-03", "reason": "near_corpus 0.85"}
+{"text": "part time cafe shift pay 75 quid", "prompt_id": "en-genz-03", "reason": "near_batch 0.91"}
+{"text": "cheryl paynowed 15 s$", "prompt_id": "en-genz-03", "reason": "near_corpus 0.91"}
+{"text": "vikram settled his share of dinner 350rs", "prompt_id": "en-genz-03", "reason": "near_batch 0.94"}
+{"text": "tf 5k rs zerodha", "prompt_id": "en-genz-03", "reason": "near_batch 0.91"}
+{"text": "moved 150 s$ stashaway", "prompt_id": "en-genz-03", "reason": "near_batch 0.93"}
+{"text": "atm withdrawal 2000 rs", "prompt_id": "en-genz-03", "reason": "near_corpus 0.91"}
+{"text": "tf 30 monzo pot", "prompt_id": "en-genz-03", "reason": "near_batch 0.90"}
+{"text": "deposited 500 cash sbi", "prompt_id": "en-genz-03", "reason": "near_batch 0.93"}
+{"text": "moved 500 s$ checking to multiplier account", "prompt_id": "en-genz-03", "reason": "near_batch 0.94"}
+{"text": "grab cancellation refund 5.50s$", "prompt_id": "en-genz-03", "reason": "near_batch 0.97"}
+{"text": "company finance reimbursed domestic flight tickets and cab bills 6500 rs to account", "prompt_id": "en-genz-03", "reason": "near_batch 0.95"}
+{"text": "bhai returned the 1k", "prompt_id": "en-genz-03", "reason": "near_genz_probe"}
+{"text": "paid off the visa 500", "prompt_id": "en-slang-02", "reason": "near_genz_probe"}
+{"text": "iou sam 15 for drinks", "prompt_id": "en-slang-02", "reason": "near_genz_probe"}
+{"text": "roomie paid back 50 electric", "prompt_id": "en-slang-02", "reason": "near_genz_probe"}
+{"text": "borrowed 40 s$ hawker lunch", "prompt_id": "en-slang-02", "reason": "near_genz_probe"}

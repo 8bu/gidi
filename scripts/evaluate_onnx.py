@@ -27,6 +27,7 @@ from evaluate_probe import load_probe
 
 from gidi.evaluation.metrics import evaluate
 from gidi.export.onnx_export import INPUT_NAMES, OUTPUT_NAMES, make_session
+from gidi.inference.decode import snap_to_words
 from gidi.modeling.checkpoint import load_checkpoint
 from gidi.modeling.preprocessing import TYPES, spans_from_tags
 from gidi.training.train import Prepared, load_split, predict, prepare
@@ -57,12 +58,28 @@ def onnx_outputs(session: Any, data: Prepared) -> tuple[np.ndarray, list[np.ndar
     return np.concatenate(type_rows), tag_rows
 
 
-def decode(data: Prepared, type_logits: np.ndarray, tag_logits: list[np.ndarray]) -> tuple:
+def snap_span(span: dict[str, Any] | None, text: str) -> dict[str, Any] | None:
+    """``span`` extended to whole-word boundaries (``gidi.inference.decode.snap_to_words``)."""
+    if span is None:
+        return None
+    start, end = snap_to_words(text, span["start"], span["end"])
+    return {"text": text[start:end], "start": start, "end": end}
+
+
+def decode(
+    data: Prepared,
+    type_logits: np.ndarray,
+    tag_logits: list[np.ndarray],
+    snap_words: bool = False,
+) -> tuple:
+    """Argmax types and first BIO span per record; ``snap_words`` expands spans to whole words."""
     types = [TYPES[int(k)] for k in type_logits.argmax(-1)]
     spans: Spans = [
         spans_from_tags(data.encoded.offsets[i], tags.argmax(-1).tolist(), data.records[i]["text"])
         for i, tags in enumerate(tag_logits)
     ]
+    if snap_words:
+        spans = [snap_span(s, r["text"]) for s, r in zip(spans, data.records, strict=True)]
     return types, spans
 
 

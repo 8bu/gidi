@@ -185,6 +185,8 @@ def load_reference_groups(root: Path, out_dir: Path, v1_kept: list[str]) -> dict
     own = {out_dir.resolve(), *((root / p).resolve() for p in DERIVED_DIRS)}
     for top in CORPUS_DIRS:
         for path in sorted((root / top).rglob("*.jsonl")):
+            if any(part.startswith(("annotation-en", "probe-en", "en-")) for part in path.parts):
+                continue  # English gidi-en data is not a reference for the Vietnamese batches
             resolved = path.resolve()
             if str(resolved) in claimed or own & set(path.absolute().parents) | own & set(
                 resolved.parents

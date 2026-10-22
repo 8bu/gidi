@@ -1,0 +1,27 @@
+{
+  "version": "annotation-en-v1",
+  "seed": "annotation-en-v1-split-01",
+  "order": "sha256(seed:id) ascending; test, dev, seed, then train",
+  "corpus": "corpus/raw/en-baseline-01.jsonl",
+  "corpus_records": 2426,
+  "leak_threshold": 0.85,
+  "dropped_as_leak": 164,
+  "splits": {
+    "test": {
+      "n": 300,
+      "sha256": "4eeb3337925bccc3765f4b62e7d17025895296e387ed1f0489482d6ae751790a"
+    },
+    "dev": {
+      "n": 200,
+      "sha256": "81760bf5bd63af53c3d83a289718a8f8fbf84589e4170e9f6863275778b9a359"
+    },
+    "seed": {
+      "n": 300,
+      "sha256": "c9916a6dddbb41e8956b1e3899c4f7dd46695bbfee6e6a66602c1729a4da47e8"
+    },
+    "train": {
+      "n": 1462,
+      "sha256": "22558590260c49d14887dd2b140c2c29ac109d0f10345401fa18f8322b816cc1"
+    }
+  }
+}

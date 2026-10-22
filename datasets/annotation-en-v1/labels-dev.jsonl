@@ -1,0 +1,200 @@
+{"id": "en-baseline-01-01a086e5e6e1", "annotation_status": "complete", "type": "income", "target": {"text": "sarah", "start": 23, "end": 28}}
+{"id": "en-baseline-01-0289fddc9e67", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-03af10adb3bb", "annotation_status": "uncertain", "type": null, "target": null, "note": "bare name with no direction"}
+{"id": "en-baseline-01-04374ad4b29a", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "sister", "start": 0, "end": 6}}
+{"id": "en-baseline-01-0539fbde7aed", "annotation_status": "complete", "type": "expense", "target": {"text": "amtrak", "start": 0, "end": 6}}
+{"id": "en-baseline-01-0ac4f30ab76a", "annotation_status": "complete", "type": "income", "target": {"text": "facebook marketplace", "start": 15, "end": 35}}
+{"id": "en-baseline-01-0ad5f2a290fa", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-0e06e32c7fb3", "annotation_status": "complete", "type": "lend", "target": {"text": "tim", "start": 9, "end": 12}}
+{"id": "en-baseline-01-0e3319c0f651", "annotation_status": "complete", "type": "borrow", "target": {"text": "Priya", "start": 4, "end": 9}}
+{"id": "en-baseline-01-0e5bd73e86ec", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-0e8077a0e2b6", "annotation_status": "uncertain", "type": null, "target": null, "note": "bare merchant name with no amount or direction"}
+{"id": "en-baseline-01-0e9407715630", "annotation_status": "complete", "type": "expense", "target": {"text": "aldi", "start": 20, "end": 24}}
+{"id": "en-baseline-01-0e986b1da7d4", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Tim", "start": 0, "end": 3}}
+{"id": "en-baseline-01-0f23c0799c0c", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "en-baseline-01-10d06fc8ec67", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Suresh", "start": 0, "end": 6}}
+{"id": "en-baseline-01-121d6c450df8", "annotation_status": "complete", "type": "lend", "target": {"text": "jo", "start": 24, "end": 26}}
+{"id": "en-baseline-01-122086530eca", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-1256349807fc", "annotation_status": "complete", "type": "income", "target": {"text": "client", "start": 0, "end": 6}}
+{"id": "en-baseline-01-1318a2a7c210", "annotation_status": "complete", "type": "expense", "target": {"text": "sister", "start": 8, "end": 14}}
+{"id": "en-baseline-01-14c16c17e71f", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-153a078f61c4", "annotation_status": "complete", "type": "expense", "target": {"text": "jumbo seafood", "start": 34, "end": 47}}
+{"id": "en-baseline-01-189451d28f09", "annotation_status": "complete", "type": "refund", "target": {"text": "tfl", "start": 0, "end": 3}}
+{"id": "en-baseline-01-1b247b5010e7", "annotation_status": "complete", "type": "income", "target": {"text": "etsy", "start": 0, "end": 4}}
+{"id": "en-baseline-01-1be747de76ff", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "en-baseline-01-1c1db926244c", "annotation_status": "complete", "type": "lend", "target": {"text": "Vikram", "start": 5, "end": 11}}
+{"id": "en-baseline-01-1c4fd0f2f1ae", "annotation_status": "complete", "type": "refund", "target": null}
+{"id": "en-baseline-01-1c52c705ea85", "annotation_status": "complete", "type": "expense", "target": {"text": "toast box", "start": 0, "end": 9}}
+{"id": "en-baseline-01-1ea5a4959bf0", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-230886a77246", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-26d878ce2080", "annotation_status": "complete", "type": "income", "target": {"text": "boss", "start": 0, "end": 4}}
+{"id": "en-baseline-01-281581fa1858", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-28b928475975", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "brother", "start": 3, "end": 10}}
+{"id": "en-baseline-01-28c752b3a6c9", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-2b1b85672634", "annotation_status": "complete", "type": "expense", "target": {"text": "boots", "start": 0, "end": 5}}
+{"id": "en-baseline-01-2b8f936b7d9e", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "roommate", "start": 18, "end": 26}}
+{"id": "en-baseline-01-2bfaa8a1e1fb", "annotation_status": "complete", "type": "borrow", "target": {"text": "Wei Ming", "start": 23, "end": 31}}
+{"id": "en-baseline-01-2cdcaf54bd5c", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-2cf9833fba32", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-2cff57ca06a8", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "Sophie", "start": 5, "end": 11}}
+{"id": "en-baseline-01-301d0bda77cf", "annotation_status": "complete", "type": "borrow", "target": {"text": "Daryl", "start": 4, "end": 9}}
+{"id": "en-baseline-01-337406cb66c6", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "en-baseline-01-374ea7bff2d9", "annotation_status": "complete", "type": "lend", "target": {"text": "Rohan", "start": 19, "end": 24}}
+{"id": "en-baseline-01-380d22b0a75c", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "en-baseline-01-382368f6c1d6", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "en-baseline-01-3912e45052a5", "annotation_status": "complete", "type": "expense", "target": {"text": "urban company", "start": 0, "end": 13}}
+{"id": "en-baseline-01-39d2cb18043f", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-41252e9124cc", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-41f43867b795", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "sam", "start": 0, "end": 3}}
+{"id": "en-baseline-01-43a5b8f025dc", "annotation_status": "complete", "type": "income", "target": {"text": "carousell", "start": 32, "end": 41}}
+{"id": "en-baseline-01-452ca987bf84", "annotation_status": "complete", "type": "expense", "target": {"text": "zara", "start": 0, "end": 4}}
+{"id": "en-baseline-01-4653bb694b83", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "mom", "start": 0, "end": 3}}
+{"id": "en-baseline-01-4664972b9955", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-46e8e21a8959", "annotation_status": "complete", "type": "expense", "target": {"text": "amazon", "start": 19, "end": 25}}
+{"id": "en-baseline-01-46eec372244a", "annotation_status": "complete", "type": "lend", "target": {"text": "Callum", "start": 8, "end": 14}}
+{"id": "en-baseline-01-485fdc8bac7e", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-4ac1fe17c445", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-4b5e50c6d608", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-4c04a9f16d8b", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-4ca4233b1747", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-4fd5df38410d", "annotation_status": "skipped", "type": null, "target": null}
+{"id": "en-baseline-01-52270590fb80", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-52c471dad0a4", "annotation_status": "skipped", "type": null, "target": null}
+{"id": "en-baseline-01-554a3665bbf8", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-558852cf5fce", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-58ad74bf7575", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-5c614642884f", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "dad", "start": 0, "end": 3}}
+{"id": "en-baseline-01-60274bb2997f", "annotation_status": "complete", "type": "expense", "target": {"text": "trader joes", "start": 15, "end": 26}}
+{"id": "en-baseline-01-605b968b2133", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "jen", "start": 17, "end": 20}}
+{"id": "en-baseline-01-61170ad9d6c1", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-612cc8dde1b7", "annotation_status": "complete", "type": "expense", "target": {"text": "waterstones", "start": 10, "end": 21}}
+{"id": "en-baseline-01-61ccfc48cac5", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-6215dcdeceef", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-634fda52e0e6", "annotation_status": "complete", "type": "expense", "target": {"text": "roundhouse", "start": 14, "end": 24}}
+{"id": "en-baseline-01-63873365a3f7", "annotation_status": "complete", "type": "lend", "target": {"text": "alex", "start": 8, "end": 12}}
+{"id": "en-baseline-01-63d74763aaab", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-6501b92463b5", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-66a55eaceb55", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-67a88037cf9e", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-687a5e0b768f", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "en-baseline-01-68a84a45373d", "annotation_status": "complete", "type": "lend", "target": {"text": "Desmond", "start": 8, "end": 15}}
+{"id": "en-baseline-01-693abe9faf3e", "annotation_status": "complete", "type": "borrow", "target": {"text": "Cheryl", "start": 0, "end": 6}}
+{"id": "en-baseline-01-6c1c680e2329", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "sis", "start": 0, "end": 3}}
+{"id": "en-baseline-01-707ec1edd742", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-70935162d3f3", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-72bc982897cd", "annotation_status": "complete", "type": "borrow", "target": {"text": "Harry", "start": 0, "end": 5}}
+{"id": "en-baseline-01-78f8f077947a", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-7937961981ec", "annotation_status": "complete", "type": "lend", "target": {"text": "Alex", "start": 8, "end": 12}}
+{"id": "en-baseline-01-79cab5d4f887", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-7a525080299e", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-7aabea7860f1", "annotation_status": "complete", "type": "lend", "target": {"text": "friend", "start": 5, "end": 11}}
+{"id": "en-baseline-01-7abf909d3ff5", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-7b04b73d7e3e", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "guys", "start": 4, "end": 8}}
+{"id": "en-baseline-01-7bf3c351add3", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-7c2bc37e166a", "annotation_status": "complete", "type": "income", "target": {"text": "client", "start": 10, "end": 16}}
+{"id": "en-baseline-01-7d2021d70dc5", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "en-baseline-01-7d2280a91a62", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "brother", "start": 13, "end": 20}}
+{"id": "en-baseline-01-7dd49e49b106", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "kelly", "start": 0, "end": 5}}
+{"id": "en-baseline-01-7f34b2c993e8", "annotation_status": "complete", "type": "income", "target": {"text": "marketing agency", "start": 38, "end": 54}}
+{"id": "en-baseline-01-7f35e049bc58", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-7fe7980826d5", "annotation_status": "complete", "type": "refund", "target": {"text": "irs", "start": 0, "end": 3}}
+{"id": "en-baseline-01-81fd08ff49eb", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Vikram", "start": 0, "end": 6}}
+{"id": "en-baseline-01-825b541c1b15", "annotation_status": "complete", "type": "refund", "target": {"text": "netflix", "start": 0, "end": 7}}
+{"id": "en-baseline-01-829ecfa7a9b5", "annotation_status": "complete", "type": "income", "target": {"text": "digital agency", "start": 47, "end": 61}}
+{"id": "en-baseline-01-83d767fcc629", "annotation_status": "complete", "type": "lend", "target": {"text": "Kim", "start": 9, "end": 12}}
+{"id": "en-baseline-01-866cc66ed623", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-86be8df37aa1", "annotation_status": "uncertain", "type": null, "target": null, "note": "marketplace note does not say whether the sofa was bought or sold"}
+{"id": "en-baseline-01-894094d0e4d7", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-89da49898662", "annotation_status": "complete", "type": "lend", "target": {"text": "lena", "start": 5, "end": 9}}
+{"id": "en-baseline-01-8a333c773c07", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-8bfc65ebad6e", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-8c496c8e42d3", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-8d0aee5c746e", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-8fd767fd2bae", "annotation_status": "complete", "type": "borrow", "target": {"text": "sis", "start": 0, "end": 3}}
+{"id": "en-baseline-01-937ead387866", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-98d9e19bcffb", "annotation_status": "complete", "type": "expense", "target": {"text": "uber", "start": 0, "end": 4}}
+{"id": "en-baseline-01-98dbd7e20c9d", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-9b84eaeb84b5", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Sam", "start": 0, "end": 3}}
+{"id": "en-baseline-01-9c2296f5adbb", "annotation_status": "complete", "type": "refund", "target": {"text": "deliveroo", "start": 0, "end": 9}}
+{"id": "en-baseline-01-9d1d2f5e4890", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-9ee02a77ead0", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "en-baseline-01-9f8e28849358", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-9ff0a7d999ff", "annotation_status": "complete", "type": "lend", "target": {"text": "roommate", "start": 8, "end": 16}}
+{"id": "en-baseline-01-a1bc31657886", "annotation_status": "complete", "type": "borrow", "target": null}
+{"id": "en-baseline-01-a2984ee58304", "annotation_status": "complete", "type": "refund", "target": {"text": "avanti west coast", "start": 39, "end": 56}}
+{"id": "en-baseline-01-a2a314d60574", "annotation_status": "complete", "type": "expense", "target": {"text": "uber", "start": 0, "end": 4}}
+{"id": "en-baseline-01-a3238da21033", "annotation_status": "complete", "type": "income", "target": {"text": "grandma", "start": 0, "end": 7}}
+{"id": "en-baseline-01-a4f77da47e0f", "annotation_status": "complete", "type": "refund", "target": null}
+{"id": "en-baseline-01-a81d473fca9b", "annotation_status": "complete", "type": "income", "target": {"text": "youtube adsense", "start": 21, "end": 36}}
+{"id": "en-baseline-01-a8c580d0543a", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "en-baseline-01-aacaff0a5380", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Amit", "start": 0, "end": 4}}
+{"id": "en-baseline-01-abe2de49c22c", "annotation_status": "skipped", "type": null, "target": null}
+{"id": "en-baseline-01-ac959d54013b", "annotation_status": "complete", "type": "borrow", "target": null}
+{"id": "en-baseline-01-acf5efd04f79", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-adb7425f2913", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "en-baseline-01-afb71d11626a", "annotation_status": "complete", "type": "income", "target": {"text": "olx", "start": 0, "end": 3}}
+{"id": "en-baseline-01-b029bf65914e", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-b03e3c2b9692", "annotation_status": "complete", "type": "borrow", "target": {"text": "papa", "start": 0, "end": 4}}
+{"id": "en-baseline-01-b30d74b6ef85", "annotation_status": "complete", "type": "lend", "target": {"text": "roommate", "start": 5, "end": 13}}
+{"id": "en-baseline-01-b36d7c25d1d9", "annotation_status": "complete", "type": "expense", "target": {"text": "giga", "start": 0, "end": 4}}
+{"id": "en-baseline-01-b9327646cf32", "annotation_status": "complete", "type": "expense", "target": {"text": "gymboxx", "start": 0, "end": 7}}
+{"id": "en-baseline-01-ba5536feccba", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-baa03321dfdf", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "Charlie", "start": 7, "end": 14}}
+{"id": "en-baseline-01-bb2ccbf20eeb", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "ana", "start": 0, "end": 3}}
+{"id": "en-baseline-01-bbff848c8a8f", "annotation_status": "complete", "type": "expense", "target": {"text": "tata power", "start": 63, "end": 73}}
+{"id": "en-baseline-01-bd9875331d0e", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "en-baseline-01-bec6b8c73c7f", "annotation_status": "complete", "type": "borrow", "target": null}
+{"id": "en-baseline-01-beddd9ab13f7", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-bf146283a9f5", "annotation_status": "complete", "type": "income", "target": {"text": "office", "start": 18, "end": 24}}
+{"id": "en-baseline-01-bf3ed28062fd", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-c18130ddab92", "annotation_status": "complete", "type": "expense", "target": {"text": "omnidesk", "start": 68, "end": 76}}
+{"id": "en-baseline-01-c21f13af0928", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-c28f60080a44", "annotation_status": "uncertain", "type": null, "target": null, "note": "bare name with no direction"}
+{"id": "en-baseline-01-c4d6f4d3dd38", "annotation_status": "complete", "type": "lend", "target": {"text": "Bryan", "start": 8, "end": 13}}
+{"id": "en-baseline-01-c52069442036", "annotation_status": "complete", "type": "expense", "target": {"text": "tk maxx", "start": 0, "end": 7}}
+{"id": "en-baseline-01-c604f61ad1ee", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "mom", "start": 10, "end": 13}}
+{"id": "en-baseline-01-c934922bea63", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "mike", "start": 0, "end": 4}}
+{"id": "en-baseline-01-c97138cee1d6", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Amit", "start": 0, "end": 4}}
+{"id": "en-baseline-01-ca253a5bd1ba", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "tom", "start": 11, "end": 14}}
+{"id": "en-baseline-01-ca3107db21ee", "annotation_status": "uncertain", "type": null, "target": null, "note": "wedding cash gift direction unclear: given or received"}
+{"id": "en-baseline-01-cac6826b7e67", "annotation_status": "complete", "type": "expense", "target": {"text": "dmart", "start": 33, "end": 38}}
+{"id": "en-baseline-01-ce304358cbe3", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Bryan", "start": 0, "end": 5}}
+{"id": "en-baseline-01-d0abad3b65a5", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-d1810c6c00b3", "annotation_status": "complete", "type": "expense", "target": {"text": "anytime fitness", "start": 0, "end": 15}}
+{"id": "en-baseline-01-d189ecbee566", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-d578e94053d3", "annotation_status": "skipped", "type": null, "target": null}
+{"id": "en-baseline-01-d68eb7af7e93", "annotation_status": "complete", "type": "lend", "target": {"text": "Callum", "start": 18, "end": 24}}
+{"id": "en-baseline-01-d6bfc2b317b2", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "nina", "start": 0, "end": 4}}
+{"id": "en-baseline-01-d6dba30b914c", "annotation_status": "complete", "type": "borrow", "target": {"text": "lucas", "start": 4, "end": 9}}
+{"id": "en-baseline-01-d76c442f62c1", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "en-baseline-01-d80caa5250c7", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-d989504e2ad6", "annotation_status": "complete", "type": "income", "target": {"text": "neighbors", "start": 20, "end": 29}}
+{"id": "en-baseline-01-db427f175ed2", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "en-baseline-01-dcc3d3267d78", "annotation_status": "skipped", "type": null, "target": null}
+{"id": "en-baseline-01-dd698f55976f", "annotation_status": "complete", "type": "refund", "target": {"text": "work", "start": 0, "end": 4}}
+{"id": "en-baseline-01-e1ab44690b18", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "mom", "start": 5, "end": 8}}
+{"id": "en-baseline-01-e251a970440a", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "en-baseline-01-e44cdb8daf0d", "annotation_status": "complete", "type": "lend", "target": {"text": "Daryl", "start": 0, "end": 5}}
+{"id": "en-baseline-01-e4d6dad55f7c", "annotation_status": "complete", "type": "expense", "target": {"text": "verizon", "start": 0, "end": 7}}
+{"id": "en-baseline-01-e5c37111ef85", "annotation_status": "complete", "type": "expense", "target": {"text": "fairprice", "start": 23, "end": 32}}
+{"id": "en-baseline-01-e781519118af", "annotation_status": "complete", "type": "lend", "target": {"text": "marcus", "start": 7, "end": 13}}
+{"id": "en-baseline-01-e7b972ece9b7", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-e8d6ab1df8d9", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "Amit", "start": 0, "end": 4}}
+{"id": "en-baseline-01-e9a7736eaea5", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "en-baseline-01-ea129fc10400", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "en-baseline-01-ebd3a765cb63", "annotation_status": "complete", "type": "borrow", "target": {"text": "Cheryl", "start": 0, "end": 6}}
+{"id": "en-baseline-01-ec834703e1bb", "annotation_status": "complete", "type": "borrow", "target": {"text": "ray", "start": 11, "end": 14}}
+{"id": "en-baseline-01-f078f451cfe2", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-f156826a4a4c", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-f3ff5456e2c8", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-f480252c2d5b", "annotation_status": "uncertain", "type": null, "target": null, "note": "no direction or item"}
+{"id": "en-baseline-01-f6001ec47b5b", "annotation_status": "complete", "type": "income", "target": {"text": "company", "start": 0, "end": 7}}
+{"id": "en-baseline-01-f74243774638", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-f80b3ce08706", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "discover", "start": 0, "end": 8}}
+{"id": "en-baseline-01-f9ff532053bd", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "Vikram", "start": 5, "end": 11}}
+{"id": "en-baseline-01-fa29b932ec79", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "marcus", "start": 18, "end": 24}}
+{"id": "en-baseline-01-fa8e922a5136", "annotation_status": "complete", "type": "expense", "target": {"text": "uniqlo", "start": 0, "end": 6}}
+{"id": "en-baseline-01-fabda5d2571d", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "en-baseline-01-fbc554bf55da", "annotation_status": "complete", "type": "expense", "target": {"text": "subway", "start": 0, "end": 6}}
+{"id": "en-baseline-01-fde1e113bc91", "annotation_status": "complete", "type": "lend", "target": {"text": "Mike", "start": 19, "end": 23}}
+{"id": "en-baseline-01-fe7f6302e9a5", "annotation_status": "complete", "type": "transfer", "target": null}

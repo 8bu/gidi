@@ -1,0 +1,94 @@
+{
+ "all": {
+  "n": 189,
+  "type": 0.915,
+  "target": 0.894,
+  "joint": 0.825
+ },
+ "consistent": {
+  "n": 172,
+  "type": 0.948,
+  "target": 0.901,
+  "joint": 0.849
+ },
+ "inconsistent": {
+  "n": 17,
+  "type": 0.588,
+  "target": 0.824,
+  "joint": 0.588
+ },
+ "consensus-src": {
+  "n": 132,
+  "type": 0.97,
+  "target": 0.977,
+  "joint": 0.947
+ },
+ "adjudicated-src": {
+  "n": 57,
+  "type": 0.789,
+  "target": 0.702,
+  "joint": 0.544
+ },
+ "conf>=0.9": {
+  "n": 57,
+  "type": 1.0,
+  "target": 0.93,
+  "joint": 0.93
+ },
+ "conf>=0.7": {
+  "n": 124,
+  "type": 1.0,
+  "target": 0.935,
+  "joint": 0.935
+ },
+ "per_type": {
+  "borrow": {
+   "n": 13,
+   "type": 0.538,
+   "target": 0.923,
+   "joint": 0.538
+  },
+  "expense": {
+   "n": 63,
+   "type": 0.937,
+   "target": 0.825,
+   "joint": 0.778
+  },
+  "income": {
+   "n": 28,
+   "type": 0.929,
+   "target": 0.857,
+   "joint": 0.786
+  },
+  "lend": {
+   "n": 18,
+   "type": 1.0,
+   "target": 1.0,
+   "joint": 1.0
+  },
+  "refund": {
+   "n": 8,
+   "type": 1.0,
+   "target": 1.0,
+   "joint": 1.0
+  },
+  "repayment_in": {
+   "n": 20,
+   "type": 0.95,
+   "target": 0.95,
+   "joint": 0.9
+  },
+  "repayment_out": {
+   "n": 12,
+   "type": 0.833,
+   "target": 1.0,
+   "joint": 0.833
+  },
+  "transfer": {
+   "n": 27,
+   "type": 0.963,
+   "target": 0.889,
+   "joint": 0.889
+  }
+ }
+}

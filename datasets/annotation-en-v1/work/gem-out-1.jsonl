@@ -1,0 +1,400 @@
+{"id": "en-baseline-01-011d82a4c70b", "type": "repayment_in", "target": "roommate", "status": "complete"}
+{"id": "en-baseline-01-01667ab03160", "type": "borrow", "target": "Sarah", "status": "complete"}
+{"id": "en-baseline-01-02c0efe15c54", "type": "lend", "target": "Jack", "status": "complete"}
+{"id": "en-baseline-01-052f1af31d99", "type": "refund", "target": "airtel", "status": "complete"}
+{"id": "en-baseline-01-05d625237c90", "type": "repayment_in", "target": "Yan Ting", "status": "complete"}
+{"id": "en-baseline-01-0807556e6ea8", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-0832ff6f121b", "type": "lend", "target": "mei", "status": "complete"}
+{"id": "en-baseline-01-0879ea84639b", "type": "borrow", "target": "tom", "status": "complete"}
+{"id": "en-baseline-01-089eb250c489", "type": "lend", "target": "Charlie", "status": "complete"}
+{"id": "en-baseline-01-09e33fb5ac9a", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-0a1451318b55", "type": null, "target": null, "status": "uncertain", "note": "bare reminder with no amount, transaction or counterparty"}
+{"id": "en-baseline-01-0a228dc9c401", "type": "expense", "target": "papa", "status": "complete"}
+{"id": "en-baseline-01-0a30be0080ad", "type": "refund", "target": "klook", "status": "complete"}
+{"id": "en-baseline-01-0a33a37f68a8", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-0a5876ebd2be", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-0ab2505786d2", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-0b7e5f619a13", "type": "refund", "target": "hmrc", "status": "complete"}
+{"id": "en-baseline-01-0bbf8780573f", "type": "repayment_out", "target": null, "status": "complete"}
+{"id": "en-baseline-01-0c8ba404f253", "type": "expense", "target": null, "status": "uncertain", "note": "bare activity with companion, no amount or direction"}
+{"id": "en-baseline-01-0cc96faadb09", "type": "repayment_out", "target": "Seth", "status": "complete"}
+{"id": "en-baseline-01-0e1597350d94", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-0e5b754c876c", "type": "expense", "target": "irctc", "status": "complete"}
+{"id": "en-baseline-01-0f91a86c7e85", "type": null, "target": null, "status": "uncertain", "note": "bare bill name with no amount or transaction verb"}
+{"id": "en-baseline-01-11016aa3559a", "type": null, "target": null, "status": "skipped"}
+{"id": "en-baseline-01-11b59ef2adbf", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-13388bca25c2", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-13b7865df5ab", "type": "expense", "target": "honest burgers", "status": "complete"}
+{"id": "en-baseline-01-13ba50026980", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-1426883a791e", "type": "repayment_out", "target": "Priya", "status": "complete"}
+{"id": "en-baseline-01-143402dcb68c", "type": "borrow", "target": "theo", "status": "complete"}
+{"id": "en-baseline-01-148c58c2c963", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-15db8b68ca70", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-15ef73638a18", "type": "lend", "target": "ana", "status": "complete"}
+{"id": "en-baseline-01-16365c8cc5a6", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-19e4701b2d68", "type": "refund", "target": "flipkart", "status": "complete"}
+{"id": "en-baseline-01-1b025a490448", "type": "expense", "target": "foodpanda", "status": "complete"}
+{"id": "en-baseline-01-1b6788ee3946", "type": "repayment_in", "target": "brother", "status": "complete"}
+{"id": "en-baseline-01-1dd66d020d01", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-1e3aa11f76aa", "type": "lend", "target": "Ben", "status": "complete"}
+{"id": "en-baseline-01-1e904e2c3096", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-1f31a2bf9291", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-2200351cb58d", "type": "lend", "target": "buddy", "status": "complete"}
+{"id": "en-baseline-01-22008edf3743", "type": "repayment_out", "target": "Vikram", "status": "complete"}
+{"id": "en-baseline-01-22e5e2e995ff", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-232a8b2fbaff", "type": "income", "target": "tenant", "status": "complete"}
+{"id": "en-baseline-01-2556ea1423b5", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-25cd072fc040", "type": "borrow", "target": "Priya", "status": "complete"}
+{"id": "en-baseline-01-26de348230aa", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-284ebf92d565", "type": "lend", "target": "raj", "status": "complete"}
+{"id": "en-baseline-01-28a6dff2d616", "type": "lend", "target": "cousin", "status": "complete"}
+{"id": "en-baseline-01-28f7728a37a2", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-293275ffafde", "type": "refund", "target": "energy company", "status": "complete"}
+{"id": "en-baseline-01-29878ab8b507", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-2a0873213f91", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-2b066153b7fd", "type": "expense", "target": "daiso", "status": "complete"}
+{"id": "en-baseline-01-2b91e7381a59", "type": "borrow", "target": "Daryl", "status": "complete"}
+{"id": "en-baseline-01-2c557a7fbe0e", "type": "repayment_out", "target": "Liam", "status": "complete"}
+{"id": "en-baseline-01-2d046f295615", "type": null, "target": "priya", "status": "uncertain", "note": "bare name and number with no direction cue"}
+{"id": "en-baseline-01-2dde0eec945d", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-2ec51c144d69", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-2f17af704ad6", "type": "borrow", "target": null, "status": "complete"}
+{"id": "en-baseline-01-2f20883b6fc5", "type": null, "target": "tesco", "status": "uncertain", "note": "bare merchant name with no amount or transaction"}
+{"id": "en-baseline-01-32a709e3619c", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-33a4e87e02b2", "type": "lend", "target": "sister", "status": "complete"}
+{"id": "en-baseline-01-34fedcf6fa7b", "type": "repayment_in", "target": "Callum", "status": "complete"}
+{"id": "en-baseline-01-352a1455e06a", "type": "expense", "target": "sainsbury's", "status": "complete"}
+{"id": "en-baseline-01-367958bf798b", "type": "expense", "target": "mum", "status": "complete"}
+{"id": "en-baseline-01-3a7a2f6cb2da", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-3a90d8e02dc1", "type": "expense", "target": "airtel xtreme fiber", "status": "complete"}
+{"id": "en-baseline-01-3c3365a9ee1d", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-3d231a5a34b3", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-3e1962be6652", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-3f92265f4aa5", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-3fefbc9d6255", "type": "expense", "target": "costco", "status": "complete"}
+{"id": "en-baseline-01-4191a3d8e5f4", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-41f15d6edb15", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-42ee191ee3ae", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-4367cfcbbeec", "type": "repayment_in", "target": "lena", "status": "complete"}
+{"id": "en-baseline-01-43a73c9f02fb", "type": "borrow", "target": "landlord", "status": "complete"}
+{"id": "en-baseline-01-46920f3d3acf", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-47a6a6601f35", "type": "lend", "target": "Sam", "status": "complete"}
+{"id": "en-baseline-01-47dd8668027e", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-47f831980ae9", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-49a88c227041", "type": "refund", "target": "doordash", "status": "complete"}
+{"id": "en-baseline-01-49cbb6110255", "type": "borrow", "target": "Sneha", "status": "complete"}
+{"id": "en-baseline-01-4a21e8d419a9", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-4aeeca9e7d38", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-4bec88c60670", "type": "repayment_out", "target": "brother", "status": "complete"}
+{"id": "en-baseline-01-4c2b679740c8", "type": "lend", "target": "roomie", "status": "complete"}
+{"id": "en-baseline-01-4cdd9b617ada", "type": "expense", "target": "pete", "status": "complete"}
+{"id": "en-baseline-01-4d49625cd9ef", "type": "borrow", "target": "friend", "status": "complete"}
+{"id": "en-baseline-01-4df2cc6e9593", "type": "expense", "target": "home depot", "status": "complete"}
+{"id": "en-baseline-01-4f376d35930b", "type": "repayment_out", "target": "klarna", "status": "complete"}
+{"id": "en-baseline-01-5023a7ed8db2", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-5093ddfc79c6", "type": "lend", "target": "Desmond", "status": "complete"}
+{"id": "en-baseline-01-50caacc25320", "type": "lend", "target": "mike", "status": "complete"}
+{"id": "en-baseline-01-50e199aa9597", "type": "expense", "target": null, "status": "uncertain", "note": "multiple named businesses deliveroo and wagamama"}
+{"id": "en-baseline-01-51763ef03104", "type": null, "target": null, "status": "uncertain", "note": "vague question with no transaction"}
+{"id": "en-baseline-01-519a8d22fd15", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-52a913c08165", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-52b243919d2c", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-52ed609a8eb2", "type": "expense", "target": "uber", "status": "complete"}
+{"id": "en-baseline-01-53477c93133e", "type": "borrow", "target": "buddy", "status": "complete"}
+{"id": "en-baseline-01-53a76cdb8d25", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-54b85773d6d3", "type": "borrow", "target": "Rahul", "status": "complete"}
+{"id": "en-baseline-01-55cc15ecda66", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-5627103f6eef", "type": "expense", "target": "beauty in pot", "status": "complete"}
+{"id": "en-baseline-01-56670d01fc0f", "type": "borrow", "target": "Tom", "status": "complete"}
+{"id": "en-baseline-01-58c638e58950", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-5d15bd3288cb", "type": "expense", "target": "starhub", "status": "complete"}
+{"id": "en-baseline-01-5d8a74330a58", "type": "expense", "target": "trader joes", "status": "complete"}
+{"id": "en-baseline-01-5f317b4db513", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-5f481ee97120", "type": "lend", "target": "brother", "status": "complete"}
+{"id": "en-baseline-01-5fc1aeebcfa9", "type": "expense", "target": "zomato", "status": "complete"}
+{"id": "en-baseline-01-5fc4cca2ab5b", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-60dd89024fc6", "type": "borrow", "target": null, "status": "complete"}
+{"id": "en-baseline-01-61065e477a2d", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-6234f73fcf92", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-62e25320fe59", "type": "repayment_out", "target": null, "status": "complete"}
+{"id": "en-baseline-01-63542aed9e23", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-63b5ce10561a", "type": "borrow", "target": "Harry", "status": "complete"}
+{"id": "en-baseline-01-640cea5b797d", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-6555ca2f1da4", "type": "expense", "target": "hulu", "status": "complete"}
+{"id": "en-baseline-01-67279aac53d4", "type": "expense", "target": "sis", "status": "complete"}
+{"id": "en-baseline-01-6751a2c5d80c", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-67b60e4a8cb1", "type": "expense", "target": "landlord", "status": "complete"}
+{"id": "en-baseline-01-6802b31b12f2", "type": "expense", "target": "mum", "status": "complete"}
+{"id": "en-baseline-01-683a9f0e1516", "type": "repayment_out", "target": "Rahul", "status": "complete"}
+{"id": "en-baseline-01-699f414acbbf", "type": "expense", "target": "car wash guy", "status": "complete"}
+{"id": "en-baseline-01-69be87bef7d9", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-6ab48e8d087c", "type": "income", "target": "cred", "status": "complete"}
+{"id": "en-baseline-01-6ab93b111b9c", "type": "repayment_in", "target": "Daryl", "status": "complete"}
+{"id": "en-baseline-01-6ba1faead4f9", "type": "repayment_in", "target": "sis", "status": "complete"}
+{"id": "en-baseline-01-6c9a1e2e8380", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-6cda9e0d7c90", "type": "income", "target": "bride", "status": "complete"}
+{"id": "en-baseline-01-6d7141fe032f", "type": "refund", "target": "amazon", "status": "complete"}
+{"id": "en-baseline-01-6dfd280759d2", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-6e3893d3d0bc", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-6e9075d453b3", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-73c59cb180af", "type": "repayment_in", "target": "tess", "status": "complete"}
+{"id": "en-baseline-01-74804cfefc17", "type": "expense", "target": "bharat petroleum", "status": "complete"}
+{"id": "en-baseline-01-748c906ebc79", "type": "refund", "target": "ola", "status": "complete"}
+{"id": "en-baseline-01-7506ab4153eb", "type": "income", "target": "ebay", "status": "complete"}
+{"id": "en-baseline-01-758239d42f24", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-76011b27b10f", "type": "expense", "target": "hwayo korean bbq", "status": "complete"}
+{"id": "en-baseline-01-765abf16d684", "type": "borrow", "target": "Cheryl", "status": "complete"}
+{"id": "en-baseline-01-77c2e54d7139", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-7b44c4872d42", "type": "repayment_out", "target": "Marcus", "status": "complete"}
+{"id": "en-baseline-01-7b6f2a01c8d8", "type": "expense", "target": "plumber", "status": "complete"}
+{"id": "en-baseline-01-7c199487af84", "type": "lend", "target": "cousin", "status": "complete"}
+{"id": "en-baseline-01-7cb8ac9c25fe", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-7cd28a1fa705", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-7ebdf8fbf02b", "type": "expense", "target": "family", "status": "complete"}
+{"id": "en-baseline-01-7f91fba64a3d", "type": "lend", "target": "Vikram", "status": "complete"}
+{"id": "en-baseline-01-81ccf770edeb", "type": "income", "target": "client", "status": "complete"}
+{"id": "en-baseline-01-81de18eeeb29", "type": "borrow", "target": "mummy", "status": "complete"}
+{"id": "en-baseline-01-82f1520d09e0", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-85039e3ac99f", "type": null, "target": null, "status": "uncertain", "note": "bare payment app and amount with no direction"}
+{"id": "en-baseline-01-856360b67a39", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-85b3bdaaa9c0", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-85c616518926", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-86a641960beb", "type": "borrow", "target": "lena", "status": "complete"}
+{"id": "en-baseline-01-86a888798cad", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-885827b14980", "type": "lend", "target": "Amit", "status": "complete"}
+{"id": "en-baseline-01-897cf6e21329", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-89e8767b4f50", "type": "lend", "target": "brother", "status": "complete"}
+{"id": "en-baseline-01-8a9f89a6eee5", "type": "borrow", "target": "papa", "status": "complete"}
+{"id": "en-baseline-01-8d2d459094b2", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-8d5acd97c791", "type": "lend", "target": "sister", "status": "complete"}
+{"id": "en-baseline-01-8dd107bc5812", "type": "expense", "target": "sam's club", "status": "complete"}
+{"id": "en-baseline-01-8e751a97cc9d", "type": "borrow", "target": "kev", "status": "complete"}
+{"id": "en-baseline-01-8ed985718fc6", "type": "expense", "target": "dmart", "status": "complete"}
+{"id": "en-baseline-01-8fd72cecc4d2", "type": "expense", "target": "starhub", "status": "complete"}
+{"id": "en-baseline-01-900ca329b7df", "type": "borrow", "target": "Mike", "status": "complete"}
+{"id": "en-baseline-01-908bdd986a34", "type": null, "target": null, "status": "skipped"}
+{"id": "en-baseline-01-9271df1ec82f", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-92d5ff7ff832", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-96992acab6bd", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-9b61f63cd162", "type": "repayment_in", "target": "mike", "status": "complete"}
+{"id": "en-baseline-01-9bd0676dc31a", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-9c099b560aed", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-9c45932d9ff1", "type": "borrow", "target": "brother", "status": "complete"}
+{"id": "en-baseline-01-9c51bc2872c8", "type": "lend", "target": "Sam", "status": "complete"}
+{"id": "en-baseline-01-9cb15fae655f", "type": "repayment_in", "target": "kim", "status": "complete"}
+{"id": "en-baseline-01-9f876eb841c9", "type": "repayment_out", "target": "Harry", "status": "complete"}
+{"id": "en-baseline-01-a206ddd20466", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-a22655564306", "type": "expense", "target": "patreon", "status": "complete"}
+{"id": "en-baseline-01-a2b833d2b52a", "type": "repayment_in", "target": "roommate", "status": "complete"}
+{"id": "en-baseline-01-a33461f82623", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-a3b3ed9b6641", "type": "repayment_out", "target": null, "status": "complete"}
+{"id": "en-baseline-01-a3f4ceee02bd", "type": "borrow", "target": null, "status": "complete"}
+{"id": "en-baseline-01-a70c94361b6d", "type": null, "target": null, "status": "uncertain", "note": "bare category name without amount or transaction verb"}
+{"id": "en-baseline-01-a7aa09d7525c", "type": null, "target": "uber", "status": "uncertain", "note": "bare service name without amount or transaction"}
+{"id": "en-baseline-01-a85fcd5bb4b0", "type": "repayment_out", "target": "brother", "status": "complete"}
+{"id": "en-baseline-01-aa5c568ffe83", "type": "refund", "target": "comfort taxi", "status": "complete"}
+{"id": "en-baseline-01-aaf291404ee2", "type": "repayment_in", "target": "Liam", "status": "complete"}
+{"id": "en-baseline-01-ab8d2ec2f872", "type": "repayment_out", "target": "Daryl", "status": "complete"}
+{"id": "en-baseline-01-ac6ccbf2d7cc", "type": "lend", "target": "Cheryl", "status": "complete"}
+{"id": "en-baseline-01-ae5ac0322545", "type": "refund", "target": "flipkart", "status": "complete"}
+{"id": "en-baseline-01-ae8ccd0f3f51", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-aedacaa3bf50", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-afdd009b35f6", "type": "income", "target": "ebay", "status": "complete"}
+{"id": "en-baseline-01-b0013b1917e3", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-b11b730db62b", "type": "lend", "target": "Bryan", "status": "complete"}
+{"id": "en-baseline-01-b1bdab068368", "type": "lend", "target": "Wei Ming", "status": "complete"}
+{"id": "en-baseline-01-b247845cf188", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-b47f65e7adc5", "type": "expense", "target": "lidl", "status": "complete"}
+{"id": "en-baseline-01-b52108af1209", "type": "borrow", "target": "Rahul", "status": "complete"}
+{"id": "en-baseline-01-b5b8b3eb92b2", "type": "repayment_out", "target": "chase", "status": "complete"}
+{"id": "en-baseline-01-b5ea86f32840", "type": "lend", "target": "friend", "status": "complete"}
+{"id": "en-baseline-01-b69973a8d851", "type": "expense", "target": "dominos", "status": "complete"}
+{"id": "en-baseline-01-b703173d02f9", "type": "lend", "target": "Priya", "status": "complete"}
+{"id": "en-baseline-01-b9022a5b872d", "type": "repayment_in", "target": "flatmate", "status": "complete"}
+{"id": "en-baseline-01-b9af31abc81c", "type": "lend", "target": "tunde", "status": "complete"}
+{"id": "en-baseline-01-bb00903220d5", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-bc037edf9d55", "type": "expense", "target": "sp services", "status": "complete"}
+{"id": "en-baseline-01-bc1265631bfe", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-bc337710973d", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-bc67368d1cb6", "type": "repayment_out", "target": "klarna", "status": "complete"}
+{"id": "en-baseline-01-bcc567aea076", "type": "repayment_out", "target": "papa", "status": "complete"}
+{"id": "en-baseline-01-bd84845a4389", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-bdbf8033ba4a", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-be13890b1c09", "type": "lend", "target": "friend", "status": "complete"}
+{"id": "en-baseline-01-bfcd79f93d84", "type": "income", "target": "carousell", "status": "complete"}
+{"id": "en-baseline-01-c02419c5fe35", "type": "repayment_in", "target": "Sophie", "status": "complete"}
+{"id": "en-baseline-01-c0a07a0ef632", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-c0c1ba335fdb", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-c1444f21f6c7", "type": "repayment_in", "target": "joe", "status": "complete"}
+{"id": "en-baseline-01-c15472faf94e", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-c28522834f52", "type": "lend", "target": "Sneha", "status": "complete"}
+{"id": "en-baseline-01-c2e80aa3afd3", "type": "lend", "target": "jen", "status": "complete"}
+{"id": "en-baseline-01-c316593f3fc5", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-c3eb22b717d3", "type": "repayment_in", "target": "Marcus", "status": "complete"}
+{"id": "en-baseline-01-c4d6f840c7cb", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-c508dbdd405c", "type": "borrow", "target": "mum", "status": "complete"}
+{"id": "en-baseline-01-c5a9ce453c72", "type": "repayment_in", "target": "priya", "status": "complete"}
+{"id": "en-baseline-01-c5b08e1aed69", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-c5fae31f50e0", "type": "refund", "target": "steam", "status": "complete"}
+{"id": "en-baseline-01-c7194e0c8aec", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-c7e2c48af9c9", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-c883b51604b3", "type": "lend", "target": "brother", "status": "complete"}
+{"id": "en-baseline-01-c9fcb47daf5c", "type": "repayment_in", "target": "Harry", "status": "complete"}
+{"id": "en-baseline-01-ca49ccb932db", "type": "expense", "target": "tesco", "status": "complete"}
+{"id": "en-baseline-01-cb35225426c0", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-cbd959ba568b", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-cdc7c1674e86", "type": "income", "target": "dbs", "status": "complete"}
+{"id": "en-baseline-01-ce945352294f", "type": "expense", "target": "golden village", "status": "complete"}
+{"id": "en-baseline-01-d0b71c85c312", "type": "lend", "target": "Chloe", "status": "complete"}
+{"id": "en-baseline-01-d18b843d8122", "type": "repayment_in", "target": "Joe", "status": "complete"}
+{"id": "en-baseline-01-d241fdfe89fd", "type": "expense", "target": "trainline", "status": "complete"}
+{"id": "en-baseline-01-d2d6eedeef44", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-d41ab6996557", "type": "repayment_out", "target": "jess", "status": "complete"}
+{"id": "en-baseline-01-d5397003b9d0", "type": "repayment_in", "target": "mei", "status": "complete"}
+{"id": "en-baseline-01-d5a300dbd8aa", "type": "repayment_in", "target": "jo", "status": "complete"}
+{"id": "en-baseline-01-d64f4bf60192", "type": "repayment_out", "target": null, "status": "complete"}
+{"id": "en-baseline-01-d7932396fc26", "type": "refund", "target": "iras", "status": "complete"}
+{"id": "en-baseline-01-d861352a4b6a", "type": "repayment_out", "target": "halifax", "status": "complete"}
+{"id": "en-baseline-01-d91681b54878", "type": "refund", "target": "comfortdelgro", "status": "complete"}
+{"id": "en-baseline-01-d9a2ce1e5f6e", "type": "expense", "target": "watchman", "status": "complete"}
+{"id": "en-baseline-01-d9f339b5ceea", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-da37f9d2ca4d", "type": "borrow", "target": "brother", "status": "complete"}
+{"id": "en-baseline-01-db986f697083", "type": "repayment_in", "target": "Sam", "status": "complete"}
+{"id": "en-baseline-01-dce8ae3e8bba", "type": "refund", "target": "gym", "status": "complete"}
+{"id": "en-baseline-01-dd0c808a4890", "type": "expense", "target": "h&m", "status": "complete"}
+{"id": "en-baseline-01-ddee25465e13", "type": "repayment_out", "target": "hdb", "status": "complete"}
+{"id": "en-baseline-01-deba4587ec3c", "type": null, "target": "kopitiam", "status": "uncertain", "note": "bare venue name with no amount or transaction"}
+{"id": "en-baseline-01-df1701f0d597", "type": "expense", "target": "starbucks", "status": "complete"}
+{"id": "en-baseline-01-dfeeb6062668", "type": "expense", "target": "dmart", "status": "complete"}
+{"id": "en-baseline-01-e31ce0376cb5", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-e33ab7543522", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-e343a9abe79a", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-e39c1de543e4", "type": "repayment_out", "target": "afterpay", "status": "complete"}
+{"id": "en-baseline-01-e408d394d48f", "type": "lend", "target": "Liam", "status": "complete"}
+{"id": "en-baseline-01-e445bf196773", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-e46aee577824", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-e4966ee2509b", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-e5710d0727f1", "type": "repayment_out", "target": "theo", "status": "complete"}
+{"id": "en-baseline-01-e7cc5346adef", "type": "lend", "target": "Neha", "status": "complete"}
+{"id": "en-baseline-01-e853385669a0", "type": "borrow", "target": "Callum", "status": "complete"}
+{"id": "en-baseline-01-ea76126a3921", "type": "expense", "target": "ntuc fairprice", "status": "complete"}
+{"id": "en-baseline-01-ec90c75700e7", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-eca2fe4d8385", "type": "borrow", "target": "Rahul", "status": "complete"}
+{"id": "en-baseline-01-ecfa0c2d464a", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-ed2b22200871", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-edde65535432", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-ef2d44c741f9", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-f039afea8671", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-f23c855c85ce", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-f244c9453436", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-f2c6d4eb77d6", "type": "expense", "target": "josh", "status": "complete"}
+{"id": "en-baseline-01-f2e7b09909b6", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-f3512eff1c8b", "type": "income", "target": "client", "status": "complete"}
+{"id": "en-baseline-01-f5fb40e7b36d", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-f6366b24ff33", "type": "expense", "target": "boots", "status": "complete"}
+{"id": "en-baseline-01-f729a5c242c3", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-f9886aecd418", "type": "lend", "target": "dave", "status": "complete"}
+{"id": "en-baseline-01-fb7781386e34", "type": "expense", "target": "cold storage", "status": "complete"}
+{"id": "en-baseline-01-fbfd00912c9a", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-fd95aa9ef491", "type": "lend", "target": "coworker", "status": "complete"}
+{"id": "en-baseline-01-ff305ac9b3c1", "type": "lend", "target": "tyler", "status": "complete"}
+{"id": "en-baseline-01-01a086e5e6e1", "type": "income", "target": "sarah", "status": "complete"}
+{"id": "en-baseline-01-0289fddc9e67", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-03af10adb3bb", "type": null, "target": "sam", "status": "uncertain", "note": "bare name with no amount or transaction"}
+{"id": "en-baseline-01-04374ad4b29a", "type": "repayment_in", "target": "sister", "status": "complete"}
+{"id": "en-baseline-01-0539fbde7aed", "type": "expense", "target": "amtrak", "status": "complete"}
+{"id": "en-baseline-01-0ac4f30ab76a", "type": "income", "target": "facebook marketplace", "status": "complete"}
+{"id": "en-baseline-01-0ad5f2a290fa", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-0e06e32c7fb3", "type": "lend", "target": "tim", "status": "complete"}
+{"id": "en-baseline-01-0e3319c0f651", "type": "borrow", "target": "Priya", "status": "complete"}
+{"id": "en-baseline-01-0e5bd73e86ec", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-0e8077a0e2b6", "type": null, "target": "Whole Foods", "status": "uncertain", "note": "bare store name with no amount or transaction"}
+{"id": "en-baseline-01-0e9407715630", "type": "expense", "target": "aldi", "status": "complete"}
+{"id": "en-baseline-01-0e986b1da7d4", "type": "repayment_in", "target": "Tim", "status": "complete"}
+{"id": "en-baseline-01-0f23c0799c0c", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-10d06fc8ec67", "type": "repayment_in", "target": "Suresh", "status": "complete"}
+{"id": "en-baseline-01-121d6c450df8", "type": "lend", "target": "jo", "status": "complete"}
+{"id": "en-baseline-01-122086530eca", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-1256349807fc", "type": "income", "target": "client", "status": "complete"}
+{"id": "en-baseline-01-1318a2a7c210", "type": "expense", "target": "sister", "status": "complete"}
+{"id": "en-baseline-01-14c16c17e71f", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-153a078f61c4", "type": "expense", "target": "jumbo seafood", "status": "complete"}
+{"id": "en-baseline-01-189451d28f09", "type": "refund", "target": "tfl", "status": "complete"}
+{"id": "en-baseline-01-1b247b5010e7", "type": "income", "target": "etsy", "status": "complete"}
+{"id": "en-baseline-01-1be747de76ff", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-1c1db926244c", "type": "lend", "target": "Vikram", "status": "complete"}
+{"id": "en-baseline-01-1c4fd0f2f1ae", "type": "refund", "target": null, "status": "complete"}
+{"id": "en-baseline-01-1c52c705ea85", "type": "expense", "target": "toast box", "status": "complete"}
+{"id": "en-baseline-01-1ea5a4959bf0", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-230886a77246", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-26d878ce2080", "type": "income", "target": "boss", "status": "complete"}
+{"id": "en-baseline-01-281581fa1858", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-28b928475975", "type": "repayment_in", "target": "brother", "status": "complete"}
+{"id": "en-baseline-01-28c752b3a6c9", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-2b1b85672634", "type": "expense", "target": "boots", "status": "complete"}
+{"id": "en-baseline-01-2b8f936b7d9e", "type": "repayment_out", "target": "roommate", "status": "complete"}
+{"id": "en-baseline-01-2bfaa8a1e1fb", "type": "borrow", "target": "Wei Ming", "status": "complete"}
+{"id": "en-baseline-01-2cdcaf54bd5c", "type": "expense", "target": null, "status": "uncertain", "note": "bare meal with companion, no amount or direction"}
+{"id": "en-baseline-01-2cf9833fba32", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-2cff57ca06a8", "type": "repayment_out", "target": "Sophie", "status": "complete"}
+{"id": "en-baseline-01-301d0bda77cf", "type": "borrow", "target": "Daryl", "status": "complete"}
+{"id": "en-baseline-01-337406cb66c6", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-374ea7bff2d9", "type": "expense", "target": "Rohan", "status": "complete"}
+{"id": "en-baseline-01-380d22b0a75c", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-382368f6c1d6", "type": "repayment_out", "target": null, "status": "complete"}
+{"id": "en-baseline-01-3912e45052a5", "type": "expense", "target": "urban company", "status": "complete"}
+{"id": "en-baseline-01-39d2cb18043f", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-41252e9124cc", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-41f43867b795", "type": "repayment_in", "target": "sam", "status": "complete"}
+{"id": "en-baseline-01-43a5b8f025dc", "type": "income", "target": "carousell", "status": "complete"}
+{"id": "en-baseline-01-452ca987bf84", "type": "expense", "target": "zara", "status": "complete"}
+{"id": "en-baseline-01-4653bb694b83", "type": "repayment_in", "target": "mom", "status": "complete"}
+{"id": "en-baseline-01-4664972b9955", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-46e8e21a8959", "type": "expense", "target": "amazon", "status": "complete"}
+{"id": "en-baseline-01-46eec372244a", "type": "lend", "target": "Callum", "status": "complete"}
+{"id": "en-baseline-01-485fdc8bac7e", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-4ac1fe17c445", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-4b5e50c6d608", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-4c04a9f16d8b", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-4ca4233b1747", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-4fd5df38410d", "type": null, "target": null, "status": "skipped"}
+{"id": "en-baseline-01-52270590fb80", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-52c471dad0a4", "type": null, "target": null, "status": "skipped"}
+{"id": "en-baseline-01-554a3665bbf8", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-558852cf5fce", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-58ad74bf7575", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-5c614642884f", "type": "repayment_in", "target": "dad", "status": "complete"}
+{"id": "en-baseline-01-60274bb2997f", "type": "expense", "target": "trader joes", "status": "complete"}
+{"id": "en-baseline-01-605b968b2133", "type": "repayment_in", "target": "jen", "status": "complete"}
+{"id": "en-baseline-01-61170ad9d6c1", "type": null, "target": null, "status": "uncertain", "note": "bare venue name and amount without transaction verb"}
+{"id": "en-baseline-01-612cc8dde1b7", "type": "expense", "target": "waterstones", "status": "complete"}
+{"id": "en-baseline-01-61ccfc48cac5", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-6215dcdeceef", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-634fda52e0e6", "type": "expense", "target": "roundhouse", "status": "complete"}
+{"id": "en-baseline-01-63873365a3f7", "type": "lend", "target": "alex", "status": "complete"}
+{"id": "en-baseline-01-63d74763aaab", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-6501b92463b5", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-66a55eaceb55", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-67a88037cf9e", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-687a5e0b768f", "type": "income", "target": null, "status": "complete"}
+{"id": "en-baseline-01-68a84a45373d", "type": "lend", "target": "Desmond", "status": "complete"}
+{"id": "en-baseline-01-693abe9faf3e", "type": "borrow", "target": "Cheryl", "status": "complete"}
+{"id": "en-baseline-01-6c1c680e2329", "type": "repayment_in", "target": "sis", "status": "complete"}
+{"id": "en-baseline-01-707ec1edd742", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-70935162d3f3", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-72bc982897cd", "type": "borrow", "target": "Harry", "status": "complete"}
+{"id": "en-baseline-01-78f8f077947a", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-7937961981ec", "type": "lend", "target": "Alex", "status": "complete"}
+{"id": "en-baseline-01-79cab5d4f887", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-7a525080299e", "type": "transfer", "target": null, "status": "complete"}
+{"id": "en-baseline-01-7aabea7860f1", "type": "lend", "target": "friend", "status": "complete"}
+{"id": "en-baseline-01-7abf909d3ff5", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-7b04b73d7e3e", "type": "repayment_in", "target": "guys", "status": "complete"}
+{"id": "en-baseline-01-7bf3c351add3", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-7c2bc37e166a", "type": "income", "target": "client", "status": "complete"}
+{"id": "en-baseline-01-7d2021d70dc5", "type": "income", "target": "work", "status": "complete"}
+{"id": "en-baseline-01-7d2280a91a62", "type": "repayment_out", "target": "brother", "status": "complete"}
+{"id": "en-baseline-01-7dd49e49b106", "type": "repayment_in", "target": "kelly", "status": "complete"}
+{"id": "en-baseline-01-7f34b2c993e8", "type": "income", "target": "marketing agency", "status": "complete"}
+{"id": "en-baseline-01-7f35e049bc58", "type": "expense", "target": null, "status": "complete"}
+{"id": "en-baseline-01-7fe7980826d5", "type": "refund", "target": "irs", "status": "complete"}

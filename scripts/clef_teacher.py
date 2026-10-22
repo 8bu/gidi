@@ -83,14 +83,58 @@ def candidates(text: str, max_words: int = 4) -> list[tuple[int, int]]:
     ]
 
 
-def questions(text: str, rules: bool = False) -> dict:
+EN_CONFIG = Path(__file__).resolve().parents[1] / "configs" / "annotation-en-v1.yaml"
+_EN = yaml.safe_load(EN_CONFIG.read_text())
+TYPES_EN = {name: " ".join(text.split()) for name, text in _EN["types"].items()}
+RULES_EN = "annotation-en-v1 labelling rules. " + " ".join(
+    f"{k}: {' '.join(v.split())}" for k, v in _EN["rules"].items()
+)
+TYPE_INSTRUCTIONS_EN = (
+    "A short, informal English personal-finance note (US, UK, Indian or Singapore usage; slang "
+    "like 'k', 'grand', 'bucks', 'quid', 'rs', 'lakh'; payment apps venmo, zelle, cash app, "
+    "paynow, upi) written by the user about their own money. Classify the money movement from "
+    "the WRITER's point of view. 'borrowed from X', 'owe X', 'IOU X' = the writer borrows "
+    "(borrow); 'lent X', 'X owes me' = lend. 'paid X back', 'repaid X' = repayment_out; 'X paid "
+    "me back' = repayment_in. Everyday purchases, bills, food, fees, tips, gifts given and money "
+    "spent are expense. " + RULES_EN
+)
+TARGET_INSTRUCTIONS_EN = (
+    "Which candidate is the external counterparty of the transaction: the person, shop, platform "
+    "or organisation the writer pays, receives from, lends to, borrows from or is repaid by? Pick "
+    "the shortest span that names them, without a title or kinship prefix such as 'uncle', "
+    "'aunty', 'Mr' when a proper name follows; keep a kinship or role noun that is the only "
+    "identifier (mom, dad, bro, sis, client, company, boss, landlord). Items, dishes, bills, "
+    "fees, tips for a role, activities, payment apps (venmo, zelle, paypal, cash app, gpay, "
+    "paynow, upi) and banks used only as the channel, companions after 'with'/'w', and "
+    "beneficiaries of a purchase are NOT counterparties. Salary notes and transfers between the "
+    "writer's own accounts have no counterparty. If the note names no counterparty, pick the "
+    "'none' candidate."
+)
+
+
+def questions(text: str, rules: bool = False, lang: str = "vi") -> dict:
     """The ``judge`` questions for one note; ``c<i>`` is the i-th entry of ``candidates``.
 
     ``rules=True`` is the annotation-v4 teacher: the type and target instructions additionally
     state R1-R4 (``RULES_V4``, ``TARGET_RULES_V4``); the type definitions stay the v3 ones.
+    ``lang="en"`` uses the annotation-en-v1 definitions and rules (always rule-aware); the
+    Vietnamese behaviour is unchanged.
     """
     criteria = {f"c{i}": f"'{text[s:e]}'" for i, (s, e) in enumerate(candidates(text))}
     criteria["none"] = "No counterparty is named."
+    if lang == "en":
+        return {
+            "type": {
+                "type": "choice",
+                "instructions": TYPE_INSTRUCTIONS_EN,
+                "criteria": TYPES_EN,
+            },
+            "target": {
+                "type": "choice",
+                "instructions": TARGET_INSTRUCTIONS_EN,
+                "criteria": criteria,
+            },
+        }
     type_instructions, target_instructions = TYPE_INSTRUCTIONS, TARGET_INSTRUCTIONS
     if rules:
         type_instructions = f"{TYPE_INSTRUCTIONS} {RULES_V4}"
