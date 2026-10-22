@@ -19,6 +19,12 @@ converting it to a number stays deterministic code.
 
 ## Status
 
+- **`gidi-en`** (`gidi-en-v2`, release `2.0.0`) is the first English model, and experimental. It
+  predicts the type and the target for short English personal-finance notes (no value span yet).
+  The INT8 file is 29.2 MB, published on Hugging Face as
+  [x8bu/gidi-en](https://huggingface.co/x8bu/gidi-en). It has no human labels: every score is
+  agreement with Claude, Gemini and Clef labels (see the model card). The guide is
+  [docs/annotation-en-v1.md](docs/annotation-en-v1.md).
 - **`gidi-finance-v4`** (release `4.0.0`) is the current model: same architecture and runtime as
   v3, a new encoder trained with Clef-teacher data and the `annotation-v4` rules (see
   `experiments/clef-distill-v2/report.md`). <https://gidi.8bu.dev> runs v4; the public Hugging

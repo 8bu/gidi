@@ -23,6 +23,10 @@ Code deterministic chuyển span này thành số.
 
 ## Trạng thái
 
+- **`gidi-en`** (`gidi-en-v2`, release `2.0.0`) là model tiếng Anh đầu tiên, thử nghiệm: dự đoán
+  type và target cho ghi chú tài chính cá nhân tiếng Anh ngắn, chưa có value. Bản INT8 29.2 MB,
+  trên Hugging Face [x8bu/gidi-en](https://huggingface.co/x8bu/gidi-en). Chưa có nhãn do người
+  gán; mọi điểm số là mức khớp với nhãn của Claude, Gemini và Clef (xem model card).
 - **`gidi-finance-v4`** (release `4.0.0`) là model hiện tại: cùng kiến trúc và runtime với v3,
   encoder mới huấn luyện thêm dữ liệu Clef và quy tắc `annotation-v4` (xem
   `experiments/clef-distill-v2/report.md`). Demo https://gidi.8bu.dev đang chạy v4; bản công khai
