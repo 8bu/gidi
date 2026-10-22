@@ -35,7 +35,9 @@ Events from your own browsers (`?internal=1`, `gidi:internal` in localStorage) c
 ## Cost control
 
 Dropped before sending: `ResizeObserver` noise, `Script error.`, aborts (a language switch aborts a
-download), errors with a browser-extension frame, and fetch failures while the browser is offline.
+download), errors with a browser-extension frame, fetch failures while the browser is offline, and
+a `<script>`/`<link>` from another origin that fails to load (the Cloudflare Web Analytics beacon,
+blocked by ad blockers and Firefox tracking protection).
 Each distinct error (type, message with numbers folded, top frame) is sent once per page load, at most
 10 per page load, at most 3 in a burst and then one every 5 s. PostHog bills them as *exceptions*,
 a separate product from events: the first 100,000 a month are free, then $0.00037 each up to
@@ -98,3 +100,68 @@ https://us.posthog.com/project/648258/error_tracking?activeTab=configuration (Sy
 Checked 2026-10-22 with a local production build (`wrangler dev`, `/?internal=1`, a blocked IndexedDB open):
 the exception arrived as `app_build` `e20055e` with frames `notes-db.ts:openVietnamese:145` and
 `openNotesDb:58`; the test issue was set to Resolved.
+
+## Recheck checklist (written 2026-10-22)
+
+Run in PostHog -> SQL editor (or the query API from a signed-in tab). Real traffic is
+`properties.internal is null and properties.$host = 'gidi.8bu.dev'`: `$host` carries the port on
+local previews (`127.0.0.1:8821`), so `not in ('localhost','127.0.0.1')` does NOT drop them. Times
+are shown in the project time zone (UTC+7); use `formatDateTime(..., 'UTC')` to compare with deploys.
+
+What 2026-10-22 showed: 18 `model_load_failed` since 2026-10-21 from 6 distinct visitors (2 more
+rows were local previews of the owner). All 6 are Windows desktop Chrome 142, screen 1920x1080,
+US cities Dulles VA / Des Moines IA / WA (cloud data centres), `effective_type` 4g,
+`loaded_bytes` 0, always the same 3-event shape: `model worker failed to start` (3-22 s after the
+pageview), then `Failed to fetch` (manifest fetch, 60-270 ms), then `Failed to fetch` again
+after the automatic language switch; then `stack_opened`, `$pageleave` within seconds. Real visitors
+(Chrome 154/155, Edge, Safari, VN/EU/US) have 0 failures in the same period. Six of six failures
+came from outside the ~3 min bad-deploy window (3 before, 3 after 10:00 UTC), so it is not the
+stale-cache bug. Reading: automated or network-restricted browsers (scanners, sandboxes) where the
+worker script and then every same-origin fetch fail. Not an app bug, [INFERENCE] but not proven.
+
+1. **Real failure rate** (decide from this one):
+   ```sql
+   select toDate(timestamp) d,
+          countIf(event = 'model_load_failed') failed,
+          countIf(event = 'model_loaded') loaded,
+          count(distinct if(event = 'model_load_failed', distinct_id, null)) failed_users
+   from events
+   where timestamp >= '2026-10-23' and properties.internal is null
+     and properties.$host = 'gidi.8bu.dev'
+   group by d order by d
+   ```
+2. **Who fails** (bot profile or real people):
+   ```sql
+   select properties.$os os, properties.$browser b, properties.$browser_version v,
+          properties.$geoip_country_code c, properties.$geoip_city_name city,
+          properties.error err, count() n, count(distinct distinct_id) users
+   from events
+   where event = 'model_load_failed' and timestamp >= '2026-10-23'
+     and properties.internal is null and properties.$host = 'gidi.8bu.dev'
+   group by os, b, v, c, city, err order by n desc
+   ```
+3. **Stale-cache check**: failures with `loaded_bytes` above 0 or an `$exception` of kind
+   `release_blocked`, `manifest_outdated_client`, `cache_damaged` or `chunk_load`:
+   ```sql
+   select properties.kind k, properties.recovery r, count(), count(distinct distinct_id)
+   from events
+   where event = '$exception' and timestamp >= '2026-10-23'
+     and properties.internal is null and properties.$host = 'gidi.8bu.dev'
+   group by k, r order by 3 desc
+   ```
+
+Decision rules, once at least 30 distinct real visitors loaded the model since 2026-10-23 (count
+of `model_loaded` users in query 1) and at least 5 failing visitors exist:
+
+- Failures only from the bot profile (Windows Chrome 142, 1920 wide, US data-centre cities, 3-event
+  shape): benign. Optionally drop that cohort from alerts; no code change.
+- Failed share of visitors under 3 %, spread over normal browsers, `loaded_bytes` 0: flaky networks
+  or blockers. Add a bounded auto retry of the worker start only if Safari/mobile users appear.
+- Any `loaded_bytes` > 0 and < `total_bytes`, or kinds `cache_damaged`, `release_blocked`,
+  `manifest_outdated_client` outside a deploy hour: a real bug in the part download or cache
+  rollout. Open `playground/src/runtime` (part join, Cache Storage) and reproduce with a throttled
+  connection.
+- Fewer than 30 loads or fewer than 5 failing visitors: too thin, repeat in a week.
+
+Also confirm the beacon issue is gone: query `$exception` with `properties.kind = 'resource_load'`
+and `app_build` of the deploy that includes the filter; expected 0 for third-party URLs.

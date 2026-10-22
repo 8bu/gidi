@@ -94,6 +94,19 @@ export function stripUrl(url: string): string {
   return url.split(/[?#]/, 1)[0]
 }
 
+/**
+ * True for a URL on another origin (the Cloudflare Web Analytics beacon, extension assets).
+ * Ad blockers and privacy modes block those; the app cannot fix or act on it, so a failed
+ * load is not an app error.
+ */
+export function isThirdPartyUrl(url: string, origin: string): boolean {
+  try {
+    return new URL(url, origin).origin !== origin
+  } catch {
+    return false
+  }
+}
+
 /** Stages whose messages may quote the note: only the error name and the stack leave. */
 const QUIET_STAGES: ReadonlySet<string> = new Set<ErrorStage>([
   "classify",

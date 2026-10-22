@@ -5,7 +5,12 @@ import "./index.css"
 import { ThemeProvider } from "@/components/theme-provider.tsx"
 import { ErrorBoundary } from "@/components/error-boundary"
 import { captureError, initAnalytics } from "@/lib/analytics"
-import { setErrorContext, stripUrl, type ErrorStage } from "@/lib/error-report"
+import {
+  isThirdPartyUrl,
+  setErrorContext,
+  stripUrl,
+  type ErrorStage,
+} from "@/lib/error-report"
 import { reloadOnce } from "@/lib/reload"
 import { CLIENT_VERSION } from "@/runtime/manifest"
 
@@ -53,6 +58,8 @@ function installBootHandlers(): void {
       ) {
         const url =
           target instanceof HTMLScriptElement ? target.src : target.href
+        // Cloudflare injects its Web Analytics beacon; blockers make it fail. Not an app error.
+        if (isThirdPartyUrl(url, window.location.origin)) return
         captureError(
           new Error(`resource failed to load: ${stripUrl(url)}`),
           "boot",

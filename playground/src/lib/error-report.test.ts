@@ -7,6 +7,7 @@ import {
   errorProperties,
   fingerprint,
   isBenign,
+  isThirdPartyUrl,
   redact,
   registerSensitive,
   reportError,
@@ -17,6 +18,17 @@ import {
 } from "./error-report.ts"
 
 const NOTE = "tra no chi Mai 500k tien nha"
+
+test("isThirdPartyUrl separates other origins from the app's own assets", () => {
+  const origin = "https://gidi.8bu.dev"
+  assert.equal(
+    isThirdPartyUrl("https://static.cloudflareinsights.com/beacon.min.js", origin),
+    true
+  )
+  assert.equal(isThirdPartyUrl("https://gidi.8bu.dev/assets/index-1.js", origin), false)
+  assert.equal(isThirdPartyUrl("/assets/index-1.js", origin), false)
+  assert.equal(isThirdPartyUrl("", origin), false)
+})
 
 /** What posthog-js builds for an Error: a `$exception` event with `$exception_list`. */
 function exceptionEvent(error: Error, props: Record<string, unknown> = {}) {
