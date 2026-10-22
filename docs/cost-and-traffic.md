@@ -10,7 +10,7 @@ too), the `8bu.dev` zone is on the Free plan.
 |---|---|---|
 | Worker invocations, first visit | 2 (`/`, model) | 0 |
 | Worker invocations, returning visit | 1 (`/`) | 0 |
-| 200 requests (100 `/` + 100 model range reads) | 206 invocations, 208 ms CPU, 107 cache subrequests | 0 invocations, 0 ms CPU, 0 subrequests (`/`: 99 of 100 edge HIT; model range reads are served by the asset service, free whatever the cache status) |
+| 200 requests (100 `/` + 100 model reads) | 206 invocations, 208 ms CPU, 107 cache subrequests | 0 invocations, 0 ms CPU, 0 subrequests (`/`: 99 of 100 edge HIT; the model reads were ranged GETs, which the asset service answers in full, see "Load test 2026-10-22"; served by the asset service, free whatever the cache status) |
 | 3 first + 5 returning visits (62 requests) | 11 invocations, 10.5 ms CPU, 8 subrequests | 0 invocations, 0 ms CPU, 0 subrequests |
 | R2 operations per visit | 0 on an edge-cache hit, 1 Class B per data-centre miss | 0 (R2 is no longer read) |
 | Workers Logs / traces | on, 100 % sampled | off (there is no Worker code to log) |
@@ -84,8 +84,9 @@ SPA page from the same free asset service (they never reached R2 or a Worker).
   extras (`before_send` allows only `$pageview`, `$exception` and our events); `model_loaded` once per
   language per page load, `stack_opened` once per type, `model_load_failed` at most 3; 200 events a page
   load at most. Errors: `docs/error-tracking.md`.
-- **Checks:** `scripts/traffic-probe.mjs` (invocations and cache status, before/after) and
-  `scripts/verify-release.mjs` (manifest, headers, part sizes, sha256, geo header).
+- **Checks:** `scripts/traffic-probe.mjs` (invocations and cache status, before/after),
+  `scripts/verify-release.mjs` (manifest, headers, part sizes, sha256, geo header) and
+  `scripts/load-test.mjs` (concurrent clients, latency percentiles, sha256 of whole model downloads).
 
 ## Risks that remain
 
@@ -117,6 +118,107 @@ SPA page from the same free asset service (they never reached R2 or a Worker).
    to the browser's.
 4. **PostHog alerts**: set up, see `docs/error-tracking.md` ("Alerts").
 
+## Load test 2026-10-22
+
+**Method.** `playground/scripts/load-test.mjs`, repeatable:
+`node playground/scripts/load-test.mjs <url> --duration 60 --concurrency 50 --scenarios html,manifest,manifest-304,js,model --script <worker> --json out.json`.
+Production was not loaded. The target was a throw-away copy of the deployed `dist/` (the bytes of production
+version `1784a26c`, commit `8ea1a0a`) as a separate assets-only Worker `gidi-loadtest` on
+`https://gidi-loadtest.nguyenhoang.workers.dev` (`workers_dev: true`, no route, no custom domain; version
+`1326b67d-d758-4de6-89c2-6ed48f4f0688`; config in `/tmp`, not in the repo). It was deleted afterwards
+(`wrangler delete`; the hostname answers 404 and the account's Worker list no longer shows it).
+Production received about 210 requests in the whole session: `verify-release.mjs --hash`, a browser smoke test,
+`traffic-probe.mjs --burst 50` (100 requests) and 22 conditional manifest GETs.
+
+Each scenario ran 50 closed-loop clients for 60 s one after the other (a request or model download in flight when
+the time ran out was allowed to finish), from one macOS arm64 laptop in Vietnam with Node 26.3's built-in `fetch`.
+The laptop's link was measured at 7.3 MB/s for one stream and 10.2 MB/s on speed.cloudflare.com; the edge
+answered from Singapore (SIN) and Hong Kong (HKG). The window was 2026-10-22 16:24 to 16:32 UTC.
+
+| scenario (50 clients, 60 s) | requests | errors | req/s | p50 / p95 / p99 ms | TTFB p50 ms | cf-cache-status |
+|---|---|---|---|---|---|---|
+| HTML `/` (11,727 B) | 17,062 | 0 | 279 | 109 / 453 / 956 | 88 | HIT 17,015, MISS 47 |
+| manifest, 200 (no validators, 1.4 kB) | 19,095 | 0 | 312 | 92 / 398 / 794 | 84 | HIT 19,042, MISS 53 |
+| manifest, 304 (`If-None-Match`, 0 B body) | 22,061 | 0 | 362 | 82 / 358 / 699 | 82 | HIT 22,010, MISS 51 |
+| main JS chunk (232,930 B decoded, 35 MB/s decoded) | 9,153 | 0 | 151 | 239 / 765 / 1,355 | 126 | HIT 9,133, MISS 20 |
+| whole model: 2 parts, sha256 checked (28,658,533 B) | 50 downloads | 0 | n/a | 117,571 / 130,496 / 143,284 per download | 421 | MISS 37, HIT 13 (second part) |
+
+67,471 requests, 0 errors (no network error, no unexpected status, no sha256 mismatch), about 3.8 GB (decoded
+bytes) moved.
+
+- **Worker invocations and R2 (Cloudflare GraphQL, window 16:23:29 to 16:32:30 UTC):** script `gidi-loadtest`
+  0 invocations, 0 CPU ms, 0 subrequests; account-wide R2 operations: 1, a `ListBuckets` from the account
+  audit below (an API call of mine), not a read. The other Workers of the account logged 16 invocations in the
+  same window, so the API had caught up when it reported 0.
+- **Production probe** (`traffic-probe.mjs https://gidi.8bu.dev --first 0 --returning 0 --burst 50`, 16:32 to
+  16:34 UTC): 50 GET `/` (50 edge HIT) and 50 ranged GETs of a model part (MISS 34, HIT 16), all 200; script
+  `gidi`: 0 invocations, 0 CPU ms, 0 subrequests (polled eight times over about 7 minutes).
+- **Model parts under parallel clients.** 50 clients downloaded both parts at once, joined them and matched the
+  manifest's sha256: 50 of 50 correct, no truncation or error. The aggregate stayed at 10 MB/s because the
+  laptop's link is the limit (a download took about 2 minutes each), so this shows the edge serves 50 full
+  parallel downloads cleanly, not where the edge tops out.
+- **Manifest 304 path.** 22,061 answers of 304 with no body and `cf-cache-status: HIT`, 362 requests a second,
+  p50 82 ms, equal to its time to first byte, so the round trip is the whole cost (the 200 path is 92 ms and carries 1.4 kB). On production, 20
+  sequential conditional GETs (each on a new TLS connection): 20 of 20 `304`, 0 B, HIT, 0.29 to 0.46 s each.
+  It costs nothing: no Worker, no R2.
+- **`Range` is ignored by the asset service.** `Range: bytes=0-1023` on a model part returns `200`, the whole
+  11,881,317 B, and no `accept-ranges`. The model reads in the "now" column of "Result in one table" were ranged
+  GETs, so they moved whole parts, not 1 KiB. Invocations and cost are unaffected (egress is free), but a burst of 50 moves about
+  600 MB. `traffic-probe.mjs` now sends a HEAD for the model file in the burst.
+
+**Limits of the test.**
+
+- One client machine on one residential link, two edge locations, closed-loop (a new request only after the
+  last answer), 60 s a scenario. HTML, manifest and JS numbers include my round trip (about 80 ms to the
+  first byte) and, for 50 connections at 300 requests a second, one Node process; the JS and model rows are
+  bound by the 10 MB/s link, so their latency is the link, not the edge.
+- The target was `workers.dev`, not `gidi.8bu.dev`: same asset service and same bytes, but not the `8bu.dev`
+  zone, so zone rules (the geo header, any future WAF or rate limit) were not exercised. Production only got the
+  small probe above.
+- No browser: no ORT/WASM start, no PostHog traffic, no Cache Storage. Nothing here says how fast a phone loads the
+  model, only that the edge delivers it correctly under parallel load.
+- Cloudflare's own capacity was never stressed; "0 invocations" is the cost result, and the latency figures are
+  bounded by the client, not by the edge.
+
+**Fair use of bandwidth.** No bandwidth cap or fair-use figure for static assets is published. Workers Paid
+says: "There are no additional charges for data transfer (egress) or throughput (bandwidth)"
+(https://developers.cloudflare.com/workers/platform/pricing/); requests to static assets are "free and
+unlimited" (https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/); the limits page
+lists only 20,000 files (Free) or 100,000 (Paid) a version and 25 MiB a file
+(https://developers.cloudflare.com/workers/platform/limits/#static-assets). The one content rule is the CDN
+clause of the Service-Specific Terms (https://www.cloudflare.com/service-specific-terms-application-services/):
+for Free, Pro and Business zones, "Cloudflare offers specific Paid Services (e.g., the Developer Platform,
+Images, and Stream) that you must use in order to serve video and other large files via the CDN", and Cloudflare
+may limit use "if you use or are suspected of using the CDN without such Paid Services to serve video or a
+disproportionate percentage of pictures, audio files, or other large files". The models are served by the Workers
+Developer Platform (static assets, account on Workers Paid), so [INFERENCE] they fall under the allowed
+case; the blog post that moved the rule out of the old section 2.8 says the same for content hosted by Cloudflare
+services (https://blog.cloudflare.com/updated-tos/). The general terms (section 2.2.1 of the Self-Serve
+Subscription Agreement, https://www.cloudflare.com/terms/) still forbid an "undue burden" on the Services. At
+1 M first visits a month the site would move about 45 TB; there is no published threshold, so the risk is a
+notice, not a bill. Keeping parts immutable and in Cache Storage (already done) is the mitigation.
+
+**Account check (2026-10-22, read-only, nothing deleted).** Sources: Cloudflare API and GraphQL with the
+wrangler token, and Billing -> Billable usage (cycle 13 Oct to 12 Nov, 10 of 31 days observed: total $0.00,
+projected $0.00, every line inside its included tier).
+
+| Product | Inventory | Recent usage |
+|---|---|---|
+| Workers (18 after deleting `gidi-loadtest`) | 71z-demos, 71zone, bytelane, cookdi, crewdoku, customer-portal-api, customer-portal-web, cvspire, cyclone-portfolio, gidi, meet71, portf-api, portf-web, quet-web, sk-prototype, uptimeflare-8bu-worker, vietlott, vldex-web | cycle: 127.9 k requests of 10 M, 231 k CPU ms of 30 M. Last 30 days (GraphQL): 352,594 requests; `gidi` 383 requests, 453 CPU ms (the Worker era, before the assets-only cut-over) |
+| R2 (9 buckets) | 71media, 71z-backups, camen-updates, customer-portal-branding, cvx, ght, gidi-models, obsidian-relay, sv-media | cycle: Class B 12.4 k of 10 M, Class A 272 of 1 M, 0.44 GB-month of 10; stored now 2.34 GB (71z-backups 1.27, camen-updates 0.79, gidi-models 0.14) |
+| D1 (4) | meet71-db, quet-web, uptimeflare-8bu, m8t-staging | cycle: 2.65 k rows written, 5.57 k read |
+| KV (2) | 71z-demos-content, BOOKINGS | cycle: 290 writes, 2.81 k reads |
+| Durable Objects (1) | `cookdi_Room` (script `cookdi`) | 2,305 requests in 30 days, SQL storage 0 |
+| Queues, Vectorize | none | none |
+| Other | Hyperdrive `portal-hd`, `portf-hd-vps`; Pages project `uptimeflare-8bu`; zones `71.zone` and `8bu.dev`, both Free | Workers AI "Regular Twitch Neurons" 164.6 k, Email Service 16 sent, both $0.00 |
+
+Unexpected, not changed: (1) GraphQL attributes 116,260 requests and 541.6 s of CPU (about 33 % and 53 % of the
+account's 30-day Workers totals) to a script named `__unknown__`; the API does not say which Worker,
+[INFERENCE] a deleted script or a Pages Functions project (`uptimeflare-8bu`). (2) `portf-api`: 6,301 errors in
+7,929 requests this month (79 %). (3) Something on the account uses Workers AI (164.6 k neurons this cycle, shown
+as $0.00); the API does not say which Worker. None of these touches Gidi, and no line is billed. The wrangler
+OAuth token has no billing scope (`/subscriptions` answers 403), so the plan and invoices come from the dashboard.
+
 ## Sources
 
 - Workers pricing and limits: https://developers.cloudflare.com/workers/platform/pricing/ ,
@@ -126,3 +228,6 @@ SPA page from the same free asset service (they never reached R2 or a Worker).
 - Observability: https://developers.cloudflare.com/observability/pricing/
 - Response header transform rules: https://developers.cloudflare.com/rules/transform/response-header-modification/
 - PostHog: https://posthog.com/pricing , https://posthog.com/docs/billing/limits-alerts
+- Cloudflare Service-Specific Terms (CDN): https://www.cloudflare.com/service-specific-terms-application-services/
+  ; Self-Serve Subscription Agreement: https://www.cloudflare.com/terms/ ; Terms update (old section 2.8):
+  https://blog.cloudflare.com/updated-tos/ ; Workers limits: https://developers.cloudflare.com/workers/platform/limits/
