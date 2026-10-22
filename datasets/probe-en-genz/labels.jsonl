@@ -1,0 +1,100 @@
+{"id": "probe-en-genz-0175afd71510", "annotation_status": "complete", "type": "borrow", "target": null}
+{"id": "probe-en-genz-0178774358d5", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-genz-01a67008b163", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "visa", "start": 9, "end": 13}}
+{"id": "probe-en-genz-01f2d694b2ca", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-genz-0367b9c8a7f4", "annotation_status": "complete", "type": "borrow", "target": {"text": "bruv", "start": 4, "end": 8}}
+{"id": "probe-en-genz-03fd61bbfcb6", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-genz-046b53b2bb02", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-genz-075c71ea1b8c", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-genz-07d9ec35c787", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "rohit", "start": 10, "end": 15}}
+{"id": "probe-en-genz-07fd461c8b11", "annotation_status": "complete", "type": "lend", "target": {"text": "roomie", "start": 28, "end": 34}}
+{"id": "probe-en-genz-08f51ffc58c5", "annotation_status": "complete", "type": "lend", "target": {"text": "neha", "start": 15, "end": 19}}
+{"id": "probe-en-genz-0950fad1f365", "annotation_status": "complete", "type": "borrow", "target": {"text": "twin", "start": 17, "end": 21}}
+{"id": "probe-en-genz-0afe745325de", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-genz-0eb56b324bbc", "annotation_status": "complete", "type": "lend", "target": {"text": "kelvin", "start": 18, "end": 24}}
+{"id": "probe-en-genz-0f3a8cdb39ec", "annotation_status": "complete", "type": "expense", "target": {"text": "uber", "start": 0, "end": 4}}
+{"id": "probe-en-genz-1051932588a5", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-genz-11177aa13ac9", "annotation_status": "complete", "type": "borrow", "target": {"text": "bestie", "start": 4, "end": 10}}
+{"id": "probe-en-genz-111b3e604987", "annotation_status": "complete", "type": "borrow", "target": {"text": "sister", "start": 22, "end": 28}}
+{"id": "probe-en-genz-112ca80c3318", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-genz-118895446ade", "annotation_status": "uncertain", "type": "repayment_out", "target": null}
+{"id": "probe-en-genz-14dbe89b1ddf", "annotation_status": "complete", "type": "borrow", "target": {"text": "twin", "start": 4, "end": 8}}
+{"id": "probe-en-genz-14fef6db0913", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "bestie", "start": 7, "end": 13}}
+{"id": "probe-en-genz-15b1a95c25ed", "annotation_status": "complete", "type": "borrow", "target": {"text": "rohit", "start": 4, "end": 9}}
+{"id": "probe-en-genz-15b36d68f9f3", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-genz-1604f3eaf376", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-genz-172f9de9a912", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "uob", "start": 8, "end": 11}}
+{"id": "probe-en-genz-1808856ff01e", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "twin", "start": 0, "end": 4}}
+{"id": "probe-en-genz-19bf0fedd6e9", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "kyle", "start": 0, "end": 4}}
+{"id": "probe-en-genz-1b77bed3b40b", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-genz-1c43dabd6a5a", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "gng", "start": 10, "end": 13}}
+{"id": "probe-en-genz-1d7a12580a33", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-genz-1df9b476ffa3", "annotation_status": "complete", "type": "expense", "target": {"text": "grab", "start": 0, "end": 4}}
+{"id": "probe-en-genz-20f668150d36", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-genz-223d27c13952", "annotation_status": "complete", "type": "borrow", "target": {"text": "roomie", "start": 12, "end": 18}}
+{"id": "probe-en-genz-24dbc9408040", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "didi", "start": 7, "end": 11}}
+{"id": "probe-en-genz-24ea515171f7", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-genz-2571c661ce3a", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-genz-257760a59864", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "roomie", "start": 0, "end": 6}}
+{"id": "probe-en-genz-258498aa026e", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-genz-25ab5003198a", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-genz-27564c9b8adf", "annotation_status": "complete", "type": "borrow", "target": {"text": "fam", "start": 4, "end": 7}}
+{"id": "probe-en-genz-276833a6277f", "annotation_status": "complete", "type": "lend", "target": {"text": "cousin", "start": 34, "end": 40}}
+{"id": "probe-en-genz-28799b71463b", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-genz-28feeaeb7b0a", "annotation_status": "complete", "type": "borrow", "target": {"text": "brother", "start": 22, "end": 29}}
+{"id": "probe-en-genz-293d6f834e12", "annotation_status": "complete", "type": "refund", "target": {"text": "swiggy", "start": 0, "end": 6}}
+{"id": "probe-en-genz-29b2114ce08d", "annotation_status": "complete", "type": "expense", "target": {"text": "target", "start": 0, "end": 6}}
+{"id": "probe-en-genz-29c5895d2380", "annotation_status": "complete", "type": "borrow", "target": {"text": "wei liang", "start": 4, "end": 13}}
+{"id": "probe-en-genz-2b081c053a0b", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "suresh", "start": 0, "end": 6}}
+{"id": "probe-en-genz-2c1408155f3c", "annotation_status": "complete", "type": "borrow", "target": {"text": "deepak", "start": 4, "end": 10}}
+{"id": "probe-en-genz-2c6a18bf4c29", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-genz-2cbf80317a3d", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "vikram", "start": 22, "end": 28}}
+{"id": "probe-en-genz-2ced1b7eba9f", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "wei cheng", "start": 7, "end": 16}}
+{"id": "probe-en-genz-2d202f19a587", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "chloe", "start": 10, "end": 15}}
+{"id": "probe-en-genz-2e8b5f054a57", "annotation_status": "uncertain", "type": "repayment_out", "target": null}
+{"id": "probe-en-genz-2eb954d49900", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "roommate", "start": 0, "end": 8}}
+{"id": "probe-en-genz-3005ed544a82", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "meiling", "start": 0, "end": 7}}
+{"id": "probe-en-genz-30cf9c82d94e", "annotation_status": "complete", "type": "lend", "target": null}
+{"id": "probe-en-genz-314f32f1e2b8", "annotation_status": "complete", "type": "expense", "target": {"text": "m1", "start": 0, "end": 2}}
+{"id": "probe-en-genz-33595c56320d", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "revolut", "start": 8, "end": 15}}
+{"id": "probe-en-genz-345728ebc3e9", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-genz-3480274102a3", "annotation_status": "complete", "type": "income", "target": {"text": "uncle", "start": 22, "end": 27}}
+{"id": "probe-en-genz-348d6ded31ce", "annotation_status": "complete", "type": "borrow", "target": {"text": "tan", "start": 4, "end": 7}}
+{"id": "probe-en-genz-34e34af94b19", "annotation_status": "uncertain", "type": "expense", "target": null}
+{"id": "probe-en-genz-34e6d8ec0d6f", "annotation_status": "complete", "type": "lend", "target": {"text": "colleague", "start": 5, "end": 14}}
+{"id": "probe-en-genz-35493d55954c", "annotation_status": "complete", "type": "refund", "target": {"text": "asos", "start": 0, "end": 4}}
+{"id": "probe-en-genz-367f98d764aa", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "bestie", "start": 0, "end": 6}}
+{"id": "probe-en-genz-36bf1bfa5f62", "annotation_status": "skipped", "type": null, "target": null}
+{"id": "probe-en-genz-37bf31f4b904", "annotation_status": "complete", "type": "expense", "target": {"text": "steam", "start": 20, "end": 25}}
+{"id": "probe-en-genz-387357660a2a", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "posb", "start": 0, "end": 4}}
+{"id": "probe-en-genz-3886d627f38e", "annotation_status": "complete", "type": "borrow", "target": {"text": "gng", "start": 4, "end": 7}}
+{"id": "probe-en-genz-39123a518f73", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-genz-39f7f6c4f52f", "annotation_status": "complete", "type": "expense", "target": {"text": "target", "start": 23, "end": 29}}
+{"id": "probe-en-genz-3a3fe28eeaa3", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "mate", "start": 7, "end": 11}}
+{"id": "probe-en-genz-3b32c9c4685b", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-genz-3c2c68d883f5", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-genz-3e95bc658770", "annotation_status": "complete", "type": "expense", "target": {"text": "fairprice", "start": 0, "end": 9}}
+{"id": "probe-en-genz-3f58127e4101", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "uncle", "start": 7, "end": 12}}
+{"id": "probe-en-genz-3f7d0ccded7e", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "tan", "start": 5, "end": 8}}
+{"id": "probe-en-genz-4054c4b6508a", "annotation_status": "complete", "type": "lend", "target": {"text": "bestie", "start": 12, "end": 18}}
+{"id": "probe-en-genz-40ed7e9d4d85", "annotation_status": "complete", "type": "expense", "target": {"text": "toast box", "start": 0, "end": 9}}
+{"id": "probe-en-genz-41ffa6b48375", "annotation_status": "complete", "type": "borrow", "target": {"text": "dad", "start": 18, "end": 21}}
+{"id": "probe-en-genz-437bbe91ee5e", "annotation_status": "complete", "type": "expense", "target": {"text": "uber", "start": 0, "end": 4}}
+{"id": "probe-en-genz-439829122a34", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "klarna", "start": 0, "end": 6}}
+{"id": "probe-en-genz-43d2821535c9", "annotation_status": "complete", "type": "lend", "target": {"text": "dawg", "start": 19, "end": 23}}
+{"id": "probe-en-genz-440d151673ac", "annotation_status": "uncertain", "type": "borrow", "target": null}
+{"id": "probe-en-genz-45717a2b08b5", "annotation_status": "complete", "type": "lend", "target": {"text": "squad", "start": 22, "end": 27}}
+{"id": "probe-en-genz-47d02745461f", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "fam", "start": 5, "end": 8}}
+{"id": "probe-en-genz-483bcf415859", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "deepak", "start": 0, "end": 6}}
+{"id": "probe-en-genz-48a407c57050", "annotation_status": "complete", "type": "income", "target": {"text": "client", "start": 0, "end": 6}}
+{"id": "probe-en-genz-4936542be973", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "roomie", "start": 0, "end": 6}}
+{"id": "probe-en-genz-49c16f17b841", "annotation_status": "complete", "type": "borrow", "target": {"text": "bestie", "start": 11, "end": 17}}
+{"id": "probe-en-genz-4cf978c4969e", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-genz-4cfcad683876", "annotation_status": "uncertain", "type": "repayment_out", "target": null}
+{"id": "probe-en-genz-4d2238e247ed", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-genz-4d23a82bd329", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-genz-4e3ba7d56ca7", "annotation_status": "complete", "type": "borrow", "target": {"text": "sam", "start": 4, "end": 7}}
+{"id": "probe-en-genz-4e3bb0206f74", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "apple card", "start": 0, "end": 10}}
+{"id": "probe-en-genz-4f51238210da", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "maya", "start": 0, "end": 4}}
+{"id": "probe-en-genz-50addbb6f3c9", "annotation_status": "complete", "type": "borrow", "target": {"text": "twin", "start": 31, "end": 35}}
+{"id": "probe-en-genz-50d7ca916021", "annotation_status": "complete", "type": "transfer", "target": null}

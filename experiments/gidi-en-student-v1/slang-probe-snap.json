@@ -1,0 +1,4958 @@
+{
+  "int8_file": "models/gidi-en-v1-onnx/seed1/model.int8.onnx",
+  "snap_words": true,
+  "all": {
+    "type_accuracy": 0.8543417366946778,
+    "type_macro_f1": 0.8445478959378816,
+    "span_f1": 0.7584745762711863,
+    "span_exact": 0.7563025210084033,
+    "joint": 0.6666666666666666,
+    "n": 357,
+    "per_type": {
+      "expense": {
+        "f1": 0.9058295964125561,
+        "precision": 0.8859649122807017,
+        "recall": 0.926605504587156,
+        "n": 109
+      },
+      "income": {
+        "f1": 0.8604651162790697,
+        "precision": 0.8604651162790697,
+        "recall": 0.8604651162790697,
+        "n": 43
+      },
+      "borrow": {
+        "f1": 0.9180327868852459,
+        "precision": 0.9333333333333333,
+        "recall": 0.9032258064516129,
+        "n": 31
+      },
+      "lend": {
+        "f1": 0.7792207792207793,
+        "precision": 0.8333333333333334,
+        "recall": 0.7317073170731707,
+        "n": 41
+      },
+      "repayment_in": {
+        "f1": 0.7848101265822786,
+        "precision": 0.775,
+        "recall": 0.7948717948717948,
+        "n": 39
+      },
+      "repayment_out": {
+        "f1": 0.721311475409836,
+        "precision": 0.6666666666666666,
+        "recall": 0.7857142857142857,
+        "n": 28
+      },
+      "transfer": {
+        "f1": 0.8636363636363636,
+        "precision": 0.9047619047619048,
+        "recall": 0.8260869565217391,
+        "n": 46
+      },
+      "refund": {
+        "f1": 0.9230769230769231,
+        "precision": 0.9473684210526315,
+        "recall": 0.9,
+        "n": 20
+      }
+    }
+  },
+  "consensus": {
+    "type_accuracy": 0.8832116788321168,
+    "type_macro_f1": 0.8706239705415639,
+    "span_f1": 0.8099173553719008,
+    "span_exact": 0.8102189781021898,
+    "joint": 0.7372262773722628,
+    "n": 274,
+    "per_type": {
+      "expense": {
+        "f1": 0.9259259259259259,
+        "precision": 0.8928571428571429,
+        "recall": 0.9615384615384616,
+        "n": 78
+      },
+      "income": {
+        "f1": 0.868421052631579,
+        "precision": 0.8918918918918919,
+        "recall": 0.8461538461538461,
+        "n": 39
+      },
+      "borrow": {
+        "f1": 0.9310344827586207,
+        "precision": 0.9642857142857143,
+        "recall": 0.9,
+        "n": 30
+      },
+      "lend": {
+        "f1": 0.8214285714285714,
+        "precision": 0.92,
+        "recall": 0.7419354838709677,
+        "n": 31
+      },
+      "repayment_in": {
+        "f1": 0.8135593220338982,
+        "precision": 0.8,
+        "recall": 0.8275862068965517,
+        "n": 29
+      },
+      "repayment_out": {
+        "f1": 0.8205128205128205,
+        "precision": 0.7272727272727273,
+        "recall": 0.9411764705882353,
+        "n": 17
+      },
+      "transfer": {
+        "f1": 0.9041095890410958,
+        "precision": 0.9166666666666666,
+        "recall": 0.8918918918918919,
+        "n": 37
+      },
+      "refund": {
+        "f1": 0.8799999999999999,
+        "precision": 0.9166666666666666,
+        "recall": 0.8461538461538461,
+        "n": 13
+      }
+    }
+  },
+  "adjudicated": {
+    "type_accuracy": 0.7590361445783133,
+    "type_macro_f1": 0.7372391952309985,
+    "span_f1": 0.5871559633027522,
+    "span_exact": 0.5783132530120482,
+    "joint": 0.43373493975903615,
+    "n": 83,
+    "per_type": {
+      "expense": {
+        "f1": 0.8524590163934426,
+        "precision": 0.8666666666666667,
+        "recall": 0.8387096774193549,
+        "n": 31
+      },
+      "income": {
+        "f1": 0.8,
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "n": 4
+      },
+      "borrow": {
+        "f1": 0.6666666666666666,
+        "precision": 0.5,
+        "recall": 1.0,
+        "n": 1
+      },
+      "lend": {
+        "f1": 0.6666666666666666,
+        "precision": 0.6363636363636364,
+        "recall": 0.7,
+        "n": 10
+      },
+      "repayment_in": {
+        "f1": 0.7,
+        "precision": 0.7,
+        "recall": 0.7,
+        "n": 10
+      },
+      "repayment_out": {
+        "f1": 0.5454545454545454,
+        "precision": 0.5454545454545454,
+        "recall": 0.5454545454545454,
+        "n": 11
+      },
+      "transfer": {
+        "f1": 0.6666666666666667,
+        "precision": 0.8333333333333334,
+        "recall": 0.5555555555555556,
+        "n": 9
+      },
+      "refund": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "n": 7
+      }
+    }
+  },
+  "worst_errors": [
+    {
+      "id": "probe-en-slang-637511eee2f8",
+      "text": "cvrd uber 4 bro 15$",
+      "gold_type": "lend",
+      "pred_type": "expense",
+      "gold_target": "bro",
+      "pred_target": "cvrd",
+      "pred_type_prob": 1.0
+    },
+    {
+      "id": "probe-en-slang-f7e3ee295a43",
+      "text": "cvrd groceries 4 roomie 55$",
+      "gold_type": "lend",
+      "pred_type": "expense",
+      "gold_target": "roomie",
+      "pred_target": "cvrd",
+      "pred_type_prob": 1.0
+    },
+    {
+      "id": "probe-en-slang-8bcec33db81c",
+      "text": "cvrd drinks 4 crew 60 🍻",
+      "gold_type": "lend",
+      "pred_type": "expense",
+      "gold_target": "crew",
+      "pred_target": "cvrd",
+      "pred_type_prob": 1.0
+    },
+    {
+      "id": "probe-en-slang-4bddbacc7626",
+      "text": "cvrd lunch 4 mate 12",
+      "gold_type": "lend",
+      "pred_type": "expense",
+      "gold_target": "mate",
+      "pred_target": "cvrd",
+      "pred_type_prob": 1.0
+    },
+    {
+      "id": "probe-en-slang-a95dd9911893",
+      "text": "cvrd grocery run 4 apartment roomies owe 45$",
+      "gold_type": "lend",
+      "pred_type": "borrow",
+      "gold_target": "roomies",
+      "pred_target": "cvrd",
+      "pred_type_prob": 1.0
+    },
+    {
+      "id": "probe-en-slang-7261aa77e6b7",
+      "text": "salary advance 500 bc emergency",
+      "gold_type": "borrow",
+      "pred_type": "income",
+      "gold_target": null,
+      "pred_target": "bc",
+      "pred_type_prob": 1.0
+    },
+    {
+      "id": "probe-en-slang-9358ae0522df",
+      "text": "emi pd 4 phone 15k",
+      "gold_type": "repayment_out",
+      "pred_type": "expense",
+      "gold_target": null,
+      "pred_target": "emi",
+      "pred_type_prob": 1.0
+    },
+    {
+      "id": "probe-en-slang-02577d2b2c94",
+      "text": "pd mike back 15 bucks",
+      "gold_type": "repayment_out",
+      "pred_type": "repayment_in",
+      "gold_target": "mike",
+      "pred_target": "pd mike",
+      "pred_type_prob": 0.996
+    },
+    {
+      "id": "probe-en-slang-17f7a75529e3",
+      "text": "cant remember what this 35 charge was for",
+      "gold_type": "expense",
+      "pred_type": "income",
+      "gold_target": null,
+      "pred_target": "cant",
+      "pred_type_prob": 0.995
+    },
+    {
+      "id": "probe-en-slang-f1f8326ed71d",
+      "text": "takeaway bc tired 16 quid",
+      "gold_type": "expense",
+      "pred_type": "repayment_in",
+      "gold_target": null,
+      "pred_target": "bc",
+      "pred_type_prob": 0.991
+    },
+    {
+      "id": "probe-en-slang-4660fa05103b",
+      "text": "amazon rfd 25 bucks back",
+      "gold_type": "refund",
+      "pred_type": "repayment_in",
+      "gold_target": "amazon",
+      "pred_target": "amazon rfd",
+      "pred_type_prob": 0.99
+    },
+    {
+      "id": "probe-en-slang-297d5d8aaff5",
+      "text": "shifted 15k rs from sbi 2 zerodha trading",
+      "gold_type": "transfer",
+      "pred_type": "repayment_in",
+      "gold_target": null,
+      "pred_target": "sbi",
+      "pred_type_prob": 0.989
+    },
+    {
+      "id": "probe-en-slang-b2c16162dd52",
+      "text": "put down advance deposit 4 holiday chalet 300 s$ friends owe me",
+      "gold_type": "lend",
+      "pred_type": "borrow",
+      "gold_target": "friends",
+      "pred_target": null,
+      "pred_type_prob": 0.985
+    },
+    {
+      "id": "probe-en-slang-3ff25170bf08",
+      "text": "ezlink topup 20 s$",
+      "gold_type": "transfer",
+      "pred_type": "expense",
+      "gold_target": null,
+      "pred_target": "ezlink",
+      "pred_type_prob": 0.979
+    },
+    {
+      "id": "probe-en-slang-3ea7f7622dc8",
+      "text": "metro card reload 20$",
+      "gold_type": "transfer",
+      "pred_type": "repayment_out",
+      "gold_target": null,
+      "pred_target": "metro",
+      "pred_type_prob": 0.913
+    }
+  ],
+  "predictions": [
+    {
+      "id": "probe-en-slang-c8205f729089",
+      "text": "groc run 45 bucks",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "groc"
+      ]
+    },
+    {
+      "id": "probe-en-slang-668b98328bff",
+      "text": "trader joes groc 55$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "trader joes"
+      ],
+      "pred": [
+        "expense",
+        "trader"
+      ]
+    },
+    {
+      "id": "probe-en-slang-a963717270bb",
+      "text": "starbucks iced latte 6 bucks",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "starbucks"
+      ],
+      "pred": [
+        "expense",
+        "starbucks"
+      ]
+    },
+    {
+      "id": "probe-en-slang-aac11d7070c9",
+      "text": "late nite taco run 14$ 🌮",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "late"
+      ]
+    },
+    {
+      "id": "probe-en-slang-102ffa7dfff7",
+      "text": "uber home bc late 22$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "uber"
+      ],
+      "pred": [
+        "expense",
+        "uber"
+      ]
+    },
+    {
+      "id": "probe-en-slang-4292e524c426",
+      "text": "lyft 2 airport 38 bucks",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "lyft"
+      ],
+      "pred": [
+        "expense",
+        "lyft"
+      ]
+    },
+    {
+      "id": "probe-en-slang-46c3ea508cf2",
+      "text": "bday gift 4 gf 80$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "gf"
+      ]
+    },
+    {
+      "id": "probe-en-slang-8949f1b01194",
+      "text": "bday cake 4 bro 25$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "bro"
+      ]
+    },
+    {
+      "id": "probe-en-slang-d993f3da07d2",
+      "text": "netflix sub 15.99 rn",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "netflix"
+      ],
+      "pred": [
+        "expense",
+        "netflix"
+      ]
+    },
+    {
+      "id": "probe-en-slang-39773fac31b1",
+      "text": "spotify sub 10.99$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "spotify"
+      ],
+      "pred": [
+        "expense",
+        "spotify"
+      ]
+    },
+    {
+      "id": "probe-en-slang-9a68684822ca",
+      "text": "gym sub 40 bucks",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "gym"
+      ]
+    },
+    {
+      "id": "probe-en-slang-a7c9da3c1087",
+      "text": "elec bill pd 65$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "elec"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f13bb8cb128f",
+      "text": "wifi bill 45 bucks",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-0d1ed334ef24",
+      "text": "gas station run 35$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-12d3090e3648",
+      "text": "dentist copay 50 bucks",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "dentist"
+      ]
+    },
+    {
+      "id": "probe-en-slang-bf626633d0c9",
+      "text": "haircut + tip 30$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-8c8257ee26c2",
+      "text": "steam game on sale 15$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "steam"
+      ],
+      "pred": [
+        "income",
+        "steam"
+      ]
+    },
+    {
+      "id": "probe-en-slang-797eea65c79f",
+      "text": "patreon sub 5 bucks",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "patreon"
+      ],
+      "pred": [
+        "expense",
+        "patreon"
+      ]
+    },
+    {
+      "id": "probe-en-slang-fa498e92295c",
+      "text": "doordash pizza 26$ 🍕",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "doordash"
+      ],
+      "pred": [
+        "expense",
+        "doordash"
+      ]
+    },
+    {
+      "id": "probe-en-slang-3ea7f7622dc8",
+      "text": "metro card reload 20$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "repayment_out",
+        "metro"
+      ]
+    },
+    {
+      "id": "probe-en-slang-692877a968f5",
+      "text": "coffee w/ bf 7$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-5daf18ed3477",
+      "text": "tesco groc 18 quid",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "tesco"
+      ],
+      "pred": [
+        "expense",
+        "tesco groc"
+      ]
+    },
+    {
+      "id": "probe-en-slang-ac9234e919b0",
+      "text": "sainsburys groc 22 quid",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "sainsburys"
+      ],
+      "pred": [
+        "expense",
+        "sainsburys groc"
+      ]
+    },
+    {
+      "id": "probe-en-slang-80b7847dfe3c",
+      "text": "nandos w/ lads 28 quid",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "nandos"
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-5c73fd1ea6ac",
+      "text": "cold brew w/ mate 4.50",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "cold"
+      ]
+    },
+    {
+      "id": "probe-en-slang-77df1c9591bf",
+      "text": "petrol pump 50 quid",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-03452ea33830",
+      "text": "wifi bill 40 quid",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-f947062813c9",
+      "text": "elec bill 55 quid",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "elec"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f467be6ba9e3",
+      "text": "monzo flex sub 5 quid",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        "monzo flex"
+      ],
+      "pred": [
+        "repayment_out",
+        "monzo flex"
+      ]
+    },
+    {
+      "id": "probe-en-slang-5ceb0cfc9d2d",
+      "text": "barber cut 15 quid",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "barber"
+      ]
+    },
+    {
+      "id": "probe-en-slang-16e61c03cffb",
+      "text": "deliveroo w/ roomie 24 quid",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "deliveroo"
+      ],
+      "pred": [
+        "expense",
+        "deliveroo"
+      ]
+    },
+    {
+      "id": "probe-en-slang-cddbed557701",
+      "text": "boots pharmacy meds 12 quid",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        "boots"
+      ],
+      "pred": [
+        "expense",
+        "boots pharmacy"
+      ]
+    },
+    {
+      "id": "probe-en-slang-4a0ef829c72d",
+      "text": "water bill 30 quid",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-f1f8326ed71d",
+      "text": "takeaway bc tired 16 quid",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "repayment_in",
+        "bc"
+      ]
+    },
+    {
+      "id": "probe-en-slang-5e74f4c8e300",
+      "text": "swiggy din 350 rs",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "swiggy"
+      ],
+      "pred": [
+        "expense",
+        "swiggy"
+      ]
+    },
+    {
+      "id": "probe-en-slang-287498434dd0",
+      "text": "zomato lunch w/ bf 450",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "zomato"
+      ],
+      "pred": [
+        "expense",
+        "zomato"
+      ]
+    },
+    {
+      "id": "probe-en-slang-0512522bbcd3",
+      "text": "chai w/ bro 40 rs ☕",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "bro"
+      ]
+    },
+    {
+      "id": "probe-en-slang-9cb20b007daf",
+      "text": "swiggy instamart groc 420 rs",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        "swiggy"
+      ],
+      "pred": [
+        "repayment_out",
+        "swiggy"
+      ]
+    },
+    {
+      "id": "probe-en-slang-1d707da61508",
+      "text": "dosa breakfast w/ dad 80",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "dosa"
+      ]
+    },
+    {
+      "id": "probe-en-slang-957ec4a2cab8",
+      "text": "momos stall 60 rs",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "momos"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f19a58451f91",
+      "text": "fastag toll 150 rs",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-55cb470844ca",
+      "text": "blinkit milk bread 95 rs",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "blinkit"
+      ],
+      "pred": [
+        "expense",
+        "blinkit"
+      ]
+    },
+    {
+      "id": "probe-en-slang-9bbece085079",
+      "text": "zepto snacks 140 rs",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "zepto"
+      ],
+      "pred": [
+        "expense",
+        "zepto"
+      ]
+    },
+    {
+      "id": "probe-en-slang-643dced75a2f",
+      "text": "auto fare 80 rs",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-43e20b299221",
+      "text": "wifi bill 699 rs",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-22e293af45d1",
+      "text": "upi 2 mom 2000 rs",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "mom"
+      ],
+      "pred": [
+        "expense",
+        "mom"
+      ]
+    },
+    {
+      "id": "probe-en-slang-07e037815dcd",
+      "text": "gpay 2 bhai 500",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "bhai"
+      ],
+      "pred": [
+        "repayment_in",
+        "bhai"
+      ]
+    },
+    {
+      "id": "probe-en-slang-1009df54ae78",
+      "text": "kopi o 1.80 rn ☕",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "kopi"
+      ]
+    },
+    {
+      "id": "probe-en-slang-50cd3fc6e664",
+      "text": "ntuc groc 32.50 s$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "ntuc"
+      ],
+      "pred": [
+        "expense",
+        "ntuc groc"
+      ]
+    },
+    {
+      "id": "probe-en-slang-6822c766cf46",
+      "text": "mcd lunch 8.50 s$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "mcd"
+      ],
+      "pred": [
+        "expense",
+        "mcd"
+      ]
+    },
+    {
+      "id": "probe-en-slang-4f701912f97a",
+      "text": "hawker fried rice 5.50 s$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-087e5b312294",
+      "text": "prata dinner w/ bro 7.50",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-ebd0cc37b6dc",
+      "text": "grab ride w/ sis 18.50",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        "grab"
+      ],
+      "pred": [
+        "expense",
+        "grab"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f37ef07b73e6",
+      "text": "donki sushi box 12 s$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "donki"
+      ],
+      "pred": [
+        "expense",
+        "donki sushi"
+      ]
+    },
+    {
+      "id": "probe-en-slang-3ff25170bf08",
+      "text": "ezlink topup 20 s$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "expense",
+        "ezlink"
+      ]
+    },
+    {
+      "id": "probe-en-slang-82eb51333488",
+      "text": "bbt w/ gf 6.50 s$ 🧋",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-e2354d40a420",
+      "text": "kopi c peng 2 s$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "kopi"
+      ]
+    },
+    {
+      "id": "probe-en-slang-c40a2b098c80",
+      "text": "grab hitch 2 office 12",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "grab"
+      ],
+      "pred": [
+        "expense",
+        "grab"
+      ]
+    },
+    {
+      "id": "probe-en-slang-1284a542aaa3",
+      "text": "toast box breakfast 6 s$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "toast box"
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-baa907a71b5a",
+      "text": "paynow sis 30 4 bday",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "sis"
+      ],
+      "pred": [
+        "expense",
+        "sis"
+      ]
+    },
+    {
+      "id": "probe-en-slang-23992e6a3ab8",
+      "text": "treated fam 2 lunch 60 bucks ❤️",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "fam"
+      ]
+    },
+    {
+      "id": "probe-en-slang-5c7ab73eb50f",
+      "text": "bought bday present 4 bestie 45$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "bestie"
+      ]
+    },
+    {
+      "id": "probe-en-slang-20fdf8d234a3",
+      "text": "dinner w/ gf at fancy place 110 bucks",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-947aa60b272b",
+      "text": "split dinner w/ fam my share 35 bucks",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-21d5d0e0d0da",
+      "text": "uber ride home bc raining hard 25$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "uber"
+      ],
+      "pred": [
+        "expense",
+        "uber"
+      ]
+    },
+    {
+      "id": "probe-en-slang-cd2eb223d631",
+      "text": "trader joes haul 4 the week 75$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "trader joes"
+      ],
+      "pred": [
+        "expense",
+        "trader joes"
+      ]
+    },
+    {
+      "id": "probe-en-slang-33ee38cdfab3",
+      "text": "new sneakers from nike outlet 90 bucks",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        "nike"
+      ],
+      "pred": [
+        "expense",
+        "nike"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f30c69fbdb53",
+      "text": "verizon phone bill 4 two lines 110$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "verizon"
+      ],
+      "pred": [
+        "expense",
+        "verizon"
+      ]
+    },
+    {
+      "id": "probe-en-slang-52eb92c46e2a",
+      "text": "vet clinic checkup 4 cat 75 bucks",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-3a9cc81f923c",
+      "text": "annual renters insurance pymt 140$ rn",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-02c1a6cc207d",
+      "text": "venmo 2 sis 80 4 concert ticket",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "sis"
+      ],
+      "pred": [
+        "expense",
+        "sis"
+      ]
+    },
+    {
+      "id": "probe-en-slang-14c924ab4766",
+      "text": "zelle 2 mom 150 4 flight ticket",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "mom"
+      ],
+      "pred": [
+        "expense",
+        "mom"
+      ]
+    },
+    {
+      "id": "probe-en-slang-dacdbc3e2136",
+      "text": "bought groceries at sainsburys 42 quid total",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "sainsburys"
+      ],
+      "pred": [
+        "expense",
+        "sainsburys"
+      ]
+    },
+    {
+      "id": "probe-en-slang-d7ea9751bbb2",
+      "text": "pd wifi bill b4 cutoff 45 quid",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "pd"
+      ]
+    },
+    {
+      "id": "probe-en-slang-92529e8a194e",
+      "text": "pd elec bill online 60 quid rn",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-a453840197a3",
+      "text": "bought books at waterstones 22 quid total",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "waterstones"
+      ],
+      "pred": [
+        "expense",
+        "waterstones"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f0205751f47b",
+      "text": "hotel booking 4 weekend trip 140 quid",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "hotel"
+      ]
+    },
+    {
+      "id": "probe-en-slang-a4ce7e1bcbb5",
+      "text": "ee phone contract direct debit 35 quid",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        "ee"
+      ],
+      "pred": [
+        "expense",
+        "ee"
+      ]
+    },
+    {
+      "id": "probe-en-slang-51488f63c0d5",
+      "text": "gym membership renewal 4 month 50 quid",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "gym"
+      ]
+    },
+    {
+      "id": "probe-en-slang-6f5c65a6d3bf",
+      "text": "nandos meal w/ fam 48 quid total",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "nandos"
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-4453996a55f7",
+      "text": "sent brother 40 quid 4 train tix",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "brother"
+      ],
+      "pred": [
+        "expense",
+        "brother"
+      ]
+    },
+    {
+      "id": "probe-en-slang-6868aa5b2eba",
+      "text": "zomato order 4 whole fam 650 rs",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "zomato"
+      ],
+      "pred": [
+        "expense",
+        "zomato"
+      ]
+    },
+    {
+      "id": "probe-en-slang-656e1e0902de",
+      "text": "mobile plan recharge 4 mom 299 rs",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-25669e91da85",
+      "text": "gift 4 didi wedding 5k rs cash",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "didi"
+      ]
+    },
+    {
+      "id": "probe-en-slang-69acb46185ac",
+      "text": "swiggy dinner w/ cousins 850 rs total",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "swiggy"
+      ],
+      "pred": [
+        "expense",
+        "swiggy"
+      ]
+    },
+    {
+      "id": "probe-en-slang-70ff90d59007",
+      "text": "bought diwali sweets 4 office 1200 rs",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-e01be0c2ace6",
+      "text": "gpay 2 dad 5000 rs 4 hospital bill",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        "dad"
+      ],
+      "pred": [
+        "expense",
+        "dad"
+      ]
+    },
+    {
+      "id": "probe-en-slang-6944386a108d",
+      "text": "upi 2 cousin 1500 rs 4 petrol",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "cousin"
+      ],
+      "pred": [
+        "expense",
+        "cousin"
+      ]
+    },
+    {
+      "id": "probe-en-slang-1ddc8e119b09",
+      "text": "treated bf 2 hotpot 55 s$ eod",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        "bf"
+      ],
+      "pred": [
+        "expense",
+        "bf"
+      ]
+    },
+    {
+      "id": "probe-en-slang-2f31e635fbdc",
+      "text": "ntuc fairprice haul w/ mom 68 s$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "ntuc fairprice"
+      ],
+      "pred": [
+        "expense",
+        "ntuc fairprice"
+      ]
+    },
+    {
+      "id": "probe-en-slang-08e1e623030c",
+      "text": "grab hitch 2 office bc late 14 s$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        "grab"
+      ],
+      "pred": [
+        "expense",
+        "grab"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f4455c283d9a",
+      "text": "flight tix 2 bali 180 s$ rn",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "tix"
+      ]
+    },
+    {
+      "id": "probe-en-slang-e75566a695f7",
+      "text": "simba mobile bill pd 10 s$ online",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        "simba"
+      ],
+      "pred": [
+        "expense",
+        "simba"
+      ]
+    },
+    {
+      "id": "probe-en-slang-b25f73801f84",
+      "text": "paynow brother 50 s$ 4 mum gift",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "brother"
+      ],
+      "pred": [
+        "expense",
+        "brother"
+      ]
+    },
+    {
+      "id": "probe-en-slang-7e16c9a88a36",
+      "text": "pd elec and wifi bills b4 eod so they dont cut 120$",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-d72478c3278c",
+      "text": "huge groc haul at costco w/ fam 4 the entire month 220 bucks",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "costco"
+      ],
+      "pred": [
+        "expense",
+        "costco"
+      ]
+    },
+    {
+      "id": "probe-en-slang-ebed70e8c8db",
+      "text": "zelle 2 little sis 150 bucks bc she needed college books urgently",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        "sis"
+      ],
+      "pred": [
+        "expense",
+        "sis"
+      ]
+    },
+    {
+      "id": "probe-en-slang-ad2222b04659",
+      "text": "paid annual home insurance premium online b4 due date 250 bucks rn",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-5da57644281b",
+      "text": "booked train tickets 2 manchester 4 weekend w/ mates 55 quid total",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-d88d980d4139",
+      "text": "bought new running shoes from adidas bc old ones tore 85 quid",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "adidas"
+      ],
+      "pred": [
+        "expense",
+        "adidas"
+      ]
+    },
+    {
+      "id": "probe-en-slang-feef1848a81c",
+      "text": "emergency plumber visit on sunday bc pipe burst in kitchen 180 quid",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        "plumber"
+      ]
+    },
+    {
+      "id": "probe-en-slang-aeed0681c3b8",
+      "text": "swiggy dinner order 4 all of us during match night 1200 rs",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "swiggy"
+      ],
+      "pred": [
+        "expense",
+        "swiggy"
+      ]
+    },
+    {
+      "id": "probe-en-slang-742ac6cf0b23",
+      "text": "bought flight tix home 4 diwali celebration w/ whole family 8k rs",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-9c8010e13009",
+      "text": "treated the whole office squad 2 bubble tea after big launch 48 s$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "lend",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-cdb94e8e19e9",
+      "text": "sent mom 200 bucks via remitly 4 her bday celebration back home",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "mom"
+      ],
+      "pred": [
+        "expense",
+        "mom"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f785b1c1cacd",
+      "text": "payday rn 💸",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        "rn"
+      ]
+    },
+    {
+      "id": "probe-en-slang-9a503d674f45",
+      "text": "direct deposit 2.5k hit acct",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-51b1be95b7c2",
+      "text": "paycheck in eod 1800",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        "eod"
+      ]
+    },
+    {
+      "id": "probe-en-slang-8fe1b9446320",
+      "text": "boss pd bonus 500 bucks",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "boss"
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-33317e9a2343",
+      "text": "sold sofa on fb 80$",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "fb"
+      ],
+      "pred": [
+        "income",
+        "fb"
+      ]
+    },
+    {
+      "id": "probe-en-slang-323f1a713511",
+      "text": "tutoring gig cash 60 bucks",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-683870af57fa",
+      "text": "sold textbooks on ebay 45$",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "ebay"
+      ],
+      "pred": [
+        "income",
+        "ebay"
+      ]
+    },
+    {
+      "id": "probe-en-slang-4cbe32808176",
+      "text": "got paid finally 2400$",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-08b61c7cb08a",
+      "text": "paycheck hit bank 1.9k rn",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-6a8bc27ea485",
+      "text": "client pd logo design 400$",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "client"
+      ],
+      "pred": [
+        "income",
+        "client"
+      ]
+    },
+    {
+      "id": "probe-en-slang-070169d05c7b",
+      "text": "sold bike on craigslist 150$",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "craigslist"
+      ],
+      "pred": [
+        "income",
+        "craigslist"
+      ]
+    },
+    {
+      "id": "probe-en-slang-ee1fe63d7ea2",
+      "text": "ad revenue deposit 120 bucks",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-9568cc22ea24",
+      "text": "etsy shop payout 310$",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "etsy"
+      ],
+      "pred": [
+        "income",
+        "etsy shop"
+      ]
+    },
+    {
+      "id": "probe-en-slang-bce274fec841",
+      "text": "freelance mny in 350 quid",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        "mny"
+      ]
+    },
+    {
+      "id": "probe-en-slang-55dac1f5f45e",
+      "text": "bday cash grandma 50 quid",
+      "source": "claude-adjudicated",
+      "gold": [
+        "income",
+        "grandma"
+      ],
+      "pred": [
+        "income",
+        "grandma"
+      ]
+    },
+    {
+      "id": "probe-en-slang-2313478b2ed0",
+      "text": "sold old monitor 80 quid",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-4ed22206c529",
+      "text": "freelance writing payout 250 quid",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-9be90f340c78",
+      "text": "dividend payout credited 45 quid",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-b34a1b352b4d",
+      "text": "monthly salary credited 65k rs",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-2d91330d6c06",
+      "text": "fd interest credited 1200 rs",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-322313a2e7e6",
+      "text": "freelance web dev 15k rs",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-7eb5ce1cfb29",
+      "text": "angbao from uncle 88 s$",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "uncle"
+      ],
+      "pred": [
+        "expense",
+        "uncle"
+      ]
+    },
+    {
+      "id": "probe-en-slang-1be6b45f483b",
+      "text": "sold phone carousell 200 s$",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "carousell"
+      ],
+      "pred": [
+        "income",
+        "carousell"
+      ]
+    },
+    {
+      "id": "probe-en-slang-ef995e5d0d97",
+      "text": "tutoring pay received 120 s$",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        "s$"
+      ]
+    },
+    {
+      "id": "probe-en-slang-003b1d74d717",
+      "text": "carousell sale cash 45 s$",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "carousell"
+      ],
+      "pred": [
+        "income",
+        "carousell"
+      ]
+    },
+    {
+      "id": "probe-en-slang-2bd80f3abfa2",
+      "text": "company pd annual performance bonus 3 grand rn",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "company"
+      ],
+      "pred": [
+        "income",
+        "company"
+      ]
+    },
+    {
+      "id": "probe-en-slang-0638de6fb29f",
+      "text": "quarterly bonus credited 2 paycheck 1.5k bucks",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-bdd295af37eb",
+      "text": "part time barista shift wage cash 90 bucks",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-95f5431be8e8",
+      "text": "payout from upwork hit paypal acct 450$",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "upwork"
+      ],
+      "pred": [
+        "income",
+        "upwork"
+      ]
+    },
+    {
+      "id": "probe-en-slang-d03fb6ac6c08",
+      "text": "client sent wire transfer 4 consulting 2 grand",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "client"
+      ],
+      "pred": [
+        "income",
+        "client"
+      ]
+    },
+    {
+      "id": "probe-en-slang-1747d5ff2148",
+      "text": "client cleared final invoice 4 project 800 quid",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "client"
+      ],
+      "pred": [
+        "income",
+        "client"
+      ]
+    },
+    {
+      "id": "probe-en-slang-6999062909b3",
+      "text": "sold designer jacket on vinted 75 quid cash",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "vinted"
+      ],
+      "pred": [
+        "income",
+        "vinted"
+      ]
+    },
+    {
+      "id": "probe-en-slang-b505d5ba5fd9",
+      "text": "weekend photography gig cash in hand 300 quid",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-24f62a34c91b",
+      "text": "received deposit back from old landlord 800 quid",
+      "source": "claude-adjudicated",
+      "gold": [
+        "refund",
+        "landlord"
+      ],
+      "pred": [
+        "refund",
+        "old landlord"
+      ]
+    },
+    {
+      "id": "probe-en-slang-d8796a1c6705",
+      "text": "salary credited in hdfc bank 55k rs eod",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        "hdfc"
+      ]
+    },
+    {
+      "id": "probe-en-slang-1516700d2ab8",
+      "text": "boss transferred festival bonus 10k rs today rn",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "boss"
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-93c9ceb94b20",
+      "text": "freelance client paid 25k rs 4 app design",
+      "source": "claude-adjudicated",
+      "gold": [
+        "income",
+        "client"
+      ],
+      "pred": [
+        "income",
+        "client"
+      ]
+    },
+    {
+      "id": "probe-en-slang-6d64bdd5dc32",
+      "text": "dbs bank salary deposit in 4.2k s$",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-0cee3505fc8b",
+      "text": "shopee seller payout credited 350 s$ today",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "shopee"
+      ],
+      "pred": [
+        "income",
+        "shopee"
+      ]
+    },
+    {
+      "id": "probe-en-slang-57744168d1e4",
+      "text": "received settlement check in mail 4 old class action lawsuit 140 bucks",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-a5741519bd5e",
+      "text": "sold old car on craigslist cash in hand 2.2 grand today",
+      "source": "claude-adjudicated",
+      "gold": [
+        "income",
+        "craigslist"
+      ],
+      "pred": [
+        "income",
+        "craigslist"
+      ]
+    },
+    {
+      "id": "probe-en-slang-d92dca46925a",
+      "text": "client finally pd the overdue invoice 4 website dev 1400 quid thx",
+      "source": "consensus",
+      "gold": [
+        "income",
+        "client"
+      ],
+      "pred": [
+        "repayment_out",
+        "client"
+      ]
+    },
+    {
+      "id": "probe-en-slang-1d38d8bb69fa",
+      "text": "sold vintage guitar on gumtree cash in hand 850 quid today",
+      "source": "claude-adjudicated",
+      "gold": [
+        "income",
+        "gumtree"
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-9f9cabdd8a48",
+      "text": "company credited full month salary plus travel allowance 72k rs eod",
+      "source": "consensus",
+      "gold": [
+        "income",
+        null
+      ],
+      "pred": [
+        "income",
+        "company"
+      ]
+    },
+    {
+      "id": "probe-en-slang-d4b02c3998cc",
+      "text": "fronted priya 40 tix",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "priya"
+      ],
+      "pred": [
+        "lend",
+        "priya"
+      ]
+    },
+    {
+      "id": "probe-en-slang-637511eee2f8",
+      "text": "cvrd uber 4 bro 15$",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "bro"
+      ],
+      "pred": [
+        "expense",
+        "cvrd"
+      ]
+    },
+    {
+      "id": "probe-en-slang-2f67b85c57ac",
+      "text": "bf owes me 35 groc",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "bf"
+      ],
+      "pred": [
+        "lend",
+        "bf"
+      ]
+    },
+    {
+      "id": "probe-en-slang-3eaa21f63479",
+      "text": "lunch on card 4 sam",
+      "source": "claude-adjudicated",
+      "gold": [
+        "lend",
+        "sam"
+      ],
+      "pred": [
+        "lend",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-6e98908fdc69",
+      "text": "fronted dave 25 4 din",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "dave"
+      ],
+      "pred": [
+        "lend",
+        "dave"
+      ]
+    },
+    {
+      "id": "probe-en-slang-7c412b9459b2",
+      "text": "lent u 10 bucks coffee",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "u"
+      ],
+      "pred": [
+        "lend",
+        "u"
+      ]
+    },
+    {
+      "id": "probe-en-slang-328469166e00",
+      "text": "dinner on tab 4 priya",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "priya"
+      ],
+      "pred": [
+        "expense",
+        "priya"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f7e3ee295a43",
+      "text": "cvrd groceries 4 roomie 55$",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "roomie"
+      ],
+      "pred": [
+        "expense",
+        "cvrd"
+      ]
+    },
+    {
+      "id": "probe-en-slang-815aeb4ca5e3",
+      "text": "sam owes me a tenner",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "sam"
+      ],
+      "pred": [
+        "lend",
+        "sam"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f169364ffe6c",
+      "text": "fronted 100 4 concert tix",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        null
+      ],
+      "pred": [
+        "lend",
+        "tix"
+      ]
+    },
+    {
+      "id": "probe-en-slang-48f0a3e80f0a",
+      "text": "lent mate 50 quid fri",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "mate"
+      ],
+      "pred": [
+        "lend",
+        "mate"
+      ]
+    },
+    {
+      "id": "probe-en-slang-46ddfb54cde8",
+      "text": "cvrd ur cab chloe 14",
+      "source": "claude-adjudicated",
+      "gold": [
+        "lend",
+        "chloe"
+      ],
+      "pred": [
+        "lend",
+        "cvrd"
+      ]
+    },
+    {
+      "id": "probe-en-slang-8aae9193b202",
+      "text": "lent neighbor 15 quid meter",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "neighbor"
+      ],
+      "pred": [
+        "lend",
+        "neighbor"
+      ]
+    },
+    {
+      "id": "probe-en-slang-7456e3266d31",
+      "text": "fronted concert pass 70 quid",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        null
+      ],
+      "pred": [
+        "lend",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-8bcec33db81c",
+      "text": "cvrd drinks 4 crew 60 🍻",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "crew"
+      ],
+      "pred": [
+        "expense",
+        "cvrd"
+      ]
+    },
+    {
+      "id": "probe-en-slang-fedf99664c7a",
+      "text": "mate owes me 25 quid",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "mate"
+      ],
+      "pred": [
+        "lend",
+        "mate"
+      ]
+    },
+    {
+      "id": "probe-en-slang-14f825f830f9",
+      "text": "lent buddy 20 quid petrol",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "buddy"
+      ],
+      "pred": [
+        "lend",
+        "buddy"
+      ]
+    },
+    {
+      "id": "probe-en-slang-3d2692a99d10",
+      "text": "bro owes me 500 rs",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "bro"
+      ],
+      "pred": [
+        "lend",
+        "bro"
+      ]
+    },
+    {
+      "id": "probe-en-slang-835ddbb864e9",
+      "text": "covered fastag recharge 500 rs",
+      "source": "claude-adjudicated",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-e661e8f6f886",
+      "text": "lent cousin 2000 rs petrol",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "cousin"
+      ],
+      "pred": [
+        "lend",
+        "cousin"
+      ]
+    },
+    {
+      "id": "probe-en-slang-5d5b90299675",
+      "text": "fronted wei ming 30 s$",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "wei ming"
+      ],
+      "pred": [
+        "lend",
+        "wei ming"
+      ]
+    },
+    {
+      "id": "probe-en-slang-4bddbacc7626",
+      "text": "cvrd lunch 4 mate 12",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "mate"
+      ],
+      "pred": [
+        "expense",
+        "cvrd"
+      ]
+    },
+    {
+      "id": "probe-en-slang-96924e47b10d",
+      "text": "lent colleague 15 s$ kopi",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "colleague"
+      ],
+      "pred": [
+        "lend",
+        "colleague"
+      ]
+    },
+    {
+      "id": "probe-en-slang-4b995489fcb4",
+      "text": "fronted movie tix 28 s$",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        null
+      ],
+      "pred": [
+        "lend",
+        "tix"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f3cca62feff3",
+      "text": "fronted sam 60 bucks 4 his train ticket",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "sam"
+      ],
+      "pred": [
+        "lend",
+        "sam"
+      ]
+    },
+    {
+      "id": "probe-en-slang-7fe03b5f6b5b",
+      "text": "cvrd the entire bill 4 squad they owe 120$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "lend",
+        "squad"
+      ],
+      "pred": [
+        "lend",
+        "cvrd"
+      ]
+    },
+    {
+      "id": "probe-en-slang-5a11a4519599",
+      "text": "fronted 200 4 airbnb share 4 weekend trip",
+      "source": "claude-adjudicated",
+      "gold": [
+        "lend",
+        null
+      ],
+      "pred": [
+        "lend",
+        "airbnb"
+      ]
+    },
+    {
+      "id": "probe-en-slang-a95dd9911893",
+      "text": "cvrd grocery run 4 apartment roomies owe 45$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "lend",
+        "roomies"
+      ],
+      "pred": [
+        "borrow",
+        "cvrd"
+      ]
+    },
+    {
+      "id": "probe-en-slang-ccddf88d4752",
+      "text": "paid lunch 4 whole table sam owes his 15",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "sam"
+      ],
+      "pred": [
+        "lend",
+        "sam"
+      ]
+    },
+    {
+      "id": "probe-en-slang-cf7c03a875e9",
+      "text": "put hotel deposit on credit card 4 squad 150$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "lend",
+        "squad"
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-6a9aa672e2dd",
+      "text": "paid for mark dinner bc he forgot wallet 28",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "mark"
+      ],
+      "pred": [
+        "repayment_out",
+        "mark"
+      ]
+    },
+    {
+      "id": "probe-en-slang-719c3eab1e64",
+      "text": "lent buddy 100 quid till payday next week pls",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "buddy"
+      ],
+      "pred": [
+        "lend",
+        "buddy"
+      ]
+    },
+    {
+      "id": "probe-en-slang-56ab1dc0f781",
+      "text": "fronted tickets 4 football match 80 quid 4 dave",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "dave"
+      ],
+      "pred": [
+        "lend",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-b9b415b17640",
+      "text": "covered drinks tab 4 lads they owe 65 quid",
+      "source": "claude-adjudicated",
+      "gold": [
+        "lend",
+        "lads"
+      ],
+      "pred": [
+        "lend",
+        "lads"
+      ]
+    },
+    {
+      "id": "probe-en-slang-31b3a7d6e432",
+      "text": "lent bro 2000 rs bc his upi was down",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "bro"
+      ],
+      "pred": [
+        "lend",
+        "bro"
+      ]
+    },
+    {
+      "id": "probe-en-slang-035c3902a2c3",
+      "text": "lent cousin 1 lakh rs 4 medical emergency",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "cousin"
+      ],
+      "pred": [
+        "lend",
+        "cousin"
+      ]
+    },
+    {
+      "id": "probe-en-slang-866d63f76e14",
+      "text": "covered grab ride 4 colleagues they owe 22 s$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "lend",
+        "colleagues"
+      ],
+      "pred": [
+        "lend",
+        "grab"
+      ]
+    },
+    {
+      "id": "probe-en-slang-74631458030c",
+      "text": "fronted chalet booking 4 poly friends 85 s$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "lend",
+        "friends"
+      ],
+      "pred": [
+        "lend",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-8789f52a4af6",
+      "text": "fronted sam 120 4 concert tix bc his card declined he said tmrw",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "sam"
+      ],
+      "pred": [
+        "repayment_in",
+        "sam"
+      ]
+    },
+    {
+      "id": "probe-en-slang-41988ac95ba0",
+      "text": "covered flight booking 4 sis 250 bucks she will transfer eod",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "sis"
+      ],
+      "pred": [
+        "lend",
+        "sis"
+      ]
+    },
+    {
+      "id": "probe-en-slang-50451269f95f",
+      "text": "paid dinner tab 4 whole group 85 quid they promised 2 monzo me",
+      "source": "claude-adjudicated",
+      "gold": [
+        "lend",
+        "group"
+      ],
+      "pred": [
+        "repayment_out",
+        "group"
+      ]
+    },
+    {
+      "id": "probe-en-slang-b2c16162dd52",
+      "text": "put down advance deposit 4 holiday chalet 300 s$ friends owe me",
+      "source": "consensus",
+      "gold": [
+        "lend",
+        "friends"
+      ],
+      "pred": [
+        "borrow",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-e0613430907e",
+      "text": "owe landlord 400 rent rn 💀",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "landlord"
+      ],
+      "pred": [
+        "borrow",
+        "landlord"
+      ]
+    },
+    {
+      "id": "probe-en-slang-8b59c3faeba7",
+      "text": "iou mike 15 bucks",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "mike"
+      ],
+      "pred": [
+        "borrow",
+        "mike"
+      ]
+    },
+    {
+      "id": "probe-en-slang-7261aa77e6b7",
+      "text": "salary advance 500 bc emergency",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        null
+      ],
+      "pred": [
+        "income",
+        "bc"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f31149b3874e",
+      "text": "borrowed 30 from gf groc",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "gf"
+      ],
+      "pred": [
+        "borrow",
+        "gf"
+      ]
+    },
+    {
+      "id": "probe-en-slang-d33267c4fa6d",
+      "text": "iou sam 25 bucks drinks",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "sam"
+      ],
+      "pred": [
+        "borrow",
+        "sam"
+      ]
+    },
+    {
+      "id": "probe-en-slang-b7d81bbc0a3e",
+      "text": "payday loan advance 300 bucks",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        null
+      ],
+      "pred": [
+        "borrow",
+        "payday loan"
+      ]
+    },
+    {
+      "id": "probe-en-slang-3b39eecac294",
+      "text": "borrowed 40 from roomie elec",
+      "source": "claude-adjudicated",
+      "gold": [
+        "borrow",
+        "roomie"
+      ],
+      "pred": [
+        "borrow",
+        "roomie"
+      ]
+    },
+    {
+      "id": "probe-en-slang-c2799d352fdf",
+      "text": "owe u 15 bucks bro",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "bro"
+      ],
+      "pred": [
+        "borrow",
+        "u"
+      ]
+    },
+    {
+      "id": "probe-en-slang-b7b0c0771079",
+      "text": "borrowed 50 quid mate broke 😭",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "mate"
+      ],
+      "pred": [
+        "borrow",
+        "mate"
+      ]
+    },
+    {
+      "id": "probe-en-slang-6a19a2676a0e",
+      "text": "owe mum 60 quid groceries",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "mum"
+      ],
+      "pred": [
+        "borrow",
+        "mum"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f0f374996241",
+      "text": "borrowed tenner from coworker food",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "coworker"
+      ],
+      "pred": [
+        "repayment_in",
+        "coworker"
+      ]
+    },
+    {
+      "id": "probe-en-slang-84a8bba385c3",
+      "text": "owe u 35 quid tix",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "u"
+      ],
+      "pred": [
+        "borrow",
+        "u"
+      ]
+    },
+    {
+      "id": "probe-en-slang-271bf0bab8ba",
+      "text": "owe bro 1000 rs petrol",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "bro"
+      ],
+      "pred": [
+        "borrow",
+        "bro"
+      ]
+    },
+    {
+      "id": "probe-en-slang-4d5cc7d4f3bb",
+      "text": "owe priya 400 rs auto",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "priya"
+      ],
+      "pred": [
+        "borrow",
+        "priya"
+      ]
+    },
+    {
+      "id": "probe-en-slang-2d41ce3dd97e",
+      "text": "borrowed 500 rs from bhai",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "bhai"
+      ],
+      "pred": [
+        "borrow",
+        "bhai"
+      ]
+    },
+    {
+      "id": "probe-en-slang-7875c73a1a72",
+      "text": "owe wei ming 15 s$ lunch",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "wei ming"
+      ],
+      "pred": [
+        "borrow",
+        "wei ming"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f8cc060d1b7f",
+      "text": "borrowed 20 s$ from roomie",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "roomie"
+      ],
+      "pred": [
+        "borrow",
+        "s$"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f160380d7b16",
+      "text": "borrowed 100 bucks from mom till payday fri",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "mom"
+      ],
+      "pred": [
+        "borrow",
+        "mom"
+      ]
+    },
+    {
+      "id": "probe-en-slang-863d5a565cc9",
+      "text": "owe roommate 60 bucks 4 my share utilities",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "roommate"
+      ],
+      "pred": [
+        "borrow",
+        "roommate"
+      ]
+    },
+    {
+      "id": "probe-en-slang-789e60d4eb4f",
+      "text": "took 300 bucks advance on paycheck from boss",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "boss"
+      ],
+      "pred": [
+        "borrow",
+        "boss"
+      ]
+    },
+    {
+      "id": "probe-en-slang-e2094873885c",
+      "text": "owe cousin 20 bucks 4 gas on trip",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "cousin"
+      ],
+      "pred": [
+        "borrow",
+        "cousin"
+      ]
+    },
+    {
+      "id": "probe-en-slang-43288f4b6f13",
+      "text": "borrowed 40 bucks from coworker bc no cash",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "coworker"
+      ],
+      "pred": [
+        "borrow",
+        "coworker"
+      ]
+    },
+    {
+      "id": "probe-en-slang-5cd58f5000af",
+      "text": "owe mate 45 quid 4 pub crawl last night",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "mate"
+      ],
+      "pred": [
+        "borrow",
+        "mate"
+      ]
+    },
+    {
+      "id": "probe-en-slang-0b7abcbbcbbb",
+      "text": "borrowed 80 quid from dad 4 train ticket",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "dad"
+      ],
+      "pred": [
+        "borrow",
+        "dad"
+      ]
+    },
+    {
+      "id": "probe-en-slang-86443126665c",
+      "text": "took 1000 advance on salary bc rent due tmrw",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        null
+      ],
+      "pred": [
+        "borrow",
+        "bc"
+      ]
+    },
+    {
+      "id": "probe-en-slang-018317359e9b",
+      "text": "borrowed 2000 rs from cousin 4 train booking",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "cousin"
+      ],
+      "pred": [
+        "borrow",
+        "cousin"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f28a1edd0285",
+      "text": "owe rahul 1500 rs 4 swiggy party order",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "rahul"
+      ],
+      "pred": [
+        "borrow",
+        "rahul"
+      ]
+    },
+    {
+      "id": "probe-en-slang-8f0693f978a5",
+      "text": "borrowed 50 s$ from colleague bc forgot wallet today",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "colleague"
+      ],
+      "pred": [
+        "borrow",
+        "s$"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f20ac8326fc8",
+      "text": "borrowed 200 bucks from sis bc account overdrawn will pay bck fri eod",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "sis"
+      ],
+      "pred": [
+        "borrow",
+        "sis"
+      ]
+    },
+    {
+      "id": "probe-en-slang-46f992e67048",
+      "text": "owe landlord 500 bucks remaining rent promised 2 clear by end of week",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "landlord"
+      ],
+      "pred": [
+        "borrow",
+        "landlord"
+      ]
+    },
+    {
+      "id": "probe-en-slang-e53ce740aca6",
+      "text": "took 50k rs personal loan from uncle 4 brother college fee urgency",
+      "source": "consensus",
+      "gold": [
+        "borrow",
+        "uncle"
+      ],
+      "pred": [
+        "expense",
+        "uncle"
+      ]
+    },
+    {
+      "id": "probe-en-slang-3b9c16dd08df",
+      "text": "mike pd 15 back",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "mike"
+      ],
+      "pred": [
+        "repayment_in",
+        "mike"
+      ]
+    },
+    {
+      "id": "probe-en-slang-c67dbea71b8b",
+      "text": "sam sent 20 rn ty",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "sam"
+      ],
+      "pred": [
+        "repayment_in",
+        "sam"
+      ]
+    },
+    {
+      "id": "probe-en-slang-c39b542663d3",
+      "text": "priya pd back 40 tix",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "priya"
+      ],
+      "pred": [
+        "repayment_in",
+        "priya"
+      ]
+    },
+    {
+      "id": "probe-en-slang-072747db1160",
+      "text": "sis returned 30 she owed",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "sis"
+      ],
+      "pred": [
+        "repayment_in",
+        "sis"
+      ]
+    },
+    {
+      "id": "probe-en-slang-55932c17e5bb",
+      "text": "dave settled up 50 bucks",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "dave"
+      ],
+      "pred": [
+        "repayment_in",
+        "dave"
+      ]
+    },
+    {
+      "id": "probe-en-slang-4235f228c60f",
+      "text": "roomie sent 40 wifi bill",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "roomie"
+      ],
+      "pred": [
+        "repayment_in",
+        "roomie"
+      ]
+    },
+    {
+      "id": "probe-en-slang-a33da9945f22",
+      "text": "alex sent ur 22 bucks",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "alex"
+      ],
+      "pred": [
+        "repayment_in",
+        "alex"
+      ]
+    },
+    {
+      "id": "probe-en-slang-c92b194c266d",
+      "text": "dan sent ur 35 pizza",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "dan"
+      ],
+      "pred": [
+        "repayment_in",
+        "dan"
+      ]
+    },
+    {
+      "id": "probe-en-slang-e15795a0a8aa",
+      "text": "coworker gave back 10 cash",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "coworker"
+      ],
+      "pred": [
+        "refund",
+        "coworker"
+      ]
+    },
+    {
+      "id": "probe-en-slang-80eda8f9b8a2",
+      "text": "sarah venmod 18 4 uber",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_in",
+        "sarah"
+      ],
+      "pred": [
+        "repayment_in",
+        "sarah"
+      ]
+    },
+    {
+      "id": "probe-en-slang-e7252596126b",
+      "text": "joe cleared 60 bucks tab",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "joe"
+      ],
+      "pred": [
+        "repayment_in",
+        "joe"
+      ]
+    },
+    {
+      "id": "probe-en-slang-4390d1c977cc",
+      "text": "mate cleared debt 30 quid",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_in",
+        "mate"
+      ],
+      "pred": [
+        "repayment_in",
+        "mate"
+      ]
+    },
+    {
+      "id": "probe-en-slang-8aaa3214a448",
+      "text": "chloe monzoed me 15 quid",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "chloe"
+      ],
+      "pred": [
+        "repayment_out",
+        "chloe"
+      ]
+    },
+    {
+      "id": "probe-en-slang-ecaa2f61692f",
+      "text": "mum sent back 50 quid",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "mum"
+      ],
+      "pred": [
+        "repayment_in",
+        "mum"
+      ]
+    },
+    {
+      "id": "probe-en-slang-73ea8e3c5b54",
+      "text": "mark paid u bck 25",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "mark"
+      ],
+      "pred": [
+        "repayment_in",
+        "mark"
+      ]
+    },
+    {
+      "id": "probe-en-slang-b42a8cd0c58b",
+      "text": "tunde sent 40 match tix",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "tunde"
+      ],
+      "pred": [
+        "repayment_in",
+        "tunde"
+      ]
+    },
+    {
+      "id": "probe-en-slang-5e680a72d3e4",
+      "text": "bro upi me 500 rs 🙏",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "bro"
+      ],
+      "pred": [
+        "repayment_out",
+        "bro"
+      ]
+    },
+    {
+      "id": "probe-en-slang-765add76b20e",
+      "text": "rahul returned 1000 rs loan",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "rahul"
+      ],
+      "pred": [
+        "repayment_in",
+        "rahul"
+      ]
+    },
+    {
+      "id": "probe-en-slang-63e2267096a7",
+      "text": "cousin upi 1500 rs debt",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_in",
+        "cousin"
+      ],
+      "pred": [
+        "repayment_out",
+        "cousin"
+      ]
+    },
+    {
+      "id": "probe-en-slang-cde791276bca",
+      "text": "wei ming paynowed 12 s$",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "wei ming"
+      ],
+      "pred": [
+        "repayment_in",
+        "wei ming"
+      ]
+    },
+    {
+      "id": "probe-en-slang-b7738f969692",
+      "text": "desmond sent 20 s$ lunch",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "desmond"
+      ],
+      "pred": [
+        "repayment_in",
+        "desmond"
+      ]
+    },
+    {
+      "id": "probe-en-slang-70e04ef21907",
+      "text": "cheryl paynowed 15 s$ bbt",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_in",
+        "cheryl"
+      ],
+      "pred": [
+        "lend",
+        "cheryl"
+      ]
+    },
+    {
+      "id": "probe-en-slang-c9fcd5f9da65",
+      "text": "roomie paynowed his share 35",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "roomie"
+      ],
+      "pred": [
+        "repayment_in",
+        "roomie"
+      ]
+    },
+    {
+      "id": "probe-en-slang-0f0b08a433e8",
+      "text": "sam pd me bck 4 lunch 15 bucks ty",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "sam"
+      ],
+      "pred": [
+        "repayment_in",
+        "sam"
+      ]
+    },
+    {
+      "id": "probe-en-slang-5e1b87e8975c",
+      "text": "dave sent 60 bucks 4 concert tickets yesterday",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_in",
+        "dave"
+      ],
+      "pred": [
+        "repayment_in",
+        "dave"
+      ]
+    },
+    {
+      "id": "probe-en-slang-bcad5d0ca8f4",
+      "text": "roommate paid his half of electricity bill 55",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "roommate"
+      ],
+      "pred": [
+        "repayment_in",
+        "roommate"
+      ]
+    },
+    {
+      "id": "probe-en-slang-4d72ca82788b",
+      "text": "mark venmod his share of the groceries 42",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_in",
+        "mark"
+      ],
+      "pred": [
+        "repayment_in",
+        "mark"
+      ]
+    },
+    {
+      "id": "probe-en-slang-6ca6cedd6ac3",
+      "text": "dan finally returned 100 bucks after two months",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "dan"
+      ],
+      "pred": [
+        "repayment_in",
+        "dan"
+      ]
+    },
+    {
+      "id": "probe-en-slang-20a21076110f",
+      "text": "bro cleared the 50 quid debt via transfer",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "bro"
+      ],
+      "pred": [
+        "repayment_out",
+        "bro"
+      ]
+    },
+    {
+      "id": "probe-en-slang-d7876dc2c177",
+      "text": "mate settled up 4 the weekend drinks 35",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "mate"
+      ],
+      "pred": [
+        "repayment_in",
+        "mate"
+      ]
+    },
+    {
+      "id": "probe-en-slang-8a6efe388acd",
+      "text": "chloe paid back the 20 quid loan friday",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_in",
+        "chloe"
+      ],
+      "pred": [
+        "repayment_in",
+        "chloe"
+      ]
+    },
+    {
+      "id": "probe-en-slang-3e40dfc94b3b",
+      "text": "priya returned the 2000 rs I lent week",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "priya"
+      ],
+      "pred": [
+        "repayment_in",
+        "priya"
+      ]
+    },
+    {
+      "id": "probe-en-slang-12145ac04607",
+      "text": "cousin upi me 800 rs 4 petrol share",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_in",
+        "cousin"
+      ],
+      "pred": [
+        "expense",
+        "cousin"
+      ]
+    },
+    {
+      "id": "probe-en-slang-616a1ddcfc93",
+      "text": "wei ming sent 28 s$ 4 hotpot share thx",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "wei ming"
+      ],
+      "pred": [
+        "repayment_in",
+        "wei ming"
+      ]
+    },
+    {
+      "id": "probe-en-slang-90dcf46be2dd",
+      "text": "colleague paynowed 18 s$ 4 cab share earlier",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "colleague"
+      ],
+      "pred": [
+        "lend",
+        "colleague"
+      ]
+    },
+    {
+      "id": "probe-en-slang-996b7e054c52",
+      "text": "sam transferred 75 bucks 4 his share of the airbnb we booked b4",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_in",
+        "sam"
+      ],
+      "pred": [
+        "repayment_in",
+        "sam"
+      ]
+    },
+    {
+      "id": "probe-en-slang-4e18f7eb0607",
+      "text": "roommate finally sent 120 bucks 4 two months of past wifi bills",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "roommate"
+      ],
+      "pred": [
+        "repayment_in",
+        "roommate"
+      ]
+    },
+    {
+      "id": "probe-en-slang-f7be59be294d",
+      "text": "dave settled up the remaining 40 quid from our road trip last month thx",
+      "source": "consensus",
+      "gold": [
+        "repayment_in",
+        "dave"
+      ],
+      "pred": [
+        "repayment_in",
+        "dave"
+      ]
+    },
+    {
+      "id": "probe-en-slang-52fea8d51050",
+      "text": "priya upi me 3500 rs 4 the flight tickets I booked 4 her",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_in",
+        "priya"
+      ],
+      "pred": [
+        "repayment_in",
+        "priya"
+      ]
+    },
+    {
+      "id": "probe-en-slang-02577d2b2c94",
+      "text": "pd mike back 15 bucks",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_out",
+        "mike"
+      ],
+      "pred": [
+        "repayment_in",
+        "pd mike"
+      ]
+    },
+    {
+      "id": "probe-en-slang-02df1737e5f4",
+      "text": "settled up w/ priya 40",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_out",
+        "priya"
+      ],
+      "pred": [
+        "repayment_in",
+        "priya"
+      ]
+    },
+    {
+      "id": "probe-en-slang-726ca3f6dee3",
+      "text": "pd cc bill eod 450$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_out",
+        null
+      ],
+      "pred": [
+        "expense",
+        "cc"
+      ]
+    },
+    {
+      "id": "probe-en-slang-424b59bdd0ec",
+      "text": "paid off afterpay 30 bucks",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        "afterpay"
+      ],
+      "pred": [
+        "repayment_out",
+        "afterpay"
+      ]
+    },
+    {
+      "id": "probe-en-slang-36d2a5ae0172",
+      "text": "settled debt w/ sam 20$",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        "sam"
+      ],
+      "pred": [
+        "repayment_out",
+        "sam"
+      ]
+    },
+    {
+      "id": "probe-en-slang-4a43b15f1add",
+      "text": "repaid dad 200 bucks loan",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        "dad"
+      ],
+      "pred": [
+        "repayment_out",
+        "dad"
+      ]
+    },
+    {
+      "id": "probe-en-slang-b4cc6e730643",
+      "text": "cleared chase credit card 350$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_out",
+        "chase"
+      ],
+      "pred": [
+        "repayment_out",
+        "chase"
+      ]
+    },
+    {
+      "id": "probe-en-slang-8638b36dae80",
+      "text": "credit card bill pd 1.2k",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_out",
+        null
+      ],
+      "pred": [
+        "repayment_out",
+        "credit card"
+      ]
+    },
+    {
+      "id": "probe-en-slang-da86b199628d",
+      "text": "repaid gf 25 4 groc",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        "gf"
+      ],
+      "pred": [
+        "repayment_out",
+        "gf"
+      ]
+    },
+    {
+      "id": "probe-en-slang-8094c2fd4037",
+      "text": "paid back bro 50 quid",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        "bro"
+      ],
+      "pred": [
+        "repayment_out",
+        "bro"
+      ]
+    },
+    {
+      "id": "probe-en-slang-2a29bbeb140d",
+      "text": "cleared monzo flex pymt 40",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        "monzo flex"
+      ],
+      "pred": [
+        "repayment_out",
+        "monzo flex"
+      ]
+    },
+    {
+      "id": "probe-en-slang-7ae69ea9157c",
+      "text": "pd mum back 100 quid",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_out",
+        "mum"
+      ],
+      "pred": [
+        "repayment_out",
+        "pd"
+      ]
+    },
+    {
+      "id": "probe-en-slang-9358ae0522df",
+      "text": "emi pd 4 phone 15k",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        null
+      ],
+      "pred": [
+        "expense",
+        "emi"
+      ]
+    },
+    {
+      "id": "probe-en-slang-910f44823875",
+      "text": "cleared hdfc credit card 8500",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_out",
+        "hdfc"
+      ],
+      "pred": [
+        "repayment_out",
+        "hdfc credit card"
+      ]
+    },
+    {
+      "id": "probe-en-slang-a43d34ba70ba",
+      "text": "hdb loan pymt 600 s$",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        "hdb"
+      ],
+      "pred": [
+        "repayment_out",
+        "hdb"
+      ]
+    },
+    {
+      "id": "probe-en-slang-9ab06b743a36",
+      "text": "pay u bck 20 s$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_out",
+        null
+      ],
+      "pred": [
+        "lend",
+        "u"
+      ]
+    },
+    {
+      "id": "probe-en-slang-43574633c38f",
+      "text": "repaid wei ming 15 s$",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        "wei ming"
+      ],
+      "pred": [
+        "repayment_out",
+        "wei ming"
+      ]
+    },
+    {
+      "id": "probe-en-slang-b3e8a1f31eab",
+      "text": "paid back sam 50 bucks 4 concert tix",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        "sam"
+      ],
+      "pred": [
+        "repayment_out",
+        "sam"
+      ]
+    },
+    {
+      "id": "probe-en-slang-6a6c76b2aae6",
+      "text": "paid off discover credit card balance 320 dollars",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_out",
+        "discover"
+      ],
+      "pred": [
+        "repayment_out",
+        "discover"
+      ]
+    },
+    {
+      "id": "probe-en-slang-9522c81427df",
+      "text": "paid josh 15 bucks 4 the haircut earlier",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "josh"
+      ],
+      "pred": [
+        "expense",
+        "josh"
+      ]
+    },
+    {
+      "id": "probe-en-slang-299523be8ce8",
+      "text": "settled up w/ dave 4 the golf 40$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_out",
+        "dave"
+      ],
+      "pred": [
+        "repayment_in",
+        "dave"
+      ]
+    },
+    {
+      "id": "probe-en-slang-47ff02c15e42",
+      "text": "paid off final installment on laptop 100 bucks",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        null
+      ],
+      "pred": [
+        "repayment_out",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-d89e772f1a33",
+      "text": "settled up debt w/ roommate 70 quid today",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        "roommate"
+      ],
+      "pred": [
+        "repayment_out",
+        "roommate"
+      ]
+    },
+    {
+      "id": "probe-en-slang-2f89f2eb38e1",
+      "text": "repaid mum 60 quid 4 last week groceries",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        "mum"
+      ],
+      "pred": [
+        "repayment_out",
+        "mum"
+      ]
+    },
+    {
+      "id": "probe-en-slang-7e71082aca61",
+      "text": "cleared outstanding balance on barclaycard 150 quid eod",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        "barclaycard"
+      ],
+      "pred": [
+        "repayment_out",
+        "barclaycard"
+      ]
+    },
+    {
+      "id": "probe-en-slang-a8647d57e1c3",
+      "text": "cleared monthly education loan emi 8000 rs online",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        null
+      ],
+      "pred": [
+        "repayment_out",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-6225771ce4ec",
+      "text": "paynowed roommate 40 s$ 4 utilities bill eod",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        "roommate"
+      ],
+      "pred": [
+        "expense",
+        "roommate"
+      ]
+    },
+    {
+      "id": "probe-en-slang-9b5cfc607692",
+      "text": "paid back bro the 200 bucks he lent me 4 car repairs thx",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        "bro"
+      ],
+      "pred": [
+        "repayment_out",
+        "bro"
+      ]
+    },
+    {
+      "id": "probe-en-slang-08923de54600",
+      "text": "settled full outstanding credit card balance b4 interest hits 580 dollars rn",
+      "source": "claude-adjudicated",
+      "gold": [
+        "repayment_out",
+        null
+      ],
+      "pred": [
+        "repayment_out",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-b1c4905568d7",
+      "text": "cleared the remaining 5000 rs debt 2 cousin via gpay finally",
+      "source": "consensus",
+      "gold": [
+        "repayment_out",
+        "cousin"
+      ],
+      "pred": [
+        "repayment_out",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-4b015203af6e",
+      "text": "mv 500 2 sav acct",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-01cb23238f1b",
+      "text": "tf 200 cash app chase",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-fc7fa3f18bad",
+      "text": "w/drew 100 atm cash",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-489ca876345f",
+      "text": "put 1k in vti eod",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-99fd67342570",
+      "text": "deposited 300 cash at atm",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-253cb4f37404",
+      "text": "put 250 in roth ira",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-a552cf0c4208",
+      "text": "dca 100 into btc rn",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-56041070dcfa",
+      "text": "moved 200 2 rainy day",
+      "source": "claude-adjudicated",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-a1f92ddfd71b",
+      "text": "tf 400 2 emergency stash",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-8fe7af0730ce",
+      "text": "put 500 in s&p index",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-ef80813687a3",
+      "text": "moved 100 checking 2 savings",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-8a4e0e07a19c",
+      "text": "tf 300 chase 2 schwab",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-32ce8b74527b",
+      "text": "w/drawal 200 bucks atm",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-17e4a943182c",
+      "text": "transferred 75 2 venmo balance",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-ee55fe2187df",
+      "text": "withdrew 50 quid from atm",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-3f09176643b7",
+      "text": "transferred 150 2 revolut card",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-de5ef579361f",
+      "text": "moved 80 quid 2 pot",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-8c7cb24fd57b",
+      "text": "recharged fastag 1000 rs rn",
+      "source": "claude-adjudicated",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-923f467da9bc",
+      "text": "transferred 2k rs paytm wallet",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-c8e528ad27d4",
+      "text": "shifted 20k rs mutual fund",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-a7428f633127",
+      "text": "tf 1000 s$ 2 endowus",
+      "source": "claude-adjudicated",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-baecac2de8b8",
+      "text": "top up ezlink 50 s$",
+      "source": "claude-adjudicated",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        "ezlink"
+      ]
+    },
+    {
+      "id": "probe-en-slang-9b788e102d67",
+      "text": "dbs transfer 2 ocbc 500",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "repayment_out",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-f7bc5c797da2",
+      "text": "top up grabpay 30 s$",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-3522a4623269",
+      "text": "tf 200 s$ 2 stashaway",
+      "source": "claude-adjudicated",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-8221901adc8c",
+      "text": "transferred 500 from main checking 2 savings acct",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-1acf46cfb235",
+      "text": "moved 250 bucks into high yield savings pot",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-8efa88d50467",
+      "text": "moved 300 bucks from paypal balance 2 bank",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-1256bb01235a",
+      "text": "shifted 200 bucks from checking 2 robinhood acct",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "income",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-2734ac9ca78b",
+      "text": "transferred 1000 quid 2 vanguard isa index fund",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-17789d7cd80d",
+      "text": "put 100 quid into premium bonds this month",
+      "source": "claude-adjudicated",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-20f2a9069bb1",
+      "text": "transferred 250 quid from current account 2 savings",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-297d5d8aaff5",
+      "text": "shifted 15k rs from sbi 2 zerodha trading",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "repayment_in",
+        "sbi"
+      ]
+    },
+    {
+      "id": "probe-en-slang-7491d22f34c2",
+      "text": "withdrew 5000 rs from icici atm 4 market",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-36dac65df48b",
+      "text": "transferred 2000 rs from paytm 2 bank acct",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-561f5ab4710f",
+      "text": "topped up paynow linked account 200 s$ eod",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-af18673c0304",
+      "text": "transferred 150 s$ 2 chocolate finance acct",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-e886d322a7ba",
+      "text": "moved 300 s$ from savings 2 joint account",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-76c4eaa5cc21",
+      "text": "transferred 1200 bucks from checking account into high yield savings b4 month end",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-dca553ef1651",
+      "text": "withdrew 300 bucks from atm 4 emergency cash in wallet just in case",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-bdb99f4c3bc4",
+      "text": "moved 500 quid from current account 2 monzo savings pot 4 house deposit",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-a773233904d1",
+      "text": "transferred 1 lakh rs from current acct 2 fixed deposit lock in",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-8d0bae001262",
+      "text": "transferred 1000 s$ from dbs savings into endowus core portfolio online",
+      "source": "consensus",
+      "gold": [
+        "transfer",
+        null
+      ],
+      "pred": [
+        "transfer",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-4660fa05103b",
+      "text": "amazon rfd 25 bucks back",
+      "source": "consensus",
+      "gold": [
+        "refund",
+        "amazon"
+      ],
+      "pred": [
+        "repayment_in",
+        "amazon rfd"
+      ]
+    },
+    {
+      "id": "probe-en-slang-c2286997d3e9",
+      "text": "uber rfd 18$ cancelled ride",
+      "source": "consensus",
+      "gold": [
+        "refund",
+        "uber"
+      ],
+      "pred": [
+        "refund",
+        "uber rfd"
+      ]
+    },
+    {
+      "id": "probe-en-slang-dd0a89a03fa0",
+      "text": "cashback credit card 15$ credited",
+      "source": "claude-adjudicated",
+      "gold": [
+        "refund",
+        null
+      ],
+      "pred": [
+        "refund",
+        "card"
+      ]
+    },
+    {
+      "id": "probe-en-slang-036dc4b2981d",
+      "text": "steam refund 29.99 credited eod",
+      "source": "consensus",
+      "gold": [
+        "refund",
+        "steam"
+      ],
+      "pred": [
+        "refund",
+        "steam"
+      ]
+    },
+    {
+      "id": "probe-en-slang-ad843f38463e",
+      "text": "target refund 22 bucks back",
+      "source": "claude-adjudicated",
+      "gold": [
+        "refund",
+        "target"
+      ],
+      "pred": [
+        "refund",
+        "target"
+      ]
+    },
+    {
+      "id": "probe-en-slang-8cb57f6f2a49",
+      "text": "asos refund 45 quid acct",
+      "source": "consensus",
+      "gold": [
+        "refund",
+        "asos"
+      ],
+      "pred": [
+        "refund",
+        "asos"
+      ]
+    },
+    {
+      "id": "probe-en-slang-fe9c33c3d459",
+      "text": "flight delay compensation 250 quid",
+      "source": "consensus",
+      "gold": [
+        "refund",
+        null
+      ],
+      "pred": [
+        "refund",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-4848f8e43d67",
+      "text": "swiggy refund 150 rs credited",
+      "source": "consensus",
+      "gold": [
+        "refund",
+        "swiggy"
+      ],
+      "pred": [
+        "refund",
+        "swiggy"
+      ]
+    },
+    {
+      "id": "probe-en-slang-1e906fe69d63",
+      "text": "zomato wrong item refund 120",
+      "source": "consensus",
+      "gold": [
+        "refund",
+        "zomato"
+      ],
+      "pred": [
+        "refund",
+        "zomato"
+      ]
+    },
+    {
+      "id": "probe-en-slang-185ae208a3cf",
+      "text": "lazada refund 22 s$ credited",
+      "source": "consensus",
+      "gold": [
+        "refund",
+        "lazada"
+      ],
+      "pred": [
+        "refund",
+        "lazada"
+      ]
+    },
+    {
+      "id": "probe-en-slang-1839a2eb44af",
+      "text": "shopee rfd 15 s$ approved",
+      "source": "consensus",
+      "gold": [
+        "refund",
+        "shopee"
+      ],
+      "pred": [
+        "lend",
+        "shopee rfd"
+      ]
+    },
+    {
+      "id": "probe-en-slang-2a0cc1731118",
+      "text": "amazon refund 4 defective item 35 bucks back",
+      "source": "consensus",
+      "gold": [
+        "refund",
+        "amazon"
+      ],
+      "pred": [
+        "refund",
+        "amazon"
+      ]
+    },
+    {
+      "id": "probe-en-slang-7804c7e676e2",
+      "text": "target store return refund credited 42 dollars eod",
+      "source": "claude-adjudicated",
+      "gold": [
+        "refund",
+        "target"
+      ],
+      "pred": [
+        "refund",
+        "target store"
+      ]
+    },
+    {
+      "id": "probe-en-slang-61d351c759c8",
+      "text": "work reimbursed travel expenses 180 quid 2 acct",
+      "source": "claude-adjudicated",
+      "gold": [
+        "refund",
+        null
+      ],
+      "pred": [
+        "refund",
+        "work"
+      ]
+    },
+    {
+      "id": "probe-en-slang-6899c68ad555",
+      "text": "irctc train ticket cancellation refund 650 rs credited",
+      "source": "consensus",
+      "gold": [
+        "refund",
+        "irctc"
+      ],
+      "pred": [
+        "refund",
+        "irctc"
+      ]
+    },
+    {
+      "id": "probe-en-slang-d12c0f306c31",
+      "text": "grab ride cancellation fee refunded 5.50 s$ thx",
+      "source": "consensus",
+      "gold": [
+        "refund",
+        "grab"
+      ],
+      "pred": [
+        "refund",
+        "grab"
+      ]
+    },
+    {
+      "id": "probe-en-slang-9adcc033b38f",
+      "text": "klook tour refund credited back 45 s$ today",
+      "source": "consensus",
+      "gold": [
+        "refund",
+        "klook"
+      ],
+      "pred": [
+        "refund",
+        "klook tour"
+      ]
+    },
+    {
+      "id": "probe-en-slang-a6ececf74a2e",
+      "text": "airline finally refunded 420 bucks 4 the cancelled summer holiday flight thx",
+      "source": "claude-adjudicated",
+      "gold": [
+        "refund",
+        "airline"
+      ],
+      "pred": [
+        "refund",
+        "airline"
+      ]
+    },
+    {
+      "id": "probe-en-slang-869dfc73ea2a",
+      "text": "company finance reimbursed full hotel stay and taxi bills 380 quid today",
+      "source": "claude-adjudicated",
+      "gold": [
+        "refund",
+        null
+      ],
+      "pred": [
+        "refund",
+        "company"
+      ]
+    },
+    {
+      "id": "probe-en-slang-4697eb75f073",
+      "text": "coffee maybe 5 bucks",
+      "source": "consensus",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-17f7a75529e3",
+      "text": "cant remember what this 35 charge was for",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "income",
+        "cant"
+      ]
+    },
+    {
+      "id": "probe-en-slang-64a73108b104",
+      "text": "idk why there is a 12 dollar charge",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "expense",
+        null
+      ]
+    },
+    {
+      "id": "probe-en-slang-97d252d49357",
+      "text": "dont know why bank charged 15 bucks fee need 2 call them tmrw eod",
+      "source": "claude-adjudicated",
+      "gold": [
+        "expense",
+        null
+      ],
+      "pred": [
+        "lend",
+        null
+      ]
+    }
+  ]
+}

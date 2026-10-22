@@ -1,0 +1,17 @@
+ "source": "roberta-base",
+ "layer_map": {
+  "0": 2,
+  "1": 5,
+  "2": 8,
+  "3": 11
+ },
+ "vocab_policy": "B-rank-8249-max9000+train",
+ "vocab_rows": 9000,
+ "rank_limit": 8249,
+ "train_notes": "experiments/gidi-en-backbone/proxy-train-notes.jsonl",
+ "train_token_ids": 1282,
+ "calibration_notes": "experiments/gidi-en-backbone/proxy-train-notes.jsonl",
+ "positions": 34,
+ "intermediate": 2048,
+ "params": 29004811
+}

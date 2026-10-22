@@ -1,0 +1,129 @@
+loading roberta-base ...
+loading bert-base-uncased ...
+loading google/electra-small-discriminator ...
+loading microsoft/MiniLM-L12-H384-uncased ...
+loading microsoft/deberta-v3-small ...
+loading google/bert_uncased_L-4_H-512_A-8 ...
+tokenizer                            vocab  texts  words  tok/txt  p50   p95  max  fert  %split  unk%    rt%  amt  amt/txt  slang/w  %slsplit
+----------------------------------  ------  -----  -----  -------  ---  ----  ---  ----  ------  ----  -----  ---  -------  -------  --------
+roberta-base                         50265     63    298     6.87  6.0  11.9   14  1.45    39.9   0.0  100.0    9     3.00     1.25      25.0
+bert-base-uncased                    30522     63    298     6.46  6.0  10.0   14  1.37    20.5   0.0   38.1    9     3.00     1.25      25.0
+google/electra-small-discriminator   30522     63    298     6.46  6.0  10.0   14  1.37    20.5   0.0   38.1    9     3.00     1.25      25.0
+microsoft/MiniLM-L12-H384-uncased    30522     63    298     6.46  6.0  10.0   14  1.37    20.5   0.0   38.1    9     3.00     1.25      25.0
+microsoft/deberta-v3-small          128000     63    298     6.14  5.0  10.9   14  1.30    16.8   0.0  100.0    9     3.00     1.00       0.0
+google/bert_uncased_L-4_H-512_A-8    30522     63    298     6.46  6.0  10.0   14  1.37    20.5   0.0   38.1    9     3.00     1.25      25.0
+bert-base-uncased: round trip 'lent Sam $20' -> 'lent sam $ 20'
+bert-base-uncased: round trip 'Mike paid me back 15' -> 'mike paid me back 15'
+bert-base-uncased: round trip "venmo'd mom 50" -> "venmo ' d mom 50"
+google/electra-small-discriminator: round trip 'lent Sam $20' -> 'lent sam $ 20'
+google/electra-small-discriminator: round trip 'Mike paid me back 15' -> 'mike paid me back 15'
+google/electra-small-discriminator: round trip "venmo'd mom 50" -> "venmo ' d mom 50"
+microsoft/MiniLM-L12-H384-uncased: round trip 'lent Sam $20' -> 'lent sam $ 20'
+microsoft/MiniLM-L12-H384-uncased: round trip 'Mike paid me back 15' -> 'mike paid me back 15'
+microsoft/MiniLM-L12-H384-uncased: round trip "venmo'd mom 50" -> "venmo ' d mom 50"
+google/bert_uncased_L-4_H-512_A-8: round trip 'lent Sam $20' -> 'lent sam $ 20'
+google/bert_uncased_L-4_H-512_A-8: round trip 'Mike paid me back 15' -> 'mike paid me back 15'
+google/bert_uncased_L-4_H-512_A-8: round trip "venmo'd mom 50" -> "venmo ' d mom 50"
+
+roberta-base probes:
+  '1tr5'              3  1 | tr | 5
+  '2tr'               2  2 | tr
+  '2 củ'              5  2 | Ġc | á | » | §
+  '5 lít'             4  5 | Ġl | ÃŃ | t
+  '45k'               2  45 | k
+  '45.000đ'           5  45 | . | 000 | Ä | ĳ
+  'ck'                1  ck
+  'thg'               2  th | g
+  'tien nha'          4  t | ien | Ġn | ha
+  'an trua'           3  an | Ġtr | ua
+  'shope'             2  sh | ope
+  'refund'            2  ref | und
+  'refun'             2  ref | un
+  'grab'              1  grab
+  'khach tra not'     4  kh | ach | Ġtra | Ġnot
+
+bert-base-uncased probes:
+  '1tr5'              3  1 | ##tr | ##5
+  '2tr'               2  2 | ##tr
+  '2 củ'              2  2 | cu
+  '5 lít'             2  5 | lit
+  '45k'               2  45 | ##k
+  '45.000đ'           4  45 | . | 000 | ##đ
+  'ck'                1  ck
+  'thg'               2  th | ##g
+  'tien nha'          4  tie | ##n | nh | ##a
+  'an trua'           3  an | tr | ##ua
+  'shope'             2  shop | ##e
+  'refund'            2  ref | ##und
+  'refun'             2  ref | ##un
+  'grab'              1  grab
+  'khach tra not'     6  k | ##ha | ##ch | tr | ##a | not
+
+google/electra-small-discriminator probes:
+  '1tr5'              3  1 | ##tr | ##5
+  '2tr'               2  2 | ##tr
+  '2 củ'              2  2 | cu
+  '5 lít'             2  5 | lit
+  '45k'               2  45 | ##k
+  '45.000đ'           4  45 | . | 000 | ##đ
+  'ck'                1  ck
+  'thg'               2  th | ##g
+  'tien nha'          4  tie | ##n | nh | ##a
+  'an trua'           3  an | tr | ##ua
+  'shope'             2  shop | ##e
+  'refund'            2  ref | ##und
+  'refun'             2  ref | ##un
+  'grab'              1  grab
+  'khach tra not'     6  k | ##ha | ##ch | tr | ##a | not
+
+microsoft/MiniLM-L12-H384-uncased probes:
+  '1tr5'              3  1 | ##tr | ##5
+  '2tr'               2  2 | ##tr
+  '2 củ'              2  2 | cu
+  '5 lít'             2  5 | lit
+  '45k'               2  45 | ##k
+  '45.000đ'           4  45 | . | 000 | ##đ
+  'ck'                1  ck
+  'thg'               2  th | ##g
+  'tien nha'          4  tie | ##n | nh | ##a
+  'an trua'           3  an | tr | ##ua
+  'shope'             2  shop | ##e
+  'refund'            2  ref | ##und
+  'refun'             2  ref | ##un
+  'grab'              1  grab
+  'khach tra not'     6  k | ##ha | ##ch | tr | ##a | not
+
+microsoft/deberta-v3-small probes:
+  '1tr5'              3  ▁1 | tr | 5
+  '2tr'               2  ▁2 | tr
+  '2 củ'              3  ▁2 | ▁c | ủ
+  '5 lít'             3  ▁5 | ▁l | ít
+  '45k'               2  ▁45 | k
+  '45.000đ'           4  ▁45 | . | 000 | đ
+  'ck'                2  ▁c | k
+  'thg'               2  ▁th | g
+  'tien nha'          4  ▁tie | n | ▁n | ha
+  'an trua'           3  ▁an | ▁tru | a
+  'shope'             2  ▁shop | e
+  'refund'            1  ▁refund
+  'refun'             2  ▁re | fun
+  'grab'              1  ▁grab
+  'khach tra not'     4  ▁kha | ch | ▁tra | ▁not
+
+google/bert_uncased_L-4_H-512_A-8 probes:
+  '1tr5'              3  1 | ##tr | ##5
+  '2tr'               2  2 | ##tr
+  '2 củ'              2  2 | cu
+  '5 lít'             2  5 | lit
+  '45k'               2  45 | ##k
+  '45.000đ'           4  45 | . | 000 | ##đ
+  'ck'                1  ck
+  'thg'               2  th | ##g
+  'tien nha'          4  tie | ##n | nh | ##a
+  'an trua'           3  an | tr | ##ua
+  'shope'             2  shop | ##e
+  'refund'            2  ref | ##und
+  'refun'             2  ref | ##un
+  'grab'              1  grab
+  'khach tra not'     6  k | ##ha | ##ch | tr | ##a | not
+wrote experiments/gidi-en-backbone/tokenizer-audit.json

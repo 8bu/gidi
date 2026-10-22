@@ -1,0 +1,32 @@
+{
+  "experiment": "gidi-en-student-v2",
+  "written_before": "any v2 model was trained, exported or scored, and before the slang/Gen Z silver labels existed",
+  "label_provenance": "silver-claude-clef; no human labels exist for English. All numbers are agreement with Claude+Clef labels, not ground truth.",
+  "candidate": "v2 seed 1 only (one seed, last epoch, no seed picking, no checkpoint selection). Recipe = v1 recipe unchanged (experiments/gidi-en-student-v1/run.sh: init models/gidi-en-v1-init, 40 epochs, batch 8, encoder lr 5e-5, head lr 1e-3, warmup 0.1, wd 0.01).",
+  "changes_vs_v1": [
+    "training data adds datasets/annotation-en-v1/silver-slang-train.jsonl (Clef 16-shot kNN teacher, pool = seed, new slang and Gen Z notes written by Gemini; complete, self-consistent notes only)",
+    "decode-time word-boundary snapping (gidi.inference.decode.snap_to_words: expand a predicted span to whole words, never shrink): scoring of the candidate is with snap ON"
+  ],
+  "training_data": "silver-train + labels-seed complete + silver-slang-train (consistent only). Never: test, dev, datasets/probe-en-slang, datasets/probe-en-genz, Vietnamese data.",
+  "eval_only_sets": {
+    "slang_probe": "datasets/probe-en-slang (complete notes, n = 357 for v1). Never trained on.",
+    "test": "datasets/annotation-en-v1/splits/test.jsonl primary (consensus, n = 214) and secondary (all complete, n = 290).",
+    "dev": "sanity only.",
+    "genz_probe": "datasets/probe-en-genz (~100 held-out Gen Z notes, Gemini+Clef consensus, Claude adjudicated). EXTRA: reported, not part of pass/fail."
+  },
+  "v1_reference": {
+    "test_primary": {"type_macro_f1": 0.934, "target_exact": 0.869},
+    "slang_probe_all": {"type_macro_f1": 0.845, "target_exact": 0.754, "joint": 0.664}
+  },
+  "success": {
+    "slang_probe_all": {"joint_min": 0.72, "target_exact_min": 0.80, "type_macro_f1_min": 0.87},
+    "no_regression_vs_v1_on_test_primary": {
+      "max_drop": 0.01,
+      "type_macro_f1_min": 0.924,
+      "target_exact_min": 0.859
+    },
+    "existing_protocol": "experiments/gidi-en-data/protocol.json (primary and secondary acceptance unchanged), evaluated with the same decode as the candidate",
+    "rule": "all conditions must hold; PASS or FAIL is reported as is. No threshold, data, seed or decode change after seeing any v2 score."
+  },
+  "reported_not_gating": ["unsnapped v2 scores (ablation)", "v1 with snapping (ablation)", "genz_probe", "dev"]
+}

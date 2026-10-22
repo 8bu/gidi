@@ -1,0 +1,1756 @@
+{
+  "corpus": [
+    "experiments/gidi-en-backbone/audit-notes.jsonl"
+  ],
+  "examples": 20,
+  "reports": [
+    {
+      "name": "roberta-base",
+      "vocab_size": 50265,
+      "n_texts": 63,
+      "n_words": 298,
+      "mean_tokens_per_text": 6.873015873015873,
+      "p50_tokens_per_text": 6.0,
+      "p95_tokens_per_text": 11.899999999999999,
+      "max_tokens_per_text": 14,
+      "fertility": 1.4530201342281879,
+      "pct_words_split": 39.93288590604027,
+      "unk_token": "<unk>",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 1.0,
+      "roundtrip_failures": [],
+      "unk_characters": [],
+      "n_amounts": 9,
+      "mean_amount_tokens": 3.0,
+      "max_amount_tokens": 4,
+      "n_shorthand": 4,
+      "mean_shorthand_tokens": 1.25,
+      "pct_shorthand_split": 25.0,
+      "probes": [
+        {
+          "text": "1tr5",
+          "tokens": [
+            "1",
+            "tr",
+            "5"
+          ],
+          "pieces": [
+            "1",
+            "tr",
+            "5"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "2tr",
+          "tokens": [
+            "2",
+            "tr"
+          ],
+          "pieces": [
+            "2",
+            "tr"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "2 củ",
+          "tokens": [
+            "2",
+            "Ġc",
+            "á",
+            "»",
+            "§"
+          ],
+          "pieces": [
+            "2",
+            " c",
+            "�",
+            "�",
+            "�"
+          ],
+          "n_tokens": 5,
+          "has_unk": false
+        },
+        {
+          "text": "5 lít",
+          "tokens": [
+            "5",
+            "Ġl",
+            "ÃŃ",
+            "t"
+          ],
+          "pieces": [
+            "5",
+            " l",
+            "í",
+            "t"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        },
+        {
+          "text": "45k",
+          "tokens": [
+            "45",
+            "k"
+          ],
+          "pieces": [
+            "45",
+            "k"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45.000đ",
+          "tokens": [
+            "45",
+            ".",
+            "000",
+            "Ä",
+            "ĳ"
+          ],
+          "pieces": [
+            "45",
+            ".",
+            "000",
+            "�",
+            "�"
+          ],
+          "n_tokens": 5,
+          "has_unk": false
+        },
+        {
+          "text": "ck",
+          "tokens": [
+            "ck"
+          ],
+          "pieces": [
+            "ck"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "thg",
+          "tokens": [
+            "th",
+            "g"
+          ],
+          "pieces": [
+            "th",
+            "g"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "tien nha",
+          "tokens": [
+            "t",
+            "ien",
+            "Ġn",
+            "ha"
+          ],
+          "pieces": [
+            "t",
+            "ien",
+            " n",
+            "ha"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        },
+        {
+          "text": "an trua",
+          "tokens": [
+            "an",
+            "Ġtr",
+            "ua"
+          ],
+          "pieces": [
+            "an",
+            " tr",
+            "ua"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "shope",
+          "tokens": [
+            "sh",
+            "ope"
+          ],
+          "pieces": [
+            "sh",
+            "ope"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refund",
+          "tokens": [
+            "ref",
+            "und"
+          ],
+          "pieces": [
+            "ref",
+            "und"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refun",
+          "tokens": [
+            "ref",
+            "un"
+          ],
+          "pieces": [
+            "ref",
+            "un"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "grab",
+          "tokens": [
+            "grab"
+          ],
+          "pieces": [
+            "grab"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "khach tra not",
+          "tokens": [
+            "kh",
+            "ach",
+            "Ġtra",
+            "Ġnot"
+          ],
+          "pieces": [
+            "kh",
+            "ach",
+            " tra",
+            " not"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        }
+      ]
+    },
+    {
+      "name": "bert-base-uncased",
+      "vocab_size": 30522,
+      "n_texts": 63,
+      "n_words": 298,
+      "mean_tokens_per_text": 6.4603174603174605,
+      "p50_tokens_per_text": 6.0,
+      "p95_tokens_per_text": 10.0,
+      "max_tokens_per_text": 14,
+      "fertility": 1.3657718120805369,
+      "pct_words_split": 20.469798657718123,
+      "unk_token": "[UNK]",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 0.38095238095238093,
+      "roundtrip_failures": [
+        {
+          "text": "lent Sam $20",
+          "roundtrip": "lent sam $ 20"
+        },
+        {
+          "text": "Mike paid me back 15",
+          "roundtrip": "mike paid me back 15"
+        },
+        {
+          "text": "venmo'd mom 50",
+          "roundtrip": "venmo ' d mom 50"
+        },
+        {
+          "text": "coffee $4.50",
+          "roundtrip": "coffee $ 4. 50"
+        },
+        {
+          "text": "uber home 23.40",
+          "roundtrip": "uber home 23. 40"
+        },
+        {
+          "text": "got paid 2.5k from the freelance gig",
+          "roundtrip": "got paid 2. 5k from the freelance gig"
+        },
+        {
+          "text": "sent Priya 1k for the flight",
+          "roundtrip": "sent priya 1k for the flight"
+        },
+        {
+          "text": "split dinner w/ jess, she owes me 32",
+          "roundtrip": "split dinner w / jess, she owes me 32"
+        },
+        {
+          "text": "Netflix subscription 15.99",
+          "roundtrip": "netflix subscription 15. 99"
+        },
+        {
+          "text": "payed back Kevin $60",
+          "roundtrip": "payed back kevin $ 60"
+        },
+        {
+          "text": "refund from amazon $39.99",
+          "roundtrip": "refund from amazon $ 39. 99"
+        },
+        {
+          "text": "Zelle from Dave 120",
+          "roundtrip": "zelle from dave 120"
+        },
+        {
+          "text": "cashed out 1,200 from the atm",
+          "roundtrip": "cashed out 1, 200 from the atm"
+        },
+        {
+          "text": "paid electric bill 96.12",
+          "roundtrip": "paid electric bill 96. 12"
+        },
+        {
+          "text": "Alexandra Kowalczyk paid 75 for the tickets",
+          "roundtrip": "alexandra kowalczyk paid 75 for the tickets"
+        },
+        {
+          "text": "owe Tom 25 for pizza",
+          "roundtrip": "owe tom 25 for pizza"
+        },
+        {
+          "text": "paycheck 2,340.00 deposited",
+          "roundtrip": "paycheck 2, 340. 00 deposited"
+        },
+        {
+          "text": "paid for Anna's coffee 6.5",
+          "roundtrip": "paid for anna ' s coffee 6. 5"
+        },
+        {
+          "text": "spotify 9.99/mo",
+          "roundtrip": "spotify 9. 99 / mo"
+        },
+        {
+          "text": "reimbursed by work 212.30",
+          "roundtrip": "reimbursed by work 212. 30"
+        }
+      ],
+      "unk_characters": [],
+      "n_amounts": 9,
+      "mean_amount_tokens": 3.0,
+      "max_amount_tokens": 4,
+      "n_shorthand": 4,
+      "mean_shorthand_tokens": 1.25,
+      "pct_shorthand_split": 25.0,
+      "probes": [
+        {
+          "text": "1tr5",
+          "tokens": [
+            "1",
+            "##tr",
+            "##5"
+          ],
+          "pieces": [
+            "1",
+            "##tr",
+            "##5"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "2tr",
+          "tokens": [
+            "2",
+            "##tr"
+          ],
+          "pieces": [
+            "2",
+            "##tr"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "2 củ",
+          "tokens": [
+            "2",
+            "cu"
+          ],
+          "pieces": [
+            "2",
+            "cu"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "5 lít",
+          "tokens": [
+            "5",
+            "lit"
+          ],
+          "pieces": [
+            "5",
+            "lit"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45k",
+          "tokens": [
+            "45",
+            "##k"
+          ],
+          "pieces": [
+            "45",
+            "##k"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45.000đ",
+          "tokens": [
+            "45",
+            ".",
+            "000",
+            "##đ"
+          ],
+          "pieces": [
+            "45",
+            ".",
+            "000",
+            "##đ"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        },
+        {
+          "text": "ck",
+          "tokens": [
+            "ck"
+          ],
+          "pieces": [
+            "ck"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "thg",
+          "tokens": [
+            "th",
+            "##g"
+          ],
+          "pieces": [
+            "th",
+            "##g"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "tien nha",
+          "tokens": [
+            "tie",
+            "##n",
+            "nh",
+            "##a"
+          ],
+          "pieces": [
+            "tie",
+            "##n",
+            "nh",
+            "##a"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        },
+        {
+          "text": "an trua",
+          "tokens": [
+            "an",
+            "tr",
+            "##ua"
+          ],
+          "pieces": [
+            "an",
+            "tr",
+            "##ua"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "shope",
+          "tokens": [
+            "shop",
+            "##e"
+          ],
+          "pieces": [
+            "shop",
+            "##e"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refund",
+          "tokens": [
+            "ref",
+            "##und"
+          ],
+          "pieces": [
+            "ref",
+            "##und"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refun",
+          "tokens": [
+            "ref",
+            "##un"
+          ],
+          "pieces": [
+            "ref",
+            "##un"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "grab",
+          "tokens": [
+            "grab"
+          ],
+          "pieces": [
+            "grab"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "khach tra not",
+          "tokens": [
+            "k",
+            "##ha",
+            "##ch",
+            "tr",
+            "##a",
+            "not"
+          ],
+          "pieces": [
+            "k",
+            "##ha",
+            "##ch",
+            "tr",
+            "##a",
+            "not"
+          ],
+          "n_tokens": 6,
+          "has_unk": false
+        }
+      ]
+    },
+    {
+      "name": "google/electra-small-discriminator",
+      "vocab_size": 30522,
+      "n_texts": 63,
+      "n_words": 298,
+      "mean_tokens_per_text": 6.4603174603174605,
+      "p50_tokens_per_text": 6.0,
+      "p95_tokens_per_text": 10.0,
+      "max_tokens_per_text": 14,
+      "fertility": 1.3657718120805369,
+      "pct_words_split": 20.469798657718123,
+      "unk_token": "[UNK]",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 0.38095238095238093,
+      "roundtrip_failures": [
+        {
+          "text": "lent Sam $20",
+          "roundtrip": "lent sam $ 20"
+        },
+        {
+          "text": "Mike paid me back 15",
+          "roundtrip": "mike paid me back 15"
+        },
+        {
+          "text": "venmo'd mom 50",
+          "roundtrip": "venmo ' d mom 50"
+        },
+        {
+          "text": "coffee $4.50",
+          "roundtrip": "coffee $ 4. 50"
+        },
+        {
+          "text": "uber home 23.40",
+          "roundtrip": "uber home 23. 40"
+        },
+        {
+          "text": "got paid 2.5k from the freelance gig",
+          "roundtrip": "got paid 2. 5k from the freelance gig"
+        },
+        {
+          "text": "sent Priya 1k for the flight",
+          "roundtrip": "sent priya 1k for the flight"
+        },
+        {
+          "text": "split dinner w/ jess, she owes me 32",
+          "roundtrip": "split dinner w / jess, she owes me 32"
+        },
+        {
+          "text": "Netflix subscription 15.99",
+          "roundtrip": "netflix subscription 15. 99"
+        },
+        {
+          "text": "payed back Kevin $60",
+          "roundtrip": "payed back kevin $ 60"
+        },
+        {
+          "text": "refund from amazon $39.99",
+          "roundtrip": "refund from amazon $ 39. 99"
+        },
+        {
+          "text": "Zelle from Dave 120",
+          "roundtrip": "zelle from dave 120"
+        },
+        {
+          "text": "cashed out 1,200 from the atm",
+          "roundtrip": "cashed out 1, 200 from the atm"
+        },
+        {
+          "text": "paid electric bill 96.12",
+          "roundtrip": "paid electric bill 96. 12"
+        },
+        {
+          "text": "Alexandra Kowalczyk paid 75 for the tickets",
+          "roundtrip": "alexandra kowalczyk paid 75 for the tickets"
+        },
+        {
+          "text": "owe Tom 25 for pizza",
+          "roundtrip": "owe tom 25 for pizza"
+        },
+        {
+          "text": "paycheck 2,340.00 deposited",
+          "roundtrip": "paycheck 2, 340. 00 deposited"
+        },
+        {
+          "text": "paid for Anna's coffee 6.5",
+          "roundtrip": "paid for anna ' s coffee 6. 5"
+        },
+        {
+          "text": "spotify 9.99/mo",
+          "roundtrip": "spotify 9. 99 / mo"
+        },
+        {
+          "text": "reimbursed by work 212.30",
+          "roundtrip": "reimbursed by work 212. 30"
+        }
+      ],
+      "unk_characters": [],
+      "n_amounts": 9,
+      "mean_amount_tokens": 3.0,
+      "max_amount_tokens": 4,
+      "n_shorthand": 4,
+      "mean_shorthand_tokens": 1.25,
+      "pct_shorthand_split": 25.0,
+      "probes": [
+        {
+          "text": "1tr5",
+          "tokens": [
+            "1",
+            "##tr",
+            "##5"
+          ],
+          "pieces": [
+            "1",
+            "##tr",
+            "##5"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "2tr",
+          "tokens": [
+            "2",
+            "##tr"
+          ],
+          "pieces": [
+            "2",
+            "##tr"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "2 củ",
+          "tokens": [
+            "2",
+            "cu"
+          ],
+          "pieces": [
+            "2",
+            "cu"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "5 lít",
+          "tokens": [
+            "5",
+            "lit"
+          ],
+          "pieces": [
+            "5",
+            "lit"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45k",
+          "tokens": [
+            "45",
+            "##k"
+          ],
+          "pieces": [
+            "45",
+            "##k"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45.000đ",
+          "tokens": [
+            "45",
+            ".",
+            "000",
+            "##đ"
+          ],
+          "pieces": [
+            "45",
+            ".",
+            "000",
+            "##đ"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        },
+        {
+          "text": "ck",
+          "tokens": [
+            "ck"
+          ],
+          "pieces": [
+            "ck"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "thg",
+          "tokens": [
+            "th",
+            "##g"
+          ],
+          "pieces": [
+            "th",
+            "##g"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "tien nha",
+          "tokens": [
+            "tie",
+            "##n",
+            "nh",
+            "##a"
+          ],
+          "pieces": [
+            "tie",
+            "##n",
+            "nh",
+            "##a"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        },
+        {
+          "text": "an trua",
+          "tokens": [
+            "an",
+            "tr",
+            "##ua"
+          ],
+          "pieces": [
+            "an",
+            "tr",
+            "##ua"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "shope",
+          "tokens": [
+            "shop",
+            "##e"
+          ],
+          "pieces": [
+            "shop",
+            "##e"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refund",
+          "tokens": [
+            "ref",
+            "##und"
+          ],
+          "pieces": [
+            "ref",
+            "##und"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refun",
+          "tokens": [
+            "ref",
+            "##un"
+          ],
+          "pieces": [
+            "ref",
+            "##un"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "grab",
+          "tokens": [
+            "grab"
+          ],
+          "pieces": [
+            "grab"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "khach tra not",
+          "tokens": [
+            "k",
+            "##ha",
+            "##ch",
+            "tr",
+            "##a",
+            "not"
+          ],
+          "pieces": [
+            "k",
+            "##ha",
+            "##ch",
+            "tr",
+            "##a",
+            "not"
+          ],
+          "n_tokens": 6,
+          "has_unk": false
+        }
+      ]
+    },
+    {
+      "name": "microsoft/MiniLM-L12-H384-uncased",
+      "vocab_size": 30522,
+      "n_texts": 63,
+      "n_words": 298,
+      "mean_tokens_per_text": 6.4603174603174605,
+      "p50_tokens_per_text": 6.0,
+      "p95_tokens_per_text": 10.0,
+      "max_tokens_per_text": 14,
+      "fertility": 1.3657718120805369,
+      "pct_words_split": 20.469798657718123,
+      "unk_token": "[UNK]",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 0.38095238095238093,
+      "roundtrip_failures": [
+        {
+          "text": "lent Sam $20",
+          "roundtrip": "lent sam $ 20"
+        },
+        {
+          "text": "Mike paid me back 15",
+          "roundtrip": "mike paid me back 15"
+        },
+        {
+          "text": "venmo'd mom 50",
+          "roundtrip": "venmo ' d mom 50"
+        },
+        {
+          "text": "coffee $4.50",
+          "roundtrip": "coffee $ 4. 50"
+        },
+        {
+          "text": "uber home 23.40",
+          "roundtrip": "uber home 23. 40"
+        },
+        {
+          "text": "got paid 2.5k from the freelance gig",
+          "roundtrip": "got paid 2. 5k from the freelance gig"
+        },
+        {
+          "text": "sent Priya 1k for the flight",
+          "roundtrip": "sent priya 1k for the flight"
+        },
+        {
+          "text": "split dinner w/ jess, she owes me 32",
+          "roundtrip": "split dinner w / jess, she owes me 32"
+        },
+        {
+          "text": "Netflix subscription 15.99",
+          "roundtrip": "netflix subscription 15. 99"
+        },
+        {
+          "text": "payed back Kevin $60",
+          "roundtrip": "payed back kevin $ 60"
+        },
+        {
+          "text": "refund from amazon $39.99",
+          "roundtrip": "refund from amazon $ 39. 99"
+        },
+        {
+          "text": "Zelle from Dave 120",
+          "roundtrip": "zelle from dave 120"
+        },
+        {
+          "text": "cashed out 1,200 from the atm",
+          "roundtrip": "cashed out 1, 200 from the atm"
+        },
+        {
+          "text": "paid electric bill 96.12",
+          "roundtrip": "paid electric bill 96. 12"
+        },
+        {
+          "text": "Alexandra Kowalczyk paid 75 for the tickets",
+          "roundtrip": "alexandra kowalczyk paid 75 for the tickets"
+        },
+        {
+          "text": "owe Tom 25 for pizza",
+          "roundtrip": "owe tom 25 for pizza"
+        },
+        {
+          "text": "paycheck 2,340.00 deposited",
+          "roundtrip": "paycheck 2, 340. 00 deposited"
+        },
+        {
+          "text": "paid for Anna's coffee 6.5",
+          "roundtrip": "paid for anna ' s coffee 6. 5"
+        },
+        {
+          "text": "spotify 9.99/mo",
+          "roundtrip": "spotify 9. 99 / mo"
+        },
+        {
+          "text": "reimbursed by work 212.30",
+          "roundtrip": "reimbursed by work 212. 30"
+        }
+      ],
+      "unk_characters": [],
+      "n_amounts": 9,
+      "mean_amount_tokens": 3.0,
+      "max_amount_tokens": 4,
+      "n_shorthand": 4,
+      "mean_shorthand_tokens": 1.25,
+      "pct_shorthand_split": 25.0,
+      "probes": [
+        {
+          "text": "1tr5",
+          "tokens": [
+            "1",
+            "##tr",
+            "##5"
+          ],
+          "pieces": [
+            "1",
+            "##tr",
+            "##5"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "2tr",
+          "tokens": [
+            "2",
+            "##tr"
+          ],
+          "pieces": [
+            "2",
+            "##tr"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "2 củ",
+          "tokens": [
+            "2",
+            "cu"
+          ],
+          "pieces": [
+            "2",
+            "cu"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "5 lít",
+          "tokens": [
+            "5",
+            "lit"
+          ],
+          "pieces": [
+            "5",
+            "lit"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45k",
+          "tokens": [
+            "45",
+            "##k"
+          ],
+          "pieces": [
+            "45",
+            "##k"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45.000đ",
+          "tokens": [
+            "45",
+            ".",
+            "000",
+            "##đ"
+          ],
+          "pieces": [
+            "45",
+            ".",
+            "000",
+            "##đ"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        },
+        {
+          "text": "ck",
+          "tokens": [
+            "ck"
+          ],
+          "pieces": [
+            "ck"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "thg",
+          "tokens": [
+            "th",
+            "##g"
+          ],
+          "pieces": [
+            "th",
+            "##g"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "tien nha",
+          "tokens": [
+            "tie",
+            "##n",
+            "nh",
+            "##a"
+          ],
+          "pieces": [
+            "tie",
+            "##n",
+            "nh",
+            "##a"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        },
+        {
+          "text": "an trua",
+          "tokens": [
+            "an",
+            "tr",
+            "##ua"
+          ],
+          "pieces": [
+            "an",
+            "tr",
+            "##ua"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "shope",
+          "tokens": [
+            "shop",
+            "##e"
+          ],
+          "pieces": [
+            "shop",
+            "##e"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refund",
+          "tokens": [
+            "ref",
+            "##und"
+          ],
+          "pieces": [
+            "ref",
+            "##und"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refun",
+          "tokens": [
+            "ref",
+            "##un"
+          ],
+          "pieces": [
+            "ref",
+            "##un"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "grab",
+          "tokens": [
+            "grab"
+          ],
+          "pieces": [
+            "grab"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "khach tra not",
+          "tokens": [
+            "k",
+            "##ha",
+            "##ch",
+            "tr",
+            "##a",
+            "not"
+          ],
+          "pieces": [
+            "k",
+            "##ha",
+            "##ch",
+            "tr",
+            "##a",
+            "not"
+          ],
+          "n_tokens": 6,
+          "has_unk": false
+        }
+      ]
+    },
+    {
+      "name": "microsoft/deberta-v3-small",
+      "vocab_size": 128000,
+      "n_texts": 63,
+      "n_words": 298,
+      "mean_tokens_per_text": 6.142857142857143,
+      "p50_tokens_per_text": 5.0,
+      "p95_tokens_per_text": 10.899999999999999,
+      "max_tokens_per_text": 14,
+      "fertility": 1.2986577181208054,
+      "pct_words_split": 16.778523489932887,
+      "unk_token": "[UNK]",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 1.0,
+      "roundtrip_failures": [],
+      "unk_characters": [],
+      "n_amounts": 9,
+      "mean_amount_tokens": 3.0,
+      "max_amount_tokens": 4,
+      "n_shorthand": 4,
+      "mean_shorthand_tokens": 1.0,
+      "pct_shorthand_split": 0.0,
+      "probes": [
+        {
+          "text": "1tr5",
+          "tokens": [
+            "▁1",
+            "tr",
+            "5"
+          ],
+          "pieces": [
+            "1",
+            "tr",
+            "5"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "2tr",
+          "tokens": [
+            "▁2",
+            "tr"
+          ],
+          "pieces": [
+            "2",
+            "tr"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "2 củ",
+          "tokens": [
+            "▁2",
+            "▁c",
+            "ủ"
+          ],
+          "pieces": [
+            "2",
+            "c",
+            "ủ"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "5 lít",
+          "tokens": [
+            "▁5",
+            "▁l",
+            "ít"
+          ],
+          "pieces": [
+            "5",
+            "l",
+            "ít"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "45k",
+          "tokens": [
+            "▁45",
+            "k"
+          ],
+          "pieces": [
+            "45",
+            "k"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45.000đ",
+          "tokens": [
+            "▁45",
+            ".",
+            "000",
+            "đ"
+          ],
+          "pieces": [
+            "45",
+            ".",
+            "000",
+            "đ"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        },
+        {
+          "text": "ck",
+          "tokens": [
+            "▁c",
+            "k"
+          ],
+          "pieces": [
+            "c",
+            "k"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "thg",
+          "tokens": [
+            "▁th",
+            "g"
+          ],
+          "pieces": [
+            "th",
+            "g"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "tien nha",
+          "tokens": [
+            "▁tie",
+            "n",
+            "▁n",
+            "ha"
+          ],
+          "pieces": [
+            "tie",
+            "n",
+            "n",
+            "ha"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        },
+        {
+          "text": "an trua",
+          "tokens": [
+            "▁an",
+            "▁tru",
+            "a"
+          ],
+          "pieces": [
+            "an",
+            "tru",
+            "a"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "shope",
+          "tokens": [
+            "▁shop",
+            "e"
+          ],
+          "pieces": [
+            "shop",
+            "e"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refund",
+          "tokens": [
+            "▁refund"
+          ],
+          "pieces": [
+            "refund"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "refun",
+          "tokens": [
+            "▁re",
+            "fun"
+          ],
+          "pieces": [
+            "re",
+            "fun"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "grab",
+          "tokens": [
+            "▁grab"
+          ],
+          "pieces": [
+            "grab"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "khach tra not",
+          "tokens": [
+            "▁kha",
+            "ch",
+            "▁tra",
+            "▁not"
+          ],
+          "pieces": [
+            "kha",
+            "ch",
+            "tra",
+            "not"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        }
+      ]
+    },
+    {
+      "name": "google/bert_uncased_L-4_H-512_A-8",
+      "vocab_size": 30522,
+      "n_texts": 63,
+      "n_words": 298,
+      "mean_tokens_per_text": 6.4603174603174605,
+      "p50_tokens_per_text": 6.0,
+      "p95_tokens_per_text": 10.0,
+      "max_tokens_per_text": 14,
+      "fertility": 1.3657718120805369,
+      "pct_words_split": 20.469798657718123,
+      "unk_token": "[UNK]",
+      "unk_rate": 0.0,
+      "roundtrip_exact_match_rate": 0.38095238095238093,
+      "roundtrip_failures": [
+        {
+          "text": "lent Sam $20",
+          "roundtrip": "lent sam $ 20"
+        },
+        {
+          "text": "Mike paid me back 15",
+          "roundtrip": "mike paid me back 15"
+        },
+        {
+          "text": "venmo'd mom 50",
+          "roundtrip": "venmo ' d mom 50"
+        },
+        {
+          "text": "coffee $4.50",
+          "roundtrip": "coffee $ 4. 50"
+        },
+        {
+          "text": "uber home 23.40",
+          "roundtrip": "uber home 23. 40"
+        },
+        {
+          "text": "got paid 2.5k from the freelance gig",
+          "roundtrip": "got paid 2. 5k from the freelance gig"
+        },
+        {
+          "text": "sent Priya 1k for the flight",
+          "roundtrip": "sent priya 1k for the flight"
+        },
+        {
+          "text": "split dinner w/ jess, she owes me 32",
+          "roundtrip": "split dinner w / jess, she owes me 32"
+        },
+        {
+          "text": "Netflix subscription 15.99",
+          "roundtrip": "netflix subscription 15. 99"
+        },
+        {
+          "text": "payed back Kevin $60",
+          "roundtrip": "payed back kevin $ 60"
+        },
+        {
+          "text": "refund from amazon $39.99",
+          "roundtrip": "refund from amazon $ 39. 99"
+        },
+        {
+          "text": "Zelle from Dave 120",
+          "roundtrip": "zelle from dave 120"
+        },
+        {
+          "text": "cashed out 1,200 from the atm",
+          "roundtrip": "cashed out 1, 200 from the atm"
+        },
+        {
+          "text": "paid electric bill 96.12",
+          "roundtrip": "paid electric bill 96. 12"
+        },
+        {
+          "text": "Alexandra Kowalczyk paid 75 for the tickets",
+          "roundtrip": "alexandra kowalczyk paid 75 for the tickets"
+        },
+        {
+          "text": "owe Tom 25 for pizza",
+          "roundtrip": "owe tom 25 for pizza"
+        },
+        {
+          "text": "paycheck 2,340.00 deposited",
+          "roundtrip": "paycheck 2, 340. 00 deposited"
+        },
+        {
+          "text": "paid for Anna's coffee 6.5",
+          "roundtrip": "paid for anna ' s coffee 6. 5"
+        },
+        {
+          "text": "spotify 9.99/mo",
+          "roundtrip": "spotify 9. 99 / mo"
+        },
+        {
+          "text": "reimbursed by work 212.30",
+          "roundtrip": "reimbursed by work 212. 30"
+        }
+      ],
+      "unk_characters": [],
+      "n_amounts": 9,
+      "mean_amount_tokens": 3.0,
+      "max_amount_tokens": 4,
+      "n_shorthand": 4,
+      "mean_shorthand_tokens": 1.25,
+      "pct_shorthand_split": 25.0,
+      "probes": [
+        {
+          "text": "1tr5",
+          "tokens": [
+            "1",
+            "##tr",
+            "##5"
+          ],
+          "pieces": [
+            "1",
+            "##tr",
+            "##5"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "2tr",
+          "tokens": [
+            "2",
+            "##tr"
+          ],
+          "pieces": [
+            "2",
+            "##tr"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "2 củ",
+          "tokens": [
+            "2",
+            "cu"
+          ],
+          "pieces": [
+            "2",
+            "cu"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "5 lít",
+          "tokens": [
+            "5",
+            "lit"
+          ],
+          "pieces": [
+            "5",
+            "lit"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45k",
+          "tokens": [
+            "45",
+            "##k"
+          ],
+          "pieces": [
+            "45",
+            "##k"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "45.000đ",
+          "tokens": [
+            "45",
+            ".",
+            "000",
+            "##đ"
+          ],
+          "pieces": [
+            "45",
+            ".",
+            "000",
+            "##đ"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        },
+        {
+          "text": "ck",
+          "tokens": [
+            "ck"
+          ],
+          "pieces": [
+            "ck"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "thg",
+          "tokens": [
+            "th",
+            "##g"
+          ],
+          "pieces": [
+            "th",
+            "##g"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "tien nha",
+          "tokens": [
+            "tie",
+            "##n",
+            "nh",
+            "##a"
+          ],
+          "pieces": [
+            "tie",
+            "##n",
+            "nh",
+            "##a"
+          ],
+          "n_tokens": 4,
+          "has_unk": false
+        },
+        {
+          "text": "an trua",
+          "tokens": [
+            "an",
+            "tr",
+            "##ua"
+          ],
+          "pieces": [
+            "an",
+            "tr",
+            "##ua"
+          ],
+          "n_tokens": 3,
+          "has_unk": false
+        },
+        {
+          "text": "shope",
+          "tokens": [
+            "shop",
+            "##e"
+          ],
+          "pieces": [
+            "shop",
+            "##e"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refund",
+          "tokens": [
+            "ref",
+            "##und"
+          ],
+          "pieces": [
+            "ref",
+            "##und"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "refun",
+          "tokens": [
+            "ref",
+            "##un"
+          ],
+          "pieces": [
+            "ref",
+            "##un"
+          ],
+          "n_tokens": 2,
+          "has_unk": false
+        },
+        {
+          "text": "grab",
+          "tokens": [
+            "grab"
+          ],
+          "pieces": [
+            "grab"
+          ],
+          "n_tokens": 1,
+          "has_unk": false
+        },
+        {
+          "text": "khach tra not",
+          "tokens": [
+            "k",
+            "##ha",
+            "##ch",
+            "tr",
+            "##a",
+            "not"
+          ],
+          "pieces": [
+            "k",
+            "##ha",
+            "##ch",
+            "tr",
+            "##a",
+            "not"
+          ],
+          "n_tokens": 6,
+          "has_unk": false
+        }
+      ]
+    }
+  ]
+}

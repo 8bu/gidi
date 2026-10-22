@@ -1,0 +1,88 @@
+{
+ "proxy_train_notes": 700,
+ "proxy_distinct_token_ids": 1282,
+ "plain|train=False|max8222": {
+  "rows": 8222,
+  "rank_limit": 7962,
+  "audit_notes_identical": "9/63",
+  "audit_tokens_per_note": 8.73,
+  "full_vocab_tokens_per_note": 6.873
+ },
+ "plain|train=False|max9000": {
+  "rows": 9000,
+  "rank_limit": 8761,
+  "audit_notes_identical": "9/63",
+  "audit_tokens_per_note": 8.683,
+  "full_vocab_tokens_per_note": 6.873
+ },
+ "plain|train=False|max10000": {
+  "rows": 10000,
+  "rank_limit": 9785,
+  "audit_notes_identical": "10/63",
+  "audit_tokens_per_note": 8.571,
+  "full_vocab_tokens_per_note": 6.873
+ },
+ "plain|train=True|max8222": {
+  "rows": 8222,
+  "rank_limit": 7424,
+  "audit_notes_identical": "42/63",
+  "audit_tokens_per_note": 7.381,
+  "full_vocab_tokens_per_note": 6.873
+ },
+ "plain|train=True|max9000": {
+  "rows": 9000,
+  "rank_limit": 8249,
+  "audit_notes_identical": "43/63",
+  "audit_tokens_per_note": 7.333,
+  "full_vocab_tokens_per_note": 6.873
+ },
+ "plain|train=True|max10000": {
+  "rows": 10000,
+  "rank_limit": 9321,
+  "audit_notes_identical": "43/63",
+  "audit_tokens_per_note": 7.333,
+  "full_vocab_tokens_per_note": 6.873
+ },
+ "variants|train=False|max8222": {
+  "rows": 8221,
+  "rank_limit": 2783,
+  "audit_notes_identical": "1/63",
+  "audit_tokens_per_note": 9.444,
+  "full_vocab_tokens_per_note": 6.873
+ },
+ "variants|train=False|max9000": {
+  "rows": 9000,
+  "rank_limit": 3125,
+  "audit_notes_identical": "2/63",
+  "audit_tokens_per_note": 9.397,
+  "full_vocab_tokens_per_note": 6.873
+ },
+ "variants|train=False|max10000": {
+  "rows": 9998,
+  "rank_limit": 3602,
+  "audit_notes_identical": "5/63",
+  "audit_tokens_per_note": 9.159,
+  "full_vocab_tokens_per_note": 6.873
+ },
+ "variants|train=True|max8222": {
+  "rows": 8222,
+  "rank_limit": 2453,
+  "audit_notes_identical": "38/63",
+  "audit_tokens_per_note": 7.54,
+  "full_vocab_tokens_per_note": 6.873
+ },
+ "variants|train=True|max9000": {
+  "rows": 8996,
+  "rank_limit": 2825,
+  "audit_notes_identical": "38/63",
+  "audit_tokens_per_note": 7.508,
+  "full_vocab_tokens_per_note": 6.873
+ },
+ "variants|train=True|max10000": {
+  "rows": 10000,
+  "rank_limit": 3330,
+  "audit_notes_identical": "38/63",
+  "audit_tokens_per_note": 7.508,
+  "full_vocab_tokens_per_note": 6.873
+ }
+}

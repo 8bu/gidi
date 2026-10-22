@@ -1,0 +1,107 @@
+{
+ "onnxruntime": {
+  "version": "1.30.0",
+  "file_bytes": 29166948,
+  "inputs": [
+   [
+    "input_ids",
+    [
+     "batch",
+     "seq"
+    ]
+   ],
+   [
+    "attention_mask",
+    [
+     "batch",
+     "seq"
+    ]
+   ]
+  ],
+  "outputs": [
+   [
+    "type_logits",
+    [
+     "batch",
+     8
+    ]
+   ],
+   [
+    "tag_logits",
+    [
+     "batch",
+     "seq",
+     3
+    ]
+   ]
+  ],
+  "batch_shapes": [
+   [
+    63,
+    8
+   ],
+   [
+    63,
+    18,
+    3
+   ]
+  ],
+  "batch1_shapes": [
+   [
+    1,
+    8
+   ],
+   [
+    1,
+    5,
+    3
+   ]
+  ],
+  "finite": true,
+  "ops": [
+   "Add",
+   "And",
+   "Cast",
+   "Clip",
+   "Concat",
+   "CumSum",
+   "DequantizeLinear",
+   "Div",
+   "DynamicQuantizeLinear",
+   "Equal",
+   "Erf",
+   "Expand",
+   "Gather",
+   "GatherElements",
+   "GatherND",
+   "GreaterOrEqual",
+   "IsNaN",
+   "LayerNormalization",
+   "MatMul",
+   "MatMulInteger",
+   "Max",
+   "Mul",
+   "Not",
+   "Range",
+   "ReduceSum",
+   "Reshape",
+   "Shape",
+   "Slice",
+   "Softmax",
+   "Squeeze",
+   "Transpose",
+   "Unsqueeze",
+   "Where"
+  ]
+ },
+ "tokenizer_on_audit_notes": {
+  "rows": 9000,
+  "identical_to_full_vocab": "43/63",
+  "tokens_per_note_full_vocab": 6.873,
+  "tokens_per_note_pruned": 7.333
+ },
+ "pretokenizer_split_vs_gpt2_regex": {
+  "notes_with_different_ids": "0/763 (audit + proxy notes)",
+  "examples": []
+ }
+}

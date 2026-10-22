@@ -1,0 +1,363 @@
+== roberta-base
+W1021 21:04:47.664000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:04:48.056000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:04:48.057000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:04:48.057000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:04:48.057000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+W1021 21:04:58.128000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:04:58.315000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:04:58.316000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:04:58.316000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:04:58.316000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+W1021 21:05:04.773000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:05:04.955000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:05:04.955000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:05:04.955000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:05:04.955000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+{"license": "mit", "arch": "roberta", "layers": 12, "hidden": 768, "vocab": 50265, "hub_safetensors_mb": 498.8, "full": {"params": 124063499, "exporter": "dynamo", "parity": 2.9206275939941406e-06, "fp32_mb": 496.01, "int8_mb": 124.22, "fp32_ops": ["Add", "And", "Cast", "Clip", "Concat", "CumSum", "Div", "Equal", "Erf", "Expand", "Gather", "GatherElements", "GatherND", "Gemm", "GreaterOrEqual", "IsNaN", "LayerNormalization", "MatMul", "Max", "Mul", "Not", "Range", "ReduceSum", "Reshape", "Shape", "Slice", "Softmax", "Squeeze", "Transpose", "Unsqueeze", "Where"], "int8_ops": ["Add", "And", "Cast", "Clip", "Concat", "CumSum", "DequantizeLinear", "Div", "DynamicQuantizeLinear", "Equal", "Erf", "Expand", "Gather", "GatherElements", "GatherND", "GreaterOrEqual", "IsNaN", "LayerNormalization", "MatMul", "MatMulInteger", "Max", "Mul", "Not", "Range", "ReduceSum", "Reshape", "Shape", "Slice", "S
+== distilroberta-base
+W1021 21:05:16.489000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:05:16.677000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:05:16.677000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:05:16.677000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:05:16.677000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+W1021 21:05:21.761000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:05:22.163000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:05:22.164000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:05:22.164000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:05:22.164000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+W1021 21:05:25.264000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:05:25.440000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:05:25.440000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:05:25.440000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:05:25.440000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+{"license": "apache-2.0", "arch": "roberta", "layers": 6, "hidden": 768, "vocab": 50265, "hub_safetensors_mb": 331.0, "full": {"params": 81536267, "exporter": "dynamo", "parity": 2.6226043701171875e-06, "fp32_mb": 326.03, "int8_mb": 81.62, "fp32_ops": ["Add", "And", "Cast", "Clip", "Concat", "CumSum", "Div", "Equal", "Erf", "Expand", "Gather", "GatherElements", "GatherND", "Gemm", "GreaterOrEqual", "IsNaN", "LayerNormalization", "MatMul", "Max", "Mul", "Not", "Range", "ReduceSum", "Reshape", "Shape", "Slice", "Softmax", "Squeeze", "Transpose", "Unsqueeze", "Where"], "int8_ops": ["Add", "And", "Cast", "Clip", "Concat", "CumSum", "DequantizeLinear", "Div", "DynamicQuantizeLinear", "Equal", "Erf", "Expand", "Gather", "GatherElements", "GatherND", "GreaterOrEqual", "IsNaN", "LayerNormalization", "MatMul", "MatMulInteger", "Max", "Mul", "Not", "Range", "ReduceSum", "Reshape", "Shape", "Slice"
+== bert-base-uncased
+W1021 21:05:31.203000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:05:31.404000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:05:31.404000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:05:31.404000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:05:31.404000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+W1021 21:05:37.602000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:05:37.775000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:05:37.775000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:05:37.775000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:05:37.775000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+W1021 21:05:43.499000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:05:43.664000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:05:43.664000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:05:43.664000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:05:43.664000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+{"license": "apache-2.0", "arch": "bert", "layers": 12, "hidden": 768, "vocab": 30522, "hub_safetensors_mb": 440.4, "full": {"params": 108900107, "exporter": "dynamo", "parity": 2.7418136596679688e-06, "fp32_mb": 435.36, "int8_mb": 109.06, "fp32_ops": ["Add", "And", "Cast", "Clip", "Concat", "Div", "Erf", "Expand", "Gather", "GatherElements", "GatherND", "Gemm", "GreaterOrEqual", "IsNaN", "LayerNormalization", "MatMul", "Max", "Mul", "Range", "ReduceSum", "Reshape", "Shape", "Slice", "Softmax", "Squeeze", "Transpose", "Unsqueeze", "Where"], "int8_ops": ["Add", "And", "Cast", "Clip", "Concat", "DequantizeLinear", "Div", "DynamicQuantizeLinear", "Erf", "Expand", "Gather", "GatherElements", "GatherND", "GreaterOrEqual", "IsNaN", "LayerNormalization", "MatMul", "MatMulInteger", "Max", "Mul", "Range", "ReduceSum", "Reshape", "Shape", "Slice", "Softmax", "Squeeze", "Transpose", "Unsqueeze", "W
+== distilbert-base-uncased
+W1021 21:05:51.985000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:05:52.160000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:05:52.160000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:05:52.160000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:05:52.160000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+W1021 21:05:55.756000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:05:55.932000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:05:55.932000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:05:55.932000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:05:55.932000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+W1021 21:05:58.724000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:05:58.895000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:05:58.895000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:05:58.895000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:05:58.895000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+{"license": "apache-2.0", "arch": "distilbert", "layers": 6, "hidden": 768, "vocab": 30522, "hub_safetensors_mb": 267.9, "full": {"params": 66371339, "exporter": "dynamo", "parity": 2.3245811462402344e-06, "fp32_mb": 265.37, "int8_mb": 66.46, "fp32_ops": ["Add", "And", "Cast", "Clip", "Concat", "Div", "Erf", "Expand", "Gather", "GatherND", "Gemm", "GreaterOrEqual", "IsNaN", "LayerNormalization", "MatMul", "Max", "Mul", "Range", "ReduceSum", "Reshape", "Shape", "Slice", "Softmax", "Squeeze", "Transpose", "Unsqueeze", "Where"], "int8_ops": ["Add", "And", "Cast", "Clip", "Concat", "DequantizeLinear", "Div", "DynamicQuantizeLinear", "Erf", "Expand", "Gather", "GatherND", "GreaterOrEqual", "IsNaN", "LayerNormalization", "MatMul", "MatMulInteger", "Max", "Mul", "Range", "ReduceSum", "Reshape", "Shape", "Slice", "Softmax", "Squeeze", "Transpose", "Unsqueeze", "Where"]}, "pruned": {"params": 487
+== google/electra-small-discriminator
+W1021 21:06:02.529000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:06:02.696000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:06:02.696000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:06:02.696000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:06:02.696000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+W1021 21:06:05.616000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:06:05.786000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:06:05.786000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:06:05.786000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:06:05.786000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+W1021 21:06:08.554000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:06:08.721000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:06:08.721000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:06:08.722000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:06:08.722000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+{"license": "apache-2.0", "arch": "electra", "layers": 12, "hidden": 256, "vocab": 30522, "hub_safetensors_mb": 0, "full": {"params": 13485835, "exporter": "dynamo", "parity": 1.3113021850585938e-06, "fp32_mb": 53.88, "int8_mb": 13.58, "fp32_ops": ["Add", "And", "Cast", "Clip", "Concat", "Div", "Erf", "Expand", "Gather", "GatherElements", "GatherND", "Gemm", "GreaterOrEqual", "IsNaN", "LayerNormalization", "MatMul", "Max", "Mul", "Range", "ReduceSum", "Reshape", "Shape", "Slice", "Softmax", "Squeeze", "Transpose", "Unsqueeze", "Where"], "int8_ops": ["Add", "And", "Cast", "Clip", "Concat", "DequantizeLinear", "Div", "DynamicQuantizeLinear", "Erf", "Expand", "Gather", "GatherElements", "GatherND", "GreaterOrEqual", "IsNaN", "LayerNormalization", "MatMul", "MatMulInteger", "Max", "Mul", "Range", "ReduceSum", "Reshape", "Shape", "Slice", "Softmax", "Squeeze", "Transpose", "Unsqueeze", "Where
+== microsoft/MiniLM-L12-H384-uncased
+W1021 21:06:12.156000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:06:12.322000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:06:12.322000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:06:12.322000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:06:12.322000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+W1021 21:06:15.604000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:06:15.770000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:06:15.771000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:06:15.771000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:06:15.771000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+W1021 21:06:18.791000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:06:18.997000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:06:18.997000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:06:18.997000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:06:18.997000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+{"license": "mit", "arch": "bert", "layers": 12, "hidden": 384, "vocab": 30522, "hub_safetensors_mb": 0, "full": {"params": 33216395, "exporter": "dynamo", "parity": 1.9073486328125e-06, "fp32_mb": 132.79, "int8_mb": 33.36, "fp32_ops": ["Add", "And", "Cast", "Clip", "Concat", "Div", "Erf", "Expand", "Gather", "GatherElements", "GatherND", "Gemm", "GreaterOrEqual", "IsNaN", "LayerNormalization", "MatMul", "Max", "Mul", "Range", "ReduceSum", "Reshape", "Shape", "Slice", "Softmax", "Squeeze", "Transpose", "Unsqueeze", "Where"], "int8_ops": ["Add", "And", "Cast", "Clip", "Concat", "DequantizeLinear", "Div", "DynamicQuantizeLinear", "Erf", "Expand", "Gather", "GatherElements", "GatherND", "GreaterOrEqual", "IsNaN", "LayerNormalization", "MatMul", "MatMulInteger", "Max", "Mul", "Range", "ReduceSum", "Reshape", "Shape", "Slice", "Softmax", "Squeeze", "Transpose", "Unsqueeze", "Where"]}, "pruned
+== google/bert_uncased_L-4_H-512_A-8
+W1021 21:06:22.904000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:06:23.075000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:06:23.075000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:06:23.075000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:06:23.075000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+W1021 21:06:25.076000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:06:25.242000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:06:25.243000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:06:25.243000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:06:25.243000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+{"license": "apache-2.0", "arch": "bert", "layers": 4, "hidden": 512, "vocab": 30522, "hub_safetensors_mb": 0, "full": {"params": 28506635, "exporter": "dynamo", "parity": 1.0132789611816406e-06, "fp32_mb": 113.99, "int8_mb": 28.57, "fp32_ops": ["Add", "And", "Cast", "Clip", "Concat", "Div", "Erf", "Expand", "Gather", "GatherElements", "GatherND", "Gemm", "GreaterOrEqual", "IsNaN", "LayerNormalization", "MatMul", "Max", "Mul", "Range", "ReduceSum", "Reshape", "Shape", "Slice", "Softmax", "Squeeze", "Transpose", "Unsqueeze", "Where"], "int8_ops": ["Add", "And", "Cast", "Clip", "Concat", "DequantizeLinear", "Div", "DynamicQuantizeLinear", "Erf", "Expand", "Gather", "GatherElements", "GatherND", "GreaterOrEqual", "IsNaN", "LayerNormalization", "MatMul", "MatMulInteger", "Max", "Mul", "Range", "ReduceSum", "Reshape", "Shape", "Slice", "Softmax", "Squeeze", "Transpose", "Unsqueeze", "Where"]}
+== microsoft/deberta-v3-small
+/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+W1021 21:06:30.881000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:06:31.046000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:06:31.046000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:06:31.046000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:06:31.046000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+W1021 21:06:39.343000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:06:39.527000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:06:39.531000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:06:39.531000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:06:39.531000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+W1021 21:06:44.774000 16080 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1021 21:06:45.005000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1021 21:06:45.005000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1021 21:06:45.005000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1021 21:06:45.005000 16080 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiMultiTaskModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+WARNING:onnxscript.version_converter:The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+{"license": "mit", "arch": "deberta-v2", "layers": 6, "hidden": 768, "vocab": 128100, "hub_safetensors_mb": 0, "full": {"params": 141312779, "exporter": "dynamo", "parity": 2.2649765014648438e-06, "fp32_mb": 565.14, "int8_mb": 163.82, "fp32_ops": ["Abs", "Add", "And", "Cast", "Ceil", "Clip", "Concat", "Div", "Erf", "Expand", "Gather", "GatherElements", "Gemm", "Greater", "LayerNormalization", "Less", "LessOrEqual", "Log", "MatMul", "Mul", "Neg", "Not", "Range", "ReduceSum", "Reshape", "Shape", "Sign", "Softmax", "Squeeze", "Sub", "Tile", "Transpose", "Unsqueeze", "Where"], "int8_ops": ["Abs", "Add", "And", "Cast", "Ceil", "Clip", "Concat", "DequantizeLinear", "Div", "DynamicQuantizeLinear", "Erf", "Expand", "Gather", "GatherElements", "Greater", "LayerNormalization", "Less", "LessOrEqual", "Log", "MatMul", "MatMulInteger", "Mul", "Neg", "Not", "Range", "ReduceSum", "Reshape", "Shape", "S

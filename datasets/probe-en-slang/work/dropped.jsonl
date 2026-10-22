@@ -1,0 +1,26 @@
+{"text": "target run 24$", "reason": "near_corpus 0.92: 'target run 54'"}
+{"text": "greggs sausage roll 1.50 quid", "reason": "near_corpus 0.89: 'greggs sausage roll 1.45'"}
+{"text": "train tix 2 london 35", "reason": "near_corpus 0.86: 'train to london 38.50'"}
+{"text": "elec bill pd 850 rs", "reason": "near_batch 0.91: 'elec bill pd 65$'"}
+{"text": "cai fan lunch 4.80 s$", "reason": "near_corpus 0.91: 'cai fan lunch 4.80'"}
+{"text": "chicken rice lunch 5 s$", "reason": "near_corpus 0.93: 'chicken rice lunch 5.50'"}
+{"text": "bak chor mee 6 s$", "reason": "near_corpus 0.90: 'bak chor mee 6'"}
+{"text": "client pd invoice 1.2k eod", "reason": "near_corpus 0.86: 'client paid invoice 800'"}
+{"text": "consulting fee received 1.5k", "reason": "exact"}
+{"text": "slry credited 45k rs", "reason": "near_corpus 0.86: 'salary credited 4100'"}
+{"text": "sam owes me 20", "reason": "exact"}
+{"text": "rahul owes me 800 rs", "reason": "near_corpus 0.91: 'Rahul owes me 500'"}
+{"text": "borrowed 20 from sis cab", "reason": "near_corpus 0.86: 'borrowed 40 from Sam'"}
+{"text": "advance on paycheck 200 pls", "reason": "near_corpus 0.91: 'advance on paycheck 300'"}
+{"text": "borrowed 100 from dad car", "reason": "near_corpus 0.86: 'borrowed 40 from Daryl'"}
+{"text": "yan ting pd back 45", "reason": "near_corpus 0.88: 'Yan Ting paid me back 40'"}
+{"text": "cleared affirm balance 45 bucks", "reason": "near_corpus 0.89: 'cleared affirm balance 45'"}
+{"text": "paid off klarna instalment 35", "reason": "near_corpus 0.92: 'paid klarna instalment 22.50'"}
+{"text": "top up monzo card 100", "reason": "near_corpus 0.93: 'topped up monzo card 50'"}
+{"text": "withdrew 20 quid cash atm", "reason": "near_corpus 0.88: 'withdrew 40 cash atm'"}
+{"text": "moved 50k rs fixed deposit", "reason": "near_corpus 0.92: 'moved 2k to fixed deposit'"}
+{"text": "posb atm cash withdrawal 50", "reason": "near_corpus 0.89: 'atm cash withdrawal 1500'"}
+{"text": "withdrew 200 cash from bank atm 4 weekend", "reason": "near_corpus 0.85: 'withdrew 80 cash from bank atm'"}
+{"text": "work reimbursed flight 300 quid", "reason": "near_corpus 0.91: 'work reimbursed flight 340'"}
+{"text": "mike 20", "reason": "exact"}
+{"text": "lunch?? 15", "reason": "near_corpus 0.88: 'LUNCH 12'"}

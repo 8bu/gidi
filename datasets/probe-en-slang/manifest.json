@@ -1,0 +1,31 @@
+{
+  "name": "probe-en-slang",
+  "evaluation_only": true,
+  "never_train": true,
+  "purpose": "diagnostic probe: slang-heavy English notes (texting slang, abbreviations, 5k/grand/quid/lakh, emoji) that the annotation-en-v1 test set barely covers",
+  "annotation_version": "annotation-en-v1",
+  "label_provenance": "silver-claude-clef (Gemini + Clef zero-shot, Claude adjudication)",
+  "source_file": "generated/en-slang-01.jsonl",
+  "id_prefix": "probe-en-slang-",
+  "total": 374,
+  "status_counts": {
+    "complete": 357,
+    "uncertain": 13,
+    "skipped": 4
+  },
+  "type_counts": {
+    "expense": 109,
+    "transfer": 46,
+    "income": 43,
+    "None": 17,
+    "refund": 20,
+    "lend": 41,
+    "borrow": 31,
+    "repayment_in": 39,
+    "repayment_out": 28
+  },
+  "source_counts": {
+    "consensus": 274,
+    "claude-adjudicated": 100
+  }
+}

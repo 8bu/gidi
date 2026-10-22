@@ -1,0 +1,374 @@
+{"id": "probe-en-slang-c8205f729089", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-668b98328bff", "annotation_status": "complete", "type": "expense", "target": {"text": "trader joes", "start": 0, "end": 11}}
+{"id": "probe-en-slang-a963717270bb", "annotation_status": "complete", "type": "expense", "target": {"text": "starbucks", "start": 0, "end": 9}}
+{"id": "probe-en-slang-aac11d7070c9", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-102ffa7dfff7", "annotation_status": "complete", "type": "expense", "target": {"text": "uber", "start": 0, "end": 4}}
+{"id": "probe-en-slang-4292e524c426", "annotation_status": "complete", "type": "expense", "target": {"text": "lyft", "start": 0, "end": 4}}
+{"id": "probe-en-slang-46c3ea508cf2", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-8949f1b01194", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-d993f3da07d2", "annotation_status": "complete", "type": "expense", "target": {"text": "netflix", "start": 0, "end": 7}}
+{"id": "probe-en-slang-39773fac31b1", "annotation_status": "complete", "type": "expense", "target": {"text": "spotify", "start": 0, "end": 7}}
+{"id": "probe-en-slang-9a68684822ca", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-a7c9da3c1087", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-f13bb8cb128f", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-0d1ed334ef24", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-12d3090e3648", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-bf626633d0c9", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-8c8257ee26c2", "annotation_status": "complete", "type": "expense", "target": {"text": "steam", "start": 0, "end": 5}}
+{"id": "probe-en-slang-797eea65c79f", "annotation_status": "complete", "type": "expense", "target": {"text": "patreon", "start": 0, "end": 7}}
+{"id": "probe-en-slang-fa498e92295c", "annotation_status": "complete", "type": "expense", "target": {"text": "doordash", "start": 0, "end": 8}}
+{"id": "probe-en-slang-3ea7f7622dc8", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-692877a968f5", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-5daf18ed3477", "annotation_status": "complete", "type": "expense", "target": {"text": "tesco", "start": 0, "end": 5}}
+{"id": "probe-en-slang-ac9234e919b0", "annotation_status": "complete", "type": "expense", "target": {"text": "sainsburys", "start": 0, "end": 10}}
+{"id": "probe-en-slang-80b7847dfe3c", "annotation_status": "complete", "type": "expense", "target": {"text": "nandos", "start": 0, "end": 6}}
+{"id": "probe-en-slang-5c73fd1ea6ac", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-77df1c9591bf", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-03452ea33830", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-f947062813c9", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-f467be6ba9e3", "annotation_status": "complete", "type": "expense", "target": {"text": "monzo flex", "start": 0, "end": 10}}
+{"id": "probe-en-slang-5ceb0cfc9d2d", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-16e61c03cffb", "annotation_status": "complete", "type": "expense", "target": {"text": "deliveroo", "start": 0, "end": 9}}
+{"id": "probe-en-slang-cddbed557701", "annotation_status": "complete", "type": "expense", "target": {"text": "boots", "start": 0, "end": 5}}
+{"id": "probe-en-slang-4a0ef829c72d", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-f1f8326ed71d", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-5e74f4c8e300", "annotation_status": "complete", "type": "expense", "target": {"text": "swiggy", "start": 0, "end": 6}}
+{"id": "probe-en-slang-287498434dd0", "annotation_status": "complete", "type": "expense", "target": {"text": "zomato", "start": 0, "end": 6}}
+{"id": "probe-en-slang-0512522bbcd3", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-9cb20b007daf", "annotation_status": "complete", "type": "expense", "target": {"text": "swiggy", "start": 0, "end": 6}}
+{"id": "probe-en-slang-1d707da61508", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-957ec4a2cab8", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-f19a58451f91", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-55cb470844ca", "annotation_status": "complete", "type": "expense", "target": {"text": "blinkit", "start": 0, "end": 7}}
+{"id": "probe-en-slang-9bbece085079", "annotation_status": "complete", "type": "expense", "target": {"text": "zepto", "start": 0, "end": 5}}
+{"id": "probe-en-slang-643dced75a2f", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-43e20b299221", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-22e293af45d1", "annotation_status": "complete", "type": "expense", "target": {"text": "mom", "start": 6, "end": 9}}
+{"id": "probe-en-slang-07e037815dcd", "annotation_status": "complete", "type": "expense", "target": {"text": "bhai", "start": 7, "end": 11}}
+{"id": "probe-en-slang-1009df54ae78", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-50cd3fc6e664", "annotation_status": "complete", "type": "expense", "target": {"text": "ntuc", "start": 0, "end": 4}}
+{"id": "probe-en-slang-6822c766cf46", "annotation_status": "complete", "type": "expense", "target": {"text": "mcd", "start": 0, "end": 3}}
+{"id": "probe-en-slang-4f701912f97a", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-087e5b312294", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-ebd0cc37b6dc", "annotation_status": "complete", "type": "expense", "target": {"text": "grab", "start": 0, "end": 4}}
+{"id": "probe-en-slang-f37ef07b73e6", "annotation_status": "complete", "type": "expense", "target": {"text": "donki", "start": 0, "end": 5}}
+{"id": "probe-en-slang-3ff25170bf08", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-82eb51333488", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-e2354d40a420", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-c40a2b098c80", "annotation_status": "complete", "type": "expense", "target": {"text": "grab", "start": 0, "end": 4}}
+{"id": "probe-en-slang-1284a542aaa3", "annotation_status": "complete", "type": "expense", "target": {"text": "toast box", "start": 0, "end": 9}}
+{"id": "probe-en-slang-baa907a71b5a", "annotation_status": "complete", "type": "expense", "target": {"text": "sis", "start": 7, "end": 10}}
+{"id": "probe-en-slang-23992e6a3ab8", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-5c7ab73eb50f", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-20fdf8d234a3", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-947aa60b272b", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-21d5d0e0d0da", "annotation_status": "complete", "type": "expense", "target": {"text": "uber", "start": 0, "end": 4}}
+{"id": "probe-en-slang-cd2eb223d631", "annotation_status": "complete", "type": "expense", "target": {"text": "trader joes", "start": 0, "end": 11}}
+{"id": "probe-en-slang-33ee38cdfab3", "annotation_status": "complete", "type": "expense", "target": {"text": "nike", "start": 18, "end": 22}}
+{"id": "probe-en-slang-f30c69fbdb53", "annotation_status": "complete", "type": "expense", "target": {"text": "verizon", "start": 0, "end": 7}}
+{"id": "probe-en-slang-52eb92c46e2a", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-3a9cc81f923c", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-02c1a6cc207d", "annotation_status": "complete", "type": "expense", "target": {"text": "sis", "start": 8, "end": 11}}
+{"id": "probe-en-slang-14c924ab4766", "annotation_status": "complete", "type": "expense", "target": {"text": "mom", "start": 8, "end": 11}}
+{"id": "probe-en-slang-dacdbc3e2136", "annotation_status": "complete", "type": "expense", "target": {"text": "sainsburys", "start": 20, "end": 30}}
+{"id": "probe-en-slang-d7ea9751bbb2", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-92529e8a194e", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-a453840197a3", "annotation_status": "complete", "type": "expense", "target": {"text": "waterstones", "start": 16, "end": 27}}
+{"id": "probe-en-slang-f0205751f47b", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-a4ce7e1bcbb5", "annotation_status": "complete", "type": "expense", "target": {"text": "ee", "start": 0, "end": 2}}
+{"id": "probe-en-slang-51488f63c0d5", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-6f5c65a6d3bf", "annotation_status": "complete", "type": "expense", "target": {"text": "nandos", "start": 0, "end": 6}}
+{"id": "probe-en-slang-4453996a55f7", "annotation_status": "complete", "type": "expense", "target": {"text": "brother", "start": 5, "end": 12}}
+{"id": "probe-en-slang-6868aa5b2eba", "annotation_status": "complete", "type": "expense", "target": {"text": "zomato", "start": 0, "end": 6}}
+{"id": "probe-en-slang-656e1e0902de", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-25669e91da85", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-69acb46185ac", "annotation_status": "complete", "type": "expense", "target": {"text": "swiggy", "start": 0, "end": 6}}
+{"id": "probe-en-slang-70ff90d59007", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-e01be0c2ace6", "annotation_status": "complete", "type": "expense", "target": {"text": "dad", "start": 7, "end": 10}}
+{"id": "probe-en-slang-6944386a108d", "annotation_status": "complete", "type": "expense", "target": {"text": "cousin", "start": 6, "end": 12}}
+{"id": "probe-en-slang-1ddc8e119b09", "annotation_status": "complete", "type": "expense", "target": {"text": "bf", "start": 8, "end": 10}}
+{"id": "probe-en-slang-2f31e635fbdc", "annotation_status": "complete", "type": "expense", "target": {"text": "ntuc fairprice", "start": 0, "end": 14}}
+{"id": "probe-en-slang-08e1e623030c", "annotation_status": "complete", "type": "expense", "target": {"text": "grab", "start": 0, "end": 4}}
+{"id": "probe-en-slang-f4455c283d9a", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-e75566a695f7", "annotation_status": "complete", "type": "expense", "target": {"text": "simba", "start": 0, "end": 5}}
+{"id": "probe-en-slang-b25f73801f84", "annotation_status": "complete", "type": "expense", "target": {"text": "brother", "start": 7, "end": 14}}
+{"id": "probe-en-slang-7e16c9a88a36", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-d72478c3278c", "annotation_status": "complete", "type": "expense", "target": {"text": "costco", "start": 18, "end": 24}}
+{"id": "probe-en-slang-ebed70e8c8db", "annotation_status": "complete", "type": "expense", "target": {"text": "sis", "start": 15, "end": 18}}
+{"id": "probe-en-slang-ad2222b04659", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-5da57644281b", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-d88d980d4139", "annotation_status": "complete", "type": "expense", "target": {"text": "adidas", "start": 30, "end": 36}}
+{"id": "probe-en-slang-feef1848a81c", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-aeed0681c3b8", "annotation_status": "complete", "type": "expense", "target": {"text": "swiggy", "start": 0, "end": 6}}
+{"id": "probe-en-slang-742ac6cf0b23", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-9c8010e13009", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-cdb94e8e19e9", "annotation_status": "complete", "type": "expense", "target": {"text": "mom", "start": 5, "end": 8}}
+{"id": "probe-en-slang-f785b1c1cacd", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-9a503d674f45", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-51b1be95b7c2", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-8fe1b9446320", "annotation_status": "complete", "type": "income", "target": {"text": "boss", "start": 0, "end": 4}}
+{"id": "probe-en-slang-33317e9a2343", "annotation_status": "complete", "type": "income", "target": {"text": "fb", "start": 13, "end": 15}}
+{"id": "probe-en-slang-323f1a713511", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-683870af57fa", "annotation_status": "complete", "type": "income", "target": {"text": "ebay", "start": 18, "end": 22}}
+{"id": "probe-en-slang-4cbe32808176", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-08b61c7cb08a", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-6a8bc27ea485", "annotation_status": "complete", "type": "income", "target": {"text": "client", "start": 0, "end": 6}}
+{"id": "probe-en-slang-070169d05c7b", "annotation_status": "complete", "type": "income", "target": {"text": "craigslist", "start": 13, "end": 23}}
+{"id": "probe-en-slang-ee1fe63d7ea2", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-9568cc22ea24", "annotation_status": "complete", "type": "income", "target": {"text": "etsy", "start": 0, "end": 4}}
+{"id": "probe-en-slang-bce274fec841", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-55dac1f5f45e", "annotation_status": "complete", "type": "income", "target": {"text": "grandma", "start": 10, "end": 17}}
+{"id": "probe-en-slang-2313478b2ed0", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-4ed22206c529", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-9be90f340c78", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-a8534be76a3f", "annotation_status": "uncertain", "type": null, "target": {"text": "dad", "start": 12, "end": 15}, "note": "diwali cash dad: direction unclear (gift to or from dad)"}
+{"id": "probe-en-slang-b34a1b352b4d", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-2d91330d6c06", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-322313a2e7e6", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-7eb5ce1cfb29", "annotation_status": "complete", "type": "income", "target": {"text": "uncle", "start": 12, "end": 17}}
+{"id": "probe-en-slang-1be6b45f483b", "annotation_status": "complete", "type": "income", "target": {"text": "carousell", "start": 11, "end": 20}}
+{"id": "probe-en-slang-ef995e5d0d97", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-003b1d74d717", "annotation_status": "complete", "type": "income", "target": {"text": "carousell", "start": 0, "end": 9}}
+{"id": "probe-en-slang-2bd80f3abfa2", "annotation_status": "complete", "type": "income", "target": {"text": "company", "start": 0, "end": 7}}
+{"id": "probe-en-slang-0638de6fb29f", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-bdd295af37eb", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-95f5431be8e8", "annotation_status": "complete", "type": "income", "target": {"text": "upwork", "start": 12, "end": 18}}
+{"id": "probe-en-slang-d03fb6ac6c08", "annotation_status": "complete", "type": "income", "target": {"text": "client", "start": 0, "end": 6}}
+{"id": "probe-en-slang-1747d5ff2148", "annotation_status": "complete", "type": "income", "target": {"text": "client", "start": 0, "end": 6}}
+{"id": "probe-en-slang-6999062909b3", "annotation_status": "complete", "type": "income", "target": {"text": "vinted", "start": 24, "end": 30}}
+{"id": "probe-en-slang-b505d5ba5fd9", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-24f62a34c91b", "annotation_status": "complete", "type": "refund", "target": {"text": "landlord", "start": 31, "end": 39}}
+{"id": "probe-en-slang-d8796a1c6705", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-1516700d2ab8", "annotation_status": "complete", "type": "income", "target": {"text": "boss", "start": 0, "end": 4}}
+{"id": "probe-en-slang-93c9ceb94b20", "annotation_status": "complete", "type": "income", "target": {"text": "client", "start": 10, "end": 16}}
+{"id": "probe-en-slang-6d64bdd5dc32", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-0cee3505fc8b", "annotation_status": "complete", "type": "income", "target": {"text": "shopee", "start": 0, "end": 6}}
+{"id": "probe-en-slang-57744168d1e4", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-a5741519bd5e", "annotation_status": "complete", "type": "income", "target": {"text": "craigslist", "start": 16, "end": 26}}
+{"id": "probe-en-slang-d92dca46925a", "annotation_status": "complete", "type": "income", "target": {"text": "client", "start": 0, "end": 6}}
+{"id": "probe-en-slang-1d38d8bb69fa", "annotation_status": "complete", "type": "income", "target": {"text": "gumtree", "start": 23, "end": 30}}
+{"id": "probe-en-slang-9f9cabdd8a48", "annotation_status": "complete", "type": "income", "target": null}
+{"id": "probe-en-slang-d4b02c3998cc", "annotation_status": "complete", "type": "lend", "target": {"text": "priya", "start": 8, "end": 13}}
+{"id": "probe-en-slang-637511eee2f8", "annotation_status": "complete", "type": "lend", "target": {"text": "bro", "start": 12, "end": 15}}
+{"id": "probe-en-slang-2f67b85c57ac", "annotation_status": "complete", "type": "lend", "target": {"text": "bf", "start": 0, "end": 2}}
+{"id": "probe-en-slang-3eaa21f63479", "annotation_status": "complete", "type": "lend", "target": {"text": "sam", "start": 16, "end": 19}}
+{"id": "probe-en-slang-6e98908fdc69", "annotation_status": "complete", "type": "lend", "target": {"text": "dave", "start": 8, "end": 12}}
+{"id": "probe-en-slang-7c412b9459b2", "annotation_status": "complete", "type": "lend", "target": {"text": "u", "start": 5, "end": 6}}
+{"id": "probe-en-slang-328469166e00", "annotation_status": "complete", "type": "lend", "target": {"text": "priya", "start": 16, "end": 21}}
+{"id": "probe-en-slang-f7e3ee295a43", "annotation_status": "complete", "type": "lend", "target": {"text": "roomie", "start": 17, "end": 23}}
+{"id": "probe-en-slang-815aeb4ca5e3", "annotation_status": "complete", "type": "lend", "target": {"text": "sam", "start": 0, "end": 3}}
+{"id": "probe-en-slang-f169364ffe6c", "annotation_status": "complete", "type": "lend", "target": null}
+{"id": "probe-en-slang-48f0a3e80f0a", "annotation_status": "complete", "type": "lend", "target": {"text": "mate", "start": 5, "end": 9}}
+{"id": "probe-en-slang-46ddfb54cde8", "annotation_status": "complete", "type": "lend", "target": {"text": "chloe", "start": 12, "end": 17}}
+{"id": "probe-en-slang-8aae9193b202", "annotation_status": "complete", "type": "lend", "target": {"text": "neighbor", "start": 5, "end": 13}}
+{"id": "probe-en-slang-7456e3266d31", "annotation_status": "complete", "type": "lend", "target": null}
+{"id": "probe-en-slang-8bcec33db81c", "annotation_status": "complete", "type": "lend", "target": {"text": "crew", "start": 14, "end": 18}}
+{"id": "probe-en-slang-fedf99664c7a", "annotation_status": "complete", "type": "lend", "target": {"text": "mate", "start": 0, "end": 4}}
+{"id": "probe-en-slang-14f825f830f9", "annotation_status": "complete", "type": "lend", "target": {"text": "buddy", "start": 5, "end": 10}}
+{"id": "probe-en-slang-3d2692a99d10", "annotation_status": "complete", "type": "lend", "target": {"text": "bro", "start": 0, "end": 3}}
+{"id": "probe-en-slang-835ddbb864e9", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-e661e8f6f886", "annotation_status": "complete", "type": "lend", "target": {"text": "cousin", "start": 5, "end": 11}}
+{"id": "probe-en-slang-5d5b90299675", "annotation_status": "complete", "type": "lend", "target": {"text": "wei ming", "start": 8, "end": 16}}
+{"id": "probe-en-slang-4bddbacc7626", "annotation_status": "complete", "type": "lend", "target": {"text": "mate", "start": 13, "end": 17}}
+{"id": "probe-en-slang-96924e47b10d", "annotation_status": "complete", "type": "lend", "target": {"text": "colleague", "start": 5, "end": 14}}
+{"id": "probe-en-slang-4b995489fcb4", "annotation_status": "complete", "type": "lend", "target": null}
+{"id": "probe-en-slang-f3cca62feff3", "annotation_status": "complete", "type": "lend", "target": {"text": "sam", "start": 8, "end": 11}}
+{"id": "probe-en-slang-7fe03b5f6b5b", "annotation_status": "complete", "type": "lend", "target": {"text": "squad", "start": 23, "end": 28}}
+{"id": "probe-en-slang-5a11a4519599", "annotation_status": "complete", "type": "lend", "target": null}
+{"id": "probe-en-slang-a95dd9911893", "annotation_status": "complete", "type": "lend", "target": {"text": "roomies", "start": 29, "end": 36}}
+{"id": "probe-en-slang-ccddf88d4752", "annotation_status": "complete", "type": "lend", "target": {"text": "sam", "start": 25, "end": 28}}
+{"id": "probe-en-slang-cf7c03a875e9", "annotation_status": "complete", "type": "lend", "target": {"text": "squad", "start": 35, "end": 40}}
+{"id": "probe-en-slang-6a9aa672e2dd", "annotation_status": "complete", "type": "lend", "target": {"text": "mark", "start": 9, "end": 13}}
+{"id": "probe-en-slang-719c3eab1e64", "annotation_status": "complete", "type": "lend", "target": {"text": "buddy", "start": 5, "end": 10}}
+{"id": "probe-en-slang-56ab1dc0f781", "annotation_status": "complete", "type": "lend", "target": {"text": "dave", "start": 43, "end": 47}}
+{"id": "probe-en-slang-b9b415b17640", "annotation_status": "complete", "type": "lend", "target": {"text": "lads", "start": 21, "end": 25}}
+{"id": "probe-en-slang-31b3a7d6e432", "annotation_status": "complete", "type": "lend", "target": {"text": "bro", "start": 5, "end": 8}}
+{"id": "probe-en-slang-035c3902a2c3", "annotation_status": "complete", "type": "lend", "target": {"text": "cousin", "start": 5, "end": 11}}
+{"id": "probe-en-slang-866d63f76e14", "annotation_status": "complete", "type": "lend", "target": {"text": "colleagues", "start": 20, "end": 30}}
+{"id": "probe-en-slang-74631458030c", "annotation_status": "complete", "type": "lend", "target": {"text": "friends", "start": 30, "end": 37}}
+{"id": "probe-en-slang-8789f52a4af6", "annotation_status": "complete", "type": "lend", "target": {"text": "sam", "start": 8, "end": 11}}
+{"id": "probe-en-slang-41988ac95ba0", "annotation_status": "complete", "type": "lend", "target": {"text": "sis", "start": 25, "end": 28}}
+{"id": "probe-en-slang-50451269f95f", "annotation_status": "complete", "type": "lend", "target": {"text": "group", "start": 24, "end": 29}}
+{"id": "probe-en-slang-b2c16162dd52", "annotation_status": "complete", "type": "lend", "target": {"text": "friends", "start": 49, "end": 56}}
+{"id": "probe-en-slang-e0613430907e", "annotation_status": "complete", "type": "borrow", "target": {"text": "landlord", "start": 4, "end": 12}}
+{"id": "probe-en-slang-8b59c3faeba7", "annotation_status": "complete", "type": "borrow", "target": {"text": "mike", "start": 4, "end": 8}}
+{"id": "probe-en-slang-7261aa77e6b7", "annotation_status": "complete", "type": "borrow", "target": null}
+{"id": "probe-en-slang-f31149b3874e", "annotation_status": "complete", "type": "borrow", "target": {"text": "gf", "start": 17, "end": 19}}
+{"id": "probe-en-slang-d33267c4fa6d", "annotation_status": "complete", "type": "borrow", "target": {"text": "sam", "start": 4, "end": 7}}
+{"id": "probe-en-slang-b7d81bbc0a3e", "annotation_status": "complete", "type": "borrow", "target": null}
+{"id": "probe-en-slang-3b39eecac294", "annotation_status": "complete", "type": "borrow", "target": {"text": "roomie", "start": 17, "end": 23}}
+{"id": "probe-en-slang-c2799d352fdf", "annotation_status": "complete", "type": "borrow", "target": {"text": "bro", "start": 15, "end": 18}}
+{"id": "probe-en-slang-b7b0c0771079", "annotation_status": "complete", "type": "borrow", "target": {"text": "mate", "start": 17, "end": 21}}
+{"id": "probe-en-slang-6a19a2676a0e", "annotation_status": "complete", "type": "borrow", "target": {"text": "mum", "start": 4, "end": 7}}
+{"id": "probe-en-slang-f0f374996241", "annotation_status": "complete", "type": "borrow", "target": {"text": "coworker", "start": 21, "end": 29}}
+{"id": "probe-en-slang-84a8bba385c3", "annotation_status": "complete", "type": "borrow", "target": {"text": "u", "start": 4, "end": 5}}
+{"id": "probe-en-slang-97dd81d7d17c", "annotation_status": "uncertain", "type": null, "target": null, "note": "bare IOU without counterparty or direction"}
+{"id": "probe-en-slang-271bf0bab8ba", "annotation_status": "complete", "type": "borrow", "target": {"text": "bro", "start": 4, "end": 7}}
+{"id": "probe-en-slang-4d5cc7d4f3bb", "annotation_status": "complete", "type": "borrow", "target": {"text": "priya", "start": 4, "end": 9}}
+{"id": "probe-en-slang-2d41ce3dd97e", "annotation_status": "complete", "type": "borrow", "target": {"text": "bhai", "start": 21, "end": 25}}
+{"id": "probe-en-slang-7875c73a1a72", "annotation_status": "complete", "type": "borrow", "target": {"text": "wei ming", "start": 4, "end": 12}}
+{"id": "probe-en-slang-f8cc060d1b7f", "annotation_status": "complete", "type": "borrow", "target": {"text": "roomie", "start": 20, "end": 26}}
+{"id": "probe-en-slang-bf2511ff75f8", "annotation_status": "uncertain", "type": null, "target": null, "note": "bare IOU without counterparty or direction"}
+{"id": "probe-en-slang-f160380d7b16", "annotation_status": "complete", "type": "borrow", "target": {"text": "mom", "start": 24, "end": 27}}
+{"id": "probe-en-slang-863d5a565cc9", "annotation_status": "complete", "type": "borrow", "target": {"text": "roommate", "start": 4, "end": 12}}
+{"id": "probe-en-slang-789e60d4eb4f", "annotation_status": "complete", "type": "borrow", "target": {"text": "boss", "start": 40, "end": 44}}
+{"id": "probe-en-slang-e2094873885c", "annotation_status": "complete", "type": "borrow", "target": {"text": "cousin", "start": 4, "end": 10}}
+{"id": "probe-en-slang-43288f4b6f13", "annotation_status": "complete", "type": "borrow", "target": {"text": "coworker", "start": 23, "end": 31}}
+{"id": "probe-en-slang-5cd58f5000af", "annotation_status": "complete", "type": "borrow", "target": {"text": "mate", "start": 4, "end": 8}}
+{"id": "probe-en-slang-0b7abcbbcbbb", "annotation_status": "complete", "type": "borrow", "target": {"text": "dad", "start": 22, "end": 25}}
+{"id": "probe-en-slang-86443126665c", "annotation_status": "complete", "type": "borrow", "target": null}
+{"id": "probe-en-slang-018317359e9b", "annotation_status": "complete", "type": "borrow", "target": {"text": "cousin", "start": 22, "end": 28}}
+{"id": "probe-en-slang-f28a1edd0285", "annotation_status": "complete", "type": "borrow", "target": {"text": "rahul", "start": 4, "end": 9}}
+{"id": "probe-en-slang-8f0693f978a5", "annotation_status": "complete", "type": "borrow", "target": {"text": "colleague", "start": 20, "end": 29}}
+{"id": "probe-en-slang-f20ac8326fc8", "annotation_status": "complete", "type": "borrow", "target": {"text": "sis", "start": 24, "end": 27}}
+{"id": "probe-en-slang-46f992e67048", "annotation_status": "complete", "type": "borrow", "target": {"text": "landlord", "start": 4, "end": 12}}
+{"id": "probe-en-slang-e53ce740aca6", "annotation_status": "complete", "type": "borrow", "target": {"text": "uncle", "start": 31, "end": 36}}
+{"id": "probe-en-slang-3b9c16dd08df", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "mike", "start": 0, "end": 4}}
+{"id": "probe-en-slang-c67dbea71b8b", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "sam", "start": 0, "end": 3}}
+{"id": "probe-en-slang-c39b542663d3", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "priya", "start": 0, "end": 5}}
+{"id": "probe-en-slang-072747db1160", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "sis", "start": 0, "end": 3}}
+{"id": "probe-en-slang-55932c17e5bb", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "dave", "start": 0, "end": 4}}
+{"id": "probe-en-slang-4235f228c60f", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "roomie", "start": 0, "end": 6}}
+{"id": "probe-en-slang-a33da9945f22", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "alex", "start": 0, "end": 4}}
+{"id": "probe-en-slang-c92b194c266d", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "dan", "start": 0, "end": 3}}
+{"id": "probe-en-slang-e15795a0a8aa", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "coworker", "start": 0, "end": 8}}
+{"id": "probe-en-slang-80eda8f9b8a2", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "sarah", "start": 0, "end": 5}}
+{"id": "probe-en-slang-e7252596126b", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "joe", "start": 0, "end": 3}}
+{"id": "probe-en-slang-4390d1c977cc", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "mate", "start": 0, "end": 4}}
+{"id": "probe-en-slang-8aaa3214a448", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "chloe", "start": 0, "end": 5}}
+{"id": "probe-en-slang-ecaa2f61692f", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "mum", "start": 0, "end": 3}}
+{"id": "probe-en-slang-73ea8e3c5b54", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "mark", "start": 0, "end": 4}}
+{"id": "probe-en-slang-b42a8cd0c58b", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "tunde", "start": 0, "end": 5}}
+{"id": "probe-en-slang-5e680a72d3e4", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "bro", "start": 0, "end": 3}}
+{"id": "probe-en-slang-765add76b20e", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "rahul", "start": 0, "end": 5}}
+{"id": "probe-en-slang-63e2267096a7", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "cousin", "start": 0, "end": 6}}
+{"id": "probe-en-slang-cde791276bca", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "wei ming", "start": 0, "end": 8}}
+{"id": "probe-en-slang-b7738f969692", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "desmond", "start": 0, "end": 7}}
+{"id": "probe-en-slang-70e04ef21907", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "cheryl", "start": 0, "end": 6}}
+{"id": "probe-en-slang-c9fcd5f9da65", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "roomie", "start": 0, "end": 6}}
+{"id": "probe-en-slang-0f0b08a433e8", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "sam", "start": 0, "end": 3}}
+{"id": "probe-en-slang-5e1b87e8975c", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "dave", "start": 0, "end": 4}}
+{"id": "probe-en-slang-bcad5d0ca8f4", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "roommate", "start": 0, "end": 8}}
+{"id": "probe-en-slang-4d72ca82788b", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "mark", "start": 0, "end": 4}}
+{"id": "probe-en-slang-6ca6cedd6ac3", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "dan", "start": 0, "end": 3}}
+{"id": "probe-en-slang-20a21076110f", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "bro", "start": 0, "end": 3}}
+{"id": "probe-en-slang-d7876dc2c177", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "mate", "start": 0, "end": 4}}
+{"id": "probe-en-slang-8a6efe388acd", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "chloe", "start": 0, "end": 5}}
+{"id": "probe-en-slang-3e40dfc94b3b", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "priya", "start": 0, "end": 5}}
+{"id": "probe-en-slang-12145ac04607", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "cousin", "start": 0, "end": 6}}
+{"id": "probe-en-slang-616a1ddcfc93", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "wei ming", "start": 0, "end": 8}}
+{"id": "probe-en-slang-90dcf46be2dd", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "colleague", "start": 0, "end": 9}}
+{"id": "probe-en-slang-996b7e054c52", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "sam", "start": 0, "end": 3}}
+{"id": "probe-en-slang-4e18f7eb0607", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "roommate", "start": 0, "end": 8}}
+{"id": "probe-en-slang-f7be59be294d", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "dave", "start": 0, "end": 4}}
+{"id": "probe-en-slang-52fea8d51050", "annotation_status": "complete", "type": "repayment_in", "target": {"text": "priya", "start": 0, "end": 5}}
+{"id": "probe-en-slang-02577d2b2c94", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "mike", "start": 3, "end": 7}}
+{"id": "probe-en-slang-02df1737e5f4", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "priya", "start": 14, "end": 19}}
+{"id": "probe-en-slang-726ca3f6dee3", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "probe-en-slang-424b59bdd0ec", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "afterpay", "start": 9, "end": 17}}
+{"id": "probe-en-slang-36d2a5ae0172", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "sam", "start": 16, "end": 19}}
+{"id": "probe-en-slang-4a43b15f1add", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "dad", "start": 7, "end": 10}}
+{"id": "probe-en-slang-b4cc6e730643", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "chase", "start": 8, "end": 13}}
+{"id": "probe-en-slang-8638b36dae80", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "probe-en-slang-da86b199628d", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "gf", "start": 7, "end": 9}}
+{"id": "probe-en-slang-8094c2fd4037", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "bro", "start": 10, "end": 13}}
+{"id": "probe-en-slang-2a29bbeb140d", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "monzo flex", "start": 8, "end": 18}}
+{"id": "probe-en-slang-7ae69ea9157c", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "mum", "start": 3, "end": 6}}
+{"id": "probe-en-slang-9358ae0522df", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "probe-en-slang-910f44823875", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "hdfc", "start": 8, "end": 12}}
+{"id": "probe-en-slang-a43d34ba70ba", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "hdb", "start": 0, "end": 3}}
+{"id": "probe-en-slang-9ab06b743a36", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "probe-en-slang-43574633c38f", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "wei ming", "start": 7, "end": 15}}
+{"id": "probe-en-slang-b3e8a1f31eab", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "sam", "start": 10, "end": 13}}
+{"id": "probe-en-slang-6a6c76b2aae6", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "discover", "start": 9, "end": 17}}
+{"id": "probe-en-slang-9522c81427df", "annotation_status": "complete", "type": "expense", "target": {"text": "josh", "start": 5, "end": 9}}
+{"id": "probe-en-slang-299523be8ce8", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "dave", "start": 14, "end": 18}}
+{"id": "probe-en-slang-47ff02c15e42", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "probe-en-slang-d89e772f1a33", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "roommate", "start": 19, "end": 27}}
+{"id": "probe-en-slang-2f89f2eb38e1", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "mum", "start": 7, "end": 10}}
+{"id": "probe-en-slang-7e71082aca61", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "barclaycard", "start": 31, "end": 42}}
+{"id": "probe-en-slang-a8647d57e1c3", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "probe-en-slang-6225771ce4ec", "annotation_status": "complete", "type": "expense", "target": {"text": "roommate", "start": 9, "end": 17}}
+{"id": "probe-en-slang-9b5cfc607692", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "bro", "start": 10, "end": 13}}
+{"id": "probe-en-slang-08923de54600", "annotation_status": "complete", "type": "repayment_out", "target": null}
+{"id": "probe-en-slang-b1c4905568d7", "annotation_status": "complete", "type": "repayment_out", "target": {"text": "cousin", "start": 37, "end": 43}}
+{"id": "probe-en-slang-4b015203af6e", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-01cb23238f1b", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-fc7fa3f18bad", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-489ca876345f", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-99fd67342570", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-253cb4f37404", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-a552cf0c4208", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-56041070dcfa", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-a1f92ddfd71b", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-8fe7af0730ce", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-ef80813687a3", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-8a4e0e07a19c", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-32ce8b74527b", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-17e4a943182c", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-ee55fe2187df", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-3f09176643b7", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-de5ef579361f", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-8c7cb24fd57b", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-923f467da9bc", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-c8e528ad27d4", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-a7428f633127", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-baecac2de8b8", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-9b788e102d67", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-f7bc5c797da2", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-3522a4623269", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-8221901adc8c", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-1acf46cfb235", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-8efa88d50467", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-1256bb01235a", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-2734ac9ca78b", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-17789d7cd80d", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-20f2a9069bb1", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-297d5d8aaff5", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-7491d22f34c2", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-36dac65df48b", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-561f5ab4710f", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-af18673c0304", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-e886d322a7ba", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-76c4eaa5cc21", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-dca553ef1651", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-bdb99f4c3bc4", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-a773233904d1", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-8d0bae001262", "annotation_status": "complete", "type": "transfer", "target": null}
+{"id": "probe-en-slang-4660fa05103b", "annotation_status": "complete", "type": "refund", "target": {"text": "amazon", "start": 0, "end": 6}}
+{"id": "probe-en-slang-c2286997d3e9", "annotation_status": "complete", "type": "refund", "target": {"text": "uber", "start": 0, "end": 4}}
+{"id": "probe-en-slang-dd0a89a03fa0", "annotation_status": "complete", "type": "refund", "target": null}
+{"id": "probe-en-slang-036dc4b2981d", "annotation_status": "complete", "type": "refund", "target": {"text": "steam", "start": 0, "end": 5}}
+{"id": "probe-en-slang-ad843f38463e", "annotation_status": "complete", "type": "refund", "target": {"text": "target", "start": 0, "end": 6}}
+{"id": "probe-en-slang-8cb57f6f2a49", "annotation_status": "complete", "type": "refund", "target": {"text": "asos", "start": 0, "end": 4}}
+{"id": "probe-en-slang-fe9c33c3d459", "annotation_status": "complete", "type": "refund", "target": null}
+{"id": "probe-en-slang-4848f8e43d67", "annotation_status": "complete", "type": "refund", "target": {"text": "swiggy", "start": 0, "end": 6}}
+{"id": "probe-en-slang-1e906fe69d63", "annotation_status": "complete", "type": "refund", "target": {"text": "zomato", "start": 0, "end": 6}}
+{"id": "probe-en-slang-185ae208a3cf", "annotation_status": "complete", "type": "refund", "target": {"text": "lazada", "start": 0, "end": 6}}
+{"id": "probe-en-slang-1839a2eb44af", "annotation_status": "complete", "type": "refund", "target": {"text": "shopee", "start": 0, "end": 6}}
+{"id": "probe-en-slang-2a0cc1731118", "annotation_status": "complete", "type": "refund", "target": {"text": "amazon", "start": 0, "end": 6}}
+{"id": "probe-en-slang-7804c7e676e2", "annotation_status": "complete", "type": "refund", "target": {"text": "target", "start": 0, "end": 6}}
+{"id": "probe-en-slang-61d351c759c8", "annotation_status": "complete", "type": "refund", "target": null}
+{"id": "probe-en-slang-6899c68ad555", "annotation_status": "complete", "type": "refund", "target": {"text": "irctc", "start": 0, "end": 5}}
+{"id": "probe-en-slang-d12c0f306c31", "annotation_status": "complete", "type": "refund", "target": {"text": "grab", "start": 0, "end": 4}}
+{"id": "probe-en-slang-9adcc033b38f", "annotation_status": "complete", "type": "refund", "target": {"text": "klook", "start": 0, "end": 5}}
+{"id": "probe-en-slang-a6ececf74a2e", "annotation_status": "complete", "type": "refund", "target": {"text": "airline", "start": 0, "end": 7}}
+{"id": "probe-en-slang-869dfc73ea2a", "annotation_status": "complete", "type": "refund", "target": null}
+{"id": "probe-en-slang-e4e22944f2e8", "annotation_status": "uncertain", "type": null, "target": {"text": "priya", "start": 0, "end": 5}, "note": "bare name and number with no direction cue"}
+{"id": "probe-en-slang-e89214534e5d", "annotation_status": "uncertain", "type": null, "target": null, "note": "vague entry with no category or direction"}
+{"id": "probe-en-slang-4697eb75f073", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-008f671cf2bf", "annotation_status": "skipped", "type": null, "target": null}
+{"id": "probe-en-slang-1ff867b070f1", "annotation_status": "skipped", "type": null, "target": null}
+{"id": "probe-en-slang-7b93bad06f54", "annotation_status": "uncertain", "type": null, "target": null, "note": "bare amount with no category or context"}
+{"id": "probe-en-slang-93f770dc32e2", "annotation_status": "uncertain", "type": null, "target": {"text": "bro", "start": 0, "end": 3}, "note": "bare name and number with no direction cue"}
+{"id": "probe-en-slang-3dc35ccd9a20", "annotation_status": "uncertain", "type": null, "target": {"text": "sam", "start": 0, "end": 3}, "note": "bare name and number with no direction cue"}
+{"id": "probe-en-slang-f698985467dc", "annotation_status": "uncertain", "type": null, "target": null, "note": "unclear transaction context"}
+{"id": "probe-en-slang-41ef1ce02059", "annotation_status": "uncertain", "type": null, "target": null, "note": "ambiguous direction for share"}
+{"id": "probe-en-slang-17f7a75529e3", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-5464b1cf15a8", "annotation_status": "uncertain", "type": null, "target": null, "note": "reminder about an unknown charge, no transaction established"}
+{"id": "probe-en-slang-2ce8a488fab1", "annotation_status": "uncertain", "type": null, "target": {"text": "bro", "start": 11, "end": 14}, "note": "to-do about an unclear 50 quid, no direction"}
+{"id": "probe-en-slang-131579522f91", "annotation_status": "skipped", "type": null, "target": null}
+{"id": "probe-en-slang-00cd3ebec2c2", "annotation_status": "skipped", "type": null, "target": null}
+{"id": "probe-en-slang-64a73108b104", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-97d252d49357", "annotation_status": "complete", "type": "expense", "target": null}
+{"id": "probe-en-slang-415fd828a333", "annotation_status": "uncertain", "type": null, "target": {"text": "roomie", "start": 16, "end": 22}, "note": "to-do about an unclear 40 bucks, no direction"}

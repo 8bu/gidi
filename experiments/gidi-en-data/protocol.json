@@ -1,0 +1,43 @@
+{
+  "experiment": "gidi-en-data",
+  "written_before": "any gidi-en student was trained, exported or scored",
+  "label_provenance": "silver-claude-clef; no human labels exist for English. All numbers are agreement with Claude+Clef labels, not ground truth.",
+  "contract": "configs/annotation-en-v1.yaml, docs/annotation-en-v1.md. Clarifications fixed before final labelling (datasets/annotation-en-v1/work/gem-prompt.md): named merchants/services/platforms are targets (the guide's `uber home $18` row is treated as an outlier); salary-phrased notes (R4) have no target.",
+  "frozen_sets": {
+    "test": "datasets/annotation-en-v1/splits/test.jsonl (300 notes). Evaluation only: never used for prompts, few-shot, vocabulary, augmentation or training.",
+    "dev": "datasets/annotation-en-v1/splits/dev.jsonl (200 notes). Sanity checks and teacher accuracy only.",
+    "seed": "datasets/annotation-en-v1/splits/seed.jsonl (300 notes). Few-shot kNN pool for the Clef teacher only.",
+    "train": "datasets/annotation-en-v1/splits/train.jsonl (1,462 notes). Labels: datasets/annotation-en-v1/silver-train.jsonl (Clef 16-shot kNN teacher, pool = seed)."
+  },
+  "labels": {
+    "test_dev_seed": "two independent labelers (Gemini 3.8 flash, Clef zero-shot); agreement on type and target text = consensus, otherwise Claude adjudicated (labels-*.jsonl, provenance.jsonl source field)",
+    "train": "silver-train.jsonl; teacher dev accuracy is in report.md",
+    "teacher_dev_accuracy": {
+      "type": 0.915,
+      "target_exact": 0.894,
+      "joint": 0.825,
+      "n": 189,
+      "source": "dev-teacher-accuracy.json (pool = seed, labels-dev complete)"
+    }
+  },
+  "eval_sets": {
+    "primary": "test notes with annotation_status complete and provenance source = consensus (n = 214): both independent labelers agree on type and target, the least contestable subset",
+    "secondary": "all test notes with annotation_status complete (n = 290), including the 76 Claude-adjudicated hard ones"
+  },
+  "acceptance": {
+    "primary": {
+      "type_macro_f1_min": 0.90,
+      "target_exact_match_min": 0.85,
+      "joint_exact_match_min": 0.80,
+      "per_type_f1_min_for_types_with_n_ge_10": 0.75,
+      "note": "target exact match = predicted span equals the labelled span string, null equals null, over all notes of the set"
+    },
+    "secondary": {
+      "type_macro_f1_min": 0.82,
+      "target_exact_match_min": 0.78,
+      "note": "teacher on dev scored 0.915 type / 0.894 target over all complete notes and 0.789 / 0.702 on the adjudicated subset, so the student is not expected to beat the teacher on the hard notes"
+    },
+    "rationale": "A student distilled from the teacher is bounded near teacher quality. Primary thresholds sit at or just below the teacher's dev type/target accuracy on the consensus subset (0.970 / 0.977) with room for the capacity loss of a small model; secondary thresholds are about 0.09-0.12 below the teacher's all-notes dev numbers. The student passes only if both sets pass. Thresholds are not changed after seeing any student result."
+  },
+  "contamination": "no note of test or dev appears in train (SequenceMatcher >= 0.85 on normalised text or equal skeleton dropped from train); see splits/manifest.json"
+}

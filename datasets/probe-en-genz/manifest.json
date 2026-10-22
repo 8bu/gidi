@@ -1,0 +1,31 @@
+{
+  "name": "probe-en-genz",
+  "evaluation_only": true,
+  "never_train": true,
+  "purpose": "diagnostic probe: current Gen Z English slang finance notes, held out of gidi-en v2 training; reported as an extra, not part of any pass/fail",
+  "annotation_version": "annotation-en-v1",
+  "label_provenance": "silver-claude-clef (Gemini + Clef zero-shot, Claude adjudication)",
+  "source_file": "generated/en-slang-03*-genz.jsonl",
+  "id_prefix": "probe-en-genz-",
+  "total": 100,
+  "status_counts": {
+    "complete": 94,
+    "uncertain": 5,
+    "skipped": 1
+  },
+  "type_counts": {
+    "borrow": 19,
+    "expense": 25,
+    "repayment_out": 20,
+    "lend": 9,
+    "income": 8,
+    "repayment_in": 10,
+    "transfer": 6,
+    "refund": 2,
+    "None": 1
+  },
+  "source_counts": {
+    "claude-adjudicated": 29,
+    "consensus": 71
+  }
+}
