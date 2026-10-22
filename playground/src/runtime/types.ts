@@ -7,6 +7,8 @@ export interface PredictorInfo {
   architecture: string
   precision: "int8"
   backend: string
+  /** `false` for a bundle without a value (English): `value_*` of every prediction is `null`. */
+  has_value: boolean
 }
 
 export interface LoadOptions {

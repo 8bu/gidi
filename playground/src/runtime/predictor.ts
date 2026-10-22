@@ -112,7 +112,10 @@ export function decodeLogits(
   )
   const [target, targetSpan] = sliceOriginal(normalized, targetDecoded)
 
-  const value = parseNormalizedValue(normalized)
+  const value =
+    config.valueSource === "rule-parser"
+      ? parseNormalizedValue(normalized)
+      : null
 
   const originalOffsets = tokens.offsets.map(([s, e], i): [number, number] =>
     tokens.specialTokensMask[i] === 1
@@ -161,6 +164,7 @@ export function createPredictor(parts: PredictorParts): WebPredictor {
       architecture: config.architecture,
       precision: "int8",
       backend: runner.backend,
+      has_value: config.valueSource === "rule-parser",
     },
     predict(text) {
       const result = queue.then(

@@ -7,6 +7,8 @@ export interface BundleConfig {
   inputNames: string[]
   outputNames: string[]
   architecture: string
+  /** `rule-parser`: the value comes from `gidi.value_parser`; `none`: the bundle has no value. */
+  valueSource: "rule-parser" | "none"
 }
 
 const TAGS = ["O", "B-TARGET", "I-TARGET"]
@@ -31,13 +33,17 @@ export function parseConfig(raw: unknown): BundleConfig {
   const config = raw as Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
   if (!sameList(config?.tags, TAGS))
     throw new ConfigError("unsupported tag set")
-  // The runtime hard-wires the v3 contract: value from the rule parser, target snapped to words.
+  // The runtime hard-wires two contracts: the v3 one (value from the rule parser) and the
+  // English one (no value at all: neither `value_source` nor `value_parser`). Target snapped to words.
+  const valueSource = config.value_source === undefined ? "none" : "rule-parser"
   if (
-    config.value_source !== "rule-parser" ||
-    config.value_parser?.name !== VALUE_PARSER
+    valueSource === "rule-parser"
+      ? config.value_source !== "rule-parser" ||
+        config.value_parser?.name !== VALUE_PARSER
+      : config.value_parser !== undefined || config.value_labels !== undefined
   ) {
     throw new ConfigError(
-      "value_source must be the rule-based gidi.value_parser"
+      "value_source must be the rule-based gidi.value_parser, or absent (no value)"
     )
   }
   if (config.target_snap !== "words")
@@ -57,6 +63,7 @@ export function parseConfig(raw: unknown): BundleConfig {
     maxLength,
     inputNames: onnx.inputs as string[],
     outputNames: onnx.outputs as string[],
+    valueSource,
     architecture:
       arch?.layers && arch.hidden
         ? `${arch.layers}-layer encoder, ${arch.hidden} hidden`

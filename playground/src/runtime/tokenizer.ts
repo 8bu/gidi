@@ -28,10 +28,19 @@ interface AddedToken {
   id: number
   content: string
   cps: number[]
+  /** The token also takes the whitespace run to its left (`<mask>` of the English bundle). */
+  lstrip: boolean
 }
 
 interface TokenizerJson {
-  added_tokens: { id: number; content: string; special: boolean }[]
+  added_tokens: {
+    id: number
+    content: string
+    special: boolean
+    lstrip: boolean
+    rstrip: boolean
+    single_word: boolean
+  }[]
   pre_tokenizer: unknown
   post_processor: {
     type: string
@@ -83,6 +92,23 @@ const SPLIT_EXCLUDED = new Set<number>([
   0x205f,
   0x3000,
 ])
+
+/** Unicode `White_Space` (Rust `char::is_whitespace`, what `lstrip` of the tokenizers crate eats). */
+function isWhiteSpace(cp: number): boolean {
+  return (
+    (cp >= 0x09 && cp <= 0x0d) ||
+    cp === 0x20 ||
+    cp === 0x85 ||
+    cp === 0xa0 ||
+    cp === 0x1680 ||
+    (cp >= 0x2000 && cp <= 0x200a) ||
+    cp === 0x2028 ||
+    cp === 0x2029 ||
+    cp === 0x202f ||
+    cp === 0x205f ||
+    cp === 0x3000
+  )
+}
 
 function isWordChar(cp: number): boolean {
   if (SPLIT_EXCLUDED.has(cp)) return false
@@ -220,6 +246,7 @@ export class BundleTokenizer {
         id: t.id,
         content: t.content,
         cps: toCodePoints(t.content),
+        lstrip: t.lstrip,
       }))
       .sort((x, y) => y.cps.length - x.cps.length)
 
@@ -243,6 +270,7 @@ export class BundleTokenizer {
       model.end_of_word_suffix ||
       model.byte_fallback ||
       model.ignore_merges ||
+      tj.added_tokens.some((t) => t.rstrip || t.single_word) ||
       template?.join("") !== "SAS" ||
       JSON.stringify(tj.pre_tokenizer) !==
         JSON.stringify(SUPPORTED_PRE_TOKENIZER)
@@ -285,7 +313,12 @@ export class BundleTokenizer {
         i++
         continue
       }
-      ok = flushSegment(i) && push(match.id, i, i + match.cps.length)
+      // An `lstrip` token swallows the whitespace before it (up to the previous added token).
+      let start = i
+      if (match.lstrip) {
+        while (start > segmentStart && isWhiteSpace(text[start - 1])) start--
+      }
+      ok = flushSegment(start) && push(match.id, start, i + match.cps.length)
       i += match.cps.length
       segmentStart = i
     }
