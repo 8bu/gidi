@@ -3,8 +3,9 @@ import { useMemo, useSyncExternalStore } from "react"
 import { track } from "@/lib/analytics"
 import {
   decideLanguage,
-  LANG_HINT_META,
+  hintFromServerTiming,
   LANG_STORAGE_KEY,
+  languageForCountry,
   type Lang,
 } from "@/lib/language"
 import { MODELS, type ModelSpec } from "@/lib/models"
@@ -15,7 +16,7 @@ import type { Currency, NoteRecord } from "./types"
 
 /**
  * The language of the app and so which model runs. The visitor's saved choice (`gidi:lang`)
- * always beats the Worker's geoip hint; see `@/lib/language`. Module-level state, like the model
+ * always beats the geoip hint; see `@/lib/language`. Module-level state, like the model
  * in `use-gidi.ts`, so every component and the model loader read the same answer.
  */
 
@@ -25,6 +26,21 @@ function readStored(): string | null {
   } catch {
     return null
   }
+}
+
+/**
+ * The geoip hint of this page load. Production reads the `Server-Timing` entry the Cloudflare
+ * rule adds to the page response (a `?geo=` query is ignored). The dev server has no rule, so
+ * there `?geo=VN` or `?geo=US` stands in for it.
+ */
+function readHint(): string | null {
+  if (import.meta.env.DEV) {
+    const forced = new URLSearchParams(window.location.search).get("geo")
+    if (forced !== null) return languageForCountry(forced)
+  }
+  const [navigation] = performance.getEntriesByType("navigation") as
+    PerformanceNavigationTiming[] | []
+  return hintFromServerTiming(navigation?.serverTiming)
 }
 
 /** `<html lang>`, the tab title and the description follow the language. */
@@ -39,9 +55,7 @@ function applyDocument(lang: Lang): void {
 
 let current: Lang = decideLanguage({
   stored: readStored(),
-  hint: document.querySelector<HTMLMetaElement>(
-    `meta[name="${LANG_HINT_META}"]`
-  )?.content,
+  hint: readHint(),
   browser: navigator.language,
 })
 applyDocument(current)
