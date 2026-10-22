@@ -203,3 +203,10 @@ differences:
   `publish.py kaggle` and `publish.py all` fail for `gidi-en` until a section exists.
 - **The word snap** is not in the ONNX graph; the card documents how a plain ONNX Runtime
   integration applies it.
+- **Web app.** `gidi-en-v2` 2.0.1 runs in the web app next to `gidi-finance-v4` (language switch,
+  geoip default; see `docs/deployment.md`, "Web playground"). Its R2 key is
+  `gidi-en-v2/2.0.1/model.int8.onnx`; the app verifies the model against
+  `playground/public/release/gidi-en-v2/2.0.1/web-release.json`, written by
+  `playground/scripts/sync-release.mjs` from `models/gidi-en-v2-bundle/manifest.json`. A new
+  English release is a new R2 key and a new entry in `playground/src/lib/models.ts` and the sync
+  script.

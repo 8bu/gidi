@@ -366,7 +366,39 @@ is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Wor
   unit or currency suffix counts in thousands; slang `củ`/`chai` = 1 million, `xị`/`lít`/`cành` =
   100k, `tỏi` = 1 billion; the app widens the value span over `cành`/`tỏi`, which the pinned
   parser does not read). Works on phones and tablets (touch).
-- `/lab` is the developer playground (spans, confidences, diagnostics, raw JSON).
+- **Language and model.** The app runs one model per language: Vietnamese `gidi-finance-v4`
+  4.0.0 and English `gidi-en-v2` 2.0.1 (R2 key `gidi-en-v2/2.0.1/model.int8.onnx`, 29,166,949 B,
+  sha256 `c169b23f…1933`, same immutable cache headers and Cache API edge caching as v4). The
+  default comes from the visitor's country: the Worker (which now also runs for `/`) reads
+  Cloudflare's `request.cf.country` (or `CF-IPCountry`), maps `VN` to `vi` and anything else or
+  unknown to `en`, and injects only `<meta name="gidi-lang-hint" content="vi|en">` plus
+  `<html lang>` into `index.html` (`cache-control: private, no-store`); no cookie, no storage or
+  log of the IP or country. A visible `VI | EN` switch in the header (and the menu, which shows
+  the active model name and version) sets `gidi:lang` in localStorage; a stored choice always
+  beats the hint (`playground/src/lib/language.ts`, unit tests in `language.test.ts`). With no
+  hint at all (dev server) the browser language decides. Switching retires the other model
+  (aborts a running download or disposes its worker and ORT session) and loads the new one with
+  the same progress readout and SHA-256 check.
+- **One database per language.** Notes live in IndexedDB `gidi-vi` (Vietnamese, VND) and `gidi-en`
+  (English, USD); the app shows, totals, exports and imports only the active language's database,
+  and a switch never mixes or copies notes. Each database also has a `meta` store (the model it
+  last ran, the migration record). The pre-language store `gidi-notes` is copied once, raw and
+  verified, into `gidi-vi` (records get `currency: "VND"`); `gidi-notes` itself is never changed
+  or deleted, so it is the rollback. If the copy fails, `gidi-notes` is served and the copy is
+  retried next start. Code: `playground/src/app/notes-db.ts` (migration), `notes-core.ts` (store),
+  tests `notes-core.test.ts` (migration, failed migration, isolation, switching, export/import).
+  Local check of both defaults: `pnpm -C playground dev:worker` (`--var GEO_OVERRIDE:1`) then open
+  `/?geo=VN` or `/?geo=US`; the override exists only with that var, which production does not set.
+  UI strings are two typed dictionaries in `playground/src/app/i18n.ts`.
+- **English amounts.** The English bundle has no value head or parser, so the app finds the amount
+  with a deterministic en-US scan of the note (`findEnglishValue` in `app/amount.ts`: `12`, `12.50`,
+  `1,200`, `5k`, `1.2m`, `3 million`, `2 grand`; a `$` sign or a money word wins, otherwise the last
+  number; times, dates and `5pm` are ignored). Amounts are US dollars (`$1,234.50`), a bare number
+  is not thousands and no Vietnamese unit applies. Each note has a `currency` (`USD`/`VND`).
+  Limitation: other currencies in an English note (`£`, `€`, `₹`, `S$`, `quid`, `rupees`, `sgd`)
+  are not recognised or converted; the number is kept and shown as dollars.
+- `/lab` is the developer playground (spans, confidences, diagnostics, raw JSON); it stays on
+  the Vietnamese model.
 - The site needs a secure context (HTTPS or `localhost`): the model sha256 check uses
   `crypto.subtle`. To try a local build on a phone, expose it over HTTPS (for example
   `cloudflared tunnel --url http://localhost:8787`), not a plain LAN IP.
@@ -392,22 +424,30 @@ is in R2 (Workers assets are limited to 25 MiB per file) and streamed by the Wor
   by the TXT record `google-site-verification=IU7C…` on `gidi.8bu.dev`; keep it, or the
   property loses verification. `sitemap.xml` is submitted there.
 
-- Source of truth is the immutable bundle `models/gidi-finance-v3/` (the bytes of release 3.0.0).
-  `playground/scripts/sync-release.mjs` checks `config.json` and `tokenizer.json` against the
-  bundle `manifest.json` and copies them to `playground/public/release/` (gitignored), together
-  with `web-release.json` (model URL, sha256, size). The browser verifies the model's sha256
-  before creating the ORT session; a mismatch is a hard error.
+- Source of truth is the immutable bundles `models/gidi-finance-v4/` (release 4.0.0) and
+  `models/gidi-en-v2-bundle/` (release 2.0.1). `playground/scripts/sync-release.mjs` checks
+  `config.json` and `tokenizer.json` of each against its `manifest.json` and copies them to
+  `playground/public/release/<model>/<release>/` (gitignored), together with that model's
+  `web-release.json` (model URL, sha256, size). The browser verifies each model against its own
+  sha256 before creating the ORT session; a mismatch is a hard error. `playground/src/lib/models.ts`
+  lists the two models; keep it in sync with the script.
 - The TS runtime (`playground/src/runtime/`) must give the same type, target and value as
   `GidiPredictor.from_bundle("models/gidi-finance-v3")`. Check it with
   `uv run python scripts/dump_web_parity.py && pnpm -C playground parity` (report:
-  `experiments/deployment-v3/web-parity.md`). The parser and the Unicode classes it needs
+  `experiments/deployment-v3/web-parity.md`). English: `uv run python
+  scripts/dump_web_parity_en.py --fixture && pnpm -C playground parity:en` compares the TS runtime
+  on `gidi-en-v2` with `GidiPredictor` (tokenizer sweep, ids/offsets, decoder on the reference
+  logits and the word snap must be exact; ORT numerics are reported, not gated). The `<mask>`
+  token of the English tokenizer is `lstrip` (it swallows the whitespace before it); the TS
+  tokenizer implements it. `pnpm -C playground test` runs the unit tests (language decision,
+  English amounts, committed Python fixture for English tokens and the word snap). The parser and the Unicode classes it needs
   (`str.isalpha`, `isalnum`, `isupper`, `P*`, fold) are tabulated from Python by
   `scripts/gen_runtime_unicode_tables.py` (`unicode-tables.ts`, generated, do not edit).
 - Build modes: `pnpm -C playground build:web` is the browser build; `pnpm -C playground build`
   stays the build served by `scripts/demo_ui.py` (Python `/api` backend).
 - Deploy: `pnpm -C playground run deploy` (build:web + `wrangler deploy`; `run` is needed because `pnpm deploy` is a built-in). Config is
   `playground/wrangler.jsonc`: R2 binding `MODELS` -> bucket `gidi-models`, custom domain
-  `gidi.8bu.dev`, only `/models/*` runs the Worker (`playground/worker/index.ts`: GET/HEAD, Range
+  `gidi.8bu.dev`, only `/models/*` and `/` run the Worker (`playground/worker/index.ts`: GET/HEAD, Range
   and conditional requests, `cache-control: public, max-age=31536000, immutable`). A plain GET miss
   is also stored in the Cache API (`caches.default`, keyed on the URL, `ctx.waitUntil`), so later
   hits, Range and conditional requests are served from the edge without reading R2.
