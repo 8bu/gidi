@@ -267,12 +267,14 @@ def _spec_problems(spec: ReleaseSpec, manifest: dict[str, Any]) -> list[str]:
     return problems
 
 
-def _readme_problems(release_dir: Path, manifest: dict[str, Any]) -> list[str]:
+def _readme_problems(release_dir: Path, manifest: dict[str, Any], language: str) -> list[str]:
     path = release_dir / README_FILE
     if not path.is_file():
         return [f"missing {README_FILE}"]
     license_file = any(item["kind"] == "license" for item in manifest["artifacts"])
-    return readme_front_matter_problems(path.read_text(encoding="utf-8"), license_file=license_file)
+    return readme_front_matter_problems(
+        path.read_text(encoding="utf-8"), license_file=license_file, language=language
+    )
 
 
 def _absolute_path_problems(release_dir: Path, root: Path) -> list[str]:
@@ -370,14 +372,17 @@ def verify_release(
     report.add("checksums", _checksum_problems(release_dir, manifest), f"{CHECKSUMS_FILE} matches")
     report.add("versions", _version_problems(release_dir, manifest), "model/release versions agree")
     report.add("runtime-config", _config_problems(release_dir, manifest), "load_config accepts it")
-    report.add("readme", _readme_problems(release_dir, manifest), "front matter ok")
-
+    spec_error = None
     if spec is None:
-        spec_path = default_spec_path(manifest["model_version"], root)
         try:
-            spec = load_spec(spec_path)
+            spec = load_spec(default_spec_path(manifest["model_version"], root))
         except ReleaseError as error:
-            report.add("spec", [str(error)])
+            spec_error = str(error)
+    language = "vi" if spec is None else spec.readme_language
+    report.add("readme", _readme_problems(release_dir, manifest, language), "front matter ok")
+
+    if spec_error is not None:
+        report.add("spec", [spec_error])
     if spec is not None:
         report.add("spec", _spec_problems(spec, manifest), f"matches {spec.path.name}")
 

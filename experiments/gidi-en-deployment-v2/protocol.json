@@ -1,0 +1,28 @@
+{
+  "experiment": "gidi-en-deployment-v2",
+  "declared_before_packaging": true,
+  "version": "gidi-en-v2",
+  "annotation_config": "configs/annotation-en-v1.yaml",
+  "target_snap": "words",
+  "scope": "packaging only: freeze the gidi-en-student-v2 seed-1 INT8 encoder (type + target) with its tokenizer into one bundle that declares the whole-word target snap. No training, no seed change, no architecture, tokenizer or vocabulary change, no threshold change. models/gidi-en-v1 and models/gidi-en-v2 are not modified.",
+  "architecture": "gidi-en-student-v2 seed 1: roberta-base-derived 4x768 encoder (roberta-base layers 2,5,8,11, FFN 2048, 34 position rows, vocabulary pruned to 9,000 byte-level BPE tokens, max_length 32), 40 epochs on silver labels (silver-train + labels-seed + consistent slang notes, 2,355 notes), type head (8 classes) + target BIO head, ONNX INT8 (dynamic, QInt8 weights). No value head and no value parser.",
+  "source_experiment": "experiments/gidi-en-student-v2",
+  "source_checkpoint": "models/gidi-en-v2/seed1",
+  "source_onnx": "models/gidi-en-v2-onnx/seed1",
+  "init_report": "models/gidi-en-v1-init/build_report.json",
+  "vocab_map": "models/gidi-en-v1-init/vocab/vocab_map.json",
+  "seed": 1,
+  "seed_selection": {
+    "rule": "seed 1, the only candidate trained for gidi-en-student-v2 (one seed, last epoch, no checkpoint or seed selection; see experiments/gidi-en-student-v2/protocol.json).",
+    "no_weight_averaging_or_ensembling": true
+  },
+  "label_provenance": "silver-claude-clef: there are no human labels for English. Every score is agreement with Claude, Gemini and Clef labels, not ground truth.",
+  "target_snap_rule": "the decoded first target span is extended outward to whole words (maximal non-whitespace runs, edge punctuation of the extension trimmed), exactly gidi.inference.decode.snap_to_words; it is a post-processing step outside the ONNX graph.",
+  "evaluation_sets_report_only": "test (primary, secondary), dev, datasets/probe-en-slang and datasets/probe-en-genz are used only to report quality. Numbers: experiments/gidi-en-student-v2/report.md.",
+  "acceptance_gate": [
+    "bundle reproducible (freeze_en_bundle --check byte-identical); every bundle file matches manifest.json",
+    "INT8 model is the ONNX that experiments/gidi-en-student-v2/results.json scored",
+    "release verify passes: hashes, runtime config, INT8 and FP32 smoke predictions"
+  ],
+  "on_gate_failure": "stop and report the blocker; no retraining, no seed change"
+}

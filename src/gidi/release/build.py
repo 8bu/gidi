@@ -48,6 +48,8 @@ PREDICTION_KEYS = (
     "truncated",
     "model_version",
 )
+# The same for a bundle without any value (gidi-en): ``to_dict`` then has no value keys.
+PREDICTION_KEYS_NO_VALUE = tuple(key for key in PREDICTION_KEYS if not key.startswith("value_"))
 READ_ONLY = 0o444
 _CHUNK = 1 << 20
 _PLACEHOLDER = re.compile(r"\{([a-z0-9_]+)\}")
@@ -104,11 +106,14 @@ def runtime_from_config(config: Mapping[str, Any]) -> dict[str, Any]:
 
     A bundle with a value head (v2) records ``value_labels``/``value_decoding``. A rule-parser
     bundle (v3, ``value_source`` in the config) has no head, so both are ``null``, and it adds
-    ``value_source``, ``value_parser`` and ``target_snap``.
+    ``value_source``, ``value_parser`` and ``target_snap``. A bundle with neither (gidi-en) has no
+    value at all: both are ``null``, the prediction has no value keys, and only ``target_snap``
+    is added when the config sets it.
     """
     try:
         onnx = config["onnx"]
         rules: dict[str, Any] = {}
+        prediction_keys = PREDICTION_KEYS
         if "value_source" in config:
             head = {"value_labels": None, "value_decoding": None}
             rules = {
@@ -116,11 +121,16 @@ def runtime_from_config(config: Mapping[str, Any]) -> dict[str, Any]:
                 "value_parser": dict(config["value_parser"]),
                 "target_snap": config["target_snap"],
             }
-        else:
+        elif "value_labels" in config:
             head = {
                 "value_labels": list(config["value_labels"]),
                 "value_decoding": config["value_decoding"]["method"],
             }
+        else:
+            head = {"value_labels": None, "value_decoding": None}
+            prediction_keys = PREDICTION_KEYS_NO_VALUE
+            if "target_snap" in config:
+                rules = {"target_snap": config["target_snap"]}
         return {
             "onnx_inputs": list(onnx["inputs"]),
             "onnx_outputs": list(onnx["outputs"]),
@@ -129,7 +139,7 @@ def runtime_from_config(config: Mapping[str, Any]) -> dict[str, Any]:
             "types": list(config["types"]),
             "tags": list(config["tags"]),
             **head,
-            "prediction_keys": list(PREDICTION_KEYS),
+            "prediction_keys": list(prediction_keys),
             "schema_version": None,
             **rules,
         }
@@ -137,8 +147,10 @@ def runtime_from_config(config: Mapping[str, Any]) -> dict[str, Any]:
         raise ReleaseError(f"runtime config.json lacks the interface fields: {error!r}") from error
 
 
-def readme_front_matter_problems(text: str, *, license_file: bool) -> list[str]:
-    """Problems with the README YAML front matter (language vi, onnx library, license).
+def readme_front_matter_problems(
+    text: str, *, license_file: bool, language: str = "vi"
+) -> list[str]:
+    """Problems with the README YAML front matter (language, onnx library, license).
 
     The front matter declares ``license:`` exactly when the release ships a ``license`` file.
     """
@@ -148,8 +160,8 @@ def readme_front_matter_problems(text: str, *, license_file: bool) -> list[str]:
     block = lines[1 : lines.index("---", 1)]
     keys = {line.split(":", 1)[0].strip() for line in block if ":" in line and line[:1] != " "}
     problems = []
-    if "language: vi" not in block:
-        problems.append("README front matter must declare 'language: vi'")
+    if f"language: {language}" not in block:
+        problems.append(f"README front matter must declare 'language: {language}'")
     if "library_name: onnx" not in block:
         problems.append("README front matter must declare 'library_name: onnx'")
     if license_file and "license" not in keys:
@@ -318,7 +330,9 @@ def _assemble(
         readme = render_readme(template, values)
         if path == README_FILE:
             problems = readme_front_matter_problems(
-                readme, license_file=any(item.kind == "license" for item in spec.files)
+                readme,
+                license_file=any(item.kind == "license" for item in spec.files),
+                language=spec.readme_language,
             )
             if problems:
                 raise ReleaseError("; ".join(problems))

@@ -178,3 +178,28 @@ non-archive files must always match.
   of the encoder's FP32 export; its sha256 is pinned in the spec).
 - The `source.experiment` of the v3 manifest is the experiment family (`annotation-v3-retrain`),
   not an internal run number.
+
+## 12. The English model (`gidi-en`)
+
+`gidi-en-v2` (release `2.0.0`, spec `releases/gidi-en-v2.json`) follows the same flow with these
+differences:
+
+- **Naming.** MAJOR must equal the model's `vN` (section 9), so the first English release of the
+  `v2` recipe is `2.0.0`. It is an early, experimental release; the model card says so.
+- **Bundle.** `scripts/freeze_en_bundle.py` freezes `models/gidi-en-v2-bundle/` from
+  `experiments/gidi-en-deployment-v2/protocol.json`. The release build runs it with `--check`
+  (`bundle_check` in the spec). The bundle has no value head and no value parser: `config.json`
+  has neither `value_labels` nor `value_source`, and sets `target_snap: "words"`. The manifest
+  `runtime` block then has `value_labels`/`value_decoding` as `null`, `target_snap`, and
+  prediction keys without `value_*`. Smoke cases give only `type` and `target`.
+- **README.** The card is English only (`readme_language: "en"` in the spec; front matter
+  `language: en`). The template is `releases/templates/gidi-en-v2.README.md`.
+- **Licenses.** `LICENSE` is Apache-2.0. The student is derived from `roberta-base` (MIT), so
+  `licenses/roberta-base-MIT.txt` (kind `third-party-license`) ships with the release.
+- **Providers.** `releases/providers.json` has a `families` block: `families.gidi-en.huggingface`
+  replaces the top-level Hugging Face section for models named `gidi-en-vN` (repo
+  `x8bu/gidi-en`, one tag `{model_version}-{release_version}` per release, INT8 only). GitHub
+  keeps the top-level section (`8bu/gidi`). `kaggle: null` switches Kaggle off for the family, so
+  `publish.py kaggle` and `publish.py all` fail for `gidi-en` until a section exists.
+- **The word snap** is not in the ONNX graph; the card documents how a plain ONNX Runtime
+  integration applies it.

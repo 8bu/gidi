@@ -611,3 +611,44 @@ def test_smoke_flag_off_skips_model_loading(tmp_path, v2_bundle):
     release = project.build("1.0.0")
     report = verify_release(release, spec=project.spec, root=project.root, smoke=False)
     assert report.ok and not any("smoke" in check.name for check in report.checks)
+
+
+def test_no_value_runtime_block_has_snap_only_and_no_value_prediction_keys(release):
+    """A gidi-en config (no value head, no value parser, target_snap words)."""
+    from release_fakes import fake_config
+
+    from gidi.release.build import PREDICTION_KEYS_NO_VALUE, runtime_from_config
+
+    config = fake_config()
+    for key in ("value_labels", "value_decoding"):
+        del config[key]
+    config["onnx"]["outputs"] = ["type_logits", "tag_logits"]
+    config["target_snap"] = "words"
+    runtime = runtime_from_config(config)
+    assert runtime["value_labels"] is None and runtime["value_decoding"] is None
+    assert runtime["target_snap"] == "words" and "value_source" not in runtime
+    assert runtime["prediction_keys"] == list(PREDICTION_KEYS_NO_VALUE)
+    assert not any(key.startswith("value_") for key in runtime["prediction_keys"])
+    parsed = Manifest.from_dict({**load_manifest(release), "runtime": runtime})
+    assert Manifest.parse(parsed.serialize()) == parsed
+    assert list(parsed.to_dict()["runtime"])[-1] == "target_snap"
+
+
+def test_readme_front_matter_language_is_configurable():
+    from gidi.release.build import readme_front_matter_problems
+
+    english = "---\nlanguage: en\nlibrary_name: onnx\nlicense: apache-2.0\n---\n# x\n"
+    assert readme_front_matter_problems(english, license_file=True, language="en") == []
+    assert any(
+        "language: vi" in p for p in readme_front_matter_problems(english, license_file=True)
+    )
+
+
+def test_smoke_cases_may_omit_the_value():
+    from gidi.release.spec import _parse_smoke
+
+    ok = [{"text": "got paid 2400", "expected": {"type": "income", "target": None}}]
+    assert _parse_smoke(ok)[0].expected == {"type": "income", "target": None}
+    bad = [{"text": "x", "expected": {"type": "income"}}]
+    with pytest.raises(ReleaseError, match="smoke case keys"):
+        _parse_smoke(bad)

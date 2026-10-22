@@ -19,7 +19,8 @@ from gidi.release.manifest import ARCHIVES_DIR, README_FILE, ReleaseError, safe_
 SPEC_FORMAT = 1
 # Names a variant member may map to besides a spec file: both are generated at build time.
 GENERATED_MEMBER_TARGETS = ("README.md", "manifest.json")
-SMOKE_EXPECTED_KEYS = ("type", "target", "value_text")
+# A model with a value span (finance) checks all three; one without a value (gidi-en) two.
+SMOKE_EXPECTED_KEY_SETS = (("target", "type"), ("target", "type", "value_text"))
 
 _SEMVER = re.compile(
     r"(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)"
@@ -36,6 +37,7 @@ _SPEC_KEYS = {
     "readmes",
     "variants",
     "smoke",
+    "readme_language",
 }
 
 
@@ -102,6 +104,7 @@ class ReleaseSpec:
     readmes: dict[str, str]  # release path (README.md first) -> template path
     variants: tuple[Variant, ...]
     smoke: tuple[SmokeCase, ...]
+    readme_language: str = "vi"
 
     def file_for_kind(self, kind: str) -> SpecFile:
         for item in self.files:
@@ -217,9 +220,8 @@ def _parse_smoke(raw: Any) -> tuple[SmokeCase, ...]:
     for item in raw:
         item = _object(item, "smoke[]")
         expected = _object(item.get("expected"), "smoke[].expected")
-        if set(item) != {"text", "expected"} or tuple(sorted(expected)) != tuple(
-            sorted(SMOKE_EXPECTED_KEYS)
-        ):
+        keys = tuple(sorted(expected))
+        if set(item) != {"text", "expected"} or keys not in SMOKE_EXPECTED_KEY_SETS:
             raise ReleaseError(f"spec smoke case keys are wrong: {item}")
         cases.append(SmokeCase(text=_string(item["text"], "smoke text"), expected=expected))
     return tuple(cases)
@@ -235,7 +237,7 @@ def load_spec(path: str | Path) -> ReleaseSpec:
         raise ReleaseError(f"cannot read release spec {path}: {error}") from error
     data = _object(data, "root")
     unknown = set(data) - _SPEC_KEYS
-    missing = _SPEC_KEYS - {"bundle_check"} - set(data)
+    missing = _SPEC_KEYS - {"bundle_check", "readme_language"} - set(data)
     if unknown or missing:
         raise ReleaseError(f"spec keys wrong: unknown {sorted(unknown)}, missing {sorted(missing)}")
     if data["spec_format"] != SPEC_FORMAT:
@@ -272,4 +274,5 @@ def load_spec(path: str | Path) -> ReleaseSpec:
         readmes=readmes,
         variants=_parse_variants(data["variants"], files, readmes),
         smoke=_parse_smoke(data["smoke"]),
+        readme_language=_string(data.get("readme_language", "vi"), "readme_language"),
     )

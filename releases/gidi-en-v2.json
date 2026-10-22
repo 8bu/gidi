@@ -1,0 +1,134 @@
+{
+  "spec_format": 1,
+  "model_version": "gidi-en-v2",
+  "readme_language": "en",
+  "source": {
+    "experiment": "gidi-en-student-v2",
+    "seed": 1,
+    "experiment_protocol": {
+      "path": "experiments/gidi-en-student-v2/protocol.json",
+      "sha256": "0c9fff81056872beaac18e4e66adcb9c6d4c2cf34153171e05995a7a81e3ab59"
+    },
+    "deployment_protocol": {
+      "path": "experiments/gidi-en-deployment-v2/protocol.json",
+      "sha256": "db8270def30d469abe47f7a87040e848ac988abaca095c2a9dfb38162721378d"
+    },
+    "bundle": {
+      "path": "models/gidi-en-v2-bundle",
+      "manifest_sha256": "1db4141ebbe49346d28ccd739c43cf1c9fe4419f8c98e3521f0b998df40b9c1f"
+    },
+    "checkpoint_sha256": "6267196207e2f4ab0d9c1213000261652c92dcaf94a2c99af6be00f99e1143a4"
+  },
+  "bundle_check": {
+    "script": "scripts/freeze_en_bundle.py",
+    "bundle": "models/gidi-en-v2-bundle",
+    "protocol": "experiments/gidi-en-deployment-v2/protocol.json"
+  },
+  "files": [
+    {
+      "source": "models/gidi-en-v2-bundle/model.int8.onnx",
+      "path": "model/int8/model.int8.onnx",
+      "kind": "onnx-int8",
+      "sha256": "c169b23f50be6c228c50bcf62cb36bb1229cbd8c8c5c128b75dc021370091933",
+      "size_bytes": 29166949
+    },
+    {
+      "source": "models/gidi-en-v2-onnx/seed1/model.onnx",
+      "path": "model/fp32/model.onnx",
+      "kind": "onnx-fp32",
+      "sha256": "b2706b19688552ecf7d1ba7f052c928220df0a64efd6ac4a96e282cfdae0f43b",
+      "size_bytes": 116057730
+    },
+    {
+      "source": "models/gidi-en-v2-bundle/tokenizer.json",
+      "path": "tokenizer/tokenizer.json",
+      "kind": "tokenizer",
+      "sha256": "d673a44f46c4e7792b704a8dfdc1e39fa412ff3873e09b8d44fcd16819fbec97",
+      "size_bytes": 600686
+    },
+    {
+      "source": "models/gidi-en-v2-bundle/tokenizer_config.json",
+      "path": "tokenizer/tokenizer_config.json",
+      "kind": "tokenizer-config",
+      "sha256": "644ad533bcbb3ee5535904fbeed5d5f484317855d04a41ab6141f7d47d25b081",
+      "size_bytes": 502
+    },
+    {
+      "source": "models/gidi-en-v2-bundle/vocab_map.json",
+      "path": "tokenizer/vocab_map.json",
+      "kind": "vocab-map",
+      "sha256": "e83c7d62dff626c9d47a7ebb813eb1f33e2adfd6f87d031756aa2a0a3a491330",
+      "size_bytes": 56355
+    },
+    {
+      "source": "models/gidi-en-v2-bundle/config.json",
+      "path": "runtime/config.json",
+      "kind": "runtime-config",
+      "sha256": "39bbf506a274c7e3f3d02b0f498a92fc0d63b95aea1347f28c45c686d433c242",
+      "size_bytes": 824
+    },
+    {
+      "source": "releases/licenses/Apache-2.0.txt",
+      "path": "LICENSE",
+      "kind": "license",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "size_bytes": 11358
+    },
+    {
+      "source": "releases/licenses/roberta-base-MIT.txt",
+      "path": "licenses/roberta-base-MIT.txt",
+      "kind": "third-party-license",
+      "sha256": "52412d7bc7ce4157ea628bbaacb8829e0a9cb3c58f57f99176126bc8cf2bfc85",
+      "size_bytes": 1086
+    }
+  ],
+  "readmes": {
+    "README.md": "releases/templates/gidi-en-v2.README.md"
+  },
+  "variants": {
+    "int8": {
+      "members": {
+        "model.int8.onnx": "model/int8/model.int8.onnx",
+        "config.json": "runtime/config.json",
+        "tokenizer.json": "tokenizer/tokenizer.json",
+        "tokenizer_config.json": "tokenizer/tokenizer_config.json",
+        "vocab_map.json": "tokenizer/vocab_map.json",
+        "README.md": "README.md",
+        "LICENSE": "LICENSE",
+        "roberta-base-MIT.txt": "licenses/roberta-base-MIT.txt",
+        "release-manifest.json": "manifest.json"
+      },
+      "model_file": "model.int8.onnx"
+    },
+    "fp32": {
+      "members": {
+        "model.onnx": "model/fp32/model.onnx",
+        "config.json": "runtime/config.json",
+        "tokenizer.json": "tokenizer/tokenizer.json",
+        "tokenizer_config.json": "tokenizer/tokenizer_config.json",
+        "vocab_map.json": "tokenizer/vocab_map.json",
+        "README.md": "README.md",
+        "LICENSE": "LICENSE",
+        "roberta-base-MIT.txt": "licenses/roberta-base-MIT.txt",
+        "release-manifest.json": "manifest.json"
+      },
+      "model_file": "model.onnx"
+    }
+  },
+  "smoke": [
+    {"text": "got paid 2400", "expected": {"type": "income", "target": null}},
+    {"text": "owe Sam 20", "expected": {"type": "borrow", "target": "Sam"}},
+    {"text": "Sam owes me 20", "expected": {"type": "lend", "target": "Sam"}},
+    {"text": "Mike paid 15", "expected": {"type": "repayment_in", "target": "Mike"}},
+    {"text": "company paid oct 5k", "expected": {"type": "income", "target": "company"}},
+    {"text": "covered lunch for Sam 20", "expected": {"type": "lend", "target": "Sam"}},
+    {"text": "venmo'd mom 50", "expected": {"type": "expense", "target": "mom"}},
+    {"text": "moved 500 to savings", "expected": {"type": "transfer", "target": null}},
+    {"text": "amazon refund 25", "expected": {"type": "refund", "target": "amazon"}},
+    {
+      "text": "paid off my credit card 200",
+      "expected": {"type": "repayment_out", "target": "credit card"}
+    },
+    {"text": "coffee 4.50", "expected": {"type": "expense", "target": null}}
+  ]
+}

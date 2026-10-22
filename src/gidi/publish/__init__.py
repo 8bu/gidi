@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import re
 from collections.abc import Callable, Mapping
 from pathlib import Path
 from typing import Any
@@ -19,6 +20,7 @@ from gidi.publish.common import (
 from gidi.publish.github import GitHubProvider
 from gidi.publish.huggingface import HuggingFaceProvider
 from gidi.publish.kaggle import KaggleProvider
+from gidi.release.manifest import load_manifest
 from gidi.release.spec import ReleaseSpec
 
 PROVIDERS: dict[str, Provider] = {
@@ -29,18 +31,35 @@ PROVIDERS: dict[str, Provider] = {
 ALL_PROVIDERS = ("huggingface", "github", "kaggle")
 
 
+def model_family(model_version: str) -> str:
+    """``gidi-finance`` for ``gidi-finance-v4``: the model name without its ``-vN`` suffix."""
+    return re.sub(r"-v\d+$", "", model_version)
+
+
 def resolve_configs(
     names: tuple[str, ...],
     base: Mapping[str, Any],
     env: Mapping[str, str],
     overrides: Mapping[str, Mapping[str, Any]] | None = None,
+    family: str | None = None,
 ) -> dict[str, dict[str, Any]]:
-    """Per-provider config: providers.json, then ``GITHUB_REPOSITORY``, then explicit overrides."""
+    """Per-provider config: providers.json, then ``GITHUB_REPOSITORY``, then explicit overrides.
+
+    ``families[<family>][<provider>]`` in providers.json replaces the top-level section of that
+    provider for one model family (never merged, so no field leaks from another family); ``null``
+    switches the provider off for the family.
+    """
+    families = base.get("families", {})
+    if not isinstance(families, dict):
+        raise PublishError("providers config 'families' must be an object")
+    own = families.get(family, {}) if family is not None else {}
     configs: dict[str, dict[str, Any]] = {}
     for name in names:
-        if name not in base or not isinstance(base[name], dict):
-            raise PublishError(f"providers config has no section for {name}")
-        config = dict(base[name])
+        section = own.get(name, base.get(name)) if isinstance(own, dict) else base.get(name)
+        if not isinstance(section, dict):
+            where = f" for the {family} family" if name in own else ""
+            raise PublishError(f"providers config has no section for {name}{where}")
+        config = dict(section)
         if name == "github" and env.get("GITHUB_REPOSITORY"):
             config["repo"] = env["GITHUB_REPOSITORY"]
         config.update({k: v for k, v in (overrides or {}).get(name, {}).items() if v is not None})
@@ -72,7 +91,10 @@ def publish(
         names = (provider,)
     else:
         raise PublishError(f"unknown provider {provider!r}; choose from {[*PROVIDERS, 'all']}")
-    configs = resolve_configs(names, load_providers_config(providers_config), env, overrides)
+    family = model_family(load_manifest(release_dir)["model_version"])
+    configs = resolve_configs(
+        names, load_providers_config(providers_config), env, overrides, family
+    )
     return publish_release(
         [PROVIDERS[n] for n in names],
         release_dir,

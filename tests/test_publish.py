@@ -762,3 +762,23 @@ def test_kaggle_execute_creates_missing_model_and_versions_existing_instance(
     assert receipt["remote"]["instances"]["int8"]["action"] == "created"
     meta = json.loads((staging / "instances" / "int8" / "model-instance-metadata.json").read_text())
     assert meta["licenseName"] == "Apache 2.0"
+
+
+def test_family_section_replaces_the_provider_section_and_null_switches_it_off():
+    from gidi.publish import model_family, resolve_configs
+
+    base = {
+        "huggingface": {"repo_id": "o/finance", "private": False},
+        "github": {"repo": "o/gidi"},
+        "kaggle": {"owner": "o", "model_slug": "finance"},
+        "families": {"en": {"huggingface": {"repo_id": "o/en", "tag": "t"}, "kaggle": None}},
+    }
+    assert model_family("gidi-en-v2") == "gidi-en"
+    configs = resolve_configs(("huggingface", "github"), base, {}, family="en")
+    assert configs["huggingface"] == {"repo_id": "o/en", "tag": "t"}  # replaced, not merged
+    assert configs["github"] == {"repo": "o/gidi"}  # no family section: the top-level one
+    with pytest.raises(PublishError, match="kaggle for the en family"):
+        resolve_configs(("kaggle",), base, {}, family="en")
+    other = resolve_configs(("huggingface", "kaggle"), base, {}, family="finance")
+    assert other["huggingface"]["repo_id"] == "o/finance"
+    assert other["kaggle"]["model_slug"] == "finance"
