@@ -29,6 +29,17 @@ dist/
 .gidi-v2-overnight-done
 .wrangler/
 .dev.vars
+.dev.vars.*
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+id_rsa*
+.npmrc
+.pypirc
+.netrc
 
 # Browser-runtime parity dumps (scripts/dump_web_parity.py)
 playground/.parity/
