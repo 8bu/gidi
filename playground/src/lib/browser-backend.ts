@@ -14,7 +14,12 @@ type WebRelease = {
   model_version: string
   release_version: string
   onnx_opset?: number
-  model: { url: string; sha256: string; size_bytes: number }
+  model: {
+    sha256: string
+    size_bytes: number
+    /** Byte ranges of the model file, each its own static asset; they concatenate to the file. */
+    parts: { url: string; size_bytes: number }[]
+  }
 }
 
 /** `web-release.json` is written by `scripts/sync-release.mjs` from the immutable bundle manifest. */
@@ -32,8 +37,13 @@ async function fetchWebRelease(
     !release ||
     typeof release.model_version !== "string" ||
     typeof release.release_version !== "string" ||
-    typeof release.model?.url !== "string" ||
-    typeof release.model.sha256 !== "string"
+    typeof release.model?.sha256 !== "string" ||
+    !Array.isArray(release.model.parts) ||
+    release.model.parts.length === 0 ||
+    !release.model.parts.every(
+      (part) =>
+        typeof part?.url === "string" && Number.isInteger(part.size_bytes)
+    )
   ) {
     throw new Error("web-release.json has an unexpected shape")
   }
@@ -65,7 +75,10 @@ export async function loadBrowserPredictor(
     release = await fetchWebRelease(spec, signal)
     predictor = await loadPredictor({
       baseUrl: `${window.location.origin}${spec.releaseBase}`,
-      modelUrl: new URL(release.model.url, window.location.origin).href,
+      modelParts: release.model.parts.map((part) => ({
+        url: new URL(part.url, window.location.origin).href,
+        size: part.size_bytes,
+      })),
       modelSha256: release.model.sha256,
       onProgress: (loaded, total) =>
         onProgress({ loaded, total: total ?? release.model.size_bytes }),
@@ -85,7 +98,7 @@ export async function loadBrowserPredictor(
     architecture: info.architecture,
     precision: info.precision,
     backend: info.backend,
-    model_file: release.model.url.split("/").pop() ?? null,
+    model_file: "model.int8.onnx",
     onnx_opset: release.onnx_opset ?? null,
     bundle_path: `release ${info.release_version} (in your browser)`,
     model_sha256: release.model.sha256,

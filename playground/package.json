@@ -14,8 +14,7 @@
     "test": "node --test \"src/**/*.test.ts\"",
     "parity": "node scripts/parity.ts",
     "parity:en": "node scripts/parity-en.ts",
-    "dev:worker": "wrangler dev --var GEO_OVERRIDE:1",
-    "types": "wrangler types",
+    "preview:site": "wrangler dev",
     "deploy": "pnpm build:web && wrangler deploy"
   },
   "dependencies": {

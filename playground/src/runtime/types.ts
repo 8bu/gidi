@@ -11,10 +11,21 @@ export interface PredictorInfo {
   has_value: boolean
 }
 
+/** One byte range of the model file, served as its own static asset. */
+export interface ModelPart {
+  /** Absolute URL. */
+  url: string
+  size: number
+}
+
 export interface LoadOptions {
   /** Directory holding `config.json`, `tokenizer.json` and `web-release.json`. */
   baseUrl: string
-  modelUrl: string
+  /**
+   * The model file cut into parts (each below the 25 MiB Workers Static Assets limit) that
+   * concatenate, in order, to exactly the file `modelSha256` covers.
+   */
+  modelParts: readonly ModelPart[]
   modelSha256: string
   onProgress?: (loaded: number, total: number | null) => void
   signal?: AbortSignal

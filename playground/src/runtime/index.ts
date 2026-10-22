@@ -3,6 +3,7 @@ export {
   EmptyInputError,
   ModelIntegrityError,
   type LoadOptions,
+  type ModelPart,
   type Prediction,
   type PredictorInfo,
   type WebPredictor,

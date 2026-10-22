@@ -19,6 +19,7 @@ playground/node_modules/
 playground/dist/
 # Synced from dist/releases by playground/scripts/sync-release.mjs
 playground/public/release/
+playground/public/models/
 
 # Release pipeline output (scripts/release.py, scripts/publish.py)
 dist/

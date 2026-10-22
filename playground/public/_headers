@@ -1,7 +1,12 @@
-# Hashed build output and the versioned release files never change in place.
+# Hashed build output, the versioned release files and the model parts never change in place (a
+# new release is a new path). The model parts are the 16 MiB pieces scripts/sync-release.mjs cuts
+# from model.int8.onnx; the browser joins them and checks the sha256 of the whole file.
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 /release/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Robots-Tag: noindex
+/models/*
   Cache-Control: public, max-age=31536000, immutable
   X-Robots-Tag: noindex
 
