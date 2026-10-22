@@ -1,99 +1,126 @@
-# Gidi — GiaoDịch
+# Gidi (GiaoDịch)
 
-**Tiếng Việt** · [English](README.en.md)
+**English** | [Tiếng Việt](README.vi.md)
 
-Đây là thử nghiệm của mình để xây dựng một classifier nhỏ.
+This is my experiment to build a tiny classifier.
 
-Gidi là dự án machine learning (học máy) thử nghiệm.
-Dự án xây dựng model on-device nhỏ cho ghi chú tài chính cá nhân tiếng Việt ngắn,
-như `ăn phở 45k` hoặc `nhận lương 15tr`.
-Với mỗi ghi chú, model dự đoán loại giao dịch, span đối tác (`target`)
-và span số tiền (`value`).
+Gidi is an experimental machine learning project. It builds tiny on-device models for short
+personal-finance notes, such as `ăn phở 45k`, `nhận lương 15tr` or `covered lunch for Sam 20`.
+For one note a model predicts the transaction type and the counterparty (target) span. The
+Vietnamese model also predicts the amount (value) span.
 
-Mục tiêu là model đủ nhỏ để inference cục bộ trên điện thoại hiện đại.
-Dự án không có server và không có inference API.
+The goal is a model small enough to run inference locally on a modern phone. There is no server
+and no inference API.
 
-## Phạm vi
+## Models
 
-Ưu tiên tiếng Việt. Input là ghi chú ngắn, không trang trọng,
-do một người viết cho chính họ.
-Input không phải bản ghi kế toán chính thức.
-Model trả số tiền theo cách người dùng viết, tức là một span của ghi chú.
-Code deterministic chuyển span này thành số.
+| Model | Language | Version | Status | Size | Link |
+|---|---|---|---|---|---|
+| `gidi-finance` | Vietnamese | `gidi-finance-v4`, release `4.0.0` | Current. Runs in the web app. Public Hugging Face and GitHub releases are still v3. | 28.66 MB INT8 encoder (v3 bundle: 29.3 MB) | [App](https://gidi.8bu.dev), [x8bu/gidi-finance](https://huggingface.co/x8bu/gidi-finance) |
+| `gidi-en` | English | `gidi-en-v2`, release `2.0.1` | Experimental. On Hugging Face only, not in the app. | 29.2 MB INT8 | [x8bu/gidi-en](https://huggingface.co/x8bu/gidi-en) |
 
-## Trạng thái
+Older Vietnamese releases (`gidi-finance-v3`, `-v2`, `-v1`) are described under [Status](#status).
 
-- **`gidi-en`** (`gidi-en-v2`, release `2.0.1`) là model tiếng Anh đầu tiên, thử nghiệm: dự đoán
-  type và target cho ghi chú tài chính cá nhân tiếng Anh ngắn, chưa có value. Bản INT8 29.2 MB,
-  trên Hugging Face [x8bu/gidi-en](https://huggingface.co/x8bu/gidi-en). Chưa có nhãn do người
-  gán; mọi điểm số là mức khớp với nhãn của Claude, Gemini và Clef (xem model card).
-- **`gidi-finance-v4`** (release `4.0.0`) là model hiện tại: cùng kiến trúc và runtime với v3,
-  encoder mới huấn luyện thêm dữ liệu Clef và quy tắc `annotation-v4` (xem
-  `experiments/clef-distill-v2/report.md`). Demo https://gidi.8bu.dev đang chạy v4; bản công khai
-  trên Hugging Face và GitHub vẫn là v3.
-- **`gidi-finance-v3`** (release `3.0.0`) là release trước.
-  Hệ thống gồm một encoder INT8 cho type và target, word snap cho span `target`, và parser
-  theo luật cho value span. Bundle là 29.3 MB INT8 ONNX, khoảng 1.4 ms p50 trên một CPU thread.
-  Release công khai trên Hugging Face
-  [x8bu/gidi-finance](https://huggingface.co/x8bu/gidi-finance) (INT8) và GitHub
-  (archive INT8 và FP32).
-  Demo chạy trong trình duyệt: <https://gidi.8bu.dev> (ứng dụng ghi chú, dùng được trên điện
-  thoại và máy tính bảng; công cụ cho nhà phát triển ở `/lab`).
-- **`gidi-finance-v2`** là release trước (2.0.3): `dual encoder` với value head CRF,
-  58.1 MB INT8 ONNX, khoảng 3.5 ms p50. Vẫn đóng băng.
-- **`gidi-finance-v1`** vẫn đóng băng và không đổi: chỉ có type và target,
-  28.66 MB INT8 ONNX.
+## Scope
 
-Usage, output schema và known limitations nằm tại [docs/deployment.md](docs/deployment.md).
-Lịch sử research nằm trong [docs/investigation-journal.md](docs/investigation-journal.md).
+Both models read short, informal notes that a person writes for themselves. The notes are not
+formal bookkeeping records.
 
-Human review và annotation diễn ra trong [Quet](https://github.com/8bu/quet) (Quick Utility for
-Evaluating Text), một TUI (text user interface) open-source riêng. Quet không phải dependency
-của dự án này. Gidi tạo queue và schema cho Quet.
-Gidi validate dữ liệu Quet ghi lại.
-Chi tiết về agent nằm trong `AGENTS.md`.
+- `gidi-finance` is Vietnamese. It returns the amount as written (a span of the note). Deterministic
+  code converts that span to a number.
+- `gidi-en` is English. It predicts the type and the target only. It has no value span and no
+  amount parser yet.
 
-## Lộ trình
+## Status
 
-Tên experiment nội bộ không phải là version release.
-Model public có tên `gidi-finance-vN` và version release như `3.0.0`.
+### gidi-finance (Vietnamese)
 
-**Hiện tại: `gidi-finance-v4` / `4.0.0` (đã xong); trước đó `gidi-finance-v3` / `3.0.0`**
+- **`gidi-finance-v4`** (release `4.0.0`) is the current model. It has the same architecture and
+  runtime as v3, and a new encoder trained with Clef-teacher data and the `annotation-v4` rules
+  (see `experiments/clef-distill-v2/report.md`). <https://gidi.8bu.dev> runs v4. The public
+  Hugging Face and GitHub releases are still v3. The demo is a notes app that works on phones and
+  tablets, with developer tools at `/lab`.
+- **`gidi-finance-v3`** (release `3.0.0`) is the previous release. The system is one INT8 encoder
+  for type and target, a word snap on the target span and a rule-based parser for the value span.
+  The bundle is 29.3 MB INT8 ONNX, about 1.4 ms p50 on one CPU thread. It is public on Hugging
+  Face ([x8bu/gidi-finance](https://huggingface.co/x8bu/gidi-finance), INT8) and on GitHub (INT8
+  and FP32 archives).
+- **`gidi-finance-v2`** (release `2.0.3`) is a dual encoder with a CRF value head, 58.1 MB INT8
+  ONNX, about 3.5 ms p50. It stays frozen.
+- **`gidi-finance-v1`** stays frozen and unchanged: type and target only, 28.66 MB INT8 ONNX.
 
-- Kiến trúc lai neural và tất định: một encoder INT8 cho type và target, value được trích xuất
-  bằng parser theo luật (`gidi.value_parser`), không còn value encoder thứ hai.
-- Word snap bật mặc định: `target` được mở rộng ra ranh giới của cả từ.
-- Taxonomy `annotation-v3`: ghi chú chỉ nói về nợ là `borrow` hoặc `lend`.
-  Người nhận quà là `target` (quy tắc có trong nhãn test; dữ liệu huấn luyện chưa áp dụng).
-- Nhỏ một nửa so với v2: 29.3 MB so với 58.1 MB, khoảng 1.4 ms p50.
-- Trên bộ test mới `human-value-02` (190 ghi chú, nhãn LLM): `type` 92.1%, `target` 85.3%,
-  `value` 100%, end-to-end 78.9%. Chi tiết và giới hạn nằm trong model card.
+### gidi-en (English)
 
-**Đã phát hành trước đó: `gidi-finance-v2`**
+- **`gidi-en-v2`** (release `2.0.1`) is the first English model. It is experimental. It predicts
+  the type and the target. It is published on Hugging Face as
+  [x8bu/gidi-en](https://huggingface.co/x8bu/gidi-en). The INT8 file is 29.2 MB. It is not in the
+  web app yet.
+- **The labels are silver.** No human annotated English. Claude, Gemini and Clef produced every
+  label, so every score is agreement with those labels, not accuracy against ground truth. The
+  contract is [docs/annotation-en-v1.md](docs/annotation-en-v1.md).
+- **One seed, one run.** The report gives no variance estimate and calls the margin over its
+  thresholds modest (`experiments/gidi-en-student-v2/report.md`). On the held-out test split
+  (primary set, 214 notes) it scores type F1 0.956, target 0.888, joint 0.850 against those
+  silver labels. On the 357-note slang probe it scores type 0.890, target 0.835, joint 0.754.
+- **The ONNX file does not include the word-boundary snapping step.** A runtime must apply it
+  after BIO decoding (`gidi.inference.decode.snap_to_words`). The scores above use it.
 
-- Kiến trúc `dual encoder`: một encoder cho type và target, encoder thứ hai cho value span.
-- Bản phân phối INT8 ONNX trên Hugging Face và GitHub.
-- Runtime trong trình duyệt (onnxruntime-web, WASM). Demo public: <https://gidi.8bu.dev>.
+### Both
 
-**Tiếp theo**
+Usage, output schema and known limitations are in [docs/deployment.md](docs/deployment.md). The
+research history is in [docs/investigation-journal.md](docs/investigation-journal.md).
 
-- Nâng độ chính xác của `target` (hiện khoảng 85%): tên thương hiệu và cửa hàng nhiều từ,
-  người nhận quà.
-- Hiệu chỉnh điểm tin cậy và cơ chế từ chối.
+Human review and annotation happen in [Quet](https://github.com/8bu/quet) (Quick Utility for
+Evaluating Text), a separate open-source TUI. It is not a dependency of this project. Gidi
+produces the queues and schemas that Quet consumes, and validates what it writes back. Agent
+details are in `AGENTS.md`.
+
+## Roadmap
+
+Internal experiment names are not release versions. Public models are named `gidi-finance-vN` or
+`gidi-en-vN`, with release versions such as `3.0.0`.
+
+**Current Vietnamese model: `gidi-finance-v4` / `4.0.0` (done); previous: `gidi-finance-v3` / `3.0.0`**
+
+- Hybrid neural and deterministic architecture: one INT8 encoder for type and target, value
+  extracted by a rule-based parser (`gidi.value_parser`), no second value encoder.
+- Word snap is on by default: the target is extended to whole-word boundaries.
+- `annotation-v3` taxonomy: a debt-only note is `borrow` or `lend`. The gift receiver is the
+  target (the rule is in the test labels; the training data does not apply it yet).
+- Half the size of v2: 29.3 MB against 58.1 MB, about 1.4 ms p50.
+- On the test set `human-value-02` (190 notes, LLM-labelled): type 92.1%, target 85.3%, value
+  100%, end-to-end 78.9%. Details and limitations are in the model card.
+
+**Current English model: `gidi-en-v2` / `2.0.1` (experimental)**
+
+- Type and target only, with the `annotation-en-v1` contract and silver labels.
+- Published on Hugging Face. Not yet in the web app.
+
+**Released before: `gidi-finance-v2`**
+
+- Dual-encoder architecture: one encoder for type and target, a second encoder for the value span.
+- INT8 ONNX distribution on Hugging Face and GitHub.
+- Browser runtime (onnxruntime-web, WASM); public demo at <https://gidi.8bu.dev>.
+
+**Next**
+
+- Raise Vietnamese target accuracy (now about 85%): multi-word brand and shop names, gift
+  receivers.
+- Calibrate confidences and add an abstention policy.
 
 ## Stack
 
-- Python 3.12 được quản lý bằng `uv`
-- PyTorch, với Apple MPS là device chính (cuda và cpu cũng được hỗ trợ)
+- Python 3.12 managed with `uv`
+- PyTorch, with Apple MPS as the primary device (cuda and cpu also supported)
 - Hugging Face Transformers, Tokenizers, Datasets
-- scikit-learn cho evaluation và baseline
-- pytest và ruff cho test, lint và format
-- Deployment path: PyTorch -> ONNX (INT8) -> ONNX Runtime. Runtime (`src/gidi/inference/`)
-  chỉ cần numpy, onnxruntime và tokenizers.
-- Playground: Vite, React và shadcn/ui trong `playground/`, được quản lý bằng `pnpm`
+- scikit-learn for evaluation and baselines
+- pytest and ruff for tests, linting and formatting
+- Deployment path: PyTorch -> ONNX (INT8) -> ONNX Runtime. The runtime (`src/gidi/inference/`)
+  needs only numpy, onnxruntime and tokenizers.
+- Playground: Vite, React and shadcn/ui in `playground/`, managed with `pnpm`
 
-Loại trừ rõ ràng: Poetry, Conda, Lightning, Hydra, W&B, MLflow, Docker, notebook-first
-workflow và cloud training.
+Explicitly excluded: Poetry, Conda, Lightning, Hydra, W&B, MLflow, Docker, notebook-first
+workflow, cloud training.
 
 ## Development
 
@@ -113,7 +140,7 @@ uv run python scripts/release.py verify --release dist/releases/gidi-finance-v4/
 uv run python scripts/publish.py all --release dist/releases/gidi-finance-v4/4.0.0 --dry-run
 ```
 
-## Cấu trúc
+## Layout
 
 ```text
 corpus/raw/         generated raw corpus (never overwritten)
@@ -133,22 +160,24 @@ docs/               project documentation
 src/gidi/           library code
 ```
 
-Tất cả corpus và dataset đều là JSONL.
+All corpora and datasets are JSONL.
 
-## Triết lý
+## Philosophy
 
-- nhỏ > lớn
-- đo lường > giả định
-- deterministic > generative khi có thể
-- ràng buộc mobile > benchmark vanity
-- experiment đơn giản > framework phức tạp
+- small > large
+- measured > assumed
+- deterministic > generative where possible
+- mobile constraints > benchmark vanity
+- simple experiments > framework complexity
 
-## Tài liệu
+## Documentation
 
-- [docs/overview.md](docs/overview.md): pipeline, architecture, quy ước data, policy cho device
+- [docs/overview.md](docs/overview.md): pipeline, architecture, data conventions, device policy
 - [docs/deployment.md](docs/deployment.md): runtime usage, output schema, limitations
 - [docs/releasing.md](docs/releasing.md): release build, verification, publishing, CI
 - [docs/annotation-v1.md](docs/annotation-v1.md),
-  [docs/annotation-v2.md](docs/annotation-v2.md): annotation contracts
-- [experiments/README.md](experiments/README.md): cách ghi experiment
-- [models/README.md](models/README.md): local artifact
+  [docs/annotation-v2.md](docs/annotation-v2.md): Vietnamese annotation contracts
+- [docs/annotation-en-v1.md](docs/annotation-en-v1.md): English annotation contract
+- [experiments/README.md](experiments/README.md): how experiments are recorded
+- [experiments/gidi-en-student-v2/report.md](experiments/gidi-en-student-v2/report.md): `gidi-en-v2` report
+- [models/README.md](models/README.md): local artifacts
