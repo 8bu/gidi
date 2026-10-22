@@ -60,7 +60,10 @@ console `__gidiDebug.capture("load")`, `__gidiDebug.throwUncaught()` or
 PostHog's native error-tracking alerts (Error tracking -> Configuration -> Alerting) only offer Slack,
 Discord, GitHub, GitLab, Teams, Linear and PagerDuty as destinations, no email, so the email alerts are
 Product analytics **insight alerts** (hourly check, notify hvanlong@pm.me, the account owner). Both read
-insights that exclude `internal` events (`internal` not set) and events from `127.0.0.1` / `localhost`:
+insights that count only real traffic: `internal` not set **and** `$host` equals `gidi.8bu.dev` (an exact
+match: `$host` carries the port on local previews such as `127.0.0.1:8821`, and any other host, a tunnel
+or a `workers.dev` test deployment, is not production either; the first version used `not_icontains`
+`127.0.0.1` / `localhost`, which missed everything else):
 
 1. **Gidi: new error issues (>2 distinct a day)**: insight "Gidi: production exceptions per day"
    (`$exception`, distinct `$exception_issue_id` per day). Fires when a day has more than 2 distinct
@@ -68,9 +71,16 @@ insights that exclude `internal` events (`internal` not set) and events from `12
 2. **Gidi: model_load_failed spike (>20 a day)**: insight "Gidi: model_load_failed per day" (event
    `model_load_failed`, per day). Fires above 20 a day. A bad release or a broken cache shows up here first.
 
-Local previews: a project **suppression rule** (Error tracking -> Configuration -> Suppression rules,
-`$host` contains `127.0.0.1` or `localhost`) drops their exceptions. Turn it off (or delete it) while
-you test the error path from a local build, then switch it on again. PostHog cannot delete events or
+Local previews and other non-production hosts: a project **suppression rule** (Error tracking ->
+Configuration -> Suppression rules, id `01a16386-1405-0000-26a2-3da17c6784be`) drops their exceptions
+before they become issues. Its filters (match any): `$host` is not `gidi.8bu.dev`, `$host` contains
+`127.0.0.1`, `$host` contains `localhost`. An event with no `$host` is not suppressed (the safe side).
+Checked 2026-10-22 with four synthetic `$exception` events posted to the capture endpoint (internal,
+distinct id `gidi-filter-test`): hosts `127.0.0.1:8821`, `localhost:5173` and a tunnel host were
+dropped, the `gidi.8bu.dev` one arrived as an issue (set to Resolved). The saved insights, run with and
+without the `$host` condition, differ by exactly the local rows on 2026-10-22: distinct error issues 2
+vs 6 (4 local issues on `127.0.0.1:8821`), `model_load_failed` 15 vs 17 (2 local rows). Turn the rule off (or delete it) while you test the error path
+from a local build or a preview deployment, then switch it on again. PostHog cannot delete events or
 issues from the UI or API: test issues are set to Resolved (they reopen if the same error comes back).
 
 ## Source maps (opt-in, 2026-10-22)
@@ -164,4 +174,6 @@ of `model_loaded` users in query 1) and at least 5 failing visitors exist:
 - Fewer than 30 loads or fewer than 5 failing visitors: too thin, repeat in a week.
 
 Also confirm the beacon issue is gone: query `$exception` with `properties.kind = 'resource_load'`
-and `app_build` of the deploy that includes the filter; expected 0 for third-party URLs.
+and `app_build` `8ea1a0a` or later (the filter went live 2026-10-22 16:10 UTC, Worker version
+`1784a26c-adc3-4473-b207-2b9869236b55`, source maps uploaded for `gidi-playground@8ea1a0a`; the version
+before it, `b7a26a68-89fe-4d35-ac51-906216a63ab7`, is the rollback); expected 0 for third-party URLs.
