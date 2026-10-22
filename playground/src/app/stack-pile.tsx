@@ -9,7 +9,7 @@ import {
   useTransform,
   type MotionStyle,
 } from "motion/react"
-import { formatVnd, formatVndCompact } from "./amount"
+import { useI18n } from "./language"
 import type { NoteRecord, StackSummary, TxType } from "./types"
 
 export type PileSize = "mini" | "xs" | "sm" | "md" | "lg"
@@ -211,6 +211,7 @@ export function SheetFace({
   record: NoteRecord
   size: PileSize
 }) {
+  const { recordMoneyCompact } = useI18n()
   const spec = SIZES[size]
   if (!spec.showText) return null
   return (
@@ -224,7 +225,7 @@ export function SheetFace({
       </span>
       {record.amount !== null ? (
         <span className="mt-auto pt-1 text-[10px] font-semibold tabular-nums opacity-70">
-          {formatVndCompact(record.amount)}
+          {recordMoneyCompact(record)}
         </span>
       ) : null}
     </span>
@@ -319,6 +320,7 @@ export function StackPile({
   onOpen,
   size = "md",
 }: StackPileProps) {
+  const { t, money, moneyCompact } = useI18n()
   const spec = SIZES[size]
   const reduced = useReducedMotion() ?? false
   const [scope, animateScope] = useAnimate<HTMLSpanElement>()
@@ -349,15 +351,15 @@ export function StackPile({
   }, [type, reduced, scope, animateScope])
 
   const ariaLabel = empty
-    ? `${label}: chưa có ghi chú`
-    : `${label}: ${count} ghi chú, tổng ${formatVnd(total)}`
+    ? t.stackEmptyLabel(label)
+    : t.stackLabel(label, count, money(total))
 
   return (
     <motion.button
       type="button"
       data-stack={type}
       aria-label={ariaLabel}
-      title={empty ? ariaLabel : `${label}: tổng ${formatVnd(total)}`}
+      title={empty ? ariaLabel : t.stackTitle(label, money(total))}
       onClick={onOpen}
       className={`group relative flex shrink-0 cursor-pointer touch-manipulation flex-col items-center rounded-xl p-1 outline-none select-none [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] focus-visible:ring-[3px] focus-visible:ring-ring/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background active:bg-foreground/[0.08] ${spec.gapClass}`}
       style={{ width: spec.w, minWidth: 44, minHeight: 44 }}
@@ -411,12 +413,12 @@ export function StackPile({
               <span
                 className={`font-medium text-muted-foreground ${spec.labelClass}`}
               >
-                Trống
+                {t.stackEmpty}
               </span>
               <span
                 className={`font-semibold text-muted-foreground/70 tabular-nums ${spec.totalClass}`}
               >
-                0 ₫
+                {money(0)}
               </span>
             </>
           ) : (
@@ -431,11 +433,7 @@ export function StackPile({
                 className={`font-semibold tabular-nums ${spec.totalClass}`}
                 style={{ color: "var(--foreground)" }}
               >
-                <Ticker
-                  value={total}
-                  format={formatVndCompact}
-                  reduced={reduced}
-                />
+                <Ticker value={total} format={moneyCompact} reduced={reduced} />
               </span>
             </>
           )}

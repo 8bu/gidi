@@ -16,8 +16,8 @@ import { useCoarsePointer } from "@/hooks/use-coarse-pointer"
 import { track } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
 import { useFly } from "./fly-layer"
+import { useI18n } from "./language"
 import type { NoteRecord, TxType } from "./types"
-import { formatMegabytes } from "./use-gidi"
 
 export interface StickyComposerProps {
   value: string
@@ -53,6 +53,7 @@ export function StickyComposer({
   ref,
 }: StickyComposerProps) {
   const fly = useFly()
+  const { t, lang } = useI18n()
   const coarse = useCoarsePointer()
   const reduced = useReducedMotion() ?? false
   const [scope, animateScope] = useAnimate<HTMLDivElement>()
@@ -108,15 +109,15 @@ export function StickyComposer({
     if (sending.current) return
     const text = value.trim()
     if (text === "") {
-      complain("Hãy viết một dòng ghi chú trước khi gửi.")
+      complain(t.emptyNote)
       return
     }
     if (status === "error") {
-      complain(error ?? "Mô hình chưa chạy được. Hãy thử tải lại.")
+      complain(error ?? t.modelNotRunning)
       return
     }
     if (status === "loading") {
-      complain("Mô hình đang tải. Gửi được ngay khi tải xong.")
+      complain(t.modelStillLoading)
       return
     }
     // Focus inside the user gesture so the soft keyboard stays up for the next note.
@@ -145,6 +146,7 @@ export function StickyComposer({
       for (const record of records)
         types[record.type] = (types[record.type] ?? 0) + 1
       track("notes_sent", {
+        language: lang,
         lines: lines.length,
         classified: records.length,
         failed: failed.length,
@@ -172,11 +174,7 @@ export function StickyComposer({
       textareaRef.current?.focus()
       if (firstError !== null) throw firstError
     } catch (e) {
-      complain(
-        e instanceof Error
-          ? e.message
-          : "Không đọc được ghi chú này. Thử lại nhé."
-      )
+      complain(e instanceof Error ? e.message : t.readFailed)
     } finally {
       window.clearTimeout(timer)
       setReading(false)
@@ -219,7 +217,7 @@ export function StickyComposer({
           htmlFor={`${messageId}-note`}
           className="mb-1 text-xs font-medium tracking-wide opacity-60 group-data-[keyboard=open]/app:mb-0"
         >
-          Ghi chú mới
+          {t.newNote}
         </label>
 
         <textarea
@@ -237,7 +235,7 @@ export function StickyComposer({
           enterKeyHint="send"
           aria-invalid={message !== null}
           aria-describedby={message !== null ? messageId : undefined}
-          placeholder={"mua sữa vinamilk hết 500k\nmỗi dòng là một ghi chú"}
+          placeholder={t.placeholder}
           className="min-h-28 w-full flex-1 resize-none bg-transparent text-[max(1.05rem,16px)] outline-none group-data-[keyboard=open]/app:h-14 group-data-[keyboard=open]/app:min-h-14 group-data-[keyboard=open]/app:flex-none placeholder:text-[color-mix(in_oklab,var(--ink-note)_42%,transparent)] [@media(max-height:500px)]:h-[5.25rem] [@media(max-height:500px)]:min-h-[5.25rem] [@media(max-height:500px)]:flex-none"
           style={{
             lineHeight: LINE,
@@ -262,11 +260,11 @@ export function StickyComposer({
               />
             </div>
             <p className="mt-1.5 text-xs opacity-70">
-              Đang tải mô hình về máy bạn
-              {percent === null
-                ? ""
-                : ` (${percent}%, ${formatMegabytes(loaded)} / ${formatMegabytes(total ?? loaded)})`}
-              . Bạn cứ viết sẵn, mọi thứ chạy ngay trên thiết bị.
+              {t.downloading(
+                percent === null
+                  ? null
+                  : `${percent}%, ${t.megabytes(loaded)} / ${t.megabytes(total ?? loaded)}`
+              )}
             </p>
           </div>
         )}
@@ -287,7 +285,7 @@ export function StickyComposer({
                     className="inline-flex items-center gap-1 rounded-sm underline underline-offset-2 outline-none focus-visible:ring-2 focus-visible:ring-current pointer-coarse:min-h-11 pointer-coarse:px-1"
                   >
                     <RotateCcwIcon className="size-3" />
-                    Tải lại
+                    {t.reload}
                   </button>
                 )}
               </p>
@@ -298,13 +296,11 @@ export function StickyComposer({
                 className="inline-flex items-center gap-1 rounded-sm font-medium text-[var(--ink-expense)] underline underline-offset-2 outline-none focus-visible:ring-2 focus-visible:ring-current pointer-coarse:min-h-11"
               >
                 <RotateCcwIcon className="size-3" />
-                Không tải được mô hình. Thử lại
+                {t.loadFailedRetry}
               </button>
             ) : (
               <p className="opacity-60">
-                {coarse
-                  ? "Chạm Gửi để cất ghi chú"
-                  : "Enter để gửi, Shift + Enter xuống dòng"}
+                {coarse ? t.tapToSend : t.enterToSend}
               </p>
             )}
           </div>
@@ -322,7 +318,7 @@ export function StickyComposer({
               reading && "opacity-80"
             )}
           >
-            {reading ? "Đang đọc" : "Gửi"}
+            {reading ? t.reading : t.send}
             <SendHorizontalIcon data-icon="inline-end" />
           </Button>
         </div>

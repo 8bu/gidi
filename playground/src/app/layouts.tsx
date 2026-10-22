@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState, type ReactNode } from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { STACK_FOOTPRINT, StackPile, type PileSize } from "./stack-pile"
-import { TYPE_META } from "./taxonomy"
+import { useI18n } from "./language"
 import { TX_TYPES, type StackSummary, type TxType } from "./types"
 
 export interface LayoutProps {
@@ -191,6 +191,7 @@ const PILES_ZONE: Record<Mode, string> = {
  * - ring: piles on an ellipse around the composer, sized to what the stage allows.
  */
 export function RingLayout({ summaries, composer, onOpenStack }: LayoutProps) {
+  const { t } = useI18n()
   const [stageRef, stage] = useBox<HTMLDivElement>()
   const [composerRef, composerBox] = useBox<HTMLDivElement>()
   const reduced = useReducedMotion() ?? false
@@ -284,7 +285,7 @@ export function RingLayout({ summaries, composer, onOpenStack }: LayoutProps) {
                     <StackPile
                       type={type}
                       summary={summaries[type]}
-                      label={TYPE_META[type].label}
+                      label={t.types[type].label}
                       onOpen={() => onOpenStack(type)}
                       size={ring.size}
                     />
@@ -296,7 +297,7 @@ export function RingLayout({ summaries, composer, onOpenStack }: LayoutProps) {
                   <StackPile
                     type={type}
                     summary={summaries[type]}
-                    label={TYPE_META[type].label}
+                    label={t.types[type].label}
                     onOpen={() => onOpenStack(type)}
                     size={grid}
                   />

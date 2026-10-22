@@ -11,6 +11,8 @@
  * `widenSlangValue` adds them to the span (the parser is pinned by the v3 bundle).
  */
 
+import type { Currency } from "./types.ts"
+
 const THOUSAND = 1_000
 const MILLION = 1_000_000
 const SLANG_HUNDRED_THOUSAND = 100_000
@@ -329,3 +331,98 @@ export function formatVndCompact(n: number): string {
     ty === whole ? "" : `,${String(Math.round((ty - whole) * 10))}`
   return `${sign}${groupThousands(String(whole))}${decimal} tỷ`
 }
+
+/* -------------------------------------------------------------- English */
+
+/**
+ * English notes are US dollars with en-US number syntax: the amount is the number as written (`50`,
+ * `4.50`, `1,200`, `2.5k`, `1.2m`, `3 million`, `2 grand`), never scaled by the Vietnamese rules
+ * (a bare number is not thousands, `tr`/`củ` mean nothing). Other currencies (`£`, `€`, `quid`,
+ * `sgd`) are not converted: the number is kept as is. The English bundle has no value head or value parser,
+ * so `findEnglishValue` is a deterministic scan of the note: a number with a `$` sign or a money
+ * word wins; otherwise the last number (notes end with the amount: `venmo'd mom 50`). Times and
+ * dates (`7:30`, `3/5`), ordinals and words with digits (`5pm`, `2nd`, `x2`) are not amounts.
+ */
+const ENGLISH_NUMBER =
+  /(?<![\p{L}\p{N}.,/:$])(\$)?(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)(k|m|b|bn|\s?(?:mil|million|billion|grand))?(\s?(?:bucks?|dollars?|usd))?(?![\p{L}\p{N}]|[/:]\d)/giu
+
+const ENGLISH_SCALE: Readonly<Record<string, number>> = {
+  k: THOUSAND,
+  m: MILLION,
+  mil: MILLION,
+  million: MILLION,
+  b: BILLION,
+  bn: BILLION,
+  billion: BILLION,
+  grand: THOUSAND,
+}
+
+/** The number a matched English value text stands for; `null` if it is not a finite number. */
+export function amountFromEnglish(valueText: string): number | null {
+  const match = /^\$?(\d{1,3}(?:,\d{3})+|\d+)(\.\d+)?\s?([a-z]*)$/i.exec(
+    valueText.trim()
+  )
+  if (match === null) return null
+  const scale = match[3] === "" ? 1 : ENGLISH_SCALE[match[3].toLowerCase()]
+  if (scale === undefined) return null
+  const value =
+    Number(`${match[1].replaceAll(",", "")}${match[2] ?? ""}`) * scale
+  if (!Number.isFinite(value)) return null
+  const rounded = Math.round(value * 100) / 100
+  return Number.isSafeInteger(Math.round(rounded)) ? rounded : null
+}
+
+/** The amount of an English note as `valueText` and its code-point span, or all `null`. */
+export function findEnglishValue(note: string): {
+  valueText: string | null
+  span: [number, number] | null
+  amount: number | null
+} {
+  let best: { start: number; end: number; marked: boolean } | null = null
+  for (const match of note.matchAll(ENGLISH_NUMBER)) {
+    const marked = match[1] !== undefined || match[4] !== undefined
+    if (best !== null && best.marked && !marked) continue
+    // The span covers the number and its scale (`2.5k`), not the `$` or the money word.
+    const start = match.index + (match[1] === undefined ? 0 : 1)
+    const end = match.index + match[0].length - (match[4]?.length ?? 0)
+    best = { start, end, marked }
+  }
+  if (best === null) return { valueText: null, span: null, amount: null }
+  const valueText = note.slice(best.start, best.end)
+  const toCodePoints = (index: number): number =>
+    Array.from(note.slice(0, index)).length
+  return {
+    valueText,
+    span: [toCodePoints(best.start), toCodePoints(best.end)],
+    amount: amountFromEnglish(valueText),
+  }
+}
+
+const USD = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+})
+
+/** `$1,234.50`, `-$12.00` */
+export const formatUsd = (n: number): string =>
+  USD.format(Math.round(n * 100) / 100)
+
+/** `$500`, `$1.2k`, `$15M`, `$1.5B`; cents only below a thousand. */
+export function formatUsdCompact(n: number): string {
+  const sign = n < 0 ? "-" : ""
+  const abs = Math.abs(n)
+  const tenth = (value: number): string => String(Math.round(value * 10) / 10)
+  if (abs < THOUSAND) return `${sign}${formatUsd(abs)}`.replace(/\.00$/, "")
+  if (abs < MILLION && Math.round((abs / THOUSAND) * 10) / 10 < 1000)
+    return `${sign}$${tenth(abs / THOUSAND)}k`
+  if (abs < BILLION && Math.round((abs / MILLION) * 10) / 10 < 1000)
+    return `${sign}$${tenth(abs / MILLION)}M`
+  return `${sign}$${tenth(abs / BILLION)}B`
+}
+
+/** Amount in the currency of the note (or database) it belongs to. */
+export const formatAmount = (n: number, currency: Currency): string =>
+  currency === "VND" ? formatVnd(n) : formatUsd(n)
+
+export const formatAmountCompact = (n: number, currency: Currency): string =>
+  currency === "VND" ? formatVndCompact(n) : formatUsdCompact(n)

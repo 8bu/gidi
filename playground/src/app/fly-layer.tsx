@@ -17,9 +17,8 @@ import {
 } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { formatVnd } from "./amount"
+import { getStrings, useI18n } from "./language"
 import { useNotes } from "./store"
-import { TYPE_META } from "./taxonomy"
 import {
   clearArrived,
   isPileSize,
@@ -110,7 +109,7 @@ export function FlyProvider({
 
   const fail = useCallback((error: unknown) => {
     const message = error instanceof Error ? error.message : String(error)
-    latest.current.onError?.(`Không lưu được ghi chú: ${message}`)
+    latest.current.onError?.(getStrings().saveFailed(message))
   }, [])
 
   return (
@@ -263,6 +262,7 @@ function FlightCard({
   onError: (error: unknown) => void
 }) {
   const reduced = useReducedMotion() ?? false
+  const { t, recordMoney } = useI18n()
   const cardRef = useRef<HTMLDivElement>(null)
   const shadowRef = useRef<HTMLDivElement>(null)
   const bodyRef = useRef<HTMLDivElement>(null)
@@ -437,7 +437,7 @@ function FlightCard({
 
   const { record, from } = flight
   const pose = topSheetPose(record.id, size)
-  const meta = TYPE_META[record.type]
+  const meta = t.types[record.type]
   const compact = from.height < 190
   return (
     <div
@@ -494,7 +494,7 @@ function FlightCard({
                 compact ? "text-lg" : "text-3xl"
               )}
             >
-              {record.amount === null ? "" : formatVnd(record.amount)}
+              {recordMoney(record)}
             </span>
           </div>
         </div>

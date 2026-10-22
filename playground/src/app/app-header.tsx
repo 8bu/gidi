@@ -32,10 +32,11 @@ import {
 import { useTheme } from "@/components/theme-provider"
 import { track } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
-import { formatVnd, formatVndCompact } from "./amount"
-import { TYPE_META } from "./taxonomy"
+import { LANGS, type Lang } from "@/lib/language"
+import { MODELS } from "@/lib/models"
+import { setLanguage, useI18n } from "./language"
+import { TYPE_SIGN } from "./taxonomy"
 import { TX_TYPES, type StackSummary, type TxType } from "./types"
-import { formatMegabytes } from "./use-gidi"
 
 /**
  * Cash in and out over every type by its direction: Thu = income, borrow, repayment_in, refund;
@@ -48,7 +49,7 @@ function cashFlow(summaries: Record<TxType, StackSummary>): {
   let income = 0
   let expense = 0
   for (const type of TX_TYPES) {
-    const { sign } = TYPE_META[type]
+    const sign = TYPE_SIGN[type]
     if (sign > 0) income += summaries[type].total
     else if (sign < 0) expense += summaries[type].total
   }
@@ -91,9 +92,12 @@ const SLIP_VARS = {
 function Tick({
   value,
   format,
+  full = format,
 }: {
   value: number
   format: (n: number) => string
+  /** Spoken to screen readers instead of the (compact) animated text. */
+  full?: (n: number) => string
 }) {
   const reduce = useReducedMotion()
   const motionValue = useMotionValue(value)
@@ -113,7 +117,7 @@ function Tick({
 
   return (
     <>
-      <span className="sr-only">{formatVnd(value)}</span>
+      <span className="sr-only">{full(value)}</span>
       <span aria-hidden>
         <motion.span>{text}</motion.span>
       </span>
@@ -138,6 +142,7 @@ function Column({
   color?: string
   strong?: boolean
 }) {
+  const { money, moneyCompact } = useI18n()
   return (
     <div className="flex min-w-0 flex-col items-center px-2.5 leading-none sm:px-4 [&:not(:first-child)]:border-l [&:not(:first-child)]:border-dashed [&:not(:first-child)]:border-foreground/20">
       <dt className="text-[11px] font-medium text-foreground/70">{label}</dt>
@@ -148,7 +153,7 @@ function Column({
         )}
         style={color ? { color } : undefined}
       >
-        <Tick value={value} format={formatVndCompact} />
+        <Tick value={value} format={moneyCompact} full={money} />
       </dd>
     </div>
   )
@@ -156,16 +161,17 @@ function Column({
 
 function Totals({ income, expense }: { income: number; expense: number }) {
   const net = income - expense
+  const { t, money } = useI18n()
   return (
     <dl
-      aria-label="Tổng hợp thu chi"
+      aria-label={t.totalsLabel}
       className="m-0 flex items-center"
-      title={`Thu ${formatVnd(income)}  ·  Chi ${formatVnd(expense)}  ·  Còn lại ${formatVnd(net)}`}
+      title={t.totalsTitle(money(income), money(expense), money(net))}
     >
-      <Column label="Thu" value={income} color="var(--ink-income)" />
-      <Column label="Chi" value={expense} color="var(--ink-expense)" />
+      <Column label={t.income} value={income} color="var(--ink-income)" />
+      <Column label={t.expense} value={expense} color="var(--ink-expense)" />
       <Column
-        label="Còn lại"
+        label={t.remaining}
         value={net}
         color={net < 0 ? "var(--ink-expense)" : undefined}
         strong
@@ -175,10 +181,11 @@ function Totals({ income, expense }: { income: number; expense: number }) {
 }
 
 function Idle() {
+  const { t } = useI18n()
   return (
     <p className="flex items-center gap-2 px-1 text-xs font-medium text-foreground/75 sm:text-[13px]">
       <ShieldCheckIcon className="size-4 shrink-0" aria-hidden />
-      <span className="truncate">Chạy trên thiết bị</span>
+      <span className="truncate">{t.onDevice}</span>
     </p>
   )
 }
@@ -188,6 +195,7 @@ function Loading({
   loaded,
   total,
 }: Pick<HeaderProps["model"], "progress" | "loaded" | "total">) {
+  const { t } = useI18n()
   const percent = progress === null ? null : Math.round(progress * 100)
   return (
     <div className="flex items-center gap-3 px-1 sm:min-w-[22rem]">
@@ -196,15 +204,18 @@ function Loading({
           role="status"
           className="truncate text-xs font-medium sm:text-[13px]"
         >
-          <span className="sm:hidden">Đang tải mô hình</span>
+          <span className="sm:hidden">{t.loadingModel}</span>
           <span className="hidden sm:inline">
-            Đang tải mô hình
-            {percent !== null &&
-              `, ${formatMegabytes(loaded)} / ${formatMegabytes(total ?? loaded)}`}
+            {percent === null
+              ? t.loadingModel
+              : t.loadingModelProgress(
+                  t.megabytes(loaded),
+                  t.megabytes(total ?? loaded)
+                )}
           </span>
         </p>
         <p className="hidden truncate text-[11px] text-foreground/70 sm:block">
-          Chỉ tải một lần, sau đó chạy ngay trên thiết bị
+          {t.loadOnce}
         </p>
       </div>
       {percent !== null && (
@@ -249,6 +260,7 @@ function ProgressFill({ progress }: { progress: number | null }) {
 }
 
 function Failed({ onRetry }: { onRetry: () => void }) {
+  const { t } = useI18n()
   return (
     <div className="flex items-center gap-2 pl-1">
       <TriangleAlertIcon
@@ -259,8 +271,8 @@ function Failed({ onRetry }: { onRetry: () => void }) {
         role="alert"
         className="truncate text-xs font-medium text-destructive sm:text-[13px]"
       >
-        <span className="sm:hidden">Không tải được</span>
-        <span className="hidden sm:inline">Không tải được mô hình</span>
+        <span className="sm:hidden">{t.loadFailedShort}</span>
+        <span className="hidden sm:inline">{t.loadFailed}</span>
       </p>
       <button
         type="button"
@@ -268,7 +280,7 @@ function Failed({ onRetry }: { onRetry: () => void }) {
         className="inline-flex h-7 shrink-0 items-center gap-1 rounded-full bg-destructive/10 px-2.5 text-xs font-semibold text-destructive transition-colors outline-none hover:bg-destructive/20 focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none pointer-coarse:h-11 pointer-coarse:px-3.5"
       >
         <RotateCcwIcon className="size-3" aria-hidden />
-        Thử lại
+        {t.retry}
       </button>
     </div>
   )
@@ -351,22 +363,27 @@ const ITEM =
   "relative flex cursor-default items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm outline-none select-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground pointer-coarse:min-h-11 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-muted-foreground"
 
 const THEMES = [
-  { value: "light", label: "Sáng", Icon: SunIcon },
-  { value: "dark", label: "Tối", Icon: MoonIcon },
-  { value: "system", label: "Theo hệ thống", Icon: MonitorIcon },
+  { value: "light", label: "themeLight", Icon: SunIcon },
+  { value: "dark", label: "themeDark", Icon: MoonIcon },
+  { value: "system", label: "themeSystem", Icon: MonitorIcon },
 ] as const
+
+/** `gidi-en-v2 2.0.1` */
+const modelName = (lang: Lang): string =>
+  `${MODELS[lang].id} ${MODELS[lang].version}`
 
 function Menu({
   onExport,
   onImport,
 }: Pick<HeaderProps, "onExport" | "onImport">) {
   const { theme, setTheme } = useTheme()
+  const { lang, t } = useI18n()
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <button
           type="button"
-          aria-label="Menu"
+          aria-label={t.menu}
           className="gidi-sheet inline-flex size-10 items-center justify-center transition-[transform,box-shadow] duration-150 outline-none hover:-translate-y-px focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:translate-y-0 active:scale-[0.96] data-[state=open]:shadow-none motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:active:scale-100 pointer-coarse:size-11"
           style={{
             ...SLIP_VARS,
@@ -385,7 +402,41 @@ function Menu({
           className="z-50 w-64 max-w-[calc(100vw-1.5rem)] rounded-2xl bg-popover p-1.5 text-popover-foreground shadow-[var(--paper-shadow-3)] ring-1 ring-foreground/10 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 motion-reduce:animate-none"
         >
           <DropdownMenu.Label className="px-2.5 pt-1.5 pb-1 text-xs font-medium text-muted-foreground">
-            Giao diện
+            {t.languageHeading}
+          </DropdownMenu.Label>
+          <DropdownMenu.RadioGroup
+            value={lang}
+            onValueChange={(value) => {
+              if (LANGS.includes(value as Lang)) setLanguage(value as Lang)
+            }}
+          >
+            {LANGS.map((code) => (
+              <DropdownMenu.RadioItem
+                key={code}
+                value={code}
+                lang={code}
+                className={ITEM}
+              >
+                <GlobeIcon aria-hidden />
+                <span className="min-w-0">
+                  <span className="block">{t.languageNames[code]}</span>
+                  <span className="block truncate text-xs text-muted-foreground">
+                    {modelName(code)}
+                    {code === "en" && ` · ${t.earlyRelease}`}
+                  </span>
+                </span>
+                <DropdownMenu.ItemIndicator className="ml-auto">
+                  <CheckIcon aria-hidden className="!text-foreground" />
+                </DropdownMenu.ItemIndicator>
+              </DropdownMenu.RadioItem>
+            ))}
+          </DropdownMenu.RadioGroup>
+          <p className="px-2.5 pt-1 pb-1.5 text-xs leading-snug text-muted-foreground">
+            {t.notesPerLanguage}
+          </p>
+          <DropdownMenu.Separator className="mx-1 my-1.5 h-px bg-border" />
+          <DropdownMenu.Label className="px-2.5 pt-1.5 pb-1 text-xs font-medium text-muted-foreground">
+            {t.appearance}
           </DropdownMenu.Label>
           <DropdownMenu.RadioGroup
             value={theme}
@@ -402,7 +453,7 @@ function Menu({
                 className={ITEM}
               >
                 <Icon aria-hidden />
-                {label}
+                {t[label]}
                 <DropdownMenu.ItemIndicator className="ml-auto">
                   <CheckIcon aria-hidden className="!text-foreground" />
                 </DropdownMenu.ItemIndicator>
@@ -412,23 +463,23 @@ function Menu({
           <DropdownMenu.Separator className="mx-1 my-1.5 h-px bg-border" />
           <DropdownMenu.Item className={ITEM} onSelect={onExport}>
             <DownloadIcon aria-hidden />
-            Xuất ghi chú (JSON)
+            {t.exportNotes}
           </DropdownMenu.Item>
           <DropdownMenu.Item className={ITEM} onSelect={onImport}>
             <UploadIcon aria-hidden />
-            Nhập ghi chú (JSON)
+            {t.importNotes}
           </DropdownMenu.Item>
           <DropdownMenu.Separator className="mx-1 my-1.5 h-px bg-border" />
           <DropdownMenu.Item className={ITEM} asChild>
-            <a href="/gioi-thieu">
+            <a href={t.aboutHref}>
               <InfoIcon aria-hidden />
-              Giới thiệu
+              {t.about}
             </a>
           </DropdownMenu.Item>
           <DropdownMenu.Item className={ITEM} asChild>
             <a href="/lab">
               <FlaskConicalIcon aria-hidden />
-              Phòng thử nghiệm
+              {t.lab}
             </a>
           </DropdownMenu.Item>
           <DropdownMenu.Separator className="mx-1 my-1.5 h-px bg-border" />
@@ -440,18 +491,18 @@ function Menu({
               onClick={() => track("link_clicked", { link: "github" })}
             >
               <CodeIcon aria-hidden />
-              Mã nguồn (GitHub)
+              {t.github}
             </a>
           </DropdownMenu.Item>
           <DropdownMenu.Item className={ITEM} asChild>
             <a
-              href="https://huggingface.co/x8bu/gidi-finance"
+              href={t.huggingfaceHref}
               target="_blank"
               rel="noopener"
               onClick={() => track("link_clicked", { link: "huggingface" })}
             >
               <BoxIcon aria-hidden />
-              Mô hình (Hugging Face)
+              {t.huggingface}
             </a>
           </DropdownMenu.Item>
           <DropdownMenu.Item className={ITEM} asChild>
@@ -462,18 +513,56 @@ function Menu({
               onClick={() => track("link_clicked", { link: "author" })}
             >
               <GlobeIcon aria-hidden />
-              Tác giả: 8bu.dev
+              {t.author}
             </a>
           </DropdownMenu.Item>
           <DropdownMenu.Separator className="mx-1 my-1.5 h-px bg-border" />
           <p className="flex items-start gap-2.5 px-2.5 pt-1 pb-1.5 text-xs leading-snug text-muted-foreground">
             <ShieldCheckIcon className="mt-px size-4 shrink-0" aria-hidden />
-            Mô hình chạy trên thiết bị. Ghi chú không rời khỏi máy. Chỉ đếm lượt
-            dùng ẩn danh, không có nội dung, tên hay số tiền.
+            {t.privacy}
           </p>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>
+  )
+}
+
+/* --------------------------------------------------------- language switch */
+
+/** `VI | EN`: always visible; each button names its model and language in its title. */
+function LanguageSwitch() {
+  const { lang, t } = useI18n()
+  return (
+    <div
+      role="group"
+      aria-label={t.languageGroup}
+      className="gidi-sheet inline-flex h-10 items-center gap-0.5 p-1 pointer-coarse:h-11"
+      style={{
+        ...SLIP_VARS,
+        borderRadius: 9999,
+        boxShadow: "var(--paper-shadow-2)",
+      }}
+    >
+      {LANGS.map((code) => (
+        <button
+          key={code}
+          type="button"
+          lang={code}
+          aria-pressed={lang === code}
+          title={t.switchTo(code, modelName(code))}
+          aria-label={t.switchTo(code, modelName(code))}
+          onClick={() => setLanguage(code)}
+          className={cn(
+            "inline-flex h-8 min-w-8 items-center justify-center rounded-full px-1.5 text-xs font-semibold uppercase transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring pointer-coarse:h-9 pointer-coarse:min-w-9",
+            lang === code
+              ? "bg-foreground text-background"
+              : "text-foreground/70 hover:bg-foreground/10"
+          )}
+        >
+          {code}
+        </button>
+      ))}
+    </div>
   )
 }
 
@@ -500,7 +589,8 @@ export function AppHeader({
         <div className="flex min-w-0 justify-center">
           <Pill summaries={summaries} noteCount={noteCount} model={model} />
         </div>
-        <div className="justify-self-end">
+        <div className="flex items-center gap-2 justify-self-end">
+          <LanguageSwitch />
           <Menu onExport={onExport} onImport={onImport} />
         </div>
       </motion.header>

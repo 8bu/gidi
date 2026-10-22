@@ -20,19 +20,12 @@ import { FlyProvider } from "./fly-layer"
 import { RingLayout } from "./layouts"
 import { StackSheet } from "./stack-sheet"
 import { StickyComposer } from "./sticky-composer"
+import { useI18n } from "./language"
 import { useNotes } from "./store"
 import { useGidi } from "./use-gidi"
 import type { TxType } from "./types"
 
 const NOTICE_MS = 4500
-
-const EXAMPLES = [
-  "mua sữa vinamilk hết 500k",
-  "còn nợ chị Mai 700k",
-  "quà sinh nhật bé Na 300k",
-  "lương tháng 10 về 15tr",
-  "chuyển khoản cho mẹ 2tr",
-]
 
 /* ------------------------------------------------------------ keyboard */
 
@@ -135,13 +128,14 @@ function Notice({
 /* -------------------------------------------------------------- empty */
 
 function ExampleChips({ onPick }: { onPick: (text: string) => void }) {
+  const { t } = useI18n()
   return (
     <div className="mt-6 flex flex-col items-center gap-2.5 max-sm:mt-3 max-sm:gap-1.5 [@media(max-height:500px)]:hidden">
       <p className="text-xs text-muted-foreground max-sm:sr-only">
-        Chưa có ghi chú nào. Thử một ví dụ:
+        {t.emptyHint}
       </p>
       <ul className="flex flex-wrap justify-center gap-2 max-sm:w-full max-sm:[scrollbar-width:none] max-sm:flex-nowrap max-sm:justify-start max-sm:overflow-x-auto max-sm:px-1 max-sm:py-1">
-        {EXAMPLES.map((text, i) => (
+        {t.examples.map((text, i) => (
           <motion.li
             key={text}
             className="max-sm:shrink-0"
@@ -173,32 +167,22 @@ function ExampleChips({ onPick }: { onPick: (text: string) => void }) {
 function Page({ notify }: { notify: (message: string) => void }) {
   const { notes, ready, summaries, exportJson, importJson } = useNotes()
   const gidi = useGidi()
+  const { t } = useI18n()
   const [openType, setOpenType] = useState<TxType | null>(null)
   const [draft, setDraft] = useState("")
   const inputRef = useRef<HTMLTextAreaElement | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
-
-  useEffect(() => {
-    const previousLang = document.documentElement.lang
-    const previousTitle = document.title
-    document.documentElement.lang = "vi"
-    document.title = "Gidi – Ghi chú chi tiêu tự phân loại, chạy trên máy"
-    return () => {
-      document.documentElement.lang = previousLang
-      document.title = previousTitle
-    }
-  }, [])
 
   const exportNotes = () => {
     const blob = new Blob([exportJson()], { type: "application/json" })
     const url = URL.createObjectURL(blob)
     const link = document.createElement("a")
     link.href = url
-    link.download = `gidi-ghi-chu-${new Date().toISOString().slice(0, 10)}.json`
+    link.download = `${t.exportFilePrefix}-${new Date().toISOString().slice(0, 10)}.json`
     link.click()
     window.setTimeout(() => URL.revokeObjectURL(url), 1000)
     track("notes_exported", { count: notes.length })
-    notify(`Đã xuất ${notes.length} ghi chú`)
+    notify(t.exported(notes.length))
   }
 
   const importFile = (event: ChangeEvent<HTMLInputElement>) => {
@@ -211,14 +195,9 @@ function Page({ notify }: { notify: (message: string) => void }) {
       .then(
         (count) => {
           track("notes_imported", { count })
-          notify(
-            count === 0
-              ? "Không có ghi chú mới trong tệp này."
-              : `Đã nhập ${count} ghi chú`
-          )
+          notify(count === 0 ? t.importNone : t.imported(count))
         },
-        (e: unknown) =>
-          notify(e instanceof Error ? e.message : "Không nhập được tệp này.")
+        (e: unknown) => notify(e instanceof Error ? e.message : t.importFailed)
       )
   }
 

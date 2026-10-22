@@ -26,8 +26,8 @@ import {
 } from "@/components/ui/sheet"
 import { track } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
-import { formatVnd, formatVndCompact } from "./amount"
 import { useFly } from "./fly-layer"
+import { useI18n } from "./language"
 import {
   RecordEditor,
   TypeSwatch,
@@ -35,7 +35,6 @@ import {
   restorePatch,
 } from "./record-editor"
 import { useNotes } from "./store"
-import { TYPE_META } from "./taxonomy"
 import type { ModelReading, NotePatch, NoteRecord, TxType } from "./types"
 
 /** Side panel from here up; below it a bottom drawer (phones and tablet portrait). */
@@ -60,20 +59,20 @@ function useIsDesktop(): boolean {
 
 /* ----------------------------------------------------------- formatting */
 
-const DAY_TIME = new Intl.DateTimeFormat("vi-VN", {
-  day: "2-digit",
-  month: "2-digit",
-  hour: "2-digit",
-  minute: "2-digit",
-})
-
-function formatWhen(timestamp: number): string {
+function formatWhen(timestamp: number, locale: string): string {
   const date = new Date(timestamp)
   const year =
     date.getFullYear() === new Date().getFullYear()
       ? ""
       : `/${date.getFullYear()}`
-  const [day, time] = DAY_TIME.format(date).split(", ")
+  const [day, time] = new Intl.DateTimeFormat(locale, {
+    day: "2-digit",
+    month: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  })
+    .format(date)
+    .split(", ")
   return time ? `${day}${year}, ${time}` : `${day}${year}`
 }
 
@@ -164,6 +163,7 @@ function Toast({
   toast: ToastState | null
   onDismiss: () => void
 }) {
+  const { t } = useI18n()
   const nonce = toast?.nonce
   useEffect(() => {
     if (nonce === undefined) return
@@ -198,7 +198,7 @@ function Toast({
                 }}
               >
                 <RotateCcwIcon data-icon="inline-start" />
-                Hoàn tác
+                {t.undo}
               </Button>
             )}
             <motion.span
@@ -238,6 +238,7 @@ function RecordRow({
   onDelete,
   ref,
 }: RecordRowProps) {
+  const { t, recordMoney, locale } = useI18n()
   const own = useRef<HTMLLIElement | null>(null)
   const setRef = (el: HTMLLIElement | null) => {
     own.current = el
@@ -287,7 +288,7 @@ function RecordRow({
           <Button
             variant="ghost"
             size="icon-sm"
-            aria-label="Sửa ghi chú"
+            aria-label={t.editNote}
             aria-pressed={editing}
             onClick={onToggleEdit}
             className={cn(
@@ -300,7 +301,7 @@ function RecordRow({
           <Button
             variant="ghost"
             size="icon-sm"
-            aria-label="Xóa ghi chú"
+            aria-label={t.deleteNote}
             onClick={onDelete}
             className="pointer-coarse:size-11"
           >
@@ -317,11 +318,11 @@ function RecordRow({
               record.target === null && "font-normal italic opacity-60"
             )}
           >
-            {record.target ?? "Chưa rõ đối tượng"}
+            {record.target ?? t.unknownTarget}
           </p>
           <p className="mt-0.5 flex items-center gap-1.5 opacity-70">
             <time dateTime={new Date(record.createdAt).toISOString()}>
-              {formatWhen(record.createdAt)}
+              {formatWhen(record.createdAt, locale)}
             </time>
           </p>
         </div>
@@ -331,19 +332,19 @@ function RecordRow({
               type="button"
               onClick={() => setShowOriginal((v) => !v)}
               aria-expanded={showOriginal}
-              title="Xem mô hình đã đọc gì"
+              title={t.seeReading}
               className="rounded-full border border-current/30 px-2 text-[0.7rem] leading-5 font-medium outline-none hover:bg-foreground/5 focus-visible:ring-2 focus-visible:ring-current pointer-coarse:min-h-8 pointer-coarse:px-3.5 pointer-coarse:text-xs"
             >
-              đã sửa
+              {t.edited}
             </button>
           )}
           <p className="text-lg leading-6 font-semibold tabular-nums">
             {record.amount === null ? (
               <span className="text-sm font-normal italic opacity-60">
-                Chưa có số tiền
+                {t.noAmount}
               </span>
             ) : (
-              formatVnd(record.amount)
+              recordMoney(record)
             )}
           </p>
         </div>
@@ -363,27 +364,27 @@ function RecordRow({
               data-no-open
               className="mt-3 rounded-md bg-background/55 p-3 text-xs text-foreground"
             >
-              <p className="font-medium">Mô hình đã đọc ban đầu</p>
+              <p className="font-medium">{t.originalReading}</p>
               <dl className="mt-2 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1">
-                <dt className="text-muted-foreground">Loại</dt>
+                <dt className="text-muted-foreground">{t.typeField}</dt>
                 <dd>
-                  {TYPE_META[original.type].label}{" "}
+                  {t.types[original.type].label}{" "}
                   <span className="text-muted-foreground tabular-nums">
                     ({percent(original.typeConfidence)})
                   </span>
                 </dd>
-                <dt className="text-muted-foreground">Đối tượng</dt>
+                <dt className="text-muted-foreground">{t.targetField}</dt>
                 <dd>
-                  {original.target ?? "không có"}{" "}
+                  {original.target ?? t.none}{" "}
                   <span className="text-muted-foreground tabular-nums">
                     ({percent(original.targetConfidence)})
                   </span>
                 </dd>
-                <dt className="text-muted-foreground">Số tiền</dt>
+                <dt className="text-muted-foreground">{t.amountField}</dt>
                 <dd className="tabular-nums">
-                  {original.valueText ?? "không có"}
+                  {original.valueText ?? t.none}
                   {original.amount !== null &&
-                    ` = ${formatVnd(original.amount)}`}
+                    ` = ${recordMoney(record, original.amount)}`}
                 </dd>
               </dl>
               <Button
@@ -393,7 +394,7 @@ function RecordRow({
                 onClick={() => onRestore(rect())}
               >
                 <RotateCcwIcon data-icon="inline-start" />
-                Khôi phục
+                {t.restore}
               </Button>
             </div>
           </motion.div>
@@ -491,6 +492,7 @@ function SheetBody({
   showToast,
 }: SheetBodyProps) {
   const { notes, add, update, remove } = useNotes()
+  const { t: tr, money, moneyCompact } = useI18n()
   const fly = useFly()
   const [targetFilter, setTargetFilter] = useState<string | null>(null)
   const [allTargets, setAllTargets] = useState(false)
@@ -539,7 +541,7 @@ function SheetBody({
     })
     const run = () =>
       update(record.id, patch).catch((e: unknown) =>
-        showToast(e instanceof Error ? e.message : "Không lưu được chỉnh sửa.")
+        showToast(e instanceof Error ? e.message : tr.editSaveFailed)
       )
     if (!retyped) {
       void run()
@@ -574,19 +576,19 @@ function SheetBody({
     setEditingId(null)
     track("note_deleted", { type: record.type })
     remove(record.id).then(
-      () => showToast("Đã xóa ghi chú", () => void add(record)),
+      () => showToast(tr.deleted, () => void add(record)),
       (e: unknown) =>
-        showToast(e instanceof Error ? e.message : "Không xóa được ghi chú.")
+        showToast(e instanceof Error ? e.message : tr.deleteFailed)
     )
   }
 
   const body = (
     <>
       {targets.length > 0 && (
-        <section aria-label="Đối tượng" className="px-4 pt-4">
+        <section aria-label={tr.targetsHeading} className="px-4 pt-4">
           <div className="flex items-baseline justify-between">
             <h3 className="text-xs font-medium text-muted-foreground">
-              Đối tượng
+              {tr.targetsHeading}
             </h3>
             {activeFilter !== null && (
               <button
@@ -594,7 +596,7 @@ function SheetBody({
                 onClick={() => setTargetFilter(null)}
                 className="rounded-sm text-xs text-muted-foreground underline underline-offset-2 outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring pointer-coarse:min-h-10 pointer-coarse:px-2"
               >
-                Bỏ lọc
+                {tr.clearFilter}
               </button>
             )}
           </div>
@@ -623,7 +625,7 @@ function SheetBody({
                         active ? "opacity-80" : "text-muted-foreground"
                       )}
                     >
-                      {t.count} · {formatVndCompact(t.total)}
+                      {t.count} · {moneyCompact(t.total)}
                     </span>
                   </button>
                 </motion.li>
@@ -637,8 +639,8 @@ function SheetBody({
                   className="rounded-full px-2.5 py-1 text-xs text-muted-foreground underline underline-offset-2 outline-none hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 pointer-coarse:min-h-10 pointer-coarse:px-3.5"
                 >
                   {allTargets
-                    ? "Thu gọn"
-                    : `Xem thêm ${targets.length - TARGETS_COLLAPSED}`}
+                    ? tr.collapse
+                    : tr.showMore(targets.length - TARGETS_COLLAPSED)}
                 </button>
               </motion.li>
             )}
@@ -646,12 +648,10 @@ function SheetBody({
         </section>
       )}
 
-      <section aria-label="Ghi chú" className="px-4 py-4">
+      <section aria-label={tr.notesHeading} className="px-4 py-4">
         {visible.length === 0 ? (
           <p className="rounded-lg border border-dashed px-4 py-8 text-center text-sm text-muted-foreground">
-            {ofStack.length === 0
-              ? "Chồng này đang trống. Viết một ghi chú ở giữa màn hình để bắt đầu."
-              : "Không có ghi chú nào khớp bộ lọc."}
+            {ofStack.length === 0 ? tr.stackEmptyHint : tr.noFilterMatch}
           </p>
         ) : (
           <ul className="relative flex flex-col gap-3">
@@ -688,21 +688,21 @@ function SheetBody({
       >
         <div className="flex items-center gap-2 pr-10 pointer-coarse:pr-14">
           <TypeSwatch type={type} className="size-3.5" />
-          <SheetTitle className="text-lg">{TYPE_META[type].label}</SheetTitle>
+          <SheetTitle className="text-lg">{tr.types[type].label}</SheetTitle>
         </div>
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <p
             className="text-3xl leading-none font-semibold tracking-tight tabular-nums"
             style={{ color: `var(--ink-${type})` }}
           >
-            {formatVnd(total)}
+            {money(total)}
           </p>
           <p className="text-sm text-muted-foreground tabular-nums">
-            {ofStack.length} ghi chú
+            {tr.notesCount(ofStack.length)}
           </p>
         </div>
         <SheetDescription className="text-xs">
-          {TYPE_META[type].hint}
+          {tr.types[type].hint}
         </SheetDescription>
       </SheetHeader>
       <div className="min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-contain [-webkit-overflow-scrolling:touch]">

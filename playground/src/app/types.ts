@@ -13,6 +13,8 @@ export const TX_TYPES = [
 
 export type TxType = (typeof TX_TYPES)[number]
 
+export type Currency = "USD" | "VND"
+
 /** What the model said when the note was sent. Never changed by user edits. */
 export interface ModelReading {
   type: TxType
@@ -22,7 +24,7 @@ export interface ModelReading {
   targetConfidence: number
   valueText: string | null
   valueSpan: [number, number] | null
-  /** VND parsed from `valueText`; null when there is no amount or it cannot be read. */
+  /** The amount `valueText` stands for, in the note's currency; null when none or unreadable. */
   amount: number | null
   modelVersion: string
 }
@@ -36,6 +38,8 @@ export interface NoteRecord {
   type: TxType
   target: string | null
   amount: number | null
+  /** Unit of `amount`: VND for notes of the Vietnamese database, USD for the English one. */
+  currency: Currency
   original: ModelReading
 }
 
@@ -44,7 +48,7 @@ export type NotePatch = Partial<Pick<NoteRecord, "type" | "target" | "amount">>
 export interface StackSummary {
   type: TxType
   count: number
-  /** Sum of `amount` over the stack's notes, VND. */
+  /** Sum of `amount` over the stack's notes, in the database's currency. */
   total: number
   /** Newest first, at most 3. */
   latest: NoteRecord[]

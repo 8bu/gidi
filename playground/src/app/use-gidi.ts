@@ -8,8 +8,16 @@ import {
   type BrowserBackend,
   type LoadProgress,
 } from "@/lib/backend"
+import type { Lang } from "@/lib/language"
+import { MODELS } from "@/lib/models"
 
-import { amountToVnd, widenSlangValue } from "./amount"
+import { amountToVnd, findEnglishValue, widenSlangValue } from "./amount"
+import {
+  currencyOf,
+  getLanguage,
+  getStrings,
+  subscribe as onLanguageChange,
+} from "./language"
 import {
   TX_TYPES,
   type ModelReading,
@@ -28,10 +36,6 @@ interface GidiState {
   total: number | null
   error: string | null
 }
-
-/** "12,3 MB": decimal megabytes with a Vietnamese decimal comma. */
-export const formatMegabytes = (bytes: number): string =>
-  `${(bytes / 1e6).toFixed(1).replace(".", ",")} MB`
 
 interface NetworkInformation {
   effectiveType?: string
@@ -60,7 +64,7 @@ function environment(): {
 type Predictor = (text: string) => Promise<PredictResponse>
 
 const toMessage = (cause: unknown): string =>
-  cause instanceof Error ? cause.message : "Không thể tải mô hình."
+  cause instanceof Error ? cause.message : getStrings().loadFailedGeneric
 
 const copySpan = (span: Span | null | undefined): [number, number] | null =>
   span ? [span[0], span[1]] : null
@@ -68,10 +72,21 @@ const copySpan = (span: Span | null | undefined): [number, number] | null =>
 const isTxType = (value: string): value is TxType =>
   (TX_TYPES as readonly string[]).includes(value)
 
-// One model per page: module-level, so a StrictMode double mount does not load twice.
+/**
+ * One model at a time, the one of the app language: module-level, so a StrictMode double mount
+ * does not load twice. Switching language retires the session (aborts a running download, or
+ * disposes the worker and its ORT session after the notes already queued) and starts the other.
+ */
+interface Session {
+  lang: Lang
+  abort: AbortController
+  predictor: Promise<Predictor>
+  backend: BrowserBackend | null
+}
+
 const idle = { progress: null, loaded: 0, total: null, error: null }
 let state: GidiState = { status: "loading", ...idle }
-let predictor: Promise<Predictor> | null = null
+let session: Session | null = null
 const listeners = new Set<() => void>()
 
 function setState(next: GidiState): void {
@@ -88,67 +103,134 @@ function reportProgress({ loaded, total }: LoadProgress): void {
   setState({ status: "loading", progress, loaded, total, error: null })
 }
 
-async function loadPredictor(): Promise<Predictor> {
+function retire(old: Session | null): void {
+  if (old === null) return
+  old.abort.abort()
+  void old.backend?.dispose()
+}
+
+async function loadPredictor(
+  lang: Lang,
+  abort: AbortController,
+  isCurrent: () => boolean,
+  keep: (backend: BrowserBackend) => void
+): Promise<Predictor> {
   if (!BROWSER_MODE) {
     // Dev server: the model runs behind `/api/predict`, nothing to download.
     return predict
   }
-  const backend: BrowserBackend = await loadBrowserBackend(
-    reportProgress,
-    new AbortController().signal
+  const backend = await loadBrowserBackend(
+    MODELS[lang],
+    (progress) => {
+      if (isCurrent()) reportProgress(progress)
+    },
+    abort.signal
   )
+  if (!isCurrent()) {
+    // Superseded while the last step ran.
+    void backend.dispose()
+    throw abort.signal.reason ?? new DOMException("Aborted", "AbortError")
+  }
+  keep(backend)
   return (text) => backend.predict(text)
 }
 
-function load(): Promise<Predictor> {
-  if (predictor === null) {
-    setState({ status: "loading", ...idle })
-    const started = performance.now()
-    const loaded = loadPredictor()
-    predictor = loaded
-    loaded.then(
-      () => {
-        track("model_loaded", { ms: Math.round(performance.now() - started) })
-        if (predictor === loaded)
-          setState({ ...idle, status: "ready", progress: 1 })
-      },
-      (cause: unknown) => {
-        const error = toMessage(cause)
-        track("model_load_failed", {
-          ms: Math.round(performance.now() - started),
-          error,
-          error_name: cause instanceof Error ? cause.name : "unknown",
-          loaded_bytes: state.loaded,
-          total_bytes: state.total,
-          ...environment(),
-        })
-        if (predictor === loaded) {
-          setState({ ...idle, status: "error", error })
-        }
-      }
-    )
+function start(lang: Lang): Session {
+  const abort = new AbortController()
+  setState({ status: "loading", ...idle })
+  const started = performance.now()
+  const loaded = loadPredictor(
+    lang,
+    abort,
+    () => session === current,
+    (backend) => {
+      current.backend = backend
+    }
+  )
+  const current: Session = { lang, abort, predictor: loaded, backend: null }
+  loaded.then(
+    () => {
+      if (session !== current) return
+      track("model_loaded", {
+        ms: Math.round(performance.now() - started),
+        language: lang,
+      })
+      setState({ ...idle, status: "ready", progress: 1 })
+    },
+    (cause: unknown) => {
+      // A superseded session is not a failure.
+      if (session !== current) return
+      const error = toMessage(cause)
+      track("model_load_failed", {
+        ms: Math.round(performance.now() - started),
+        language: lang,
+        error,
+        error_name: cause instanceof Error ? cause.name : "unknown",
+        loaded_bytes: state.loaded,
+        total_bytes: state.total,
+        ...environment(),
+      })
+      setState({ ...idle, status: "error", error })
+    }
+  )
+  return current
+}
+
+function load(): Session {
+  const lang = getLanguage()
+  if (session === null || session.lang !== lang) {
+    retire(session)
+    session = start(lang)
   }
-  return predictor
+  return session
 }
 
 function retry(): void {
   if (state.status !== "error") return
-  predictor = null
-  void load()
+  session = null
+  load()
 }
 
-async function classify(text: string): Promise<NoteRecord> {
-  const note = text.trim()
-  if (note === "") throw new Error("Ghi chú đang trống.")
-  const { result } = await (await load())(note)
-  const { valueText, span: valueSpan } = widenSlangValue(
+// The visitor switched language: load the other model (the old one is retired first).
+onLanguageChange(() => {
+  if (listeners.size > 0) load()
+})
+
+/**
+ * Vietnamese: the rule-based parser's value, read as VND. English: the bundle has no value head
+ * or parser, so the amount is a deterministic scan of the note (`findEnglishValue`).
+ */
+function readValue(
+  lang: Lang,
+  note: string,
+  result: PredictResponse["result"]
+): {
+  valueText: string | null
+  span: [number, number] | null
+  amount: number | null
+} {
+  if (lang === "en") return findEnglishValue(note)
+  const { valueText, span } = widenSlangValue(
     note,
     result.value_text ?? null,
     copySpan(result.value_span)
   )
+  return { valueText, span, amount: valueText ? amountToVnd(valueText) : null }
+}
+
+async function classify(text: string): Promise<NoteRecord> {
+  const t = getStrings()
+  const note = text.trim()
+  if (note === "") throw new Error(t.emptyNote)
+  const current = load()
+  const { result } = await (await current.predictor)(note)
+  const {
+    valueText,
+    span: valueSpan,
+    amount,
+  } = readValue(current.lang, note, result)
   const type = isTxType(result.type) ? result.type : null
-  if (type === null)
-    throw new Error(`Mô hình trả về loại không hợp lệ: ${result.type}`)
+  if (type === null) throw new Error(t.badType(result.type))
   const now = Date.now()
   const original: ModelReading = {
     type,
@@ -158,7 +240,7 @@ async function classify(text: string): Promise<NoteRecord> {
     targetConfidence: result.target_confidence,
     valueText,
     valueSpan,
-    amount: valueText ? amountToVnd(valueText) : null,
+    amount,
     modelVersion: result.model_version,
   }
   return {
@@ -169,13 +251,14 @@ async function classify(text: string): Promise<NoteRecord> {
     type: original.type,
     target: original.target,
     amount: original.amount,
+    currency: currencyOf(current.lang),
     original,
   }
 }
 
 function subscribe(listener: () => void): () => void {
   listeners.add(listener)
-  void load()
+  load()
   return () => {
     listeners.delete(listener)
   }
@@ -183,7 +266,7 @@ function subscribe(listener: () => void): () => void {
 
 const getSnapshot = (): GidiState => state
 
-/** The on-device model: loads once per page; `classify` waits for it when called early. */
+/** The on-device model: loads once per page and language; `classify` waits for it when called early. */
 export function useGidi(): {
   status: GidiStatus
   progress: number | null

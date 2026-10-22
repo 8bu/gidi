@@ -22,8 +22,9 @@ import {
 } from "@/components/ui/sheet"
 import { useCoarsePointer } from "@/hooks/use-coarse-pointer"
 import { cn } from "@/lib/utils"
-import { amountToVnd, formatVnd, formatVndCompact } from "./amount"
-import { TYPE_META } from "./taxonomy"
+import type { Lang } from "@/lib/language"
+import { amountFromEnglish, amountToVnd } from "./amount"
+import { useI18n } from "./language"
 import { TX_TYPES, type NotePatch, type NoteRecord, type TxType } from "./types"
 
 /** Whether the user's current values differ from what the model read. */
@@ -48,10 +49,17 @@ export function restorePatch(record: NoteRecord): NotePatch {
 
 type ParsedAmount = { ok: true; value: number | null } | { ok: false }
 
-/** Plain digits and grouped thousands ("1.200.000") read directly; "500k", "1,2tr" go through the model's parser. */
-export function parseAmountInput(text: string): ParsedAmount {
+/**
+ * Vietnamese: plain digits and grouped thousands ("1.200.000") read directly; "500k", "1,2tr" go
+ * through the model's parser. English: "50", "12.50", "1,200", "2k", "$5".
+ */
+export function parseAmountInput(text: string, lang: Lang): ParsedAmount {
   const t = text.trim()
   if (t === "") return { ok: true, value: null }
+  if (lang === "en") {
+    const value = amountFromEnglish(t)
+    return value === null ? { ok: false } : { ok: true, value }
+  }
   if (/^\d+$/.test(t) || /^\d{1,3}([.,]\d{3})+$/.test(t)) {
     const value = Number(t.replace(/[.,]/g, ""))
     return Number.isSafeInteger(value) ? { ok: true, value } : { ok: false }
@@ -91,6 +99,7 @@ interface TypePickerProps {
  * touch devices get a bottom sheet with large rows and each type's hint; a mouse keeps the select.
  */
 function TypePicker({ id, value, onChange }: TypePickerProps) {
+  const { t: tr } = useI18n()
   const coarse = useCoarsePointer()
   const [open, setOpen] = useState(false)
 
@@ -105,7 +114,7 @@ function TypePicker({ id, value, onChange }: TypePickerProps) {
             <SelectItem key={t} value={t}>
               <span className="flex items-center gap-2">
                 <TypeSwatch type={t} />
-                {TYPE_META[t].label}
+                {tr.types[t].label}
               </span>
             </SelectItem>
           ))}
@@ -126,21 +135,19 @@ function TypePicker({ id, value, onChange }: TypePickerProps) {
       >
         <span className="flex items-center gap-2">
           <TypeSwatch type={value} />
-          {TYPE_META[value].label}
+          {tr.types[value].label}
         </span>
         <ChevronDownIcon aria-hidden className="size-4 opacity-50" />
       </button>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent side="bottom" showCloseButton={false}>
           <SheetHeader className="pt-1 pb-2">
-            <SheetTitle className="text-lg">Chọn loại</SheetTitle>
-            <SheetDescription>
-              Khi lưu, ghi chú sẽ bay sang chồng của loại mới.
-            </SheetDescription>
+            <SheetTitle className="text-lg">{tr.chooseType}</SheetTitle>
+            <SheetDescription>{tr.chooseTypeHint}</SheetDescription>
           </SheetHeader>
           <div
             role="radiogroup"
-            aria-label="Loại"
+            aria-label={tr.typeField}
             className="grid gap-1 overflow-y-auto overscroll-contain px-2 pb-3"
           >
             {TX_TYPES.map((t) => {
@@ -163,10 +170,10 @@ function TypePicker({ id, value, onChange }: TypePickerProps) {
                   <TypeSwatch type={t} className="size-3" />
                   <span className="grid min-w-0 flex-1 gap-0.5">
                     <span className="text-base font-medium">
-                      {TYPE_META[t].label}
+                      {tr.types[t].label}
                     </span>
                     <span className="text-xs text-muted-foreground">
-                      {TYPE_META[t].hint}
+                      {tr.types[t].hint}
                     </span>
                   </span>
                   {selected && (
@@ -221,6 +228,7 @@ export function RecordEditor({
   onCancel,
   onRestore,
 }: RecordEditorProps) {
+  const { t: tr, lang, money, moneyCompact } = useI18n()
   const formRef = useRef<HTMLFormElement>(null)
   const [amountText, setAmountText] = useState(
     record.amount === null ? "" : String(record.amount)
@@ -229,7 +237,7 @@ export function RecordEditor({
   const [type, setType] = useState<TxType>(record.type)
   const id = useId()
 
-  const parsed = parseAmountInput(amountText)
+  const parsed = parseAmountInput(amountText, lang)
   const amountInvalid = !parsed.ok
 
   const submit = (event: FormEvent) => {
@@ -256,15 +264,15 @@ export function RecordEditor({
       onSubmit={submit}
       onFocus={onFocus}
       className="mt-3 grid gap-3 border-t border-dashed border-foreground/15 pt-3"
-      aria-label="Sửa ghi chú"
+      aria-label={tr.editNote}
     >
       <div className="grid gap-1.5">
-        <Label htmlFor={`${id}-amount`}>Số tiền</Label>
+        <Label htmlFor={`${id}-amount`}>{tr.amountField}</Label>
         <Input
           id={`${id}-amount`}
           value={amountText}
           onChange={(event) => setAmountText(event.target.value)}
-          placeholder="500k, 1,2tr hoặc 500000"
+          placeholder={tr.amountPlaceholder}
           autoComplete="off"
           autoFocus
           inputMode="text"
@@ -282,20 +290,20 @@ export function RecordEditor({
           )}
         >
           {!parsed.ok
-            ? "Chưa đọc được số tiền. Thử 500k, 1,2tr hoặc 500000."
+            ? tr.amountUnreadable
             : parsed.value === null
-              ? "Để trống nếu ghi chú không có số tiền."
-              : `${formatVndCompact(parsed.value)}  ·  ${formatVnd(parsed.value)}`}
+              ? tr.amountOptional
+              : `${moneyCompact(parsed.value)}  ·  ${money(parsed.value)}`}
         </p>
       </div>
 
       <div className="grid gap-1.5">
-        <Label htmlFor={`${id}-target`}>Đối tượng</Label>
+        <Label htmlFor={`${id}-target`}>{tr.targetField}</Label>
         <Input
           id={`${id}-target`}
           value={target}
           onChange={(event) => setTarget(event.target.value)}
-          placeholder="Để trống nếu không có"
+          placeholder={tr.targetPlaceholder}
           autoComplete="off"
           maxLength={80}
           enterKeyHint="done"
@@ -304,11 +312,11 @@ export function RecordEditor({
       </div>
 
       <div className="grid gap-1.5">
-        <Label htmlFor={`${id}-type`}>Loại</Label>
+        <Label htmlFor={`${id}-type`}>{tr.typeField}</Label>
         <TypePicker id={`${id}-type`} value={type} onChange={setType} />
         {type !== record.type && (
           <p className="text-xs text-muted-foreground">
-            Khi lưu, ghi chú sẽ bay sang chồng “{TYPE_META[type].label}”.
+            {tr.moveToStack(tr.types[type].label)}
           </p>
         )}
       </div>
@@ -323,7 +331,7 @@ export function RecordEditor({
             onClick={onRestore}
           >
             <RotateCcwIcon data-icon="inline-start" />
-            Khôi phục
+            {tr.restore}
           </Button>
         ) : (
           <span />
@@ -335,14 +343,14 @@ export function RecordEditor({
             className="pointer-coarse:h-11 pointer-coarse:px-4"
             onClick={onCancel}
           >
-            Hủy
+            {tr.cancel}
           </Button>
           <Button
             type="submit"
             className="pointer-coarse:h-11 pointer-coarse:px-5"
             disabled={amountInvalid}
           >
-            Lưu
+            {tr.save}
           </Button>
         </div>
       </div>
