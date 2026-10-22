@@ -24,7 +24,14 @@ function buildId(): string {
 export default defineConfig(({ mode }) => ({
   // `public/` only holds the release files synced for the browser build (`pnpm build:web`).
   publicDir: mode === "web" ? "public" : false,
-  define: { __APP_BUILD__: JSON.stringify(buildId()) },
+  define: {
+    __APP_BUILD__: JSON.stringify(process.env.GIDI_BUILD_ID ?? buildId()),
+  },
+  build: {
+    // `pnpm sourcemaps:upload` sets this: maps are written next to the chunks, uploaded to PostHog
+    // and deleted again before anything is deployed (see docs/error-tracking.md).
+    sourcemap: process.env.GIDI_SOURCEMAPS === "1" ? "hidden" : false,
+  },
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
