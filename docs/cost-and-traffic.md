@@ -357,6 +357,8 @@ today's volume nothing). Of the eight Workers whose settings I read (`portf-api`
    subscriptions (they show no usage; find the $1.50 invoice of 4 Oct), Workers with almost no traffic in 30 days
    (`vldex-web` 10 requests, `cookdi` 110), R2 `71z-backups` (1.27 GB, a backup) and `camen-updates` (0.79 GB).
 4. Push `~/Projects/8bu.dev` (commit `dc64877` is local) when `apps/web` is in a state to push.
+5. 2026-10-23: the `vldex-web` Worker and its route `vldex.8bu.dev/*` were dropped (no cron, secret or custom domain existed).
+   No D1, KV, R2 or Queue was tied to it, so no data store was left; the repo `~/Projects/vldex` is kept. The config backup is at `~/Documents/cloudflare-backups/vldex-web-2026-10-22/` (outside git, no secrets).
 
 ## Sources
 
