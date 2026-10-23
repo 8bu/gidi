@@ -118,6 +118,22 @@ The span is the amount exactly as written: `$20`, `20 bucks`, `20$`, `20 usd`, `
 (`paid rent 800`). No normalisation (`3 grand` is never turned into 3000). A note with no amount
 has a null value span. Two unrelated amounts and no clear transaction amount -> value uncertain.
 
+Clarifications used by the gidi-en value labels (silver, `datasets/annotation-en-v1/value-*.jsonl`):
+
+* The currency marker is part of the span, before or after the number: `$20`, `20$`, `s$30`,
+  `150s$`, `20 bucks`, `rs 500`, `500 rs`, `£12`, `50 quid`. Indian grouping is one number
+  (`1,65,000`).
+* Word amounts are spans: `twenty bucks`, `two thousand rupees`, `fifty dollars`, `tenner`,
+  `fiver`, `a hundred`. The article of `a tenner` / `a fiver` is not part of the span; the article
+  of `a hundred` / `a grand` is, because it is the numeral.
+* Quantities, counts, durations, dates, times, percentages, ordinals and index or product names
+  are not amounts (`2 tacos 15` -> `15`, `due in 4 weeks`, `s&p 500`, `13th month`). A bare `4` /
+  `2` between words is slang for `for` / `to`, not an amount. A main amount beats a fee or tip
+  (`barber 25 and a 5 tip` -> `25`).
+* A fixed note-final number in a note with several bare numbers is the amount unless a quantity
+  reading fits better; the labels were built from a rule scan, Clef and Claude adjudication of the
+  disagreements (`scripts/build_en_value_labels.py`).
+
 ## Examples across the types
 
 | Note | type | target |

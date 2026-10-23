@@ -1,0 +1,78 @@
+{
+  "per_set": {
+    "test": {
+      "n": 290,
+      "consensus": 280,
+      "uncertain": 0,
+      "no_amount": 10,
+      "agree_regex_clef": 280,
+      "clef_missing": 0,
+      "adjudicated": 10
+    },
+    "dev": {
+      "n": 189,
+      "consensus": 178,
+      "uncertain": 0,
+      "no_amount": 4,
+      "agree_regex_clef": 178,
+      "clef_missing": 0,
+      "adjudicated": 11
+    },
+    "seed": {
+      "n": 280,
+      "consensus": 276,
+      "uncertain": 0,
+      "no_amount": 9,
+      "agree_regex_clef": 276,
+      "clef_missing": 0,
+      "adjudicated": 4
+    },
+    "probe-slang": {
+      "n": 357,
+      "consensus": 350,
+      "uncertain": 0,
+      "no_amount": 3,
+      "agree_regex_clef": 350,
+      "clef_missing": 0,
+      "adjudicated": 7
+    },
+    "probe-genz": {
+      "n": 94,
+      "consensus": 92,
+      "uncertain": 0,
+      "no_amount": 5,
+      "agree_regex_clef": 92,
+      "clef_missing": 0,
+      "adjudicated": 2
+    },
+    "train": {
+      "n": 1462,
+      "consensus": 1421,
+      "uncertain": 0,
+      "no_amount": 81,
+      "agree_regex_clef": 1421,
+      "clef_missing": 0,
+      "adjudicated": 41
+    },
+    "slang-train": {
+      "n": 613,
+      "consensus": 605,
+      "uncertain": 0,
+      "no_amount": 13,
+      "agree_regex_clef": 605,
+      "clef_missing": 0,
+      "adjudicated": 8
+    }
+  },
+  "total": {
+    "n": 3285,
+    "consensus": 3202,
+    "uncertain": 0,
+    "no_amount": 125,
+    "agree_regex_clef": 3202,
+    "clef_missing": 0,
+    "adjudicated": 83
+  },
+  "agreement_regex_vs_clef": 0.9747336377473363,
+  "adjudicated": 83
+}
