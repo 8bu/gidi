@@ -18,7 +18,7 @@ Dự án không có server và không có inference API.
 | Model | Ngôn ngữ | Phiên bản | Trạng thái | Kích thước | Liên kết |
 |---|---|---|---|---|---|
 | `gidi-finance` | Tiếng Việt | `gidi-finance-v4`, release `4.0.0` | Hiện tại. Chạy trong ứng dụng web. Bản công khai trên Hugging Face và GitHub vẫn là v3. | Encoder INT8 28.66 MB (bundle v3: 29.3 MB) | [Ứng dụng](https://gidi.8bu.dev), [x8bu/gidi-finance](https://huggingface.co/x8bu/gidi-finance) |
-| `gidi-en` | Tiếng Anh | `gidi-en-v2`, release `2.0.1` | Thử nghiệm. Chỉ có trên Hugging Face, chưa có trong ứng dụng. | INT8 29.2 MB | [x8bu/gidi-en](https://huggingface.co/x8bu/gidi-en) |
+| `gidi-en` | Tiếng Anh | `gidi-en-v4`, release `4.0.0` | Thử nghiệm. Có type, target và value span (MiniLM). Chạy trong ứng dụng web. | INT8 29.5 MB | [Ứng dụng](https://gidi.8bu.dev), [x8bu/gidi-en](https://huggingface.co/x8bu/gidi-en) |
 
 Các release tiếng Việt cũ (`gidi-finance-v3`, `-v2`, `-v1`) nằm trong mục [Trạng thái](#trạng-thái).
 
@@ -29,8 +29,9 @@ Input không phải bản ghi kế toán chính thức.
 
 - `gidi-finance` là model tiếng Việt. Model trả số tiền theo cách người dùng viết, tức là một span
   của ghi chú. Code deterministic chuyển span này thành số.
-- `gidi-en` là model tiếng Anh. Model chỉ dự đoán type và target. Chưa có value span và chưa có
-  parser số tiền.
+- `gidi-en` là model tiếng Anh. Từ `gidi-en-v4`, model cũng trả số tiền theo cách người dùng viết
+  (một span của ghi chú: `5k`, `$20`, `twenty bucks`) bằng value head đã học. Ứng dụng web đổi span
+  này thành đô la Mỹ.
 
 ## Trạng thái
 
@@ -54,19 +55,23 @@ Input không phải bản ghi kế toán chính thức.
 
 ### gidi-en (tiếng Anh)
 
-- **`gidi-en-v2`** (release `2.0.1`) là model tiếng Anh đầu tiên. Model còn thử nghiệm.
-  Model dự đoán type và target. Model có trên Hugging Face tại
-  [x8bu/gidi-en](https://huggingface.co/x8bu/gidi-en). Bản INT8 là 29.2 MB.
-  Model chưa có trong ứng dụng web.
-- **Nhãn là silver.** Không có người gán nhãn tiếng Anh. Claude, Gemini và Clef tạo mọi nhãn,
-  nên mọi điểm số là mức khớp với các nhãn đó, không phải độ chính xác so với ground truth.
-  Hợp đồng annotation là [docs/annotation-en-v1.md](docs/annotation-en-v1.md).
-- **Một seed, một lần chạy.** Báo cáo không ước lượng được phương sai và đánh giá biên so với
-  ngưỡng là khiêm tốn (`experiments/gidi-en-student-v2/report.md`). Trên test split giữ lại
-  (tập primary, 214 ghi chú), model đạt type F1 0.956, target 0.888, joint 0.850 so với các nhãn
-  silver này. Trên slang probe 357 ghi chú, model đạt type 0.890, target 0.835, joint 0.754.
-- **File ONNX không chứa bước word-boundary snapping.** Runtime phải áp dụng bước này sau khi giải
-  mã BIO (`gidi.inference.decode.snap_to_words`). Các điểm số ở trên đã dùng bước này.
+- **`gidi-en-v4`** (release `4.0.0`) là model tiếng Anh hiện tại. Model còn thử nghiệm. Model dự
+  đoán type, target và value span (số tiền theo cách người dùng viết). Student là MiniLM-L12-H384
+  (12 lớp, rộng 384, WordPiece, MIT), thắng một cuộc so sánh backbone có quy tắc được viết trước
+  mọi lần chạy (`experiments/gidi-en-backbone-bakeoff/report.md`). Model có trên Hugging Face tại
+  [x8bu/gidi-en](https://huggingface.co/x8bu/gidi-en) (tag `gidi-en-v4-4.0.0`), bản INT8 là
+  29.5 MB, và chạy trong ứng dụng web. `gidi-en-v2` (`2.0.1`, student roberta, không có số tiền)
+  vẫn nằm trên Hugging Face dưới tag riêng và trong manifest của ứng dụng để rollback.
+- **Nhãn là silver.** Không có người gán nhãn tiếng Anh. Claude, Gemini, Clef và một bộ quét số tiền
+  deterministic tạo mọi nhãn, nên mọi điểm số là mức khớp với các nhãn đó, không phải độ chính xác
+  so với ground truth. Hợp đồng annotation là [docs/annotation-en-v1.md](docs/annotation-en-v1.md).
+- **Hai seed, phát hành một.** Seed được chọn bằng quy tắc trên dev split, khai báo trước khi phát
+  hành (`experiments/gidi-en-student-v4/report.md`). Trên test split giữ lại (tập primary, 214 ghi
+  chú), model đạt type F1 0.958, target 0.939, joint 0.902, value 0.995 so với các nhãn silver này.
+  Trên slang probe 357 ghi chú: type 0.919, target 0.863, joint 0.815, value 0.961.
+- **File ONNX không chứa bước word-boundary snapping.** Runtime phải áp dụng bước này cho target và
+  value sau khi giải mã (`gidi.inference.decode.snap_to_words`). Các điểm số ở trên đã dùng bước
+  này.
 
 ### Chung
 
@@ -95,10 +100,11 @@ Model public có tên `gidi-finance-vN` hoặc `gidi-en-vN` và version release 
 - Trên bộ test `human-value-02` (190 ghi chú, nhãn LLM): `type` 92.1%, `target` 85.3%,
   `value` 100%, end-to-end 78.9%. Chi tiết và giới hạn nằm trong model card.
 
-**Model tiếng Anh hiện tại: `gidi-en-v2` / `2.0.1` (thử nghiệm)**
+**Model tiếng Anh hiện tại: `gidi-en-v4` / `4.0.0` (thử nghiệm)**
 
-- Chỉ có type và target, theo hợp đồng `annotation-en-v1` và nhãn silver.
-- Đã có trên Hugging Face. Chưa có trong ứng dụng web.
+- Có type, target và value span, theo hợp đồng `annotation-en-v1` và nhãn silver.
+- Student MiniLM-L12-H384, tokenizer WordPiece uncased (đã port sang TypeScript cho ứng dụng web).
+- Đã có trên Hugging Face và chạy trong ứng dụng web.
 
 **Đã phát hành trước đó: `gidi-finance-v2`**
 
@@ -184,4 +190,7 @@ Tất cả corpus và dataset đều là JSONL.
 - [docs/annotation-en-v1.md](docs/annotation-en-v1.md): hợp đồng annotation tiếng Anh
 - [experiments/README.md](experiments/README.md): cách ghi experiment
 - [experiments/gidi-en-student-v2/report.md](experiments/gidi-en-student-v2/report.md): báo cáo `gidi-en-v2`
+- [experiments/gidi-en-backbone-bakeoff/report.md](experiments/gidi-en-backbone-bakeoff/report.md),
+  [experiments/gidi-en-student-v4/report.md](experiments/gidi-en-student-v4/report.md): vì sao chọn
+  MiniLM, và bản phát hành `gidi-en-v4`
 - [models/README.md](models/README.md): local artifact

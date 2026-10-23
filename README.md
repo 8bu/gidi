@@ -17,7 +17,7 @@ and no inference API.
 | Model | Language | Version | Status | Size | Link |
 |---|---|---|---|---|---|
 | `gidi-finance` | Vietnamese | `gidi-finance-v4`, release `4.0.0` | Current. Runs in the web app. Public Hugging Face and GitHub releases are still v3. | 28.66 MB INT8 encoder (v3 bundle: 29.3 MB) | [App](https://gidi.8bu.dev), [x8bu/gidi-finance](https://huggingface.co/x8bu/gidi-finance) |
-| `gidi-en` | English | `gidi-en-v2`, release `2.0.1` | Experimental. On Hugging Face only, not in the app. | 29.2 MB INT8 | [x8bu/gidi-en](https://huggingface.co/x8bu/gidi-en) |
+| `gidi-en` | English | `gidi-en-v4`, release `4.0.0` | Experimental. Type, target and amount span (MiniLM). Runs in the web app. | 29.5 MB INT8 | [App](https://gidi.8bu.dev), [x8bu/gidi-en](https://huggingface.co/x8bu/gidi-en) |
 
 Older Vietnamese releases (`gidi-finance-v3`, `-v2`, `-v1`) are described under [Status](#status).
 
@@ -28,8 +28,9 @@ formal bookkeeping records.
 
 - `gidi-finance` is Vietnamese. It returns the amount as written (a span of the note). Deterministic
   code converts that span to a number.
-- `gidi-en` is English. It predicts the type and the target only. It has no value span and no
-  amount parser yet.
+- `gidi-en` is English. Since `gidi-en-v4` it also returns the amount as written (a span of the
+  note, `5k`, `$20`, `twenty bucks`), read by a learned value head. The web app turns that span
+  into US dollars.
 
 ## Status
 
@@ -51,19 +52,23 @@ formal bookkeeping records.
 
 ### gidi-en (English)
 
-- **`gidi-en-v2`** (release `2.0.1`) is the first English model. It is experimental. It predicts
-  the type and the target. It is published on Hugging Face as
-  [x8bu/gidi-en](https://huggingface.co/x8bu/gidi-en). The INT8 file is 29.2 MB. It is not in the
-  web app yet.
-- **The labels are silver.** No human annotated English. Claude, Gemini and Clef produced every
-  label, so every score is agreement with those labels, not accuracy against ground truth. The
-  contract is [docs/annotation-en-v1.md](docs/annotation-en-v1.md).
-- **One seed, one run.** The report gives no variance estimate and calls the margin over its
-  thresholds modest (`experiments/gidi-en-student-v2/report.md`). On the held-out test split
-  (primary set, 214 notes) it scores type F1 0.956, target 0.888, joint 0.850 against those
-  silver labels. On the 357-note slang probe it scores type 0.890, target 0.835, joint 0.754.
-- **The ONNX file does not include the word-boundary snapping step.** A runtime must apply it
-  after BIO decoding (`gidi.inference.decode.snap_to_words`). The scores above use it.
+- **`gidi-en-v4`** (release `4.0.0`) is the current English model. It is experimental. It predicts
+  the type, the target and the value span (the amount as written). The student is MiniLM-L12-H384
+  (12 layers, 384 wide, WordPiece, MIT) and won a backbone bake-off whose rule was written before
+  any run (`experiments/gidi-en-backbone-bakeoff/report.md`). It is published on Hugging Face as
+  [x8bu/gidi-en](https://huggingface.co/x8bu/gidi-en) (tag `gidi-en-v4-4.0.0`), INT8 29.5 MB, and
+  runs in the web app. `gidi-en-v2` (`2.0.1`, roberta student, no amount) stays on Hugging Face
+  under its own tag and in the app's manifest as the rollback.
+- **The labels are silver.** No human annotated English. Claude, Gemini, Clef and a deterministic
+  amount scan produced every label, so every score is agreement with those labels, not accuracy
+  against ground truth. The contract is [docs/annotation-en-v1.md](docs/annotation-en-v1.md).
+- **Two seeds, one shipped.** The seed was picked by a rule on the dev split declared before the
+  release (`experiments/gidi-en-student-v4/report.md`). On the held-out test split (primary set,
+  214 notes) it scores type F1 0.958, target 0.939, joint 0.902, value 0.995 against those silver
+  labels. On the 357-note slang probe: type 0.919, target 0.863, joint 0.815, value 0.961.
+- **The ONNX file does not include the word-boundary snapping step.** A runtime must apply it to
+  the target and to the value after decoding (`gidi.inference.decode.snap_to_words`). The scores
+  above use it.
 
 ### Both
 
@@ -91,10 +96,11 @@ Internal experiment names are not release versions. Public models are named `gid
 - On the test set `human-value-02` (190 notes, LLM-labelled): type 92.1%, target 85.3%, value
   100%, end-to-end 78.9%. Details and limitations are in the model card.
 
-**Current English model: `gidi-en-v2` / `2.0.1` (experimental)**
+**Current English model: `gidi-en-v4` / `4.0.0` (experimental)**
 
-- Type and target only, with the `annotation-en-v1` contract and silver labels.
-- Published on Hugging Face. Not yet in the web app.
+- Type, target and value span, with the `annotation-en-v1` contract and silver labels.
+- MiniLM-L12-H384 student, uncased WordPiece tokenizer (ported to TypeScript for the web app).
+- Published on Hugging Face and live in the web app.
 
 **Released before: `gidi-finance-v2`**
 
@@ -180,4 +186,7 @@ All corpora and datasets are JSONL.
 - [docs/annotation-en-v1.md](docs/annotation-en-v1.md): English annotation contract
 - [experiments/README.md](experiments/README.md): how experiments are recorded
 - [experiments/gidi-en-student-v2/report.md](experiments/gidi-en-student-v2/report.md): `gidi-en-v2` report
+- [experiments/gidi-en-backbone-bakeoff/report.md](experiments/gidi-en-backbone-bakeoff/report.md),
+  [experiments/gidi-en-student-v4/report.md](experiments/gidi-en-student-v4/report.md): why MiniLM,
+  and the `gidi-en-v4` release
 - [models/README.md](models/README.md): local artifacts

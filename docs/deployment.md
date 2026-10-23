@@ -353,7 +353,9 @@ place.
 The React app in `playground/` ships as a static site that runs
 `gidi-finance-v3` **in the browser** (onnxruntime-web, WASM, INT8 encoder for type and target;
 the whole-word target snap and the rule-based value parser are TypeScript ports of
-`gidi.inference.decode.snap_to_words` and `gidi.value_parser`). No server does inference and no
+`gidi.inference.decode.snap_to_words` and `gidi.value_parser`; the English model's WordPiece
+tokenizer and value-head decoding are ports of the `tokenizers` crate and
+`gidi.inference.decode.decode_value_argmax`). No server does inference and no
 note leaves the device. It is one Cloudflare Worker (`gidi`) that is **assets only** (no Worker code
 runs, so no request is billed): the 28.7 MB models are static assets too, cut into 16 MiB parts at
 `/models/<id>/<version>/model.int8.onnx.NN` (Workers assets are limited to 25 MiB per file). Cost
@@ -368,8 +370,8 @@ and traffic model: [cost-and-traffic.md](cost-and-traffic.md).
   100k, `tỏi` = 1 billion; the app widens the value span over `cành`/`tỏi`, which the pinned
   parser does not read). Works on phones and tablets (touch).
 - **Language and model.** The app runs one model per language: Vietnamese `gidi-finance-v4`
-  4.0.0 and English `gidi-en-v2` 2.0.1 (29,166,949 B, sha256 `c169b23f…1933`, served as parts like
-  v4). The default comes from the visitor's country, with no Worker: a zone **Response Header
+  4.0.0 and English `gidi-en-v4` 4.0.0 (MiniLM, 29,499,600 B, sha256 `faf46f35…9ba6`, served as
+  parts like v4; `gidi-en-v2` 2.0.1 stays in the manifest as the rollback). The default comes from the visitor's country, with no Worker: a zone **Response Header
   Transform Rule** on `gidi.8bu.dev` sets `Server-Timing: geo;desc=<ip.src.country>` on every
   response (rule and expression: [cost-and-traffic.md](cost-and-traffic.md), "Cloudflare rule"),
   and the page reads it from its own navigation entry (`performance.getEntriesByType("navigation")`,
@@ -391,13 +393,20 @@ and traffic model: [cost-and-traffic.md](cost-and-traffic.md).
   Local check of both defaults: `pnpm -C playground dev` then open `/?geo=VN` or `/?geo=US` (the
   override exists only in the dev server; a production build ignores `?geo=`).
   UI strings are two typed dictionaries in `playground/src/app/i18n.ts`.
-- **English amounts.** The English bundle has no value head or parser, so the app finds the amount
-  with a deterministic en-US scan of the note (`findEnglishValue` in `app/amount.ts`: `12`, `12.50`,
-  `1,200`, `5k`, `1.2m`, `3 million`, `2 grand`; a `$` sign or a money word wins, otherwise the last
-  number; times, dates and `5pm` are ignored). Amounts are US dollars (`$1,234.50`), a bare number
-  is not thousands and no Vietnamese unit applies. Each note has a `currency` (`USD`/`VND`).
-  Limitation: other currencies in an English note (`£`, `€`, `₹`, `S$`, `quid`, `rupees`, `sgd`)
-  are not recognised or converted; the number is kept and shown as dollars.
+- **English amounts.** `gidi-en-v4` has a value head: the model's value span is the amount as
+  written (`$50`, `5k`, `2 grand`, `twenty bucks`, `s$30`) and `amountFromEnglishSpan` in
+  `app/amount.ts` reads it as US dollars (`$1,234.50`): currency marker or money word dropped,
+  digits with an optional scale (`5k`, `1.2m`, `3 million`) or number words (`twenty five`,
+  `a hundred`, `fiver`), `50 cents` as 0.50. A span that runs on into the next word (`30 4`,
+  `5000 rs 4`, `1.80 rn`) is cut back to its leading amount. No span from the model means no
+  amount. The deterministic en-US scan of the note (`findEnglishValue`: `12`, `12.50`, `1,200`,
+  `5k`, `1.2m`, `3 million`, `2 grand`; a `$` sign or a money word wins, otherwise the last
+  number; times, dates and `5pm` are ignored) answers only for a model without a value output
+  (`gidi-en-v2`, if the manifest is rolled back) or when no part of the model's span is an amount
+  (`readEnglishValue`). A bare number is not thousands and no Vietnamese unit applies. Each note
+  has a `currency` (`USD`/`VND`). Limitation: other currencies in an English note (`£`, `€`, `₹`,
+  `S$`, `quid`, `rupees`, `sgd`) are not recognised or converted; the number is kept and shown as
+  dollars.
 - `/lab` is the developer playground (spans, confidences, diagnostics, raw JSON); it stays on
   the Vietnamese model.
 - The site needs a secure context (HTTPS or `localhost`): the model sha256 check uses
@@ -429,10 +438,13 @@ and traffic model: [cost-and-traffic.md](cost-and-traffic.md).
   property loses verification. `sitemap.xml` is submitted there.
 
 - Source of truth is the immutable bundles `models/gidi-finance-v4/` (release 4.0.0) and
-  `models/gidi-en-v2-bundle/` (release 2.0.1), listed per language in `playground/web-models.json`
+  `models/gidi-en-v4-bundle/` (release 4.0.0; `models/gidi-en-v2-bundle/` 2.0.1 as the rollback),
+  listed per language in `playground/web-models.json`
   (releases to ship, the `active` one, a `blocked` list, the manifest `schema` / `min_client`).
   `playground/scripts/sync-release.mjs` checks each bundle's files against its `manifest.json`,
   copies `config.json` and `tokenizer.json` to `playground/public/release/<model>/<release>/`,
+  records each release's `tokenizer_type` (`bpe`, or `wordpiece` for `gidi-en-v4`; the loader
+  refuses a manifest, `config.json` and `tokenizer.json` that disagree),
   cuts the model into 16 MiB parts under `playground/public/models/<model>/<release>/` (all
   gitignored) and writes `public/release/manifest.json` (below). The browser downloads the parts in
   parallel, joins them and verifies the whole file against the manifest's sha256 before creating
@@ -477,15 +489,32 @@ rolled back. Roll back or kill a bad model: set `active` back (or `blocked: ["<b
 deploy`: only the manifest changes, no code and no cache purge. Bump `min_client` (and
 `CLIENT_VERSION` in `src/runtime/manifest.ts`) only with a client change older code must not run
 against. A model family rename (`gidi-finance-v5`) also needs `src/lib/models.ts`.
+
+Last rollout: `gidi-en-v4` 4.0.0 became the English `active` release on 2026-10-24 (Worker version
+`60bc4a6c-7178-4dc3-a33e-058d2296ba94`, deployed with `pnpm -C playground sourcemaps:upload && pnpm
+-C playground exec wrangler deploy`). `min_client` went from 1 to 2 (`CLIENT_VERSION` 2): code that
+cannot read a WordPiece tokenizer or a value head must reload. Rollback: set English `active` back
+to `2.0.1` in `web-models.json` and deploy (manifest only), or, if the code is at fault,
+`wrangler rollback 1784a26c-adc3-4473-b207-2b9869236b55` (the version before this rollout). A
+visitor with `gidi-en-v2` in Cache Storage runs it for that visit, fetches v4 in the background
+after 3 s, and runs v4 from the next load.
 - The TS runtime (`playground/src/runtime/`) must give the same type, target and value as
   `GidiPredictor.from_bundle("models/gidi-finance-v3")`. Check it with
   `uv run python scripts/dump_web_parity.py && pnpm -C playground parity` (report:
   `experiments/deployment-v3/web-parity.md`). English: `uv run python
   scripts/dump_web_parity_en.py --fixture && pnpm -C playground parity:en` compares the TS runtime
-  on `gidi-en-v2` with `GidiPredictor` (tokenizer sweep, ids/offsets, decoder on the reference
-  logits and the word snap must be exact; ORT numerics are reported, not gated). The `<mask>`
-  token of the English tokenizer is `lstrip` (it swallows the whitespace before it); the TS
-  tokenizer implements it. `pnpm -C playground test` runs the unit tests (language decision,
+  on `gidi-en-v4` with `GidiPredictor` (WordPiece tokenizer sweep over every BMP and SMP code point,
+  ids/offsets on every split note, probe and fuzz string, decoder on the reference logits, the
+  word snaps and the value span must be exact; ORT numerics are reported, not gated: about 0.8% of
+  the notes decide differently, see `experiments/gidi-en-student-v4/report.md`). Pass
+  `--bundle models/gidi-en-v2-bundle` to dump the BPE bundle too (`parity:en` checks every dump under
+  `playground/.parity/gidi-en-*`); `scripts/score_web_parity_en.py` scores the browser decisions
+  against the silver labels. The `<mask>` token of the BPE English tokenizer is `lstrip` (it
+  swallows the whitespace before it); the TS tokenizer implements it. The WordPiece tokenizer
+  (`src/runtime/wordpiece.ts`) takes which code points are dropped, white space, CJK or punctuation
+  from `wordpiece-tables.ts`, generated from the Rust crate by
+  `scripts/gen_runtime_wordpiece_tables.py` (JavaScript's Unicode data is newer; regenerate the
+  table when `tokenizers` is upgraded). `pnpm -C playground test` runs the unit tests (language decision,
   English amounts, committed Python fixture for English tokens and the word snap). The parser and the Unicode classes it needs
   (`str.isalpha`, `isalnum`, `isupper`, `P*`, fold) are tabulated from Python by
   `scripts/gen_runtime_unicode_tables.py` (`unicode-tables.ts`, generated, do not edit).

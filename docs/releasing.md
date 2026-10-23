@@ -181,32 +181,54 @@ non-archive files must always match.
 
 ## 12. The English model (`gidi-en`)
 
-`gidi-en-v2` (release `2.0.1`, spec `releases/gidi-en-v2.json`) follows the same flow with these
-differences:
+`gidi-en-v2` (release `2.0.1`, spec `releases/gidi-en-v2.json`) and `gidi-en-v4` (release `4.0.0`,
+spec `releases/gidi-en-v4.json`) follow the same flow with these differences:
 
 - **Naming.** MAJOR must equal the model's `vN` (section 9), so the first English release of the
-  `v2` recipe is `2.0.0` (`2.0.1` fixed two card errors). It is an early, experimental release; the model card says so.
+  `v2` recipe is `2.0.0` (`2.0.1` fixed two card errors) and the first of `v4` is `4.0.0`. They are
+  early, experimental releases; the model card says so. `gidi-en-v3` (roberta-base + value head)
+  was trained and never released: the backbone bake-off
+  (`experiments/gidi-en-backbone-bakeoff/`) replaced its backbone, so `v4` is the first English
+  release with an amount.
 - **Bundle.** `scripts/freeze_en_bundle.py` freezes `models/gidi-en-v2-bundle/` from
-  `experiments/gidi-en-deployment-v2/protocol.json`. The release build runs it with `--check`
-  (`bundle_check` in the spec). The bundle has no value head and no value parser: `config.json`
-  has neither `value_labels` nor `value_source`, and sets `target_snap: "words"`. The manifest
-  `runtime` block then has `value_labels`/`value_decoding` as `null`, `target_snap`, and
-  prediction keys without `value_*`. Smoke cases give only `type` and `target`.
+  `experiments/gidi-en-deployment-v2/protocol.json` and `models/gidi-en-v4-bundle/` from
+  `experiments/gidi-en-deployment-v4/protocol.json`. The release build runs it with `--check`
+  (`bundle_check` in the spec).
+  - `v2` has no value head and no value parser: `config.json` has neither `value_labels` nor
+    `value_source`, and sets `target_snap: "words"`. The manifest `runtime` block then has
+    `value_labels`/`value_decoding` as `null`, `target_snap`, and prediction keys without `value_*`.
+    Smoke cases give only `type` and `target`.
+  - `v4` (`"value_head": true` in the protocol) has a third ONNX output `value_logits` and
+    declares `value_labels`, `value_decoding` (`argmax`, highest-confidence span), `value_snap:
+    "words"` and `tokenizer_type: "wordpiece"` next to `target_snap: "words"`. The manifest
+    `runtime` block records `value_labels`, `value_decoding: "argmax"`, `target_snap`, `value_snap`
+    and `tokenizer_type`, and prediction keys with `value_*`. Smoke cases may check `value_text`.
+    The bundle files are byte copies of the bake-off export (seed picked by the dev-only rule in
+    `experiments/gidi-en-student-v4/protocol.json`); the sources live under
+    `models/gidi-en-v4/seed1` and `models/gidi-en-v4-onnx/seed1`.
 - **README.** The card is English only (`readme_language: "en"` in the spec; front matter
-  `language: en`). The template is `releases/templates/gidi-en-v2.README.md`.
-- **Licenses.** `LICENSE` is Apache-2.0. The student is derived from `roberta-base` (MIT), so
-  `licenses/roberta-base-MIT.txt` (kind `third-party-license`) ships with the release.
+  `language: en`). The templates are `releases/templates/gidi-en-v2.README.md` and
+  `releases/templates/gidi-en-v4.README.md`.
+- **Licenses.** `LICENSE` is Apache-2.0. The `v2` student is derived from `roberta-base` (MIT), so
+  `licenses/roberta-base-MIT.txt` (kind `third-party-license`) ships with it; the `v4` student is
+  derived from `microsoft/MiniLM-L12-H384-uncased` (MIT), so
+  `licenses/MiniLM-L12-H384-uncased-MIT.txt` ships with that one.
 - **Providers.** `releases/providers.json` has a `families` block: `families.gidi-en.huggingface`
   replaces the top-level Hugging Face section for models named `gidi-en-vN` (repo
-  `x8bu/gidi-en`, one tag `{model_version}-{release_version}` per release, INT8 only). GitHub
-  keeps the top-level section (`8bu/gidi`). `kaggle: null` switches Kaggle off for the family, so
-  `publish.py kaggle` and `publish.py all` fail for `gidi-en` until a section exists.
-- **The word snap** is not in the ONNX graph; the card documents how a plain ONNX Runtime
-  integration applies it.
-- **Web app.** `gidi-en-v2` 2.0.1 runs in the web app next to `gidi-finance-v4` (language switch,
-  geoip default; see `docs/deployment.md`, "Web playground"). The app serves the model as static
-  assets cut into parts (`/models/gidi-en-v2/2.0.1/model.int8.onnx.NN`) and verifies the whole file
-  against `playground/public/release/manifest.json`, written by
-  `playground/scripts/sync-release.mjs` from `playground/web-models.json` and
-  `models/gidi-en-v2-bundle/manifest.json`. A new English release is a new entry in
-  `playground/web-models.json` (runbook: `docs/deployment.md`, "Model rollout runbook").
+  `x8bu/gidi-en`, one tag `{model_version}-{release_version}` per release, INT8 only). The repo
+  has one set of files at the top, so a new release overwrites the card and the model file on
+  `main`; older releases stay readable at their tag (`gidi-en-v2-2.0.1`, `gidi-en-v4-4.0.0`).
+  GitHub keeps the top-level section (`8bu/gidi`). `kaggle: null` switches Kaggle off for the
+  family, so `publish.py kaggle` and `publish.py all` fail for `gidi-en` until a section exists.
+  `gidi-en-v4` was published to Hugging Face only (no GitHub release, no Kaggle).
+- **The word snaps** are not in the ONNX graph; the card documents how a plain ONNX Runtime
+  integration applies them (target, and for `v4` the value too).
+- **Web app.** `gidi-en-v4` 4.0.0 runs in the web app next to `gidi-finance-v4` (language switch,
+  geoip default; see `docs/deployment.md`, "Web playground"), with `gidi-en-v2` 2.0.1 kept in the
+  manifest as the rollback. The app serves the model as static assets cut into parts
+  (`/models/gidi-en-v4/4.0.0/model.int8.onnx.NN`) and verifies the whole file against
+  `playground/public/release/manifest.json`, written by `playground/scripts/sync-release.mjs` from
+  `playground/web-models.json` and `models/gidi-en-v4-bundle/manifest.json`. A new English
+  release is a new entry in `playground/web-models.json` (runbook: `docs/deployment.md`, "Model
+  rollout runbook"). The browser runtime needs a client that knows the bundle's
+  `tokenizer_type`: the manifest `min_client` was raised to 2 for `gidi-en-v4`.
