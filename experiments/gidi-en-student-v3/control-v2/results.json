@@ -1,0 +1,872 @@
+{
+  "int8_file": "/tmp/gidi-en-v2-control/onnx/model.int8.onnx",
+  "int8_bytes": 29166948,
+  "fp32_bytes": 116057730,
+  "n": {
+    "primary": 214,
+    "secondary": 290,
+    "dev": 189
+  },
+  "int8": {
+    "primary": {
+      "type_accuracy": 0.9392523364485982,
+      "type_macro_f1": 0.9436937262927665,
+      "span_f1": 0.8872727272727273,
+      "span_exact": 0.8925233644859814,
+      "joint": 0.8457943925233645,
+      "n": 214,
+      "per_type": {
+        "expense": {
+          "f1": 0.9142857142857143,
+          "precision": 0.9411764705882353,
+          "recall": 0.8888888888888888,
+          "n": 54
+        },
+        "income": {
+          "f1": 0.8333333333333333,
+          "precision": 0.8823529411764706,
+          "recall": 0.7894736842105263,
+          "n": 19
+        },
+        "borrow": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "n": 18
+        },
+        "lend": {
+          "f1": 0.983050847457627,
+          "precision": 0.9666666666666667,
+          "recall": 1.0,
+          "n": 29
+        },
+        "repayment_in": {
+          "f1": 0.9743589743589743,
+          "precision": 1.0,
+          "recall": 0.95,
+          "n": 20
+        },
+        "repayment_out": {
+          "f1": 0.9047619047619048,
+          "precision": 0.8636363636363636,
+          "recall": 0.95,
+          "n": 20
+        },
+        "transfer": {
+          "f1": 0.9397590361445783,
+          "precision": 0.9069767441860465,
+          "recall": 0.975,
+          "n": 40
+        },
+        "refund": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "n": 14
+        }
+      }
+    },
+    "secondary": {
+      "type_accuracy": 0.8793103448275862,
+      "type_macro_f1": 0.8844972013495226,
+      "span_f1": 0.835734870317003,
+      "span_exact": 0.8413793103448276,
+      "joint": 0.7517241379310344,
+      "n": 290,
+      "per_type": {
+        "expense": {
+          "f1": 0.8826815642458101,
+          "precision": 0.9294117647058824,
+          "recall": 0.8404255319148937,
+          "n": 94
+        },
+        "income": {
+          "f1": 0.8076923076923077,
+          "precision": 0.875,
+          "recall": 0.75,
+          "n": 28
+        },
+        "borrow": {
+          "f1": 0.8679245283018868,
+          "precision": 0.8846153846153846,
+          "recall": 0.8518518518518519,
+          "n": 27
+        },
+        "lend": {
+          "f1": 0.8648648648648649,
+          "precision": 0.8421052631578947,
+          "recall": 0.8888888888888888,
+          "n": 36
+        },
+        "repayment_in": {
+          "f1": 0.9130434782608695,
+          "precision": 0.875,
+          "recall": 0.9545454545454546,
+          "n": 22
+        },
+        "repayment_out": {
+          "f1": 0.8461538461538461,
+          "precision": 0.7857142857142857,
+          "recall": 0.9166666666666666,
+          "n": 24
+        },
+        "transfer": {
+          "f1": 0.8936170212765958,
+          "precision": 0.84,
+          "recall": 0.9545454545454546,
+          "n": 44
+        },
+        "refund": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "n": 15
+        }
+      }
+    },
+    "dev": {
+      "type_accuracy": 0.8571428571428571,
+      "type_macro_f1": 0.811743375288031,
+      "span_f1": 0.8251121076233184,
+      "span_exact": 0.8412698412698413,
+      "joint": 0.7142857142857143,
+      "n": 189,
+      "per_type": {
+        "expense": {
+          "f1": 0.9105691056910569,
+          "precision": 0.9333333333333333,
+          "recall": 0.8888888888888888,
+          "n": 63
+        },
+        "income": {
+          "f1": 0.8727272727272727,
+          "precision": 0.8888888888888888,
+          "recall": 0.8571428571428571,
+          "n": 28
+        },
+        "borrow": {
+          "f1": 0.6,
+          "precision": 0.8571428571428571,
+          "recall": 0.46153846153846156,
+          "n": 13
+        },
+        "lend": {
+          "f1": 0.85,
+          "precision": 0.7727272727272727,
+          "recall": 0.9444444444444444,
+          "n": 18
+        },
+        "repayment_in": {
+          "f1": 0.7916666666666667,
+          "precision": 0.6785714285714286,
+          "recall": 0.95,
+          "n": 20
+        },
+        "repayment_out": {
+          "f1": 0.7000000000000001,
+          "precision": 0.875,
+          "recall": 0.5833333333333334,
+          "n": 12
+        },
+        "transfer": {
+          "f1": 0.9454545454545454,
+          "precision": 0.9285714285714286,
+          "recall": 0.9629629629629629,
+          "n": 27
+        },
+        "refund": {
+          "f1": 0.823529411764706,
+          "precision": 0.7777777777777778,
+          "recall": 0.875,
+          "n": 8
+        }
+      }
+    }
+  },
+  "int8_snap": {
+    "primary": {
+      "type_accuracy": 0.9392523364485982,
+      "type_macro_f1": 0.9436937262927665,
+      "span_f1": 0.8872727272727273,
+      "span_exact": 0.8925233644859814,
+      "joint": 0.8411214953271028,
+      "n": 214,
+      "per_type": {
+        "expense": {
+          "f1": 0.9142857142857143,
+          "precision": 0.9411764705882353,
+          "recall": 0.8888888888888888,
+          "n": 54
+        },
+        "income": {
+          "f1": 0.8333333333333333,
+          "precision": 0.8823529411764706,
+          "recall": 0.7894736842105263,
+          "n": 19
+        },
+        "borrow": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "n": 18
+        },
+        "lend": {
+          "f1": 0.983050847457627,
+          "precision": 0.9666666666666667,
+          "recall": 1.0,
+          "n": 29
+        },
+        "repayment_in": {
+          "f1": 0.9743589743589743,
+          "precision": 1.0,
+          "recall": 0.95,
+          "n": 20
+        },
+        "repayment_out": {
+          "f1": 0.9047619047619048,
+          "precision": 0.8636363636363636,
+          "recall": 0.95,
+          "n": 20
+        },
+        "transfer": {
+          "f1": 0.9397590361445783,
+          "precision": 0.9069767441860465,
+          "recall": 0.975,
+          "n": 40
+        },
+        "refund": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "n": 14
+        }
+      }
+    },
+    "secondary": {
+      "type_accuracy": 0.8793103448275862,
+      "type_macro_f1": 0.8844972013495226,
+      "span_f1": 0.829971181556196,
+      "span_exact": 0.8379310344827586,
+      "joint": 0.7482758620689656,
+      "n": 290,
+      "per_type": {
+        "expense": {
+          "f1": 0.8826815642458101,
+          "precision": 0.9294117647058824,
+          "recall": 0.8404255319148937,
+          "n": 94
+        },
+        "income": {
+          "f1": 0.8076923076923077,
+          "precision": 0.875,
+          "recall": 0.75,
+          "n": 28
+        },
+        "borrow": {
+          "f1": 0.8679245283018868,
+          "precision": 0.8846153846153846,
+          "recall": 0.8518518518518519,
+          "n": 27
+        },
+        "lend": {
+          "f1": 0.8648648648648649,
+          "precision": 0.8421052631578947,
+          "recall": 0.8888888888888888,
+          "n": 36
+        },
+        "repayment_in": {
+          "f1": 0.9130434782608695,
+          "precision": 0.875,
+          "recall": 0.9545454545454546,
+          "n": 22
+        },
+        "repayment_out": {
+          "f1": 0.8461538461538461,
+          "precision": 0.7857142857142857,
+          "recall": 0.9166666666666666,
+          "n": 24
+        },
+        "transfer": {
+          "f1": 0.8936170212765958,
+          "precision": 0.84,
+          "recall": 0.9545454545454546,
+          "n": 44
+        },
+        "refund": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "n": 15
+        }
+      }
+    },
+    "dev": {
+      "type_accuracy": 0.8571428571428571,
+      "type_macro_f1": 0.811743375288031,
+      "span_f1": 0.8251121076233184,
+      "span_exact": 0.8412698412698413,
+      "joint": 0.7142857142857143,
+      "n": 189,
+      "per_type": {
+        "expense": {
+          "f1": 0.9105691056910569,
+          "precision": 0.9333333333333333,
+          "recall": 0.8888888888888888,
+          "n": 63
+        },
+        "income": {
+          "f1": 0.8727272727272727,
+          "precision": 0.8888888888888888,
+          "recall": 0.8571428571428571,
+          "n": 28
+        },
+        "borrow": {
+          "f1": 0.6,
+          "precision": 0.8571428571428571,
+          "recall": 0.46153846153846156,
+          "n": 13
+        },
+        "lend": {
+          "f1": 0.85,
+          "precision": 0.7727272727272727,
+          "recall": 0.9444444444444444,
+          "n": 18
+        },
+        "repayment_in": {
+          "f1": 0.7916666666666667,
+          "precision": 0.6785714285714286,
+          "recall": 0.95,
+          "n": 20
+        },
+        "repayment_out": {
+          "f1": 0.7000000000000001,
+          "precision": 0.875,
+          "recall": 0.5833333333333334,
+          "n": 12
+        },
+        "transfer": {
+          "f1": 0.9454545454545454,
+          "precision": 0.9285714285714286,
+          "recall": 0.9629629629629629,
+          "n": 27
+        },
+        "refund": {
+          "f1": 0.823529411764706,
+          "precision": 0.7777777777777778,
+          "recall": 0.875,
+          "n": 8
+        }
+      }
+    }
+  },
+  "fp32": {
+    "primary": {
+      "type_accuracy": 0.9392523364485982,
+      "type_macro_f1": 0.9422481061241963,
+      "span_f1": 0.8808664259927798,
+      "span_exact": 0.8878504672897196,
+      "joint": 0.8364485981308412,
+      "n": 214,
+      "per_type": {
+        "expense": {
+          "f1": 0.912621359223301,
+          "precision": 0.9591836734693877,
+          "recall": 0.8703703703703703,
+          "n": 54
+        },
+        "income": {
+          "f1": 0.8108108108108109,
+          "precision": 0.8333333333333334,
+          "recall": 0.7894736842105263,
+          "n": 19
+        },
+        "borrow": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "n": 18
+        },
+        "lend": {
+          "f1": 0.983050847457627,
+          "precision": 0.9666666666666667,
+          "recall": 1.0,
+          "n": 29
+        },
+        "repayment_in": {
+          "f1": 0.9743589743589743,
+          "precision": 1.0,
+          "recall": 0.95,
+          "n": 20
+        },
+        "repayment_out": {
+          "f1": 0.9047619047619048,
+          "precision": 0.8636363636363636,
+          "recall": 0.95,
+          "n": 20
+        },
+        "transfer": {
+          "f1": 0.9523809523809523,
+          "precision": 0.9090909090909091,
+          "recall": 1.0,
+          "n": 40
+        },
+        "refund": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "n": 14
+        }
+      }
+    },
+    "secondary": {
+      "type_accuracy": 0.8827586206896552,
+      "type_macro_f1": 0.8865728290758392,
+      "span_f1": 0.8205128205128205,
+      "span_exact": 0.8275862068965517,
+      "joint": 0.7379310344827587,
+      "n": 290,
+      "per_type": {
+        "expense": {
+          "f1": 0.8876404494382023,
+          "precision": 0.9404761904761905,
+          "recall": 0.8404255319148937,
+          "n": 94
+        },
+        "income": {
+          "f1": 0.8076923076923077,
+          "precision": 0.875,
+          "recall": 0.75,
+          "n": 28
+        },
+        "borrow": {
+          "f1": 0.8679245283018868,
+          "precision": 0.8846153846153846,
+          "recall": 0.8518518518518519,
+          "n": 27
+        },
+        "lend": {
+          "f1": 0.8648648648648649,
+          "precision": 0.8421052631578947,
+          "recall": 0.8888888888888888,
+          "n": 36
+        },
+        "repayment_in": {
+          "f1": 0.9130434782608695,
+          "precision": 0.875,
+          "recall": 0.9545454545454546,
+          "n": 22
+        },
+        "repayment_out": {
+          "f1": 0.8461538461538461,
+          "precision": 0.7857142857142857,
+          "recall": 0.9166666666666666,
+          "n": 24
+        },
+        "transfer": {
+          "f1": 0.9052631578947369,
+          "precision": 0.8431372549019608,
+          "recall": 0.9772727272727273,
+          "n": 44
+        },
+        "refund": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "n": 15
+        }
+      }
+    },
+    "dev": {
+      "type_accuracy": 0.8624338624338624,
+      "type_macro_f1": 0.8167889603364111,
+      "span_f1": 0.8340807174887893,
+      "span_exact": 0.8465608465608465,
+      "joint": 0.7248677248677249,
+      "n": 189,
+      "per_type": {
+        "expense": {
+          "f1": 0.9193548387096775,
+          "precision": 0.9344262295081968,
+          "recall": 0.9047619047619048,
+          "n": 63
+        },
+        "income": {
+          "f1": 0.8727272727272727,
+          "precision": 0.8888888888888888,
+          "recall": 0.8571428571428571,
+          "n": 28
+        },
+        "borrow": {
+          "f1": 0.631578947368421,
+          "precision": 1.0,
+          "recall": 0.46153846153846156,
+          "n": 13
+        },
+        "lend": {
+          "f1": 0.85,
+          "precision": 0.7727272727272727,
+          "recall": 0.9444444444444444,
+          "n": 18
+        },
+        "repayment_in": {
+          "f1": 0.7916666666666667,
+          "precision": 0.6785714285714286,
+          "recall": 0.95,
+          "n": 20
+        },
+        "repayment_out": {
+          "f1": 0.7000000000000001,
+          "precision": 0.875,
+          "recall": 0.5833333333333334,
+          "n": 12
+        },
+        "transfer": {
+          "f1": 0.9454545454545454,
+          "precision": 0.9285714285714286,
+          "recall": 0.9629629629629629,
+          "n": 27
+        },
+        "refund": {
+          "f1": 0.823529411764706,
+          "precision": 0.7777777777777778,
+          "recall": 0.875,
+          "n": 8
+        }
+      }
+    }
+  },
+  "protocol": {
+    "primary": {
+      "type_macro_f1": {
+        "value": 0.9436937262927665,
+        "min": 0.9,
+        "pass": true
+      },
+      "target_exact": {
+        "value": 0.8925233644859814,
+        "min": 0.85,
+        "pass": true
+      },
+      "joint": {
+        "value": 0.8457943925233645,
+        "min": 0.8,
+        "pass": true
+      }
+    },
+    "primary_per_type_f1": {
+      "expense": {
+        "value": 0.9142857142857143,
+        "min": 0.75,
+        "pass": true
+      },
+      "income": {
+        "value": 0.8333333333333333,
+        "min": 0.75,
+        "pass": true
+      },
+      "borrow": {
+        "value": 1.0,
+        "min": 0.75,
+        "pass": true
+      },
+      "lend": {
+        "value": 0.983050847457627,
+        "min": 0.75,
+        "pass": true
+      },
+      "repayment_in": {
+        "value": 0.9743589743589743,
+        "min": 0.75,
+        "pass": true
+      },
+      "repayment_out": {
+        "value": 0.9047619047619048,
+        "min": 0.75,
+        "pass": true
+      },
+      "transfer": {
+        "value": 0.9397590361445783,
+        "min": 0.75,
+        "pass": true
+      },
+      "refund": {
+        "value": 1.0,
+        "min": 0.75,
+        "pass": true
+      }
+    },
+    "secondary": {
+      "type_macro_f1": {
+        "value": 0.8844972013495226,
+        "min": 0.82,
+        "pass": true
+      },
+      "target_exact": {
+        "value": 0.8413793103448276,
+        "min": 0.78,
+        "pass": true
+      }
+    },
+    "pass": true
+  },
+  "protocol_snap": {
+    "primary": {
+      "type_macro_f1": {
+        "value": 0.9436937262927665,
+        "min": 0.9,
+        "pass": true
+      },
+      "target_exact": {
+        "value": 0.8925233644859814,
+        "min": 0.85,
+        "pass": true
+      },
+      "joint": {
+        "value": 0.8411214953271028,
+        "min": 0.8,
+        "pass": true
+      }
+    },
+    "primary_per_type_f1": {
+      "expense": {
+        "value": 0.9142857142857143,
+        "min": 0.75,
+        "pass": true
+      },
+      "income": {
+        "value": 0.8333333333333333,
+        "min": 0.75,
+        "pass": true
+      },
+      "borrow": {
+        "value": 1.0,
+        "min": 0.75,
+        "pass": true
+      },
+      "lend": {
+        "value": 0.983050847457627,
+        "min": 0.75,
+        "pass": true
+      },
+      "repayment_in": {
+        "value": 0.9743589743589743,
+        "min": 0.75,
+        "pass": true
+      },
+      "repayment_out": {
+        "value": 0.9047619047619048,
+        "min": 0.75,
+        "pass": true
+      },
+      "transfer": {
+        "value": 0.9397590361445783,
+        "min": 0.75,
+        "pass": true
+      },
+      "refund": {
+        "value": 1.0,
+        "min": 0.75,
+        "pass": true
+      }
+    },
+    "secondary": {
+      "type_macro_f1": {
+        "value": 0.8844972013495226,
+        "min": 0.82,
+        "pass": true
+      },
+      "target_exact": {
+        "value": 0.8379310344827586,
+        "min": 0.78,
+        "pass": true
+      }
+    },
+    "pass": true
+  },
+  "worst_errors_secondary": {
+    "int8": [
+      {
+        "id": "en-baseline-01-16365c8cc5a6",
+        "text": "barber fade 20",
+        "gold_type": "expense",
+        "pred_type": "lend",
+        "gold_target": null,
+        "pred_target": "barber",
+        "pred_type_prob": 1.0
+      },
+      {
+        "id": "en-baseline-01-6e3893d3d0bc",
+        "text": "paid council tax monthly instalment through direct debit 135",
+        "gold_type": "expense",
+        "pred_type": "repayment_out",
+        "gold_target": null,
+        "pred_target": "council",
+        "pred_type_prob": 1.0
+      },
+      {
+        "id": "en-baseline-01-cdc7c1674e86",
+        "text": "dbs shares dividend 140",
+        "gold_type": "income",
+        "pred_type": "transfer",
+        "gold_target": "dbs",
+        "pred_target": null,
+        "pred_type_prob": 1.0
+      },
+      {
+        "id": "en-baseline-01-d9a2ce1e5f6e",
+        "text": "gave watchman diwali bonus 500",
+        "gold_type": "expense",
+        "pred_type": "income",
+        "gold_target": "watchman",
+        "pred_target": "man",
+        "pred_type_prob": 1.0
+      },
+      {
+        "id": "en-baseline-01-fbfd00912c9a",
+        "text": "dentist root canal treatment second installment paid 3,500",
+        "gold_type": "expense",
+        "pred_type": "repayment_out",
+        "gold_target": null,
+        "pred_target": "dentist",
+        "pred_type_prob": 1.0
+      },
+      {
+        "id": "en-baseline-01-09e33fb5ac9a",
+        "text": "cdc vouchers claimed 300",
+        "gold_type": "income",
+        "pred_type": "borrow",
+        "gold_target": null,
+        "pred_target": "dc",
+        "pred_type_prob": 0.994
+      },
+      {
+        "id": "en-baseline-01-0a228dc9c401",
+        "text": "transferred money to papa for his eye checkup 4,500",
+        "gold_type": "expense",
+        "pred_type": "transfer",
+        "gold_target": "papa",
+        "pred_target": null,
+        "pred_type_prob": 0.982
+      },
+      {
+        "id": "en-baseline-01-82f1520d09e0",
+        "text": "rental car 220",
+        "gold_type": "expense",
+        "pred_type": "lend",
+        "gold_target": null,
+        "pred_target": "al",
+        "pred_type_prob": 0.719
+      },
+      {
+        "id": "en-baseline-01-bd84845a4389",
+        "text": "automatic savings 50",
+        "gold_type": "transfer",
+        "pred_type": "expense",
+        "gold_target": null,
+        "pred_target": "automatic",
+        "pred_type_prob": 0.592
+      },
+      {
+        "id": "en-baseline-01-0807556e6ea8",
+        "text": "dog walking money 45",
+        "gold_type": "income",
+        "pred_type": "expense",
+        "gold_target": null,
+        "pred_target": null,
+        "pred_type_prob": 1.0
+      }
+    ],
+    "int8_snap": [
+      {
+        "id": "en-baseline-01-16365c8cc5a6",
+        "text": "barber fade 20",
+        "gold_type": "expense",
+        "pred_type": "lend",
+        "gold_target": null,
+        "pred_target": "barber",
+        "pred_type_prob": 1.0
+      },
+      {
+        "id": "en-baseline-01-6e3893d3d0bc",
+        "text": "paid council tax monthly instalment through direct debit 135",
+        "gold_type": "expense",
+        "pred_type": "repayment_out",
+        "gold_target": null,
+        "pred_target": "council",
+        "pred_type_prob": 1.0
+      },
+      {
+        "id": "en-baseline-01-cdc7c1674e86",
+        "text": "dbs shares dividend 140",
+        "gold_type": "income",
+        "pred_type": "transfer",
+        "gold_target": "dbs",
+        "pred_target": null,
+        "pred_type_prob": 1.0
+      },
+      {
+        "id": "en-baseline-01-fbfd00912c9a",
+        "text": "dentist root canal treatment second installment paid 3,500",
+        "gold_type": "expense",
+        "pred_type": "repayment_out",
+        "gold_target": null,
+        "pred_target": "dentist",
+        "pred_type_prob": 1.0
+      },
+      {
+        "id": "en-baseline-01-09e33fb5ac9a",
+        "text": "cdc vouchers claimed 300",
+        "gold_type": "income",
+        "pred_type": "borrow",
+        "gold_target": null,
+        "pred_target": "cdc",
+        "pred_type_prob": 0.994
+      },
+      {
+        "id": "en-baseline-01-0a228dc9c401",
+        "text": "transferred money to papa for his eye checkup 4,500",
+        "gold_type": "expense",
+        "pred_type": "transfer",
+        "gold_target": "papa",
+        "pred_target": null,
+        "pred_type_prob": 0.982
+      },
+      {
+        "id": "en-baseline-01-82f1520d09e0",
+        "text": "rental car 220",
+        "gold_type": "expense",
+        "pred_type": "lend",
+        "gold_target": null,
+        "pred_target": "rental",
+        "pred_type_prob": 0.719
+      },
+      {
+        "id": "en-baseline-01-e7cc5346adef",
+        "text": "paid for Neha's groceries 650",
+        "gold_type": "lend",
+        "pred_type": "expense",
+        "gold_target": "Neha",
+        "pred_target": "Neha's",
+        "pred_type_prob": 0.659
+      },
+      {
+        "id": "en-baseline-01-bd84845a4389",
+        "text": "automatic savings 50",
+        "gold_type": "transfer",
+        "pred_type": "expense",
+        "gold_target": null,
+        "pred_target": "automatic",
+        "pred_type_prob": 0.592
+      },
+      {
+        "id": "en-baseline-01-0807556e6ea8",
+        "text": "dog walking money 45",
+        "gold_type": "income",
+        "pred_type": "expense",
+        "gold_target": null,
+        "pred_target": null,
+        "pred_type_prob": 1.0
+      }
+    ]
+  }
+}

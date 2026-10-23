@@ -1,0 +1,42 @@
+{
+  "experiment": "gidi-en-student-v3",
+  "written_before": "any v3 model was trained for real, exported or scored (only a 3-step plumbing smoke run of the training and export code existed); the value labels were already built, with no v3 score available",
+  "question": "gidi-en has no value (amount) span. Does v2 + a learned value-span head (the value-span-v1 head design) reach the declared value quality without regressing type or target?",
+  "label_provenance": "silver-claude-clef-regex; no human labels exist for English. Value labels = labeler A (deterministic en-US/UK/IN/SG amount scan, src/gidi/value_parser/english.py) + labeler B (Clef zero-shot choice among A's loose candidates, experiments/gidi-en-student-v3/run_value_teacher.py) -> consensus where they agree, Claude adjudicates only the disagreements (datasets/annotation-en-v1/work/value/adjudicated.jsonl). Files: datasets/annotation-en-v1/value-labels-{test,dev,seed,probe-slang,probe-genz}.jsonl, value-silver-train.jsonl, value-silver-slang-train.jsonl. Never human. All numbers are agreement with these labels, not ground truth.",
+  "value_contract": "configs/annotation-en-v1.yaml `value:` + docs/annotation-en-v1.md 'Amount formats': the amount exactly as written (currency symbol, prefix code or money word included: `$20`, `20 bucks`, `s$30`, `150s$`, `rs 500`, `3 grand`), no normalisation, null when the note has no amount, `uncertain` when no transaction amount can be told apart (masked in the value loss). Word amounts are spans too (`twenty bucks`, `a hundred`, `tenner`, `fiver`; the article of `a tenner` is not part of it, the article of `a hundred` is). `4` / `2` standing for `for` / `to` are not amounts. Clarified in docs/annotation-en-v1.md before training.",
+  "candidate": "v3 seed 1 only (one seed, last epoch, no seed picking, no checkpoint selection).",
+  "recipe": "v2 recipe unchanged (experiments/gidi-en-student-v2/run.sh): init models/gidi-en-v1-init, silver-train + labels-seed + consistent silver-slang-train = 2,355 notes, 40 epochs, batch 8, encoder lr 5e-5, head lr 1e-3, warmup 0.1, wd 0.01, grad clip 1.0, shuffles randperm(seed + epoch), MPS, same code path (scripts/train_en_student.py --value). The only change is the added head and its loss.",
+  "head": "Value-span-v1 design (gidi.modeling.value.GidiValueModel, the shared-encoder 3-head model of experiments/value-span-v1): Linear(hidden=768, 3) over the same dropout-ed token states as the target head, tags O/B-VALUE/I-VALUE, seeded from VALUE_HEAD_SEED_BASE + seed with the global RNG untouched (so the encoder init and the dropout / shuffle streams match v2). Not the CRF / MLP / adapter / dual-encoder variants of value-span-v4..v7 (they do not fit the ~30 MB budget or were frozen-encoder experiments); gidi-finance-v4 itself ships no learned value head (rule parser, `value_source: rule-parser`), the learned head lineage is value-span-v1 -> gidi-finance-v2.",
+  "loss": "CE(type) + CE(target tags) + CE(value tags), equal weights (gidi.training.train_value.multitask_loss). Value tags of any note whose value_status is not `complete` are IGNORE_INDEX (such a note still trains type and target); a `complete` note with value null has every real token O.",
+  "decode": "Value = the highest-confidence BIO span of the value head (gidi.modeling.value_decode.decode_value, value-span-v1), argmax per token. Target = first span, as v2.",
+  "snapping": "decision: value spans are scored with whole-word snapping ON (gidi.inference.decode.snap_to_words, the rule v2 applies to the target), because it only expands a truncated span to whole words and a check on all 3,160 gold value spans found it changes 2 (`300` -> `+300`, a leading sign), i.e. it is consistent with the label convention. Unsnapped scores are reported as an ablation. It is not in the ONNX graph (same as the target).",
+  "export": "ONNX opset 17 via scripts/export_value_onnx.py: outputs type_logits, tag_logits, value_logits (names/order of the Vietnamese value bundle), int8 = dynamic QInt8 as v2. Op set must equal v2's.",
+  "training_data": "silver-train + labels-seed complete + silver-slang-train (consistent only), with their silver value labels. Never: test, dev, datasets/probe-en-slang, datasets/probe-en-genz, Vietnamese data (asserted in gidi.training.english.load_train_values_v2).",
+  "eval_sets": {
+    "test_primary": "complete test notes with consensus type/target labels (n = 214)",
+    "test_secondary": "all complete test notes (n = 290)",
+    "slang_probe": "datasets/probe-en-slang complete notes (n = 357)",
+    "genz_probe": "datasets/probe-en-genz complete notes (n = 94), reported, not gating",
+    "dev": "complete dev notes (n = 189), reported, not gating (monitored during training)"
+  },
+  "v2_reference_snapped_int8": {
+    "primary": {"type_macro_f1": 0.9561, "target_exact": 0.8879},
+    "secondary": {"type_macro_f1": 0.9020, "target_exact": 0.8345},
+    "slang_probe": {"type_macro_f1": 0.8903, "target_exact": 0.8347, "joint": 0.7535},
+    "genz_probe": {"type_macro_f1": 0.8967, "target_exact": 0.8511}
+  },
+  "success": {
+    "value_exact_min": {
+      "test": 0.93,
+      "slang_probe": 0.88,
+      "note": "value exact = predicted span equals the labelled span, null equals null, over the notes whose value label is complete; test threshold applies to BOTH test primary and test secondary; slang probe n = 357; snapped decode"
+    },
+    "max_regression_vs_v2": 0.01,
+    "regression_note": "type macro-F1 and target exact of v3 must each be >= v2 - 0.01 on test primary, test secondary and the slang probe (v2 snapped int8 numbers above)",
+    "beats_scanner": "value exact of v3 >= value exact of the playground scanner `findEnglishValue` (playground/src/app/amount.ts, run via experiments/gidi-en-student-v3/app_scanner.ts) on test primary, test secondary and the slang probe. Gating on `core_exact` (currency symbols and money words stripped from both spans, because the scanner by design returns the number without them while the annotation convention keeps them); `exact` (strict, span equal to the gold span) is reported next to it. Both are reported for every set.",
+    "int8_max_bytes": 30000000,
+    "rule": "all conditions must hold; PASS or FAIL is reported as is. No threshold, data, seed, decode or label change after seeing any v3 score."
+  },
+  "circularity_caveat": "Labeler A (regex scan) and the playground scanner are both deterministic rule scans for the same amount shapes, and notes where A and Clef agree (97.5%) were never reviewed by a human or by Claude, so the labels favour rule-like behaviour and the scanner comparison is optimistic for the scanner on consensus notes. Reported per set and for the adjudicated subset.",
+  "reported_not_gating": ["unsnapped value scores", "fp32 vs int8", "strict scanner exact", "genz_probe", "dev", "per-category value errors", "full joint (type + target + value)"]
+}

@@ -1,0 +1,18 @@
+{
+  "init": "models/gidi-en-v1-init",
+  "out_dir": "experiments/gidi-en-student-v3/control-v2/runs",
+  "weights_dir": "/tmp/gidi-en-v2-control/w",
+  "seed": "1",
+  "epochs": "40",
+  "batch_size": "8",
+  "lr": "5e-05",
+  "head_lr": "0.001",
+  "warmup_ratio": "0.1",
+  "weight_decay": "0.01",
+  "max_grad_norm": "1.0",
+  "device": "mps",
+  "slang_silver": "True",
+  "value": "False",
+  "max_steps": "None",
+  "n_train": 2355
+}
