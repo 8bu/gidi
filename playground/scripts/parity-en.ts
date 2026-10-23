@@ -1,11 +1,14 @@
 /**
- * Parity gate for the English model (`gidi-en-v2`): the browser runtime (onnxruntime-web wasm EP,
- * the code the app runs) against the Python reference dumped by `scripts/dump_web_parity_en.py`.
+ * Parity gate for the English models (`gidi-en-v4` by default, `gidi-en-v2` when its dump exists):
+ * the browser runtime (onnxruntime-web wasm EP, the code the app runs) against the Python
+ * reference dumped by `scripts/dump_web_parity_en.py`.
  *
- * Same contract as `parity.ts` for the Vietnamese bundle, minus the value stages (the English
- * bundle has no value): NFC text and offset maps, token ids / offsets / special mask, the
- * ORT logits (reported as max |delta|), BIO tags, type, the word-snapped target span, original
- * offsets, and confidences within 1e-4.
+ * Same contract as `parity.ts` for the Vietnamese bundle: NFC text and offset maps, token ids /
+ * offsets / special mask, the ORT logits (reported as max |delta|), BIO tags, type, the
+ * word-snapped target span, original offsets, and confidences within 1e-4. For a bundle with a
+ * value head (gidi-en-v4) also the value tags, the snapped value span and its confidence; a
+ * bundle without value (gidi-en-v2) must give no value at all. The tokenizer is the one the
+ * bundle's `tokenizer_type` names (byte-level BPE or WordPiece).
  *
  * Gate (exit code): the tokenizer sweep, every input stage (NFC, ids, offsets, masks), and the
  * decoder fed the Python reference logits must be exact. The ORT logits themselves are only
@@ -13,12 +16,14 @@
  * property documented in experiments/deployment-v4/web-parity.md), so some confidences move
  * and a few decisions flip; they are counted and listed, not gated.
  *
- *     uv run python scripts/dump_web_parity_en.py
- *     pnpm -C playground parity:en
+ *     uv run python scripts/dump_web_parity_en.py                 # models/gidi-en-v4-bundle
+ *     uv run python scripts/dump_web_parity_en.py --bundle models/gidi-en-v2-bundle   # optional
+ *     pnpm -C playground parity:en                  # every dump under .parity/gidi-en-*
+ *     pnpm -C playground parity:en .parity/gidi-en-v4-bundle
  */
 
 import { createHash } from "node:crypto"
-import { readFileSync } from "node:fs"
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs"
 import { dirname, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 
@@ -38,12 +43,12 @@ import {
   normalizeNfc,
   startToOriginal,
 } from "../src/runtime/text.ts"
-import { BundleTokenizer } from "../src/runtime/tokenizer.ts"
+import { createTokenizer } from "../src/runtime/tokenizer.ts"
 import type { Prediction } from "../src/runtime/types.ts"
 
 const here = dirname(fileURLToPath(import.meta.url))
 const root = resolve(here, "../..")
-const parityDir = resolve(here, "../.parity/en")
+const parityRoot = resolve(here, "../.parity")
 const CONFIDENCE_TOLERANCE = 1e-4
 const INPUT_STAGES = new Set([
   "nfc_text",
@@ -67,6 +72,8 @@ interface Trace {
   type_logits: number[]
   tag_logits: number[][]
   target_tags: number[]
+  value_logits?: number[][]
+  value_tags?: number[]
 }
 
 interface Case {
@@ -139,21 +146,32 @@ function stages(
     ["target_span", e.target_span, p.target_span],
     ["original_offsets", t.original_offsets, a.originalOffsets],
     ["model_version", e.model_version, p.model_version],
-    [
-      "no_value",
-      [null, null, null],
-      [p.value_text, p.value_span, p.value_confidence],
-    ],
+    ...(t.value_tags === undefined
+      ? ([
+          [
+            "no_value",
+            [null, null, null],
+            [p.value_text, p.value_span, p.value_confidence],
+          ],
+        ] as [string, unknown, unknown][])
+      : ([
+          ["value_bio_tags", t.value_tags, a.valueTags],
+          ["value_text", e.value_text, p.value_text],
+          ["value_span", e.value_span, p.value_span],
+        ] as [string, unknown, unknown][])),
   ]
 }
 
 const confidenceDelta = (a: Analysis, e: Prediction): number =>
   Math.max(
     Math.abs(a.prediction.type_confidence - e.type_confidence),
-    Math.abs(a.prediction.target_confidence - e.target_confidence)
+    Math.abs(a.prediction.target_confidence - e.target_confidence),
+    e.value_confidence === null || a.prediction.value_confidence === null
+      ? 0
+      : Math.abs(a.prediction.value_confidence - e.value_confidence)
   )
 
-async function main(): Promise<number> {
+async function check(parityDir: string): Promise<number> {
   const meta = JSON.parse(
     readFileSync(resolve(parityDir, "meta.json"), "utf8")
   ) as {
@@ -178,13 +196,16 @@ async function main(): Promise<number> {
     return 1
   }
   const config = parseConfig(JSON.parse(configBytes.toString("utf8")))
-  if (config.valueSource !== "none") {
-    console.error("the English bundle must declare no value")
+  if (config.valueSource === "rule-parser") {
+    console.error(
+      "an English bundle has a value head or no value, not the rule parser"
+    )
     return 1
   }
-  const tokenizer = new BundleTokenizer(
+  const tokenizer = createTokenizer(
     JSON.parse(tokenizerBytes.toString("utf8")),
-    config.maxLength
+    config.maxLength,
+    config.tokenizerType
   )
 
   // Tokenizer alone over the code-point sweep.
@@ -242,6 +263,8 @@ async function main(): Promise<number> {
   let ortFlips = 0
   const flipList: string[] = []
   const shown: string[] = []
+  // The browser runtime's own decisions, scored against gold by scripts/score_web_parity_en.py.
+  const webPredictions: string[] = []
 
   for (const rec of records) {
     const row = (bySource[rec.source] ??= {
@@ -270,6 +293,13 @@ async function main(): Promise<number> {
     const stage = tokenize(tokenizer, rec.text)
     const logits = await runner.run(stage.tokens.ids, stage.attentionMask)
     const a = decodeLogits(config, stage, logits)
+    webPredictions.push(
+      JSON.stringify({
+        source: rec.source,
+        id: rec.id,
+        prediction: a.prediction,
+      })
+    )
     const t = rec.trace
     const e = rec.expected
     const all = stages(a, t, e).filter(([, py, ts]) => !same(py, ts))
@@ -285,7 +315,10 @@ async function main(): Promise<number> {
     }
     const delta = Math.max(
       maxAbs(a.logits.typeLogits, t.type_logits),
-      maxAbs(a.logits.tagLogits, t.tag_logits.flat())
+      maxAbs(a.logits.tagLogits, t.tag_logits.flat()),
+      a.logits.valueLogits === undefined || t.value_logits === undefined
+        ? 0
+        : maxAbs(a.logits.valueLogits, t.value_logits.flat())
     )
     row.logit = Math.max(row.logit, delta)
     if (Number.isFinite(delta)) logitDelta = Math.max(logitDelta, delta)
@@ -309,6 +342,9 @@ async function main(): Promise<number> {
     const reference: ModelOutputs = {
       typeLogits: Float32Array.from(t.type_logits),
       tagLogits: Float32Array.from(t.tag_logits.flat()),
+      ...(t.value_logits === undefined
+        ? {}
+        : { valueLogits: Float32Array.from(t.value_logits.flat()) }),
     }
     const onRef = decodeLogits(config, stage, reference)
     const refConf = confidenceDelta(onRef, e)
@@ -323,11 +359,16 @@ async function main(): Promise<number> {
     }
   }
   await runner.dispose()
+  writeFileSync(
+    resolve(parityDir, "web-predictions.jsonl"),
+    webPredictions.join("\n") + "\n"
+  )
 
   const failures =
     sweepBad + Object.values(bySource).reduce((s, r) => s + r.bad + r.refBad, 0)
   console.log(
-    `gidi-en-v2 web parity  (sweep ${sweep.length}, notes ${records.length})`
+    `${config.modelVersion} web parity  (${config.tokenizerType} tokenizer, value ${config.valueSource}; ` +
+      `sweep ${sweep.length}, notes ${records.length})`
   )
   console.log(
     `  sweep strings: ${sweep.length - sweepBad}/${sweep.length} identical tokenization`
@@ -360,6 +401,26 @@ async function main(): Promise<number> {
     console.log("  failing stages:", JSON.stringify(failing))
   console.log(failures === 0 ? "PASS" : `FAIL (${failures})`)
   return failures === 0 ? 0 : 1
+}
+
+/** Dump directories to check: the arguments, or every `.parity/gidi-en-*` that has a dump. */
+function dumpDirs(args: string[]): string[] {
+  if (args.length > 0) return args.map((dir) => resolve(dir))
+  return readdirSync(parityRoot)
+    .filter((name) => name.startsWith("gidi-en-"))
+    .map((name) => resolve(parityRoot, name))
+    .filter((dir) => existsSync(resolve(dir, "meta.json")))
+}
+
+async function main(): Promise<number> {
+  const dirs = dumpDirs(process.argv.slice(2))
+  if (dirs.length === 0) {
+    console.error("no dump found: run scripts/dump_web_parity_en.py first")
+    return 1
+  }
+  let code = 0
+  for (const dir of dirs) code = Math.max(code, await check(dir))
+  return code
 }
 
 process.exitCode = await main()

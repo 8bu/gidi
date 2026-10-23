@@ -7,10 +7,15 @@
  * Pure and dependency-free so `manifest.test.ts` can run every rollout case under node.
  */
 
+import type { TokenizerType } from "./tokenizer.ts"
+
 /** Shape of the manifest this client understands. */
 export const MANIFEST_SCHEMA = 1
-/** Bump with a client change that older manifests must not reach (`min_client`). */
-export const CLIENT_VERSION = 1
+/**
+ * Bump with a client change that older manifests must not reach (`min_client`). 2: WordPiece
+ * tokenizer and value head (gidi-en-v4); older code cannot run that model.
+ */
+export const CLIENT_VERSION = 2
 
 export interface ReleasePart {
   url: string
@@ -23,6 +28,8 @@ export interface ReleaseEntry {
   sha256: string
   size_bytes: number
   onnx_opset: number | null
+  /** The bundle's `tokenizer_type` (`bpe` when a release does not say). */
+  tokenizer_type: TokenizerType
   /** Directory of `config.json` and `tokenizer.json` (immutable, versioned). */
   base: string
   parts: ReleasePart[]
@@ -83,12 +90,15 @@ export function parseRelease(raw: unknown): ReleaseEntry | null {
   ) {
     return null
   }
+  const tokenizerType = raw.tokenizer_type ?? "bpe"
+  if (tokenizerType !== "bpe" && tokenizerType !== "wordpiece") return null
   return {
     id: raw.id,
     version: raw.version,
     sha256: raw.sha256,
     size_bytes: raw.size_bytes as number,
     onnx_opset: typeof raw.onnx_opset === "number" ? raw.onnx_opset : null,
+    tokenizer_type: tokenizerType,
     base: raw.base,
     parts,
   }

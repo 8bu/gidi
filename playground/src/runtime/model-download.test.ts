@@ -35,6 +35,7 @@ const releaseFor = (list: ModelPart[]): ReleaseEntry => ({
   sha256: SHA,
   size_bytes: 1000,
   onnx_opset: 17,
+  tokenizer_type: "bpe",
   base: "/release/fam/1",
   parts: list.map((p) => ({ url: p.url, size_bytes: p.size })),
 })

@@ -37,7 +37,7 @@ export async function createOrtRunner(
     )
   }
   const [inputName, maskName] = config.inputNames
-  const [typeName, tagName] = config.outputNames
+  const [typeName, tagName, valueName] = config.outputNames
 
   return {
     backend: "onnxruntime-web (wasm)",
@@ -60,6 +60,9 @@ export async function createOrtRunner(
       const outputs: ModelOutputs = {
         typeLogits: Float32Array.from(get(typeName)),
         tagLogits: Float32Array.from(get(tagName)),
+        ...(config.valueSource === "head"
+          ? { valueLogits: Float32Array.from(get(valueName)) }
+          : {}),
       }
       for (const tensor of Object.values(out)) tensor.dispose()
       return outputs

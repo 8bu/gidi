@@ -72,6 +72,7 @@ async function sync({ id, version, bundle }) {
     sha256: model.sha256,
     size_bytes: model.bytes,
     onnx_opset: config.onnx?.opset ?? null,
+    tokenizer_type: config.tokenizer_type ?? "bpe",
     base: `/release/${id}/${version}`,
     parts,
   }

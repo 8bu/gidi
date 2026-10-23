@@ -18,6 +18,7 @@ const release = (
   sha256: sha,
   size_bytes: 10,
   onnx_opset: 17,
+  tokenizer_type: "bpe",
   base: `/release/fam/${version}`,
   parts: [{ url: `/models/fam/${version}/model.int8.onnx.01`, size_bytes: 10 }],
 })

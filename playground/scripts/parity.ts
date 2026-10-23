@@ -48,7 +48,10 @@ import {
   normalizeNfc,
   startToOriginal,
 } from "../src/runtime/text.ts"
-import { BundleTokenizer } from "../src/runtime/tokenizer.ts"
+import {
+  createTokenizer,
+  type BundleTokenizer,
+} from "../src/runtime/tokenizer.ts"
 import type { Prediction } from "../src/runtime/types.ts"
 
 const here = dirname(fileURLToPath(import.meta.url))
@@ -347,9 +350,10 @@ async function main(): Promise<number> {
   }
 
   const config = parseConfig(JSON.parse(configBytes.toString("utf8")))
-  const tokenizer = new BundleTokenizer(
+  const tokenizer = createTokenizer(
     JSON.parse(tokenizerBytes.toString("utf8")),
-    config.maxLength
+    config.maxLength,
+    config.tokenizerType
   )
 
   // --- Unicode tables and the code-point sweep (no model) --------------------------------------

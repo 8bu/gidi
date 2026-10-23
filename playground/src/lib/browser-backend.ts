@@ -112,6 +112,7 @@ export async function loadBrowserPredictor(
       modelSha256: run.sha256,
       modelVersion: run.id,
       releaseVersion: run.version,
+      tokenizerType: run.tokenizer_type,
       store: { name: resolved.cacheName, release: run },
       onProgress: (loaded, total) =>
         onProgress({ loaded, total: total ?? run.size_bytes }),

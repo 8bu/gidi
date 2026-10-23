@@ -159,3 +159,86 @@ export function targetConfidence(
   })
   return min === Infinity ? 1.0 : Math.exp(min)
 }
+
+/**
+ * Every BIO span in token order, by the same rule as `decodeFirstSpan`: a `B` starts a new span,
+ * an `I` extends the current span (or starts one after an `O`), an `O` ends it. Port of
+ * `gidi.inference.decode.decode_all_spans`.
+ */
+export function decodeAllSpans(
+  offsets: readonly (readonly [number, number])[],
+  tagIds: readonly number[],
+  text: readonly number[]
+): DecodedSpan[] {
+  const spans: DecodedSpan[] = []
+  let start: number | null = null
+  let end = 0
+  let members: number[] = []
+  const flush = (): void => {
+    if (start !== null) spans.push({ start, end, members })
+    start = null
+    end = 0
+    members = []
+  }
+  for (let i = 0; i < Math.min(offsets.length, tagIds.length); i++) {
+    const [s, e] = trimSpan(text, offsets[i][0], offsets[i][1])
+    if (s >= e) continue
+    const tag = tagIds[i]
+    if (tag === TAG_B) {
+      flush()
+      start = s
+      end = e
+      members = [i]
+    } else if (tag === TAG_I) {
+      if (start === null) {
+        start = s
+        end = e
+        members = [i]
+      } else {
+        start = Math.min(start, s)
+        end = Math.max(end, e)
+        members.push(i)
+      }
+    } else {
+      flush()
+    }
+  }
+  flush()
+  return spans
+}
+
+/** Per-token argmax of the value head; `O` at the non-real (special) positions. */
+export function argmaxValueTags(
+  valueLogits: Float32Array,
+  real: readonly boolean[]
+): number[] {
+  return argmaxTags(valueLogits).map((tag, i) => (real[i] ? tag : TAG_O))
+}
+
+/**
+ * The value head's span and its confidence: per-token argmax over the real (non-special) tokens
+ * (`O` elsewhere), then the span with the highest `targetConfidence` (ties go to the earlier
+ * one); without a span the confidence is the minimum P(O). Port of
+ * `gidi.inference.decode.decode_value_argmax`.
+ */
+export function decodeValueArgmax(
+  valueLogits: Float32Array,
+  offsets: readonly (readonly [number, number])[],
+  text: readonly number[],
+  real: readonly boolean[]
+): [DecodedSpan | null, number] {
+  const tagIds = argmaxValueTags(valueLogits, real)
+  const spans = decodeAllSpans(offsets, tagIds, text)
+  if (spans.length === 0)
+    return [null, targetConfidence(valueLogits, tagIds, null, real)]
+  let best = 0
+  let bestConfidence = -Infinity
+  spans.forEach((span, k) => {
+    const confidence = targetConfidence(valueLogits, tagIds, span, real)
+    if (confidence > bestConfidence) {
+      best = k
+      bestConfidence = confidence
+    }
+  })
+  return [spans[best], bestConfidence]
+}

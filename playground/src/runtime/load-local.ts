@@ -9,7 +9,7 @@ import wasmUrl from "onnxruntime-web/ort-wasm-simd-threaded.wasm?url"
 import { parseConfig } from "./config.ts"
 import { createOrtRunner } from "./ort-runner.ts"
 import { createPredictor } from "./predictor.ts"
-import { BundleTokenizer } from "./tokenizer.ts"
+import { createTokenizer } from "./tokenizer.ts"
 import { fetchModel } from "./model-download.ts"
 import type { LoadOptions, WebPredictor } from "./types.ts"
 
@@ -29,6 +29,7 @@ export async function loadPredictorLocal(
     modelSha256,
     modelVersion,
     releaseVersion,
+    tokenizerType,
     store,
     onProgress,
     onDiagnostic,
@@ -46,7 +47,16 @@ export async function loadPredictorLocal(
       `the manifest lists ${modelVersion}, config.json is for ${config.modelVersion}`
     )
   }
-  const tokenizer = new BundleTokenizer(tokenizerJson, config.maxLength)
+  if (tokenizerType !== config.tokenizerType) {
+    throw new Error(
+      `the manifest lists a ${tokenizerType} tokenizer, config.json says ${config.tokenizerType}`
+    )
+  }
+  const tokenizer = createTokenizer(
+    tokenizerJson,
+    config.maxLength,
+    config.tokenizerType
+  )
 
   const model = await fetchModel(
     modelParts,

@@ -17,7 +17,8 @@ import {
   UPPER_RANGES,
 } from "./unicode-tables.ts"
 
-function inRanges(ranges: readonly number[], cp: number): boolean {
+/** Binary search in flat inclusive `[start, end]` ranges. */
+export function inRanges(ranges: readonly number[], cp: number): boolean {
   let lo = 0
   let hi = ranges.length / 2 - 1
   while (lo <= hi) {

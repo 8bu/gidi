@@ -10,6 +10,8 @@ import type { BundleConfig } from "./config.ts"
 import {
   argmaxTags,
   decodeFirstSpan,
+  argmaxValueTags,
+  decodeValueArgmax,
   type DecodedSpan,
   snapSpanToWords,
   targetConfidence,
@@ -30,6 +32,8 @@ import { EmptyInputError, type Prediction, type WebPredictor } from "./types.ts"
 export interface ModelOutputs {
   typeLogits: Float32Array // [num_types]
   tagLogits: Float32Array // [tokens, 3]
+  /** `[tokens, 3]` (O, B-VALUE, I-VALUE); only for a bundle with a value head. */
+  valueLogits?: Float32Array
 }
 
 export interface ModelRunner {
@@ -58,6 +62,8 @@ export interface Tokenization {
 export interface Analysis extends Tokenization {
   logits: ModelOutputs
   targetTags: number[]
+  /** Value head tags (`null` for a bundle without a value head). */
+  valueTags: number[] | null
   /** Per-token `[start, end)` in the caller's string (`[0, 0]` for specials). */
   originalOffsets: [number, number][]
   prediction: Prediction
@@ -112,10 +118,27 @@ export function decodeLogits(
   )
   const [target, targetSpan] = sliceOriginal(normalized, targetDecoded)
 
-  const value =
-    config.valueSource === "rule-parser"
-      ? parseNormalizedValue(normalized)
-      : null
+  let value: { text: string; start: number; end: number } | null = null
+  let valueConfidence: number | null = null
+  if (config.valueSource === "rule-parser") {
+    value = parseNormalizedValue(normalized)
+  } else if (config.valueSource === "head") {
+    if (logits.valueLogits === undefined)
+      throw new Error("the model did not return value_logits")
+    const [decoded, confidence] = decodeValueArgmax(
+      logits.valueLogits,
+      tokens.offsets,
+      normalized.cps,
+      real
+    )
+    const snapped = snapSpanToWords(decoded, normalized.cps)
+    const [text, span] = sliceOriginal(normalized, snapped)
+    value =
+      span === null
+        ? null
+        : { text: text as string, start: span[0], end: span[1] }
+    valueConfidence = confidence
+  }
 
   const originalOffsets = tokens.offsets.map(([s, e], i): [number, number] =>
     tokens.specialTokensMask[i] === 1
@@ -127,6 +150,10 @@ export function decodeLogits(
     logits,
     targetTags,
     originalOffsets,
+    valueTags:
+      config.valueSource === "head" && logits.valueLogits !== undefined
+        ? argmaxValueTags(logits.valueLogits, real)
+        : null,
     prediction: {
       type: config.types[typeIndex],
       type_confidence: typeConfidence,
@@ -135,7 +162,7 @@ export function decodeLogits(
       target_confidence: targetConf,
       value_text: value?.text ?? null,
       value_span: value ? [value.start, value.end] : null,
-      value_confidence: null,
+      value_confidence: valueConfidence,
       truncated: tokens.truncated,
       model_version: config.modelVersion,
     },
@@ -164,7 +191,7 @@ export function createPredictor(parts: PredictorParts): WebPredictor {
       architecture: config.architecture,
       precision: "int8",
       backend: runner.backend,
-      has_value: config.valueSource === "rule-parser",
+      has_value: config.valueSource !== "none",
     },
     predict(text) {
       const result = queue.then(

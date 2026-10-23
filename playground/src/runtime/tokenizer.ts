@@ -1,5 +1,10 @@
 /**
- * Byte-level BPE tokenizer for the bundle's `tokenizer.json`. Port of `gidi.inference.tokenizer`
+ * Tokenizers of the bundles' `tokenizer.json`. `BpeTokenizer` (this file) is the byte-level BPE
+ * of the roberta-based students (gidi-finance, gidi-en v2); `WordPieceTokenizer`
+ * (`wordpiece.ts`) is the uncased BERT WordPiece of gidi-en v4. `createTokenizer` picks one by
+ * the `tokenizer_type` of the bundle's `config.json` and checks it against the file.
+ *
+ * `BpeTokenizer`: port of `gidi.inference.tokenizer`
  * (the Hugging Face `tokenizers` crate configured for this model):
  *
  * - no normalizer (the caller applies NFC); offsets are code points of the string given;
@@ -15,6 +20,15 @@
  */
 
 import { toCodePoints } from "./text.ts"
+import { WordPieceTokenizer } from "./wordpiece.ts"
+
+export type TokenizerType = "bpe" | "wordpiece"
+
+/** What the predictor needs of a tokenizer: `[CLS] A [SEP]` ids with code point offsets. */
+export interface BundleTokenizer {
+  readonly maxLength: number
+  encode(cps: readonly number[]): TokenizedText
+}
 
 export interface TokenizedText {
   ids: number[]
@@ -207,7 +221,7 @@ class MergeQueue {
   }
 }
 
-export class BundleTokenizer {
+export class BpeTokenizer implements BundleTokenizer {
   readonly maxLength: number
   private readonly vocab: Map<string, number>
   private readonly merges = new Map<number, MergeEntry>()
@@ -220,7 +234,7 @@ export class BundleTokenizer {
   constructor(tokenizerJson: unknown, maxLength: number) {
     const tj = tokenizerJson as TokenizerJson
     this.maxLength = maxLength
-    BundleTokenizer.assertSupported(tj)
+    BpeTokenizer.assertSupported(tj)
 
     this.vocab = new Map(Object.entries(tj.model.vocab))
     this.vocabSize = Math.max(...this.vocab.values()) + 1
@@ -453,4 +467,22 @@ const SUPPORTED_PRE_TOKENIZER = {
       use_regex: false,
     },
   ],
+}
+
+/** The tokenizer of a bundle; `type` is `tokenizer_type` of its `config.json`. */
+export function createTokenizer(
+  tokenizerJson: unknown,
+  maxLength: number,
+  type: TokenizerType
+): BundleTokenizer {
+  const model = (tokenizerJson as { model?: { type?: string } } | null)?.model
+    ?.type
+  if (type === "wordpiece") {
+    if (model !== "WordPiece")
+      throw new Error(`tokenizer.json is ${model}, config.json says wordpiece`)
+    return new WordPieceTokenizer(tokenizerJson, maxLength)
+  }
+  if (model !== "BPE")
+    throw new Error(`tokenizer.json is ${model}, config.json says bpe`)
+  return new BpeTokenizer(tokenizerJson, maxLength)
 }

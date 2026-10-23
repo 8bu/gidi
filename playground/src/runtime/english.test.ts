@@ -6,9 +6,10 @@ import { test } from "node:test"
 import { parseConfig } from "./config.ts"
 import { snapToWords } from "./decode.ts"
 import { normalizeNfc, toCodePoints } from "./text.ts"
-import { BundleTokenizer } from "./tokenizer.ts"
+import { createTokenizer } from "./tokenizer.ts"
 
-// Written by `scripts/dump_web_parity_en.py --fixture` from the Python runtime on gidi-en-v2.
+// Written by `scripts/dump_web_parity_en.py --bundle models/gidi-en-v2-bundle --fixture` from the
+// Python runtime on gidi-en-v2 (the BPE English bundle).
 const fixture = JSON.parse(
   readFileSync(new URL("./english.fixture.json", import.meta.url), "utf8")
 ) as {
@@ -51,9 +52,10 @@ test(
       createHash("sha256").update(bytes).digest("hex"),
       fixture.tokenizer_sha256
     )
-    const tokenizer = new BundleTokenizer(
+    const tokenizer = createTokenizer(
       JSON.parse(bytes.toString("utf8")),
-      fixture.max_length
+      fixture.max_length,
+      "bpe"
     )
     for (const expected of fixture.tokens) {
       const encoded = tokenizer.encode(normalizeNfc(expected.text).cps)

@@ -1,6 +1,7 @@
 /** Public contract of the in-browser runtime. Mirrors `gidi.inference` (Python). */
 
 import type { ReleaseEntry } from "./manifest.ts"
+import type { TokenizerType } from "./tokenizer.ts"
 
 export interface PredictorInfo {
   model_version: string
@@ -9,7 +10,7 @@ export interface PredictorInfo {
   architecture: string
   precision: "int8"
   backend: string
-  /** `false` for a bundle without a value (English): `value_*` of every prediction is `null`. */
+  /** `false` for a bundle without a value (gidi-en v2): `value_*` of every prediction is `null`. */
   has_value: boolean
 }
 
@@ -32,6 +33,8 @@ export interface LoadOptions {
   /** `model_version` / `release_version` the files must declare (checked against config.json). */
   modelVersion: string
   releaseVersion: string
+  /** The release's tokenizer type; config.json must declare the same. */
+  tokenizerType: TokenizerType
   /** Where verified bytes are kept (Cache Storage) and the release they belong to. */
   store?: { name: string; release: ReleaseEntry }
   /** Non-fatal trouble (Cache Storage, ...): a stage tag and the error's name and message. */
@@ -43,7 +46,7 @@ export interface LoadOptions {
   signal?: AbortSignal
 }
 
-/** Exactly `gidi.inference.Prediction.to_dict()` of a v3 bundle (rule-parser value). */
+/** Exactly `gidi.inference.Prediction.to_dict()` of a bundle with a value (parser or head). */
 export interface Prediction {
   type: string
   type_confidence: number
@@ -53,8 +56,8 @@ export interface Prediction {
   target_confidence: number
   value_text: string | null
   value_span: [number, number] | null
-  /** Always `null`: the rule-based value parser has no confidence. */
-  value_confidence: null
+  /** `null` for the rule-based value parser (no confidence) and for a bundle without a value. */
+  value_confidence: number | null
   truncated: boolean
   model_version: string
 }

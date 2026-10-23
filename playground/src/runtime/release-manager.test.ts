@@ -16,6 +16,7 @@ const release = (version: string): ReleaseEntry => ({
   sha256: version.padEnd(64, "0"),
   size_bytes: 10,
   onnx_opset: 17,
+  tokenizer_type: "bpe",
   base: `/release/fam/${version}`,
   parts: [{ url: `/models/fam/${version}/model.int8.onnx.01`, size_bytes: 10 }],
 })
