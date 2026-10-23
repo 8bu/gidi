@@ -1,0 +1,37 @@
+{
+  "experiment": "gidi-en-deployment-v4",
+  "declared_before_packaging": true,
+  "version": "gidi-en-v4",
+  "annotation_config": "configs/annotation-en-v1.yaml",
+  "target_snap": "words",
+  "value_head": true,
+  "value_snap": "words",
+  "tokenizer_type": "wordpiece",
+  "init_source": "microsoft/MiniLM-L12-H384-uncased",
+  "layers_key": "encoder_layers_from_minilm_l12_h384",
+  "truncation": "tokens beyond max_length (incl. [CLS],[SEP]) dropped",
+  "scope": "packaging only: freeze the MiniLM-L12-H384 student (seed 1 of the gidi-en backbone bake-off, picked by experiments/gidi-en-student-v4/protocol.json) INT8 encoder (type + target + value) with its tokenizer into one bundle that declares the whole-word target and value snaps and the WordPiece tokenizer. No training, no seed change, no architecture, tokenizer or vocabulary change, no threshold change. models/gidi-en-bakeoff*, models/gidi-en-v2* are not modified.",
+  "architecture": "gidi-en-student-v4 seed 1: microsoft/MiniLM-L12-H384-uncased (MIT) derived 12x384 encoder (all 12 layers, FFN 1536, 33 position rows, vocabulary pruned to 20,500 uncased WordPiece rows, max_length 32), 40 epochs on silver labels (silver-train + labels-seed + consistent slang notes, 2,355 notes with silver value labels), type head (8 classes) + target BIO head + value BIO head (O/B-VALUE/I-VALUE, Linear(384, 3)), ONNX INT8 (dynamic, QInt8 weights).",
+  "source_experiment": "experiments/gidi-en-student-v4",
+  "source_checkpoint": "models/gidi-en-v4/seed1",
+  "source_onnx": "models/gidi-en-v4-onnx/seed1",
+  "init_report": "models/gidi-en-bakeoff/init/minilm/build_report.json",
+  "vocab_map": "models/gidi-en-bakeoff/init/minilm/vocab/vocab_map.json",
+  "bakeoff_run": "experiments/gidi-en-backbone-bakeoff/runs/minilm/seed1",
+  "seed": 1,
+  "seed_selection": {
+    "rule": "the better of the two bake-off MiniLM seeds by the dev-only composite declared in experiments/gidi-en-student-v4/protocol.json (seed 1: 0.8857, seed 2: 0.8747); seed 1 would also have won the tie fallback. No further training, no checkpoint selection.",
+    "no_weight_averaging_or_ensembling": true
+  },
+  "label_provenance": "silver-claude-clef-regex: there are no human labels for English. Every score is agreement with Claude, Clef and regex-scanner labels, not ground truth.",
+  "target_snap_rule": "the decoded first target span is extended outward to whole words (maximal non-whitespace runs, edge punctuation of the extension trimmed), exactly gidi.inference.decode.snap_to_words; it is a post-processing step outside the ONNX graph.",
+  "value_decoding_rule": "per-token argmax of value_logits over the non-special tokens, the span with the highest geometric-mean tag probability (ties to the earlier one), extended to whole words with the same snap as the target. Post-processing outside the ONNX graph, exactly what scripts/evaluate_en_value.py scored.",
+  "evaluation_sets_report_only": "test (primary, secondary), dev, datasets/probe-en-slang and datasets/probe-en-genz are used only to report quality. Numbers: experiments/gidi-en-student-v4/report.md.",
+  "acceptance_gate": [
+    "bundle reproducible (freeze_en_bundle --check byte-identical); every bundle file matches manifest.json",
+    "INT8 model is the ONNX that experiments/gidi-en-backbone-bakeoff/runs/minilm/seed1/results.json scored",
+    "release verify passes: hashes, runtime config, INT8 and FP32 smoke predictions",
+    "pnpm -C playground parity:en passes on the bundle (WordPiece tokenizer, value decode and snaps exact)"
+  ],
+  "on_gate_failure": "stop and report the blocker; no retraining, no seed change"
+}

@@ -1,0 +1,54 @@
+{
+  "experiment": "gidi-en-student-v4",
+  "written_before": "the seed was picked and before any v4 bundle, port or release file was built. The bake-off scores of both MiniLM seeds exist (experiments/gidi-en-backbone-bakeoff); this file fixes which number picks between them before it is computed.",
+  "scope": "ship the bake-off winner (MiniLM-L12-H384-uncased student, type + target + value heads, WordPiece uncased, vocabulary 20,500 rows) as gidi-en-v4 / release 4.0.0. No training, no new seed, no re-evaluation: the weights and every reported score are the bake-off's (experiments/gidi-en-backbone-bakeoff/runs/minilm/seed{1,2}).",
+  "label_provenance": "silver-claude-clef-regex, as gidi-en v3. Every number is agreement with silver labels, not human truth.",
+  "candidates": [
+    "models/gidi-en-bakeoff/minilm/seed1",
+    "models/gidi-en-bakeoff/minilm/seed2"
+  ],
+  "seed_rule": {
+    "statistic": "dev composite = arithmetic mean of four int8, snapped scores on the DEV split only (datasets/annotation-en-v1/splits/dev.jsonl, n=189): type macro-F1, target exact, joint (type and target both exact), value exact. It is the bake-off composite (mean of equally weighted type/target/joint/value scores) restricted to the one set that is neither the test split nor a probe; the bake-off's five parts are test-secondary and probe scores and are NOT used to pick.",
+    "decision": "the seed with the higher dev composite is the candidate. If the two dev composites are within 0.002 of each other (absolute difference <= 0.002), pick seed 1.",
+    "forbidden": "any test, probe or secondary score as an input to the choice; adding or re-training a seed; ensembling or weight averaging; checkpoint selection."
+  },
+  "release_naming": "model version gidi-en-v4, release 4.0.0 (docs/releasing.md section 9: MAJOR equals the model's vN).",
+  "bundle_contract": {
+    "tokenizer_type": "wordpiece (uncased BERT basic tokenizer + greedy longest-match WordPiece, [CLS] A [SEP], right truncation to max_length 32); the roberta/BPE bundles are type bpe.",
+    "outputs": [
+      "type_logits",
+      "tag_logits",
+      "value_logits"
+    ],
+    "value_decoding": "argmax over [O, B-VALUE, I-VALUE] per real token, the highest-confidence span (geometric mean of P(predicted tag) over its tokens, ties to the earlier span), extended to whole words (value_snap words), exactly the decode scripts/evaluate_en_value.py scored. No CRF.",
+    "target_snap": "words"
+  },
+  "acceptance_gate": [
+    "TS WordPiece tokenizer ids and offsets identical to the Python tokenizer on every test, dev and probe note and on the fuzz strings of the committed fixture",
+    "bundle reproducible (freeze_en_bundle --check byte-identical)",
+    "release verify passes (hashes, runtime config, INT8 and FP32 smoke predictions)",
+    "pnpm parity:en: tokenizer, decoder and word snap exact on the MiniLM bundle; ORT numerics reported"
+  ],
+  "seed_result": {
+    "computed_after_declaration": true,
+    "dev_composite": {
+      "seed1": 0.885732,
+      "seed2": 0.874712
+    },
+    "parts_seed1": {
+      "type_macro_f1": 0.886843,
+      "target_exact": 0.873016,
+      "joint": 0.798942,
+      "value_exact": 0.984127
+    },
+    "parts_seed2": {
+      "type_macro_f1": 0.879802,
+      "target_exact": 0.857143,
+      "joint": 0.783069,
+      "value_exact": 0.978836
+    },
+    "difference": 0.01102,
+    "chosen_seed": 1,
+    "reason": "seed 1 has the higher dev composite (+0.0110, more than the 0.002 tie band); not a tie fallback."
+  }
+}
