@@ -205,3 +205,25 @@ def decode_value_crf(
     """
     tag_ids = viterbi_masked(value_logits, real, crf, fill=TAG_O)
     return best_span_from_tags(value_logits, tag_ids, offsets, text, real)
+
+
+def decode_value_argmax(
+    value_logits: np.ndarray,
+    offsets: Sequence[tuple[int, int]],
+    text: str,
+    real: Sequence[bool],
+) -> tuple[DecodedSpan | None, float]:
+    """Value-head decoding without a CRF: per-token argmax tags, then ``best_span_from_tags``.
+
+    Non-special (``real``) positions take the argmax of ``value_logits``, every other position is
+    ``O``. This is the decode of ``gidi.modeling.value_decode.decode_value`` without a CRF, which
+    is what ``scripts/evaluate_en_value.py`` scored for gidi-en v3/v4.
+    """
+    tag_ids = argmax_value_tags(value_logits, real)
+    return best_span_from_tags(value_logits, tag_ids, offsets, text, real)
+
+
+def argmax_value_tags(value_logits: np.ndarray, real: Sequence[bool]) -> list[int]:
+    """Per-token argmax tag of the value head; ``O`` at the non-``real`` positions."""
+    best = np.asarray(value_logits).argmax(-1)
+    return [int(tag) if is_real else TAG_O for tag, is_real in zip(best, real, strict=True)]

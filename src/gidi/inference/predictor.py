@@ -12,6 +12,8 @@ from gidi.inference.bundle import (
     MODEL_FILE,
     TARGET_SNAP_WORDS,
     TOKENIZER_FILE,
+    VALUE_DECODING_ARGMAX,
+    VALUE_SNAP_WORDS,
     VALUE_SOURCE_RULE_PARSER,
     BundleConfig,
     BundleError,
@@ -21,7 +23,9 @@ from gidi.inference.crf import CRFTransitions, viterbi_masked
 from gidi.inference.decode import (
     TAG_O,
     DecodedSpan,
+    argmax_value_tags,
     decode_first_span,
+    decode_value_argmax,
     decode_value_crf,
     snap_span_to_words,
     target_confidence,
@@ -53,6 +57,7 @@ class GidiPredictor:
         self._snap_words = (
             config.target_snap == TARGET_SNAP_WORDS if snap_words is None else snap_words
         )
+        self._snap_value = config.value_snap == VALUE_SNAP_WORDS
         self._config = config
         self._tokenizer = tokenizer
         self._runner = runner
@@ -74,8 +79,12 @@ class GidiPredictor:
                 )
             self._parse_value = value_parser.parse_value
         self._crf: CRFTransitions | None = None
-        if config.value_decoding is not None:
+        if config.value_decoding is not None and config.value_decoding.method != (
+            VALUE_DECODING_ARGMAX
+        ):
             decoding = config.value_decoding
+            assert decoding.start is not None and decoding.end is not None
+            assert decoding.transitions is not None
             self._crf = CRFTransitions(
                 np.asarray(decoding.start, dtype=np.float64),
                 np.asarray(decoding.end, dtype=np.float64),
@@ -117,7 +126,10 @@ class GidiPredictor:
         value_tags = None
         if value_logits is not None:
             real = [not special for special in tokens.special_tokens_mask]
-            value_tags = tuple(viterbi_masked(value_logits, real, self._crf, fill=TAG_O))
+            if self._crf is None:
+                value_tags = tuple(argmax_value_tags(value_logits, real))
+            else:
+                value_tags = tuple(viterbi_masked(value_logits, real, self._crf, fill=TAG_O))
         return RawOutput(
             type_logits=type_logits,
             tag_logits=tag_logits,
@@ -144,9 +156,16 @@ class GidiPredictor:
         target, target_span = self._slice_original(text, normalized, target_decoded)
         value = None
         if value_logits is not None:
-            value_decoded, value_conf = decode_value_crf(
-                value_logits, tokens.offsets, normalized.text, real, self._crf
-            )
+            if self._crf is None:
+                value_decoded, value_conf = decode_value_argmax(
+                    value_logits, tokens.offsets, normalized.text, real
+                )
+            else:
+                value_decoded, value_conf = decode_value_crf(
+                    value_logits, tokens.offsets, normalized.text, real, self._crf
+                )
+            if self._snap_value:
+                value_decoded = snap_span_to_words(value_decoded, normalized.text)
             value_text, value_span = self._slice_original(text, normalized, value_decoded)
             value = ValuePrediction(text=value_text, span=value_span, confidence=value_conf)
         elif self._parse_value is not None:

@@ -25,6 +25,9 @@ VOCAB_MAP_FILE = "vocab_map.json"
 VALUE_LABELS = ("O", "B-VALUE", "I-VALUE")
 VALUE_OUTPUT = "value_logits"
 VALUE_DECODING_METHOD = "crf_viterbi"
+# The learned head of gidi-en v4 is decoded without a CRF: per-token argmax over the labels.
+VALUE_DECODING_ARGMAX = "argmax"
+VALUE_DECODING_METHODS = (VALUE_DECODING_METHOD, VALUE_DECODING_ARGMAX)
 VALUE_SPAN_SELECTION = "highest_confidence"
 
 # A v3 bundle has no value head: the value span comes from the rule parser, and the decoded
@@ -32,6 +35,14 @@ VALUE_SPAN_SELECTION = "highest_confidence"
 VALUE_SOURCE_RULE_PARSER = "rule-parser"
 VALUE_PARSER_NAME = "gidi.value_parser"
 TARGET_SNAP_WORDS = "words"
+# Optional: the decoded value span is extended to whole words too (``value_snap`` of config.json).
+VALUE_SNAP_WORDS = "words"
+
+# ``tokenizer.json`` family: byte-level BPE (roberta-based students, the default when the config
+# does not say) or uncased WordPiece (MiniLM-based gidi-en-v4, ``tokenizer_type`` in config.json).
+TOKENIZER_TYPE_BPE = "bpe"
+TOKENIZER_TYPE_WORDPIECE = "wordpiece"
+TOKENIZER_TYPES = (TOKENIZER_TYPE_BPE, TOKENIZER_TYPE_WORDPIECE)
 
 # Files whose sha256 the manifest lists under ``files`` (it cannot list itself).
 BUNDLE_FILES = (
@@ -49,14 +60,16 @@ class BundleError(ValueError):
 
 @dataclass(frozen=True)
 class ValueDecoding:
-    """CRF scores of the value head (``config.json`` ``value_decoding``).
+    """How the value head is decoded (``config.json`` ``value_decoding``).
 
-    ``transitions[i][j]`` scores tag ``i`` followed by tag ``j``; tags are ``VALUE_LABELS``.
+    ``crf_viterbi``: CRF scores; ``transitions[i][j]`` scores tag ``i`` followed by tag ``j``;
+    tags are ``VALUE_LABELS``. ``argmax``: no CRF, the three score fields are ``None``.
     """
 
-    start: tuple[float, ...]
-    end: tuple[float, ...]
-    transitions: tuple[tuple[float, ...], ...]
+    method: str
+    start: tuple[float, ...] | None
+    end: tuple[float, ...] | None
+    transitions: tuple[tuple[float, ...], ...] | None
 
 
 @dataclass(frozen=True)
@@ -77,6 +90,9 @@ class BundleConfig:
     value_source: str | None = None
     value_parser_version: str | None = None
     target_snap: str | None = None
+    # ``"words"``: the decoded value span is extended to whole words (gidi-en v4); ``None``: not.
+    value_snap: str | None = None
+    tokenizer_type: str = TOKENIZER_TYPE_BPE
 
 
 def sha256_file(path: str | Path) -> str:
@@ -108,15 +124,21 @@ def _parse_value_decoding(block: Any) -> ValueDecoding:
     """Validate the ``value_decoding`` block of a bundle that has a value head."""
     if not isinstance(block, dict):
         raise BundleError("a bundle with value_labels needs a value_decoding object")
-    if block.get("method") != VALUE_DECODING_METHOD:
-        raise BundleError(f"value_decoding.method must be {VALUE_DECODING_METHOD!r}")
+    method = block.get("method")
+    if method not in VALUE_DECODING_METHODS:
+        raise BundleError(f"value_decoding.method must be one of {VALUE_DECODING_METHODS!r}")
     if block.get("span_selection") != VALUE_SPAN_SELECTION:
         raise BundleError(f"value_decoding.span_selection must be {VALUE_SPAN_SELECTION!r}")
+    if method == VALUE_DECODING_ARGMAX:
+        if any(key in block for key in ("start_transitions", "end_transitions", "transitions")):
+            raise BundleError("value_decoding argmax takes no CRF transitions")
+        return ValueDecoding(method, None, None, None)
     size = len(VALUE_LABELS)
     rows = block.get("transitions")
     if not isinstance(rows, list) or len(rows) != size:
         raise BundleError(f"value_decoding.transitions must be a {size}x{size} matrix")
     return ValueDecoding(
+        method=method,
         start=_finite_numbers(block.get("start_transitions"), size, "start_transitions"),
         end=_finite_numbers(block.get("end_transitions"), size, "end_transitions"),
         transitions=tuple(_finite_numbers(row, size, "transitions") for row in rows),
@@ -124,13 +146,22 @@ def _parse_value_decoding(block: Any) -> ValueDecoding:
 
 
 def _parse_runtime_rules(config: dict[str, Any]) -> dict[str, str | None]:
-    """Validate ``value_source``/``value_parser``/``target_snap`` of a v3-style bundle.
+    """Validate ``value_source``/``value_parser``/``target_snap``/``value_snap``/``tokenizer_type``.
 
-    Absent keys keep the v1/v2 behaviour (value from the CRF head if there is one, no snap).
+    Absent keys keep the v1/v2 behaviour (value from the CRF head if there is one, no snap, BPE).
     """
     source = config.get("value_source")
     parser = config.get("value_parser")
     snap = config.get("target_snap")
+    value_snap = config.get("value_snap")
+    tokenizer_type = config.get("tokenizer_type", TOKENIZER_TYPE_BPE)
+    if tokenizer_type not in TOKENIZER_TYPES:
+        raise BundleError(f"unsupported tokenizer_type {tokenizer_type!r}")
+    if value_snap not in (None, VALUE_SNAP_WORDS):
+        raise BundleError(f"unsupported value_snap {value_snap!r}")
+    if value_snap is not None and "value_labels" not in config:
+        raise BundleError("value_snap needs a value head (value_labels)")
+    common = {"value_snap": value_snap, "tokenizer_type": tokenizer_type}
     if source not in (None, VALUE_SOURCE_RULE_PARSER):
         raise BundleError(f"unsupported value_source {source!r}")
     if snap not in (None, TARGET_SNAP_WORDS):
@@ -138,13 +169,23 @@ def _parse_runtime_rules(config: dict[str, Any]) -> dict[str, str | None]:
     if source is None:
         if parser is not None:
             raise BundleError("value_parser needs value_source")
-        return {"value_source": None, "value_parser_version": None, "target_snap": snap}
+        return {
+            "value_source": None,
+            "value_parser_version": None,
+            "target_snap": snap,
+            **common,
+        }
     if "value_labels" in config:
         raise BundleError("value_source rule-parser excludes a value head (value_labels)")
     ok = isinstance(parser, dict) and parser.get("name") == VALUE_PARSER_NAME
     if not ok or not isinstance(parser.get("version"), str) or not parser["version"]:
         raise BundleError(f"value_parser must be {{name: {VALUE_PARSER_NAME!r}, version: str}}")
-    return {"value_source": source, "value_parser_version": parser["version"], "target_snap": snap}
+    return {
+        "value_source": source,
+        "value_parser_version": parser["version"],
+        "target_snap": snap,
+        **common,
+    }
 
 
 def load_config(bundle_dir: str | Path) -> BundleConfig:

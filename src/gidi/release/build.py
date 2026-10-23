@@ -104,11 +104,12 @@ def iso_timestamp(epoch: int | None) -> str | None:
 def runtime_from_config(config: Mapping[str, Any]) -> dict[str, Any]:
     """The manifest ``runtime`` block, derived only from the bundle ``config.json``.
 
-    A bundle with a value head (v2) records ``value_labels``/``value_decoding``. A rule-parser
-    bundle (v3, ``value_source`` in the config) has no head, so both are ``null``, and it adds
-    ``value_source``, ``value_parser`` and ``target_snap``. A bundle with neither (gidi-en) has no
-    value at all: both are ``null``, the prediction has no value keys, and only ``target_snap``
-    is added when the config sets it.
+    A bundle with a value head (v2) records ``value_labels``/``value_decoding``; one that also
+    sets ``value_snap`` (gidi-en-v4) adds ``target_snap``, ``value_snap`` and ``tokenizer_type``.
+    A rule-parser bundle (v3, ``value_source`` in the config) has no head, so both are ``null``,
+    and it adds ``value_source``, ``value_parser`` and ``target_snap``. A bundle with neither
+    (gidi-en-v2) has no value at all: both are ``null``, the prediction has no value keys, and
+    only ``target_snap`` is added when the config sets it.
     """
     try:
         onnx = config["onnx"]
@@ -126,6 +127,12 @@ def runtime_from_config(config: Mapping[str, Any]) -> dict[str, Any]:
                 "value_labels": list(config["value_labels"]),
                 "value_decoding": config["value_decoding"]["method"],
             }
+            if "value_snap" in config:
+                rules = {
+                    "target_snap": config["target_snap"],
+                    "value_snap": config["value_snap"],
+                    "tokenizer_type": config["tokenizer_type"],
+                }
         else:
             head = {"value_labels": None, "value_decoding": None}
             prediction_keys = PREDICTION_KEYS_NO_VALUE

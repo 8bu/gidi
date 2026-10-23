@@ -1,18 +1,24 @@
 #!/usr/bin/env python
-"""Freeze the English deployment bundle (``gidi-en-v2``) from the artifacts a protocol names.
+"""Freeze an English deployment bundle (``gidi-en-v2``, ``gidi-en-v4``) from a protocol's artifacts.
 
 Usage:
-    uv run python scripts/freeze_en_bundle.py --out models/gidi-en-v2-bundle \\
-        --protocol experiments/gidi-en-deployment-v2/protocol.json
-    uv run python scripts/freeze_en_bundle.py --out models/gidi-en-v2-bundle \\
-        --protocol experiments/gidi-en-deployment-v2/protocol.json --check
+    uv run python scripts/freeze_en_bundle.py --out models/gidi-en-v4-bundle \\
+        --protocol experiments/gidi-en-deployment-v4/protocol.json
+    uv run python scripts/freeze_en_bundle.py --out models/gidi-en-v4-bundle \\
+        --protocol experiments/gidi-en-deployment-v4/protocol.json --check
 
 Nothing is trained or re-exported: the INT8 ONNX, tokenizer and vocabulary map are byte copies of
 the source artifacts named in the protocol; ``config.json`` and ``manifest.json`` are derived from
-the checkpoint metadata and the files themselves. The bundle has no value head and no value
-parser (``config.json`` has neither ``value_labels`` nor ``value_source``) and declares
-``target_snap: "words"``. The freeze logic and the ``--check`` semantics are those of
-``scripts/freeze_deployment.py`` (a frozen bundle is never overwritten).
+the checkpoint metadata and the files themselves. Two bundle kinds, chosen by the protocol:
+
+* ``gidi-en-v2`` (roberta, byte-level BPE): no value head and no value parser (``config.json``
+  has neither ``value_labels`` nor ``value_source``), ``target_snap: "words"``.
+* ``gidi-en-v4`` (``"value_head": true``, MiniLM, uncased WordPiece): a third ONNX output
+  ``value_logits`` (labels O/B-VALUE/I-VALUE) decoded by per-token argmax, the highest-confidence
+  span, ``value_snap: "words"`` and ``tokenizer_type: "wordpiece"``.
+
+The freeze logic and the ``--check`` semantics are those of ``scripts/freeze_deployment.py`` (a
+frozen bundle is never overwritten).
 """
 
 from __future__ import annotations
@@ -47,6 +53,12 @@ from gidi.inference.bundle import (
     TARGET_SNAP_WORDS,
     TOKENIZER_CONFIG_FILE,
     TOKENIZER_FILE,
+    TOKENIZER_TYPE_WORDPIECE,
+    VALUE_DECODING_ARGMAX,
+    VALUE_LABELS,
+    VALUE_OUTPUT,
+    VALUE_SNAP_WORDS,
+    VALUE_SPAN_SELECTION,
     VOCAB_MAP_FILE,
 )
 from gidi.modeling.checkpoint import META_FILE, WEIGHTS_FILE
@@ -89,15 +101,20 @@ def build_bundle(out_dir: Path, created_at: str, protocol_path: Path = PROTOCOL)
         list(annotation["types"]) == list(TYPES),
         f"{annotation['version']} types differ from TYPES",
     )
-    _require(init_report["source"] == "roberta-base", "init source is not roberta-base")
+    value_head = bool(protocol.get("value_head", False))
+    init_source = protocol.get("init_source", "roberta-base")
+    _require(init_report["source"] == init_source, f"init source is not {init_source}")
     _require(hf_config["vocab_size"] == init_report["vocab_rows"], "vocab_size mismatch")
     _require(hf_config["max_position_embeddings"] == init_report["positions"], "position rows")
     _require(hf_config["intermediate_size"] == init_report["intermediate"], "ffn size mismatch")
+    outputs = (*OUTPUT_NAMES, VALUE_OUTPUT) if value_head else OUTPUT_NAMES
+    if value_head:
+        _require(tuple(meta.get("value_tags", ())) == VALUE_LABELS, "checkpoint value_tags differ")
+        _require("value" in meta.get("heads", ()), "checkpoint has no value head")
     for kind in ("onnx_int8", "onnx_fp32"):
         interface = _onnx_interface(sources[kind])
         _require(
-            tuple(interface["inputs"]) == INPUT_NAMES
-            and tuple(interface["outputs"]) == OUTPUT_NAMES,
+            tuple(interface["inputs"]) == INPUT_NAMES and tuple(interface["outputs"]) == outputs,
             f"unexpected {kind} ONNX interface {interface}",
         )
     interface = _onnx_interface(sources["onnx_int8"])
@@ -110,7 +127,9 @@ def build_bundle(out_dir: Path, created_at: str, protocol_path: Path = PROTOCOL)
         "ffn_intermediate": hf_config["intermediate_size"],
         "position_rows": hf_config["max_position_embeddings"],
         "vocab_size": hf_config["vocab_size"],
-        "encoder_layers_from_roberta_base": [layer_map[k] for k in sorted(layer_map, key=int)],
+        protocol.get("layers_key", "encoder_layers_from_roberta_base"): [
+            layer_map[k] for k in sorted(layer_map, key=int)
+        ],
     }
     config = {
         "model_version": protocol["version"],
@@ -122,8 +141,27 @@ def build_bundle(out_dir: Path, created_at: str, protocol_path: Path = PROTOCOL)
         "onnx": interface,
         "architecture": architecture,
         "normalization": "NFC",
-        "truncation": "tokens beyond max_length (incl. <s>,</s>) dropped",
+        "truncation": protocol.get(
+            "truncation", "tokens beyond max_length (incl. <s>,</s>) dropped"
+        ),
     }
+    value_rules: dict[str, object] = {}
+    if value_head:
+        value_rules = {
+            "value_labels": list(VALUE_LABELS),
+            "value_decoding": {
+                "method": VALUE_DECODING_ARGMAX,
+                "span_selection": VALUE_SPAN_SELECTION,
+            },
+            "value_snap": VALUE_SNAP_WORDS,
+            "tokenizer_type": TOKENIZER_TYPE_WORDPIECE,
+        }
+        _require(
+            protocol.get("tokenizer_type") == TOKENIZER_TYPE_WORDPIECE,
+            "a value-head bundle needs tokenizer_type wordpiece in the protocol",
+        )
+        # Keys after ``tags``/``target_snap`` so the v2 key order is untouched.
+        config = {**config, **value_rules}
 
     out_dir.mkdir(parents=True)
     for name, source in (
@@ -154,13 +192,14 @@ def build_bundle(out_dir: Path, created_at: str, protocol_path: Path = PROTOCOL)
             "positions": {"rows_after": init_report["positions"]},
             "vocab": {
                 "rows_after": init_report["vocab_rows"],
-                "policy": init_report["vocab_policy"],
+                "policy": init_report.get("vocab_policy") or init_report["vocab"]["policy"],
             },
             "ffn": {"intermediate_after": init_report["intermediate"]},
         },
         "architecture_summary": protocol["architecture"],
         "seed_selection": protocol["seed_selection"],
         "runtime_requirements": RUNTIME_REQUIREMENTS,
+        **value_rules,
         "int8_size_mb": files[MODEL_FILE]["bytes"] / 1e6,
         "files_total_bytes": total,
         "files_total_mb": total / 1e6,

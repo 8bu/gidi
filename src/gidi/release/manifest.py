@@ -65,14 +65,19 @@ _RUNTIME_KEYS = (
 # A bundle without a value head whose value span comes from the rule parser (gidi-finance-v3)
 # also records the decoding rules; ``value_labels`` and ``value_decoding`` are then ``null``.
 _RUNTIME_RULE_KEYS = ("value_source", "value_parser", "target_snap")
-# A bundle with no value at all (gidi-en) records only the word-snap setting.
+# A bundle with no value at all (gidi-en-v2) records only the word-snap setting.
 _RUNTIME_SNAP_KEYS = ("target_snap",)
+# A bundle with a value head decoded by argmax and snapped to words (gidi-en-v4) records both
+# snaps and the tokenizer family.
+_RUNTIME_HEAD_RULE_KEYS = ("target_snap", "value_snap", "tokenizer_type")
 
 
 def runtime_keys(runtime: Any) -> tuple[str, ...]:
     """The exact key tuple of a manifest ``runtime`` block (extra keys only when present)."""
     if isinstance(runtime, dict) and "value_source" in runtime:
         return (*_RUNTIME_KEYS, *_RUNTIME_RULE_KEYS)
+    if isinstance(runtime, dict) and "value_snap" in runtime:
+        return (*_RUNTIME_KEYS, *_RUNTIME_HEAD_RULE_KEYS)
     if (
         isinstance(runtime, dict)
         and "target_snap" in runtime
