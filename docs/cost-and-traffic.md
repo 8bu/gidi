@@ -212,12 +212,151 @@ projected $0.00, every line inside its included tier).
 | Queues, Vectorize | none | none |
 | Other | Hyperdrive `portal-hd`, `portf-hd-vps`; Pages project `uptimeflare-8bu`; zones `71.zone` and `8bu.dev`, both Free | Workers AI "Regular Twitch Neurons" 164.6 k, Email Service 16 sent, both $0.00 |
 
-Unexpected, not changed: (1) GraphQL attributes 116,260 requests and 541.6 s of CPU (about 33 % and 53 % of the
-account's 30-day Workers totals) to a script named `__unknown__`; the API does not say which Worker,
-[INFERENCE] a deleted script or a Pages Functions project (`uptimeflare-8bu`). (2) `portf-api`: 6,301 errors in
-7,929 requests this month (79 %). (3) Something on the account uses Workers AI (164.6 k neurons this cycle, shown
-as $0.00); the API does not say which Worker. None of these touches Gidi, and no line is billed. The wrangler
-OAuth token has no billing scope (`/subscriptions` answers 403), so the plan and invoices come from the dashboard.
+Unexpected on that day, since resolved in "Account audit 2026-10-22" below: (1) `__unknown__`, 116,260 requests and
+541.6 s of CPU (33 % and 53 % of the account's 30-day Workers totals), is the deleted `skive-8bu-dev` Worker; (2)
+`portf-api`'s 79 % errors are a cron trigger with no handler; (3) the 164.6 k Workers AI neurons are REST calls to
+`@cf/cloudflare/clef`. None of these touches Gidi, and no line is billed. The wrangler OAuth token has no billing
+scope (`/subscriptions` answers 403), so the plan and invoices come from the dashboard.
+
+## Account audit 2026-10-22
+
+Run 2026-10-23 (UTC), read-mostly: Cloudflare GraphQL (`workersInvocationsAdaptive`, `aiInferenceAdaptiveGroups`,
+`httpRequests*Groups`) and REST with the wrangler OAuth token, `wrangler tail`, and the dashboard (Billing ->
+Billable usage, Subscriptions, Invoices, WAF) in BrowserOS. GraphQL counts are adaptive (rounded to tens), window
+2026-09-23 to 2026-10-23. Billing cycle 13 Oct to 12 Nov, 11 of 31 days observed: **total $0.00, projected
+$0.00**, every line inside its included tier. The three items of the earlier check, resolved:
+
+| | what it is | owner project | cause |
+|---|---|---|---|
+| `__unknown__` | the deleted Worker `skive-8bu-dev`, an allowlist reverse proxy on `skive.8bu.dev` | `~/Projects/skive` (`wrangler.jsonc`: custom domain `skive.8bu.dev`) | one 9-hour burst on 2026-10-03, nothing since |
+| `portf-api` 79 % errors | Worker behind `8bu.dev/api/*` (chat, retrieve, blog, stats) | `~/Projects/8bu.dev/services/api` | a `*/5 * * * *` cron trigger with no `scheduled()` handler; user requests never errored |
+| 164.6 k neurons | not a Worker: REST calls to `@cf/cloudflare/clef` | `~/Projects/clef-browse-fast` (the `clef-browse` / `browser_task` MCP tool, created 2026-10-10) | an agent tool calling Workers AI with an account API token, about 800 calls a day |
+
+### 1. `__unknown__`: 116,450 requests, 550.6 s CPU (33 % and 53 % of the 30-day totals)
+
+- **All of it is 2026-10-03, 08:00 to 16:59 UTC** (peak 28.7 k requests in the 15:00 hour), 116,390 `success` and 60
+  `clientDisconnected`, about 4.7 ms CPU a request, nine script versions of one Worker. Nothing before or after.
+  Zero requests since, so it is not a live cost.
+- **Same day on the zone:** `8bu.dev` had 141,483 requests that day (normally 2,000 to 5,000); host `skive.8bu.dev`
+  alone had 103,527 answered 200, 9,640 answered 530 and 9,617 answered 302. Top paths are the proxied sites
+  (`/choigame/*`, `/gamevui2/*`, `/crazygamevn/*`, `/coolmath/*`, `/yaw/*`, `/lichess/*`) fetched by Chrome from VN
+  and IN, plus `ClaudeBot` and `GPTBot`. Nine version ids of `__unknown__` match no version of any live Worker.
+- **Why "unknown":** the script no longer exists (not in the Worker list; `skive.8bu.dev` no longer resolves), so
+  GraphQL has no name to give it [INFERENCE]. The repo's `wrangler.jsonc` names it `skive-8bu-dev`. After the burst the host
+  returned 530 for 5 to 9 k requests a day until the DNS record went away; the last 23 hours have none.
+- **Routes:** every route on `8bu.dev` points to an existing script (`portf-api`, `portf-web`,
+  `customer-portal-api`, `customer-portal-web`, `vldex-web`). There is no stale route and no dispatch namespace
+  (Workers for Platforms is not enabled on the account).
+- **Cost:** 116 k requests and 550 k CPU ms are 1.2 % and 1.8 % of the monthly allowance, $0.00. A day like that
+  10x is 1.2 M requests and 5.5 M CPU ms: still $0.00. 100x (11.6 M requests, 55 M CPU ms in a month) is about
+  $1.00 ($0.48 requests + $0.50 CPU).
+- **If it is ever redeployed,** give it `limits.cpu_ms` and a per-IP limit first: it was an open (allowlisted)
+  proxy whose traffic included AI crawlers.
+
+### 2. `portf-api`: 7,970 of 10,450 requests in 30 days were `scriptThrewException`
+
+- **Cause (seen with `wrangler tail`):** the event is `{"cron":"*/5 * * * *"}` and the exception is `Handler does
+  not export a scheduled() function`. The cron is on the deployed script (`GET .../scripts/portf-api/schedules`),
+  not in `wrangler.toml`, and nothing in the repo or its git history mentions it. 288 ticks a day is exactly the
+  250 to 300 daily exceptions since 2026-09-23. Every real request (about 2,470 in 30 days, mostly scanners
+  asking for `/api/.env`, `/api/v1/workflows` and the like, answered 404 by the app) was `success`.
+- **Fixed and deployed 2026-10-23** (8bu.dev repo, commit `dc64877`, version `a55ca576`): `[env.portf.triggers]
+  crons = []`; `schedules` is now empty. One more tick still fired at 10:35 UTC (trigger removal took a few
+  minutes to reach the scheduler); the 10:40 and 10:45 UTC five-minute buckets have none, where every bucket
+  before the deploy had one.
+- **Cost:** the failing ticks were 8.6 k invocations a month, $0.00; the problem was noise, not money.
+
+### 3. Workers AI: 180.4 k neurons in the cycle so far (164.6 k a day earlier), billed $0.00
+
+- **By model** (`aiInferenceAdaptiveGroups`, since 13 Oct): `@cf/cloudflare/clef` 8,913 calls with `requestSource` =
+  `rest api`, 8.45 M input tokens (output is not billed); a further 46 `llama-4-scout` calls (129,758 input
+  tokens, 13 Oct) from a binding. Clef lists $0.24 per M input tokens: 8.45 M tokens is $2.03, about 184 k
+  neurons at $0.011 per 1,000, which matches the dashboard's 180.44 k "Regular Twitch Neurons" within 2 %.
+  The 10-day run is 0.5 to 1.8 M tokens a day (about 0.7 M at present).
+- **Who:** a REST caller, so no Worker binding is involved [INFERENCE from `requestSource`, the model name, and the
+  start date: `clef-browse-fast` was created 2026-10-10 as "browser task runner for BrowserOS Neo with Clef
+  decisions" and reads `CLOUDFLARE_ACCOUNT_ID` / `CLOUDFLARE_AUTH_TOKEN`; the account's first clef and clef-flash
+  calls are 2026-10-10]. The API does not say which token.
+- **Workers with an `ai` binding:** `portf-api` (bge-m3 embeddings: 84 calls and 597 input tokens in 30 days,
+  negligible) and `71z-demos` (a few llama, gemma, mistral and glm calls on 10-10 to 10-13, under 160 k tokens;
+  its endpoints were not audited).
+- **Cost at the current rate:** about 0.7 M clef tokens a day = $0.17 a day, about $5 a month
+  before the free 10,000 neurons a day. 10x is about $50 a month, 100x about $500. Nothing on the account caps
+  Workers AI spend; the token is the only gate.
+
+### Public endpoint that can burn Workers AI: `portf-api` `POST /api/chat` and `POST /api/retrieve`
+
+- Both are public and unauthenticated; each call embeds the text (`@cf/baai/bge-m3`, $0.012 per M input tokens).
+  A 2,000-character body is at most about 700 tokens, so one call costs at most about $0.0000084; a chat turn
+  embeds at least twice. `/retrieve` also upserts a row into `unanswered` on a miss (an unbounded table).
+  `/api/blog` (5-minute in-isolate cache, Substack fetch) and `/api/stats` (three counts) cost no neurons.
+- **The existing limiter does not limit.** `wrangler.toml` binds `CHAT_LIMIT` (20 per 60 s) and the code treats
+  it as a hard gate, but measured on the live API from one IP: 30 sequential `/chat` calls, 64 sequential
+  `/retrieve` calls and 120 parallel `/retrieve` calls in 3.9 s were all `200`, none `429`. A throw-away Worker
+  with the same binding (limit 20, period 60) denied the 21st call inside one invocation but denied none of 40
+  separate requests. Cloudflare documents it: "Rate limits are approximate and apply separately in each Cloudflare
+  location. Requests can exceed your configured limit while counts update in the background"
+  (https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/), with Durable Objects as the strict option. The probe
+  Worker (`acct-audit-rl-probe`) was mine and is deleted.
+- **Worst case for the account, at 38 requests a second sustained (100 M a month):** about $30 in Workers requests
+  plus bge-m3 at the maximum body size about $840 less the free 10,000 neurons a day (about $3 a month), so
+  roughly $0.9 k; at 10x the current traffic (about 100 k requests a month) it is cents. Realistic exposure is
+  small because the API is only called by the site's own pages, but nothing stops a script.
+- **Changed:** `/retrieve` now runs behind the same limiter as `/chat` (commit `dc64877`, with a test); that
+  caps one client at roughly the binding's accuracy, not strictly. **Not changed (owner, zone rules):** `8bu.dev`
+  has no rate-limiting rule (WAF -> Rate limiting rules is empty); the Free plan allows one. A rule on
+  `http.request.uri.path in {"/api/chat" "/api/retrieve"}` and method POST, 10 requests per 10 s per IP, action
+  block, gives a strict, shared counter at no cost. I did not create it: the wrangler token has no zone-rules
+  scope and zone rules are the owner's call.
+
+### Other changes in `portf-api` (same commit and deploy)
+
+- `[env.portf.limits] cpu_ms = 500` (observed p99 is about 75 ms; the default is 30,000 ms). Wall-clock time
+  (SSE) is not limited.
+- Smoke after deploy, against production: `/api/healthz` 200 (`db: up`), `/api/stats` 200, `/api/blog` 200,
+  `/api/.env` 404, `POST /api/chat` 200 (SSE stream), `POST /api/retrieve` 200. API gates: typecheck, lint and
+  112 vitest tests pass; `wrangler deploy --dry-run` clean. The commit is local in `~/Projects/8bu.dev`
+  and not pushed (the branch already had an unpushed commit of yours and uncommitted `apps/web` edits, which I left).
+
+### Everything billable on the account
+
+Subscriptions (dashboard): **Workers Paid** (invoice 13 Oct: $5.00), **R2 Paid**, **Images Stream Basic**,
+**Realtime**, Zero Trust Teams Free; zones `71.zone` and `8bu.dev` on Free; payment methods on file: two cards. Invoices:
+13 Oct $5.00, 4 Oct $1.50, 13 Sep to 13 Apr $0.00, 13 Feb and 13 Jan $6.00 each. I could not attribute the 4 Oct $1.50
+(the invoice detail is a PDF) and the Images Stream Basic and Realtime plans show no usage line; the Images, Stream
+and AI Gateway dashboard pages did not render in a background tab and the token has no scope for them.
+
+| Product | Inventory | Usage this cycle (11 days) | Included, then price | 10x / 100x of a month at this rate |
+|---|---|---|---|---|
+| Workers requests | 18 Workers (`71zone` 129 k, `71z-demos` 38 k, `crewdoku` 16 k, `portf-web` 14 k, `portf-api` 10 k, `uptimeflare-8bu-worker` 8 k in 30 days) | 134.56 k | 10 M, then $0.30 / M | $0 / about $8 |
+| Workers CPU | same | 251.52 k ms | 30 M ms, then $0.02 / M ms | $0 / about $1 |
+| Workers AI | `portf-api`, `71z-demos` bindings; REST (clef) | 180.44 k neurons | 10 k a day, then $0.011 / 1,000 | about $50 / about $500 a month (clef at the current rate) |
+| R2 (9 buckets: `71media`, `71z-backups`, `camen-updates`, `customer-portal-branding`, `cvx`, `ght`, `gidi-models`, `obsidian-relay`, `sv-media`) | 2.34 GB stored | Class B 12.84 k, Class A 300, 0.52 GB-month | 10 M B, 1 M A, 10 GB-month; egress free | $0 / $0 |
+| D1 (`meet71-db`, `quet-web`, `uptimeflare-8bu`, `m8t-staging`) | 4 | 2.94 k rows written, 6.16 k read | 50 M written, 25 B read | $0 / $0 |
+| KV (`71z-demos-content`, `BOOKINGS`) | 2 | 290 writes, 2.81 k reads, 171 lists, 113 deletes | 1 M, 10 M | $0 / $0 |
+| Durable Objects | `cookdi_Room` (`cookdi`) | SQL storage 0 | 5 GB-month | $0 / $0 |
+| Email Service | sending enabled | 16 sent | 3,000 | $0 / $0 |
+| Queues, Vectorize, Tunnels | none | none | n/a | n/a |
+| Hyperdrive | `portal-hd`, `portf-hd-vps` | not metered | included on Paid | n/a |
+| Pages | `uptimeflare-8bu` (`uptime.8bu.dev`) | not shown separately in Billable usage | | [INFERENCE] Functions bill as Workers requests |
+| Images, Stream, AI Gateway, Zaraz, domain registrations | plan "Images Stream Basic" only | no billable line | flat plan | unknown (see above) |
+
+Workers crons: `portf-api` (now none), `uptimeflare-8bu-worker` (`*/5`, 8,270 invocations in 30 days, all
+`success`) and `customer-portal-api` (`*/15`, 2,760, all `success`). Observability at 100 % sampling with
+persisted logs: `71z-demos`, `customer-portal-api`, `cookdi` (Workers Logs events are billed past 20 M a month; at
+today's volume nothing). Of the eight Workers whose settings I read (`portf-api`, `portf-web`, `gidi`, `71zone`,
+`71z-demos`, `uptimeflare-8bu-worker`, `customer-portal-api`, `cookdi`) only `portf-api` has `limits.cpu_ms`, set today.
+
+### What remains for the owner
+
+1. Create the WAF rate-limiting rule above on `8bu.dev` (free plan, one rule), or replace `CHAT_LIMIT` with a
+   Durable Object limiter. Either makes the `portf-api` AI exposure strict.
+2. Confirm that `~/Projects/clef-browse-fast` is the caller; if so, put its token on a narrow scope (Workers AI read/run
+   only) and add a usage-based billing notification in Billing -> Notifications; AI spend has no other cap.
+3. Nothing was deleted. Candidates to review, none of them urgent: the `Images Stream Basic` and `Realtime`
+   subscriptions (they show no usage; find the $1.50 invoice of 4 Oct), Workers with almost no traffic in 30 days
+   (`vldex-web` 10 requests, `cookdi` 110), R2 `71z-backups` (1.27 GB, a backup) and `camen-updates` (0.79 GB).
+4. Push `~/Projects/8bu.dev` (commit `dc64877` is local) when `apps/web` is in a state to push.
 
 ## Sources
 
