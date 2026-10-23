@@ -73,9 +73,14 @@ def measure(label: str, config, opset: int = 17) -> dict:
         sess = make_session(fp32)
         with torch.inference_mode():
             t_ref, g_ref = model(ids, mask)
-        t, g = sess.run(["type_logits", "tag_logits"], {"input_ids": ids.numpy(), "attention_mask": mask.numpy()})
+        t, g = sess.run(
+            ["type_logits", "tag_logits"],
+            {"input_ids": ids.numpy(), "attention_mask": mask.numpy()},
+        )
         real = mask.bool().numpy()
-        diff = max(float(np.abs(t - t_ref.numpy()).max()), float(np.abs((g - g_ref.numpy())[real]).max()))
+        diff = max(
+            float(np.abs(t - t_ref.numpy()).max()), float(np.abs((g - g_ref.numpy())[real]).max())
+        )
         # shorter, unpadded input must also run (dynamic axes)
         sess.run(None, {"input_ids": ids.numpy()[:1, :9], "attention_mask": mask.numpy()[:1, :9]})
         graph_ops = ops(int8)
@@ -99,24 +104,73 @@ def main() -> int:
         try:
             results["candidates"][key] = measure(key, **kw)
             r = results["candidates"][key]
-            print(key, r["params"], r["int8_bytes"], r["ops_not_in_shipped"], r["fp32_parity_max_abs_diff"], flush=True)
+            print(
+                key,
+                r["params"],
+                r["int8_bytes"],
+                r["ops_not_in_shipped"],
+                r["fp32_parity_max_abs_diff"],
+                flush=True,
+            )
         except Exception as exc:  # recorded, not hidden
-            results["candidates"][key] = {"label": key, "error": f"{type(exc).__name__}: {exc}"[:3000]}
+            results["candidates"][key] = {
+                "label": key,
+                "error": f"{type(exc).__name__}: {exc}"[:3000],
+            }
             print(key, "ERROR", str(exc)[:500], flush=True)
         OUT.write_text(json.dumps(results, indent=1) + "\n")
 
-    rob = dict(num_hidden_layers=4, intermediate_size=2048, vocab_size=9000, max_position_embeddings=34)
+    rob = dict(
+        num_hidden_layers=4, intermediate_size=2048, vocab_size=9000, max_position_embeddings=34
+    )
     add("roberta-base (control)", config=hub_config("roberta-base", **rob))
 
-    k, _ = solve("distilbert/distilroberta-base", "intermediate_size", 64, 64, 3072, vocab_size=9000, max_position_embeddings=34)
+    k, _ = solve(
+        "distilbert/distilroberta-base",
+        "intermediate_size",
+        64,
+        64,
+        3072,
+        vocab_size=9000,
+        max_position_embeddings=34,
+    )
     results["distilroberta_ffn_k"] = k
-    add(f"distilroberta-base 6L K={k}", config=hub_config("distilbert/distilroberta-base", intermediate_size=k, vocab_size=9000, max_position_embeddings=34))
+    add(
+        f"distilroberta-base 6L K={k}",
+        config=hub_config(
+            "distilbert/distilroberta-base",
+            intermediate_size=k,
+            vocab_size=9000,
+            max_position_embeddings=34,
+        ),
+    )
 
-    v, _ = solve("microsoft/MiniLM-L12-H384-uncased", "vocab_size", 500, 9000, 30522, max_position_embeddings=33)
+    v, _ = solve(
+        "microsoft/MiniLM-L12-H384-uncased",
+        "vocab_size",
+        500,
+        9000,
+        30522,
+        max_position_embeddings=33,
+    )
     results["minilm_vocab_rows"] = v
-    add(f"MiniLM-L12-H384 12L vocab={v}", config=hub_config("microsoft/MiniLM-L12-H384-uncased", vocab_size=v, max_position_embeddings=33))
+    add(
+        f"MiniLM-L12-H384 12L vocab={v}",
+        config=hub_config(
+            "microsoft/MiniLM-L12-H384-uncased", vocab_size=v, max_position_embeddings=33
+        ),
+    )
 
-    add("electra-base-discriminator 4L K=2048 vocab=9000", config=hub_config("google/electra-base-discriminator", num_hidden_layers=4, intermediate_size=2048, vocab_size=9000, max_position_embeddings=33))
+    add(
+        "electra-base-discriminator 4L K=2048 vocab=9000",
+        config=hub_config(
+            "google/electra-base-discriminator",
+            num_hidden_layers=4,
+            intermediate_size=2048,
+            vocab_size=9000,
+            max_position_embeddings=33,
+        ),
+    )
 
     mb = hub_config("answerdotai/ModernBERT-base", num_hidden_layers=4, vocab_size=9000)
     if getattr(mb, "layer_types", None):

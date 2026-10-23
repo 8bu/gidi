@@ -123,7 +123,9 @@ def write_wordpiece_tokenizer(
             {
                 "kept_old_ids": kept,
                 "n_kept": len(kept),
-                "source_vocab_sha256": hashlib.sha256((hub_dir / "vocab.txt").read_bytes()).hexdigest(),
+                "source_vocab_sha256": hashlib.sha256(
+                    (hub_dir / "vocab.txt").read_bytes()
+                ).hexdigest(),
             }
         )
         + "\n"
@@ -152,7 +154,7 @@ def prune_word_rows(model: GidiMultiTaskModel, kept: list[int]) -> GidiMultiTask
 
 
 def agreement(full_tok, pruned_tok, texts: list[str]) -> dict:
-    """Notes that tokenize to the same pieces with the full and the pruned vocabulary, and [UNK]s."""
+    """Notes tokenized identically by the full and the pruned vocabulary, and the [UNK] count."""
     same = unk = pieces_full = pieces_pruned = 0
     for t in texts:
         a = full_tok.convert_ids_to_tokens(full_tok(t)["input_ids"])
@@ -207,13 +209,15 @@ def main(argv: list[str] | None = None) -> int:
         policy = f"B-rank-{rank_limit}-max{spec['rows']}+train"
         tokenizer, _ = load_vocab_spec(write_vocab_spec(args.out / "vocab", src_dir, kept, policy))
         model = prune_vocab(model, kept)
-        vocab_report = {"policy": policy, "rank_limit": rank_limit, "train_token_ids": len(train_ids)}
+        vocab_report = {
+            "policy": policy,
+            "rank_limit": rank_limit,
+            "train_token_ids": len(train_ids),
+        }
     else:
         hub = Path(snapshot_download(source, allow_patterns=["vocab.txt", "config.json"]))
         tokens = (hub / "vocab.txt").read_text(encoding="utf-8").splitlines()
-        full_tok = BertTokenizerFast(
-            vocab={t: i for i, t in enumerate(tokens)}, do_lower_case=True
-        )
+        full_tok = BertTokenizerFast(vocab={t: i for i, t in enumerate(tokens)}, do_lower_case=True)
         train_ids = set()
         for text in train_texts:
             train_ids.update(full_tok(text)["input_ids"])
