@@ -1,0 +1,1177 @@
+START roberta-base seed 2 Fri Oct 23 23:09:55 +07 2026
+2026-10-23 23:09:59,953 INFO value supervision on 2355 of 2355 training notes
+2026-10-23 23:09:59,953 INFO train 2355 notes (truncated 0, span truncated 0), dev 189
+/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/torch/autograd/graph.py:1072: UserWarning: index_put_with_accumulate_mps does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/Context.cpp:190.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2026-10-23 23:10:27,845 INFO epoch 1 step 295 loss 3.0000 dev type F1 0.419 span exact 0.450 value exact 0.815
+2026-10-23 23:10:51,415 INFO epoch 2 step 590 loss 1.4501 dev type F1 0.770 span exact 0.492 value exact 0.974
+2026-10-23 23:11:12,745 INFO epoch 3 step 885 loss 0.8729 dev type F1 0.809 span exact 0.587 value exact 0.979
+2026-10-23 23:11:34,167 INFO epoch 4 step 1180 loss 0.5996 dev type F1 0.828 span exact 0.571 value exact 0.979
+2026-10-23 23:11:55,397 INFO epoch 5 step 1475 loss 0.4251 dev type F1 0.786 span exact 0.778 value exact 0.995
+2026-10-23 23:12:16,580 INFO epoch 6 step 1770 loss 0.2887 dev type F1 0.821 span exact 0.767 value exact 0.989
+2026-10-23 23:12:37,941 INFO epoch 7 step 2065 loss 0.1942 dev type F1 0.800 span exact 0.778 value exact 0.989
+2026-10-23 23:12:59,259 INFO epoch 8 step 2360 loss 0.1285 dev type F1 0.838 span exact 0.762 value exact 0.989
+2026-10-23 23:13:20,610 INFO epoch 9 step 2655 loss 0.0903 dev type F1 0.852 span exact 0.767 value exact 0.989
+2026-10-23 23:13:42,120 INFO epoch 10 step 2950 loss 0.0724 dev type F1 0.828 span exact 0.794 value exact 0.989
+2026-10-23 23:14:03,615 INFO epoch 11 step 3245 loss 0.0561 dev type F1 0.845 span exact 0.794 value exact 0.989
+2026-10-23 23:14:24,948 INFO epoch 12 step 3540 loss 0.0412 dev type F1 0.805 span exact 0.799 value exact 0.989
+2026-10-23 23:14:46,236 INFO epoch 13 step 3835 loss 0.0357 dev type F1 0.829 span exact 0.746 value exact 0.995
+2026-10-23 23:15:07,442 INFO epoch 14 step 4130 loss 0.0229 dev type F1 0.813 span exact 0.820 value exact 0.995
+2026-10-23 23:15:28,668 INFO epoch 15 step 4425 loss 0.0142 dev type F1 0.822 span exact 0.783 value exact 0.989
+2026-10-23 23:15:49,831 INFO epoch 16 step 4720 loss 0.0185 dev type F1 0.826 span exact 0.810 value exact 0.989
+2026-10-23 23:16:11,341 INFO epoch 17 step 5015 loss 0.0172 dev type F1 0.829 span exact 0.794 value exact 0.989
+2026-10-23 23:16:32,657 INFO epoch 18 step 5310 loss 0.0108 dev type F1 0.829 span exact 0.804 value exact 0.995
+2026-10-23 23:16:54,130 INFO epoch 19 step 5605 loss 0.0083 dev type F1 0.855 span exact 0.778 value exact 0.989
+2026-10-23 23:17:15,762 INFO epoch 20 step 5900 loss 0.0110 dev type F1 0.864 span exact 0.810 value exact 0.984
+2026-10-23 23:17:36,850 INFO epoch 21 step 6195 loss 0.0081 dev type F1 0.841 span exact 0.810 value exact 0.989
+2026-10-23 23:18:04,860 INFO epoch 22 step 6490 loss 0.0139 dev type F1 0.816 span exact 0.799 value exact 0.995
+2026-10-23 23:18:26,666 INFO epoch 23 step 6785 loss 0.0057 dev type F1 0.802 span exact 0.799 value exact 0.995
+2026-10-23 23:18:48,203 INFO epoch 24 step 7080 loss 0.0112 dev type F1 0.818 span exact 0.820 value exact 0.989
+2026-10-23 23:19:09,654 INFO epoch 25 step 7375 loss 0.0102 dev type F1 0.823 span exact 0.820 value exact 0.989
+2026-10-23 23:19:31,084 INFO epoch 26 step 7670 loss 0.0080 dev type F1 0.858 span exact 0.815 value exact 0.995
+2026-10-23 23:19:52,269 INFO epoch 27 step 7965 loss 0.0022 dev type F1 0.829 span exact 0.788 value exact 0.995
+2026-10-23 23:20:13,593 INFO epoch 28 step 8260 loss 0.0022 dev type F1 0.828 span exact 0.804 value exact 0.989
+2026-10-23 23:20:34,740 INFO epoch 29 step 8555 loss 0.0028 dev type F1 0.853 span exact 0.804 value exact 0.995
+2026-10-23 23:20:55,926 INFO epoch 30 step 8850 loss 0.0019 dev type F1 0.835 span exact 0.794 value exact 0.995
+2026-10-23 23:21:20,179 INFO epoch 31 step 9145 loss 0.0037 dev type F1 0.833 span exact 0.820 value exact 0.995
+2026-10-23 23:21:41,788 INFO epoch 32 step 9440 loss 0.0012 dev type F1 0.858 span exact 0.820 value exact 0.995
+2026-10-23 23:22:03,329 INFO epoch 33 step 9735 loss 0.0027 dev type F1 0.831 span exact 0.831 value exact 0.995
+2026-10-23 23:22:24,812 INFO epoch 34 step 10030 loss 0.0014 dev type F1 0.834 span exact 0.831 value exact 0.995
+2026-10-23 23:22:46,329 INFO epoch 35 step 10325 loss 0.0031 dev type F1 0.828 span exact 0.825 value exact 0.995
+2026-10-23 23:23:07,655 INFO epoch 36 step 10620 loss 0.0018 dev type F1 0.842 span exact 0.836 value exact 0.995
+2026-10-23 23:23:29,246 INFO epoch 37 step 10915 loss 0.0005 dev type F1 0.830 span exact 0.825 value exact 0.995
+2026-10-23 23:23:54,137 INFO epoch 38 step 11210 loss 0.0004 dev type F1 0.830 span exact 0.831 value exact 0.995
+2026-10-23 23:24:18,478 INFO epoch 39 step 11505 loss 0.0019 dev type F1 0.835 span exact 0.825 value exact 0.995
+2026-10-23 23:24:44,595 INFO epoch 40 step 11800 loss 0.0011 dev type F1 0.835 span exact 0.825 value exact 0.995
+2026-10-23 23:24:44,878 INFO saved models/gidi-en-bakeoff/roberta-base/seed2
+W1023 23:24:51.548000 24394 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1023 23:24:51.914000 24394 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1023 23:24:51.915000 24394 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1023 23:24:51.915000 24394 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1023 23:24:51.915000 24394 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+exporter=dynamo outputs=['type_logits', 'tag_logits', 'value_logits'] parity max_abs_diff=4.58e-05 (value_logits 3.36e-05)
+size FP32 116.067 MB -> INT8 29.170 MB
+INT8 agreement type=1.000 tag=1.000 value=0.998
+report -> experiments/gidi-en-backbone-bakeoff/runs/roberta-base/seed2/export.json
+primary 214 type 0.932 target 0.897 value 0.991 (raw 0.991) scanner strict 0.935 core 0.967
+secondary 290 type 0.876 target 0.838 value 0.993 (raw 0.993) scanner strict 0.938 core 0.972
+dev 189 type 0.826 target 0.810 value 0.995 (raw 0.995) scanner strict 0.937 core 0.979
+slang_probe 357 type 0.905 target 0.832 value 0.978 (raw 0.978) scanner strict 0.160 core 0.849
+genz_probe 94 type 0.866 target 0.862 value 0.989 (raw 0.989) scanner strict 0.500 core 0.904
+{
+ "checks": {
+  "value_test_primary": {
+   "value": 0.9906542056074766,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_test_secondary": {
+   "value": 0.993103448275862,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_slang_probe": {
+   "value": 0.9775910364145658,
+   "min": 0.88,
+   "pass": true
+  },
+  "type_macro_f1_primary": {
+   "value": 0.9316247924453853,
+   "v2": 0.9560945199435602,
+   "min": 0.9460945199435602,
+   "pass": false
+  },
+  "target_exact_primary": {
+   "value": 0.897196261682243,
+   "v2": 0.8878504672897196,
+   "min": 0.8778504672897196,
+   "pass": true
+  },
+  "type_macro_f1_secondary": {
+   "value": 0.8764759635139042,
+   "v2": 0.902027048286045,
+   "min": 0.892027048286045,
+   "pass": false
+  },
+  "target_exact_secondary": {
+   "value": 0.8379310344827586,
+   "v2": 0.8344827586206897,
+   "min": 0.8244827586206896,
+   "pass": true
+  },
+  "type_macro_f1_slang_probe": {
+   "value": 0.9047391765962601,
+   "v2": 0.8902633735931321,
+   "min": 0.8802633735931321,
+   "pass": true
+  },
+  "target_exact_slang_probe": {
+   "value": 0.8319327731092437,
+   "v2": 0.834733893557423,
+   "min": 0.824733893557423,
+   "pass": true
+  },
+  "beats_scanner_core_primary": {
+   "model": 0.9906542056074766,
+   "scanner": 0.9672897196261683,
+   "pass": true
+  },
+  "beats_scanner_core_secondary": {
+   "model": 0.993103448275862,
+   "scanner": 0.9724137931034482,
+   "pass": true
+  },
+  "beats_scanner_core_slang_probe": {
+   "model": 0.9803921568627451,
+   "scanner": 0.8487394957983193,
+   "pass": true
+  },
+  "int8_size": {
+   "bytes": 29170088,
+   "max": 30000000,
+   "pass": true
+  }
+ },
+ "pass": false
+}
+DONE roberta-base seed 2 Fri Oct 23 23:25:04 +07 2026
+START roberta-base seed 3 Fri Oct 23 23:25:04 +07 2026
+2026-10-23 23:25:08,190 INFO value supervision on 2355 of 2355 training notes
+2026-10-23 23:25:08,190 INFO train 2355 notes (truncated 0, span truncated 0), dev 189
+/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/torch/autograd/graph.py:1072: UserWarning: index_put_with_accumulate_mps does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/Context.cpp:190.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2026-10-23 23:25:31,384 INFO epoch 1 step 295 loss 3.0697 dev type F1 0.466 span exact 0.450 value exact 0.841
+2026-10-23 23:25:52,825 INFO epoch 2 step 590 loss 1.4829 dev type F1 0.732 span exact 0.466 value exact 0.968
+2026-10-23 23:26:14,104 INFO epoch 3 step 885 loss 0.8651 dev type F1 0.782 span exact 0.540 value exact 0.979
+2026-10-23 23:26:35,569 INFO epoch 4 step 1180 loss 0.5946 dev type F1 0.809 span exact 0.714 value exact 0.989
+2026-10-23 23:26:56,864 INFO epoch 5 step 1475 loss 0.4239 dev type F1 0.777 span exact 0.709 value exact 0.989
+2026-10-23 23:27:18,270 INFO epoch 6 step 1770 loss 0.2691 dev type F1 0.828 span exact 0.741 value exact 0.995
+2026-10-23 23:27:39,683 INFO epoch 7 step 2065 loss 0.1924 dev type F1 0.821 span exact 0.762 value exact 0.989
+2026-10-23 23:28:04,642 INFO epoch 8 step 2360 loss 0.1405 dev type F1 0.841 span exact 0.746 value exact 0.995
+2026-10-23 23:28:26,488 INFO epoch 9 step 2655 loss 0.0917 dev type F1 0.822 span exact 0.815 value exact 0.995
+2026-10-23 23:28:48,209 INFO epoch 10 step 2950 loss 0.0688 dev type F1 0.842 span exact 0.799 value exact 0.989
+2026-10-23 23:29:09,570 INFO epoch 11 step 3245 loss 0.0548 dev type F1 0.829 span exact 0.804 value exact 0.989
+2026-10-23 23:29:30,850 INFO epoch 12 step 3540 loss 0.0425 dev type F1 0.835 span exact 0.788 value exact 0.989
+2026-10-23 23:29:52,141 INFO epoch 13 step 3835 loss 0.0303 dev type F1 0.816 span exact 0.762 value exact 0.995
+2026-10-23 23:30:13,727 INFO epoch 14 step 4130 loss 0.0267 dev type F1 0.831 span exact 0.825 value exact 0.995
+2026-10-23 23:30:35,132 INFO epoch 15 step 4425 loss 0.0207 dev type F1 0.835 span exact 0.825 value exact 0.995
+2026-10-23 23:30:56,646 INFO epoch 16 step 4720 loss 0.0155 dev type F1 0.813 span exact 0.799 value exact 0.995
+2026-10-23 23:31:18,128 INFO epoch 17 step 5015 loss 0.0189 dev type F1 0.837 span exact 0.815 value exact 0.995
+2026-10-23 23:31:39,662 INFO epoch 18 step 5310 loss 0.0105 dev type F1 0.839 span exact 0.783 value exact 0.995
+2026-10-23 23:32:01,083 INFO epoch 19 step 5605 loss 0.0134 dev type F1 0.830 span exact 0.804 value exact 0.989
+2026-10-23 23:32:22,455 INFO epoch 20 step 5900 loss 0.0071 dev type F1 0.838 span exact 0.820 value exact 0.995
+2026-10-23 23:32:44,101 INFO epoch 21 step 6195 loss 0.0141 dev type F1 0.845 span exact 0.841 value exact 0.995
+2026-10-23 23:33:05,752 INFO epoch 22 step 6490 loss 0.0133 dev type F1 0.851 span exact 0.841 value exact 0.989
+2026-10-23 23:33:27,100 INFO epoch 23 step 6785 loss 0.0151 dev type F1 0.849 span exact 0.841 value exact 0.989
+2026-10-23 23:33:48,541 INFO epoch 24 step 7080 loss 0.0089 dev type F1 0.859 span exact 0.831 value exact 0.995
+2026-10-23 23:34:09,905 INFO epoch 25 step 7375 loss 0.0050 dev type F1 0.866 span exact 0.804 value exact 0.995
+2026-10-23 23:34:31,252 INFO epoch 26 step 7670 loss 0.0061 dev type F1 0.839 span exact 0.825 value exact 0.995
+2026-10-23 23:34:52,712 INFO epoch 27 step 7965 loss 0.0052 dev type F1 0.860 span exact 0.825 value exact 0.995
+2026-10-23 23:35:14,020 INFO epoch 28 step 8260 loss 0.0050 dev type F1 0.836 span exact 0.831 value exact 0.995
+2026-10-23 23:35:35,380 INFO epoch 29 step 8555 loss 0.0026 dev type F1 0.838 span exact 0.831 value exact 0.989
+2026-10-23 23:35:56,700 INFO epoch 30 step 8850 loss 0.0026 dev type F1 0.851 span exact 0.820 value exact 1.000
+2026-10-23 23:36:18,143 INFO epoch 31 step 9145 loss 0.0024 dev type F1 0.820 span exact 0.831 value exact 1.000
+2026-10-23 23:36:39,533 INFO epoch 32 step 9440 loss 0.0015 dev type F1 0.850 span exact 0.841 value exact 1.000
+2026-10-23 23:37:00,814 INFO epoch 33 step 9735 loss 0.0011 dev type F1 0.844 span exact 0.820 value exact 1.000
+2026-10-23 23:37:22,234 INFO epoch 34 step 10030 loss 0.0024 dev type F1 0.833 span exact 0.815 value exact 1.000
+2026-10-23 23:37:43,441 INFO epoch 35 step 10325 loss 0.0022 dev type F1 0.842 span exact 0.831 value exact 1.000
+2026-10-23 23:38:04,983 INFO epoch 36 step 10620 loss 0.0011 dev type F1 0.842 span exact 0.825 value exact 1.000
+2026-10-23 23:38:26,359 INFO epoch 37 step 10915 loss 0.0009 dev type F1 0.851 span exact 0.831 value exact 1.000
+2026-10-23 23:38:47,781 INFO epoch 38 step 11210 loss 0.0007 dev type F1 0.839 span exact 0.841 value exact 1.000
+2026-10-23 23:39:09,145 INFO epoch 39 step 11505 loss 0.0014 dev type F1 0.848 span exact 0.841 value exact 1.000
+2026-10-23 23:39:30,675 INFO epoch 40 step 11800 loss 0.0008 dev type F1 0.851 span exact 0.847 value exact 1.000
+2026-10-23 23:39:31,008 INFO saved models/gidi-en-bakeoff/roberta-base/seed3
+W1023 23:39:37.550000 52060 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1023 23:39:37.883000 52060 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1023 23:39:37.883000 52060 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1023 23:39:37.883000 52060 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1023 23:39:37.883000 52060 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+exporter=dynamo outputs=['type_logits', 'tag_logits', 'value_logits'] parity max_abs_diff=3.24e-05 (value_logits 2.48e-05)
+size FP32 116.067 MB -> INT8 29.170 MB
+INT8 agreement type=1.000 tag=1.000 value=0.998
+report -> experiments/gidi-en-backbone-bakeoff/runs/roberta-base/seed3/export.json
+primary 214 type 0.946 target 0.893 value 1.000 (raw 1.000) scanner strict 0.935 core 0.967
+secondary 290 type 0.893 target 0.855 value 0.997 (raw 0.997) scanner strict 0.938 core 0.972
+dev 189 type 0.851 target 0.836 value 1.000 (raw 1.000) scanner strict 0.937 core 0.979
+slang_probe 357 type 0.916 target 0.787 value 0.986 (raw 0.986) scanner strict 0.160 core 0.849
+genz_probe 94 type 0.862 target 0.862 value 0.989 (raw 0.989) scanner strict 0.500 core 0.904
+{
+ "checks": {
+  "value_test_primary": {
+   "value": 1.0,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_test_secondary": {
+   "value": 0.996551724137931,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_slang_probe": {
+   "value": 0.9859943977591037,
+   "min": 0.88,
+   "pass": true
+  },
+  "type_macro_f1_primary": {
+   "value": 0.9455403242554945,
+   "v2": 0.9560945199435602,
+   "min": 0.9460945199435602,
+   "pass": false
+  },
+  "target_exact_primary": {
+   "value": 0.8925233644859814,
+   "v2": 0.8878504672897196,
+   "min": 0.8778504672897196,
+   "pass": true
+  },
+  "type_macro_f1_secondary": {
+   "value": 0.8928092860926357,
+   "v2": 0.902027048286045,
+   "min": 0.892027048286045,
+   "pass": true
+  },
+  "target_exact_secondary": {
+   "value": 0.8551724137931035,
+   "v2": 0.8344827586206897,
+   "min": 0.8244827586206896,
+   "pass": true
+  },
+  "type_macro_f1_slang_probe": {
+   "value": 0.916413379637377,
+   "v2": 0.8902633735931321,
+   "min": 0.8802633735931321,
+   "pass": true
+  },
+  "target_exact_slang_probe": {
+   "value": 0.7871148459383753,
+   "v2": 0.834733893557423,
+   "min": 0.824733893557423,
+   "pass": false
+  },
+  "beats_scanner_core_primary": {
+   "model": 1.0,
+   "scanner": 0.9672897196261683,
+   "pass": true
+  },
+  "beats_scanner_core_secondary": {
+   "model": 0.996551724137931,
+   "scanner": 0.9724137931034482,
+   "pass": true
+  },
+  "beats_scanner_core_slang_probe": {
+   "model": 0.9859943977591037,
+   "scanner": 0.8487394957983193,
+   "pass": true
+  },
+  "int8_size": {
+   "bytes": 29170089,
+   "max": 30000000,
+   "pass": true
+  }
+ },
+ "pass": false
+}
+DONE roberta-base seed 3 Fri Oct 23 23:39:50 +07 2026
+START distilroberta seed 1 Fri Oct 23 23:39:51 +07 2026
+2026-10-23 23:39:55,590 INFO value supervision on 2355 of 2355 training notes
+2026-10-23 23:39:55,590 INFO train 2355 notes (truncated 0, span truncated 0), dev 189
+/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/torch/autograd/graph.py:1072: UserWarning: index_put_with_accumulate_mps does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/Context.cpp:190.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2026-10-23 23:40:19,622 INFO epoch 1 step 295 loss 3.0620 dev type F1 0.554 span exact 0.524 value exact 0.958
+2026-10-23 23:40:41,656 INFO epoch 2 step 590 loss 1.1210 dev type F1 0.825 span exact 0.762 value exact 0.984
+2026-10-23 23:41:03,459 INFO epoch 3 step 885 loss 0.6200 dev type F1 0.827 span exact 0.746 value exact 0.979
+2026-10-23 23:41:25,270 INFO epoch 4 step 1180 loss 0.4800 dev type F1 0.855 span exact 0.820 value exact 0.989
+2026-10-23 23:41:47,118 INFO epoch 5 step 1475 loss 0.3299 dev type F1 0.833 span exact 0.794 value exact 0.995
+2026-10-23 23:42:09,120 INFO epoch 6 step 1770 loss 0.2231 dev type F1 0.883 span exact 0.720 value exact 0.995
+2026-10-23 23:42:31,013 INFO epoch 7 step 2065 loss 0.1465 dev type F1 0.812 span exact 0.857 value exact 0.989
+2026-10-23 23:42:52,678 INFO epoch 8 step 2360 loss 0.1096 dev type F1 0.855 span exact 0.836 value exact 0.984
+2026-10-23 23:43:14,607 INFO epoch 9 step 2655 loss 0.0901 dev type F1 0.862 span exact 0.841 value exact 0.989
+2026-10-23 23:43:37,775 INFO epoch 10 step 2950 loss 0.0603 dev type F1 0.857 span exact 0.783 value exact 0.989
+2026-10-23 23:44:06,248 INFO epoch 11 step 3245 loss 0.0427 dev type F1 0.852 span exact 0.799 value exact 0.984
+2026-10-23 23:44:28,104 INFO epoch 12 step 3540 loss 0.0339 dev type F1 0.824 span exact 0.857 value exact 0.989
+2026-10-23 23:44:49,985 INFO epoch 13 step 3835 loss 0.0249 dev type F1 0.853 span exact 0.794 value exact 0.989
+2026-10-23 23:45:12,859 INFO epoch 14 step 4130 loss 0.0167 dev type F1 0.865 span exact 0.868 value exact 0.989
+2026-10-23 23:45:35,033 INFO epoch 15 step 4425 loss 0.0278 dev type F1 0.845 span exact 0.815 value exact 0.989
+2026-10-23 23:45:56,790 INFO epoch 16 step 4720 loss 0.0208 dev type F1 0.847 span exact 0.847 value exact 0.989
+2026-10-23 23:46:18,017 INFO epoch 17 step 5015 loss 0.0163 dev type F1 0.828 span exact 0.841 value exact 0.989
+2026-10-23 23:46:39,730 INFO epoch 18 step 5310 loss 0.0061 dev type F1 0.854 span exact 0.857 value exact 0.989
+2026-10-23 23:47:01,323 INFO epoch 19 step 5605 loss 0.0153 dev type F1 0.843 span exact 0.836 value exact 0.989
+2026-10-23 23:47:23,135 INFO epoch 20 step 5900 loss 0.0098 dev type F1 0.832 span exact 0.873 value exact 0.989
+2026-10-23 23:47:45,317 INFO epoch 21 step 6195 loss 0.0113 dev type F1 0.843 span exact 0.804 value exact 0.989
+2026-10-23 23:48:07,367 INFO epoch 22 step 6490 loss 0.0083 dev type F1 0.847 span exact 0.852 value exact 0.989
+2026-10-23 23:48:29,462 INFO epoch 23 step 6785 loss 0.0107 dev type F1 0.837 span exact 0.831 value exact 0.995
+2026-10-23 23:48:51,396 INFO epoch 24 step 7080 loss 0.0068 dev type F1 0.823 span exact 0.857 value exact 0.989
+2026-10-23 23:49:13,420 INFO epoch 25 step 7375 loss 0.0075 dev type F1 0.852 span exact 0.820 value exact 0.989
+2026-10-23 23:49:35,411 INFO epoch 26 step 7670 loss 0.0018 dev type F1 0.859 span exact 0.836 value exact 0.989
+2026-10-23 23:49:57,887 INFO epoch 27 step 7965 loss 0.0019 dev type F1 0.827 span exact 0.852 value exact 0.995
+2026-10-23 23:50:20,062 INFO epoch 28 step 8260 loss 0.0028 dev type F1 0.841 span exact 0.841 value exact 0.989
+2026-10-23 23:50:42,205 INFO epoch 29 step 8555 loss 0.0114 dev type F1 0.838 span exact 0.820 value exact 0.989
+2026-10-23 23:51:04,362 INFO epoch 30 step 8850 loss 0.0031 dev type F1 0.845 span exact 0.836 value exact 0.995
+2026-10-23 23:51:26,140 INFO epoch 31 step 9145 loss 0.0010 dev type F1 0.827 span exact 0.862 value exact 0.989
+2026-10-23 23:51:47,798 INFO epoch 32 step 9440 loss 0.0029 dev type F1 0.849 span exact 0.820 value exact 0.989
+2026-10-23 23:52:09,273 INFO epoch 33 step 9735 loss 0.0039 dev type F1 0.841 span exact 0.815 value exact 0.989
+2026-10-23 23:52:30,995 INFO epoch 34 step 10030 loss 0.0022 dev type F1 0.848 span exact 0.831 value exact 0.989
+2026-10-23 23:52:52,885 INFO epoch 35 step 10325 loss 0.0024 dev type F1 0.857 span exact 0.873 value exact 0.989
+2026-10-23 23:53:14,932 INFO epoch 36 step 10620 loss 0.0009 dev type F1 0.866 span exact 0.836 value exact 0.995
+2026-10-23 23:53:36,688 INFO epoch 37 step 10915 loss 0.0005 dev type F1 0.857 span exact 0.831 value exact 0.995
+2026-10-23 23:53:58,633 INFO epoch 38 step 11210 loss 0.0001 dev type F1 0.866 span exact 0.847 value exact 0.995
+2026-10-23 23:54:20,765 INFO epoch 39 step 11505 loss 0.0003 dev type F1 0.858 span exact 0.852 value exact 0.995
+2026-10-23 23:54:42,951 INFO epoch 40 step 11800 loss 0.0001 dev type F1 0.848 span exact 0.852 value exact 0.995
+2026-10-23 23:54:43,305 INFO saved models/gidi-en-bakeoff/distilroberta/seed1
+W1023 23:54:49.642000 64079 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1023 23:54:49.958000 64079 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1023 23:54:49.958000 64079 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1023 23:54:49.958000 64079 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1023 23:54:49.958000 64079 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+exporter=dynamo outputs=['type_logits', 'tag_logits', 'value_logits'] parity max_abs_diff=5.82e-05 (value_logits 2.29e-05)
+size FP32 115.339 MB -> INT8 29.036 MB
+INT8 agreement type=1.000 tag=1.000 value=1.000
+report -> experiments/gidi-en-backbone-bakeoff/runs/distilroberta/seed1/export.json
+primary 214 type 0.931 target 0.902 value 0.995 (raw 0.995) scanner strict 0.935 core 0.967
+secondary 290 type 0.892 target 0.848 value 0.997 (raw 0.997) scanner strict 0.938 core 0.972
+dev 189 type 0.849 target 0.825 value 0.989 (raw 0.989) scanner strict 0.937 core 0.979
+slang_probe 357 type 0.894 target 0.810 value 0.992 (raw 0.992) scanner strict 0.160 core 0.849
+genz_probe 94 type 0.859 target 0.830 value 1.000 (raw 1.000) scanner strict 0.500 core 0.904
+{
+ "checks": {
+  "value_test_primary": {
+   "value": 0.9953271028037384,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_test_secondary": {
+   "value": 0.996551724137931,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_slang_probe": {
+   "value": 0.9915966386554622,
+   "min": 0.88,
+   "pass": true
+  },
+  "type_macro_f1_primary": {
+   "value": 0.9314834863213383,
+   "v2": 0.9560945199435602,
+   "min": 0.9460945199435602,
+   "pass": false
+  },
+  "target_exact_primary": {
+   "value": 0.9018691588785047,
+   "v2": 0.8878504672897196,
+   "min": 0.8778504672897196,
+   "pass": true
+  },
+  "type_macro_f1_secondary": {
+   "value": 0.891665033405791,
+   "v2": 0.902027048286045,
+   "min": 0.892027048286045,
+   "pass": false
+  },
+  "target_exact_secondary": {
+   "value": 0.8482758620689655,
+   "v2": 0.8344827586206897,
+   "min": 0.8244827586206896,
+   "pass": true
+  },
+  "type_macro_f1_slang_probe": {
+   "value": 0.8936966892525741,
+   "v2": 0.8902633735931321,
+   "min": 0.8802633735931321,
+   "pass": true
+  },
+  "target_exact_slang_probe": {
+   "value": 0.8095238095238095,
+   "v2": 0.834733893557423,
+   "min": 0.824733893557423,
+   "pass": false
+  },
+  "beats_scanner_core_primary": {
+   "model": 0.9953271028037384,
+   "scanner": 0.9672897196261683,
+   "pass": true
+  },
+  "beats_scanner_core_secondary": {
+   "model": 0.996551724137931,
+   "scanner": 0.9724137931034482,
+   "pass": true
+  },
+  "beats_scanner_core_slang_probe": {
+   "model": 0.9915966386554622,
+   "scanner": 0.8487394957983193,
+   "pass": true
+  },
+  "int8_size": {
+   "bytes": 29036406,
+   "max": 30000000,
+   "pass": true
+  }
+ },
+ "pass": false
+}
+DONE distilroberta seed 1 Fri Oct 23 23:55:03 +07 2026
+START distilroberta seed 2 Fri Oct 23 23:55:03 +07 2026
+2026-10-23 23:55:07,041 INFO value supervision on 2355 of 2355 training notes
+2026-10-23 23:55:07,041 INFO train 2355 notes (truncated 0, span truncated 0), dev 189
+/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/torch/autograd/graph.py:1072: UserWarning: index_put_with_accumulate_mps does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/Context.cpp:190.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2026-10-23 23:55:30,482 INFO epoch 1 step 295 loss 3.2050 dev type F1 0.487 span exact 0.450 value exact 0.947
+2026-10-23 23:55:52,058 INFO epoch 2 step 590 loss 1.1481 dev type F1 0.779 span exact 0.640 value exact 0.974
+2026-10-23 23:56:13,694 INFO epoch 3 step 885 loss 0.6416 dev type F1 0.851 span exact 0.804 value exact 0.984
+2026-10-23 23:56:35,511 INFO epoch 4 step 1180 loss 0.4739 dev type F1 0.851 span exact 0.772 value exact 0.984
+2026-10-23 23:56:57,394 INFO epoch 5 step 1475 loss 0.3408 dev type F1 0.825 span exact 0.778 value exact 0.984
+2026-10-23 23:57:19,121 INFO epoch 6 step 1770 loss 0.2468 dev type F1 0.842 span exact 0.799 value exact 0.989
+2026-10-23 23:57:42,691 INFO epoch 7 step 2065 loss 0.1785 dev type F1 0.860 span exact 0.799 value exact 0.989
+2026-10-23 23:58:04,399 INFO epoch 8 step 2360 loss 0.1112 dev type F1 0.839 span exact 0.772 value exact 0.995
+2026-10-23 23:58:31,784 INFO epoch 9 step 2655 loss 0.0768 dev type F1 0.872 span exact 0.783 value exact 0.989
+2026-10-23 23:58:55,045 INFO epoch 10 step 2950 loss 0.0585 dev type F1 0.824 span exact 0.831 value exact 1.000
+2026-10-23 23:59:18,320 INFO epoch 11 step 3245 loss 0.0522 dev type F1 0.840 span exact 0.831 value exact 0.995
+2026-10-23 23:59:42,398 INFO epoch 12 step 3540 loss 0.0311 dev type F1 0.833 span exact 0.709 value exact 0.995
+2026-10-24 00:00:03,557 INFO epoch 13 step 3835 loss 0.0259 dev type F1 0.829 span exact 0.841 value exact 0.995
+2026-10-24 00:00:25,038 INFO epoch 14 step 4130 loss 0.0162 dev type F1 0.825 span exact 0.783 value exact 0.989
+2026-10-24 00:00:47,337 INFO epoch 15 step 4425 loss 0.0216 dev type F1 0.854 span exact 0.815 value exact 0.989
+2026-10-24 00:01:08,368 INFO epoch 16 step 4720 loss 0.0198 dev type F1 0.841 span exact 0.799 value exact 0.995
+2026-10-24 00:01:29,602 INFO epoch 17 step 5015 loss 0.0191 dev type F1 0.849 span exact 0.772 value exact 1.000
+2026-10-24 00:01:50,537 INFO epoch 18 step 5310 loss 0.0170 dev type F1 0.827 span exact 0.788 value exact 0.995
+2026-10-24 00:02:11,372 INFO epoch 19 step 5605 loss 0.0153 dev type F1 0.834 span exact 0.857 value exact 0.995
+2026-10-24 00:02:32,554 INFO epoch 20 step 5900 loss 0.0159 dev type F1 0.818 span exact 0.804 value exact 0.995
+2026-10-24 00:02:53,484 INFO epoch 21 step 6195 loss 0.0126 dev type F1 0.850 span exact 0.831 value exact 0.995
+2026-10-24 00:03:17,164 INFO epoch 22 step 6490 loss 0.0104 dev type F1 0.842 span exact 0.767 value exact 0.989
+2026-10-24 00:03:38,687 INFO epoch 23 step 6785 loss 0.0135 dev type F1 0.852 span exact 0.778 value exact 0.995
+2026-10-24 00:03:59,621 INFO epoch 24 step 7080 loss 0.0107 dev type F1 0.853 span exact 0.841 value exact 0.995
+2026-10-24 00:04:20,648 INFO epoch 25 step 7375 loss 0.0078 dev type F1 0.843 span exact 0.847 value exact 0.995
+2026-10-24 00:04:41,742 INFO epoch 26 step 7670 loss 0.0081 dev type F1 0.840 span exact 0.794 value exact 0.995
+2026-10-24 00:05:02,552 INFO epoch 27 step 7965 loss 0.0039 dev type F1 0.835 span exact 0.794 value exact 1.000
+2026-10-24 00:05:23,587 INFO epoch 28 step 8260 loss 0.0030 dev type F1 0.838 span exact 0.841 value exact 0.995
+2026-10-24 00:05:44,626 INFO epoch 29 step 8555 loss 0.0023 dev type F1 0.841 span exact 0.841 value exact 0.995
+2026-10-24 00:06:05,590 INFO epoch 30 step 8850 loss 0.0008 dev type F1 0.827 span exact 0.799 value exact 0.995
+2026-10-24 00:06:26,527 INFO epoch 31 step 9145 loss 0.0018 dev type F1 0.826 span exact 0.794 value exact 0.995
+2026-10-24 00:06:47,800 INFO epoch 32 step 9440 loss 0.0056 dev type F1 0.820 span exact 0.794 value exact 1.000
+2026-10-24 00:07:09,163 INFO epoch 33 step 9735 loss 0.0011 dev type F1 0.822 span exact 0.836 value exact 1.000
+2026-10-24 00:07:30,555 INFO epoch 34 step 10030 loss 0.0001 dev type F1 0.825 span exact 0.815 value exact 1.000
+2026-10-24 00:07:52,401 INFO epoch 35 step 10325 loss 0.0013 dev type F1 0.836 span exact 0.799 value exact 1.000
+2026-10-24 00:08:14,286 INFO epoch 36 step 10620 loss 0.0011 dev type F1 0.833 span exact 0.831 value exact 1.000
+2026-10-24 00:08:37,556 INFO epoch 37 step 10915 loss 0.0008 dev type F1 0.821 span exact 0.820 value exact 1.000
+2026-10-24 00:08:59,408 INFO epoch 38 step 11210 loss 0.0009 dev type F1 0.836 span exact 0.857 value exact 1.000
+2026-10-24 00:09:21,352 INFO epoch 39 step 11505 loss 0.0001 dev type F1 0.843 span exact 0.852 value exact 0.995
+2026-10-24 00:09:43,144 INFO epoch 40 step 11800 loss 0.0005 dev type F1 0.840 span exact 0.847 value exact 0.995
+2026-10-24 00:09:43,460 INFO saved models/gidi-en-bakeoff/distilroberta/seed2
+W1024 00:09:49.021000 76533 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1024 00:09:49.359000 76533 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1024 00:09:49.359000 76533 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1024 00:09:49.359000 76533 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1024 00:09:49.359000 76533 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+exporter=dynamo outputs=['type_logits', 'tag_logits', 'value_logits'] parity max_abs_diff=5.46e-05 (value_logits 1.91e-05)
+size FP32 115.339 MB -> INT8 29.036 MB
+INT8 agreement type=0.960 tag=0.996 value=1.000
+report -> experiments/gidi-en-backbone-bakeoff/runs/distilroberta/seed2/export.json
+primary 214 type 0.950 target 0.902 value 1.000 (raw 1.000) scanner strict 0.935 core 0.967
+secondary 290 type 0.904 target 0.855 value 1.000 (raw 1.000) scanner strict 0.938 core 0.972
+dev 189 type 0.834 target 0.847 value 1.000 (raw 1.000) scanner strict 0.937 core 0.979
+slang_probe 357 type 0.910 target 0.801 value 0.980 (raw 0.980) scanner strict 0.160 core 0.849
+genz_probe 94 type 0.909 target 0.894 value 1.000 (raw 1.000) scanner strict 0.500 core 0.904
+{
+ "checks": {
+  "value_test_primary": {
+   "value": 1.0,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_test_secondary": {
+   "value": 1.0,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_slang_probe": {
+   "value": 0.9803921568627451,
+   "min": 0.88,
+   "pass": true
+  },
+  "type_macro_f1_primary": {
+   "value": 0.9499322405760814,
+   "v2": 0.9560945199435602,
+   "min": 0.9460945199435602,
+   "pass": true
+  },
+  "target_exact_primary": {
+   "value": 0.9018691588785047,
+   "v2": 0.8878504672897196,
+   "min": 0.8778504672897196,
+   "pass": true
+  },
+  "type_macro_f1_secondary": {
+   "value": 0.9035441350902932,
+   "v2": 0.902027048286045,
+   "min": 0.892027048286045,
+   "pass": true
+  },
+  "target_exact_secondary": {
+   "value": 0.8551724137931035,
+   "v2": 0.8344827586206897,
+   "min": 0.8244827586206896,
+   "pass": true
+  },
+  "type_macro_f1_slang_probe": {
+   "value": 0.9101794310582689,
+   "v2": 0.8902633735931321,
+   "min": 0.8802633735931321,
+   "pass": true
+  },
+  "target_exact_slang_probe": {
+   "value": 0.8011204481792717,
+   "v2": 0.834733893557423,
+   "min": 0.824733893557423,
+   "pass": false
+  },
+  "beats_scanner_core_primary": {
+   "model": 1.0,
+   "scanner": 0.9672897196261683,
+   "pass": true
+  },
+  "beats_scanner_core_secondary": {
+   "model": 1.0,
+   "scanner": 0.9724137931034482,
+   "pass": true
+  },
+  "beats_scanner_core_slang_probe": {
+   "model": 0.9803921568627451,
+   "scanner": 0.8487394957983193,
+   "pass": true
+  },
+  "int8_size": {
+   "bytes": 29036406,
+   "max": 30000000,
+   "pass": true
+  }
+ },
+ "pass": false
+}
+DONE distilroberta seed 2 Sat Oct 24 00:10:03 +07 2026
+START electra seed 1 Sat Oct 24 00:10:03 +07 2026
+2026-10-24 00:10:06,669 INFO value supervision on 2355 of 2355 training notes
+2026-10-24 00:10:06,669 INFO train 2355 notes (truncated 0, span truncated 0), dev 189
+/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/torch/autograd/graph.py:1072: UserWarning: index_put_with_accumulate_mps does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/Context.cpp:190.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2026-10-24 00:10:30,093 INFO epoch 1 step 295 loss 3.0696 dev type F1 0.191 span exact 0.466 value exact 0.698
+2026-10-24 00:10:51,689 INFO epoch 2 step 590 loss 1.6675 dev type F1 0.697 span exact 0.677 value exact 0.857
+2026-10-24 00:11:13,019 INFO epoch 3 step 885 loss 0.8631 dev type F1 0.773 span exact 0.698 value exact 0.963
+2026-10-24 00:11:34,393 INFO epoch 4 step 1180 loss 0.5744 dev type F1 0.851 span exact 0.767 value exact 0.963
+2026-10-24 00:11:55,578 INFO epoch 5 step 1475 loss 0.3797 dev type F1 0.819 span exact 0.778 value exact 0.968
+2026-10-24 00:12:16,849 INFO epoch 6 step 1770 loss 0.2499 dev type F1 0.855 span exact 0.783 value exact 0.984
+2026-10-24 00:12:37,994 INFO epoch 7 step 2065 loss 0.1501 dev type F1 0.848 span exact 0.820 value exact 0.979
+2026-10-24 00:12:59,567 INFO epoch 8 step 2360 loss 0.1054 dev type F1 0.861 span exact 0.878 value exact 0.989
+2026-10-24 00:13:20,788 INFO epoch 9 step 2655 loss 0.0677 dev type F1 0.843 span exact 0.847 value exact 0.979
+2026-10-24 00:13:42,236 INFO epoch 10 step 2950 loss 0.0370 dev type F1 0.908 span exact 0.852 value exact 0.979
+2026-10-24 00:14:03,655 INFO epoch 11 step 3245 loss 0.0264 dev type F1 0.856 span exact 0.825 value exact 0.979
+2026-10-24 00:14:25,013 INFO epoch 12 step 3540 loss 0.0193 dev type F1 0.852 span exact 0.862 value exact 0.989
+2026-10-24 00:14:46,906 INFO epoch 13 step 3835 loss 0.0153 dev type F1 0.870 span exact 0.841 value exact 0.989
+2026-10-24 00:15:08,323 INFO epoch 14 step 4130 loss 0.0209 dev type F1 0.856 span exact 0.847 value exact 0.984
+2026-10-24 00:15:29,580 INFO epoch 15 step 4425 loss 0.0086 dev type F1 0.853 span exact 0.862 value exact 0.984
+2026-10-24 00:15:50,727 INFO epoch 16 step 4720 loss 0.0053 dev type F1 0.853 span exact 0.868 value exact 0.989
+2026-10-24 00:16:11,788 INFO epoch 17 step 5015 loss 0.0083 dev type F1 0.863 span exact 0.862 value exact 0.989
+2026-10-24 00:16:32,933 INFO epoch 18 step 5310 loss 0.0087 dev type F1 0.859 span exact 0.804 value exact 0.984
+2026-10-24 00:16:53,983 INFO epoch 19 step 5605 loss 0.0050 dev type F1 0.847 span exact 0.852 value exact 0.984
+2026-10-24 00:17:14,927 INFO epoch 20 step 5900 loss 0.0036 dev type F1 0.874 span exact 0.852 value exact 0.984
+2026-10-24 00:17:35,767 INFO epoch 21 step 6195 loss 0.0075 dev type F1 0.862 span exact 0.831 value exact 0.984
+2026-10-24 00:17:56,878 INFO epoch 22 step 6490 loss 0.0074 dev type F1 0.851 span exact 0.852 value exact 0.989
+2026-10-24 00:18:17,844 INFO epoch 23 step 6785 loss 0.0039 dev type F1 0.848 span exact 0.831 value exact 0.989
+2026-10-24 00:18:39,192 INFO epoch 24 step 7080 loss 0.0042 dev type F1 0.840 span exact 0.857 value exact 0.984
+2026-10-24 00:19:00,736 INFO epoch 25 step 7375 loss 0.0069 dev type F1 0.846 span exact 0.857 value exact 0.984
+2026-10-24 00:19:22,582 INFO epoch 26 step 7670 loss 0.0046 dev type F1 0.857 span exact 0.799 value exact 0.979
+2026-10-24 00:19:44,057 INFO epoch 27 step 7965 loss 0.0020 dev type F1 0.852 span exact 0.825 value exact 0.984
+2026-10-24 00:20:05,465 INFO epoch 28 step 8260 loss 0.0015 dev type F1 0.871 span exact 0.857 value exact 0.984
+2026-10-24 00:20:26,687 INFO epoch 29 step 8555 loss 0.0010 dev type F1 0.847 span exact 0.873 value exact 0.984
+2026-10-24 00:20:48,100 INFO epoch 30 step 8850 loss 0.0009 dev type F1 0.854 span exact 0.857 value exact 0.984
+2026-10-24 00:21:09,281 INFO epoch 31 step 9145 loss 0.0018 dev type F1 0.853 span exact 0.857 value exact 0.984
+2026-10-24 00:21:30,180 INFO epoch 32 step 9440 loss 0.0016 dev type F1 0.862 span exact 0.852 value exact 0.989
+2026-10-24 00:21:51,042 INFO epoch 33 step 9735 loss 0.0010 dev type F1 0.857 span exact 0.873 value exact 0.984
+2026-10-24 00:22:12,017 INFO epoch 34 step 10030 loss 0.0003 dev type F1 0.857 span exact 0.862 value exact 0.984
+2026-10-24 00:22:33,400 INFO epoch 35 step 10325 loss 0.0003 dev type F1 0.857 span exact 0.868 value exact 0.984
+2026-10-24 00:22:54,838 INFO epoch 36 step 10620 loss 0.0004 dev type F1 0.865 span exact 0.884 value exact 0.984
+2026-10-24 00:23:16,191 INFO epoch 37 step 10915 loss 0.0008 dev type F1 0.858 span exact 0.868 value exact 0.984
+2026-10-24 00:23:37,722 INFO epoch 38 step 11210 loss 0.0003 dev type F1 0.858 span exact 0.857 value exact 0.984
+2026-10-24 00:23:59,166 INFO epoch 39 step 11505 loss 0.0002 dev type F1 0.853 span exact 0.862 value exact 0.984
+2026-10-24 00:24:20,495 INFO epoch 40 step 11800 loss 0.0004 dev type F1 0.858 span exact 0.862 value exact 0.984
+2026-10-24 00:24:20,657 INFO saved models/gidi-en-bakeoff/electra/seed1
+W1024 00:24:25.906000 91721 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1024 00:24:26.250000 91721 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1024 00:24:26.250000 91721 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1024 00:24:26.251000 91721 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1024 00:24:26.251000 91721 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+exporter=dynamo outputs=['type_logits', 'tag_logits', 'value_logits'] parity max_abs_diff=3.08e-05 (value_logits 2.00e-05)
+size FP32 116.067 MB -> INT8 29.170 MB
+INT8 agreement type=0.980 tag=0.994 value=1.000
+report -> experiments/gidi-en-backbone-bakeoff/runs/electra/seed1/export.json
+primary 214 type 0.918 target 0.911 value 0.995 (raw 0.995) scanner strict 0.935 core 0.967
+secondary 290 type 0.866 target 0.862 value 0.997 (raw 0.997) scanner strict 0.938 core 0.972
+dev 189 type 0.858 target 0.857 value 0.984 (raw 0.984) scanner strict 0.937 core 0.979
+slang_probe 357 type 0.912 target 0.846 value 0.972 (raw 0.972) scanner strict 0.160 core 0.849
+genz_probe 94 type 0.888 target 0.872 value 1.000 (raw 1.000) scanner strict 0.500 core 0.904
+{
+ "checks": {
+  "value_test_primary": {
+   "value": 0.9953271028037384,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_test_secondary": {
+   "value": 0.996551724137931,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_slang_probe": {
+   "value": 0.9719887955182073,
+   "min": 0.88,
+   "pass": true
+  },
+  "type_macro_f1_primary": {
+   "value": 0.9176371037655437,
+   "v2": 0.9560945199435602,
+   "min": 0.9460945199435602,
+   "pass": false
+  },
+  "target_exact_primary": {
+   "value": 0.9112149532710281,
+   "v2": 0.8878504672897196,
+   "min": 0.8778504672897196,
+   "pass": true
+  },
+  "type_macro_f1_secondary": {
+   "value": 0.8664975643467964,
+   "v2": 0.902027048286045,
+   "min": 0.892027048286045,
+   "pass": false
+  },
+  "target_exact_secondary": {
+   "value": 0.8620689655172413,
+   "v2": 0.8344827586206897,
+   "min": 0.8244827586206896,
+   "pass": true
+  },
+  "type_macro_f1_slang_probe": {
+   "value": 0.9118825180439158,
+   "v2": 0.8902633735931321,
+   "min": 0.8802633735931321,
+   "pass": true
+  },
+  "target_exact_slang_probe": {
+   "value": 0.84593837535014,
+   "v2": 0.834733893557423,
+   "min": 0.824733893557423,
+   "pass": true
+  },
+  "beats_scanner_core_primary": {
+   "model": 0.9953271028037384,
+   "scanner": 0.9672897196261683,
+   "pass": true
+  },
+  "beats_scanner_core_secondary": {
+   "model": 0.996551724137931,
+   "scanner": 0.9724137931034482,
+   "pass": true
+  },
+  "beats_scanner_core_slang_probe": {
+   "model": 0.9719887955182073,
+   "scanner": 0.8487394957983193,
+   "pass": true
+  },
+  "int8_size": {
+   "bytes": 29169805,
+   "max": 30000000,
+   "pass": true
+  }
+ },
+ "pass": false
+}
+DONE electra seed 1 Sat Oct 24 00:24:38 +07 2026
+START electra seed 2 Sat Oct 24 00:24:38 +07 2026
+2026-10-24 00:24:41,678 INFO value supervision on 2355 of 2355 training notes
+2026-10-24 00:24:41,678 INFO train 2355 notes (truncated 0, span truncated 0), dev 189
+/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/torch/autograd/graph.py:1072: UserWarning: index_put_with_accumulate_mps does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/Context.cpp:190.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2026-10-24 00:25:04,908 INFO epoch 1 step 295 loss 3.1181 dev type F1 0.102 span exact 0.450 value exact 0.709
+2026-10-24 00:25:26,313 INFO epoch 2 step 590 loss 1.6126 dev type F1 0.740 span exact 0.688 value exact 0.873
+2026-10-24 00:25:47,683 INFO epoch 3 step 885 loss 0.8388 dev type F1 0.757 span exact 0.709 value exact 0.958
+2026-10-24 00:26:08,841 INFO epoch 4 step 1180 loss 0.5577 dev type F1 0.777 span exact 0.661 value exact 0.952
+2026-10-24 00:26:30,171 INFO epoch 5 step 1475 loss 0.3743 dev type F1 0.855 span exact 0.815 value exact 0.974
+2026-10-24 00:26:51,476 INFO epoch 6 step 1770 loss 0.2432 dev type F1 0.817 span exact 0.762 value exact 0.979
+2026-10-24 00:27:12,614 INFO epoch 7 step 2065 loss 0.1578 dev type F1 0.834 span exact 0.836 value exact 0.979
+2026-10-24 00:27:33,833 INFO epoch 8 step 2360 loss 0.0908 dev type F1 0.894 span exact 0.820 value exact 0.979
+2026-10-24 00:27:55,087 INFO epoch 9 step 2655 loss 0.0594 dev type F1 0.881 span exact 0.836 value exact 0.984
+2026-10-24 00:28:16,358 INFO epoch 10 step 2950 loss 0.0504 dev type F1 0.878 span exact 0.841 value exact 0.974
+2026-10-24 00:28:38,089 INFO epoch 11 step 3245 loss 0.0273 dev type F1 0.848 span exact 0.815 value exact 0.984
+2026-10-24 00:28:59,576 INFO epoch 12 step 3540 loss 0.0187 dev type F1 0.869 span exact 0.847 value exact 0.984
+2026-10-24 00:29:20,848 INFO epoch 13 step 3835 loss 0.0128 dev type F1 0.852 span exact 0.852 value exact 0.984
+2026-10-24 00:29:42,373 INFO epoch 14 step 4130 loss 0.0120 dev type F1 0.858 span exact 0.847 value exact 0.979
+2026-10-24 00:30:03,817 INFO epoch 15 step 4425 loss 0.0097 dev type F1 0.861 span exact 0.852 value exact 0.979
+2026-10-24 00:30:25,403 INFO epoch 16 step 4720 loss 0.0130 dev type F1 0.878 span exact 0.852 value exact 0.974
+2026-10-24 00:30:46,724 INFO epoch 17 step 5015 loss 0.0127 dev type F1 0.867 span exact 0.836 value exact 0.979
+2026-10-24 00:31:08,074 INFO epoch 18 step 5310 loss 0.0079 dev type F1 0.860 span exact 0.831 value exact 0.989
+2026-10-24 00:31:29,468 INFO epoch 19 step 5605 loss 0.0062 dev type F1 0.856 span exact 0.852 value exact 0.979
+2026-10-24 00:31:50,732 INFO epoch 20 step 5900 loss 0.0055 dev type F1 0.855 span exact 0.852 value exact 0.979
+2026-10-24 00:32:11,958 INFO epoch 21 step 6195 loss 0.0131 dev type F1 0.867 span exact 0.852 value exact 0.984
+2026-10-24 00:32:33,175 INFO epoch 22 step 6490 loss 0.0067 dev type F1 0.852 span exact 0.878 value exact 0.979
+2026-10-24 00:32:54,600 INFO epoch 23 step 6785 loss 0.0036 dev type F1 0.855 span exact 0.868 value exact 0.979
+2026-10-24 00:33:15,735 INFO epoch 24 step 7080 loss 0.0009 dev type F1 0.879 span exact 0.868 value exact 0.979
+2026-10-24 00:33:37,010 INFO epoch 25 step 7375 loss 0.0031 dev type F1 0.848 span exact 0.857 value exact 0.979
+2026-10-24 00:33:57,994 INFO epoch 26 step 7670 loss 0.0013 dev type F1 0.846 span exact 0.852 value exact 0.979
+2026-10-24 00:34:19,155 INFO epoch 27 step 7965 loss 0.0013 dev type F1 0.857 span exact 0.852 value exact 0.979
+2026-10-24 00:34:40,464 INFO epoch 28 step 8260 loss 0.0010 dev type F1 0.864 span exact 0.852 value exact 0.984
+2026-10-24 00:35:01,746 INFO epoch 29 step 8555 loss 0.0018 dev type F1 0.867 span exact 0.857 value exact 0.979
+2026-10-24 00:35:22,927 INFO epoch 30 step 8850 loss 0.0014 dev type F1 0.868 span exact 0.862 value exact 0.979
+2026-10-24 00:35:43,992 INFO epoch 31 step 9145 loss 0.0016 dev type F1 0.877 span exact 0.857 value exact 0.979
+2026-10-24 00:36:05,068 INFO epoch 32 step 9440 loss 0.0005 dev type F1 0.873 span exact 0.820 value exact 0.979
+2026-10-24 00:36:26,075 INFO epoch 33 step 9735 loss 0.0017 dev type F1 0.877 span exact 0.862 value exact 0.979
+2026-10-24 00:36:46,974 INFO epoch 34 step 10030 loss 0.0022 dev type F1 0.854 span exact 0.868 value exact 0.979
+2026-10-24 00:37:07,945 INFO epoch 35 step 10325 loss 0.0002 dev type F1 0.892 span exact 0.862 value exact 0.979
+2026-10-24 00:37:28,998 INFO epoch 36 step 10620 loss 0.0015 dev type F1 0.895 span exact 0.852 value exact 0.984
+2026-10-24 00:37:50,117 INFO epoch 37 step 10915 loss 0.0003 dev type F1 0.875 span exact 0.862 value exact 0.979
+2026-10-24 00:38:11,318 INFO epoch 38 step 11210 loss 0.0001 dev type F1 0.879 span exact 0.852 value exact 0.979
+2026-10-24 00:38:32,267 INFO epoch 39 step 11505 loss 0.0005 dev type F1 0.885 span exact 0.862 value exact 0.979
+2026-10-24 00:38:53,322 INFO epoch 40 step 11800 loss 0.0001 dev type F1 0.893 span exact 0.862 value exact 0.979
+2026-10-24 00:38:53,455 INFO saved models/gidi-en-bakeoff/electra/seed2
+W1024 00:38:58.037000 99459 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1024 00:38:58.365000 99459 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1024 00:38:58.365000 99459 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1024 00:38:58.365000 99459 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1024 00:38:58.365000 99459 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+exporter=dynamo outputs=['type_logits', 'tag_logits', 'value_logits'] parity max_abs_diff=4.48e-05 (value_logits 2.48e-05)
+size FP32 116.067 MB -> INT8 29.170 MB
+INT8 agreement type=0.960 tag=0.996 value=1.000
+report -> experiments/gidi-en-backbone-bakeoff/runs/electra/seed2/export.json
+primary 214 type 0.940 target 0.921 value 0.995 (raw 0.995) scanner strict 0.935 core 0.967
+secondary 290 type 0.886 target 0.869 value 0.997 (raw 0.997) scanner strict 0.938 core 0.972
+dev 189 type 0.872 target 0.847 value 0.979 (raw 0.979) scanner strict 0.937 core 0.979
+slang_probe 357 type 0.927 target 0.871 value 0.964 (raw 0.964) scanner strict 0.160 core 0.849
+genz_probe 94 type 0.882 target 0.862 value 1.000 (raw 1.000) scanner strict 0.500 core 0.904
+{
+ "checks": {
+  "value_test_primary": {
+   "value": 0.9953271028037384,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_test_secondary": {
+   "value": 0.996551724137931,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_slang_probe": {
+   "value": 0.9635854341736695,
+   "min": 0.88,
+   "pass": true
+  },
+  "type_macro_f1_primary": {
+   "value": 0.9397673075745068,
+   "v2": 0.9560945199435602,
+   "min": 0.9460945199435602,
+   "pass": false
+  },
+  "target_exact_primary": {
+   "value": 0.9205607476635514,
+   "v2": 0.8878504672897196,
+   "min": 0.8778504672897196,
+   "pass": true
+  },
+  "type_macro_f1_secondary": {
+   "value": 0.8857451001987375,
+   "v2": 0.902027048286045,
+   "min": 0.892027048286045,
+   "pass": false
+  },
+  "target_exact_secondary": {
+   "value": 0.8689655172413793,
+   "v2": 0.8344827586206897,
+   "min": 0.8244827586206896,
+   "pass": true
+  },
+  "type_macro_f1_slang_probe": {
+   "value": 0.9274104506492276,
+   "v2": 0.8902633735931321,
+   "min": 0.8802633735931321,
+   "pass": true
+  },
+  "target_exact_slang_probe": {
+   "value": 0.8711484593837535,
+   "v2": 0.834733893557423,
+   "min": 0.824733893557423,
+   "pass": true
+  },
+  "beats_scanner_core_primary": {
+   "model": 0.9953271028037384,
+   "scanner": 0.9672897196261683,
+   "pass": true
+  },
+  "beats_scanner_core_secondary": {
+   "model": 0.996551724137931,
+   "scanner": 0.9724137931034482,
+   "pass": true
+  },
+  "beats_scanner_core_slang_probe": {
+   "model": 0.9635854341736695,
+   "scanner": 0.8487394957983193,
+   "pass": true
+  },
+  "int8_size": {
+   "bytes": 29169805,
+   "max": 30000000,
+   "pass": true
+  }
+ },
+ "pass": false
+}
+DONE electra seed 2 Sat Oct 24 00:39:09 +07 2026
+START minilm seed 1 Sat Oct 24 00:39:09 +07 2026
+2026-10-24 00:39:12,740 INFO value supervision on 2355 of 2355 training notes
+2026-10-24 00:39:12,740 INFO train 2355 notes (truncated 0, span truncated 0), dev 189
+/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/torch/autograd/graph.py:1072: UserWarning: index_put_with_accumulate_mps does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/Context.cpp:190.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2026-10-24 00:39:38,533 INFO epoch 1 step 295 loss 2.7644 dev type F1 0.329 span exact 0.783 value exact 0.963
+2026-10-24 00:40:03,058 INFO epoch 2 step 590 loss 1.2970 dev type F1 0.751 span exact 0.810 value exact 0.974
+2026-10-24 00:40:27,285 INFO epoch 3 step 885 loss 0.7042 dev type F1 0.813 span exact 0.841 value exact 0.984
+2026-10-24 00:40:51,734 INFO epoch 4 step 1180 loss 0.5095 dev type F1 0.856 span exact 0.804 value exact 0.979
+2026-10-24 00:41:16,197 INFO epoch 5 step 1475 loss 0.4014 dev type F1 0.887 span exact 0.862 value exact 0.984
+2026-10-24 00:41:40,711 INFO epoch 6 step 1770 loss 0.2874 dev type F1 0.863 span exact 0.868 value exact 0.974
+2026-10-24 00:42:05,082 INFO epoch 7 step 2065 loss 0.2416 dev type F1 0.851 span exact 0.868 value exact 0.984
+2026-10-24 00:42:29,489 INFO epoch 8 step 2360 loss 0.1895 dev type F1 0.871 span exact 0.884 value exact 0.984
+2026-10-24 00:42:53,924 INFO epoch 9 step 2655 loss 0.1628 dev type F1 0.882 span exact 0.889 value exact 0.984
+2026-10-24 00:43:18,503 INFO epoch 10 step 2950 loss 0.1118 dev type F1 0.883 span exact 0.873 value exact 0.984
+2026-10-24 00:43:42,888 INFO epoch 11 step 3245 loss 0.1059 dev type F1 0.869 span exact 0.873 value exact 0.984
+2026-10-24 00:44:07,462 INFO epoch 12 step 3540 loss 0.0634 dev type F1 0.893 span exact 0.878 value exact 0.989
+2026-10-24 00:44:34,229 INFO epoch 13 step 3835 loss 0.0665 dev type F1 0.885 span exact 0.889 value exact 0.989
+2026-10-24 00:44:58,719 INFO epoch 14 step 4130 loss 0.0544 dev type F1 0.875 span exact 0.889 value exact 0.984
+2026-10-24 00:45:23,146 INFO epoch 15 step 4425 loss 0.0405 dev type F1 0.896 span exact 0.889 value exact 0.984
+2026-10-24 00:45:47,421 INFO epoch 16 step 4720 loss 0.0297 dev type F1 0.905 span exact 0.884 value exact 0.984
+2026-10-24 00:46:11,752 INFO epoch 17 step 5015 loss 0.0530 dev type F1 0.867 span exact 0.894 value exact 0.984
+2026-10-24 00:46:35,945 INFO epoch 18 step 5310 loss 0.0390 dev type F1 0.880 span exact 0.899 value exact 0.989
+2026-10-24 00:47:00,313 INFO epoch 19 step 5605 loss 0.0258 dev type F1 0.850 span exact 0.873 value exact 0.984
+2026-10-24 00:47:24,726 INFO epoch 20 step 5900 loss 0.0295 dev type F1 0.870 span exact 0.894 value exact 0.984
+2026-10-24 00:47:48,940 INFO epoch 21 step 6195 loss 0.0131 dev type F1 0.901 span exact 0.878 value exact 0.984
+2026-10-24 00:48:13,156 INFO epoch 22 step 6490 loss 0.0175 dev type F1 0.883 span exact 0.899 value exact 0.984
+2026-10-24 00:48:37,500 INFO epoch 23 step 6785 loss 0.0139 dev type F1 0.883 span exact 0.889 value exact 0.984
+2026-10-24 00:49:02,149 INFO epoch 24 step 7080 loss 0.0094 dev type F1 0.866 span exact 0.894 value exact 0.984
+2026-10-24 00:49:26,667 INFO epoch 25 step 7375 loss 0.0138 dev type F1 0.873 span exact 0.873 value exact 0.989
+2026-10-24 00:49:51,343 INFO epoch 26 step 7670 loss 0.0170 dev type F1 0.869 span exact 0.894 value exact 0.989
+2026-10-24 00:50:15,639 INFO epoch 27 step 7965 loss 0.0102 dev type F1 0.864 span exact 0.878 value exact 0.984
+2026-10-24 00:50:40,024 INFO epoch 28 step 8260 loss 0.0075 dev type F1 0.868 span exact 0.873 value exact 0.989
+2026-10-24 00:51:04,315 INFO epoch 29 step 8555 loss 0.0122 dev type F1 0.880 span exact 0.899 value exact 0.984
+2026-10-24 00:51:28,898 INFO epoch 30 step 8850 loss 0.0041 dev type F1 0.883 span exact 0.905 value exact 0.984
+2026-10-24 00:51:53,360 INFO epoch 31 step 9145 loss 0.0082 dev type F1 0.891 span exact 0.905 value exact 0.989
+2026-10-24 00:52:17,929 INFO epoch 32 step 9440 loss 0.0022 dev type F1 0.883 span exact 0.899 value exact 0.984
+2026-10-24 00:52:42,287 INFO epoch 33 step 9735 loss 0.0008 dev type F1 0.880 span exact 0.894 value exact 0.984
+2026-10-24 00:53:06,803 INFO epoch 34 step 10030 loss 0.0020 dev type F1 0.895 span exact 0.889 value exact 0.984
+2026-10-24 00:53:31,141 INFO epoch 35 step 10325 loss 0.0011 dev type F1 0.892 span exact 0.884 value exact 0.989
+2026-10-24 00:53:55,408 INFO epoch 36 step 10620 loss 0.0011 dev type F1 0.890 span exact 0.878 value exact 0.989
+2026-10-24 00:54:19,632 INFO epoch 37 step 10915 loss 0.0005 dev type F1 0.886 span exact 0.884 value exact 0.984
+2026-10-24 00:54:43,875 INFO epoch 38 step 11210 loss 0.0023 dev type F1 0.887 span exact 0.889 value exact 0.984
+2026-10-24 00:55:08,108 INFO epoch 39 step 11505 loss 0.0005 dev type F1 0.887 span exact 0.889 value exact 0.984
+2026-10-24 00:55:32,410 INFO epoch 40 step 11800 loss 0.0001 dev type F1 0.887 span exact 0.889 value exact 0.984
+2026-10-24 00:55:32,660 INFO saved models/gidi-en-bakeoff/minilm/seed1
+W1024 00:55:37.843000 8251 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1024 00:55:38.155000 8251 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1024 00:55:38.156000 8251 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1024 00:55:38.156000 8251 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1024 00:55:38.156000 8251 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+exporter=dynamo outputs=['type_logits', 'tag_logits', 'value_logits'] parity max_abs_diff=3.39e-05 (value_logits 1.53e-05)
+size FP32 116.840 MB -> INT8 29.500 MB
+INT8 agreement type=1.000 tag=0.998 value=1.000
+report -> experiments/gidi-en-backbone-bakeoff/runs/minilm/seed1/export.json
+primary 214 type 0.957 target 0.939 value 0.995 (raw 0.995) scanner strict 0.935 core 0.967
+secondary 290 type 0.923 target 0.900 value 0.997 (raw 0.997) scanner strict 0.938 core 0.972
+dev 189 type 0.887 target 0.873 value 0.984 (raw 0.984) scanner strict 0.937 core 0.979
+slang_probe 357 type 0.919 target 0.863 value 0.961 (raw 0.961) scanner strict 0.160 core 0.849
+genz_probe 94 type 0.929 target 0.840 value 0.989 (raw 0.989) scanner strict 0.500 core 0.904
+{
+ "checks": {
+  "value_test_primary": {
+   "value": 0.9953271028037384,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_test_secondary": {
+   "value": 0.996551724137931,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_slang_probe": {
+   "value": 0.9607843137254902,
+   "min": 0.88,
+   "pass": true
+  },
+  "type_macro_f1_primary": {
+   "value": 0.9574753859574142,
+   "v2": 0.9560945199435602,
+   "min": 0.9460945199435602,
+   "pass": true
+  },
+  "target_exact_primary": {
+   "value": 0.9392523364485982,
+   "v2": 0.8878504672897196,
+   "min": 0.8778504672897196,
+   "pass": true
+  },
+  "type_macro_f1_secondary": {
+   "value": 0.9228278730862237,
+   "v2": 0.902027048286045,
+   "min": 0.892027048286045,
+   "pass": true
+  },
+  "target_exact_secondary": {
+   "value": 0.9,
+   "v2": 0.8344827586206897,
+   "min": 0.8244827586206896,
+   "pass": true
+  },
+  "type_macro_f1_slang_probe": {
+   "value": 0.9192300130381389,
+   "v2": 0.8902633735931321,
+   "min": 0.8802633735931321,
+   "pass": true
+  },
+  "target_exact_slang_probe": {
+   "value": 0.8627450980392157,
+   "v2": 0.834733893557423,
+   "min": 0.824733893557423,
+   "pass": true
+  },
+  "beats_scanner_core_primary": {
+   "model": 0.9953271028037384,
+   "scanner": 0.9672897196261683,
+   "pass": true
+  },
+  "beats_scanner_core_secondary": {
+   "model": 0.996551724137931,
+   "scanner": 0.9724137931034482,
+   "pass": true
+  },
+  "beats_scanner_core_slang_probe": {
+   "model": 0.9607843137254902,
+   "scanner": 0.8487394957983193,
+   "pass": true
+  },
+  "int8_size": {
+   "bytes": 29499600,
+   "max": 30000000,
+   "pass": true
+  }
+ },
+ "pass": true
+}
+DONE minilm seed 1 Sat Oct 24 00:55:52 +07 2026
+START minilm seed 2 Sat Oct 24 00:55:52 +07 2026
+2026-10-24 00:55:55,367 INFO value supervision on 2355 of 2355 training notes
+2026-10-24 00:55:55,367 INFO train 2355 notes (truncated 0, span truncated 0), dev 189
+/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/torch/autograd/graph.py:1072: UserWarning: index_put_with_accumulate_mps does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/Context.cpp:190.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2026-10-24 00:56:21,305 INFO epoch 1 step 295 loss 2.7256 dev type F1 0.325 span exact 0.762 value exact 0.958
+2026-10-24 00:56:45,602 INFO epoch 2 step 590 loss 1.3034 dev type F1 0.686 span exact 0.836 value exact 0.979
+2026-10-24 00:57:09,912 INFO epoch 3 step 885 loss 0.7022 dev type F1 0.834 span exact 0.878 value exact 0.984
+2026-10-24 00:57:34,492 INFO epoch 4 step 1180 loss 0.5118 dev type F1 0.829 span exact 0.847 value exact 0.984
+2026-10-24 00:57:59,319 INFO epoch 5 step 1475 loss 0.3881 dev type F1 0.878 span exact 0.868 value exact 0.984
+2026-10-24 00:58:23,976 INFO epoch 6 step 1770 loss 0.2994 dev type F1 0.866 span exact 0.868 value exact 0.984
+2026-10-24 00:58:48,269 INFO epoch 7 step 2065 loss 0.2256 dev type F1 0.872 span exact 0.889 value exact 0.989
+2026-10-24 00:59:12,407 INFO epoch 8 step 2360 loss 0.1707 dev type F1 0.909 span exact 0.873 value exact 0.984
+2026-10-24 00:59:36,850 INFO epoch 9 step 2655 loss 0.1325 dev type F1 0.902 span exact 0.910 value exact 0.984
+2026-10-24 01:00:00,960 INFO epoch 10 step 2950 loss 0.1154 dev type F1 0.857 span exact 0.899 value exact 0.984
+2026-10-24 01:00:25,384 INFO epoch 11 step 3245 loss 0.0895 dev type F1 0.863 span exact 0.862 value exact 0.979
+2026-10-24 01:00:49,668 INFO epoch 12 step 3540 loss 0.0682 dev type F1 0.852 span exact 0.862 value exact 0.984
+2026-10-24 01:01:13,917 INFO epoch 13 step 3835 loss 0.0830 dev type F1 0.846 span exact 0.868 value exact 0.984
+2026-10-24 01:01:38,234 INFO epoch 14 step 4130 loss 0.0505 dev type F1 0.855 span exact 0.899 value exact 0.984
+2026-10-24 01:02:02,631 INFO epoch 15 step 4425 loss 0.0467 dev type F1 0.869 span exact 0.899 value exact 0.989
+2026-10-24 01:02:26,840 INFO epoch 16 step 4720 loss 0.0310 dev type F1 0.876 span exact 0.862 value exact 0.989
+2026-10-24 01:02:50,881 INFO epoch 17 step 5015 loss 0.0123 dev type F1 0.878 span exact 0.899 value exact 0.984
+2026-10-24 01:03:15,249 INFO epoch 18 step 5310 loss 0.0158 dev type F1 0.845 span exact 0.889 value exact 0.979
+2026-10-24 01:03:39,532 INFO epoch 19 step 5605 loss 0.0286 dev type F1 0.887 span exact 0.889 value exact 0.984
+2026-10-24 01:04:03,658 INFO epoch 20 step 5900 loss 0.0214 dev type F1 0.886 span exact 0.884 value exact 0.984
+2026-10-24 01:04:35,716 INFO epoch 21 step 6195 loss 0.0236 dev type F1 0.884 span exact 0.899 value exact 0.984
+2026-10-24 01:04:59,898 INFO epoch 22 step 6490 loss 0.0081 dev type F1 0.878 span exact 0.878 value exact 0.984
+2026-10-24 01:05:24,454 INFO epoch 23 step 6785 loss 0.0124 dev type F1 0.892 span exact 0.878 value exact 0.984
+2026-10-24 01:05:48,811 INFO epoch 24 step 7080 loss 0.0126 dev type F1 0.890 span exact 0.862 value exact 0.984
+2026-10-24 01:06:13,464 INFO epoch 25 step 7375 loss 0.0129 dev type F1 0.884 span exact 0.889 value exact 0.984
+2026-10-24 01:06:37,818 INFO epoch 26 step 7670 loss 0.0185 dev type F1 0.872 span exact 0.862 value exact 0.984
+2026-10-24 01:07:02,178 INFO epoch 27 step 7965 loss 0.0148 dev type F1 0.881 span exact 0.899 value exact 0.984
+2026-10-24 01:07:26,852 INFO epoch 28 step 8260 loss 0.0009 dev type F1 0.887 span exact 0.905 value exact 0.984
+2026-10-24 01:07:50,965 INFO epoch 29 step 8555 loss 0.0075 dev type F1 0.895 span exact 0.899 value exact 0.984
+2026-10-24 01:08:15,158 INFO epoch 30 step 8850 loss 0.0029 dev type F1 0.895 span exact 0.905 value exact 0.984
+2026-10-24 01:08:39,680 INFO epoch 31 step 9145 loss 0.0211 dev type F1 0.893 span exact 0.899 value exact 0.984
+2026-10-24 01:09:04,013 INFO epoch 32 step 9440 loss 0.0025 dev type F1 0.883 span exact 0.884 value exact 0.979
+2026-10-24 01:09:28,509 INFO epoch 33 step 9735 loss 0.0053 dev type F1 0.886 span exact 0.899 value exact 0.979
+2026-10-24 01:09:52,651 INFO epoch 34 step 10030 loss 0.0051 dev type F1 0.886 span exact 0.884 value exact 0.979
+2026-10-24 01:10:16,863 INFO epoch 35 step 10325 loss 0.0150 dev type F1 0.887 span exact 0.889 value exact 0.979
+2026-10-24 01:10:41,219 INFO epoch 36 step 10620 loss 0.0004 dev type F1 0.881 span exact 0.889 value exact 0.984
+2026-10-24 01:11:05,450 INFO epoch 37 step 10915 loss 0.0019 dev type F1 0.870 span exact 0.889 value exact 0.984
+2026-10-24 01:11:29,546 INFO epoch 38 step 11210 loss 0.0102 dev type F1 0.889 span exact 0.889 value exact 0.984
+2026-10-24 01:11:53,693 INFO epoch 39 step 11505 loss 0.0001 dev type F1 0.881 span exact 0.889 value exact 0.984
+2026-10-24 01:12:17,683 INFO epoch 40 step 11800 loss 0.0009 dev type F1 0.881 span exact 0.889 value exact 0.984
+2026-10-24 01:12:17,878 INFO saved models/gidi-en-bakeoff/minilm/seed2
+W1024 01:12:23.159000 17972 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+W1024 01:12:23.481000 17972 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1024 01:12:23.482000 17972 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1024 01:12:23.482000 17972 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1024 01:12:23.482000 17972 torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `GidiValueModel([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+exporter=dynamo outputs=['type_logits', 'tag_logits', 'value_logits'] parity max_abs_diff=5.58e-05 (value_logits 1.98e-05)
+size FP32 116.840 MB -> INT8 29.500 MB
+INT8 agreement type=1.000 tag=0.994 value=1.000
+report -> experiments/gidi-en-backbone-bakeoff/runs/minilm/seed2/export.json
+primary 214 type 0.942 target 0.939 value 0.995 (raw 0.995) scanner strict 0.935 core 0.967
+secondary 290 type 0.890 target 0.890 value 0.997 (raw 0.997) scanner strict 0.938 core 0.972
+dev 189 type 0.880 target 0.857 value 0.979 (raw 0.979) scanner strict 0.937 core 0.979
+slang_probe 357 type 0.916 target 0.868 value 0.986 (raw 0.986) scanner strict 0.160 core 0.849
+genz_probe 94 type 0.870 target 0.862 value 1.000 (raw 1.000) scanner strict 0.500 core 0.904
+{
+ "checks": {
+  "value_test_primary": {
+   "value": 0.9953271028037384,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_test_secondary": {
+   "value": 0.996551724137931,
+   "min": 0.93,
+   "pass": true
+  },
+  "value_slang_probe": {
+   "value": 0.9859943977591037,
+   "min": 0.88,
+   "pass": true
+  },
+  "type_macro_f1_primary": {
+   "value": 0.9423371514568458,
+   "v2": 0.9560945199435602,
+   "min": 0.9460945199435602,
+   "pass": false
+  },
+  "target_exact_primary": {
+   "value": 0.9392523364485982,
+   "v2": 0.8878504672897196,
+   "min": 0.8778504672897196,
+   "pass": true
+  },
+  "type_macro_f1_secondary": {
+   "value": 0.8904367904000831,
+   "v2": 0.902027048286045,
+   "min": 0.892027048286045,
+   "pass": false
+  },
+  "target_exact_secondary": {
+   "value": 0.8896551724137931,
+   "v2": 0.8344827586206897,
+   "min": 0.8244827586206896,
+   "pass": true
+  },
+  "type_macro_f1_slang_probe": {
+   "value": 0.9156642916550488,
+   "v2": 0.8902633735931321,
+   "min": 0.8802633735931321,
+   "pass": true
+  },
+  "target_exact_slang_probe": {
+   "value": 0.8683473389355743,
+   "v2": 0.834733893557423,
+   "min": 0.824733893557423,
+   "pass": true
+  },
+  "beats_scanner_core_primary": {
+   "model": 0.9953271028037384,
+   "scanner": 0.9672897196261683,
+   "pass": true
+  },
+  "beats_scanner_core_secondary": {
+   "model": 0.996551724137931,
+   "scanner": 0.9724137931034482,
+   "pass": true
+  },
+  "beats_scanner_core_slang_probe": {
+   "model": 0.9859943977591037,
+   "scanner": 0.8487394957983193,
+   "pass": true
+  },
+  "int8_size": {
+   "bytes": 29499600,
+   "max": 30000000,
+   "pass": true
+  }
+ },
+ "pass": false
+}
+DONE minilm seed 2 Sat Oct 24 01:12:38 +07 2026
+ALL DONE

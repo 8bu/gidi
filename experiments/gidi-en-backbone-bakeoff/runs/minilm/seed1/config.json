@@ -1,0 +1,18 @@
+{
+  "init": "models/gidi-en-bakeoff/init/minilm",
+  "out_dir": "experiments/gidi-en-backbone-bakeoff/runs/minilm/seed1",
+  "weights_dir": "models/gidi-en-bakeoff/minilm/seed1",
+  "seed": "1",
+  "epochs": "40",
+  "batch_size": "8",
+  "lr": "5e-05",
+  "head_lr": "0.001",
+  "warmup_ratio": "0.1",
+  "weight_decay": "0.01",
+  "max_grad_norm": "1.0",
+  "device": "mps",
+  "slang_silver": "True",
+  "value": "True",
+  "max_steps": "None",
+  "n_train": 2355
+}

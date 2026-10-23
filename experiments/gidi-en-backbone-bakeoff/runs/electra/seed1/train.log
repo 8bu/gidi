@@ -1,0 +1,45 @@
+2026-10-24 00:10:06,669 INFO value supervision on 2355 of 2355 training notes
+2026-10-24 00:10:06,669 INFO train 2355 notes (truncated 0, span truncated 0), dev 189
+/Users/8bu/Projects/gidi/.venv/lib/python3.12/site-packages/torch/autograd/graph.py:1072: UserWarning: index_put_with_accumulate_mps does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/Context.cpp:190.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2026-10-24 00:10:30,093 INFO epoch 1 step 295 loss 3.0696 dev type F1 0.191 span exact 0.466 value exact 0.698
+2026-10-24 00:10:51,689 INFO epoch 2 step 590 loss 1.6675 dev type F1 0.697 span exact 0.677 value exact 0.857
+2026-10-24 00:11:13,019 INFO epoch 3 step 885 loss 0.8631 dev type F1 0.773 span exact 0.698 value exact 0.963
+2026-10-24 00:11:34,393 INFO epoch 4 step 1180 loss 0.5744 dev type F1 0.851 span exact 0.767 value exact 0.963
+2026-10-24 00:11:55,578 INFO epoch 5 step 1475 loss 0.3797 dev type F1 0.819 span exact 0.778 value exact 0.968
+2026-10-24 00:12:16,849 INFO epoch 6 step 1770 loss 0.2499 dev type F1 0.855 span exact 0.783 value exact 0.984
+2026-10-24 00:12:37,994 INFO epoch 7 step 2065 loss 0.1501 dev type F1 0.848 span exact 0.820 value exact 0.979
+2026-10-24 00:12:59,567 INFO epoch 8 step 2360 loss 0.1054 dev type F1 0.861 span exact 0.878 value exact 0.989
+2026-10-24 00:13:20,788 INFO epoch 9 step 2655 loss 0.0677 dev type F1 0.843 span exact 0.847 value exact 0.979
+2026-10-24 00:13:42,236 INFO epoch 10 step 2950 loss 0.0370 dev type F1 0.908 span exact 0.852 value exact 0.979
+2026-10-24 00:14:03,655 INFO epoch 11 step 3245 loss 0.0264 dev type F1 0.856 span exact 0.825 value exact 0.979
+2026-10-24 00:14:25,013 INFO epoch 12 step 3540 loss 0.0193 dev type F1 0.852 span exact 0.862 value exact 0.989
+2026-10-24 00:14:46,906 INFO epoch 13 step 3835 loss 0.0153 dev type F1 0.870 span exact 0.841 value exact 0.989
+2026-10-24 00:15:08,323 INFO epoch 14 step 4130 loss 0.0209 dev type F1 0.856 span exact 0.847 value exact 0.984
+2026-10-24 00:15:29,580 INFO epoch 15 step 4425 loss 0.0086 dev type F1 0.853 span exact 0.862 value exact 0.984
+2026-10-24 00:15:50,727 INFO epoch 16 step 4720 loss 0.0053 dev type F1 0.853 span exact 0.868 value exact 0.989
+2026-10-24 00:16:11,788 INFO epoch 17 step 5015 loss 0.0083 dev type F1 0.863 span exact 0.862 value exact 0.989
+2026-10-24 00:16:32,933 INFO epoch 18 step 5310 loss 0.0087 dev type F1 0.859 span exact 0.804 value exact 0.984
+2026-10-24 00:16:53,983 INFO epoch 19 step 5605 loss 0.0050 dev type F1 0.847 span exact 0.852 value exact 0.984
+2026-10-24 00:17:14,927 INFO epoch 20 step 5900 loss 0.0036 dev type F1 0.874 span exact 0.852 value exact 0.984
+2026-10-24 00:17:35,767 INFO epoch 21 step 6195 loss 0.0075 dev type F1 0.862 span exact 0.831 value exact 0.984
+2026-10-24 00:17:56,878 INFO epoch 22 step 6490 loss 0.0074 dev type F1 0.851 span exact 0.852 value exact 0.989
+2026-10-24 00:18:17,844 INFO epoch 23 step 6785 loss 0.0039 dev type F1 0.848 span exact 0.831 value exact 0.989
+2026-10-24 00:18:39,192 INFO epoch 24 step 7080 loss 0.0042 dev type F1 0.840 span exact 0.857 value exact 0.984
+2026-10-24 00:19:00,736 INFO epoch 25 step 7375 loss 0.0069 dev type F1 0.846 span exact 0.857 value exact 0.984
+2026-10-24 00:19:22,582 INFO epoch 26 step 7670 loss 0.0046 dev type F1 0.857 span exact 0.799 value exact 0.979
+2026-10-24 00:19:44,057 INFO epoch 27 step 7965 loss 0.0020 dev type F1 0.852 span exact 0.825 value exact 0.984
+2026-10-24 00:20:05,465 INFO epoch 28 step 8260 loss 0.0015 dev type F1 0.871 span exact 0.857 value exact 0.984
+2026-10-24 00:20:26,687 INFO epoch 29 step 8555 loss 0.0010 dev type F1 0.847 span exact 0.873 value exact 0.984
+2026-10-24 00:20:48,100 INFO epoch 30 step 8850 loss 0.0009 dev type F1 0.854 span exact 0.857 value exact 0.984
+2026-10-24 00:21:09,281 INFO epoch 31 step 9145 loss 0.0018 dev type F1 0.853 span exact 0.857 value exact 0.984
+2026-10-24 00:21:30,180 INFO epoch 32 step 9440 loss 0.0016 dev type F1 0.862 span exact 0.852 value exact 0.989
+2026-10-24 00:21:51,042 INFO epoch 33 step 9735 loss 0.0010 dev type F1 0.857 span exact 0.873 value exact 0.984
+2026-10-24 00:22:12,017 INFO epoch 34 step 10030 loss 0.0003 dev type F1 0.857 span exact 0.862 value exact 0.984
+2026-10-24 00:22:33,400 INFO epoch 35 step 10325 loss 0.0003 dev type F1 0.857 span exact 0.868 value exact 0.984
+2026-10-24 00:22:54,838 INFO epoch 36 step 10620 loss 0.0004 dev type F1 0.865 span exact 0.884 value exact 0.984
+2026-10-24 00:23:16,191 INFO epoch 37 step 10915 loss 0.0008 dev type F1 0.858 span exact 0.868 value exact 0.984
+2026-10-24 00:23:37,722 INFO epoch 38 step 11210 loss 0.0003 dev type F1 0.858 span exact 0.857 value exact 0.984
+2026-10-24 00:23:59,166 INFO epoch 39 step 11505 loss 0.0002 dev type F1 0.853 span exact 0.862 value exact 0.984
+2026-10-24 00:24:20,495 INFO epoch 40 step 11800 loss 0.0004 dev type F1 0.858 span exact 0.862 value exact 0.984
+2026-10-24 00:24:20,657 INFO saved models/gidi-en-bakeoff/electra/seed1

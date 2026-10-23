@@ -1,0 +1,58 @@
+{
+ "roberta-base": {
+  "test": {
+   "notes": 290,
+   "pieces_per_note": 8.279310344827586,
+   "unk": 0,
+   "notes_with_unk": 0
+  },
+  "slang_probe": {
+   "notes": 374,
+   "pieces_per_note": 9.171122994652407,
+   "unk": 0,
+   "notes_with_unk": 0
+  }
+ },
+ "distilroberta": {
+  "test": {
+   "notes": 290,
+   "pieces_per_note": 8.279310344827586,
+   "unk": 0,
+   "notes_with_unk": 0
+  },
+  "slang_probe": {
+   "notes": 374,
+   "pieces_per_note": 9.171122994652407,
+   "unk": 0,
+   "notes_with_unk": 0
+  }
+ },
+ "electra": {
+  "test": {
+   "notes": 290,
+   "pieces_per_note": 7.679310344827586,
+   "unk": 2,
+   "notes_with_unk": 2
+  },
+  "slang_probe": {
+   "notes": 374,
+   "pieces_per_note": 8.631016042780749,
+   "unk": 11,
+   "notes_with_unk": 11
+  }
+ },
+ "minilm": {
+  "test": {
+   "notes": 290,
+   "pieces_per_note": 7.482758620689655,
+   "unk": 2,
+   "notes_with_unk": 2
+  },
+  "slang_probe": {
+   "notes": 374,
+   "pieces_per_note": 8.537433155080214,
+   "unk": 11,
+   "notes_with_unk": 11
+  }
+ }
+}

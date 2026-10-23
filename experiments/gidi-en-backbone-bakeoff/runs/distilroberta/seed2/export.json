@@ -1,0 +1,134 @@
+{
+  "checkpoint": "models/gidi-en-bakeoff/distilroberta/seed2",
+  "encoder": "distilroberta-bakeoff",
+  "value_head_arch": null,
+  "max_length": 32,
+  "param_count": 28821134,
+  "value_head_params": 2307,
+  "checkpoint_safetensors_mb": 115.296984,
+  "checkpoint_safetensors_sha256": "866f8561c40c197c6736d79ac16cff864a8fed557a802f96f148a83a3327a313",
+  "frozen_state_sha256": {
+    "recomputed": "bf66de89f9b4f26ed90534fe9d473c735d537092363b2b21d38a53e8d900d774",
+    "checkpoint_metadata": null,
+    "equal": false
+  },
+  "notes": {
+    "source": "datasets/annotation-en-v1/splits/dev.jsonl",
+    "count": 50,
+    "seed": 0
+  },
+  "files": {
+    "model.onnx": {
+      "bytes": 115338584,
+      "sha256": "638ab3817168588d3dd10e9796fe5584fc3a01a2b529d885b6381425d6b4cf8d"
+    },
+    "model.int8.onnx": {
+      "bytes": 29036406,
+      "sha256": "e1aa44ca1d374bfc83e93656f2dac2277bc9bf23ca174cea277bd54f952d4067"
+    }
+  },
+  "opset": {
+    "requested": 17,
+    "fp32": 17,
+    "int8": 17
+  },
+  "interface": {
+    "fp32": {
+      "inputs": [
+        "input_ids",
+        "attention_mask"
+      ],
+      "outputs": [
+        "type_logits",
+        "tag_logits",
+        "value_logits"
+      ],
+      "output_shapes": {
+        "type_logits": [
+          "batch",
+          8
+        ],
+        "tag_logits": [
+          "batch",
+          "seq",
+          3
+        ],
+        "value_logits": [
+          "batch",
+          "seq",
+          3
+        ]
+      }
+    },
+    "int8": {
+      "inputs": [
+        "input_ids",
+        "attention_mask"
+      ],
+      "outputs": [
+        "type_logits",
+        "tag_logits",
+        "value_logits"
+      ],
+      "output_shapes": {
+        "type_logits": [
+          "batch",
+          8
+        ],
+        "tag_logits": [
+          "batch",
+          "seq",
+          3
+        ],
+        "value_logits": [
+          "batch",
+          "seq",
+          3
+        ]
+      }
+    }
+  },
+  "fp32": {
+    "path": "models/gidi-en-bakeoff-onnx/distilroberta/seed2/model.onnx",
+    "exporter": "dynamo",
+    "opset_requested": 17,
+    "errors": {},
+    "size_mb": 115.338584,
+    "parity": {
+      "samples": 50,
+      "atol": 0.0001,
+      "max_abs_diff_type_logits": 2.6226043701171875e-05,
+      "max_abs_diff_tag_logits": 5.459785461425781e-05,
+      "max_abs_diff_value_logits": 1.9073486328125e-05,
+      "max_abs_diff_single_note": 4.208087921142578e-05,
+      "max_abs_diff_single_note_type_logits": 3.24249267578125e-05,
+      "max_abs_diff_single_note_tag_logits": 4.208087921142578e-05,
+      "max_abs_diff_single_note_value_logits": 1.9073486328125e-05,
+      "max_abs_diff": 5.459785461425781e-05,
+      "passed": true
+    }
+  },
+  "int8": {
+    "path": "models/gidi-en-bakeoff-onnx/distilroberta/seed2/model.int8.onnx",
+    "fp32_size_mb": 115.338584,
+    "int8_size_mb": 29.036406,
+    "size_ratio": 0.2517492845239023,
+    "agreement": {
+      "samples": 50,
+      "type_agreement": 0.96,
+      "tag_agreement": 0.9963503649635036,
+      "value_agreement": 1.0,
+      "tag_tokens": 548,
+      "max_abs_diff_type_logits": 2.1617307662963867,
+      "max_abs_diff_value_logits": 1.5439653396606445
+    }
+  },
+  "int8_size_delta_vs_v1": null,
+  "path_a_initializers": {},
+  "environment": {
+    "torch": "2.14.0",
+    "onnxruntime": "1.30.0",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "machine": "arm64"
+  }
+}
