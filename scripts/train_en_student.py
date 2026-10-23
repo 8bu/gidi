@@ -8,6 +8,12 @@ Usage:
 Training data: silver-train + labels-seed (``gidi.training.english.load_train``). Dev is scored
 each epoch for monitoring only; the last epoch's weights are kept (no selection). Test is never
 loaded. Loss is ``CE(type) + CE(tags)`` as in the Vietnamese supervised arm.
+
+``--value`` (gidi-en v3): the model gets the value-span head of value-span-v1 / gidi-finance-v2
+(``GidiValueModel``: a ``Linear(hidden, 3)`` BIO head on the shared token states, seeded from
+``VALUE_HEAD_SEED_BASE + seed``) and the loss is ``CE(type) + CE(target) + CE(value)``, equal
+weights, the value tags of notes whose silver value label is not ``complete`` being
+``IGNORE_INDEX`` (``gidi.modeling.value``). Everything else is the v2 recipe, unchanged.
 """
 
 from __future__ import annotations
@@ -26,7 +32,14 @@ from gidi.corpus.jsonl import write_jsonl
 from gidi.device import resolve_device
 from gidi.modeling.checkpoint import load_checkpoint, save_checkpoint
 from gidi.modeling.preprocessing import IGNORE_INDEX
-from gidi.training.english import load_labeled, load_train, load_train_v2
+from gidi.modeling.value import GidiValueModel, prepare_value, save_value_checkpoint
+from gidi.training.english import (
+    load_labeled,
+    load_labeled_values,
+    load_train,
+    load_train_v2,
+    load_train_values_v2,
+)
 from gidi.training.train import (
     TrainConfig,
     _batches,
@@ -36,6 +49,8 @@ from gidi.training.train import (
     prepare,
     set_seed,
 )
+from gidi.training.train_value import _batches as _value_batches
+from gidi.training.train_value import _validation_row, multitask_loss
 
 log = logging.getLogger("train_en_student")
 
@@ -59,6 +74,11 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="v2: also train on the consistent notes of silver-slang-train.jsonl",
     )
+    ap.add_argument(
+        "--value",
+        action="store_true",
+        help="v3: add the value-span head and its loss (needs --slang-silver)",
+    )
     ap.add_argument("--max-steps", type=int, default=None, help="smoke check: stop early")
     args = ap.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -67,8 +87,19 @@ def main(argv: list[str] | None = None) -> int:
     device = resolve_device(args.device)
     model, tokenizer, meta = load_checkpoint(args.init)
     max_length = int(meta["max_length"])
-    train = prepare(tokenizer, load_train_v2() if args.slang_silver else load_train(), max_length)
-    dev = prepare(tokenizer, load_labeled("dev"), max_length)
+    if args.value:
+        if not args.slang_silver:
+            ap.error("--value is the v3 recipe: it needs --slang-silver (v2 data)")
+        model = GidiValueModel.from_v1(model, args.seed)
+        train = prepare_value(tokenizer, load_train_values_v2(), max_length)
+        dev = prepare_value(tokenizer, load_labeled_values("dev"), max_length)
+        value_labelled = sum(train.value_encoded.supervised)
+        log.info("value supervision on %d of %d training notes", value_labelled, len(train))
+    else:
+        train = prepare(
+            tokenizer, load_train_v2() if args.slang_silver else load_train(), max_length
+        )
+        dev = prepare(tokenizer, load_labeled("dev"), max_length)
     log.info(
         "train %d notes (truncated %d, span truncated %d), dev %d",
         len(train),
@@ -104,14 +135,26 @@ def main(argv: list[str] | None = None) -> int:
         )
         loss_sum = torch.zeros((), device=device)
         n_batches = 0
-        for _, ids, mask, tags, types in _batches(train, args.batch_size, order):
-            ids, mask, tags, types = (x.to(device) for x in (ids, mask, tags, types))
-            type_logits, tag_logits = model(ids, mask)
-            loss = F.cross_entropy(type_logits, types) + F.cross_entropy(
-                tag_logits.reshape(-1, tag_logits.shape[-1]),
-                tags.reshape(-1),
-                ignore_index=IGNORE_INDEX,
-            )
+        batches = (
+            _value_batches(train, args.batch_size, order)
+            if args.value
+            else _batches(train, args.batch_size, order)
+        )
+        for batch in batches:
+            if args.value:
+                ids, mask, tags, values, types = (x.to(device) for x in batch)
+                type_logits, tag_logits, value_logits = model(ids, mask)
+                parts = multitask_loss(type_logits, tag_logits, value_logits, types, tags, values)
+                loss = parts["total"]
+            else:
+                _, ids, mask, tags, types = batch
+                ids, mask, tags, types = (x.to(device) for x in (ids, mask, tags, types))
+                type_logits, tag_logits = model(ids, mask)
+                loss = F.cross_entropy(type_logits, types) + F.cross_entropy(
+                    tag_logits.reshape(-1, tag_logits.shape[-1]),
+                    tags.reshape(-1),
+                    ignore_index=IGNORE_INDEX,
+                )
             optimizer.zero_grad(set_to_none=True)
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
@@ -123,24 +166,36 @@ def main(argv: list[str] | None = None) -> int:
             if args.max_steps is not None and step >= args.max_steps:
                 break
         _sync(device)
-        metrics, _, _ = evaluate_split(model, dev, device)
-        overall = metrics["overall"]
+        if args.value:
+            val = _validation_row(model, dev, device)
+            dev_type, dev_span = val["val_type_macro_f1"], val["val_target_exact"]
+            extra = {
+                "dev_value_exact": val["val_value_exact"],
+                "dev_value_loss": val["val_value_loss"],
+            }
+        else:
+            metrics, _, _ = evaluate_split(model, dev, device)
+            overall = metrics["overall"]
+            dev_type, dev_span = overall["type"]["macro_f1"], overall["target"]["exact_match"]
+            extra = {}
         row = {
             "epoch": epoch,
             "step": step,
             "train_loss": float(loss_sum.item() / n_batches),
-            "dev_type_macro_f1": overall["type"]["macro_f1"],
-            "dev_span_exact": overall["target"]["exact_match"],
+            "dev_type_macro_f1": dev_type,
+            "dev_span_exact": dev_span,
+            **extra,
             "wall_sec": time.perf_counter() - started,
         }
         rows.append(row)
         log.info(
-            "epoch %d step %d loss %.4f dev type F1 %.3f span exact %.3f",
+            "epoch %d step %d loss %.4f dev type F1 %.3f span exact %.3f%s",
             epoch,
             step,
             row["train_loss"],
             row["dev_type_macro_f1"] or 0.0,
             row["dev_span_exact"] or 0.0,
+            f" value exact {extra['dev_value_exact'] or 0.0:.3f}" if args.value else "",
         )
         if args.max_steps is not None and step >= args.max_steps:
             break
@@ -151,7 +206,8 @@ def main(argv: list[str] | None = None) -> int:
         json.dumps({**{k: str(v) for k, v in vars(args).items()}, "n_train": len(train)}, indent=2)
         + "\n"
     )
-    save_checkpoint(
+    save = save_value_checkpoint if args.value else save_checkpoint
+    save(
         model.cpu(),
         tokenizer,
         args.weights_dir,
@@ -161,7 +217,9 @@ def main(argv: list[str] | None = None) -> int:
             "lr": args.lr,
             "max_length": max_length,
             "init": str(args.init),
-            "labels": "silver-train + labels-seed (annotation-en-v1)",
+            **({"annotation_version": "annotation-en-v1"} if args.value else {}),
+            "labels": "silver-train + labels-seed (annotation-en-v1)"
+            + (" + silver value labels (value-*.jsonl)" if args.value else ""),
         },
     )
     log.info("saved %s", args.weights_dir)

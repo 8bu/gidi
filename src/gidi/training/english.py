@@ -68,6 +68,66 @@ def load_train_v2(root: Path = EN_DIR) -> list[dict[str, Any]]:
     return load_train(root) + load_slang_silver(root)
 
 
+VALUE_FILES = {
+    "test": "value-labels-test.jsonl",
+    "dev": "value-labels-dev.jsonl",
+    "seed": "value-labels-seed.jsonl",
+    "probe-slang": "value-labels-probe-slang.jsonl",
+    "probe-genz": "value-labels-probe-genz.jsonl",
+    "train": "value-silver-train.jsonl",
+    "slang-train": "value-silver-slang-train.jsonl",
+}
+
+
+def attach_values(
+    records: list[dict[str, Any]], name: str, root: Path = EN_DIR
+) -> list[dict[str, Any]]:
+    """Add ``value`` / ``value_status`` / ``value_provenance`` (silver, never human) to records.
+
+    ``name`` is a key of :data:`VALUE_FILES`; every record needs a value label.
+    """
+    values = {r["id"]: r for r in read_jsonl(root / VALUE_FILES[name])}
+    out = []
+    for rec in records:
+        v = values[rec["id"]]
+        out.append(
+            {
+                **rec,
+                "value": v["value"],
+                "value_status": v["value_status"],
+                "value_provenance": v["value_provenance"],
+            }
+        )
+    return out
+
+
+def load_labeled_values(split: str, root: Path = EN_DIR) -> list[dict[str, Any]]:
+    """``load_labeled`` with the silver value labels of ``value-labels-<split>.jsonl``."""
+    return attach_values(load_labeled(split, root), split, root)
+
+
+def load_train_values_v2(root: Path = EN_DIR) -> list[dict[str, Any]]:
+    """v3 training notes: the notes of ``load_train_v2`` (same order) with silver value labels.
+
+    Never a test, dev or probe note (checked).
+    """
+    silver = _join(_texts(root, "train"), read_jsonl(root / "silver-train.jsonl"), "silver-train")
+    slang_rows = [r for r in read_jsonl(root / "silver-slang-train.jsonl") if r["consistent"]]
+    slang = _join({r["id"]: r["text"] for r in slang_rows}, slang_rows, "silver-slang-train")
+    records = (
+        attach_values(silver, "train", root)
+        + attach_values(load_labeled("seed", root), "seed", root)
+        + attach_values(slang, "slang-train", root)
+    )
+    held_out = {
+        r["id"] for s in ("test", "dev") for r in read_jsonl(root / "splits" / f"{s}.jsonl")
+    }
+    bad = [r["id"] for r in records if r["id"] in held_out or r["id"].startswith("probe-")]
+    if bad:
+        raise ValueError(f"held-out or probe notes in the training set: {bad[:5]}")
+    return records
+
+
 def sources(root: Path = EN_DIR) -> dict[str, str]:
     """Label provenance per note id (``consensus`` or ``claude-adjudicated``)."""
     return {r["id"]: r["source"] for r in read_jsonl(root / "provenance.jsonl")}

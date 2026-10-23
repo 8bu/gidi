@@ -50,7 +50,8 @@ VALUE_TAGS: tuple[str, ...] = ("O", "B-VALUE", "I-VALUE")
 NUM_VALUE_TAGS = len(VALUE_TAGS)
 ANNOTATION_VERSION = "annotation-v2"
 VALUE_STATUSES = ("complete", "uncertain")
-VALUE_PROVENANCES = ("human", "rule")
+# ``silver-*``: gidi-en (Claude + Clef + rules, never human); see scripts/build_en_value_labels.py
+VALUE_PROVENANCES = ("human", "rule", "silver-consensus", "silver-adjudicated")
 # The value head's generator seed is ``VALUE_HEAD_SEED_BASE + seed``: independent of the global
 # RNG stream that the encoder and the type/target heads of the v1 recipe are drawn from.
 VALUE_HEAD_SEED_BASE = 1_000_003
