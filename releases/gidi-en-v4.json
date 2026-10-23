@@ -1,0 +1,232 @@
+{
+  "spec_format": 1,
+  "model_version": "gidi-en-v4",
+  "readme_language": "en",
+  "source": {
+    "experiment": "gidi-en-student-v4",
+    "seed": 1,
+    "experiment_protocol": {
+      "path": "experiments/gidi-en-student-v4/protocol.json",
+      "sha256": "a21480f775dd87b134ba774f0712635af4545d317e2c0aa177659a5f4f36963e"
+    },
+    "deployment_protocol": {
+      "path": "experiments/gidi-en-deployment-v4/protocol.json",
+      "sha256": "96e9da81c302d474b8ccd54ab0c7667aee3d8f6a86c42d5ae1d46d5d677f7649"
+    },
+    "bundle": {
+      "path": "models/gidi-en-v4-bundle",
+      "manifest_sha256": "5c4a747ecd4e622b13b13167525024bdfd8ce7f62a11c6339791ea9b4a3d800d"
+    },
+    "checkpoint_sha256": "125ec9ee0c8305b104b8adb5e0106b3a0e8d89e8e500a20ac2b17ce40ddc9c09"
+  },
+  "bundle_check": {
+    "script": "scripts/freeze_en_bundle.py",
+    "bundle": "models/gidi-en-v4-bundle",
+    "protocol": "experiments/gidi-en-deployment-v4/protocol.json"
+  },
+  "files": [
+    {
+      "source": "models/gidi-en-v4-bundle/model.int8.onnx",
+      "path": "model/int8/model.int8.onnx",
+      "kind": "onnx-int8",
+      "sha256": "faf46f3516b90f333455303620dd12f98de1c9863d42bd6eea1f26c9b0829ba6",
+      "size_bytes": 29499600
+    },
+    {
+      "source": "models/gidi-en-v4-onnx/seed1/model.onnx",
+      "path": "model/fp32/model.onnx",
+      "kind": "onnx-fp32",
+      "sha256": "22fbffaf9b0782ebf40a4574bf68be198c7ce1ae379e2ccb8c33404af95aaf32",
+      "size_bytes": 116840041
+    },
+    {
+      "source": "models/gidi-en-v4-bundle/tokenizer.json",
+      "path": "tokenizer/tokenizer.json",
+      "kind": "tokenizer",
+      "sha256": "ce9079bd3cec0f182d3d9874668ae4151395b32cf604d2119cafb6780e77cd28",
+      "size_bytes": 473941
+    },
+    {
+      "source": "models/gidi-en-v4-bundle/tokenizer_config.json",
+      "path": "tokenizer/tokenizer_config.json",
+      "kind": "tokenizer-config",
+      "sha256": "7bc1e642a85448bbbc320c3cf3caf717f546cf60d5d85f5d1b4406b5cec025cd",
+      "size_bytes": 350
+    },
+    {
+      "source": "models/gidi-en-v4-bundle/vocab_map.json",
+      "path": "tokenizer/vocab_map.json",
+      "kind": "vocab-map",
+      "sha256": "e8d953b3bda92ca1a79997c783f7ca5f7e5a8d1f7a4ac6baa167c6db62920e99",
+      "size_bytes": 135532
+    },
+    {
+      "source": "models/gidi-en-v4-bundle/config.json",
+      "path": "runtime/config.json",
+      "kind": "runtime-config",
+      "sha256": "a6ad4400ceaed00ca3a734b91ddbb23d41a0f8bae857d7695120e5f50421d4ea",
+      "size_bytes": 1142
+    },
+    {
+      "source": "releases/licenses/Apache-2.0.txt",
+      "path": "LICENSE",
+      "kind": "license",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "size_bytes": 11358
+    },
+    {
+      "source": "releases/licenses/MiniLM-L12-H384-uncased-MIT.txt",
+      "path": "licenses/MiniLM-L12-H384-uncased-MIT.txt",
+      "kind": "third-party-license",
+      "sha256": "7df20dcdf9197e9945c14858d41c60f11b52b93e5b69e2b63416b874d598d322",
+      "size_bytes": 1074
+    }
+  ],
+  "readmes": {
+    "README.md": "releases/templates/gidi-en-v4.README.md"
+  },
+  "variants": {
+    "int8": {
+      "members": {
+        "model.int8.onnx": "model/int8/model.int8.onnx",
+        "config.json": "runtime/config.json",
+        "tokenizer.json": "tokenizer/tokenizer.json",
+        "tokenizer_config.json": "tokenizer/tokenizer_config.json",
+        "vocab_map.json": "tokenizer/vocab_map.json",
+        "README.md": "README.md",
+        "LICENSE": "LICENSE",
+        "MiniLM-L12-H384-uncased-MIT.txt": "licenses/MiniLM-L12-H384-uncased-MIT.txt",
+        "release-manifest.json": "manifest.json"
+      },
+      "model_file": "model.int8.onnx"
+    },
+    "fp32": {
+      "members": {
+        "model.onnx": "model/fp32/model.onnx",
+        "config.json": "runtime/config.json",
+        "tokenizer.json": "tokenizer/tokenizer.json",
+        "tokenizer_config.json": "tokenizer/tokenizer_config.json",
+        "vocab_map.json": "tokenizer/vocab_map.json",
+        "README.md": "README.md",
+        "LICENSE": "LICENSE",
+        "MiniLM-L12-H384-uncased-MIT.txt": "licenses/MiniLM-L12-H384-uncased-MIT.txt",
+        "release-manifest.json": "manifest.json"
+      },
+      "model_file": "model.onnx"
+    }
+  },
+  "smoke": [
+    {
+      "text": "got paid 2400",
+      "expected": {
+        "type": "income",
+        "target": null,
+        "value_text": "2400"
+      }
+    },
+    {
+      "text": "owe Sam 20",
+      "expected": {
+        "type": "borrow",
+        "target": "Sam",
+        "value_text": "20"
+      }
+    },
+    {
+      "text": "Sam owes me 20",
+      "expected": {
+        "type": "lend",
+        "target": "Sam",
+        "value_text": "20"
+      }
+    },
+    {
+      "text": "Mike paid 15",
+      "expected": {
+        "type": "repayment_in",
+        "target": "Mike",
+        "value_text": "15"
+      }
+    },
+    {
+      "text": "company paid oct 5k",
+      "expected": {
+        "type": "income",
+        "target": "company",
+        "value_text": "5k"
+      }
+    },
+    {
+      "text": "covered lunch for Sam 20",
+      "expected": {
+        "type": "lend",
+        "target": "Sam",
+        "value_text": "20"
+      }
+    },
+    {
+      "text": "venmo'd mom 50",
+      "expected": {
+        "type": "expense",
+        "target": "mom",
+        "value_text": "50"
+      }
+    },
+    {
+      "text": "moved 500 to savings",
+      "expected": {
+        "type": "transfer",
+        "target": null,
+        "value_text": "500"
+      }
+    },
+    {
+      "text": "amazon refund 25",
+      "expected": {
+        "type": "refund",
+        "target": "amazon",
+        "value_text": "25"
+      }
+    },
+    {
+      "text": "paid off my credit card 200",
+      "expected": {
+        "type": "repayment_out",
+        "target": "credit card",
+        "value_text": "200"
+      }
+    },
+    {
+      "text": "coffee 4.50",
+      "expected": {
+        "type": "expense",
+        "target": null,
+        "value_text": "4.50"
+      }
+    },
+    {
+      "text": "2 grand for the car",
+      "expected": {
+        "type": "expense",
+        "target": null,
+        "value_text": "2 grand"
+      }
+    },
+    {
+      "text": "twenty bucks to sam",
+      "expected": {
+        "type": "lend",
+        "target": "sam",
+        "value_text": "twenty bucks"
+      }
+    },
+    {
+      "text": "paid rent",
+      "expected": {
+        "type": "expense",
+        "target": null,
+        "value_text": null
+      }
+    }
+  ]
+}
