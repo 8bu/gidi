@@ -349,8 +349,8 @@ today's volume nothing). Of the eight Workers whose settings I read (`portf-api`
 
 ### What remains for the owner
 
-1. Create the WAF rate-limiting rule above on `8bu.dev` (free plan, one rule), or replace `CHAT_LIMIT` with a
-   Durable Object limiter. Either makes the `portf-api` AI exposure strict.
+1. Done 2026-10-23: the WAF rate-limiting rule is live (see "WAF 8bu.dev 2026-10-22" below). It is approximate for
+   sub-second bursts; a Durable Object limiter in `portf-api` would make it strict.
 2. Confirm that `~/Projects/clef-browse-fast` is the caller; if so, put its token on a narrow scope (Workers AI read/run
    only) and add a usage-based billing notification in Billing -> Notifications; AI spend has no other cap.
 3. Nothing was deleted. Candidates to review, none of them urgent: the `Images Stream Basic` and `Realtime`
@@ -359,6 +359,43 @@ today's volume nothing). Of the eight Workers whose settings I read (`portf-api`
 4. Push `~/Projects/8bu.dev` (commit `dc64877` is local) when `apps/web` is in a state to push.
 5. 2026-10-23: the `vldex-web` Worker and its route `vldex.8bu.dev/*` were dropped (no cron, secret or custom domain existed).
    No D1, KV, R2 or Queue was tied to it, so no data store was left; the repo `~/Projects/vldex` is kept. The config backup is at `~/Documents/cloudflare-backups/vldex-web-2026-10-22/` (outside git, no secrets).
+
+## WAF 8bu.dev 2026-10-22
+
+Created 2026-10-23 (UTC) through the Cloudflare dashboard API in BrowserOS (zone `f81132accb538269af7b3b5070d9dffc`,
+plan **Free Website**; Free allows 5 custom rules and 1 rate-limiting rule, with period 10 s and mitigation 10 s
+only). Before: no rule in the custom and rate-limiting phases, Managed Free Ruleset not deployed on the zone,
+security level medium, Browser Integrity Check on, Bot Fight Mode off, DDoS L7 managed ruleset default. DNS
+proxied hosts are the apex, `www`, `db`, `sankit`, `uptime`, `crewdoku`, `cvspire`, `cyclone`, `games`, `gidi`,
+`quet`, `vietlott`; mail, `send`/`rsend` and `origin.vldex` are DNS only. The response-header rule "gidi geo hint
+(Server-Timing)" was not touched and is still enabled.
+
+| Rule (phase) | Expression | Action | Quota used |
+|---|---|---|---|
+| `ai endpoints rate limit (portf-api chat/retrieve)` (rate limiting) | host in {8bu.dev, www.8bu.dev}, method POST, path in {/api/chat, /api/retrieve} | Block, 20 requests per 10 s per IP and colo, blocked for 10 s (HTTP 429) | 1 of 1 |
+| `block scanner paths` (custom) | path contains `/.env` or `/.git/`, equals `/.git`, starts with `/wp-admin`, `/wp-login.php`, `/phpmyadmin`, or contains `xmlrpc.php` | Block (403) | 1 of 5 |
+| `challenge empty user agent on API hosts` (custom) | empty User-Agent, host in {8bu.dev, www.8bu.dev, portal.8bu.dev}, path starts with `/api/` | Managed Challenge | 2 of 5 |
+| `Cloudflare Managed Free Ruleset` (managed) | `true`, ruleset `77454fe2d30c4220b5701f6fdfb893ba` | Execute | n/a |
+
+Nothing matches `gidi.8bu.dev` except the scanner-path rule, which only matches paths gidi does not serve;
+`/release/*` and the model parts are unaffected.
+
+**Bot Fight Mode left off** on purpose: it challenges non-browser clients, and the zone has such callers
+(`uptime.8bu.dev` monitors fetched from a Worker, `deploy.sh` curl smoke tests, API scripts). The Free plan has no
+way to exempt them (skip rules for Bot Fight Mode need Pro). Turn it on in Security -> Settings if that is accepted.
+
+**Verified (curl):** `gidi.8bu.dev/`, `/release/manifest.json` 200 and the `Server-Timing: geo;desc=VN` header
+present; `8bu.dev/api/healthz` and `/api/stats` 200; `/.env`, `/wp-login.php`, `/xmlrpc.php`, `/phpmyadmin/` on
+`8bu.dev` and `/.git/config` on gidi 403; empty User-Agent on `/api/healthz` 403 (challenge), on gidi 200; a
+single `POST /api/retrieve` 200. A run of sequential `POST /api/retrieve` calls (about 44, killed partway) returned 429
+for 6 calls once past 20 in 10 s (the counter is approximate and per colo), and a single call 15 s later was 200. A
+40-way parallel burst all returned 200: counters update after the fact, so the cap is not strict for sub-second
+bursts. gidi loads in BrowserOS (UI renders, manifest 200).
+
+**Rollback:** dashboard -> `8bu.dev` -> Security -> Security rules: toggle off or delete each rule above (Rate
+limiting rules for the first; Custom rules for the next two); Security -> Settings -> Managed rules, disable
+"Cloudflare Managed Free Ruleset". Or API: `PUT /zones/<id>/rulesets/phases/<http_ratelimit|http_request_firewall_custom|http_request_firewall_managed>/entrypoint`
+with `{"rules":[]}`.
 
 ## Sources
 
