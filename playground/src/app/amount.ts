@@ -338,10 +338,14 @@ export function formatVndCompact(n: number): string {
  * English notes are US dollars with en-US number syntax: the amount is the number as written (`50`,
  * `4.50`, `1,200`, `2.5k`, `1.2m`, `3 million`, `2 grand`), never scaled by the Vietnamese rules
  * (a bare number is not thousands, `tr`/`củ` mean nothing). Other currencies (`£`, `€`, `quid`,
- * `sgd`) are not converted: the number is kept as is. The English bundle has no value head or value parser,
- * so `findEnglishValue` is a deterministic scan of the note: a number with a `$` sign or a money
- * word wins; otherwise the last number (notes end with the amount: `venmo'd mom 50`). Times and
- * dates (`7:30`, `3/5`), ordinals and words with digits (`5pm`, `2nd`, `x2`) are not amounts.
+ * `sgd`) are not converted: the number is kept as is.
+ *
+ * The English v4 model reads the amount itself (a value span: `$50`, `2 grand`, `twenty bucks`);
+ * `amountFromEnglishSpan` turns that span into a number. `findEnglishValue` is the deterministic
+ * scan of the note for a model without a value head (gidi-en v2) and the fallback when the
+ * model's span cannot be read as an amount: a number with a `$` sign or a money word wins;
+ * otherwise the last number (notes end with the amount: `venmo'd mom 50`). Times and dates
+ * (`7:30`, `3/5`), ordinals and words with digits (`5pm`, `2nd`, `x2`) are not amounts.
  */
 const ENGLISH_NUMBER =
   /(?<![\p{L}\p{N}.,/:$])(\$)?(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)(k|m|b|bn|\s?(?:mil|million|billion|grand))?(\s?(?:bucks?|dollars?|usd))?(?![\p{L}\p{N}]|[/:]\d)/giu
@@ -396,6 +400,135 @@ export function findEnglishValue(note: string): {
     span: [toCodePoints(best.start), toCodePoints(best.end)],
     amount: amountFromEnglish(valueText),
   }
+}
+
+const WORD_UNITS: Readonly<Record<string, number>> = {
+  zero: 0,
+  one: 1,
+  two: 2,
+  three: 3,
+  four: 4,
+  five: 5,
+  six: 6,
+  seven: 7,
+  eight: 8,
+  nine: 9,
+  ten: 10,
+  eleven: 11,
+  twelve: 12,
+  thirteen: 13,
+  fourteen: 14,
+  fifteen: 15,
+  sixteen: 16,
+  seventeen: 17,
+  eighteen: 18,
+  nineteen: 19,
+  fiver: 5,
+  tenner: 10,
+}
+const WORD_TENS: Readonly<Record<string, number>> = {
+  twenty: 20,
+  thirty: 30,
+  forty: 40,
+  fifty: 50,
+  sixty: 60,
+  seventy: 70,
+  eighty: 80,
+  ninety: 90,
+}
+const WORD_SCALES: Readonly<Record<string, number>> = {
+  thousand: THOUSAND,
+  grand: THOUSAND,
+  million: MILLION,
+  billion: BILLION,
+}
+
+/** `twenty five`, `a hundred`, `two thousand`, `fiver`; `null` for anything else. */
+function amountFromNumberWords(text: string): number | null {
+  const words = text.split(/[\s-]+/).filter((w) => w !== "" && w !== "and")
+  if (words.length === 0) return null
+  let total = 0
+  let current = 0
+  let seen = false
+  for (const word of words) {
+    if (word === "a" || word === "an") continue // `a hundred`: the article only counts as one
+    seen = true
+    if (word in WORD_UNITS) current += WORD_UNITS[word]
+    else if (word in WORD_TENS) current += WORD_TENS[word]
+    else if (word === "hundred") current = (current === 0 ? 1 : current) * 100
+    else if (word in WORD_SCALES) {
+      total += (current === 0 ? 1 : current) * WORD_SCALES[word]
+      current = 0
+    } else return null
+  }
+  return seen ? total + current : null
+}
+
+/**
+ * The number an English value span stands for, or `null` when it is not an amount. The span is the
+ * amount as written, currency marker included (`$20`, `20 bucks`, `s$30`, `150s$`, `rs 500`,
+ * `2 grand`, `twenty bucks`, `50 cents`): the marker is dropped, the rest read as digits with an
+ * optional scale (`5k`, `1.2m`, `3 million`) or as number words. USD only: other currencies keep
+ * their number.
+ */
+export function amountFromEnglishSpan(valueText: string): number | null {
+  let text = valueText.toLowerCase().trim()
+  const cents = /(?<![a-z])cents?\b/.test(text)
+  text = text
+    .replace(/(?<=\d)\s?(?:us|s|a|c)?\$/g, "")
+    .replace(/\b(?:us|s|a|c)\$/g, "")
+    .replace(/[$£€₹¥₱]/g, "")
+    .replace(
+      /(?<![a-z])(?:bucks?|bux|dollars?|usd|sgd|gbp|eur|inr|quid|pounds?|euros?|rupees?|rs|aed|cents?)\b/g,
+      ""
+    )
+    .trim()
+  if (text === "") return null
+  const digits = /\d/.test(text)
+  const value = digits ? amountFromEnglish(text) : amountFromNumberWords(text)
+  if (value === null) return null
+  const amount = cents ? Math.round(value) / 100 : value
+  return Number.isFinite(amount) && amount >= 0 ? amount : null
+}
+
+export interface EnglishValue {
+  valueText: string | null
+  span: [number, number] | null
+  amount: number | null
+}
+
+/**
+ * The amount of an English note. With a model that has a value head the model decides: its span
+ * is used when it reads as an amount, no span means no amount. A span that runs on into the next
+ * word (`30 4` for `30 4 bday`, `5000 rs 4`, `1.80 rn`) is cut back to its longest leading part
+ * that reads as an amount. The scanner answers only when the model has no value output or no
+ * part of its span is an amount.
+ */
+export function readEnglishValue(
+  note: string,
+  model: {
+    hasValueHead: boolean
+    valueText: string | null
+    span: [number, number] | null
+  }
+): EnglishValue {
+  if (model.hasValueHead) {
+    if (model.valueText === null || model.span === null) {
+      return { valueText: null, span: null, amount: null }
+    }
+    let text = model.valueText
+    for (;;) {
+      const amount = amountFromEnglishSpan(text)
+      if (amount !== null) {
+        const end = model.span[0] + Array.from(text).length
+        return { valueText: text, span: [model.span[0], end], amount }
+      }
+      const cut = text.trimEnd().lastIndexOf(" ")
+      if (cut <= 0) break
+      text = text.slice(0, cut)
+    }
+  }
+  return findEnglishValue(note)
 }
 
 const USD = new Intl.NumberFormat("en-US", {

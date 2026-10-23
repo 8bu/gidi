@@ -12,7 +12,7 @@ import { registerSensitive } from "@/lib/error-report"
 import type { Lang } from "@/lib/language"
 import { MODELS } from "@/lib/models"
 
-import { amountToVnd, findEnglishValue, widenSlangValue } from "./amount"
+import { amountToVnd, readEnglishValue, widenSlangValue } from "./amount"
 import {
   currencyOf,
   getLanguage,
@@ -206,19 +206,27 @@ onLanguageChange(() => {
 })
 
 /**
- * Vietnamese: the rule-based parser's value, read as VND. English: the bundle has no value head
- * or parser, so the amount is a deterministic scan of the note (`findEnglishValue`).
+ * Vietnamese: the rule-based parser's value, read as VND. English: the model's value span (v4)
+ * read as US dollars; a model without a value head (v2) or an unreadable span falls back to a
+ * deterministic scan of the note (`readEnglishValue`).
  */
 function readValue(
   lang: Lang,
   note: string,
-  result: PredictResponse["result"]
+  result: PredictResponse["result"],
+  hasValueHead: boolean
 ): {
   valueText: string | null
   span: [number, number] | null
   amount: number | null
 } {
-  if (lang === "en") return findEnglishValue(note)
+  if (lang === "en") {
+    return readEnglishValue(note, {
+      hasValueHead,
+      valueText: result.value_text ?? null,
+      span: copySpan(result.value_span),
+    })
+  }
   const { valueText, span } = widenSlangValue(
     note,
     result.value_text ?? null,
@@ -248,7 +256,12 @@ async function classifyNote(note: string): Promise<NoteRecord> {
     valueText,
     span: valueSpan,
     amount,
-  } = readValue(current.lang, note, result)
+  } = readValue(
+    current.lang,
+    note,
+    result,
+    current.backend?.info.has_value_head ?? false
+  )
   const type = isTxType(result.type) ? result.type : null
   if (type === null) throw new Error(t.badType(result.type))
   const now = Date.now()

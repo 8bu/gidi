@@ -21,8 +21,8 @@ export const MODELS: Readonly<Record<Lang, ModelSpec>> = {
   },
   en: {
     lang: "en",
-    id: "gidi-en-v2",
-    version: "2.0.1",
+    id: "gidi-en-v4",
+    version: "4.0.0",
   },
 }
 

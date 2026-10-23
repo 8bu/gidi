@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "min_client": 1,
+  "min_client": 2,
   "languages": {
     "vi": {
       "active": "4.0.0",
@@ -10,10 +10,11 @@
       ]
     },
     "en": {
-      "active": "2.0.1",
+      "active": "4.0.0",
       "blocked": [],
       "releases": [
-        { "id": "gidi-en-v2", "version": "2.0.1", "bundle": "gidi-en-v2-bundle" }
+        { "id": "gidi-en-v2", "version": "2.0.1", "bundle": "gidi-en-v2-bundle" },
+        { "id": "gidi-en-v4", "version": "4.0.0", "bundle": "gidi-en-v4-bundle" }
       ]
     }
   }

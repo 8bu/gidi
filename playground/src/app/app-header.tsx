@@ -368,7 +368,7 @@ const THEMES = [
   { value: "system", label: "themeSystem", Icon: MonitorIcon },
 ] as const
 
-/** `gidi-en-v2 2.0.1` */
+/** `gidi-en-v4 4.0.0` */
 const modelName = (lang: Lang): string =>
   `${MODELS[lang].id} ${MODELS[lang].version}`
 

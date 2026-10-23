@@ -46,7 +46,7 @@ function note(
       valueText: null,
       valueSpan: null,
       amount,
-      modelVersion: currency === "VND" ? "gidi-finance-v4" : "gidi-en-v2",
+      modelVersion: currency === "VND" ? "gidi-finance-v4" : "gidi-en-v4",
     },
   }
 }
@@ -290,7 +290,7 @@ test("each database records the model it last ran", async () => {
   await store.loaded()
   await store.setLanguage("vi")
   for (const [lang, model] of [
-    ["en", "gidi-en-v2 2.0.1"],
+    ["en", "gidi-en-v4 4.0.0"],
     ["vi", "gidi-finance-v4 4.0.0"],
   ] as const) {
     const db = await openNotesDb(factory, dbName(lang))
