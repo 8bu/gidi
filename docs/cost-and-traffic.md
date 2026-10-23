@@ -318,6 +318,31 @@ $0.00**, every line inside its included tier. The three items of the earlier che
   112 vitest tests pass; `wrangler deploy --dry-run` clean. The commit is local in `~/Projects/8bu.dev`
   and not pushed (the branch already had an unpushed commit of yours and uncommitted `apps/web` edits, which I left).
 
+### AI budget guard (2026-10-23, version `131bf4f2`)
+
+- **What:** a global daily cap on the two AI-spending routes, in `~/Projects/8bu.dev` (commit `639c5b2`, local, not
+  pushed). One SQLite-backed Durable Object (`AiBudget`, instance `global`) counts requests that are about to reach
+  Workers AI per UTC day. Over the cap, `POST /api/chat` and `POST /api/retrieve` answer `429`
+  `{"error":"daily_limit","retry_after_seconds":N}` with `Retry-After`, before any embedding. Deflected chat messages
+  and invalid bodies are not charged. The same object enforces a strict per-IP window (20 calls in a sliding 10 s,
+  key `sha256(daily salt + IP)`, memory only), which is the strict counter the approximate `CHAT_LIMIT` binding and
+  a WAF rule are not.
+- **Limit: `DAILY_AI_CALL_LIMIT = "3000"`** (a `wrangler.toml` var, retune with a redeploy). Observed bge-m3 calls,
+  30 days: busiest day 297 (2026-10-23, my own audit load tests), busiest organic day 47, 84 calls on the other days.
+  10x of 297 is about 3000. At the cap, worst-case spend is about $0.05 a day (3000 x 2 embeddings x 700 tokens).
+- **Fail closed:** if the Durable Object is unreachable the API returns `503 budget_unavailable` and makes no AI call.
+- **Visible:** `GET /api/budget` returns `used`, `limit`, `remaining`, per-route counts and the reset time; the first
+  rejection of each day logs one `ai_budget_cap_hit` line. The web chat shows "i've hit my daily question limit" on a
+  daily-limit 429 (client change committed, web not redeployed: your uncommitted `apps/web` edits would ship with it).
+- **Cost of the guard:** one DO request and one row write per admitted call; at the cap about 90 k requests and
+  180 k row writes a month, against 1 M and 50 M included on Paid. A DO running non-stop is 331,776 GB-s of 400,000
+  included. Expected $0.
+- **Checks:** 35 new tests (cap, exact boundary, day rollover, deflected not counted, per-IP window, DO failure);
+  typecheck, lint and 147 API tests pass; `wrangler dev` with the cap at 3: three `/retrieve` calls `200`, the fourth
+  and a `/chat` `429`, a deflected chat `200`, one cap-hit log line. Production smoke: `/api/healthz`, `/api/stats`,
+  `/api/budget`, `POST /api/retrieve`, `POST /api/chat` all `200` (`/api/blog` returned `502 upstream` three times
+  right after the deploy, then `200`; the code path does not touch the budget guard).
+
 ### Everything billable on the account
 
 Subscriptions (dashboard): **Workers Paid** (invoice 13 Oct: $5.00), **R2 Paid**, **Images Stream Basic**,
