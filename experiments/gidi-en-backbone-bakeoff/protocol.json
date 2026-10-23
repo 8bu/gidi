@@ -1,0 +1,59 @@
+{
+  "experiment": "gidi-en-backbone-bakeoff",
+  "written_before": "any bake-off model was built or trained. Only the architecture/size/op-set feasibility check with RANDOM weights existed (feasibility.py, feasibility.json); it fixes the width numbers below from the parameter budget alone and measures no quality.",
+  "question": "Is another English encoder a better backbone than the roberta-base 4-layer student for gidi-en (type + target + value) under the same ~30 MB int8 ORT-Web budget? The owner asked whether a backbone 'more specialised for English' helps; roberta-base is already English-only, so the question is whether a different English backbone wins.",
+  "label_provenance": "silver-claude-clef-regex, as gidi-en v3 (no human labels for English). Every number is agreement with silver labels.",
+  "unchanged_from_v3": {
+    "model": "GidiValueModel (type + target + value heads, Linear(hidden, 3) value head), loss CE(type)+CE(target)+CE(value)",
+    "data": "silver-train + labels-seed + consistent silver-slang-train = 2,355 notes with their silver value labels (scripts/train_en_student.py --slang-silver --value)",
+    "hyperparameters": "40 epochs, batch 8, encoder lr 5e-5, head lr 1e-3, AdamW, weight decay 0.01, warmup ratio 0.1, grad clip 1.0, MPS, last epoch kept, no checkpoint selection, no per-candidate tuning",
+    "export": "scripts/export_value_onnx.py (dynamo, opset 17, dynamic QInt8)",
+    "evaluation": "scripts/evaluate_en_value.py (int8 and fp32 ONNX, snapped decode) on test primary (n=214), test secondary (n=290), dev (n=189), slang probe (n=357), Gen Z probe (n=94)",
+    "forbidden": "training on or selecting with test, dev-for-selection, probes or Vietnamese data; the vocabulary of every student is selected from the gidi-en TRAIN split notes only (datasets/annotation-en-v1/splits/train.jsonl), the FFN calibration likewise"
+  },
+  "width_rule": {
+    "budget": "student parameter count (encoder + 3 heads, vocabulary rows included) <= 29,200,000, which is the int8 ~29.0-29.5 MB of the shipped roberta student (29,004,811 params, int8 29.17 MB). The rule is mechanical and uses no evaluation score.",
+    "layers": "evenly spaced source layers by gidi.distillation.student.layer_map(n_source, n_student): 4 of 12 for the 12-layer 768-wide sources (layers 2/5/8/11, the roberta recipe); all layers kept for distilroberta-base (6 of 6) and MiniLM-L12-H384 (12 of 12).",
+    "position_table": "truncated to max_length + pad_id + 1 rows (gidi.compression.positions); max_length 32.",
+    "ffn": "768-wide 12-layer sources (roberta-base, electra-base): K=2048 neurons per layer chosen by the `combined` score on the TRAIN notes (the shipped recipe). distilroberta-base (all 6 layers kept): K = the largest multiple of 64 within the parameter budget = 832 (feasibility.json). MiniLM-L12-H384: stock FFN 1536, nothing pruned.",
+    "vocabulary": "roberta-base and distilroberta-base: 9,000 rows by the shipped byte-level BPE rule (specials + 256 bytes + tokens of the TRAIN notes + lowest merge ranks, closed under merge parents; same keep-set because the two tokenizers are identical). WordPiece candidates (uncased): specials, every English-compatible single-character and ##single-character entry (so no [UNK] for any ASCII character of the vocabulary), every token the TRAIN notes use with the full vocabulary, then English-compatible entries by ascending original id (the id order of a WordPiece vocabulary follows frequency) until the row target is reached. Row target: electra-base 9,000 (same as roberta); MiniLM-L12-H384 = the largest multiple of 500 within the parameter budget = 20,500 (its transformer is only 21 M so the budget goes to vocabulary rows). No dev, test or probe note is read.",
+    "heads_init": "built once per candidate with seed 1 into the init checkpoint, exactly as models/gidi-en-v1-init; the training seed then changes the value head init, shuffling and dropout (the recipe's seed semantics, unchanged)."
+  },
+  "candidates": {
+    "control": "roberta-base 4L/768, K=2048, vocab 9,000: the shipped v3 recipe. Seed 1 is the existing run (experiments/gidi-en-student-v3/results.json); seeds 2 and 3 are trained now with the unchanged command.",
+    "challengers": [
+      "distilbert/distilroberta-base (Apache-2.0), 6L/768 K=832, vocab 9,000, byte-level BPE (same tokenizer as the control)",
+      "google/electra-base-discriminator (Apache-2.0), 4L/768 (layers 2/5/8/11) K=2048, vocab 9,000, uncased WordPiece",
+      "microsoft/MiniLM-L12-H384-uncased (MIT), 12L/384 stock FFN, vocab 20,500, uncased WordPiece"
+    ],
+    "dropped_before_training": {
+      "answerdotai/ModernBERT-base": "fails the op-set criterion: a 4-layer student exports only at opset 18 (Split with num_outputs; the opset-17 conversion yields an invalid graph) and adds Abs, Cos, LessOrEqual, Neg, Sin, Split, Sub that the shipped graph does not contain (RoPE and GeGLU); evidence in feasibility.json. Also needs custom layer-copy code (no encoder.layer.N naming, layer 0 without attn norm).",
+      "BAAI/bge-small-en-v1.5": "same 12x384 BERT shape as MiniLM-L12-H384 but an embedding model fine-tuned for retrieval; MiniLM-L12-H384 is its pretrained base and is the cleaner token-level starting point. Same tokenizer and cost, so no new information.",
+      "ProsusAI/finbert": "license cc-by-nc-sa-4.0 (non-commercial): not allowed. yiyanghkust/finbert-tone has no license tag. Both are bert-base-uncased sentiment fine-tunes on 10-K style text, not short personal notes.",
+      "bert-base-uncased / distilbert / electra-small / bert_uncased_L-4": "already rejected in experiments/gidi-en-backbone/report.md (uncased, narrower or the same WordPiece cost as ELECTRA-base/MiniLM with no extra strength)."
+    }
+  },
+  "seeds": {
+    "roberta-base": [1, 2, 3],
+    "each_challenger": [1, 2],
+    "note": "the comparison is of means over seeds. Seeds are fixed here and are not added, dropped or replaced after any score is seen. A run that crashes is re-run with the same seed; scores are never used to decide that."
+  },
+  "composite": {
+    "definition": "arithmetic mean of five int8, snapped scores: (1) test-secondary type macro-F1, (2) test-secondary target exact, (3) slang-probe joint (type and target both exact), (4) slang-probe value exact, (5) Gen Z probe joint (type and target both exact). Per run first, then the mean (and min/max/population std) over the seeds of that candidate.",
+    "primary_guards": "test primary (n=214) type macro-F1 and target exact, int8 snapped, mean over seeds.",
+    "reported_not_gating": "test primary/secondary/dev/slang/Gen Z type, target, joint, value, full joint; fp32 vs int8; dev; per-seed values; value on test sets"
+  },
+  "win_rule": {
+    "all_must_hold": [
+      "mean composite(challenger) >= mean composite(roberta-base) + 0.01",
+      "mean test-primary type macro-F1 and mean test-primary target exact of the challenger are each >= the roberta-base mean - 0.01 (no mean regression > 0.01)",
+      "int8 file of every challenger run <= 30,000,000 bytes",
+      "the int8 graph contains only op types of the shipped gidi-en v3 int8 graph (33 types, experiments/gidi-en-backbone-bakeoff/feasibility.json `shipped_ops`) and is exported at opset 17",
+      "a tokenizer the web runtime can run: classed as `existing` (byte-level BPE through the shipped playground/src/runtime/tokenizer.ts, no web change) or `port` (WordPiece: needs a new TypeScript tokenizer). A challenger that meets all other conditions and needs a port is reported as `WIN-WITH-PORT`, with the port cost stated; one that needs no port is `WIN`."
+    ],
+    "otherwise": "roberta-base stays. If several challengers win, the one with the larger mean composite is named; ties are not broken by anything else.",
+    "noise_flag_not_gating": "a challenger is `separated` if its lowest per-seed composite is above roberta-base's highest per-seed composite; the report states it next to the mean decision. With 2-3 seeds the standard deviation is itself noisy, so spreads are reported as min/max and population std, not as a confidence interval."
+  },
+  "seed_noise_question": "v3 (roberta-base + value head) vs v2 (no value head): v3 seeds 1-3 give the v3 mean and spread; v2 has the recorded seed-1 run and the control re-run of seed 1 (experiments/gidi-en-student-v3/control-v2/), i.e. two runs of the same recipe; no further v2 seeds are trained. The comparison is reported as numbers with the stated limit (v2 n=2 runs of one seed).",
+  "runtime": "one detached named bash service, strictly one process at a time, models built once per candidate, memory freed between runs (separate Python processes). No Gemini, no subagents, no polling, no release, deploy, HF push, journal edit or weight commit."
+}
